@@ -29,11 +29,11 @@ export default WithdrawScreen = () => {
             <Content>
             <Form>
             <Item floatingLabel>
-              <Label>Username</Label>
+              <Label>Bank</Label>
               <Input />
             </Item>
             <Item floatingLabel last>
-              <Label>Password</Label>
+              <Label>Amount</Label>
               <Input />
             </Item>
           </Form>
