@@ -5,10 +5,13 @@ import Constants from 'expo-constants'
 import React, { useState } from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-
 import AppNavigator from './src/navigation/AppNavigator';
+import { Container, Content, Text, StyleProvider } from 'native-base';
+import NavigationService from './src/navigation/NavigationService'
+import getTheme from './native-base-theme/components';
+import da from './native-base-theme/variables/da';
 
-export default function App(props) {
+export default App = (props) => {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
 
   if (!isLoadingComplete && !props.skipLoadingScreen) {
@@ -21,15 +24,19 @@ export default function App(props) {
     );
   } else {
     return (
-      <View style={styles.container}>
-        {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-        <AppNavigator />
-      </View>
-    );
+      <StyleProvider style={getTheme(da)}>
+        <View style={styles.container}>
+          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+          <AppNavigator ref={navigatorRef => {
+            NavigationService.setTopLevelNavigator(navigatorRef);
+          }} />
+        </View>
+      </StyleProvider>
+    )
   }
 }
 
-async function loadResourcesAsync() {
+loadResourcesAsync = async () => {
   await Promise.all([
     Asset.loadAsync([
       require('./src/assets/images/robot-dev.png'),
@@ -48,13 +55,13 @@ async function loadResourcesAsync() {
   ]);
 }
 
-function handleLoadingError(error) {
+handleLoadingError = (error) => {
   // In this case, you might want to report the error to your error reporting
   // service, for example Sentry
   console.warn(error);
 }
 
-function handleFinishLoading(setLoadingComplete) {
+handleFinishLoading = (setLoadingComplete) => {
   setLoadingComplete(true);
 }
 

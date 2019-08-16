@@ -4,6 +4,8 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 
 import TabBarIcon from '../components/TabBarIcon';
 import DashboardScreen from '../screens/DashboardScreen';
+import AccountScreen from '../screens/AccountScreen';
+import WithdrawScreen from '../screens/WithdrawScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
@@ -19,19 +21,52 @@ const DashboardStack = createStackNavigator(
   config
 );
 
-DashboardStack.navigationOptions = {
-  tabBarLabel: 'Dashboard',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
-      }
-    />
-  ),
-};
+const DashboardStackWithModal = createStackNavigator(
+  {
+    Dashboard: {
+      screen: DashboardStack,
+    },
+    Account: {
+      screen: AccountScreen,
+    },
+    Withdraw: {
+      screen: WithdrawScreen,
+    },
+
+  },
+  {
+    mode: 'modal',
+    headerMode: 'none',
+  },
+);
+
+DashboardStackWithModal.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true;
+  let routeName = navigation.state.routes[navigation.state.index].routeName
+  if (routeName == 'Withdraw' || routeName == 'Account' ) {
+    tabBarVisible = false
+  }
+
+  return {
+    tabBarVisible: tabBarVisible,
+    tabBarLabel: 'Dashboard',
+    tabBarOptions: {
+      showIcon: true,
+      
+    },
+
+    tabBarIcon: ({ focused }) => (
+      <TabBarIcon
+        focused={focused}
+        name={
+          Platform.OS === 'ios'
+            ? `ios-home${focused ? '' : ''}`
+            : 'md-home'
+        }
+      />
+    ),
+  }
+}
 
 DashboardStack.path = '';
 
@@ -68,7 +103,7 @@ SettingsStack.navigationOptions = {
 SettingsStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
-  DashboardStack,
+  DashboardStackWithModal,
   LinksStack,
   SettingsStack,
 });
