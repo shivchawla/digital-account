@@ -9,8 +9,8 @@ import { LinearGradient } from 'expo-linear-gradient'
 import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Drawer, Card, CardItem, Thumbnail, Grid, Col, Row } from 'native-base';
 import SideBar from '../components/SideBar'
 
-export default AccountScreen = () => {
-    
+const AccountScreen = () => {
+
     return (
         <Container>
             <Header transparent>
@@ -60,3 +60,5 @@ AccountScreen.navigationOptions = {
     header: null,
 };
 
+
+export default AccountScreen;

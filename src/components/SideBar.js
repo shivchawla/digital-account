@@ -7,7 +7,7 @@ import NavigationService from '../navigation/NavigationService'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Drawer, Card, CardItem } from 'native-base';
 
-export default SideBar = (props) => {
+const SideBar = (props) => {
     const navigate = (screen) => {
         props.closeDrawer();
         props.navigation.navigate(screen)
@@ -70,3 +70,5 @@ export default SideBar = (props) => {
         </LinearGradient>
     );
 }
+
+export default SideBar;

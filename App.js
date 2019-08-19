@@ -11,7 +11,7 @@ import NavigationService from './src/navigation/NavigationService'
 import getTheme from './native-base-theme/components';
 import da from './native-base-theme/variables/da';
 
-export default App = (props) => {
+const App = (props) => {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
 
   if (!isLoadingComplete && !props.skipLoadingScreen) {
@@ -36,7 +36,7 @@ export default App = (props) => {
   }
 }
 
-loadResourcesAsync = async () => {
+const loadResourcesAsync = async () => {
   await Promise.all([
     Asset.loadAsync([
       require('./src/assets/images/robot-dev.png'),
@@ -55,13 +55,13 @@ loadResourcesAsync = async () => {
   ]);
 }
 
-handleLoadingError = (error) => {
+const handleLoadingError = (error) => {
   // In this case, you might want to report the error to your error reporting
   // service, for example Sentry
   console.warn(error);
 }
 
-handleFinishLoading = (setLoadingComplete) => {
+const handleFinishLoading = (setLoadingComplete) => {
   setLoadingComplete(true);
 }
 
@@ -72,3 +72,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
 });
+
+
+export default App;

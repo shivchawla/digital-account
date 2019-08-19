@@ -9,7 +9,7 @@ import { LinearGradient } from 'expo-linear-gradient'
 import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Drawer, Card, CardItem, Thumbnail, Grid, Col, Row, Form, Item, Label, Input } from 'native-base';
 import SideBar from '../components/SideBar'
 
-export default WithdrawScreen = () => {
+const WithdrawScreen = () => {
 
     return (
         <Container>
@@ -44,7 +44,8 @@ export default WithdrawScreen = () => {
     );
 }
 
-AccountScreen.navigationOptions = {
+WithdrawScreen.navigationOptions = {
     header: null,
 };
 
+export default WithdrawScreen
