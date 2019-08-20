@@ -25,14 +25,14 @@ const App = (props) => {
     );
   } else {
     return (
-      <StyleProvider style={Platform.OS === 'ios'?getTheme(daIos):getTheme(da)}>
+    
         <View style={styles.container}>
-          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+         <StatusBar barStyle="default" />
           <AppNavigator ref={navigatorRef => {
             NavigationService.setTopLevelNavigator(navigatorRef);
           }} />
         </View>
-      </StyleProvider>
+  
     )
   }
 }
@@ -68,7 +68,7 @@ const handleFinishLoading = (setLoadingComplete) => {
 
 const styles = StyleSheet.create({
   container: {
-     paddingTop: Platform.OS === 'ios'?null:Constants.statusBarHeight,
+     paddingTop: Constants.statusBarHeight,
     flex: 1,
     backgroundColor: '#fff',
   },

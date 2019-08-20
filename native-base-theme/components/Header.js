@@ -86,7 +86,7 @@ export default (variables /* : * */ = variable) => {
         flex: 0.3
       },
       'NativeBase.Body': {
-        flex:  ,
+        flex: 1 ,
         'NativeBase.Segment': {
           marginRight: 0,
           alignSelf: 'center',
