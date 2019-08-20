@@ -9,11 +9,11 @@ import { LinearGradient } from 'expo-linear-gradient'
 import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Drawer, Card, CardItem, Thumbnail, Grid, Col, Row } from 'native-base';
 import SideBar from '../components/SideBar'
 
-export default AccountScreen = () => {
+const AccountScreen = () => {
     
     return (
         <Container>
-            <Header transparent>
+            <Header style={{ borderBottomWidth: 1, borderColor: '#84A4FD' }}>
                 <Left>
                     <Button transparent onPress={() => NavigationService.goBack()}>
                         <Icon name="ios-arrow-back" style={{ color: '#84A4FD' }} />
@@ -60,3 +60,4 @@ AccountScreen.navigationOptions = {
     header: null,
 };
 
+export default AccountScreen;

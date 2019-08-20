@@ -8,7 +8,7 @@ import { LinearGradient } from 'expo-linear-gradient'
 import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Drawer, Card, CardItem, Thumbnail } from 'native-base';
 import SideBar from '../components/SideBar'
 import NavigationService from '../navigation/NavigationService'
-export default DashboardScreen = () => {
+const DashboardScreen = () => {
 
   const openDrawer = () => { this.drawer._root.open() };
 
@@ -22,7 +22,7 @@ export default DashboardScreen = () => {
       }
       onClose={closeDrawer} >
       <Container>
-        <Header transparent>
+        <Header style={{ borderBottomWidth: 1, borderColor: '#84A4FD' }}>
           <Left>
             <Button transparent onPress={openDrawer}>
               <Icon name="md-more" style={{ color: '#84A4FD' }} />
@@ -40,13 +40,13 @@ export default DashboardScreen = () => {
             <CardItem >
               <View style={{ flexDirection: 'row' }}>
                 <Button transparent onPress={() => console.log('button pressed')}>
-                  <Text style={{color:'#000'}}>Send Money</Text>
+                  <Text style={{ color: '#000' }}>Send Money</Text>
                 </Button>
                 <Button transparent>
-                <Text style={{color:'#000'}}>|</Text>
+                  <Text style={{ color: '#000' }}>|</Text>
                 </Button>
                 <Button transparent onPress={() => NavigationService.navigate('Withdraw')}>
-                <Text style={{color:'#000'}}>Withdrawal</Text>
+                  <Text style={{ color: '#000' }}>Withdrawal</Text>
                 </Button>
               </View>
             </CardItem>
@@ -112,4 +112,6 @@ export default DashboardScreen = () => {
 DashboardScreen.navigationOptions = {
   header: null,
 };
+
+export default DashboardScreen;
 

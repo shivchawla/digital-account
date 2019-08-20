@@ -6,41 +6,32 @@ import {
 import NavigationService from '../navigation/NavigationService'
 import Layout from '../constants/Layout'
 import { LinearGradient } from 'expo-linear-gradient'
-import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Drawer, Card, CardItem, Thumbnail, Grid, Col, Row, Form, Item, Label, Input, Textarea } from 'native-base';
+import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Drawer, Card, CardItem, Thumbnail, Grid, Col, Row, Form, Item, Label, Input, Textarea, ListItem, CheckBox } from 'native-base';
 import SideBar from '../components/SideBar'
 
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
-    bank: Yup
-        .string()
-        .required(),
-    amount: Yup
-        .string()
-        .required(),
-    remark: Yup
-        .string()
+
+   
 
 });
 
 
-const WithdrawScreen = () => {
-
+const LoanApplicationDeclarationScreen = () => {
 
     return (
         <Formik
 
-            onSubmit={values => console.log(JSON.stringify(values))}
+            onSubmit={values => {
+                console.log(JSON.stringify(values))
+                NavigationService.navigate('ConnectedParties')
+            }}
             validationSchema={validationSchema}
         >
             {FormikProps => {
-                const { bank, amount,remark } = FormikProps.values
-                const bankError = FormikProps.errors.bank
-                const bankTouched = FormikProps.touched.bank
-
-                const amountError = FormikProps.errors.amount
-                const amountTouched = FormikProps.touched.amount
+               
                 return (<Container>
                     <Header style={{ borderBottomWidth: 1, borderColor: '#84A4FD' }}>
                         <Left>
@@ -49,27 +40,31 @@ const WithdrawScreen = () => {
                             </Button>
                         </Left>
                         <Body>
-                            <Title>Withdrawal</Title>
+                            <Title>Declaration</Title>
                         </Body>
                         <Right>
                             <Thumbnail small source={{ uri: `https://picsum.photos/200/300` }} />
                         </Right>
                     </Header>
                     <Content padder>
-                        <Form>
-                            <Item stackedLabel>
-                                <Label>Bank</Label>
-                                <Input value={bank} onChangeText={FormikProps.handleChange('bank')} />
-                            </Item>
-                            <Item stackedLabel >
-                                <Label>Amount</Label>
-                                <Input value={amount} onChangeText={FormikProps.handleChange('amount')} />
-                            </Item>
-                            <Item stackedLabel>
-                                <Label>Remark</Label>
-                                <Input value={remark} onChangeText={FormikProps.handleChange('remark')} />
-                            </Item>
-                        </Form>
+                        <ListItem>
+                            <CheckBox checked={true} />
+                            <Body>
+                                <Text>Daily Stand Up</Text>
+                            </Body>
+                        </ListItem>
+                        <ListItem>
+                            <CheckBox checked={false} />
+                            <Body>
+                                <Text>Discussion with Client</Text>
+                            </Body>
+                        </ListItem>
+                        <ListItem>
+                            <CheckBox checked={false} />
+                            <Body>
+                                <Text>Finish list Screen</Text>
+                            </Body>
+                        </ListItem>
                     </Content>
                     <Footer>
                         <FooterTab>
@@ -89,8 +84,8 @@ const WithdrawScreen = () => {
 
 
 
-WithdrawScreen.navigationOptions = {
+LoanApplicationDeclarationScreen.navigationOptions = {
     header: null,
 };
 
-export default WithdrawScreen;
+export default LoanApplicationDeclarationScreen;

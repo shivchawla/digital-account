@@ -9,6 +9,10 @@ import WithdrawScreen from '../screens/WithdrawScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
+import LoanApplicationScreen from '../screens/LoanApplicationScreen';
+import LoanApplicationDeclarationScreen from '../screens/LoanApplicationDeclarationScreen';
+import ConnectedPartiesScreen from '../screens/ConnectedPartiesScreen';
+
 const config = Platform.select({
   web: { headerMode: 'screen' },
   default: {},
@@ -31,6 +35,15 @@ const DashboardStackWithModal = createStackNavigator(
     },
     Withdraw: {
       screen: WithdrawScreen,
+    },
+    LoanApplication: {
+      screen: LoanApplicationScreen,
+    },
+    LoanApplicationDeclaration: {
+      screen: LoanApplicationDeclarationScreen,
+    },
+    ConnectedParties: {
+      screen: ConnectedPartiesScreen,
     },
 
   },

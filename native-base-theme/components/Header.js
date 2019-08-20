@@ -2,7 +2,7 @@
 
 import { PixelRatio, StatusBar } from 'react-native';
 
-import variable from './../variables/platform';
+import variable from './../variables/da';
 import { PLATFORM } from './../variables/commonColor';
 
 export default (variables /* : * */ = variable) => {
@@ -86,7 +86,7 @@ export default (variables /* : * */ = variable) => {
         flex: 0.3
       },
       'NativeBase.Body': {
-        flex: 1,
+        flex:  ,
         'NativeBase.Segment': {
           marginRight: 0,
           alignSelf: 'center',

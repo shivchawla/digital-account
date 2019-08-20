@@ -6,38 +6,38 @@ import {
 import NavigationService from '../navigation/NavigationService'
 import Layout from '../constants/Layout'
 import { LinearGradient } from 'expo-linear-gradient'
-import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Drawer, Card, CardItem, Thumbnail, Grid, Col, Row, Form, Item, Label, Input, Textarea } from 'native-base';
+import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Drawer, Card, CardItem, Thumbnail, Grid, Col, Row, Form, Item, Label, Input, Textarea, ListItem, CheckBox } from 'native-base';
 import SideBar from '../components/SideBar'
 
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
-    bank: Yup
-        .string()
-        .required(),
+
     amount: Yup
         .string()
         .required(),
-    remark: Yup
+    purpose: Yup
         .string()
 
 });
 
 
-const WithdrawScreen = () => {
-
+const LoanApplicationScreen = () => {
 
     return (
         <Formik
 
-            onSubmit={values => console.log(JSON.stringify(values))}
+            onSubmit={values => {
+                console.log(JSON.stringify(values))
+                NavigationService.navigate('LoanApplicationDeclaration')
+            }}
             validationSchema={validationSchema}
         >
             {FormikProps => {
-                const { bank, amount,remark } = FormikProps.values
-                const bankError = FormikProps.errors.bank
-                const bankTouched = FormikProps.touched.bank
+                const { amount, purpose } = FormikProps.values
+                const purposeError = FormikProps.errors.purpose
+                const purposeTouched = FormikProps.touched.purpose
 
                 const amountError = FormikProps.errors.amount
                 const amountTouched = FormikProps.touched.amount
@@ -49,7 +49,7 @@ const WithdrawScreen = () => {
                             </Button>
                         </Left>
                         <Body>
-                            <Title>Withdrawal</Title>
+                            <Title>Loan Application</Title>
                         </Body>
                         <Right>
                             <Thumbnail small source={{ uri: `https://picsum.photos/200/300` }} />
@@ -58,17 +58,18 @@ const WithdrawScreen = () => {
                     <Content padder>
                         <Form>
                             <Item stackedLabel>
-                                <Label>Bank</Label>
-                                <Input value={bank} onChangeText={FormikProps.handleChange('bank')} />
-                            </Item>
-                            <Item stackedLabel >
-                                <Label>Amount</Label>
+                                <Label>Total Financing (MYR)</Label>
                                 <Input value={amount} onChangeText={FormikProps.handleChange('amount')} />
                             </Item>
-                            <Item stackedLabel>
-                                <Label>Remark</Label>
-                                <Input value={remark} onChangeText={FormikProps.handleChange('remark')} />
+                            <Item stackedLabel >
+                                <Label>Purpose</Label>
+                                <Input value={purpose} onChangeText={FormikProps.handleChange('purpose')} />
                             </Item>
+                            <Item stackedLabel>
+                                <Label>Is company connected with SME Bank</Label>
+                                <View style={{ flex: 1, flexDirection: 'row' }}><CheckBox checked={false} /><Text>Yes</Text><CheckBox checked={false} /><Text>No</Text></View>
+                            </Item>
+
                         </Form>
                     </Content>
                     <Footer>
@@ -89,8 +90,8 @@ const WithdrawScreen = () => {
 
 
 
-WithdrawScreen.navigationOptions = {
+LoanApplicationScreen.navigationOptions = {
     header: null,
 };
 
-export default WithdrawScreen;
+export default LoanApplicationScreen;
