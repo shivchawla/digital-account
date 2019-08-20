@@ -15,13 +15,13 @@ const DashboardScreen = () => {
   const closeDrawer = () => { this.drawer._root.close() };
 
   return (
-    <Drawer
+    <Drawer 
       ref={(ref) => { this.drawer = ref; }}
       content={
         <SideBar navigator={this.navigator} closeDrawer={closeDrawer} navigation={NavigationService} />
       }
       onClose={closeDrawer} >
-      <Container>
+      <Container >
         <Header style={{ borderBottomWidth: 1, borderColor: '#84A4FD' }}>
           <Left>
             <Button transparent onPress={openDrawer}>
