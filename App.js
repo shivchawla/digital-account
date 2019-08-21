@@ -6,11 +6,7 @@ import React, { useState } from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import AppNavigator from './src/navigation/AppNavigator';
-import { Container, Content, Text, StyleProvider } from 'native-base';
-import NavigationService from './src/navigation/NavigationService'
-import getTheme from './native-base-theme/components';
-import da from './native-base-theme/variables/da';
-import daIos from './native-base-theme/variables/daIos';
+
 
 const App = (props) => {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
@@ -25,14 +21,10 @@ const App = (props) => {
     );
   } else {
     return (
-    
-        <View style={styles.container}>
-         <StatusBar barStyle="default" />
-          <AppNavigator ref={navigatorRef => {
-            NavigationService.setTopLevelNavigator(navigatorRef);
-          }} />
-        </View>
-  
+      <View style={styles.container}>
+        <StatusBar barStyle="default" />
+        <AppNavigator />
+      </View>
     )
   }
 }
@@ -68,7 +60,7 @@ const handleFinishLoading = (setLoadingComplete) => {
 
 const styles = StyleSheet.create({
   container: {
-     paddingTop: Constants.statusBarHeight,
+    paddingTop: Constants.statusBarHeight,
     flex: 1,
     backgroundColor: '#fff',
   },

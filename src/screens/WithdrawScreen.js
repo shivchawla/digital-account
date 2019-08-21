@@ -6,8 +6,7 @@ import {
 import NavigationService from '../navigation/NavigationService'
 import Layout from '../constants/Layout'
 import { LinearGradient } from 'expo-linear-gradient'
-import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Drawer, Card, CardItem, Thumbnail, Grid, Col, Row, Form, Item, Label, Input, Textarea } from 'native-base';
-import SideBar from '../components/SideBar'
+
 
 import { Formik } from 'formik';
 import * as Yup from 'yup';

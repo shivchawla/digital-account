@@ -1,20 +1,25 @@
 import React from 'react';
 import {
-    View
-
+    View,
+    TouchableOpacity,
+    Text,
+    Image,
+    StyleSheet,
+    TextInput,
+    CheckBox
 } from 'react-native';
-import NavigationService from '../navigation/NavigationService'
+
 import Layout from '../constants/Layout'
 import { LinearGradient } from 'expo-linear-gradient'
-import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Drawer, Card, CardItem, Thumbnail, Grid, Col, Row, Form, Item, Label, Input, Textarea, ListItem, CheckBox } from 'native-base';
-import SideBar from '../components/SideBar'
+//import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Drawer, Card, CardItem, Thumbnail, Grid, Col, Row } from 'native-base';
+import { Ionicons } from '@expo/vector-icons';
 
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
 
-   
+
 
 });
 
@@ -31,52 +36,54 @@ const LoanApplicationDeclarationScreen = () => {
             validationSchema={validationSchema}
         >
             {FormikProps => {
-               
-                return (<Container>
-                    <Header style={{ borderBottomWidth: 1, borderColor: '#84A4FD' }}>
-                        <Left>
-                            <Button transparent onPress={() => NavigationService.goBack()}>
-                                <Icon name="ios-arrow-back" style={{ color: '#84A4FD' }} />
-                            </Button>
-                        </Left>
-                        <Body>
-                            <Title>Declaration</Title>
-                        </Body>
-                        <Right>
-                            <Thumbnail small source={{ uri: `https://picsum.photos/200/300` }} />
-                        </Right>
-                    </Header>
-                    <Content padder>
-                        <ListItem>
-                            <CheckBox checked={true} />
-                            <Body>
+
+                return (<View style={{ flex: 1, }}>
+                    <View style={{ flex: 1, flexDirection: 'row' }}>
+                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 10 }}>
+                            <TouchableOpacity onPress={props.navigation.openDrawer} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
+                                <Ionicons name="md-more" color={'#4D6BFA'} style={{ fontSize: 30,paddingRight:20 }} />
+                            </TouchableOpacity>
+                        </View>
+                        <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={styles.title}>Loan Application</Text>
+                        </View>
+                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
+                            <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
+                        </View>
+                    </View>
+                    <View style={{ flex: 9, padding: 10 }}>
+
+                        <View style={{ marginTop: 10 }}>
+                            <View>
+                                <CheckBox checked={true} />
+
                                 <Text>Daily Stand Up</Text>
-                            </Body>
-                        </ListItem>
-                        <ListItem>
-                            <CheckBox checked={false} />
-                            <Body>
+                            </View>
+
+
+                            <View>
+                                <CheckBox checked={false} />
+
                                 <Text>Discussion with Client</Text>
-                            </Body>
-                        </ListItem>
-                        <ListItem>
-                            <CheckBox checked={false} />
-                            <Body>
+
+                            </View>
+                            <View>
+                                <CheckBox checked={false} />
+
                                 <Text>Finish list Screen</Text>
-                            </Body>
-                        </ListItem>
-                    </Content>
-                    <Footer>
-                        <FooterTab>
-                            <Button>
-                                <Text>Back</Text>
-                            </Button>
-                            <Button onPress={FormikProps.handleSubmit} >
-                                <Text>Submit</Text>
-                            </Button>
-                        </FooterTab>
-                    </Footer>
-                </Container>)
+
+                            </View>
+                            <View>
+                                <TouchableOpacity>
+                                    <Text>Back</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={FormikProps.handleSubmit} >
+                                    <Text>Submit</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    </View>
+                </View>)
             }}
         </Formik >
     );

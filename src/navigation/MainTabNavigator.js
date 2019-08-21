@@ -9,6 +9,8 @@ import WithdrawScreen from '../screens/WithdrawScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
+import DrawerNavigator from './DrawerNavigator';
+
 import LoanApplicationScreen from '../screens/LoanApplicationScreen';
 import LoanApplicationDeclarationScreen from '../screens/LoanApplicationDeclarationScreen';
 import ConnectedPartiesScreen from '../screens/ConnectedPartiesScreen';
@@ -18,18 +20,19 @@ const config = Platform.select({
   default: {},
 });
 
+
+
 const DashboardStack = createStackNavigator(
   {
-    Dashboard: DashboardScreen,
-  },
-  config
+    Dashboard: DrawerNavigator,
+  },  
 );
 
 const DashboardStackWithModal = createStackNavigator(
   {
     Dashboard: {
       screen: DashboardStack,
-      navigationOptions:{header:null}
+      navigationOptions: { header: null }
     },
     Account: {
       screen: AccountScreen,
@@ -52,12 +55,13 @@ const DashboardStackWithModal = createStackNavigator(
     mode: 'modal',
     headerMode: 'none',
   },
+  config
 );
 
 DashboardStackWithModal.navigationOptions = ({ navigation }) => {
   let tabBarVisible = true;
   let routeName = navigation.state.routes[navigation.state.index].routeName
-  if (routeName == 'Withdraw' || routeName == 'Account' ) {
+  if (routeName == 'Withdraw' || routeName == 'Account') {
     tabBarVisible = false
   }
 
@@ -66,7 +70,7 @@ DashboardStackWithModal.navigationOptions = ({ navigation }) => {
     tabBarLabel: 'Dashboard',
     tabBarOptions: {
       showIcon: true,
-      
+
     },
 
     tabBarIcon: ({ focused }) => (
