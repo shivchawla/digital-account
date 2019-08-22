@@ -7,7 +7,6 @@ import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import AppNavigator from './src/navigation/AppNavigator';
 
-
 const App = (props) => {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
 

@@ -5,22 +5,21 @@ import {
     Text,
     Image,
     StyleSheet
-  } from 'react-native';
+} from 'react-native';
 
 import Layout from '../constants/Layout'
 import { LinearGradient } from 'expo-linear-gradient'
-//import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Drawer, Card, CardItem, Thumbnail, Grid, Col, Row } from 'native-base';
 import { Ionicons } from '@expo/vector-icons';
-
+import styles from '../styles/styles'
 
 const AccountScreen = (props) => {
 
     return (
         <View style={{ flex: 1, }}>
-            <View style={{ flex: 1, flexDirection: 'row' }}>
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 10 }}>
-                    <TouchableOpacity onPress={props.navigation.openDrawer} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                        <Ionicons name="md-more" color={'#4D6BFA'} style={{ fontSize: 30,paddingRight:20 }} />
+            <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#4D6BFA' }}>
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
+                    <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
+                        <Ionicons name="ios-arrow-back" color={'#4D6BFA'} style={{ fontSize: 30, paddingLeft: 20 }} />
                     </TouchableOpacity>
                 </View>
                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
@@ -31,7 +30,6 @@ const AccountScreen = (props) => {
                 </View>
             </View>
             <View style={{ flex: 9, padding: 10 }}>
-
                 <View style={{ marginTop: 10 }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                         <Text style={styles.h2}>Latest Transaction</Text>
@@ -39,7 +37,6 @@ const AccountScreen = (props) => {
                     </View>
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-
                             <Text style={styles.text}>Account Number</Text>
                         </View>
                         <View style={{ flex: 1 }}>
@@ -48,7 +45,6 @@ const AccountScreen = (props) => {
                     </View>
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-
                             <Text style={styles.text}>Account Type</Text>
                         </View>
                         <View style={{ flex: 1 }}>
@@ -57,7 +53,6 @@ const AccountScreen = (props) => {
                     </View>
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-
                             <Text style={styles.text}>Balance</Text>
                         </View>
                         <View style={{ flex: 1 }}>
@@ -66,7 +61,6 @@ const AccountScreen = (props) => {
                     </View>
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-
                             <Text style={styles.text}>Balance</Text>
                         </View>
                         <View style={{ flex: 1 }}>
@@ -75,7 +69,6 @@ const AccountScreen = (props) => {
                     </View>
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-
                             <Text style={styles.text}>Status</Text>
                         </View>
                         <View style={{ flex: 1 }}>
@@ -88,45 +81,6 @@ const AccountScreen = (props) => {
 
     );
 }
-
-
-const styles = StyleSheet.create({
-    text: {
-      fontSize: 17,
-      fontFamily: 'Montserrat_medium',
-      color: '#000'
-    },
-    title: {
-      fontSize: 17,
-      fontFamily: 'Montserrat_medium',
-      color: '#4D6BFA',
-      fontSize: 17 * 1.4
-    },
-    h3: {
-      fontSize: 17,
-      fontFamily: 'Montserrat_medium',
-      color: '#000',
-      fontSize: 17 * 1.2
-    },
-    h2: {
-      fontSize: 17,
-      fontFamily: 'Montserrat_medium',
-      color: '#000',
-      fontSize: 17 * 1.3
-    },
-    h1: {
-      fontSize: 17,
-      fontFamily: 'Montserrat_medium',
-      color: '#000',
-      fontSize: 17 * 1.4
-    }, small: {
-      fontSize: 17,
-      fontFamily: 'Montserrat_medium',
-      color: '#000',
-      fontSize: 17 * 0.8
-    }
-  })
-  
 
 AccountScreen.navigationOptions = {
     header: null,

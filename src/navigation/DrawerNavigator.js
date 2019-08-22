@@ -22,8 +22,7 @@ import LoanApplicationScreen from '../screens/LoanApplicationScreen';
 const DrawerContent = createDrawerNavigator(
     {
         Dashboard: DashboardScreen,
-        Account: AccountScreen,
-        Withdraw:WithdrawScreen,
+        //Account: AccountScreen,        
         LoanApplication:LoanApplicationScreen
        
     },

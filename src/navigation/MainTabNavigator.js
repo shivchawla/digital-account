@@ -31,8 +31,7 @@ const DashboardStack = createStackNavigator(
 const DashboardStackWithModal = createStackNavigator(
   {
     Dashboard: {
-      screen: DashboardStack,
-      navigationOptions: { header: null }
+      screen: DashboardStack,     
     },
     Account: {
       screen: AccountScreen,

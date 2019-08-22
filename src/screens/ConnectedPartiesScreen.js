@@ -11,9 +11,8 @@ import {
 
 import Layout from '../constants/Layout'
 import { LinearGradient } from 'expo-linear-gradient'
-//import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Drawer, Card, CardItem, Thumbnail, Grid, Col, Row } from 'native-base';
 import { Ionicons } from '@expo/vector-icons';
-
+import styles from '../styles/styles'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 

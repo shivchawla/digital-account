@@ -6,22 +6,22 @@ import {
     Image,
     StyleSheet,
     TextInput,
-    CheckBox
+
 } from 'react-native';
+import CheckBox from 'react-native-check-box'
 
 import Layout from '../constants/Layout'
 import { LinearGradient } from 'expo-linear-gradient'
-//import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Drawer, Card, CardItem, Thumbnail, Grid, Col, Row } from 'native-base';
 import { Ionicons } from '@expo/vector-icons';
-
+import styles from '../styles/styles'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
 
     amount: Yup
-        .string()
-        .required(),
+        .string(),
+    // .required(),
     purpose: Yup
         .string()
 
@@ -35,7 +35,7 @@ const LoanApplicationScreen = (props) => {
 
             onSubmit={values => {
                 console.log(JSON.stringify(values))
-                NavigationService.navigate('LoanApplicationDeclaration')
+                props.navigation.navigate('LoanApplicationDeclaration')
             }}
             validationSchema={validationSchema}
         >
@@ -46,95 +46,66 @@ const LoanApplicationScreen = (props) => {
 
                 const amountError = FormikProps.errors.amount
                 const amountTouched = FormikProps.touched.amount
-                return (<View style={{ flex: 1, }}>
-                    <View style={{ flex: 1, flexDirection: 'row' }}>
-                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 10 }}>
-                            <TouchableOpacity onPress={props.navigation.openDrawer} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                                <Ionicons name="md-more" color={'#4D6BFA'} style={{ fontSize: 30,paddingRight:20 }} />
-                            </TouchableOpacity>
+                return (
+                    <View style={{ flex: 1, }}>
+                        <View style={{ flex: 1, flexDirection: 'row' }}>
+                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 10 }}>
+                                <TouchableOpacity onPress={props.navigation.openDrawer} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
+                                    <Ionicons name="md-more" color={'#4D6BFA'} style={{ fontSize: 30, paddingRight: 20 }} />
+                                </TouchableOpacity>
+                            </View>
+                            <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
+                                <Text style={styles.title}>Loan Application</Text>
+                            </View>
+                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
+                                <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
+                            </View>
                         </View>
-                        <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={styles.title}>Loan Application</Text>
-                        </View>
-                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
-                            <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
-                        </View>
-                    </View>
-                    <View style={{ flex: 9, padding: 10 }}>
+                        <View style={{ justifyContent: 'space-between', flex: 9 }}>
 
-                        <View style={{ marginTop: 10 }}>
-                            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                                <Text style={styles.h2}>Latest Transaction</Text>
-                                <Text style={styles.small}>More</Text>
-                            </View>
-                            <View>
-                                <Text>Total Financing (MYR)</Text>
-                                <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} />
-                            </View>
-                            <View>
-                                <Text>Purpose</Text>
-                                <TextInput value={purpose} onChangeText={FormikProps.handleChange('purpose')} />
-                            </View>
-                            <View>
-                                <Text>Is company connected with SME Bank</Text>
-                                <View>
-                                    <CheckBox checked={false} /><Text>Yes</Text>
-                                    <CheckBox checked={false} /><Text>No</Text>
+                            <View style={{ flex: 9, margin: 10 }}>
+                                <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 }}>
+                                    <Text style={styles.h3}>Financing</Text>
+
+                                </View>
+                                <View style={{ marginBottom: 10 }}>
+                                    <Text style={[styles.text, { marginBottom: 5 }]}>Total Financing (MYR)</Text>
+                                    <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                </View>
+                                <View style={{ marginBottom: 10 }}>
+                                    <Text style={[styles.text, { marginBottom: 5 }]}>Purpose</Text>
+                                    <TextInput value={purpose} onChangeText={FormikProps.handleChange('purpose')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                </View>
+                                <View style={{ marginBottom: 10 }}>
+                                    <Text style={[styles.text, { marginBottom: 5 }]}>Is company connected with SME Bank</Text>
+                                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                        <CheckBox onClick={() => console.log('test')} checked={false} style={{ paddingRight: 10 }} /><Text>Yes</Text>
+                                    </View>
+                                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                        <CheckBox onClick={() => console.log('test')} checked={false} style={{ paddingRight: 10 }} /><Text>No</Text>
+                                    </View>
                                 </View>
                             </View>
-                            <View>
-                                <TouchableOpacity>
-                                    <Text>Back</Text>
+                            <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
+                                <TouchableOpacity style={{ flex: 1, }}>
+                                    <LinearGradient colors={['#A4A4A4', '#A4A4A4']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
+                                        <Text style={[styles.text, { color: '#fff' }]}>Back</Text>
+                                    </LinearGradient>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={FormikProps.handleSubmit} >
-                                    <Text>Submit</Text>
+                                <TouchableOpacity onPress={FormikProps.handleSubmit} style={{ flex: 1, }} >
+                                    <LinearGradient colors={['#628BFB', '#0E47E8']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
+                                        <Text style={[styles.text, { color: '#fff' }]}>Submit</Text>
+                                    </LinearGradient>
                                 </TouchableOpacity>
                             </View>
                         </View>
-                    </View>
-                </View>)
+                    </View>)
             }}
         </Formik >
     );
 }
 
 
-const styles = StyleSheet.create({
-    text: {
-        fontSize: 17,
-        fontFamily: 'Montserrat_medium',
-        color: '#000'
-    },
-    title: {
-        fontSize: 17,
-        fontFamily: 'Montserrat_medium',
-        color: '#4D6BFA',
-        fontSize: 17 * 1.4
-    },
-    h3: {
-        fontSize: 17,
-        fontFamily: 'Montserrat_medium',
-        color: '#000',
-        fontSize: 17 * 1.2
-    },
-    h2: {
-        fontSize: 17,
-        fontFamily: 'Montserrat_medium',
-        color: '#000',
-        fontSize: 17 * 1.3
-    },
-    h1: {
-        fontSize: 17,
-        fontFamily: 'Montserrat_medium',
-        color: '#000',
-        fontSize: 17 * 1.4
-    }, small: {
-        fontSize: 17,
-        fontFamily: 'Montserrat_medium',
-        color: '#000',
-        fontSize: 17 * 0.8
-    }
-})
 
 LoanApplicationScreen.navigationOptions = {
     header: null,
