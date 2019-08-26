@@ -33,7 +33,15 @@ const App = (props) => {
 const loadResourcesAsync = async () => {
   await Promise.all([
     Asset.loadAsync([
+      require('./src/assets/images/account.png'),
+      require('./src/assets/images/application.png'),
       require('./src/assets/images/robot-dev.png'),
+      require('./src/assets/images/business-hub.png'),
+      require('./src/assets/images/expenses.png'),
+      require('./src/assets/images/invoice.png'),
+      require('./src/assets/images/report.png'),
+      require('./src/assets/images/setting.png'),
+      require('./src/assets/images/support.png'),
       require('./src/assets/images/robot-prod.png'),
     ]),
     Font.loadAsync({

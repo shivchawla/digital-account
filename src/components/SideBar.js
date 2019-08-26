@@ -3,7 +3,8 @@ import {
     TouchableOpacity,
     View,
     StyleSheet,
-    Text
+    Text,
+    Image
 } from 'react-native';
 
 import { LinearGradient } from 'expo-linear-gradient'
@@ -18,47 +19,47 @@ const SideBar = (props) => {
             <View style={{ padding: 10 }}>
 
                 <TouchableOpacity onPress={() => props.nav('Dashboard')} style={{ flexDirection: 'row', marginTop: 5, marginBottom: 15  }}>
-                    <Ionicons name="logo-buffer" color={'#fff'} style={{ fontSize: 30, paddingRight: 10, marginBottom: 15 }} />
+                    <Image source={require('../assets/images/dashboard.png')}  style={{ width: 50, height: 50, paddingRight: 10, marginBottom: 15 }} />
                     <Text style={[styles.text, { color: '#fff' }]}>Dashboard</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => props.nav('Account')} style={{ flexDirection: 'row', marginTop: 5, marginBottom: 15 }}>
-                    <Ionicons name="ios-briefcase" color={'#fff'} style={{ fontSize: 30, paddingRight: 10, marginBottom: 15 }} />
+                <Image source={require('../assets/images/account.png')}  style={{ width: 50, height: 50, paddingRight: 10, marginBottom: 15 }} />
                     <Text style={[styles.text, { color: '#fff' }]}>Account</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => props.nav('LoanApplication')} style={{ flexDirection: 'row', marginTop: 5, marginBottom: 15 }}>
-                    <Ionicons name="ios-create" color={'#fff'} style={{ fontSize: 30, paddingRight: 10, marginBottom: 15 }} />
+                <Image source={require('../assets/images/application.png')}  style={{ width: 50, height: 50, paddingRight: 10, marginBottom: 15 }} />
                     <Text style={[styles.text, { color: '#fff' }]}>Loan Application</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => props.nav('Settings')} style={{ flexDirection: 'row', marginTop: 5, marginBottom: 15 }}>
-                    <Ionicons name="ios-pricetags" color={'#fff'} style={{ fontSize: 30, paddingRight: 10, marginBottom: 15 }} />
+                <Image source={require('../assets/images/invoice.png')}  style={{ width: 50, height: 50, paddingRight: 10, marginBottom: 15 }} />
                     <Text style={[styles.text, { color: '#fff' }]}>Invoice</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => props.nav('Settings')} style={{ flexDirection: 'row', marginTop: 5, marginBottom: 15 }}>
-                    <Ionicons name="logo-usd" color={'#fff'} style={{ fontSize: 30, paddingRight: 10, marginBottom: 15 }} />
+                <Image source={require('../assets/images/expenses.png')}  style={{ width: 50, height: 50, paddingRight: 10, marginBottom: 15 }} />
                     <Text style={[styles.text, { color: '#fff' }]}>Expense</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => props.nav('Settings')} style={{ flexDirection: 'row', marginTop: 5, marginBottom: 15 }}>
-                    <Ionicons name="ios-podium" color={'#fff'} style={{ fontSize: 30, paddingRight: 10, marginBottom: 15 }} />
+                <Image source={require('../assets/images/report.png')}  style={{ width: 50, height: 50, paddingRight: 10, marginBottom: 15 }} />
                     <Text style={[styles.text, { color: '#fff' }]}>Report</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => props.nav('Settings')} style={{ flexDirection: 'row', marginTop: 5, marginBottom: 15 }}>
-                    <Ionicons name="ios-link" color={'#fff'} style={{ fontSize: 30, paddingRight: 10, marginBottom: 15 }} />
+                <Image source={require('../assets/images/business-hub.png')}  style={{ width: 50, height: 50, paddingRight: 10, marginBottom: 15 }} />
                     <Text style={[styles.text, { color: '#fff' }]}>Business Hub</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => props.nav('Settings')} style={{ flexDirection: 'row', marginTop: 5, marginBottom: 15 }}>
-                    <Ionicons name="ios-help-buoy" color={'#fff'} style={{ fontSize: 30, paddingRight: 10, marginBottom: 15 }} />
+                <Image source={require('../assets/images/support.png')}  style={{ width: 50, height: 50, paddingRight: 10, marginBottom: 15 }} />
                     <Text style={[styles.text, { color: '#fff' }]}>Support</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => props.nav('Settings')} style={{ flexDirection: 'row', marginTop: 5, marginBottom: 15 }}>
-                    <Ionicons name="ios-settings" color={'#fff'} style={{ fontSize: 30, paddingRight: 10, marginBottom: 15 }} />
+                <Image source={require('../assets/images/setting.png')}  style={{ width: 50, height: 50, paddingRight: 10, marginBottom: 15 }} />
                     <Text style={[styles.text, { color: '#fff' }]}>Settings</Text>
                 </TouchableOpacity>
             </View>
