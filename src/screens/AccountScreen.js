@@ -7,6 +7,7 @@ import {
     StyleSheet
 } from 'react-native';
 
+
 import Layout from '../constants/Layout'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
@@ -32,8 +33,7 @@ const AccountScreen = (props) => {
             <View style={{ flex: 9, padding: 10 }}>
                 <View style={{ marginTop: 10 }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                        <Text style={styles.h2}>Latest Transaction</Text>
-                        <Text style={styles.small}>More</Text>
+                        <Text style={styles.h2}>Latest Transaction</Text>                        
                     </View>
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>

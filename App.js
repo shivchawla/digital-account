@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import AppNavigator from './src/navigation/AppNavigator';
-
+import { LoanApplicationProvider, LoanApplicationContext } from './src/contexts/LoanApplicationContext'
 const App = (props) => {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
 
@@ -22,7 +22,9 @@ const App = (props) => {
     return (
       <View style={styles.container}>
         <StatusBar barStyle="default" />
+        
         <AppNavigator />
+      
       </View>
     )
   }

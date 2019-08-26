@@ -18,13 +18,11 @@ import WithdrawScreen from '../screens/WithdrawScreen';
 import SideBar from '../components/SideBar'
 import LoanApplicationScreen from '../screens/LoanApplicationScreen';
 
-
 const DrawerContent = createDrawerNavigator(
     {
         Dashboard: DashboardScreen,
         //Account: AccountScreen,        
-        LoanApplication:LoanApplicationScreen
-       
+        //LoanApplication:LoanApplicationScreen       
     },
     {
         // define customComponent here
