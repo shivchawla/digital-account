@@ -31,7 +31,7 @@ const AccountScreen = (props) => {
             </View>
             <View style={{ flex: 9, padding: 10 }}>
                 <View style={{ marginTop: 10 }}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 30 }}>
                         <Text style={styles.h2}>Latest Transaction</Text>
                         <Text style={styles.small}>More</Text>
                     </View>
