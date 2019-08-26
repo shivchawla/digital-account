@@ -14,6 +14,7 @@ import DrawerNavigator from './DrawerNavigator';
 import LoanApplicationScreen from '../screens/LoanApplicationScreen';
 import LoanApplicationDeclarationScreen from '../screens/LoanApplicationDeclarationScreen';
 import ConnectedPartiesScreen from '../screens/ConnectedPartiesScreen';
+import LoanApplicationStack from './LoanApplicationStack';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -40,7 +41,7 @@ const DashboardStackWithModal = createStackNavigator(
       screen: WithdrawScreen,
     },
     LoanApplication: {
-      screen: LoanApplicationScreen,
+      screen: LoanApplicationStack,
     },
     LoanApplicationDeclaration: {
       screen: LoanApplicationDeclarationScreen,
@@ -60,7 +61,7 @@ const DashboardStackWithModal = createStackNavigator(
 DashboardStackWithModal.navigationOptions = ({ navigation }) => {
   let tabBarVisible = true;
   let routeName = navigation.state.routes[navigation.state.index].routeName
-  if (routeName == 'Withdraw' || routeName == 'Account') {
+  if (routeName == 'Withdraw' || routeName == 'Account'|| routeName == 'LoanApplication'|| routeName == 'LoanApplicationDeclaration'|| routeName == 'ConnectedParties') {
     tabBarVisible = false
   }
 

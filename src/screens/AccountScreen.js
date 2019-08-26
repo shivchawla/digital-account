@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 
 import AniqHeader from '../components/Aniq'
+
 import Layout from '../constants/Layout'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
@@ -20,9 +21,8 @@ const AccountScreen = (props) => {
             <AniqHeader aniq = {props.navigation} warna = {'yellow'} kepala = {'pink'} tajuk={'Account'}/>
             <View style={{ flex: 9, padding: 10 }}>
                 <View style={{ marginTop: 10 }}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 30 }}>
-                        <Text style={styles.h2}>Latest Transaction</Text>
-                        <Text style={styles.h2}>More</Text>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                        <Text style={styles.h2}>Latest Transaction</Text>                        
                     </View>
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
