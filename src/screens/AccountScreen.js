@@ -33,7 +33,7 @@ const AccountScreen = (props) => {
                 <View style={{ marginTop: 10 }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 30 }}>
                         <Text style={styles.h2}>Latest Transaction</Text>
-                        <Text style={styles.small}>More</Text>
+                        <Text style={styles.h2}>More</Text>
                     </View>
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
