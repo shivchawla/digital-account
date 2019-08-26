@@ -29,7 +29,7 @@ const SideBar = (props) => {
 
                 <TouchableOpacity onPress={() => props.nav('LoanApplication')} style={{ flexDirection: 'row', marginTop: 5, marginBottom: 15 }}>
                     <Ionicons name="ios-create" color={'#fff'} style={{ fontSize: 30, paddingRight: 10, marginBottom: 15 }} />
-                    <Text style={[styles.text, { color: '#fff' }]}>Application</Text>
+                    <Text style={[styles.text, { color: '#fff' }]}>Loan Application</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => props.nav('Settings')} style={{ flexDirection: 'row', marginTop: 5, marginBottom: 15 }}>
