@@ -16,29 +16,20 @@ import styles from '../styles/styles'
 const DashboardScreen = (props) => {
   return (
     <View style={{ flex: 1, }}>
-      <View style={{ flex: 1, flexDirection: 'row' }}>
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
-          <TouchableOpacity onPress={props.navigation.openDrawer} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-            <Ionicons name="md-more" color={'#4D6BFA'} style={{ fontSize: 30, paddingLeft: 20 }} />
-          </TouchableOpacity>
-        </View>
-        <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-          <Text style={styles.title}>Header</Text>
-        </View>
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
-          <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
-        </View>
-      </View>
+      <AniqHeader aniq = {props.navigation} warna = {'black'} kepala = {'green'} tajuk={'sukahati'}/>
+
+
+      
       <View style={{ flex: 9, padding: 10 }}>
         <View style={{ marginTop: 10, flexDirection: 'row' }}>
           <TouchableOpacity>
-            <Text style={styles.text,{color: '#525252'}}>Send Money</Text>
+            <Text style={[styles.text,{color: '#525252'}]}>Send Money</Text>
           </TouchableOpacity>
         <TouchableOpacity>
           <Text style={[styles.text, { paddingLeft: 5, paddingRight: 5, color: '#525252' }]}>|</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => props.navigation.navigate('Withdraw')}>
-          <Text style={styles.text,{color: '#525252'}}>Withdrawal</Text>
+          <Text style={[styles.text,{color: '#525252'}]}>Withdrawal</Text>
           </TouchableOpacity>
     </View>
     <View style={{ marginTop: 10 }}>
@@ -108,6 +99,26 @@ DashboardScreen.navigationOptions = {
 const Dot = (props) => {
   return (
     <View style={{ width: 10, height: 10, borderRadius: 5, backgroundColor: props.color, marginRight: 20 }} />
+  )
+}
+
+
+
+const AniqHeader = (props) => {
+  return (
+  <View style={{ flex: 1, flexDirection: 'row' }}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
+          <TouchableOpacity onPress={props.aniq.openDrawer} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
+            <Ionicons name="md-more" color={props.warna} style={{ fontSize: 30, paddingLeft: 20 }} />
+          </TouchableOpacity>
+        </View>
+        <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
+          <Text style={[styles.title, { color: props.kepala }]}>{props.tajuk}</Text>
+        </View>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
+          <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
+        </View>
+      </View>
   )
 }
 
