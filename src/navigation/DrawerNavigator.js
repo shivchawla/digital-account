@@ -12,8 +12,6 @@ import { Ionicons } from '@expo/vector-icons';
 import Layout from '../constants/Layout'
 
 import DashboardScreen from '../screens/DashboardScreen';
-import AccountScreen from '../screens/AccountScreen';
-import WithdrawScreen from '../screens/WithdrawScreen';
 
 import SideBar from '../components/SideBar'
 import LoanApplicationScreen from '../screens/LoanApplicationScreen';
