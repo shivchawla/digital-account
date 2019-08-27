@@ -18,7 +18,7 @@ const AccountScreen = (props) => {
 
     return (
         <View style={{ flex: 1, }}>
-            <AniqHeader aniq = {props.navigation} warna = {'yellow'} kepala = {'pink'} tajuk={'Account'}/>
+            <AniqHeader aniq = {props.navigation} warna = {'yellow'} kepala = {'pink'} tajuk={'Account Info'}/>
             <View style={{ flex: 9, padding: 10 }}>
                 <View style={{ marginTop: 10 }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -61,7 +61,7 @@ const AccountScreen = (props) => {
                             <Text style={styles.text}>Status</Text>
                         </View>
                         <View style={{ flex: 1 }}>
-                            <Text style={styles.text}>Active</Text>
+                            <Text style={[styles.text, {color: 'green'}]}>Active</Text>
                         </View>
                     </View>
                 </View>
