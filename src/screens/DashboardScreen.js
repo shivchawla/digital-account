@@ -30,7 +30,7 @@ const LoanApplicationNav=  createAppContainer(LoanApplicationStack)
 const DashboardScreen = (props) => {
   return (
     <View style={{ flex: 1, }}>
-      <AniqHeader aniq = {props.navigation} warna = {'black'} kepala = {'green'} tajuk={'sukahati'}/>
+      <AniqHeader aniq = {props.navigation} warna = {'black'} kepala = {'green'} tajuk={'Dashboard'}/>
       <View style={{ flex: 9, padding: 10 }}>
         <View style={{ marginTop: 10, flexDirection: 'row' }}>
           <TouchableOpacity>

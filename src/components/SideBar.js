@@ -16,51 +16,51 @@ const SideBar = (props) => {
         <LinearGradient
             colors={['#80A0FD', '#4F6DFB']}
             style={{ position: 'absolute', top: 0, bottom: 0, right: 0, left: 0 }}>
-            <View style={{ padding: 10 }}>
+            <View style={{ padding: 10, flexDirection: 'column', justifyContent: 'space-evenly' }}>
 
                 <TouchableOpacity onPress={() => props.nav('Dashboard')} style={{ flexDirection: 'row', marginTop: 5, marginBottom: 15  }}>
                     <Image source={require('../assets/images/dashboard.png')}  style={{ width: 50, height: 50, paddingRight: 10, marginBottom: 15 }} />
-                    <Text style={[styles.text, { color: '#fff' }]}>Dashboard</Text>
+                    <Text style={[styles.text, { color: '#fff', marginLeft: 20 }]}>Dashboard</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => props.nav('Account')} style={{ flexDirection: 'row', marginTop: 5, marginBottom: 15 }}>
                 <Image source={require('../assets/images/account.png')}  style={{ width: 50, height: 50, paddingRight: 10, marginBottom: 15 }} />
-                    <Text style={[styles.text, { color: '#fff' }]}>Account</Text>
+                    <Text style={[styles.text, { color: '#fff', marginLeft: 20 }]}>Account</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => props.nav('LoanApplication')} style={{ flexDirection: 'row', marginTop: 5, marginBottom: 15 }}>
                 <Image source={require('../assets/images/application.png')}  style={{ width: 50, height: 50, paddingRight: 10, marginBottom: 15 }} />
-                    <Text style={[styles.text, { color: '#fff' }]}>Loan Application</Text>
+                    <Text style={[styles.text, { color: '#fff', marginLeft: 20 }]}>Loan Application</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => props.nav('Settings')} style={{ flexDirection: 'row', marginTop: 5, marginBottom: 15 }}>
                 <Image source={require('../assets/images/invoice.png')}  style={{ width: 50, height: 50, paddingRight: 10, marginBottom: 15 }} />
-                    <Text style={[styles.text, { color: '#fff' }]}>Invoice</Text>
+                    <Text style={[styles.text, { color: '#fff', marginLeft: 20 }]}>Invoice</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => props.nav('Settings')} style={{ flexDirection: 'row', marginTop: 5, marginBottom: 15 }}>
                 <Image source={require('../assets/images/expenses.png')}  style={{ width: 50, height: 50, paddingRight: 10, marginBottom: 15 }} />
-                    <Text style={[styles.text, { color: '#fff' }]}>Expense</Text>
+                    <Text style={[styles.text, { color: '#fff', marginLeft: 20 }]}>Expense</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => props.nav('Settings')} style={{ flexDirection: 'row', marginTop: 5, marginBottom: 15 }}>
                 <Image source={require('../assets/images/report.png')}  style={{ width: 50, height: 50, paddingRight: 10, marginBottom: 15 }} />
-                    <Text style={[styles.text, { color: '#fff' }]}>Report</Text>
+                    <Text style={[styles.text, { color: '#fff', marginLeft: 20 }]}>Report</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => props.nav('Settings')} style={{ flexDirection: 'row', marginTop: 5, marginBottom: 15 }}>
                 <Image source={require('../assets/images/business-hub.png')}  style={{ width: 50, height: 50, paddingRight: 10, marginBottom: 15 }} />
-                    <Text style={[styles.text, { color: '#fff' }]}>Business Hub</Text>
+                    <Text style={[styles.text, { color: '#fff', marginLeft: 20 }]}>Business Hub</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => props.nav('Settings')} style={{ flexDirection: 'row', marginTop: 5, marginBottom: 15 }}>
                 <Image source={require('../assets/images/support.png')}  style={{ width: 50, height: 50, paddingRight: 10, marginBottom: 15 }} />
-                    <Text style={[styles.text, { color: '#fff' }]}>Support</Text>
+                    <Text style={[styles.text, { color: '#fff', marginLeft: 20 }]}>Support</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => props.nav('Settings')} style={{ flexDirection: 'row', marginTop: 5, marginBottom: 15 }}>
                 <Image source={require('../assets/images/setting.png')}  style={{ width: 50, height: 50, paddingRight: 10, marginBottom: 15 }} />
-                    <Text style={[styles.text, { color: '#fff' }]}>Settings</Text>
+                    <Text style={[styles.text, { color: '#fff', marginLeft: 20 }]}>Settings</Text>
                 </TouchableOpacity>
             </View>
 
