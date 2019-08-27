@@ -33,7 +33,7 @@ const SideBar = (props) => {
                     <Text style={[styles.text, { color: '#fff', marginLeft: 20 }]}>Loan Application</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => props.nav('Settings')} style={{ flexDirection: 'row', marginTop: 5, marginBottom: 15 }}>
+                <TouchableOpacity onPress={() => props.nav('Invoices')} style={{ flexDirection: 'row', marginTop: 5, marginBottom: 15 }}>
                 <Image source={require('../assets/images/invoice.png')}  style={{ width: 50, height: 50, paddingRight: 10, marginBottom: 15 }} />
                     <Text style={[styles.text, { color: '#fff', marginLeft: 20 }]}>Invoice</Text>
                 </TouchableOpacity>

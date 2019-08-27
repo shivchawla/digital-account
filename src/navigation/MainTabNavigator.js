@@ -15,6 +15,7 @@ import LoanApplicationScreen from '../screens/LoanApplicationScreen';
 import LoanApplicationDeclarationScreen from '../screens/LoanApplicationDeclarationScreen';
 import ConnectedPartiesScreen from '../screens/ConnectedPartiesScreen';
 import LoanApplicationStack from './LoanApplicationStack';
+import InvoiceScreen from '../screens/InvoiceScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -49,6 +50,10 @@ const DashboardStackWithModal = createStackNavigator(
     ConnectedParties: {
       screen: ConnectedPartiesScreen,
     },
+
+  Invoices: {
+    screen: InvoiceScreen,
+  }
 
   },
   {

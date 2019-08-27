@@ -13,10 +13,6 @@ import Layout from '../constants/Layout'
 
 import styles from '../styles/styles'
 
-
-
-
-
 const AniqHeader = (props) => {
   return (
   <View style={{ flex: 1, flexDirection: 'row' }}>
