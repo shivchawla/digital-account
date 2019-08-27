@@ -37,11 +37,12 @@ const DashboardScreen = (props) => {
           </TouchableOpacity>
         </View>
         <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-          <Text style={styles.title}><Text style={[styles.title, { fontSize: 12 }]}>MYR</Text> 18,839.00</Text>
+          <Text style={styles.title}>
+            <Text style={[styles.title, { fontSize: 12 }]}>MYR</Text> 18,839.00</Text>
         </View>
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
+        <TouchableOpacity onPress={()=>props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
           <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
-        </View>
+        </TouchableOpacity>
       </View>
       <View style={{ flex: 9, padding: 10 }}>
         <View style={{ marginTop: 10, flexDirection: 'row' }}>

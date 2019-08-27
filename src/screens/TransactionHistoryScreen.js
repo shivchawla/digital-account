@@ -14,14 +14,14 @@ import { Ionicons } from '@expo/vector-icons';
 
 import styles from '../styles/styles'
 
-const SettingsScreen = (props) => {
+const TransactionHistoryScreen = (props) => {
     return (
         <View style={{ flex: 1, }}>
             <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#4D6BFA' }}>
-             
+                
                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
                     <Text style={styles.title}>
-                        Settings</Text>
+                        Transaction History</Text>
                 </View>
                 <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
                     <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
@@ -100,8 +100,8 @@ const SettingsScreen = (props) => {
     );
 }
 
-SettingsScreen.navigationOptions = {
+TransactionHistoryScreen.navigationOptions = {
     header: null,
 };
 
-export default SettingsScreen
+export default TransactionHistoryScreen

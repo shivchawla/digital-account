@@ -22,9 +22,9 @@ const App = (props) => {
     return (
       <View style={styles.container}>
         <StatusBar barStyle="default" />
-        
+
         <AppNavigator />
-      
+
       </View>
     )
   }

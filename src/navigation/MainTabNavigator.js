@@ -15,27 +15,55 @@ import LoanApplicationScreen from '../screens/LoanApplicationScreen';
 import LoanApplicationDeclarationScreen from '../screens/LoanApplicationDeclarationScreen';
 import ConnectedPartiesScreen from '../screens/ConnectedPartiesScreen';
 import LoanApplicationStack from './LoanApplicationStack';
+import EditProfileScreen from '../screens/EditProfileScreen';
+import InvoiceScreen from '../screens/InvoiceScreen';
+import NewInvoiceScreen from '../screens/NewInvoiceScreen';
+import TransferScreen from '../screens/TransferScreen';
+import SupportScreen from '../screens/SupportScreen';
+import ReportScreen from '../screens/ReportScreen';
+import BusinessHubScreen from '../screens/BusinessHubScreen';
+import TransactionHistoryScreen from '../screens/TransactionHistoryScreen';
+import NotificationScreen from '../screens/NotificationScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
   default: {},
 });
 
-
-
 const DashboardStack = createStackNavigator(
   {
     Dashboard: DrawerNavigator,
-  },  
+  },
 );
 
 const DashboardStackWithModal = createStackNavigator(
   {
     Dashboard: {
-      screen: DashboardStack,     
+      screen: DashboardStack,
     },
     Account: {
       screen: AccountScreen,
+    },
+    EditProfile: {
+      screen: EditProfileScreen,
+    },
+    Invoice: {
+      screen: InvoiceScreen,
+    },
+    NewInvoice: {
+      screen: NewInvoiceScreen,
+    },
+    Transfer: {
+      screen: TransferScreen,
+    },
+    Support: {
+      screen: SupportScreen,
+    },
+    Report: {
+      screen: ReportScreen,
+    },
+    BusinessHub: {
+      screen: BusinessHubScreen,
     },
     Withdraw: {
       screen: WithdrawScreen,
@@ -49,7 +77,6 @@ const DashboardStackWithModal = createStackNavigator(
     ConnectedParties: {
       screen: ConnectedPartiesScreen,
     },
-
   },
   {
     mode: 'modal',
@@ -61,7 +88,7 @@ const DashboardStackWithModal = createStackNavigator(
 DashboardStackWithModal.navigationOptions = ({ navigation }) => {
   let tabBarVisible = true;
   let routeName = navigation.state.routes[navigation.state.index].routeName
-  if (routeName == 'Withdraw' || routeName == 'Account'|| routeName == 'LoanApplication'|| routeName == 'LoanApplicationDeclaration'|| routeName == 'ConnectedParties') {
+  if (routeName == 'Withdraw' || routeName == 'Account' || routeName == 'LoanApplication' || routeName == 'LoanApplicationDeclaration' || routeName == 'ConnectedParties' || routeName == 'EditProfile'|| routeName == 'NewInvoice') {
     tabBarVisible = false
   }
 
@@ -70,7 +97,6 @@ DashboardStackWithModal.navigationOptions = ({ navigation }) => {
     tabBarLabel: 'Dashboard',
     tabBarOptions: {
       showIcon: true,
-
     },
 
     tabBarIcon: ({ focused }) => (
@@ -86,23 +112,39 @@ DashboardStackWithModal.navigationOptions = ({ navigation }) => {
   }
 }
 
-DashboardStack.path = '';
+DashboardStackWithModal.path = '';
 
-const LinksStack = createStackNavigator(
+const TransactionHistoryStack = createStackNavigator(
   {
-    Links: LinksScreen,
+    TransactionHistory: TransactionHistoryScreen,
   },
   config
 );
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+TransactionHistoryStack.navigationOptions = {
+  tabBarLabel: 'History',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
   ),
 };
 
-LinksStack.path = '';
+TransactionHistoryStack.path = '';
+
+const NotificationStack = createStackNavigator(
+  {
+    Notification: NotificationScreen,
+  },
+  config
+);
+
+NotificationStack.navigationOptions = {
+  tabBarLabel: 'Notification',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
+  ),
+};
+
+NotificationStack.path = '';
 
 const SettingsStack = createStackNavigator(
   {
@@ -122,7 +164,8 @@ SettingsStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
   DashboardStackWithModal,
-  LinksStack,
+  TransactionHistoryStack,
+  NotificationStack,
   SettingsStack,
 });
 

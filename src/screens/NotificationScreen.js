@@ -14,14 +14,14 @@ import { Ionicons } from '@expo/vector-icons';
 
 import styles from '../styles/styles'
 
-const SettingsScreen = (props) => {
+const NotificationScreen = (props) => {
     return (
         <View style={{ flex: 1, }}>
-            <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#4D6BFA' }}>
-             
+             <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#4D6BFA' }}>
+               
                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
                     <Text style={styles.title}>
-                        Settings</Text>
+                        Notification</Text>
                 </View>
                 <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
                     <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
@@ -29,15 +29,13 @@ const SettingsScreen = (props) => {
             </View>
             <View style={{ flex: 9, padding: 10 }}>
                 <View style={{ marginTop: 10, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end' }}>
-
                     <TouchableOpacity onPress={() => props.navigation.navigate('NewInvoice')}>
                         <Text style={[styles.text, { color: '#525252' }]}>New Invoice</Text>
                     </TouchableOpacity>
                 </View>
-
                 <View style={{ marginTop: 10 }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                        <Text style={styles.h2}>Invoices</Text>
+                        <Text style={styles.h2}>Notification</Text>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <Text style={[styles.small, { paddingRight: 5 }]}>Search</Text>
                             <Ionicons name="ios-arrow-forward" color={'#000'} style={{ fontSize: 15, paddingRight: 5 }} />
@@ -100,8 +98,8 @@ const SettingsScreen = (props) => {
     );
 }
 
-SettingsScreen.navigationOptions = {
+NotificationScreen.navigationOptions = {
     header: null,
 };
 
-export default SettingsScreen
+export default NotificationScreen

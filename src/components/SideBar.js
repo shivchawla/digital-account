@@ -32,27 +32,27 @@ const SideBar = (props) => {
                     <Text style={[styles.text, { color: '#fff' }]}>Application</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => props.nav('Settings')} style={{ flexDirection: 'row', marginTop: 5 }}>
+                <TouchableOpacity onPress={() => props.nav('Invoice')} style={{ flexDirection: 'row', marginTop: 5 }}>
                     <Ionicons name="ios-pricetags" color={'#fff'} style={{ fontSize: 30, paddingRight: 10 }} />
                     <Text style={[styles.text, { color: '#fff' }]}>Invoice</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => props.nav('Settings')} style={{ flexDirection: 'row', marginTop: 5 }}>
+                <TouchableOpacity onPress={() => props.nav('Transfer')} style={{ flexDirection: 'row', marginTop: 5 }}>
                     <Ionicons name="logo-usd" color={'#fff'} style={{ fontSize: 30, paddingRight: 10 }} />
                     <Text style={[styles.text, { color: '#fff' }]}>Expense</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => props.nav('Settings')} style={{ flexDirection: 'row', marginTop: 5 }}>
+                <TouchableOpacity onPress={() => props.nav('Report')} style={{ flexDirection: 'row', marginTop: 5 }}>
                     <Ionicons name="ios-podium" color={'#fff'} style={{ fontSize: 30, paddingRight: 10 }} />
                     <Text style={[styles.text, { color: '#fff' }]}>Report</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => props.nav('Settings')} style={{ flexDirection: 'row', marginTop: 5 }}>
+                <TouchableOpacity onPress={() => props.nav('BusinessHub')} style={{ flexDirection: 'row', marginTop: 5 }}>
                     <Ionicons name="ios-link" color={'#fff'} style={{ fontSize: 30, paddingRight: 10 }} />
                     <Text style={[styles.text, { color: '#fff' }]}>Business Hub</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => props.nav('Settings')} style={{ flexDirection: 'row', marginTop: 5 }}>
+                <TouchableOpacity onPress={() => props.nav('Support')} style={{ flexDirection: 'row', marginTop: 5 }}>
                     <Ionicons name="ios-help-buoy" color={'#fff'} style={{ fontSize: 30, paddingRight: 10 }} />
                     <Text style={[styles.text, { color: '#fff' }]}>Support</Text>
                 </TouchableOpacity>
@@ -62,7 +62,6 @@ const SideBar = (props) => {
                     <Text style={[styles.text, { color: '#fff' }]}>Settings</Text>
                 </TouchableOpacity>
             </View>
-
         </LinearGradient >
     );
 }

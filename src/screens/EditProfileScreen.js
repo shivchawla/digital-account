@@ -1,50 +1,47 @@
-import React,{useContext} from 'react';
+import React from 'react';
 import {
     View,
     TouchableOpacity,
     Text,
     Image,
     StyleSheet,
-    TextInput,
-    CheckBox,
-    KeyboardAvoidingView
+    KeyboardAvoidingView,
+    TextInput
 } from 'react-native';
-import { LoanApplicationProvider, LoanApplicationContext } from '../contexts/LoanApplicationContext'
-import Layout from '../constants/Layout'
+
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
-import styles from '../styles/styles'
+
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import styles from '../styles/styles'
 
 const validationSchema = Yup.object().shape({
 
-    capacity: Yup
+    companyName: Yup
         .string(),
-    name: Yup
+    registrationNumber: Yup
         .string(),
-    myKad: Yup
+    companyAddress: Yup
         .string(),
-    relationship: Yup
+    companyPostcode: Yup
         .string(),
-    personnelName: Yup
-        .string(),
-    email: Yup
+    companyRegisteredDate: Yup
         .string(),
 
 });
 
 
-const ConnectedPartiesScreen = (props) => {
-    const [loanData, setLoanData] = useContext(LoanApplicationContext)
+const EditProfileScreen = (props) => {
+    //const [loanData, setLoanData] = useContext(LoanApplicationContext)
     return (
         <Formik
 
-        onSubmit={async values => {
-            console.log(JSON.stringify(values))
-            await setLoanData({...loanData,connectedParties:[values]})
-            props.navigation.navigate('LoanApplicationDeclaration')
-        }}
+            onSubmit={async values => {
+                // console.log(JSON.stringify(values))
+                // await setLoanData({...loanData,connectedParties:[values]})
+                // props.navigation.navigate('LoanApplicationDeclaration')
+            }}
             validationSchema={validationSchema}
         >
             {FormikProps => {
@@ -63,7 +60,7 @@ const ConnectedPartiesScreen = (props) => {
                                 </TouchableOpacity>
                             </View>
                             <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                                <Text style={styles.title}>Connected  Parties</Text>
+                                <Text style={styles.title}>Edit Profile</Text>
                             </View>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
                                 <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
@@ -71,34 +68,31 @@ const ConnectedPartiesScreen = (props) => {
                         </View>
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
                             <View style={{ flex: 9, margin: 10 }}>
-                                <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 }}>
-                                    <Text style={styles.h3}>Connected Parties</Text>
+                                <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: 10 }}>
+                                    <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 90, height: 90, borderRadius: 45 }} />
                                 </View>
-                               
+
                                 <View style={{ marginBottom: 10 }}>
-                                <Text style={[styles.text, { marginBottom: 5 }]}>Capacity</Text>
-                                    <TextInput value={capacity} onChangeText={FormikProps.handleChange('capacity')}  style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }}  />
-                                </View>
-                                <View style={{ marginBottom: 10 }}>
-                                <Text style={[styles.text, { marginBottom: 5 }]}>Name</Text>
-                                    <TextInput value={name} onChangeText={FormikProps.handleChange('name')}  style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }}  />
+                                    <Text style={[styles.text, { marginBottom: 5 }]}>Company Name</Text>
+                                    <TextInput value={capacity} onChangeText={FormikProps.handleChange('companyName')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
                                 </View>
                                 <View style={{ marginBottom: 10 }}>
-                                <Text style={[styles.text, { marginBottom: 5 }]}>MyKad</Text>
-                                    <TextInput value={myKad} onChangeText={FormikProps.handleChange('myKad')}  style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }}  />
+                                    <Text style={[styles.text, { marginBottom: 5 }]}>Registration Number</Text>
+                                    <TextInput value={name} onChangeText={FormikProps.handleChange('registrationNumber')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
                                 </View>
                                 <View style={{ marginBottom: 10 }}>
-                                <Text style={[styles.text, { marginBottom: 5 }]}>Relationship</Text>
-                                    <TextInput value={relationship} onChangeText={FormikProps.handleChange('relationship')}  style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }}  />
+                                    <Text style={[styles.text, { marginBottom: 5 }]}>Company Addresss</Text>
+                                    <TextInput value={myKad} onChangeText={FormikProps.handleChange('companyAddress')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
                                 </View>
                                 <View style={{ marginBottom: 10 }}>
-                                <Text style={[styles.text, { marginBottom: 5 }]}>Bank Personnel Name</Text>
-                                    <TextInput value={personnelName} onChangeText={FormikProps.handleChange('personnelName')}  style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }}  />
+                                    <Text style={[styles.text, { marginBottom: 5 }]}>Postcode</Text>
+                                    <TextInput value={relationship} onChangeText={FormikProps.handleChange('companyPostcode')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
                                 </View>
                                 <View style={{ marginBottom: 10 }}>
-                                <Text style={[styles.text, { marginBottom: 5 }]}>Email</Text>
-                                    <TextInput value={email} onChangeText={FormikProps.handleChange('email')}  style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }}  />
+                                    <Text style={[styles.text, { marginBottom: 5 }]}>Company Registered Date</Text>
+                                    <TextInput value={personnelName} onChangeText={FormikProps.handleChange('companyRegisteredDate')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
                                 </View>
+
                             </View>
                             <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
                                 <TouchableOpacity style={{ flex: 1, }}>
@@ -119,10 +113,9 @@ const ConnectedPartiesScreen = (props) => {
     );
 }
 
-
-
-ConnectedPartiesScreen.navigationOptions = {
+EditProfileScreen.navigationOptions = {
     header: null,
 };
 
-export default ConnectedPartiesScreen;
+
+export default EditProfileScreen;
