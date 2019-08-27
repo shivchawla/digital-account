@@ -22,46 +22,38 @@ const AccountScreen = (props) => {
             <View style={{ flex: 9, padding: 10 }}>
                 <View style={{ marginTop: 10 }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                        <Text style={styles.h2}>Latest Transaction</Text>                        
+                        <Text style={[styles.h2, {marginBottom:30}]}>Latest Transaction</Text>                        
                     </View>
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={styles.text}>Account Number</Text>
+                            <Text style={[styles.text, {marginBottom:10}]}>Account Number</Text>
                         </View>
                         <View style={{ flex: 1 }}>
-                            <Text style={styles.text}>123456789</Text>
-                        </View>
-                    </View>
-                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={styles.text}>Account Type</Text>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <Text style={styles.text}>Business</Text>
+                            <Text style={[styles.text, {marginBottom:10}]}>123456789</Text>
                         </View>
                     </View>
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={styles.text}>Balance</Text>
+                            <Text style={[styles.text, {marginBottom:10}]}>Account Type</Text>
                         </View>
                         <View style={{ flex: 1 }}>
-                            <Text style={styles.text}>RM18,839.00</Text>
+                            <Text style={[styles.text, {marginBottom:10}]}>Business</Text>
                         </View>
                     </View>
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={styles.text}>Balance</Text>
+                            <Text style={[styles.text, {marginBottom:10}]}>Balance</Text>
                         </View>
                         <View style={{ flex: 1 }}>
-                            <Text style={styles.text}>RM18,839.00</Text>
+                            <Text style={[styles.text, {marginBottom:10}]}>RM18,839.00</Text>
                         </View>
                     </View>
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={styles.text}>Status</Text>
+                            <Text style={[styles.text, {marginBottom:10}]}>Status</Text>
                         </View>
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, {color: 'green'}]}>Active</Text>
+                            <Text style={[styles.text, {color: 'green', marginBottom:10}]}>Active</Text>
                         </View>
                     </View>
                 </View>
