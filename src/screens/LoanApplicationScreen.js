@@ -11,9 +11,8 @@ import {
 } from 'react-native';
 import CheckBox from 'react-native-check-box'
 import { StackActions, NavigationActions } from 'react-navigation';
-import { LoanApplicationProvider, LoanApplicationContext } from '../contexts/LoanApplicationContext'
+import { LoanApplicationContext } from '../contexts/LoanApplicationContext'
 
-import Layout from '../constants/Layout'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles/styles'

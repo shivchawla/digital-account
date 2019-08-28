@@ -10,7 +10,8 @@ import {
     ScrollView,
     DatePickerAndroid,
     DatePickerIOS,
-    Picker
+    Picker,
+    PickerIOS
 } from 'react-native';
 
 import { LinearGradient } from 'expo-linear-gradient'
@@ -45,7 +46,6 @@ const validationSchema = Yup.object().shape({
         .string(),
     datePicked: Yup
         .string(),
-
 });
 
 
@@ -102,7 +102,6 @@ const NewInvoiceScreen = (props) => {
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
                             <View style={{ flex: 9, margin: 10 }}>
                                 <ScrollView>
-
                                     <View style={{ marginBottom: 10 }}>
                                         <Picker
                                             selectedValue={type}

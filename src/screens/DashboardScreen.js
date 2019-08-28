@@ -6,7 +6,7 @@ import {
   Image,
   StyleSheet
 } from 'react-native';
-import { createStackNavigator, createAppContainer } from 'react-navigation';
+
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
 import Charts from '../components/Charts'
@@ -14,18 +14,7 @@ import Layout from '../constants/Layout'
 
 import styles from '../styles/styles'
 
-import LoanApplicationScreen from '../screens/LoanApplicationScreen';
-import LoanApplicationDeclarationScreen from '../screens/LoanApplicationDeclarationScreen';
-import ConnectedPartiesScreen from '../screens/ConnectedPartiesScreen';
-
-const LoanApplicationStack = createStackNavigator(
-  {
-    LoanApplication: LoanApplicationScreen,
-    LoanApplicationDeclaration: LoanApplicationDeclarationScreen,
-  },  
-);
-
-const LoanApplicationNav=  createAppContainer(LoanApplicationStack)
+import Dot from '../components/Dot'
 
 const DashboardScreen = (props) => {
   return (
@@ -116,10 +105,6 @@ DashboardScreen.navigationOptions = {
   header: null,
 };
 
-const Dot = (props) => {
-  return (
-    <View style={{ width: 10, height: 10, borderRadius: 5, backgroundColor: props.color, marginRight: 20 }} />
-  )
-}
+
 
 export default DashboardScreen;
