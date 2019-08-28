@@ -33,7 +33,7 @@ const LoanApplicationScreen = (props) => {
     const resetAction = StackActions.reset({
         index: 0,
         key: null,
-        actions: [NavigationActions.navigate({ routeName: 'DashboardStackWithModal' })],
+        actions: [NavigationActions.navigate({ routeName: 'LoanApplication' })],
     });
     const [loanData, setLoanData] = useContext(LoanApplicationContext)
     return (
@@ -76,6 +76,7 @@ const LoanApplicationScreen = (props) => {
                         </View>
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
                             <View style={{ flex: 9, margin: 10 }}>
+                                <Text>Apa ni : {JSON.stringify(props)}</Text>
                                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 }}>
                                     <Text style={styles.h3}>Financing</Text>
                                 </View>
