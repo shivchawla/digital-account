@@ -13,86 +13,47 @@ import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
 
 import styles from '../styles/styles'
+import Dot from '../components/Dot'
+import { FlatList } from 'react-native-gesture-handler';
+
+const transactionHistoryArray = [{ status: 'out', description: 'Withdrawal Transfer', amount: 50.00 },
+{ status: 'out', description: 'Account Transfer', amount: 46.00 },
+{ status: 'in', description: 'Disbursement Transfer', amount: 4952.00 },
+{ status: 'out', description: 'Account Transfer', amount: 100.00 },
+{ status: 'out', description: 'Withdrawal Transfer', amount: 60.00 }]
 
 const TransactionHistoryScreen = (props) => {
     return (
         <View style={{ flex: 1, }}>
             <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#4D6BFA' }}>
-                
+
                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
                     <Text style={styles.title}>
-                        Transaction History</Text>
+                        Account: 19927483</Text>
                 </View>
                 <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
                     <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
                 </TouchableOpacity>
             </View>
             <View style={{ flex: 9, padding: 10 }}>
-                <View style={{ marginTop: 10, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end' }}>
-
-                    <TouchableOpacity onPress={() => props.navigation.navigate('NewInvoice')}>
-                        <Text style={[styles.text, { color: '#525252' }]}>New Invoice</Text>
-                    </TouchableOpacity>
-                </View>
-
                 <View style={{ marginTop: 10 }}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                        <Text style={styles.h2}>Invoices</Text>
-                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={[styles.small, { paddingRight: 5 }]}>Search</Text>
-                            <Ionicons name="ios-arrow-forward" color={'#000'} style={{ fontSize: 15, paddingRight: 5 }} />
-                        </View>
+                    <View style={{ flexDirection: 'row' }}>
+                        <Text style={[styles.h2, { marginBottom: 10, marginTop: 10 }]}>Transaction History</Text>
                     </View>
+
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>Ref</Text>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>Date</Text>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>Type</Text>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>Currency</Text>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>Action</Text>
-                        </View>
-                    </View>
-                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.small]}>112009</Text>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.small]}>12/3/2019</Text>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.small]}>Item</Text>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.small]}>RM</Text>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.small]}>View</Text>
-                        </View>
-                    </View>
-                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.small]}>112009</Text>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.small]}>12/3/2019</Text>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.small]}>Item</Text>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.small]}>RM</Text>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.small]}>View</Text>
-                        </View>
+                        <FlatList
+                            data={transactionHistoryArray}
+                            renderItem={({ item }) =>
+                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                    <View style={{ flex: 3, flexDirection: 'row', alignItems: 'center', marginLeft: 5, marginTop: 10 }}>
+                                        <Dot color={item.status === 'in' ? '#228B22' : '#8B0000'} />
+                                        <Text style={[styles.text]}>{item.description}</Text>
+                                    </View>
+                                    <View style={{flex:1}}>
+                                    <Text style={[styles.text, { marginTop: 10, marginRight: 10 }]}>{item.amount}</Text>
+                                    </View>
+                                </View>} />
                     </View>
                 </View>
             </View >
