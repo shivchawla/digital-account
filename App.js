@@ -2,13 +2,37 @@ import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
 import Constants from 'expo-constants'
-import React, { useState } from 'react';
+import * as SecureStore from 'expo-secure-store'
+import React, { useState, useEffect } from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import AppNavigator from './src/navigation/AppNavigator';
-import { LoanApplicationProvider, LoanApplicationContext } from './src/contexts/LoanApplicationContext'
+import { LoggedInContainer, AuthenticationContainer } from './src/navigation/AppNavigator';
+import { createStore, applyMiddleware } from 'redux'
+import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
+import rootReducer from './src/store/reducers/Reducer';
+const store = createStore(rootReducer, applyMiddleware(thunk))
 const App = (props) => {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
+  const [tokenExists, setTokenExists] = useState(false)
+
+  checkLogin = async () => {
+    try {
+      //const personalToken = await AsyncStorage.getItem('personalToken');
+      const personalToken = await SecureStore.getItemAsync('personalToken')
+      if (personalToken !== null && !personalToken.includes('error')) {
+        console.log(`personal token ialah : ${personalToken}`)
+        setTokenExists(false)
+      } 
+    } catch (error) {
+      console.log(`personalToken error ${error}`)
+      return 'takde'
+    }
+  }
+
+  useEffect(() => {
+    checkLogin()
+  }, [])
 
   if (!isLoadingComplete && !props.skipLoadingScreen) {
     return (
@@ -19,13 +43,14 @@ const App = (props) => {
       />
     );
   } else {
-    return (
+    return (<Provider store={store}>
       <View style={styles.container}>
         <StatusBar barStyle="default" />
 
-        <AppNavigator />
+        {tokenExists ? <LoggedInContainer /> : <AuthenticationContainer />}
 
       </View>
+    </Provider>
     )
   }
 }
@@ -35,6 +60,10 @@ const loadResourcesAsync = async () => {
     Asset.loadAsync([
       require('./src/assets/images/robot-dev.png'),
       require('./src/assets/images/robot-prod.png'),
+
+      require('./src/assets/images/logo.png'),
+      require('./src/assets/images/email.png'),
+      require('./src/assets/images/password.png'),
     ]),
     Font.loadAsync({
       // This is the font that we are using for our tab bar
@@ -66,5 +95,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
 });
+
+
 
 export default App;
