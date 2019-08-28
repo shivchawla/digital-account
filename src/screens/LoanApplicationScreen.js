@@ -42,7 +42,7 @@ const validationSchema = Yup.object().shape({
 
 
 const LoanApplicationScreen = (props) => {
-    const [loanData, setLoanData,test] = useContext(LoanApplicationContext)
+    const [loanData, setLoanData, test] = useContext(LoanApplicationContext)
     return (
 
         <Formik
@@ -100,7 +100,7 @@ const LoanApplicationScreen = (props) => {
                                 <Text>
                                     {JSON.stringify(loanData)}
                                 </Text>
-                                
+
                             </View>
                             <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
                                 <TouchableOpacity style={{ flex: 1, }}>
@@ -121,8 +121,6 @@ const LoanApplicationScreen = (props) => {
 
     );
 }
-
-
 
 LoanApplicationScreen.navigationOptions = {
     header: null,

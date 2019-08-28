@@ -19,30 +19,31 @@ const InvoiceScreen = (props) => {
 
     return (
         <View style={{ flex: 1, }}>
-            <AniqDrawer aniq = {props.navigation}/>
+            <AniqDrawer aniq={() => props.navigation.goBack()} />
             <View style={{ flex: 9, padding: 10 }}>
                 <View style={{ marginTop: 10 }}>
-                    <View style={{flexDirection:'row', marginTop:5, marginBottom:15, alignItems: 'center'}}>
+                    <Text style={[styles.text, {marginBottom:10, marginTop:10 }]}>Transaction History</Text>
+                    <View style={{ flexDirection: 'row', marginTop: 5, marginBottom: 15, alignItems: 'center' }}>
                         <Dot color='#A20F0F' />
                         <Text style={styles.text}>Withdrawal Transfer</Text>
                         <Text style={[styles.text, { color: 'red' }]}>-MYR 50.00</Text>
                     </View>
-                    <View style={{flexDirection:'row', marginTop:5, marginBottom:15, alignItems: 'center'}}>
+                    <View style={{ flexDirection: 'row', marginTop: 5, marginBottom: 15, alignItems: 'center' }}>
                         <Dot color='red' />
                         <Text style={styles.text}>Account Transfer</Text>
                         <Text style={[styles.text, { color: 'red' }]}>-MYR 46.00</Text>
                     </View>
-                    <View style={{flexDirection:'row', marginTop:5, marginBottom:15, alignItems: 'center'}}>
+                    <View style={{ flexDirection: 'row', marginTop: 5, marginBottom: 15, alignItems: 'center' }}>
                         <Dot color='green' />
                         <Text style={styles.text}>Disbursement Transfer</Text>
                         <Text style={[styles.text, { color: 'green' }]}>+MYR 4952.00</Text>
                     </View>
-                    <View style={{flexDirection:'row', marginTop:5, marginBottom:15, alignItems: 'center'}}>
+                    <View style={{ flexDirection: 'row', marginTop: 5, marginBottom: 15, alignItems: 'center' }}>
                         <Dot color='red' />
                         <Text style={styles.text}>Account Transfer</Text>
                         <Text style={[styles.text, { color: 'red' }]}>-MYR 100.00</Text>
                     </View>
-                    <View style={{flexDirection:'row', marginTop:5, marginBottom:15, alignItems: 'center'}}>
+                    <View style={{ flexDirection: 'row', marginTop: 5, marginBottom: 15, alignItems: 'center' }}>
                         <Dot color='red' />
                         <Text style={styles.text}>Account Transfer</Text>
                         <Text style={[styles.text, { color: 'red' }]}>-MYR 60.00</Text>

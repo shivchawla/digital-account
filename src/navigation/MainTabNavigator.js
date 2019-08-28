@@ -3,6 +3,7 @@ import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
+import BusinessCheckScreen from '../screens/BusinessCheckScreen';
 import DashboardScreen from '../screens/DashboardScreen';
 import AccountScreen from '../screens/AccountScreen';
 import WithdrawScreen from '../screens/WithdrawScreen';
@@ -46,6 +47,9 @@ const DashboardStackWithModal = createStackNavigator(
     },
     LoanApplicationDeclaration: {
       screen: LoanApplicationDeclarationScreen,
+    },
+    BusinessCheck: {
+      screen: BusinessCheckScreen,
     },
     ConnectedParties: {
       screen: ConnectedPartiesScreen,

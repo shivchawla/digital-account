@@ -16,7 +16,7 @@ import styles from '../styles/styles'
 const AniqDrawer = (props) => {
     return (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0, flexDirection: 'row', borderWidth: 1, borderColor: 'blue', justifyContent: 'space-around'  }}>
-                <TouchableOpacity onPress={props.aniq.openDrawer} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
+                <TouchableOpacity onPress={props.aniq} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
                     <Ionicons name="md-more" color={props.warna} style={{ fontSize: 30, paddingLeft: 20 }} />
                 </TouchableOpacity>
                 <Text style={[styles.h2, { color: 'blue', marginBottom: 30 }]}>Account: 19927483</Text>

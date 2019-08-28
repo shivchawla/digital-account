@@ -48,7 +48,7 @@ const SideBar = (props) => {
                     <Text style={[styles.text, { color: '#fff', marginLeft: 20 }]}>Report</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => props.nav('Settings')} style={{ flexDirection: 'row', marginTop: 5, marginBottom: 15 }}>
+                <TouchableOpacity onPress={() => props.nav('BusinessCheck')} style={{ flexDirection: 'row', marginTop: 5, marginBottom: 15 }}>
                 <Image source={require('../assets/images/business-hub.png')}  style={{ width: 50, height: 50, paddingRight: 10, marginBottom: 15 }} />
                     <Text style={[styles.text, { color: '#fff', marginLeft: 20 }]}>Business Hub</Text>
                 </TouchableOpacity>
