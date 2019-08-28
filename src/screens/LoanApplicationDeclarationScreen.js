@@ -18,10 +18,16 @@ import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles/styles'
 import { Formik } from 'formik';
-import * as Yup from 'yup';
+import * as yup from 'yup';
 
+const validationSchema = yup.object().shape({
 
-const validationSchema = Yup.object().shape({
+    capacity: yup.number("Wrong inputed capacity").required("Do not leave capacity empty"),
+    name: yup.string("Name is invalid").required("Please enter your name"),
+    ic: yup.string("Invalid IC number").required("IC number is required"),
+    relationship: yup.string("Invalid relationship").required("Relationship is required"),
+    bank: yup.string("Invalid bank name").required("Bank name is required"),
+    email: yup.string("Invalid email address").required("Email is required"),
 
 });
 
@@ -37,29 +43,19 @@ const validationSchema = Yup.object().shape({
 // }
 
 const LoanApplicationDeclarationScreen = (props) => {
-    const [capacityNumber, setCapacityNumber] = useState(null)
-    const [textName, setTextName] = useState(null)
-    const [icNumber, setICNumber] = useState(null)
-    const [relationshipText, setRelationshipText] = useState(null)
-    const [textBank, setTextBank] = useState(null)
-    const [textEmail, setTextEmail] = useState(null)
-
-    const display = () => {
-        console.log(`capacity is ${capacityNumber},text name is ${textName},`)
-
-    }
+   
     return (
         <Formik
             onSubmit={async values => {
                 console.log(JSON.stringify(values))
 
             }}
-        // validationSchema={validationSchema}
+        validationSchema={validationSchema}
         >
             {Aniq => {
                  const { capacity, name, ic, relationship, bank, email } = Aniq.values
-                // const purposeError = FormikProps.errors.purpose
-                // const purposeTouched = FormikProps.touched.purpose
+                const capacityError = Aniq.errors.capacity
+                 const capacityTouched = Aniq.touched.capacity
 
                 // const amountError = FormikProps.errors.amount
                 // const amountTouched = FormikProps.touched.amount
@@ -89,6 +85,8 @@ const LoanApplicationDeclarationScreen = (props) => {
                                         <TextInput style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }}
                                             value={capacity} onChangeText={Aniq.handleChange('capacity')}>
                                         </TextInput>
+                                        {capacityError && capacityTouched && <Text>{capacityError}</Text>}
+                                    
                                     </View>
                                     <View style={{ marginBottom: 10 }}>
                                         <Text style={[styles.text, { marginBottom: 5 }]}>Name</Text>
@@ -129,7 +127,7 @@ const LoanApplicationDeclarationScreen = (props) => {
                                         <Text style={[styles.text, { color: '#fff' }]}>Back</Text>
                                     </LinearGradient>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={Aniq.handleSubmit}>
+                                <TouchableOpacity onPress={Aniq.handleSubmit} style={{ flex: 1, }} >
                                     <LinearGradient colors={['#628BFB', '#0E47E8']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                         <Text style={[styles.text, { color: '#fff' }]}>Submit</Text>
                                     </LinearGradient>
