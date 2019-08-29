@@ -34,7 +34,7 @@ export const requestToken = () => {
 }
 
 
-export const registerApi = (token_type, access_token, name, email, password, password_confirmation,expo_token) => {
+export const registerApi = (token_type, access_token, name, email, password, password_confirmation, expo_token) => {
   return async (dispatch, getState) => {
     fetch(`${apiUrl}api/register`, {
       method: 'POST',
@@ -43,11 +43,11 @@ export const registerApi = (token_type, access_token, name, email, password, pas
         'Accept': 'application/json',
         'Authorization': token_type + ' ' + access_token
       },
-      body: JSON.stringify({ name, email, password, password_confirmation,expo_token }),
+      body: JSON.stringify({ name, email, password, password_confirmation, expo_token }),
     }).then((response) => response.json())
       .then(async (responseJson) => {
         const { status } = await responseJson
-        await dispatch({ type: 'SET_REGISTER', payload: { status, proceed: true, indicator: false,email,password } })
+        await dispatch({ type: 'SET_REGISTER', payload: { status, proceed: true, indicator: false, email, password } })
         await console.log(`register  ${JSON.stringify(responseJson)}`)
       })
       .catch((error) => {
@@ -91,69 +91,31 @@ export const requestPersonalToken = (screen, username, password) => {
 }
 
 
-export const registerOTPApi = (token_type, access_token, country_code, mobile_no) => {
-  return async (dispatch, getState) => {
-    console.log(`token and type ialah : ${access_token} dan ${token_type}`)
-    console.log(`phone and country ialah : ${country_code} dan ${mobile_no}`)
-
-    fetch(`${apiUrl}api/requestOPT`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token_type + ' ' + access_token
-      },
-      body: JSON.stringify({ country_code, mobile_no }),
-    }).then((response) => response.json())
-      .then(async (responseJson) => {
-        const { status } = await responseJson
-        await dispatch({ type: 'SET_OTP', payload: { status } })
-        await console.log(`requestOPT  ${JSON.stringify(responseJson)}`)
-      })
-      .catch((error) => {
-        console.error('Error : ' + error);
-      });
-  }
-}
-
-export const verifyPhoneApi = (token_type, access_token, country_code, mobile_no, code) => {
-  return async (dispatch, getState) => {
-    fetch(`${apiUrl}api/verifyPhoneData`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token_type + ' ' + access_token
-      },
-      body: JSON.stringify({ country_code, mobile_no, code, access_credential: 'api' }),
-    }).then((response) => response.json())
-      .then(async (responseJson) => {
-        const { status } = await responseJson
-        await dispatch({ type: 'VERIFY_OTP', payload: { phoneVerified: status, proceedOTP: true, status } })
-        await console.log(`verifyPhone  ${JSON.stringify(responseJson)}`)
-      })
-      .catch((error) => {
-        console.error('Error : ' + error);
-      });
-  }
-}
 
 export const companyInfoAPI = () => {
   return async (dispatch, getState) => {
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
-    const access_credential = 'api'
+    // const personalToken = await SecureStore.getItemAsync('personalToken')
+    // const { token_type, access_token } = JSON.parse(personalToken)
+
+    const token_type = 'Bearer'
+    const access_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjQ2MTdkZmFhMzYxZjE4YmNkNWYyYjdjMDk1YmUyNWVjNWI0NmI3YTFhYmRlNThlNGM5NmUzZTA0OTNiZjc4NzE1YjM2NzhjNWQzNmNkYzUzIn0.eyJhdWQiOiIyIiwianRpIjoiNDYxN2RmYWEzNjFmMThiY2Q1ZjJiN2MwOTViZTI1ZWM1YjQ2YjdhMWFiZGU1OGU0Yzk2ZTNlMDQ5M2JmNzg3MTViMzY3OGM1ZDM2Y2RjNTMiLCJpYXQiOjE1NjcwNjM4NjQsIm5iZiI6MTU2NzA2Mzg2NCwiZXhwIjoxNTY4MzU5ODYzLCJzdWIiOiIxNCIsInNjb3BlcyI6W119.bHgh5nnCdBWMi5XKo-zII48FjxlDwnYaUlmvd6-j3iMxs4lc-d0nQlZ0iQTX-J5pmVBYr_x9wicvF4cxQ_xdnQAwaUrpgJdwp_tr7biwWYeIPPsj0-50coRvx-onpIPOj7rUB5-8bt6bN6r1HxfNbnbeDCOwKAjCVagXZ7j3CWn3uXUJWkwQloYPmg77PEJtrPrbjuw0OaVFxWnqKXgRsCtd-3qZWbMR4tt28DQFoIdUiljo-bK87AW65xJAA95jgqPm7W3umNB4sdCJtoBv4NEIohhKLAQQPTqyvsy-efX1Z6vnyKvfO-c-ul6wD3PgutWmY5GWHvy-qAcJDVEhEtKWOOZRPIsk5x9q_71rIl9wP8GzRlHj6NUmbhnN-_5XWsXItXc-syOzZWZEu593dE2zpr2_KNQoq4qdl0cAPbZjcToijWcawBU2Qt4AyqVCx8cpAHzLlC6Ufd7xVh1ZJknZjjZI515YfWMQEy_wqoqJofoKKYTcTLuMGZPx3usmuUznmTfeXdvY1aCiBX-mNO0CuVhhtxrVlrJsuqBaHRRdyee3tGjWm-CM7L1odXsrHF2or5rqV2uqMpKzYhKGUPju6YcigSMLPkDqSzSyDjY6kA_wmXiZQ--tYCTW1m65HREsbGdJLd9ZVcSMw91mN1yyU7ivnVHI_koivda6Y2M'
+
+    console.log(`Token Type : ${JSON.stringify(token_type)}`)
+    console.log(`access_token : ${JSON.stringify(access_token)}`)
     console.log(`Company Registration : ${JSON.stringify(getState().companyInformationReducer)}`)
     const companyInfo = getState().companyInformationReducer
-    const comp_regdate = moment(companyInfo.comp_regdate).format("YYYY-MM-DD HH:mm:ss")
-    fetch(`${apiUrl}api/registerCompany/basic`, {
+    const { comp_addr, comp_addr2, comp_city, comp_state, comp_postcode } = companyInfo
+
+    const cddAddress = `${comp_addr}, ${comp_addr2}, ${comp_city}, ${comp_state}`
+
+    fetch(`${apiUrl}api/setup/merchant`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Authorization': token_type + ' ' + access_token
       },
-      body: JSON.stringify({ ...companyInfo, comp_regdate, access_credential: 'api' }),
+      body: JSON.stringify({ ...companyInfo, cddAddress }),
     }).then((response) => response.json())
       .then(async (responseJson) => {
         const { status } = await responseJson
@@ -167,22 +129,26 @@ export const companyInfoAPI = () => {
   }
 }
 
-export const contactPersonAPI = () => {
+export const contactPersonAPI = (values) => {
   return async (dispatch, getState) => {
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
-    const access_credential = 'api'
+    // const personalToken = await SecureStore.getItemAsync('personalToken')
+    // const { token_type, access_token } = JSON.parse(personalToken)
+    const token_type = 'Bearer'
+    const access_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjQ2MTdkZmFhMzYxZjE4YmNkNWYyYjdjMDk1YmUyNWVjNWI0NmI3YTFhYmRlNThlNGM5NmUzZTA0OTNiZjc4NzE1YjM2NzhjNWQzNmNkYzUzIn0.eyJhdWQiOiIyIiwianRpIjoiNDYxN2RmYWEzNjFmMThiY2Q1ZjJiN2MwOTViZTI1ZWM1YjQ2YjdhMWFiZGU1OGU0Yzk2ZTNlMDQ5M2JmNzg3MTViMzY3OGM1ZDM2Y2RjNTMiLCJpYXQiOjE1NjcwNjM4NjQsIm5iZiI6MTU2NzA2Mzg2NCwiZXhwIjoxNTY4MzU5ODYzLCJzdWIiOiIxNCIsInNjb3BlcyI6W119.bHgh5nnCdBWMi5XKo-zII48FjxlDwnYaUlmvd6-j3iMxs4lc-d0nQlZ0iQTX-J5pmVBYr_x9wicvF4cxQ_xdnQAwaUrpgJdwp_tr7biwWYeIPPsj0-50coRvx-onpIPOj7rUB5-8bt6bN6r1HxfNbnbeDCOwKAjCVagXZ7j3CWn3uXUJWkwQloYPmg77PEJtrPrbjuw0OaVFxWnqKXgRsCtd-3qZWbMR4tt28DQFoIdUiljo-bK87AW65xJAA95jgqPm7W3umNB4sdCJtoBv4NEIohhKLAQQPTqyvsy-efX1Z6vnyKvfO-c-ul6wD3PgutWmY5GWHvy-qAcJDVEhEtKWOOZRPIsk5x9q_71rIl9wP8GzRlHj6NUmbhnN-_5XWsXItXc-syOzZWZEu593dE2zpr2_KNQoq4qdl0cAPbZjcToijWcawBU2Qt4AyqVCx8cpAHzLlC6Ufd7xVh1ZJknZjjZI515YfWMQEy_wqoqJofoKKYTcTLuMGZPx3usmuUznmTfeXdvY1aCiBX-mNO0CuVhhtxrVlrJsuqBaHRRdyee3tGjWm-CM7L1odXsrHF2or5rqV2uqMpKzYhKGUPju6YcigSMLPkDqSzSyDjY6kA_wmXiZQ--tYCTW1m65HREsbGdJLd9ZVcSMw91mN1yyU7ivnVHI_koivda6Y2M'
+
+
+
     console.log(`Company Registration : ${JSON.stringify(getState().companyInformationReducer)}`)
     const { full_name, ic_no, phone, ic_image, position } = getState().companyInformationReducer
     //const comp_regdate=moment(companyInfo.comp_regdate).format("YYYY-MM-DD HH:mm:ss")
-    fetch(`${apiUrl}api/company/addWorker`, {
+    fetch(`${apiUrl}api/setup/business_contact`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Authorization': token_type + ' ' + access_token
       },
-      body: JSON.stringify({ full_name, ic_no, phone, ic_image, position, access_credential: 'api' }),
+      body: JSON.stringify({ ...values }),
     }).then((response) => response.json())
       .then(async (responseJson) => {
         const { status } = await responseJson
@@ -196,254 +162,7 @@ export const contactPersonAPI = () => {
   }
 }
 
-export const detailConnectAPI = (capacity, nameCP, icNumber, relationship, emailSME) => {
-  return async (dispatch, getState) => {
 
-  }
-}
-
-export const declarationSignAPI = (declareSign, declareName, declarePosition, declareStamp, declareDate) => {
-  return async (dispatch, getState) => {
-
-  }
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////// Kat bawah ni yang lama.... Boleh tengok mana yang boleh recycle////////////////////////////
-/////////////////////////////////// NICE AHH ///////////////////////////////////////////////////////
-
-export const kycMobile = () => {
-  return (dispatch, getState) => {
-    const { token_type, access_token, phone_country_code, phone_no } = getState().kycReducer
-    const mobile_no = phone_no
-    const country_code = phone_country_code.replace('0', '')
-    fetch(`${apiUrl}api/KycMobile`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token_type + ' ' + access_token
-
-      },
-      body: JSON.stringify({ country_code, mobile_no }),
-
-    }).then((response) => response.json())
-      .then(async (responseJson) => {
-
-        const { token_type, access_token } = await responseJson
-        await console.log(`sms is ${JSON.stringify(responseJson)}`)
-
-      })
-      .catch((error) => {
-        console.error('Error : ' + error);
-      });
-  }
-}
-
-export const kycMobileVerify = (d) => {
-  return (dispatch, getState) => {
-    const { token_type, access_token, phone_country_code, phone_no } = getState().kycReducer
-    const mobile_no = phone_no
-    const country_code = phone_country_code.replace('0', '')
-    const code = d
-    fetch(`${apiUrl}api/KycMobileVerify`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token_type + ' ' + access_token
-
-      },
-      body: JSON.stringify({ country_code, mobile_no, code }),
-
-    }).then((response) => response.json())
-      .then(async (responseJson) => {
-
-        const { status } = await responseJson
-        await console.log(`verification status ${JSON.stringify(status)}`)
-
-        if (status) {
-          await dispatch({ type: 'SET_INDICATOR_PHONE_VERIFICATION', payload: { displayIndicator: false, proceed: true, actionList: false } })
-        } else {
-          await dispatch({ type: 'SET_INDICATOR_PHONE_VERIFICATION', payload: { displayIndicator: false, proceed: false, actionList: true } })
-        }
-
-        //dispatch({ type: 'SET_INDICATOR_PHONE_VERIFICATION', payload: { displayIndicator: false, proceed: true,actionList:false } })
-
-
-
-      })
-      .catch((error) => {
-        console.error('Error : ' + error);
-      });
-  }
-}
-
-
-export const kycBasicInformation = () => {
-  return async (dispatch, getState) => {
-    const { token_type, access_token, phone_country_code, phone_no } = getState().kycReducer
-    const mobile_no = phone_no
-    const country_code = phone_country_code.replace('0', '')
-
-    const expoToken = await Notifications.getExpoPushTokenAsync()
-    //const expoToken = 'Test';
-
-    console.log(`Test ting`)
-
-    const kyc = getState().kycReducer
-    const kyc1 = getState().kyc1ScreenReducer
-    const kyc2 = getState().kyc2ScreenReducer
-
-    console.log(`kyc ialah ${JSON.stringify(kyc)}`)
-    console.log(`kyc1 ialah ${JSON.stringify(kyc1)}`)
-    console.log(`kyc2 ialah ${JSON.stringify(kyc2)}`)
-
-    const test = {
-      last_name: expoToken,
-      name: kyc.fullName,
-      email: kyc.email,
-      password: kyc.password,
-      gender: kyc.gender,
-      birth_date: moment(kyc.birth_date).format("YYYY-MM-DD"),
-      nationality: kyc.nationality,
-      occupation: kyc.occupation,
-      industry: kyc.industry,
-      street_address: kyc.street_address,
-      street_address_2: kyc.street_address_2,
-      country: kyc.country,
-      region: 'Asia',
-      city: kyc.city,
-      postcode: kyc.postcode,
-      phone_no: kyc.phone_no,
-      phone_country_code: kyc.phone_country_code.replace('0', '')
-    }
-
-
-
-    console.log(`test2 ialah ${JSON.stringify(test)}`)
-
-    fetch(`${apiUrl}api/KycBasicInformation`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token_type + ' ' + access_token
-      },
-
-      body: JSON.stringify(test),
-
-    }).then((response) => response.json())
-      .then(async (responseJson) => {
-
-        const { status } = await responseJson
-        await console.log(`basic info  ${JSON.stringify(responseJson)}`)
-
-      })
-      .catch((error) => {
-        console.error('Error : ' + error);
-      });
-  }
-}
-
-
-
-export const kycBasicInformation2 = () => {
-  return async (dispatch, getState) => {
-
-    // const personalToken=JSON.parse(AsyncStorage.getItem('personalToken'))
-
-    //const personalToken = await AsyncStorage.getItem('personalToken');
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-
-
-    const all = getState().kycVerifyReducer
-    const ic_picture = all.toVerify.docUri1
-    const ic_picture2 = all.toVerify.docUri2
-    const face_picture = all.toVerify.selfieUri
-    const first_name = 'test'
-    const last_name = 'test'
-    const national_id_passport = all.idNo
-
-    try {
-      console.log(`face picture ialah : ${face_picture}`)
-      {
-        (Platform.OS === 'android') ?
-          FileSystem.copyAsync({ from: face_picture, to: FileSystem.documentDirectory + 'images/selfie.png' }) :
-          FileSystem.copyAsync({ from: face_picture, to: FileSystem.documentDirectory + 'images/selfie.jpg' })
-      }
-    } catch (e) {
-      console.log(`tak boleh copy lettew : ${e}`);
-    }
-
-
-    console.log(`personalToken is ialah ${personalToken}`)
-    console.log(`all ialah ${JSON.stringify(all)}`)
-
-    const { token_type, access_token } = JSON.parse(personalToken)
-
-    fetch(`${apiUrl}api/KycBasicInformation2`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token_type + ' ' + access_token
-
-      },
-      body: JSON.stringify({ ic_picture, ic_picture2, face_picture, first_name, last_name, national_id_passport }),
-
-    }).then((response) => response.json())
-      .then(async (responseJson) => {
-
-        const { status } = await responseJson
-        await console.log(`berjaya verify  ${JSON.stringify(responseJson)}`)
-
-
-
-      })
-      .catch((error) => {
-        console.error('verify Error : ' + error);
-      });
-  }
-}
-
-
-export const kycPinNumber = (pin_number) => {
-  return async (dispatch, getState) => {
-
-    // const personalToken=JSON.parse(AsyncStorage.getItem('personalToken'))
-
-    const personalToken = await SecureStore.getItemAsync('personalToken');
-
-    console.log(`personalToken is ialah ${personalToken}`)
-
-    const { token_type, access_token } = JSON.parse(personalToken)
-
-    fetch(`${apiUrl}api/KycPinNumber`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token_type + ' ' + access_token
-
-      },
-      body: JSON.stringify({ pin_number }),
-
-    }).then((response) => response.json())
-      .then(async (responseJson) => {
-
-        const { status } = await responseJson
-        await console.log(`kycPinNumber Response :  ${JSON.stringify(responseJson)}`)
-        //await console.log(`kycPinNumber Response :  ${JSON.stringify(status)}`)//
-        //await SecureStore.setItemAsync('kycPin', JSON.stringify(status))
-
-
-      })
-      .catch((error) => {
-        console.error('Error : ' + error);
-      });
-  }
-}
 
 /////////////////////////////////////////////////////////
 

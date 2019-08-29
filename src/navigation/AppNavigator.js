@@ -19,12 +19,12 @@ const LoggedIn = createSwitchNavigator({
 
 
 const Authentication = createSwitchNavigator({
-  Authentication: AuthenticationNavigator,
+  //Authentication: AuthenticationNavigator,
   Registration: RegistrationNavigator,
   Main: MainTabNavigator,
 
 }, {
-    initialRouteName: 'Authentication'
+    initialRouteName: 'Registration'
   });
 
 export const LoggedInContainer = createAppContainer(LoggedIn);

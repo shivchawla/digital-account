@@ -11,21 +11,19 @@ import {
 
 } from 'react-native';
 
-import { requestToken, registerApi,  } from '../store/actions/apiRegistration'
+import { requestToken, registerApi, } from '../store/actions/apiRegistration'
 
 
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
- 
+
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import Constants from 'expo-constants'
 import { LinearGradient } from 'expo-linear-gradient'
 import Layout from '../constants/Layout'
 import styles from '../styles/styles'
 import * as actionCreator from '../store/actions/action'
-
-
 
 const validationSchema = Yup.object().shape({
     name: Yup
@@ -49,16 +47,17 @@ const validationSchema = Yup.object().shape({
 });
 
 const SignupPersonalScreen = (props) => {
-    const access_token = useSelector(state => state.registrationReducer.access_token, shallowEqual)
+    //const access_token = useSelector(state => state.registrationReducer.access_token, shallowEqual)
     const proceed = useSelector(state => state.registrationReducer.proceed, shallowEqual)
 
     useEffect(() => {
-        getToken();
-        //proceed && props.navigation.navigate('SignUpPersonalSuccess');
-    }, []);
+
+        dispatch(actionCreator.getToken());
+        proceed && props.navigation.navigate('SignUpPersonalSuccess');
+    }, [proceed]);
     const dispatch = useDispatch()
-    const register = async (values) => await dispatch(actionCreator.register(values))
-    const getToken = () => dispatch(actionCreator.requestToken())
+    // const register = async (values) => await dispatch(actionCreator.register(values))
+    //const getToken = () => dispatch(actionCreator.requestToken())
 
     return (
         <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
@@ -74,7 +73,7 @@ const SignupPersonalScreen = (props) => {
                 <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                     <Formik
                         initialValues={{ email: '', password: '' }}
-                        onSubmit={values => register(values)}
+                        onSubmit={values => dispatch(actionCreator.register(values))}
                         validationSchema={validationSchema}
                     >
                         {FormikProps => {
@@ -114,7 +113,7 @@ const SignupPersonalScreen = (props) => {
                                     </View>
                                     <View style={{ flexDirection: 'row', margin: 5 }}>
                                         <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10 }}>
-                                            <LinearGradient colors={FormikProps.isValid ? ['#4DCB3E', '#269B1D'] : ['rgba(77, 203, 62, 0.5)', 'rgba(38, 155, 29, 0.5)']} style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, borderRadius: 15, justifyContent: 'center' }}>
+                                            <LinearGradient colors={FormikProps.isValid ? ['#4DCB3E', '#269B1D'] : ['rgba(77, 203, 62, 0.5)', 'rgba(38, 155, 29, 0.5)']} style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, borderRadius: 15, justifyContent: 'center', alignItems: 'center', }}>
                                                 {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> :
                                                     <Text style={[styles.textDefault, { color: '#fff' }]}>Register</Text>}
                                             </LinearGradient>
