@@ -21,13 +21,11 @@ import Constants from 'expo-constants'
 import { LinearGradient } from 'expo-linear-gradient'
 import Layout from '../constants/Layout'
 
-import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles/styles'
-//import { Drawer, Container, Header, Content, Footer, Left, Right, Body, Title, Subtitle, Button, Icon, Card, CardItem, Text, H2, FooterTab } from 'native-base'
 
 import { connect } from 'react-redux'
 import * as actionCreator from '../store/actions/action'
-import { Button } from 'native-base';
+
 
 class ContactPersonSuccessScreen extends React.PureComponent {
     static navigationOptions = {
@@ -48,14 +46,14 @@ class ContactPersonSuccessScreen extends React.PureComponent {
     render() {
         return (
             <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
-                <View style={{ flex: 1, justifyContent: 'space-between' }}>
+                {/* <View style={{ flex: 1, justifyContent: 'space-between' }}>
                     <View style={{ alignItems: 'flex-start' }}>
                         <Image source={require('../assets/images/topLeft.png')} style={{ width: 79, height: 120 }} />
                     </View>
                     <View style={{ alignItems: 'flex-end' }}>
                         <Image source={require('../assets/images/bottomRight.png')} style={{ width: 106, height: 92 }} />
                     </View>
-                </View>
+                </View> */}
                 <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, }}>
 
 

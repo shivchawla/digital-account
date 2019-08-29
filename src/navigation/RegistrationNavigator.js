@@ -11,6 +11,7 @@ import SignupPersonalScreen from '../screens/SignupPersonalScreen';
 //import SignupSuccessScreen from '../screens/SignupSuccessScreen';
  import CompanyInformationScreen from '../screens/CompanyInformationScreen';
  import ContactPersonScreen from '../screens/ContactPersonScreen';
+ import ContactPersonSuccessScreen from '../screens/ContactPersonSuccessScreen';
 // import DetailsOfConnectedPartiesScreen from '../screens/DetailsOfConnectedPartiesScreen';
 // import DeclarationDigitalSignScreen from '../screens/DeclarationDigitalSignScreen';
 // import CompanyInfoIntroScreen from '../screens/CompanyInfoIntroScreen';
@@ -35,8 +36,10 @@ const Registration = createStackNavigator({
   //  CompanyInformation: CompanyInformationScreen,
   //  CompanyContactInformation: CompanyContactInformationScreen,
   //  CompanyContactAddressInformation: CompanyContactAddressInformationScreen,
+  CompanyInfoSuccess: CompanyInfoSuccessScreen,
    ContactPerson: ContactPersonScreen,
-   CompanyInfoSuccess: CompanyInfoSuccessScreen,
+   ContactPersonSuccess:ContactPersonSuccessScreen
+  
 
   // DetailsConnectedParties: DetailsOfConnectedPartiesScreen,
   // DeclarationDigitalSign: DeclarationDigitalSignScreen,
