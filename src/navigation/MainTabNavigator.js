@@ -11,6 +11,7 @@ import SettingsScreen from '../screens/SettingsScreen';
 
 import DrawerNavigator from './DrawerNavigator';
 
+import ChangePasswordScreen from '../screens/ChangePasswordScreen';
 import LoanApplicationScreen from '../screens/LoanApplicationScreen';
 import LoanApplicationDeclarationScreen from '../screens/LoanApplicationDeclarationScreen';
 import ConnectedPartiesScreen from '../screens/ConnectedPartiesScreen';
@@ -24,6 +25,9 @@ import ReportScreen from '../screens/ReportScreen';
 import BusinessHubScreen from '../screens/BusinessHubScreen';
 import TransactionHistoryScreen from '../screens/TransactionHistoryScreen';
 import NotificationScreen from '../screens/NotificationScreen';
+import ChangeEmailScreen from '../screens/ChangeEmailScreen';
+import LogOutScreen from '../screens/LogOutScreen';
+import ChangeNumberScreen from '../screens/ChangeNumberScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -149,9 +153,40 @@ NotificationStack.path = '';
 const SettingsStack = createStackNavigator(
   {
     Settings: SettingsScreen,
+    ChangePassword: ChangePasswordScreen,
+    ChangeEmail: ChangeEmailScreen,
+    LogOut: LogOutScreen,
+    ChangeNumber: ChangeNumberScreen
   },
   config
 );
+
+SettingsStack.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = false;
+  let routeName = navigation.state.routes[navigation.state.index].routeName
+  if (routeName == 'Settings' || routeName == 'ChangePassword' || routeName == 'ChangeEmail' || routeName == 'LogOut' || routeName == 'ChangeNumber') {
+    tabBarVisible = false
+  }
+
+  return {
+    tabBarVisible: tabBarVisible,
+    tabBarLabel: 'Dashboard',
+    tabBarOptions: {
+      showIcon: true,
+    },
+
+    tabBarIcon: ({ focused }) => (
+      <TabBarIcon
+        focused={focused}
+        name={
+          Platform.OS === 'ios'
+            ? `ios-home${focused ? '' : ''}`
+            : 'md-home'
+        }
+      />
+    ),
+  }
+}
 
 SettingsStack.navigationOptions = {
   tabBarLabel: 'Settings',

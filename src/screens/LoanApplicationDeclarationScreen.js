@@ -77,7 +77,7 @@ const LoanApplicationDeclarationScreen = (props) => {
                                 </Text>
                             </View>
                             <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
-                                <TouchableOpacity style={{ flex: 1, }}>
+                                <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, }}>style={{ flex: 1, }}>
                                     <LinearGradient colors={['#A4A4A4', '#A4A4A4']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                         <Text style={[styles.text, { color: '#fff' }]}>Back</Text>
                                     </LinearGradient>
