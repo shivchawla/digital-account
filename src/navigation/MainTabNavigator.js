@@ -73,7 +73,7 @@ const DashboardStackWithModal = createStackNavigator(
       screen: WithdrawScreen,
     },
     LoanApplication: {
-      screen: LoanApplicationStack,
+      screen: LoanApplicationScreen,
     },
     LoanApplicationDeclaration: {
       screen: LoanApplicationDeclarationScreen,

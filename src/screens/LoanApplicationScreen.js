@@ -34,13 +34,13 @@ const LoanApplicationScreen = (props) => {
         key: null,
         actions: [NavigationActions.navigate({ routeName: 'LoanApplication' })],
     });
-    const [loanData, setLoanData] = useContext(LoanApplicationContext)
+   // const [loanData, setLoanData] = useContext(LoanApplicationContext)
     return (
         <Formik
             initialValues={{ smeConnected: true }}
             onSubmit={async values => {
-                console.log(JSON.stringify(values))
-                await setLoanData(values)
+                // console.log(JSON.stringify(values))
+                // await setLoanData(values)
                 props.navigation.navigate('ConnectedParties')
             }}
             validationSchema={validationSchema}
@@ -62,7 +62,7 @@ const LoanApplicationScreen = (props) => {
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }}>
                         <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#4D6BFA' }}>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
-                                <TouchableOpacity onPress={() => props.navigation.dispatch(resetAction)} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
+                                <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
                                     <Ionicons name="ios-arrow-back" color={'#4D6BFA'} style={{ fontSize: 30, paddingLeft: 20 }} />
                                 </TouchableOpacity>
                             </View>
@@ -97,7 +97,7 @@ const LoanApplicationScreen = (props) => {
                                     </View>
                                 </View>
                                 <Text>
-                                    {JSON.stringify(loanData)}
+                                    {/* {JSON.stringify(loanData)} */}
                                 </Text>
                             </View>
                             <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>

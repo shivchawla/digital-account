@@ -35,13 +35,13 @@ const validationSchema = Yup.object().shape({
 });
 
 const ConnectedPartiesScreen = (props) => {
-    const [loanData, setLoanData] = useContext(LoanApplicationContext)
+    // const [loanData, setLoanData] = useContext(LoanApplicationContext)
     return (
         <Formik
 
             onSubmit={async values => {
-                console.log(JSON.stringify(values))
-                await setLoanData({ ...loanData, connectedParties: [values] })
+                // console.log(JSON.stringify(values))
+                // await setLoanData({ ...loanData, connectedParties: [values] })
                 props.navigation.navigate('LoanApplicationDeclaration')
             }}
             validationSchema={validationSchema}>
