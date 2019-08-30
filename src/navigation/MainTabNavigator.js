@@ -11,6 +11,7 @@ import SettingsScreen from '../screens/SettingsScreen';
 
 import DrawerNavigator from './DrawerNavigator';
 
+import ChangePasswordScreen from '../screens/ChangePasswordScreen';
 import LoanApplicationScreen from '../screens/LoanApplicationScreen';
 import LoanApplicationDeclarationScreen from '../screens/LoanApplicationDeclarationScreen';
 import ConnectedPartiesScreen from '../screens/ConnectedPartiesScreen';
@@ -24,6 +25,9 @@ import ReportScreen from '../screens/ReportScreen';
 import BusinessHubScreen from '../screens/BusinessHubScreen';
 import TransactionHistoryScreen from '../screens/TransactionHistoryScreen';
 import NotificationScreen from '../screens/NotificationScreen';
+import ChangeEmailScreen from '../screens/ChangeEmailScreen';
+import LogOutScreen from '../screens/LogOutScreen';
+import ChangeNumberScreen from '../screens/ChangeNumberScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -88,7 +92,7 @@ const DashboardStackWithModal = createStackNavigator(
 DashboardStackWithModal.navigationOptions = ({ navigation }) => {
   let tabBarVisible = true;
   let routeName = navigation.state.routes[navigation.state.index].routeName
-  if (routeName == 'Withdraw' || routeName == 'Account' || routeName == 'LoanApplication' || routeName == 'LoanApplicationDeclaration' || routeName == 'ConnectedParties' || routeName == 'EditProfile'|| routeName == 'NewInvoice') {
+  if (routeName == 'Withdraw' || routeName == 'Account' || routeName == 'LoanApplication' || routeName == 'LoanApplicationDeclaration' || routeName == 'ConnectedParties' || routeName == 'EditProfile' || routeName == 'NewInvoice') {
     tabBarVisible = false
   }
 
@@ -146,27 +150,71 @@ NotificationStack.navigationOptions = {
 
 NotificationStack.path = '';
 
-const SettingsStack = createStackNavigator(
+const SettingsStacks = createStackNavigator({
+  Settings: SettingsScreen,
+},
+  config
+);
+
+
+const SettingsStackWithModal = createStackNavigator(
   {
-    Settings: SettingsScreen,
+    Settings: {
+      screen: SettingsStacks,
+    },
+    ChangePassword: {
+      screen: ChangePasswordScreen,
+    },
+    ChangeEmail: {
+      screen: ChangeEmailScreen,
+    },
+    ChangeNumber: {
+      screen: ChangeNumberScreen,
+    },
+  },
+  {
+    mode: 'modal',
+    headerMode: 'none',
   },
   config
 );
 
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
-  ),
-};
+SettingsStackWithModal.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true;
+  let routeName = navigation.state.routes[navigation.state.index].routeName
+  if (routeName == 'ChangePassword' || routeName == 'ChangeEmail' || routeName == 'ChangeNumber') {
+    tabBarVisible = false
+  }
 
-SettingsStack.path = '';
+  return {
+    tabBarVisible: tabBarVisible,
+    tabBarLabel: 'Dashboard',
+    tabBarOptions: {
+      showIcon: true,
+    },
+
+    tabBarIcon: ({ focused }) => (
+      <TabBarIcon
+        focused={focused}
+        name={
+          Platform.OS === 'ios'
+            ? `ios-home${focused ? '' : ''}`
+            : 'md-home'
+        }
+      />
+    ),
+  }
+}
+
+
+
+SettingsStackWithModal.path = '';
 
 const tabNavigator = createBottomTabNavigator({
   DashboardStackWithModal,
   TransactionHistoryStack,
   NotificationStack,
-  SettingsStack,
+  SettingsStackWithModal,
 });
 
 tabNavigator.path = '';

@@ -9,94 +9,68 @@ import {
     TextInput
 } from 'react-native';
 
-import { LinearGradient } from 'expo-linear-gradient'
-import { Ionicons } from '@expo/vector-icons';
-
 import styles from '../styles/styles'
 
 const SettingsScreen = (props) => {
     return (
         <View style={{ flex: 1, }}>
             <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#4D6BFA' }}>
-             
+
                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
                     <Text style={styles.title}>
-                        Settings</Text>
+                        OPTION</Text>
                 </View>
                 <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
                     <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
                 </TouchableOpacity>
             </View>
             <View style={{ flex: 9, padding: 10 }}>
-                <View style={{ marginTop: 10, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end' }}>
-
-                    <TouchableOpacity onPress={() => props.navigation.navigate('NewInvoice')}>
-                        <Text style={[styles.text, { color: '#525252' }]}>New Invoice</Text>
+                <View style={{ marginBottom: 20 }}>
+                    <Text style={[styles.h2, { color: 'blue' }]}>ACCOUNT</Text>
+                </View>
+                <View style={{ flexDirection: 'row', marginTop: 20, marginLeft: 30,alignItems:'center' }}>
+                    <Image source={require('../assets/images/changepassword.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'}  />
+                    <TouchableOpacity onPress={() => props.navigation.navigate('ChangePassword')}>
+                        <Text style={[styles.text, { color: 'black', marginLeft: 50 }]}>Change Password</Text>
                     </TouchableOpacity>
                 </View>
-
-                <View style={{ marginTop: 10 }}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                        <Text style={styles.h2}>Invoices</Text>
-                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={[styles.small, { paddingRight: 5 }]}>Search</Text>
-                            <Ionicons name="ios-arrow-forward" color={'#000'} style={{ fontSize: 15, paddingRight: 5 }} />
-                        </View>
+                <View style={{ flexDirection: 'row', marginTop: 20, marginLeft: 30,alignItems:'center' }}>
+                    <Image source={require('../assets/images/emailicon.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'}  />
+                    <TouchableOpacity onPress={() => props.navigation.navigate('ChangeEmail')}>
+                        <Text style={[styles.text, { color: 'black', marginLeft: 50 }]}>Change E-Mail Address</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={{ flexDirection: 'row', marginTop: 20, marginLeft: 30,alignItems:'center' }}>
+                    <Image source={require('../assets/images/changemobilenumber.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'}  />
+                    <TouchableOpacity onPress={() => props.navigation.navigate('ChangeNumber')}>
+                        <Text style={[styles.text, { color: 'black', marginLeft: 50 }]}>Change Phone Number</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={{ flexDirection: 'row', marginTop: 20, marginLeft: 30,alignItems:'center' }}>
+                    <Image source={require('../assets/images/changepassword.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'}  />
+                    <TouchableOpacity onPress={() => props.navigation.navigate('LogOut')}>
+                        <Text style={[styles.text, { color: 'black', marginLeft: 50 }]}>Log Out</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={{ marginTop: 20, marginBottom: 20 }}>
+                    <View style={{}}>
+                        <Text style={[styles.h2, { color: 'blue' }]}>APP SETTING</Text>
                     </View>
-                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>Ref</Text>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>Date</Text>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>Type</Text>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>Currency</Text>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>Action</Text>
-                        </View>
+                    <View style={{ flexDirection: 'row', marginTop: 20, marginLeft: 30,alignItems:'center' }}>
+                        <Image
+                            source={require('../assets/images/notification.png')}
+                            style={{ width: 30, height: 40, }} resizeMode={'contain'}  />
+                        <Text style={[styles.text, { color: 'black', marginLeft: 50 }]}>Notification</Text>
                     </View>
-                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.small]}>112009</Text>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.small]}>12/3/2019</Text>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.small]}>Item</Text>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.small]}>RM</Text>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.small]}>View</Text>
-                        </View>
-                    </View>
-                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.small]}>112009</Text>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.small]}>12/3/2019</Text>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.small]}>Item</Text>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.small]}>RM</Text>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.small]}>View</Text>
-                        </View>
+                    <View style={{ flexDirection: 'row', marginTop: 20, marginLeft: 30,alignItems:'center' }}>
+                        <Image
+                            source={require('../assets/images/support.png')}
+                            style={{ width: 30, height: 40, }} resizeMode={'contain'}  />
+                        <Text style={[styles.text, { color: 'black', marginLeft: 50 }]}>Support</Text>
                     </View>
                 </View>
-            </View >
-        </View >
+            </View>
+        </View>
     );
 }
 
