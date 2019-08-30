@@ -23,7 +23,7 @@ const App = (props) => {
       if (personalToken !== null && !personalToken.includes('error')) {
         console.log(`personal token ialah : ${personalToken}`)
         setTokenExists(true)
-      } 
+      }
     } catch (error) {
       console.log(`personalToken error ${error}`)
       return 'takde'
@@ -61,19 +61,38 @@ const loadResourcesAsync = async () => {
       require('./src/assets/images/robot-dev.png'),
       require('./src/assets/images/robot-prod.png'),
 
-      require('./src/assets/images/logo.png'),
-      require('./src/assets/images/email.png'),
-      require('./src/assets/images/password.png'),
+      require('./src/assets/images/account.png'),
+      require('./src/assets/images/address.png'),
+      require('./src/assets/images/application.png'),
+      require('./src/assets/images/businesshub.png'),
+      require('./src/assets/images/changeaccount.png'),
+      require('./src/assets/images/changemobilenumber.png'),
+      require('./src/assets/images/changepassword.png'),
+      require('./src/assets/images/city.png'),
       require('./src/assets/images/company.png'),
       require('./src/assets/images/compRegNum.png'),
-      require('./src/assets/images/user.png'),
-      require('./src/assets/images/regDate.png'),
-      require('./src/assets/images/phoneNum.png'),
-      require('./src/assets/images/address.png'),
-      require('./src/assets/images/city.png'),
-      require('./src/assets/images/state.png'),
+      require('./src/assets/images/dashboard.png'),
+      require('./src/assets/images/editprofile.png'),
+      require('./src/assets/images/email.png'),
+      require('./src/assets/images/emailicon.png'),
+      require('./src/assets/images/expenses.png'),
+      require('./src/assets/images/icon.png'),
+      require('./src/assets/images/info.png'),
+      require('./src/assets/images/invoice.png'),
+      require('./src/assets/images/logo.png'),
       require('./src/assets/images/mykad.png'),
+      require('./src/assets/images/notification.png'),
+      require('./src/assets/images/password.png'),
+      require('./src/assets/images/phoneNum.png'),
+      require('./src/assets/images/regDate.png'),
+      require('./src/assets/images/report.png'),
+      require('./src/assets/images/setting.png'),
+      require('./src/assets/images/settingicon.png'),
+      require('./src/assets/images/state.png'),
+      require('./src/assets/images/support(1).png'),
+      require('./src/assets/images/support.png'),
       require('./src/assets/images/position.png'),
+      require('./src/assets/images/user.png'),
     ]),
     Font.loadAsync({
       // This is the font that we are using for our tab bar

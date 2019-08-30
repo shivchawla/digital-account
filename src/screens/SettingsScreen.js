@@ -71,7 +71,7 @@ const SettingsScreen = (props) => {
                     </View>
                     <View style={{ flexDirection: 'row', marginTop: 20, marginLeft: 30, alignItems: 'center' }}>
                         <Image
-                            source={require('../assets/images/support.png')}
+                            source={require('../assets/images/support(1).png')}
                             style={{ width: 30, height: 40, }} resizeMode={'contain'} />
                         <Text style={[styles.text, { color: 'black', marginLeft: 50 }]}>Support</Text>
                     </View>
