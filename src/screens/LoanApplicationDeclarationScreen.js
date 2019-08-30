@@ -72,12 +72,9 @@ const LoanApplicationDeclarationScreen = (props) => {
                                         <CheckBox onClick={() => console.log('test')} checked={false} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', paddingRight: 10 }} /><Text>No</Text>
                                     </View>
                                 </View>
-                                <Text>
-                                    {/* {JSON.stringify(loanData)} */}
-                                </Text>
                             </View>
                             <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
-                                <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, }}>style={{ flex: 1, }}>
+                                {/* <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, }}>style={{ flex: 1, }}>
                                     <LinearGradient colors={['#A4A4A4', '#A4A4A4']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                         <Text style={[styles.text, { color: '#fff' }]}>Back</Text>
                                     </LinearGradient>
@@ -86,7 +83,7 @@ const LoanApplicationDeclarationScreen = (props) => {
                                     <LinearGradient colors={['#628BFB', '#0E47E8']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                         <Text style={[styles.text, { color: '#fff' }]}>Submit</Text>
                                     </LinearGradient>
-                                </TouchableOpacity>
+                                </TouchableOpacity> */}
                             </View>
                         </View>
                     </KeyboardAvoidingView>)
