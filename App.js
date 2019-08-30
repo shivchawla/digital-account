@@ -22,7 +22,7 @@ const App = (props) => {
       const personalToken = await SecureStore.getItemAsync('personalToken')
       if (personalToken !== null && !personalToken.includes('error')) {
         console.log(`personal token ialah : ${personalToken}`)
-        setTokenExists(false)
+        setTokenExists(true)
       } 
     } catch (error) {
       console.log(`personalToken error ${error}`)

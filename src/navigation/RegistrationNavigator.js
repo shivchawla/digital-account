@@ -9,37 +9,36 @@ import SignupPersonalScreen from '../screens/SignupPersonalScreen';
 // import SignupOtpScreen from '../screens/SignupOtpScreen';
 // import SignupOtpEnterScreen from '../screens/SignupOtpEnterScreen';
 //import SignupSuccessScreen from '../screens/SignupSuccessScreen';
- import CompanyInformationScreen from '../screens/CompanyInformationScreen';
- import ContactPersonScreen from '../screens/ContactPersonScreen';
- import ContactPersonSuccessScreen from '../screens/ContactPersonSuccessScreen';
+import CompanyInformationScreen from '../screens/CompanyInformationScreen';
+import ContactPersonScreen from '../screens/ContactPersonScreen';
+import ContactPersonSuccessScreen from '../screens/ContactPersonSuccessScreen';
 // import DetailsOfConnectedPartiesScreen from '../screens/DetailsOfConnectedPartiesScreen';
 // import DeclarationDigitalSignScreen from '../screens/DeclarationDigitalSignScreen';
 // import CompanyInfoIntroScreen from '../screens/CompanyInfoIntroScreen';
 // import DocUploadScreen from '../screens/DocUploadScreen';
- import CompanyContactInformationScreen from '../screens/CompanyContactInformationScreen';
- import CompanyContactAddressInformationScreen from '../screens/CompanyContactAddressInformationScreen';
+import CompanyContactInformationScreen from '../screens/CompanyContactInformationScreen';
+import CompanyContactAddressInformationScreen from '../screens/CompanyContactAddressInformationScreen';
 import AgreementScreen from '../screens/AgreementScreen';
- import CompanyInfoSuccessScreen from '../screens/CompanyInfoSuccessScreen';
+import CompanyInfoSuccessScreen from '../screens/CompanyInfoSuccessScreen';
 import SignupPersonalSuccessScreen from '../screens/SignupPersonalSuccessScreen';
 // import ContactPersonSuccessScreen from '../screens/ContactPersonSuccessScreen';
 // import CameraICScreen from '../screens/CameraICScreen';
 
 const Registration = createStackNavigator({
-  // Intro: IntroScreen,
-  // Agreement: AgreementScreen,
-  // SignUpPersonal: SignupPersonalScreen,
-  //SignUpPersonalSuccess: SignupPersonalSuccessScreen,
-  // SignUpOtp: SignupOtpScreen,
-  // SignUpOtpEnter: SignupOtpEnterScreen,
-
-   //CompanyInfoIntro: CompanyInfoIntroScreen,
-  //  CompanyInformation: CompanyInformationScreen,
-  //  CompanyContactInformation: CompanyContactInformationScreen,
-  //  CompanyContactAddressInformation: CompanyContactAddressInformationScreen,
+  Intro: IntroScreen,
+  Agreement: AgreementScreen,
+  SignUpPersonal: SignupPersonalScreen,
+  SignUpPersonalSuccess: SignupPersonalSuccessScreen,
+  //  SignUpOtp: SignupOtpScreen,
+  //  SignUpOtpEnter: SignupOtpEnterScreen,
+  //CompanyInfoIntro: CompanyInfoIntroScreen,
+  CompanyInformation: CompanyInformationScreen,
+  CompanyContactInformation: CompanyContactInformationScreen,
+  CompanyContactAddressInformation: CompanyContactAddressInformationScreen,
   CompanyInfoSuccess: CompanyInfoSuccessScreen,
-   ContactPerson: ContactPersonScreen,
-   ContactPersonSuccess:ContactPersonSuccessScreen
-  
+  ContactPerson: ContactPersonScreen,
+  ContactPersonSuccess: ContactPersonSuccessScreen
+
 
   // DetailsConnectedParties: DetailsOfConnectedPartiesScreen,
   // DeclarationDigitalSign: DeclarationDigitalSignScreen,

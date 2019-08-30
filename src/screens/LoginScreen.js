@@ -47,7 +47,7 @@ const LoginScreen = (props) => {
     const dispatch = useDispatch()
     const login = (values) => dispatch(actionCreator.login1(values))
     forgotPassword = async () => {
-        let result = await WebBrowser.openBrowserAsync('https://app.bxcess.my/password/reset');
+        let result = await WebBrowser.openBrowserAsync('https://app.Digital Account.my/password/reset');
     };
     return (
         <View style={{ flex: 1, paddingTop: Constants.statusBarHeight, backgroundColor: '#80A0FD' }}>

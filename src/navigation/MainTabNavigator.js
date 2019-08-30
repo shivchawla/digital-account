@@ -188,7 +188,7 @@ SettingsStackWithModal.navigationOptions = ({ navigation }) => {
 
   return {
     tabBarVisible: tabBarVisible,
-    tabBarLabel: 'Dashboard',
+    tabBarLabel: 'Settings',
     tabBarOptions: {
       showIcon: true,
     },

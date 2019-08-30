@@ -65,7 +65,7 @@ export const requestPersonalToken = (screen, username, password) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ client_id: '2', client_secret: 'dFX2OFK95Va8PfvyzT6ZnbLJxCXDAfvBCC1fdX4k', grant_type: 'password', username, password }),
+      body: JSON.stringify({ client_id: '2', client_secret: 'auBzKxkcb9V6LVevIkEqdxCYJVJFjY8HvvoVRn33', grant_type: 'password', username, password }),
 
     }).then((response) => response.json())
       .then((responseJson) => {
