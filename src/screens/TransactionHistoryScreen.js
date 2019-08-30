@@ -6,7 +6,9 @@ import {
     Image,
     StyleSheet,
     KeyboardAvoidingView,
-    TextInput
+    TextInput,
+    FlatList,
+    ScrollView
 } from 'react-native';
 
 import { LinearGradient } from 'expo-linear-gradient'
@@ -14,7 +16,8 @@ import { Ionicons } from '@expo/vector-icons';
 
 import styles from '../styles/styles'
 import Dot from '../components/Dot'
-import { FlatList } from 'react-native-gesture-handler';
+
+
 
 const transactionHistoryArray = [{ status: 'out', description: 'Withdrawal Transfer', amount: 50.00 },
 { status: 'out', description: 'Account Transfer', amount: 46.00 },
@@ -36,26 +39,29 @@ const TransactionHistoryScreen = (props) => {
                 </TouchableOpacity>
             </View>
             <View style={{ flex: 9, padding: 10 }}>
-                <View style={{ marginTop: 10 }}>
-                    <View style={{ flexDirection: 'row' }}>
-                        <Text style={[styles.h2, { marginBottom: 10, marginTop: 10 }]}>Transaction History</Text>
-                    </View>
+                <ScrollView>
+                    <View style={{ marginTop: 10 }}>
+                        <View style={{ flexDirection: 'row' }}>
+                            <Text style={[styles.h2, { marginBottom: 10, marginTop: 10 }]}>Transaction History</Text>
+                        </View>
 
-                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
                         <FlatList
                             data={transactionHistoryArray}
+                            keyExtractor={(item, index) => index.toString()}
                             renderItem={({ item }) =>
                                 <View style={{ flexDirection: 'row', marginTop: 5 }}>
                                     <View style={{ flex: 3, flexDirection: 'row', alignItems: 'center', marginLeft: 5, marginTop: 10 }}>
                                         <Dot color={item.status === 'in' ? '#228B22' : '#8B0000'} />
                                         <Text style={[styles.text]}>{item.description}</Text>
                                     </View>
-                                    <View style={{flex:1}}>
-                                    <Text style={[styles.text, { marginTop: 10, marginRight: 10 }]}>{item.amount}</Text>
+                                    <View style={{ flex: 1 }}>
+                                        <Text style={[styles.text, { marginTop: 10, marginRight: 10 }]}>{item.amount}</Text>
                                     </View>
-                                </View>} />
+                                </View>
+                            } />
+
                     </View>
-                </View>
+                </ScrollView>
             </View >
         </View >
     );

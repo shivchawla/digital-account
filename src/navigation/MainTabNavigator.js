@@ -92,7 +92,7 @@ const DashboardStackWithModal = createStackNavigator(
 DashboardStackWithModal.navigationOptions = ({ navigation }) => {
   let tabBarVisible = true;
   let routeName = navigation.state.routes[navigation.state.index].routeName
-  if (routeName == 'Withdraw' || routeName == 'Account' || routeName == 'LoanApplication' || routeName == 'LoanApplicationDeclaration' || routeName == 'ConnectedParties' || routeName == 'EditProfile'|| routeName == 'NewInvoice') {
+  if (routeName == 'Withdraw' || routeName == 'Account' || routeName == 'LoanApplication' || routeName == 'LoanApplicationDeclaration' || routeName == 'ConnectedParties' || routeName == 'EditProfile' || routeName == 'NewInvoice') {
     tabBarVisible = false
   }
 
@@ -150,21 +150,39 @@ NotificationStack.navigationOptions = {
 
 NotificationStack.path = '';
 
-const SettingsStack = createStackNavigator(
+const SettingsStacks = createStackNavigator({
+  Settings: SettingsScreen,
+},
+  config
+);
+
+
+const SettingsStackWithModal = createStackNavigator(
   {
-    Settings: SettingsScreen,
-    ChangePassword: ChangePasswordScreen,
-    ChangeEmail: ChangeEmailScreen,
-    LogOut: LogOutScreen,
-    ChangeNumber: ChangeNumberScreen
+    Settings: {
+      screen: SettingsStacks,
+    },
+    ChangePassword: {
+      screen: ChangePasswordScreen,
+    },
+    ChangeEmail: {
+      screen: ChangeEmailScreen,
+    },
+    ChangeNumber: {
+      screen: ChangeNumberScreen,
+    },
+  },
+  {
+    mode: 'modal',
+    headerMode: 'none',
   },
   config
 );
 
-SettingsStack.navigationOptions = ({ navigation }) => {
-  let tabBarVisible = false;
+SettingsStackWithModal.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true;
   let routeName = navigation.state.routes[navigation.state.index].routeName
-  if (routeName == 'Settings' || routeName == 'ChangePassword' || routeName == 'ChangeEmail' || routeName == 'LogOut' || routeName == 'ChangeNumber') {
+  if (routeName == 'ChangePassword' || routeName == 'ChangeEmail' || routeName == 'ChangeNumber') {
     tabBarVisible = false
   }
 
@@ -188,20 +206,15 @@ SettingsStack.navigationOptions = ({ navigation }) => {
   }
 }
 
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
-  ),
-};
 
-SettingsStack.path = '';
+
+SettingsStackWithModal.path = '';
 
 const tabNavigator = createBottomTabNavigator({
   DashboardStackWithModal,
   TransactionHistoryStack,
   NotificationStack,
-  SettingsStack,
+  SettingsStackWithModal,
 });
 
 tabNavigator.path = '';
