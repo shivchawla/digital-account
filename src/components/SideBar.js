@@ -3,7 +3,8 @@ import {
     TouchableOpacity,
     View,
     StyleSheet,
-    Text
+    Text,
+    Image
 } from 'react-native';
 
 import { LinearGradient } from 'expo-linear-gradient'
@@ -17,50 +18,68 @@ const SideBar = (props) => {
             style={{ position: 'absolute', top: 0, bottom: 0, right: 0, left: 0 }}>
             <View style={{ padding: 10 }}>
 
-                <TouchableOpacity onPress={() => props.nav('Dashboard')} style={{ flexDirection: 'row', marginTop: 5 }}>
-                    <Ionicons name="logo-buffer" color={'#fff'} style={{ fontSize: 30, paddingRight: 10 }} />
-                    <Text style={[styles.text, { color: '#fff' }]}>Dashboard</Text>
-                </TouchableOpacity>
+                <View style={{ marginBottom: 20, marginTop: 20 }}>
+                    <TouchableOpacity onPress={() => props.nav('Dashboard')} style={{ flexDirection: 'row', marginTop: 5 }}>
+                        <Image source={require('../assets/images/dashboard.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                        <Text style={[styles.text, { color: '#fff', fontSize: 20, marginLeft: 15 }]}>Dashboard</Text>
+                    </TouchableOpacity>
+                </View>
 
-                <TouchableOpacity onPress={() => props.nav('Account')} style={{ flexDirection: 'row', marginTop: 5 }}>
-                    <Ionicons name="ios-briefcase" color={'#fff'} style={{ fontSize: 30, paddingRight: 10 }} />
-                    <Text style={[styles.text, { color: '#fff' }]}>Account</Text>
-                </TouchableOpacity>
+                <View style={{ marginBottom: 20, marginTop: 20 }}>
+                    <TouchableOpacity onPress={() => props.nav('Account')} style={{ flexDirection: 'row', marginTop: 5 }}>
+                        <Image source={require('../assets/images/account.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                        <Text style={[styles.text, { color: '#fff', fontSize: 20, marginLeft: 15 }]}>Account</Text>
+                    </TouchableOpacity>
+                </View>
 
-                <TouchableOpacity onPress={() => props.nav('LoanApplication')} style={{ flexDirection: 'row', marginTop: 5 }}>
-                    <Ionicons name="ios-create" color={'#fff'} style={{ fontSize: 30, paddingRight: 10 }} />
-                    <Text style={[styles.text, { color: '#fff' }]}>Application</Text>
-                </TouchableOpacity>
+                <View style={{ marginBottom: 20, marginTop: 20 }}>
+                    <TouchableOpacity onPress={() => props.nav('LoanApplication')} style={{ flexDirection: 'row', marginTop: 5 }}>
+                        <Image source={require('../assets/images/application.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                        <Text style={[styles.text, { color: '#fff', fontSize: 20, marginLeft: 15 }]}>Application</Text>
+                    </TouchableOpacity>
+                </View>
 
-                <TouchableOpacity onPress={() => props.nav('Invoice')} style={{ flexDirection: 'row', marginTop: 5 }}>
-                    <Ionicons name="ios-pricetags" color={'#fff'} style={{ fontSize: 30, paddingRight: 10 }} />
-                    <Text style={[styles.text, { color: '#fff' }]}>Invoice</Text>
-                </TouchableOpacity>
+                <View style={{ marginBottom: 20, marginTop: 20 }}>
+                    <TouchableOpacity onPress={() => props.nav('Invoice')} style={{ flexDirection: 'row', marginTop: 5 }}>
+                        <Image source={require('../assets/images/invoice.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                        <Text style={[styles.text, { color: '#fff', fontSize: 20, marginLeft: 15 }]}>Invoice</Text>
+                    </TouchableOpacity>
+                </View>
 
-                <TouchableOpacity onPress={() => props.nav('Transfer')} style={{ flexDirection: 'row', marginTop: 5 }}>
-                    <Ionicons name="logo-usd" color={'#fff'} style={{ fontSize: 30, paddingRight: 10 }} />
-                    <Text style={[styles.text, { color: '#fff' }]}>Expense</Text>
-                </TouchableOpacity>
+                <View style={{ marginBottom: 20, marginTop: 20 }}>
+                    <TouchableOpacity onPress={() => props.nav('Transfer')} style={{ flexDirection: 'row', marginTop: 5 }}>
+                        <Image source={require('../assets/images/expenses.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                        <Text style={[styles.text, { color: '#fff', fontSize: 20, marginLeft: 15 }]}>Expense</Text>
+                    </TouchableOpacity>
+                </View>
 
-                <TouchableOpacity onPress={() => props.nav('Report')} style={{ flexDirection: 'row', marginTop: 5 }}>
-                    <Ionicons name="ios-podium" color={'#fff'} style={{ fontSize: 30, paddingRight: 10 }} />
-                    <Text style={[styles.text, { color: '#fff' }]}>Report</Text>
-                </TouchableOpacity>
+                <View style={{ marginBottom: 20, marginTop: 20 }}>
+                    <TouchableOpacity onPress={() => props.nav('Report')} style={{ flexDirection: 'row', marginTop: 5 }}>
+                        <Image source={require('../assets/images/report.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                        <Text style={[styles.text, { color: '#fff', fontSize: 20, marginLeft: 15 }]}>Report</Text>
+                    </TouchableOpacity>
+                </View>
 
-                <TouchableOpacity onPress={() => props.nav('BusinessHub')} style={{ flexDirection: 'row', marginTop: 5 }}>
-                    <Ionicons name="ios-link" color={'#fff'} style={{ fontSize: 30, paddingRight: 10 }} />
-                    <Text style={[styles.text, { color: '#fff' }]}>Business Hub</Text>
-                </TouchableOpacity>
+                <View style={{ marginBottom: 20, marginTop: 20 }}>
+                    <TouchableOpacity onPress={() => props.nav('BusinessHub')} style={{ flexDirection: 'row', marginTop: 5 }}>
+                        <Image source={require('../assets/images/businesshub.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                        <Text style={[styles.text, { color: '#fff', fontSize: 20, marginLeft: 15 }]}>Business Hub</Text>
+                    </TouchableOpacity>
+                </View>
 
-                <TouchableOpacity onPress={() => props.nav('Support')} style={{ flexDirection: 'row', marginTop: 5 }}>
-                    <Ionicons name="ios-help-buoy" color={'#fff'} style={{ fontSize: 30, paddingRight: 10 }} />
-                    <Text style={[styles.text, { color: '#fff' }]}>Support</Text>
-                </TouchableOpacity>
+                <View style={{ marginBottom: 20, marginTop: 20 }}>
+                    <TouchableOpacity onPress={() => props.nav('Support')} style={{ flexDirection: 'row', marginTop: 5 }}>
+                        <Image source={require('../assets/images/report.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                        <Text style={[styles.text, { color: '#fff', fontSize: 20, marginLeft: 15 }]}>Support</Text>
+                    </TouchableOpacity>
+                </View>
 
-                <TouchableOpacity onPress={() => props.nav('Settings')} style={{ flexDirection: 'row', marginTop: 5 }}>
-                    <Ionicons name="ios-settings" color={'#fff'} style={{ fontSize: 30, paddingRight: 10 }} />
-                    <Text style={[styles.text, { color: '#fff' }]}>Settings</Text>
-                </TouchableOpacity>
+                <View style={{ marginBottom: 20, marginTop: 20 }}>
+                    <TouchableOpacity onPress={() => props.nav('Settings')} style={{ flexDirection: 'row', marginTop: 5 }}>
+                        <Image source={require('../assets/images/setting.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                        <Text style={[styles.text, { color: '#fff', fontSize: 20, marginLeft: 15 }]}>Settings</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         </LinearGradient >
     );
