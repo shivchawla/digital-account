@@ -34,7 +34,7 @@ const LoanApplicationScreen = (props) => {
         key: null,
         actions: [NavigationActions.navigate({ routeName: 'LoanApplication' })],
     });
-   // const [loanData, setLoanData] = useContext(LoanApplicationContext)
+    // const [loanData, setLoanData] = useContext(LoanApplicationContext)
     return (
         <Formik
             initialValues={{ smeConnected: true }}
@@ -75,7 +75,6 @@ const LoanApplicationScreen = (props) => {
                         </View>
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
                             <View style={{ flex: 9, margin: 10 }}>
-                                <Text>Apa ni : {JSON.stringify(props)}</Text>
                                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 }}>
                                     <Text style={styles.h3}>Financing</Text>
                                 </View>
@@ -96,9 +95,6 @@ const LoanApplicationScreen = (props) => {
                                         <CheckBox onClick={handleCheckBox} isChecked={!smeConnected} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', paddingRight: 10 }} /><Text>No</Text>
                                     </View>
                                 </View>
-                                <Text>
-                                    {/* {JSON.stringify(loanData)} */}
-                                </Text>
                             </View>
                             <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1 }}>
