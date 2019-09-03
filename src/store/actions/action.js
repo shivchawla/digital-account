@@ -28,9 +28,7 @@ export const getToken = () => {
 export const register = (values) => {
     return async (dispatch, getState) => {
         const { name, email, password, password_confirmation } = values
-        const { token_type, access_token, expo_token } = await getState().registrationReducer
-        console.log(`ada ke tak register info : ${JSON.stringify(values)} || ${JSON.stringify(getState().registrationReducer)}`)
-        console.log('takde error dalam screen and boleh proceed utk register')
+        const { token_type, access_token, expo_token } = await getState().registrationReducer        
         await dispatch(registerApi(token_type, access_token, name, email, password, password_confirmation, expo_token))
         //await dispatch(getPersonalToken())
     }

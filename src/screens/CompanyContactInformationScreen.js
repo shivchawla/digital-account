@@ -35,24 +35,16 @@ import * as actionCreator from '../store/actions/action'
 
 
 const validationSchema = Yup.object().shape({
-    // name: Yup
-    //     .string()
-    //     .required()
-    //     .label('Password'),
-    // email: Yup
-    //     .string()
-    //     .required()
-    //     .email()
-    //     .label('Email'),
-    // password: Yup
-    //     .string()
-    //     .required()
-    //     .label('Password'),
-    // password_confirmation: Yup
-    //     .string()
-    //     .required()
-    //     .oneOf([Yup.ref('password'), null], 'Passwords must match')
-    //     .label('Password Confirmation'),
+    cddEmail: Yup
+        .string()
+        .email()
+        .required()
+        .label('Email'),
+    cddTelephone: Yup
+        .string()
+        .required()
+        .label('Telephone'),
+
 });
 
 const CompanyContactInformationScreen = (props) => {
@@ -60,10 +52,6 @@ const CompanyContactInformationScreen = (props) => {
 
     const dispatch = useDispatch()
 
-    // const proceed = useSelector(state => state.companyInformationReducer.proceed, shallowEqual)
-    // const proceed = useSelector(state => state.companyInformationReducer.proceed, shallowEqual)
-    // const proceed = useSelector(state => state.companyInformationReducer.proceed, shallowEqual)
-    // const proceed = useSelector(state => state.companyInformationReducer.proceed, shallowEqual)
 
     const { comp_addr, comp_addr2, comp_city, comp_state, comp_postcode } = useSelector(state => state.companyInformationReducer, shallowEqual)
 
@@ -84,8 +72,7 @@ const CompanyContactInformationScreen = (props) => {
                         validationSchema={validationSchema}
                     >
                         {FormikProps => {
-                            const {  cddTelephone, cddEmail } = FormikProps.values
-
+                            const { cddTelephone, cddEmail } = FormikProps.values
                             const cddEmailError = FormikProps.errors.cddEmail
                             const cddTelephoneError = FormikProps.errors.cddTelephone
                             const cddEmailTouched = FormikProps.touched.cddEmail
@@ -99,12 +86,14 @@ const CompanyContactInformationScreen = (props) => {
                                     <Text style={[styles.text, { margin: 5, marginBottom: 10, color: 'darkblue', fontSize: 14 }]}>Please fill up this form to continue the process for your company.</Text>
                                     <View style={{ alignSelf: 'center', borderBottomWidth: 1, borderBottomColor: '#4A90E2', flexDirection: 'row', margin: 5, width: Layout.window.width * 0.65 }}>
                                         <Image source={require('../assets/images/phoneNum.png')} style={{ height: 30, width: 30, margin: 5 }} resizeMode={'contain'} />
-                                        <TextInput value={cddTelephone} onChangeText={FormikProps.handleChange('cddTelephone')} placeholder={cddTelephoneTouched && cddTelephoneError ? cddTelephoneError : 'Phone'} placeholderTextColor={cddTelephoneTouched && cddTelephoneError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} style={{ marginLeft: 5, flex: 1 }} keyboardType={'phone-pad'} />
+                                        <TextInput value={cddTelephone} onChangeText={FormikProps.handleChange('cddTelephone')} onBlur={FormikProps.handleBlur('cddTelephone')} placeholder={cddTelephoneTouched && cddTelephoneError ? '' : 'Phone'} placeholderTextColor={cddTelephoneTouched && cddTelephoneError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} style={{ marginLeft: 5, flex: 1 }} keyboardType={'phone-pad'} />
                                     </View>
+                                    {cddTelephoneTouched && cddTelephoneError && <Text style={styles.error}>{cddTelephoneError}</Text>}
                                     <View style={{ alignSelf: 'center', borderBottomWidth: 1, borderBottomColor: '#4A90E2', flexDirection: 'row', margin: 5, width: Layout.window.width * 0.65 }}>
                                         <Image source={require('../assets/images/email.png')} style={{ height: 30, width: 30, margin: 5 }} resizeMode={'contain'} />
-                                        <TextInput value={cddEmail} onChangeText={FormikProps.handleChange('cddEmail')} placeholder={cddEmailTouched && cddEmailError ? cddEmailError : 'E-mail'} placeholderTextColor={cddEmailTouched && cddEmailError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} style={{ marginLeft: 5, flex: 1 }} keyboardType={'email-address'} />
+                                        <TextInput value={cddEmail} onChangeText={FormikProps.handleChange('cddEmail')} onBlur={FormikProps.handleBlur('cddEmail')} placeholder={cddEmailTouched && cddEmailError ? '' : 'E-mail'} placeholderTextColor={cddEmailTouched && cddEmailError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} style={{ marginLeft: 5, flex: 1 }} keyboardType={'email-address'} />
                                     </View>
+                                    {cddEmailTouched && cddEmailError && <Text style={styles.error}>{cddEmailError}</Text>}
                                     <TouchableOpacity onPress={() => props.navigation.navigate('CompanyContactAddressInformation')} style={{ alignSelf: 'center', borderBottomWidth: 1, borderBottomColor: '#4A90E2', flexDirection: 'row', margin: 5, width: Layout.window.width * 0.65 }}>
                                         <Image source={require('../assets/images/company.png')} style={{ height: 30, width: 30, margin: 5 }} resizeMode={'contain'} />
                                         {!comp_state ? <TextInput editable={false} value={comp_addr} style={{ marginLeft: 5 }} />

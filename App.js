@@ -16,7 +16,7 @@ const App = (props) => {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
   const [tokenExists, setTokenExists] = useState(false)
 
-  checkLogin = async () => {
+  const checkLogin = async () => {
     try {
       //const personalToken = await AsyncStorage.getItem('personalToken');
       const personalToken = await SecureStore.getItemAsync('personalToken')

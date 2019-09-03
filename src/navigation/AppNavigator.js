@@ -4,7 +4,6 @@ import AuthenticationNavigator from './AuthenticationNavigator'
 import RegistrationNavigator from './RegistrationNavigator'
 import MainTabNavigator from './MainTabNavigator';
 
-
 const LoggedIn = createSwitchNavigator({
   Authentication: AuthenticationNavigator,
   Registration: RegistrationNavigator,
@@ -14,9 +13,6 @@ const LoggedIn = createSwitchNavigator({
     initialRouteName: 'Main'
 
   });
-
-
-
 
 const Authentication = createSwitchNavigator({
   Authentication: AuthenticationNavigator,
