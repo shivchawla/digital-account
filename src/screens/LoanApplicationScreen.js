@@ -59,7 +59,7 @@ const LoanApplicationScreen = (props) => {
                 }
 
                 return (
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }}>
+                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }}>
                         <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#4D6BFA' }}>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
@@ -101,12 +101,12 @@ const LoanApplicationScreen = (props) => {
                                 </Text>
                             </View>
                             <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
-                                <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, }}>
+                                <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1 }}>
                                     <LinearGradient colors={['#A4A4A4', '#A4A4A4']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                         <Text style={[styles.text, { color: '#fff' }]}>Back</Text>
                                     </LinearGradient>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={FormikProps.handleSubmit} style={{ flex: 1, }} >
+                                <TouchableOpacity onPress={FormikProps.handleSubmit} style={{ flex: 1 }} >
                                     <LinearGradient colors={['#628BFB', '#0E47E8']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                         <Text style={[styles.text, { color: '#fff' }]}>Submit</Text>
                                     </LinearGradient>
