@@ -76,7 +76,7 @@ const SideBar = (props) => {
 
                 <View style={{ flexDirection: 'row', marginTop: 25, marginLeft: 5, alignItems: 'center' }}>
                     <Image source={require('../assets/images/setting.png')} style={{ width: 50, height: 50 }} resizeMode={'contain'} />
-                    <TouchableOpacity onPress={() => props.nav('Settings')}>
+                    <TouchableOpacity onPress={() => props.nav('VendorScreen')}>
                         <Text style={[styles.text, { color: '#fff', marginLeft: 15 }]}>Settings</Text>
                     </TouchableOpacity>
                 </View>
