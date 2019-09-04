@@ -27,6 +27,7 @@ import TransactionHistoryScreen from '../screens/TransactionHistoryScreen';
 import NotificationScreen from '../screens/NotificationScreen';
 import NotiSettingScreen from '../screens/NotiSettingScreen';
 import ChangeEmailScreen from '../screens/ChangeEmailScreen';
+import VendorScreen from '../screens/VendorScreen';
 import LogOutScreen from '../screens/LogOutScreen';
 import ChangeNumberScreen from '../screens/ChangeNumberScreen';
 
@@ -82,6 +83,9 @@ const DashboardStackWithModal = createStackNavigator(
     ConnectedParties: {
       screen: ConnectedPartiesScreen,
     },
+    VendorScreen: {
+      screen: VendorScreen,
+    },
   },
   {
     mode: 'modal',
@@ -93,7 +97,7 @@ const DashboardStackWithModal = createStackNavigator(
 DashboardStackWithModal.navigationOptions = ({ navigation }) => {
   let tabBarVisible = true;
   let routeName = navigation.state.routes[navigation.state.index].routeName
-  if (routeName == 'Withdraw' || routeName == 'Account' || routeName == 'LoanApplication' || routeName == 'LoanApplicationDeclaration' || routeName == 'ConnectedParties' || routeName == 'EditProfile' || routeName == 'NewInvoice') {
+  if (routeName == 'VendorScreen' ||routeName == 'Withdraw' || routeName == 'Account' || routeName == 'LoanApplication' || routeName == 'LoanApplicationDeclaration' || routeName == 'ConnectedParties' || routeName == 'EditProfile' || routeName == 'NewInvoice') {
     tabBarVisible = false
   }
 
