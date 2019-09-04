@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform, Image,View } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
@@ -98,20 +98,15 @@ DashboardStackWithModal.navigationOptions = ({ navigation }) => {
 
   return {
     tabBarVisible: tabBarVisible,
-    tabBarLabel: 'Dashboard',
+    tabBarLabel: <View />,
     tabBarOptions: {
       showIcon: true,
     },
 
     tabBarIcon: ({ focused }) => (
-      <TabBarIcon
-        focused={focused}
-        name={
-          Platform.OS === 'ios'
-            ? `ios-home${focused ? '' : ''}`
-            : 'md-home'
-        }
-      />
+      focused ?
+        <Image source={require('../assets/images/bottomTabs/homeBlack.png')} style={{ width: 40, height: 40 }} resizeMode={'contain'} /> :
+        <Image source={require('../assets/images/bottomTabs/home.png')} style={{ width: 40, height: 40 }} resizeMode={'contain'} />
     ),
   }
 }
@@ -126,9 +121,11 @@ const TransactionHistoryStack = createStackNavigator(
 );
 
 TransactionHistoryStack.navigationOptions = {
-  tabBarLabel: 'History',
+  tabBarLabel: <View />,
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
+    focused ?
+      <Image source={require('../assets/images/bottomTabs/historyBlack.png')} style={{ width: 40, height: 40 }} resizeMode={'contain'} /> :
+      <Image source={require('../assets/images/bottomTabs/history.png')} style={{ width: 40, height: 40 }} resizeMode={'contain'} />
   ),
 };
 
@@ -142,9 +139,11 @@ const NotificationStack = createStackNavigator(
 );
 
 NotificationStack.navigationOptions = {
-  tabBarLabel: 'Notification',
+  tabBarLabel: <View />,
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
+    focused ?
+      <Image source={require('../assets/images/bottomTabs/notificationBlack.png')} style={{ width: 40, height: 40 }} resizeMode={'contain'} /> :
+      <Image source={require('../assets/images/bottomTabs/notification.png')} style={{ width: 40, height: 40 }} resizeMode={'contain'} />
   ),
 };
 
@@ -188,20 +187,11 @@ SettingsStackWithModal.navigationOptions = ({ navigation }) => {
 
   return {
     tabBarVisible: tabBarVisible,
-    tabBarLabel: 'Settings',
-    tabBarOptions: {
-      showIcon: true,
-    },
-
+    tabBarLabel: <View />,
     tabBarIcon: ({ focused }) => (
-      <TabBarIcon
-        focused={focused}
-        name={
-          Platform.OS === 'ios'
-            ? `ios-home${focused ? '' : ''}`
-            : 'md-home'
-        }
-      />
+      focused ?
+        <Image source={require('../assets/images/bottomTabs/setingBlack.png')} style={{ width: 40, height: 40 }} resizeMode={'contain'} /> :
+        <Image source={require('../assets/images/bottomTabs/setting.png')} style={{ width: 40, height: 40 }} resizeMode={'contain'} />
     ),
   }
 }

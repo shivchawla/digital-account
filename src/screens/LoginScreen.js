@@ -40,6 +40,7 @@ const validationSchema = Yup.object().shape({
 
 const LoginScreen = (props) => {
     const proceed = useSelector(state => state.loginScreenReducer.proceed, shallowEqual)
+    const all = useSelector(state => state.loginScreenReducer.message, shallowEqual)
     useEffect(() => {
         //console.log(`proceed ialah : ${proceed}`)
         proceed && props.navigation.navigate('Main')
@@ -59,7 +60,13 @@ const LoginScreen = (props) => {
                 <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, paddingTop: 10, justifyContent: 'flex-start', alignItems: 'center' }}>
                     <Formik
                         initialValues={{ email: '', password: '' }}
-                        onSubmit={values => login(values)}
+                        onSubmit={(values, actions) => {
+                            setTimeout(() => {
+                                login(values);
+                                actions.setSubmitting(false);
+                                //actions.setFieldValue('error',JSON.stringify(all))
+                            }, 1000);
+                        }}
                         validationSchema={validationSchema}
                     >
                         {FormikProps => {
@@ -69,7 +76,6 @@ const LoginScreen = (props) => {
                             const emailTouched = FormikProps.touched.email
                             const passwordTouched = FormikProps.touched.password
                             return (
-
                                 <View style={{ width: Layout.window.width * 0.8, justifyContent: 'center', alignItems: 'center' }}>
                                     {/* <Image source={require('../assets/images/logo.png')} style={{ height: Layout.window.height * 0.2, width: Layout.window.width * 0.7 }} resizeMode={'contain'} /> */}
                                     <View style={{ alignSelf: 'center', borderBottomWidth: 1, borderBottomColor: emailTouched && emailError ? '#d94498' : '#5a83c2', flexDirection: 'row', margin: 5, width: Layout.window.width * 0.65 }}>
@@ -79,6 +85,9 @@ const LoginScreen = (props) => {
                                     <View style={{ alignSelf: 'center', borderBottomWidth: 1, borderBottomColor: passwordTouched && passwordError ? '#d94498' : '#5a83c2', flexDirection: 'row', margin: 5, width: Layout.window.width * 0.65, marginBottom: 20 }}>
                                         <Image source={require('../assets/images/password.png')} style={{ height: 30, width: 30, margin: 5 }} resizeMode={'contain'} />
                                         <TextInput secureTextEntry value={password} placeholder={passwordTouched && passwordError ? passwordError : '******'} onChangeText={FormikProps.handleChange('password')} style={{ marginLeft: 5, flex: 1 }} placeholderTextColor={passwordTouched && passwordError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                    </View>
+                                    <View style={{ flexDirection: 'row', marginBottom: 10 }}>
+                                        <Text style={styles.error}> {all}</Text>
                                     </View>
                                     <View style={{ flexDirection: 'row', marginBottom: 10 }}>
                                         <Text style={[styles.textDefault, { margin: 5 }]}>Forgot password?</Text>

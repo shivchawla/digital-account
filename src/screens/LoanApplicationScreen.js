@@ -10,8 +10,7 @@ import {
 
 } from 'react-native';
 import CheckBox from 'react-native-check-box'
-import { StackActions, NavigationActions } from 'react-navigation';
-import { LoanApplicationContext } from '../contexts/LoanApplicationContext'
+import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
@@ -22,25 +21,25 @@ import * as Yup from 'yup';
 const validationSchema = Yup.object().shape({
 
     amount: Yup
-        .string(),
-    // .required(),
+        .number()
+        .positive()
+        .required(),
     purpose: Yup
         .string()
+        .required(),
 });
 
 const LoanApplicationScreen = (props) => {
-    const resetAction = StackActions.reset({
-        index: 0,
-        key: null,
-        actions: [NavigationActions.navigate({ routeName: 'LoanApplication' })],
-    });
-   // const [loanData, setLoanData] = useContext(LoanApplicationContext)
+    const loanData = useSelector(state => state.loanApplicationReducer, shallowEqual)
+    const dispatch = useDispatch()
+    const setLoanData = (val) => dispatch({ type: 'SET_LOAN_DATA', payload: { ...val } });
+
     return (
         <Formik
             initialValues={{ smeConnected: true }}
-            onSubmit={async values => {
-                // console.log(JSON.stringify(values))
-                // await setLoanData(values)
+            onSubmit={values => {
+ 
+                setLoanData(values)
                 props.navigation.navigate('ConnectedParties')
             }}
             validationSchema={validationSchema}
@@ -55,7 +54,7 @@ const LoanApplicationScreen = (props) => {
 
                 const handleCheckBox = () => {
                     FormikProps.setFieldValue('smeConnected', !smeConnected)
-                    console.log('ditekan')
+                    //console.log('ditekan')
                 }
 
                 return (
@@ -75,17 +74,19 @@ const LoanApplicationScreen = (props) => {
                         </View>
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
                             <View style={{ flex: 9, margin: 10 }}>
-                                <Text>Apa ni : {JSON.stringify(props)}</Text>
+                                <Text>Apa ni : {JSON.stringify(loanData)}</Text>
                                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 }}>
                                     <Text style={styles.h3}>Financing</Text>
                                 </View>
                                 <View style={{ marginBottom: 10 }}>
                                     <Text style={[styles.text, { marginBottom: 5 }]}>Total Financing (MYR)</Text>
-                                    <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                    <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} onBlur={FormikProps.handleBlur('amount')} style={{ borderWidth: 1, borderColor: amountTouched && amountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={amountTouched && amountError ? '' : 'Amount'} placeholderTextColor={amountTouched && amountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
+                                    {amountTouched && amountError && <Text style={styles.error}>{amountError}</Text>}
                                 </View>
                                 <View style={{ marginBottom: 10 }}>
                                     <Text style={[styles.text, { marginBottom: 5 }]}>Purpose</Text>
-                                    <TextInput value={purpose} onChangeText={FormikProps.handleChange('purpose')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                    <TextInput value={purpose} onChangeText={FormikProps.handleChange('purpose')} onBlur={FormikProps.handleBlur('purpose')} style={{ borderWidth: 1, borderColor: purposeTouched && purposeError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={purposeTouched && purposeError ? '' : 'Purpose'} placeholderTextColor={purposeTouched && purposeError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                    {purposeTouched && purposeError && <Text style={styles.error}>{purposeError}</Text>}
                                 </View>
                                 <View style={{ marginBottom: 10 }}>
                                     <Text style={[styles.text, { marginBottom: 5 }]}>Is company connected with SME Bank</Text>

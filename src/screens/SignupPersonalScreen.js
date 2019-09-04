@@ -49,7 +49,6 @@ const SignupPersonalScreen = (props) => {
     const proceed = useSelector(state => state.registrationReducer.proceed, shallowEqual)
 
     useEffect(() => {
-
         dispatch(actionCreator.getToken());
         proceed && props.navigation.navigate('SignUpPersonalSuccess');
     }, [proceed]);

@@ -10,8 +10,6 @@ import {
     KeyboardAvoidingView
 } from 'react-native';
 
-import { LoanApplicationProvider, LoanApplicationContext } from '../contexts/LoanApplicationContext'
-
 import CheckBox from 'react-native-check-box'
 import Layout from '../constants/Layout'
 import { LinearGradient } from 'expo-linear-gradient'
@@ -23,17 +21,6 @@ import * as Yup from 'yup';
 const validationSchema = Yup.object().shape({
 
 });
-
-
-// const LoanApplicationDeclarationScreen = (props) => {
-
-//     return (
-//         <LoanApplicationProvider>
-//             <LoanApplicationDeclaration navigation={props.navigation} />
-//         </LoanApplicationProvider>
-//     )
-
-// }
 
 const LoanApplicationDeclarationScreen = (props) => {
     // const [loanData, setLoanData] = useContext(LoanApplicationContext)
@@ -91,8 +78,7 @@ const LoanApplicationDeclarationScreen = (props) => {
                                 <View>
                                     <Text style={[styles.text, { marginBottom: 30, color: 'blue' }]}>Application Declaration</Text>
                                 </View>
-                                <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
-                                    <CheckBox onClick={() => console.log('test')} checked={false} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', marginRight: 25 }} />
+                                <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>                                   
                                     <Text>It is now hereby declared that the information and particulars furnished above are true and correct to the best of my/our knowledge and belief and nothing had been concealed.</Text>
                                 </View>
                             </View>
