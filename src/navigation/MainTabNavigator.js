@@ -25,6 +25,7 @@ import ReportScreen from '../screens/ReportScreen';
 import BusinessHubScreen from '../screens/BusinessHubScreen';
 import TransactionHistoryScreen from '../screens/TransactionHistoryScreen';
 import NotificationScreen from '../screens/NotificationScreen';
+import NotiSettingScreen from '../screens/NotiSettingScreen';
 import ChangeEmailScreen from '../screens/ChangeEmailScreen';
 import LogOutScreen from '../screens/LogOutScreen';
 import ChangeNumberScreen from '../screens/ChangeNumberScreen';
@@ -171,6 +172,12 @@ const SettingsStackWithModal = createStackNavigator(
     ChangeNumber: {
       screen: ChangeNumberScreen,
     },
+    NotiScreen: {
+      screen: NotiSettingScreen,
+    },
+    Support: {
+      screen: SupportScreen,
+    },
   },
   {
     mode: 'modal',
@@ -182,7 +189,7 @@ const SettingsStackWithModal = createStackNavigator(
 SettingsStackWithModal.navigationOptions = ({ navigation }) => {
   let tabBarVisible = true;
   let routeName = navigation.state.routes[navigation.state.index].routeName
-  if (routeName == 'ChangePassword' || routeName == 'ChangeEmail' || routeName == 'ChangeNumber') {
+  if (routeName == 'ChangePassword' || routeName == 'ChangeEmail' || routeName == 'ChangeNumber' || routeName == 'NotiScreen' || routeName == 'Support') {
     tabBarVisible = false
   }
 

@@ -105,14 +105,14 @@ const SignupPersonalScreen = (props) => {
 
                                 <View style={{ marginBottom: 10 }}>
                                     <Text style={[styles.text, { marginBottom: 5, borderBottomColor: passwordTouched && passwordError ? '#d94498' : '#5a83c2' }]}>Password</Text>
-                                    <TextInput secureTextEntry value={password} placeholder={passwordTouched && passwordError ? '' : '******'} onChangeText={FormikProps.handleChange('password')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholderTextColor={passwordTouched && passwordError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                    <TextInput secureTextEntry value={password} onBlur={FormikProps.handleBlur('password')}placeholder={passwordTouched && passwordError ? '' : '******'} onChangeText={FormikProps.handleChange('password')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholderTextColor={passwordTouched && passwordError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                 </View>
 
                                 {passwordTouched && passwordError && <Text style={styles.error}>{passwordError}</Text>}
 
                                 <View style={{ marginBottom: 10 }}>
                                     <Text style={[styles.text, { marginBottom: 5, borderBottomColor: password_confirmationTouched && password_confirmationError ? '#d94498' : '#5a83c2' }]}>Password Confirmation</Text>
-                                    <TextInput secureTextEntry value={password_confirmation} placeholder={password_confirmationTouched && password_confirmationError ? '' : '******'} onChangeText={FormikProps.handleChange('password_confirmation')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholderTextColor={password_confirmationTouched && password_confirmationError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                    <TextInput secureTextEntry value={password_confirmation} onBlur={FormikProps.handleBlur('password_confirmation')} placeholder={password_confirmationTouched && password_confirmationError ? '' : '******'} onChangeText={FormikProps.handleChange('password_confirmation')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholderTextColor={password_confirmationTouched && password_confirmationError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                 </View>
 
                                 {password_confirmationTouched && password_confirmationError && <Text style={styles.error}>{password_confirmationError}</Text>}
@@ -125,7 +125,7 @@ const SignupPersonalScreen = (props) => {
                                     </LinearGradient>
                                 </TouchableOpacity>
                                 <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ flex: 1 }}>
-                                    <LinearGradient colors={FormikProps.isValid ? ['#4DCB3E', '#269B1D'] : ['rgba(77, 203, 62, 0.5)', 'rgba(38, 155, 29, 0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
+                                    <LinearGradient colors={FormikProps.isValid ? ['#628BFB', '#0E47E8'] : ['rgba(98, 139, 251, 1)', 'rgba(14, 71, 232, 1)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                         <Text style={[styles.text, { color: '#fff' }]}>Submit</Text>
                                     </LinearGradient>
                                 </TouchableOpacity>

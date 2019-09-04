@@ -51,12 +51,12 @@ const LoginScreen = (props) => {
     };
     return (
         <View style={{ flex: 1, paddingTop: Constants.statusBarHeight, backgroundColor: '#80A0FD' }}>
-            <LinearGradient colors={['#80A0FD', '#4F6DFB']} style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center' }}>
+            <LinearGradient colors={['#80A0FD', '#4F6DFB']} style={{ flex: 1, alignItems: 'center' }}>
                 <Text style={[styles.h3, { color: '#fff' }]}>Welcome to your</Text>
                 <Text style={[styles.h2, { color: '#fff' }]}>Digital Account</Text>
             </LinearGradient>
             <View style={{ position: 'absolute', top: Layout.window.height / 3, left: 0, bottom: 0, right: 0, backgroundColor: '#fff', borderTopLeftRadius: 30, borderTopRightRadius: 30 }}>
-                <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, paddingTop: 10, justifyContent: 'flex-start', alignItems: 'center' }}>
+                <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, paddingTop: 10, alignItems: 'center' }}>
                     <Formik
                         initialValues={{ email: '', password: '' }}
                         onSubmit={values => login(values)}
@@ -70,34 +70,46 @@ const LoginScreen = (props) => {
                             const passwordTouched = FormikProps.touched.password
                             return (
 
-                                <View style={{ width: Layout.window.width * 0.8, justifyContent: 'center', alignItems: 'center' }}>
-                                    {/* <Image source={require('../assets/images/logo.png')} style={{ height: Layout.window.height * 0.2, width: Layout.window.width * 0.7 }} resizeMode={'contain'} /> */}
-                                    <View style={{ alignSelf: 'center', borderBottomWidth: 1, borderBottomColor: emailTouched && emailError ? '#d94498' : '#5a83c2', flexDirection: 'row', margin: 5, width: Layout.window.width * 0.65 }}>
-                                        <Image source={require('../assets/images/email.png')} style={{ height: 30, width: 30, margin: 5 }} resizeMode={'contain'} />
-                                        <TextInput value={email} onChangeText={FormikProps.handleChange('email')} placeholder={emailTouched && emailError ? emailError : 'E-mail'} style={{ marginLeft: 5, flex: 1 }} keyboardType={'email-address'} placeholderTextColor={emailTouched && emailError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                <View style={{ flex: 1, alignSelf: 'stretch' }}>
+                                    <View style={{ flex: 9, margin: 10 }}>
+
+                                        <View style={{ marginBottom: 10 }}>
+                                            <Text style={[styles.text, { marginBottom: 5, borderColor: emailTouched && emailError ? '#d94498' : '#5a83c2' }]}>Email</Text>
+                                            <TextInput value={email} onBlur={FormikProps.handleBlur('email')} onChangeText={FormikProps.handleChange('email')} placeholder={emailTouched && emailError ? '' : 'Email'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                        </View>
+
+                                        {emailTouched && emailError && <Text style={styles.error}>{emailError}</Text>}
+
+                                        <View style={{ marginBottom: 10 }}>
+                                            <Text style={[styles.text, { marginBottom: 5, borderColor: passwordTouched && passwordError ? '#d94498' : '#5a83c2' }]}>Password</Text>
+                                            <TextInput secureTextEntry value={password} onBlur={FormikProps.handleBlur('password')} placeholder={passwordTouched && passwordError ? '' : '******'} onChangeText={FormikProps.handleChange('password')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholderTextColor={passwordTouched && passwordError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        </View>
+
+                                        {passwordTouched && passwordError && <Text style={styles.error}>{passwordError}</Text>}
+
                                     </View>
-                                    <View style={{ alignSelf: 'center', borderBottomWidth: 1, borderBottomColor: passwordTouched && passwordError ? '#d94498' : '#5a83c2', flexDirection: 'row', margin: 5, width: Layout.window.width * 0.65, marginBottom: 20 }}>
-                                        <Image source={require('../assets/images/password.png')} style={{ height: 30, width: 30, margin: 5 }} resizeMode={'contain'} />
-                                        <TextInput secureTextEntry value={password} placeholder={passwordTouched && passwordError ? passwordError : '******'} onChangeText={FormikProps.handleChange('password')} style={{ marginLeft: 5, flex: 1 }} placeholderTextColor={passwordTouched && passwordError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
-                                    </View>
+
                                     <View style={{ flexDirection: 'row', marginBottom: 10 }}>
                                         <Text style={[styles.textDefault, { margin: 5 }]}>Forgot password?</Text>
                                         <TouchableOpacity onPress={() => forgotPassword()}>
                                             <Text style={[styles.textDefault, { margin: 5, color: 'dodgerblue' }]}>Click here</Text>
                                         </TouchableOpacity>
                                     </View>
-                                    <View style={{ flexDirection: 'row', margin: 5 }}>
-                                        <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10 }}>
-                                            <LinearGradient colors={FormikProps.isValid ? ['#4DCB3E', '#269B1D'] : ['rgba(77, 203, 62, 0.5)', 'rgba(38, 155, 29, 0.5)']} style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, borderRadius: 15, justifyContent: 'center', alignItems: 'center', }}>
+
+                                    <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
+                                        <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1 }}>
+                                            <LinearGradient colors={['#A4A4A4', '#A4A4A4']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
+                                                <Text style={[styles.text, { color: '#fff' }]}>Back</Text>
+                                            </LinearGradient>
+                                        </TouchableOpacity>
+
+                                        <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ flex: 1 }}>
+                                            <LinearGradient colors={FormikProps.isValid ? ['#628BFB', '#0E47E8'] : ['rgba(98, 139, 251, 1)', 'rgba(14, 71, 232, 1)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                                 {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> :
                                                     <Text style={[styles.text, { color: '#fff' }]}>Log In</Text>}
                                             </LinearGradient>
                                         </TouchableOpacity>
-                                        <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#5A647F' }} >
-                                            <Text style={[styles.text, { color: '#fff' }]}>Back</Text>
-                                        </TouchableOpacity>
                                     </View>
-                                    {/* {indicator && <ActivityIndicator color={'#34c6f4'} style={{ marginLeft: 5 }} />} */}
                                 </View>
                             )
                         }}
