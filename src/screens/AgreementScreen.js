@@ -49,9 +49,9 @@ FCGB is referred to as “we”, “us”, “our” or “ours”. Any person u
                                 <CheckBox2 isChecked={agreement} onClick={() => setAgreement(!agreement)} />
                                 :
                                 <CheckBox value={agreement} onValueChange={() => setAgreement(!agreement)} />
-                        }
+                            }
                             <Text style={[styles.textDefault, { margin: 5, marginBottom: 10, color: 'darkblue', fontSize: 12 }]}>
-                                I have agree on terms and condition
+                                I have agreed on terms and condition
                             </Text>
                         </View>
 
@@ -61,7 +61,7 @@ FCGB is referred to as “we”, “us”, “our” or “ours”. Any person u
                                     <Text style={[styles.textDefault, { color: '#fff' }]}>Next</Text>
                                 </LinearGradient>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Welcome')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#5A647F' }} >
+                            <TouchableOpacity onPress={() => () => props.navigation.goBack()} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#5A647F' }} >
                                 <Text style={[styles.textDefault, { color: '#fff' }]}>Back</Text>
                             </TouchableOpacity>
                         </View>

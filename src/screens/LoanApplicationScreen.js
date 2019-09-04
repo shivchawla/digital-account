@@ -58,7 +58,7 @@ const LoanApplicationScreen = (props) => {
                 }
 
                 return (
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }}>
+                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }}>
                         <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#4D6BFA' }}>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
@@ -74,7 +74,6 @@ const LoanApplicationScreen = (props) => {
                         </View>
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
                             <View style={{ flex: 9, margin: 10 }}>
-                                <Text>Apa ni : {JSON.stringify(loanData)}</Text>
                                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 }}>
                                     <Text style={styles.h3}>Financing</Text>
                                 </View>
@@ -97,17 +96,14 @@ const LoanApplicationScreen = (props) => {
                                         <CheckBox onClick={handleCheckBox} isChecked={!smeConnected} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', paddingRight: 10 }} /><Text>No</Text>
                                     </View>
                                 </View>
-                                <Text>
-                                    {/* {JSON.stringify(loanData)} */}
-                                </Text>
                             </View>
                             <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
-                                <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, }}>
+                                <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1 }}>
                                     <LinearGradient colors={['#A4A4A4', '#A4A4A4']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                         <Text style={[styles.text, { color: '#fff' }]}>Back</Text>
                                     </LinearGradient>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={FormikProps.handleSubmit} style={{ flex: 1, }} >
+                                <TouchableOpacity onPress={FormikProps.handleSubmit} style={{ flex: 1 }} >
                                     <LinearGradient colors={['#628BFB', '#0E47E8']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                         <Text style={[styles.text, { color: '#fff' }]}>Submit</Text>
                                     </LinearGradient>
