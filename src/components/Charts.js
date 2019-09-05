@@ -11,7 +11,7 @@ import {
 
     ImageBackground
 } from 'react-native';
-import { PieChart, Labels } from 'react-native-svg-charts' // 2.1.0
+import { PieChart, Labels, LineChart, Grid } from 'react-native-svg-charts' // 2.1.0
 import { Text } from "react-native-svg"; // Supported builtin module
 
 import { Constants, LinearGradient } from 'expo'
@@ -47,6 +47,8 @@ const Charts = () => {
         }
     ]
 
+    const dataLineChart = [50, 10, 40, 95, -4, -24, 85, 91, 35, 53, -53, 24, 50, -20, -80]
+
     const Labels = ({ slices, height, width }) => {
         return slices.map((slice, index) => {
             const { labelCentroid, pieCentroid, data } = slice;
@@ -69,7 +71,15 @@ const Charts = () => {
     }
     return (
         <View style={{ flex: 1 }}>
-            <PieChart
+            <LineChart
+                style={{ flex: 1, width: undefined, height: undefined }}
+                data={dataLineChart}
+                svg={{ stroke: 'rgb(134, 65, 244)' }}
+                contentInset={{ top: 20, bottom: 20 }}
+            >
+                <Grid />
+            </LineChart>
+            {/* <PieChart
                 style={{ flex: 1, width: undefined, height: undefined }}
                 valueAccessor={({ item }) => item.amount}
                 data={data}
@@ -77,7 +87,7 @@ const Charts = () => {
                 outerRadius={'95%'}
             >
                 <Labels />
-            </PieChart>
+            </PieChart> */}
         </View>
 
     );

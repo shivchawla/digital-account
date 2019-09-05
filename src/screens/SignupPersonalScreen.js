@@ -57,7 +57,7 @@ const SignupPersonalScreen = (props) => {
 
     return (
         <Formik
-            initialValues={{ email: '', password: '' }}
+            
             onSubmit={values => dispatch(actionCreator.register(values))}
             validationSchema={validationSchema}
         >

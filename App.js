@@ -110,6 +110,7 @@ const loadResourcesAsync = async () => {
       // remove this if you are not using it in your app
       'Montserrat_medium': require('./src/assets/fonts/Montserrat/Montserrat-Medium.ttf'),
       'Montserrat_light': require('./src/assets/fonts/Montserrat/Montserrat-Light.ttf'),
+      'Montserrat_thin': require('./src/assets/fonts/Montserrat/Montserrat-Thin.ttf'),
       'Montserrat_bold': require('./src/assets/fonts/Montserrat/Montserrat-Bold.ttf'),
       'Roboto_medium': require('./src/assets/fonts/Roboto/Roboto-Regular.ttf'),
     }),

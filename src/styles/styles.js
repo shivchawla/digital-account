@@ -2,12 +2,12 @@ import { StyleSheet } from 'react-native'
 import Layout from '../constants/Layout'
 import { Constants } from 'expo'
 
-const fontSize = 16
+const fontSize = 15
 
 export default StyleSheet.create({
   text: {
     fontSize,
-    fontFamily: 'Montserrat_medium',
+    fontFamily: 'Montserrat_light',
     color: '#000'
   },
   title: {
@@ -36,13 +36,13 @@ export default StyleSheet.create({
   },
   small: {
     fontSize,
-    fontFamily: 'Montserrat_medium',
+    fontFamily: 'Montserrat_thin',
     color: '#000',
     fontSize: fontSize * 0.8
   },
   error: {
     fontSize,
-    fontFamily: 'Montserrat_medium',
+    fontFamily: 'Montserrat_thin',
     color: 'rgba(255,0,0,0.5)',
     fontSize: fontSize * 0.8
   }

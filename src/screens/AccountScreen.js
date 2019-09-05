@@ -14,7 +14,9 @@ import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles/styles'
 
 const AccountScreen = (props) => {
+    const score = 80
 
+    const scoreColor = score > 66 ? 'green' : score > 33 ? 'yellow' : 'red'
     return (
         <View style={{ flex: 1, }}>
             <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#4D6BFA' }}>
@@ -31,9 +33,23 @@ const AccountScreen = (props) => {
                 </View>
             </View>
             <View style={{ flex: 9, padding: 10 }}>
-                <View style={{ marginTop: 10 }}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                        <Text style={styles.h2}>Latest Transaction</Text>                        
+                <View>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10 }}>
+                        <Text style={styles.h2}>Health</Text>
+                    </View>
+                    <View style={{ marginTop: 5 }}>
+                        <View style={{ width: Layout.window.width - 100, borderRadius: 10, borderWidth: 1, borderColor: 'lightgrey', flexDirection: 'row' }}>
+                            <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={[scoreColor, '#fff',]} style={{ flex: score, padding: 10, borderRadius: 10, }} />
+                            <View style={{ flex: 100 - score, borderRadius: 10, backgroundColor: '#fff', padding: 10, }} />
+                        </View>
+                        <View style={{ width: Layout.window.width - 100, flexDirection: 'row', justifyContent: 'space-evenly' }}>
+                            <Text style={[styles.small, { color: 'grey' }]}>Poor</Text>
+                            <Text style={[styles.small, { color: 'grey' }]}>Average</Text>
+                            <Text style={[styles.small, { color: 'grey' }]}>Good</Text>
+                        </View>
+                    </View>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10 }}>
+                        <Text style={styles.h2}>Account Information</Text>
                     </View>
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
