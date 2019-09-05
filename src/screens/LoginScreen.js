@@ -40,6 +40,7 @@ const validationSchema = Yup.object().shape({
 
 const LoginScreen = (props) => {
     const proceed = useSelector(state => state.loginScreenReducer.proceed, shallowEqual)
+    const all = useSelector(state => state.loginScreenReducer.message, shallowEqual)
     useEffect(() => {
         //console.log(`proceed ialah : ${proceed}`)
         proceed && props.navigation.navigate('Main')
@@ -59,7 +60,13 @@ const LoginScreen = (props) => {
                 <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, paddingTop: 10, alignItems: 'center' }}>
                     <Formik
                         initialValues={{ email: '', password: '' }}
-                        onSubmit={values => login(values)}
+                        onSubmit={(values, actions) => {
+                            setTimeout(() => {
+                                login(values);
+                                actions.setSubmitting(false);
+                                //actions.setFieldValue('error',JSON.stringify(all))
+                            }, 1000);
+                        }}
                         validationSchema={validationSchema}
                     >
                         {FormikProps => {
@@ -89,6 +96,9 @@ const LoginScreen = (props) => {
 
                                     </View>
 
+                                    <View style={{ flexDirection: 'row', marginBottom: 10 }}>
+                                        <Text style={styles.error}> {all}</Text>
+                                    </View>
                                     <View style={{ flexDirection: 'row', marginBottom: 10 }}>
                                         <Text style={[styles.textDefault, { margin: 5 }]}>Forgot password?</Text>
                                         <TouchableOpacity onPress={() => forgotPassword()}>

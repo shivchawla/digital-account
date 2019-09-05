@@ -9,8 +9,7 @@ import {
     CheckBox,
     KeyboardAvoidingView
 } from 'react-native';
-import { LoanApplicationProvider, LoanApplicationContext } from '../contexts/LoanApplicationContext'
-import Layout from '../constants/Layout'
+import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles/styles'
@@ -22,36 +21,55 @@ const validationSchema = Yup.object().shape({
     capacity: Yup
         .string(),
     name: Yup
-        .string(),
+        .string()
+        .required(),
     myKad: Yup
-        .string(),
+        .string()
+        .required(),
     relationship: Yup
-        .string(),
+        .string()
+        .required(),
     personnelName: Yup
-        .string(),
+        .string()
+        .required(),
     email: Yup
         .string(),
 
 });
 
 const ConnectedPartiesScreen = (props) => {
-    // const [loanData, setLoanData] = useContext(LoanApplicationContext)
+    const loanData = useSelector(state => state.loanApplicationReducer, shallowEqual)
+    const dispatch = useDispatch()
+    const setLoanData = (val) => dispatch({ type: 'SET_LOAN_DATA', payload: { ...val } });
     return (
         <Formik
 
-            onSubmit={async values => {
+            onSubmit={values => {
                 // console.log(JSON.stringify(values))
-                // await setLoanData({ ...loanData, connectedParties: [values] })
+                setLoanData(values)
                 props.navigation.navigate('LoanApplicationDeclaration')
             }}
             validationSchema={validationSchema}>
             {FormikProps => {
                 const { capacity, name, myKad, relationship, personnelName, email } = FormikProps.values
-                // const purposeError = FormikProps.errors.purpose
-                // const purposeTouched = FormikProps.touched.purpose
+                const capacityError = FormikProps.errors.capacity
+                const capacityTouched = FormikProps.touched.capacity
 
-                // const amountError = FormikProps.errors.amount
-                // const amountTouched = FormikProps.touched.amount
+                const nameError = FormikProps.errors.name
+                const nameTouched = FormikProps.touched.name
+
+                const myKadError = FormikProps.errors.myKad
+                const myKadTouched = FormikProps.touched.myKad
+
+                const relationshipError = FormikProps.errors.relationship
+                const relationshipTouched = FormikProps.touched.relationship
+
+                const personnelNameError = FormikProps.errors.personnelName
+                const personnelNameTouched = FormikProps.touched.personnelName
+
+                const emailError = FormikProps.errors.email
+                const emailTouched = FormikProps.touched.email
+
                 return (
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }}>
                         <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#4D6BFA' }}>
@@ -69,34 +87,40 @@ const ConnectedPartiesScreen = (props) => {
                         </View>
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
                             <View style={{ flex: 9, margin: 10 }}>
+                                <Text>Apa ni : {JSON.stringify(loanData)}</Text>
                                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 }}>
                                     <Text style={styles.h3}>Connected Parties</Text>
                                 </View>
 
                                 <View style={{ marginBottom: 10 }}>
                                     <Text style={[styles.text, { marginBottom: 5 }]}>Capacity</Text>
-                                    <TextInput value={capacity} onChangeText={FormikProps.handleChange('capacity')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                    <TextInput value={capacity} onChangeText={FormikProps.handleChange('capacity')} onBlur={FormikProps.handleBlur('capacity')} style={{ borderWidth: 1, borderColor: capacityTouched && capacityError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={capacityTouched && capacityError ? '' : 'Capacity'} placeholderTextColor={capacityTouched && capacityError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                    {capacityTouched && capacityError && <Text style={styles.error}>{capacityError}</Text>}
                                 </View>
                                 <View style={{ marginBottom: 10 }}>
                                     <Text style={[styles.text, { marginBottom: 5 }]}>Name</Text>
-                                    <TextInput value={name} onChangeText={FormikProps.handleChange('name')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                    <TextInput value={name} onChangeText={FormikProps.handleChange('name')} onBlur={FormikProps.handleBlur('name')} style={{ borderWidth: 1, borderColor: nameTouched && nameError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={nameTouched && nameError ? '' : 'Name'} placeholderTextColor={nameTouched && nameError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                    {nameTouched && nameError && <Text style={styles.error}>{nameError}</Text>}
                                 </View>
                                 <View style={{ marginBottom: 10 }}>
                                     <Text style={[styles.text, { marginBottom: 5 }]}>MyKad</Text>
-                                    <TextInput value={myKad} onChangeText={FormikProps.handleChange('myKad')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                    <TextInput value={myKad} onChangeText={FormikProps.handleChange('myKad')} onBlur={FormikProps.handleBlur('myKad')} style={{ borderWidth: 1, borderColor: myKadTouched && myKadError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={myKadTouched && myKadError ? '' : 'Name'} placeholderTextColor={myKadTouched && myKadError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                    {myKadTouched && myKadError && <Text style={styles.error}>{myKadError}</Text>}
                                 </View>
                                 <View style={{ marginBottom: 10 }}>
                                     <Text style={[styles.text, { marginBottom: 5 }]}>Relationship</Text>
-                                    <TextInput value={relationship} onChangeText={FormikProps.handleChange('relationship')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                    <TextInput value={relationship} onChangeText={FormikProps.handleChange('relationship')} onBlur={FormikProps.handleBlur('relationship')} style={{ borderWidth: 1, borderColor: relationshipTouched && relationshipError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={relationshipTouched && relationshipError ? '' : 'Name'} placeholderTextColor={relationshipTouched && relationshipError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                    {relationshipTouched && relationshipError && <Text style={styles.error}>{relationshipError}</Text>}
                                 </View>
                                 <View style={{ marginBottom: 10 }}>
                                     <Text style={[styles.text, { marginBottom: 5 }]}>Bank Personnel Name</Text>
-                                    <TextInput value={personnelName} onChangeText={FormikProps.handleChange('personnelName')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                    <TextInput value={personnelName} onChangeText={FormikProps.handleChange('personnelName')} onBlur={FormikProps.handleBlur('personnelName')} style={{ borderWidth: 1, borderColor: personnelNameTouched && personnelNameError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={personnelNameTouched && personnelNameError ? '' : 'Name'} placeholderTextColor={personnelNameTouched && personnelNameError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                    {personnelNameTouched && personnelNameError && <Text style={styles.error}>{personnelNameError}</Text>}
                                 </View>
                                 <View style={{ marginBottom: 10 }}>
                                     <Text style={[styles.text, { marginBottom: 5 }]}>Email</Text>
-                                    <TextInput value={email} onChangeText={FormikProps.handleChange('email')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
-                                </View>
+                                    <TextInput value={email} onChangeText={FormikProps.handleChange('email')} onBlur={FormikProps.handleBlur('email')} style={{ borderWidth: 1, borderColor: emailTouched && emailError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={emailTouched && emailError ? '' : 'Name'} placeholderTextColor={emailTouched && emailError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                    {emailTouched && emailError && <Text style={styles.error}>{emailError}</Text>}</View>
                             </View>
                             <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, }}>

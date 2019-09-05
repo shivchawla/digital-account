@@ -4,13 +4,14 @@ import {
     TouchableOpacity,
     Text,
     Image,
-    StyleSheet,
+ 
     TextInput,
-    CheckBox,
-    KeyboardAvoidingView
+
+    KeyboardAvoidingView,
+    ScrollView
 } from 'react-native';
 
-import Layout from '../constants/Layout'
+
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles/styles'
@@ -21,19 +22,24 @@ import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
     bankAccountNo: Yup
-        .string(),
-    // .required(),
+        .string()
+        .required(),
     bankAccountName: Yup
-        .string(),
+        .string()
+        .required(),
     bankAddress: Yup
-        .string(),
+        .string()
+        .required(),
     bankCountry: Yup
-        .string(),
+        .string()
+        .required(),
     amount: Yup
-        .string(),
-    // .required(),
+        .number()
+        .positive()
+        .required(),
     remark: Yup
         .string()
+        .required(),
 
 });
 
@@ -46,12 +52,21 @@ const WithdrawScreen = (props) => {
             validationSchema={validationSchema}
         >
             {FormikProps => {
-                const { bank, amount, remark } = FormikProps.values
-                const bankError = FormikProps.errors.bank
-                const bankTouched = FormikProps.touched.bank
+                const { bankAccountNo, bankAccountName, bankAddress, bankCountry, amount, remark } = FormikProps.values
 
+                const bankAccountNoError = FormikProps.errors.bankAccountNo
+                const bankAccountNoTouched = FormikProps.touched.bankAccountNo
+                const bankAccountNameError = FormikProps.errors.bankAccountName
+                const bankAccountNameTouched = FormikProps.touched.bankAccountName
+                const bankAddressError = FormikProps.errors.bankAddress
+                const bankAddressTouched = FormikProps.touched.bankAddress
+                const bankCountryError = FormikProps.errors.bankCountry
+                const bankCountryTouched = FormikProps.touched.bankCountry
                 const amountError = FormikProps.errors.amount
                 const amountTouched = FormikProps.touched.amount
+                const remarkError = FormikProps.errors.remark
+                const remarkTouched = FormikProps.touched.remark
+
                 return (
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }}>
                         <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#4D6BFA' }}>
@@ -68,36 +83,42 @@ const WithdrawScreen = (props) => {
                             </View>
                         </View>
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
-
-                            <View style={{ flex: 9, margin: 10 }}>
-                                <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 }}>
-                                    <Text style={styles.h3}>Withdrawal Application Form</Text>
-
-                                </View>
-                                <View style={{ marginBottom: 10 }}>
-                                    <Text style={[styles.text, { marginBottom: 5 }]}>Bank Account Number</Text>
-                                    <TextInput value={bank} onChangeText={FormikProps.handleChange('bankAccountNo')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
-                                </View>
-                                <View style={{ marginBottom: 10 }}>
-                                    <Text style={[styles.text, { marginBottom: 5 }]}>Bank Account Name</Text>
-                                    <TextInput value={bank} onChangeText={FormikProps.handleChange('bankAccountName')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
-                                </View>
-                                <View style={{ marginBottom: 10 }}>
-                                    <Text style={[styles.text, { marginBottom: 5 }]}>Bank Address</Text>
-                                    <TextInput value={bank} onChangeText={FormikProps.handleChange('bankAddress')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
-                                </View>
-                                <View style={{ marginBottom: 10 }}>
-                                    <Text style={[styles.text, { marginBottom: 5 }]}>Bank Country</Text>
-                                    <TextInput value={bank} onChangeText={FormikProps.handleChange('bankCountry')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
-                                </View>
-                                <View style={{ marginBottom: 10 }}>
-                                    <Text style={[styles.text, { marginBottom: 5 }]}>Amount</Text>
-                                    <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
-                                </View>
-                                <View style={{ marginBottom: 10 }}>
-                                    <Text style={[styles.text, { marginBottom: 5 }]}>Remark</Text>
-                                    <TextInput value={amount} onChangeText={FormikProps.handleChange('remark')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
-                                </View>
+                            <View style={{ flex: 9 }}>
+                                <ScrollView style={{ padding: 10 }}>
+                                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 }}>
+                                        <Text style={styles.h3}>Withdrawal Application Form</Text>
+                                    </View>
+                                    <View style={{ marginBottom: 10 }}>
+                                        <Text style={[styles.text, { marginBottom: 5 }]}>Bank Account Number</Text>
+                                        <TextInput value={bankAccountNo} onChangeText={FormikProps.handleChange('bankAccountNo')} onBlur={FormikProps.handleBlur('bankAccountNo')} style={{ borderWidth: 1, borderColor: bankAccountNoTouched && bankAccountNoError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={bankAccountNoTouched && bankAccountNoError ? '' : 'Bank Account Number'} placeholderTextColor={bankAccountNoTouched && bankAccountNoError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        {bankAccountNoTouched && bankAccountNoError && <Text style={styles.error}>{bankAccountNoError}</Text>}
+                                    </View>
+                                    <View style={{ marginBottom: 10 }}>
+                                        <Text style={[styles.text, { marginBottom: 5 }]}>Bank Account Name</Text>
+                                        <TextInput value={bankAccountName} onChangeText={FormikProps.handleChange('bankAccountName')} onBlur={FormikProps.handleBlur('bankAccountName')} style={{ borderWidth: 1, borderColor: bankAccountNameTouched && bankAccountNameError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={bankAccountNameTouched && bankAccountNameError ? '' : 'Bank Name'} placeholderTextColor={bankAccountNameTouched && bankAccountNameError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        {bankAccountNameTouched && bankAccountNameError && <Text style={styles.error}>{bankAccountNameError}</Text>}
+                                    </View>
+                                    <View style={{ marginBottom: 10 }}>
+                                        <Text style={[styles.text, { marginBottom: 5 }]}>Bank Address</Text>
+                                        <TextInput value={bankAddress} onChangeText={FormikProps.handleChange('bankAddress')} onBlur={FormikProps.handleBlur('bankAddress')} style={{ borderWidth: 1, borderColor: bankAddressTouched && bankAddressError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={bankAddressTouched && bankAddressError ? '' : 'Bank Address'} placeholderTextColor={bankAddressTouched && bankAddressError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        {bankAddressTouched && bankAddressError && <Text style={styles.error}>{bankAddressError}</Text>}
+                                    </View>
+                                    <View style={{ marginBottom: 10 }}>
+                                        <Text style={[styles.text, { marginBottom: 5 }]}>Bank Country</Text>
+                                        <TextInput value={bankCountry} onChangeText={FormikProps.handleChange('bankCountry')} onBlur={FormikProps.handleBlur('bankCountry')} style={{ borderWidth: 1, borderColor: bankCountryTouched && bankCountryError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={bankCountryTouched && bankCountryError ? '' : 'Bank Country'} placeholderTextColor={bankCountryTouched && bankCountryError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        {bankCountryTouched && bankCountryError && <Text style={styles.error}>{bankCountryError}</Text>}
+                                    </View>
+                                    <View style={{ marginBottom: 10 }}>
+                                        <Text style={[styles.text, { marginBottom: 5 }]}>Amount</Text>
+                                        <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} onBlur={FormikProps.handleBlur('amount')} style={{ borderWidth: 1, borderColor: amountTouched && amountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={amountTouched && amountError ? '' : 'Amount'} placeholderTextColor={amountTouched && amountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
+                                        {amountTouched && amountError && <Text style={styles.error}>{amountError}</Text>}
+                                    </View>
+                                    <View style={{ marginBottom: 10 }}>
+                                        <Text style={[styles.text, { marginBottom: 5 }]}>Remark</Text>
+                                        <TextInput value={remark} onChangeText={FormikProps.handleChange('remark')} onBlur={FormikProps.handleBlur('remark')} style={{ borderWidth: 1, borderColor: remarkTouched && remarkError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={remarkTouched && remarkError ? '' : 'Remark'} placeholderTextColor={remarkTouched && remarkError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        {remarkTouched && remarkError && <Text style={styles.error}>{remarkError}</Text>}
+                                    </View>
+                                </ScrollView>
                             </View>
                             <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
                                 <TouchableOpacity style={{ flex: 1, }}>
@@ -111,6 +132,7 @@ const WithdrawScreen = (props) => {
                                     </LinearGradient>
                                 </TouchableOpacity>
                             </View>
+
                         </View>
 
                     </KeyboardAvoidingView>)

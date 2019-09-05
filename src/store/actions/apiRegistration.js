@@ -69,19 +69,13 @@ export const requestPersonalToken = (screen, username, password) => {
 
     }).then((response) => response.json())
       .then((responseJson) => {
-
         console.log(`personal token ialah : ${JSON.stringify(responseJson)}`)
-
         const { token_type, access_token } = responseJson
-
         //await AsyncStorage.setItem('personalToken',JSON.stringify(responseJson))  
         const stringifyJson = JSON.stringify(responseJson)
-
         SecureStore.setItemAsync('personalToken', stringifyJson);
-
         dispatch({ type: 'SET_REGISTER', payload: { access_token } });
-
-        (screen == 'login' && access_token) ? dispatch({ type: 'SET_LOGIN', payload: { proceed: true, indicator: false } }) : dispatch({ type: 'SET_LOGIN', payload: { proceed: false, indicator: false } })
+        (screen == 'login' && access_token) ? dispatch({ type: 'SET_LOGIN', payload: { proceed: true, indicator: false } }) : dispatch({ type: 'SET_LOGIN', payload: { proceed: false, indicator: false, ...responseJson } })
 
       })
       .catch((error) => {

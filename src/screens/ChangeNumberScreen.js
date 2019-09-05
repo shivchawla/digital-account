@@ -29,7 +29,8 @@ const validationSchema = Yup.object().shape({
 const ChangeNumberScreen = (props) => {
     return (
         <Formik onSubmit={async values => {
-            console.log(JSON.stringify(values))}}
+            console.log(JSON.stringify(values))
+        }}
 
             validationSchema={validationSchema}>
             {FormikProps => {
