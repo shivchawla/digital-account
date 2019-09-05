@@ -100,6 +100,9 @@ const LoginScreen = (props) => {
                                         <Text style={styles.error}> {all}</Text>
                                     </View>
                                     <View style={{ flexDirection: 'row', marginBottom: 10 }}>
+                                        <Text style={styles.error}> {all}</Text>
+                                    </View>
+                                    <View style={{ flexDirection: 'row', marginBottom: 10 }}>
                                         <Text style={[styles.textDefault, { margin: 5 }]}>Forgot password?</Text>
                                         <TouchableOpacity onPress={() => forgotPassword()}>
                                             <Text style={[styles.textDefault, { margin: 5, color: 'dodgerblue' }]}>Click here</Text>
