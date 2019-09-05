@@ -6,7 +6,7 @@ import {
     Image,
     StyleSheet,
     KeyboardAvoidingView,
-    FlatList,
+    ActivityIndicator,
     TextInput
 } from 'react-native';
 
@@ -21,11 +21,21 @@ import * as Yup from 'yup';
 const validationSchema = Yup.object().shape({
 
     oldPassword: Yup
-        .string(),
+        .string()
+        .min(6)
+        .required()
+        .label('Change Password'),
     newPassword: Yup
-        .string(),
+        .string()
+        .min(6)
+        .required()
+        .label('New Password'),
     confirmPassword: Yup
-        .string(),
+        .string()
+        .min(6)
+        .required()
+        .oneOf([Yup.ref('newPassword'), null], 'Passwords must match')
+        .label('Confirm Password'),
 });
 
 const ChangePasswordScreen = (props) => {
@@ -37,11 +47,14 @@ const ChangePasswordScreen = (props) => {
             validationSchema={validationSchema}>
             {FormikProps => {
                 const { oldPassword, newPassword, confirmPassword } = FormikProps.values
-                // const purposeError = FormikProps.errors.purpose
-                // const purposeTouched = FormikProps.touched.purpose
 
-                // const amountError = FormikProps.errors.amount
-                // const amountTouched = FormikProps.touched.amount
+                const oldPasswordError = FormikProps.errors.oldPassword
+                const newPasswordError = FormikProps.errors.newPassword
+                const confirmPasswordError = FormikProps.errors.confirmPassword
+                const oldPasswordTouched = FormikProps.touched.oldPassword
+                const newPasswordTouched = FormikProps.touched.newPassword
+                const confirmPasswordTouched = FormikProps.touched.confirmPassword
+
                 return (
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }}>
                         <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#4D6BFA' }}>
@@ -59,31 +72,45 @@ const ChangePasswordScreen = (props) => {
                         </View>
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
                             <View style={{ flex: 3, padding: 10, marginRight: 20 }}>
+
                                 <View style={{ marginBottom: 10 }}>
-                                    <Text style={[styles.text, { marginBottom: 5 }]}>Old Password</Text>
-                                    <TextInput value={oldPassword} onChangeText={FormikProps.handleChange('oldPassword')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                    <Text style={[styles.text, { marginBottom: 5, borderColor: oldPasswordTouched && oldPasswordError ? '#d94498' : '#5a83c2' }]}>Old Password</Text>
+                                    <TextInput secureTextEntry value={oldPassword} onBlur={FormikProps.handleBlur('oldPassword')} onChangeText={FormikProps.handleChange('oldPassword')} placeholder={oldPasswordError && oldPasswordTouched ? '' : 'Old Password'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
                                 </View>
+
+                                {oldPasswordError && oldPasswordTouched && <Text style={styles.error}>{oldPasswordError}</Text>}
+
                                 <View style={{ marginBottom: 10 }}>
-                                    <Text style={[styles.text, { marginBottom: 5 }]}>New Password</Text>
-                                    <TextInput value={newPassword} onChangeText={FormikProps.handleChange('newPassword')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                    <Text style={[styles.text, { marginBottom: 5, borderColor: newPasswordTouched && newPasswordError ? '#d94498' : '#5a83c2' }]}>New Password</Text>
+                                    <TextInput secureTextEntry value={newPassword} onBlur={FormikProps.handleBlur('newPassword')} onChangeText={FormikProps.handleChange('newPassword')} placeholder={newPasswordError && newPasswordTouched ? '' : 'New Password'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
                                 </View>
+
+                                {newPasswordError && newPasswordTouched && <Text style={styles.error}>{newPasswordError}</Text>}
+
                                 <View style={{ marginBottom: 10 }}>
-                                    <Text style={[styles.text, { marginBottom: 5 }]}>Confirm New Password</Text>
-                                    <TextInput value={confirmPassword} onChangeText={FormikProps.handleChange('confirmPassword')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                    <Text style={[styles.text, { marginBottom: 5, borderColor: confirmPasswordTouched && confirmPasswordError ? '#d94498' : '#5a83c2' }]}>Confirm Password</Text>
+                                    <TextInput secureTextEntry value={confirmPassword} onBlur={FormikProps.handleBlur('confirmPassword')} onChangeText={FormikProps.handleChange('confirmPassword')} placeholder={confirmPasswordError && confirmPasswordTouched ? '' : 'Confirm Password'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
                                 </View>
+
+                                {confirmPasswordError && confirmPasswordTouched && <Text style={styles.error}>{confirmPasswordError}</Text>}
+
                             </View>
                         </View>
                         <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
+
                             <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, }}>
                                 <LinearGradient colors={['#A4A4A4', '#A4A4A4']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                     <Text style={[styles.text, { color: '#fff' }]}>Back</Text>
                                 </LinearGradient>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={FormikProps.handleSubmit} style={{ flex: 1 }} >
-                                <LinearGradient colors={['#628BFB', '#0E47E8']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                                    <Text style={[styles.text, { color: '#fff' }]}>Submit</Text>
+
+                            <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ flex: 1 }}>
+                                <LinearGradient colors={FormikProps.isValid ? ['#628BFB', '#0E47E8'] : ['rgba(98, 139, 251, 0.5)', 'rgba(14, 71, 232, 0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
+                                    {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> :
+                                        <Text style={[styles.text, { color: '#fff' }]}>Log In</Text>}
                                 </LinearGradient>
                             </TouchableOpacity>
+
                         </View>
                     </KeyboardAvoidingView>)
             }}

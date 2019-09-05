@@ -58,7 +58,9 @@ const SideBar = (props) => {
                     <Text style={[styles.text, { color: '#fff', marginLeft: 15 }]}>Settings</Text>
                 </TouchableOpacity>
             </View>
-        </LinearGradient >
+
+
+        </LinearGradient>
     );
 }
 

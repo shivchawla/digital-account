@@ -26,19 +26,13 @@ const NotiSettingScreen = (props) => {
     }
 
     const toggleSwitch2 = (value) => {
-        //onValueChange of the switch this function will be called
         console.log(JSON.stringify(value))
         setSwitchValue2(value)
-        //state changes according to switch
-        //which will result in re-render the text
     }
 
     const toggleSwitch3 = (value) => {
-        //onValueChange of the switch this function will be called
         console.log(JSON.stringify(value))
         setSwitchValue3(value)
-        //state changes according to switch
-        //which will result in re-render the text
     }
 
     return (

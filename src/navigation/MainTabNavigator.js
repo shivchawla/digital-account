@@ -95,6 +95,9 @@ const DashboardStackWithModal = createStackNavigator(
     Vendor: {
       screen: VendorScreen,
     },
+    Support: {
+      screen: SupportScreen,
+    },
   },
   {
     mode: 'modal',
