@@ -6,7 +6,7 @@ import {
     Image,
     StyleSheet,
     TextInput,
-    CheckBox,
+    ActivityIndicator,
     KeyboardAvoidingView
 } from 'react-native';
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
@@ -19,21 +19,30 @@ import * as Yup from 'yup';
 const validationSchema = Yup.object().shape({
 
     capacity: Yup
-        .string(),
+        .number()
+        .positive()
+        .required()
+        .label('Capacity'),
     name: Yup
         .string()
-        .required(),
+        .required()
+        .label('Name'),
     myKad: Yup
         .string()
-        .required(),
+        .required()
+        .label('My Kad'),
     relationship: Yup
         .string()
-        .required(),
+        .required()
+        .label('Relationship'),
     personnelName: Yup
         .string()
-        .required(),
+        .required()
+        .label('Name'),
     email: Yup
-        .string(),
+        .string()
+        .email()
+        .label('Email'),
 
 });
 
@@ -45,7 +54,6 @@ const ConnectedPartiesScreen = (props) => {
         <Formik
 
             onSubmit={values => {
-                // console.log(JSON.stringify(values))
                 setLoanData(values)
                 props.navigation.navigate('LoanApplicationDeclaration')
             }}
@@ -87,7 +95,6 @@ const ConnectedPartiesScreen = (props) => {
                         </View>
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
                             <View style={{ flex: 9, margin: 10 }}>
-                                <Text>Apa ni : {JSON.stringify(loanData)}</Text>
                                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 }}>
                                     <Text style={styles.h3}>Connected Parties</Text>
                                 </View>
@@ -122,18 +129,22 @@ const ConnectedPartiesScreen = (props) => {
                                     <TextInput value={email} onChangeText={FormikProps.handleChange('email')} onBlur={FormikProps.handleBlur('email')} style={{ borderWidth: 1, borderColor: emailTouched && emailError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={emailTouched && emailError ? '' : 'Name'} placeholderTextColor={emailTouched && emailError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                     {emailTouched && emailError && <Text style={styles.error}>{emailError}</Text>}</View>
                             </View>
+
                             <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
-                                <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, }}>
+                                <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1 }}>
                                     <LinearGradient colors={['#A4A4A4', '#A4A4A4']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                         <Text style={[styles.text, { color: '#fff' }]}>Back</Text>
                                     </LinearGradient>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={FormikProps.handleSubmit} style={{ flex: 1 }} >
-                                    <LinearGradient colors={['#628BFB', '#0E47E8']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                                        <Text style={[styles.text, { color: '#fff' }]}>Submit</Text>
+
+                                <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ flex: 1 }}>
+                                    <LinearGradient colors={FormikProps.isValid ? ['#628BFB', '#0E47E8'] : ['rgba(98, 139, 251, 0.5)', 'rgba(14, 71, 232, 0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
+                                        {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> :
+                                            <Text style={[styles.text, { color: '#fff' }]}>Submit</Text>}
                                     </LinearGradient>
                                 </TouchableOpacity>
                             </View>
+
                         </View>
                     </KeyboardAvoidingView>)
             }}

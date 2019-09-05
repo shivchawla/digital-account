@@ -89,8 +89,8 @@ const loadResourcesAsync = async () => {
       require('./src/assets/images/setting.png'),
       require('./src/assets/images/settingicon.png'),
       require('./src/assets/images/state.png'),
-      require('./src/assets/images/support(1).png'),
       require('./src/assets/images/support.png'),
+      require('./src/assets/images/support1.png'),
       require('./src/assets/images/position.png'),
       require('./src/assets/images/user.png'),
 

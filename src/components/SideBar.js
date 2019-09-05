@@ -69,7 +69,7 @@ const SideBar = (props) => {
                 </View>
 
                 <View style={{ flexDirection: 'row', marginTop: 25, marginLeft: 5, alignItems: 'center' }}>
-                    <Image source={require('../assets/images/support1.png')} style={{ width: 50, height: 50 }} resizeMode={'contain'} />
+                    <Image source={require('../assets/images/support.png')} style={{ width: 50, height: 50 }} resizeMode={'contain'} />
                     <TouchableOpacity onPress={() => props.nav('Support')}>
                         <Text style={[styles.text, { color: '#fff', marginLeft: 15 }]}>Support</Text>
                     </TouchableOpacity>

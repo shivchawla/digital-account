@@ -86,6 +86,9 @@ const DashboardStackWithModal = createStackNavigator(
     VendorScreen: {
       screen: VendorScreen,
     },
+    Support: {
+      screen: SupportScreen,
+    },
   },
   {
     mode: 'modal',
@@ -97,7 +100,7 @@ const DashboardStackWithModal = createStackNavigator(
 DashboardStackWithModal.navigationOptions = ({ navigation }) => {
   let tabBarVisible = true;
   let routeName = navigation.state.routes[navigation.state.index].routeName
-  if (routeName == 'VendorScreen' ||routeName == 'Withdraw' || routeName == 'Account' || routeName == 'LoanApplication' || routeName == 'LoanApplicationDeclaration' || routeName == 'ConnectedParties' || routeName == 'EditProfile' || routeName == 'NewInvoice') {
+  if (routeName == 'SupportScreen' || routeName == 'VendorScreen' || routeName == 'Withdraw' || routeName == 'Account' || routeName == 'LoanApplication' || routeName == 'LoanApplicationDeclaration' || routeName == 'ConnectedParties' || routeName == 'EditProfile' || routeName == 'NewInvoice') {
     tabBarVisible = false
   }
 

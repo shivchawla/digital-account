@@ -81,7 +81,7 @@ const SettingsScreen = (props) => {
                     </View>
 
                     <View style={{ flexDirection: 'row', marginTop: 20, marginLeft: 30, alignItems: 'center' }}>
-                        <Image source={require('../assets/images/support.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                        <Image source={require('../assets/images/support1.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
                         <TouchableOpacity onPress={() => props.navigation.navigate('Support')}>
                             <Text style={[styles.text, { color: 'black', marginLeft: 50 }]}>Support</Text>
                         </TouchableOpacity>
