@@ -7,7 +7,7 @@ import {
     ScrollView,
     KeyboardAvoidingView,
     TextInput,
-   
+   Picker
 
 } from 'react-native';
 
