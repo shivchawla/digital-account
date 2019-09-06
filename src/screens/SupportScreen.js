@@ -81,8 +81,7 @@ const SupportScreen = (props) => {
                                         <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
                                             <Picker
                                                 style={{ flex: 1, height: 35 }}
-                                                selectedValue={category}
-                                                itemStyle={{ fontSize: 25, color: 'red', textAlign: 'left', fontWeight: 'bold' }}
+                                                selectedValue={category}                                               
                                                 onValueChange={(itemValue, itemIndex) =>
                                                     FormikProps.setFieldValue('category', itemValue)
                                                 }>

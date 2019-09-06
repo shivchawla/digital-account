@@ -32,7 +32,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const LoanApplicationScreen = (props) => {
-    const loanData = useSelector(state => state.loanApplicationReducer, shallowEqual)
+    //const loanData = useSelector(state => state.loanApplicationReducer, shallowEqual)
     const dispatch = useDispatch()
     const setLoanData = (val) => dispatch({ type: 'SET_LOAN_DATA', payload: { ...val } });
 
