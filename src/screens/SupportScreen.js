@@ -4,10 +4,10 @@ import {
     TouchableOpacity,
     Text,
     Image,
-    Picker,
+    ScrollView,
     KeyboardAvoidingView,
     TextInput,
-    ScrollView,
+   
 
 } from 'react-native';
 

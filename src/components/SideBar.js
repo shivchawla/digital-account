@@ -50,7 +50,7 @@ const SideBar = (props) => {
                     <Text style={[styles.text, { color: '#fff', marginLeft: 15 }]}>Business Hub</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => nav('Support')} style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <Image source={require('../assets/images/support1.png')} style={{ width: 40, height: 40 }} resizeMode={'contain'} />
+                    <Image source={require('../assets/images/support.png')} style={{ width: 40, height: 40 }} resizeMode={'contain'} />
                     <Text style={[styles.text, { color: '#fff', marginLeft: 15 }]}>Support</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => nav('DataSetting')} style={{ flexDirection: 'row', alignItems: 'center' }}>
