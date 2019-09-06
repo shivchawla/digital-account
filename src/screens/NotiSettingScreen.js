@@ -40,7 +40,7 @@ const NotiSettingScreen = (props) => {
             <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#4D6BFA' }}>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
                     <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                        <Ionicons name="ios-arrow-back" color={'#000'} style={{ fontSize: 30, paddingLeft: 20 }} />
+                        <Ionicons name="ios-arrow-back" color={'#4D6BFA'} style={{ fontSize: 30, paddingLeft: 20 }} />
                     </TouchableOpacity>
                 </View>
                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>

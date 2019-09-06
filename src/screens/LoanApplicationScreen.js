@@ -80,7 +80,6 @@ const LoanApplicationScreen = (props) => {
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
 
                             <View style={{ flex: 9, margin: 10 }}>
-
                                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 }}>
                                     <Text style={styles.h3}>Financing</Text>
                                 </View>
