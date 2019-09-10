@@ -92,28 +92,28 @@ const VendorScreen = (props) => {
 
                                 <View style={{ marginBottom: 10 }}>
                                     <Text style={[styles.text, { marginBottom: 5 }]}>Vendor Name</Text>
-                                    <TextInput value={vendorName} onChangeText={FormikProps.handleChange('vendorName')} onBlur={FormikProps.handleBlur('vendorName')} style={{ borderWidth: 1, borderColor: vendorNameTouched && vendorNameError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={vendorNameTouched && vendorNameError ? '' : 'Vendor Name'} placeholderTextColor={vendorNameTouched && vendorNameError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                    <TextInput value={vendorName} onChangeText={FormikProps.handleChange('vendorName')} onBlur={FormikProps.handleBlur('vendorName')} style={{ borderWidth: 1, borderColor: vendorNameTouched && vendorNameError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={vendorNameTouched && vendorNameError ? '' : 'Siti binti Ali'} placeholderTextColor={vendorNameTouched && vendorNameError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                 </View>
 
                                 {vendorNameTouched && vendorNameError && <Text style={styles.error}>{vendorNameError}</Text>}
 
                                 <View style={{ marginBottom: 10 }}>
                                     <Text style={[styles.text, { marginBottom: 5 }]}>Vendor E-mail</Text>
-                                    <TextInput value={vendorEmail} onChangeText={FormikProps.handleChange('vendorEmail')} onBlur={FormikProps.handleBlur('vendorEmail')} style={{ borderWidth: 1, borderColor: vendorEmailTouched && vendorEmailError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={vendorEmailTouched && vendorEmailError ? '' : 'Vendor Email'} placeholderTextColor={vendorEmailTouched && vendorEmailError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                    <TextInput value={vendorEmail} onChangeText={FormikProps.handleChange('vendorEmail')} onBlur={FormikProps.handleBlur('vendorEmail')} style={{ borderWidth: 1, borderColor: vendorEmailTouched && vendorEmailError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={vendorEmailTouched && vendorEmailError ? '' : 'example@email.com'} placeholderTextColor={vendorEmailTouched && vendorEmailError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                 </View>
 
                                 {vendorEmailTouched && vendorEmailError && <Text style={styles.error}>{vendorEmailError}</Text>}
 
                                 <View style={{ marginBottom: 10 }}>
                                     <Text style={[styles.text, { marginBottom: 5 }]}>Preferred Currency</Text>
-                                    <TextInput value={currency} onChangeText={FormikProps.handleChange('currency')} onBlur={FormikProps.handleBlur('currency')} style={{ borderWidth: 1, borderColor: currencyTouched && currencyError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={currencyTouched && currencyError ? '' : 'Currency'} placeholderTextColor={currencyTouched && currencyError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                    <TextInput value={currency} onChangeText={FormikProps.handleChange('currency')} onBlur={FormikProps.handleBlur('currency')} style={{ borderWidth: 1, borderColor: currencyTouched && currencyError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={currencyTouched && currencyError ? '' : 'MYR'} placeholderTextColor={currencyTouched && currencyError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                 </View>
 
                                 {currencyTouched && currencyError && <Text style={styles.error}>{currencyError}</Text>}
 
                                 <View style={{ marginBottom: 10 }}>
                                     <Text style={[styles.text, { marginBottom: 5 }]}>Vendor Address</Text>
-                                    <TextInput value={vendorAddress} onChangeText={FormikProps.handleChange('vendorAddress')} onBlur={FormikProps.handleBlur('vendorAddress')} style={{ borderWidth: 1, borderColor: vendorAddressTouched && vendorAddressError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={vendorAddressTouched && vendorAddressError ? '' : 'Vendor Address'} placeholderTextColor={vendorAddressTouched && vendorAddressError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                    <TextInput value={vendorAddress} onChangeText={FormikProps.handleChange('vendorAddress')} onBlur={FormikProps.handleBlur('vendorAddress')} style={{ borderWidth: 1, borderColor: vendorAddressTouched && vendorAddressError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={vendorAddressTouched && vendorAddressError ? '' : '32, Jalan Hartamas, Bandar Baru Sendayan, Negeri Sembilan'} placeholderTextColor={vendorAddressTouched && vendorAddressError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                 </View>
 
                                 {vendorAddressTouched && vendorAddressError && <Text style={styles.error}>{vendorAddressError}</Text>}
