@@ -27,7 +27,9 @@ import TransactionHistoryScreen from '../screens/TransactionHistoryScreen';
 import NotificationScreen from '../screens/NotificationScreen';
 import NotiSettingScreen from '../screens/NotiSettingScreen';
 import ChangeEmailScreen from '../screens/ChangeEmailScreen';
+import CustomerScreen from '../screens/CustomerScreen';
 import VendorScreen from '../screens/VendorScreen';
+import ItemScreen from '../screens/ItemScreen';
 import LogOutScreen from '../screens/LogOutScreen';
 import ChangeNumberScreen from '../screens/ChangeNumberScreen';
 import LoanScreen from '../screens/LoanScreen';
@@ -95,6 +97,12 @@ const DashboardStackWithModal = createStackNavigator(
     Vendor: {
       screen: VendorScreen,
     },
+    Customer: {
+      screen: CustomerScreen,
+    },
+    Item: {
+      screen: ItemScreen,
+    },
     Support: {
       screen: SupportScreen,
     },
@@ -109,7 +117,7 @@ const DashboardStackWithModal = createStackNavigator(
 DashboardStackWithModal.navigationOptions = ({ navigation }) => {
   let tabBarVisible = true;
   let routeName = navigation.state.routes[navigation.state.index].routeName
-  if (routeName == 'VendorScreen' ||routeName == 'Withdraw' || routeName == 'Account' || routeName == 'Loan'|| routeName == 'LoanApplication' || routeName == 'LoanApplicationDeclaration' || routeName == 'ConnectedParties' || routeName == 'EditProfile' || routeName == 'NewInvoice'|| routeName == 'DataSetting'|| routeName == 'Vendor'|| routeName == 'Support') {
+  if (routeName == 'ItemScreen' || routeName == 'CustomerScreen' || routeName == 'VendorScreen' || routeName == 'Withdraw' || routeName == 'Account' || routeName == 'Loan'|| routeName == 'LoanApplication' || routeName == 'LoanApplicationDeclaration' || routeName == 'ConnectedParties' || routeName == 'EditProfile' || routeName == 'NewInvoice'|| routeName == 'DataSetting'|| routeName == 'Vendor'|| routeName == 'Support') {
     tabBarVisible = false
   }
 
