@@ -90,14 +90,14 @@ const SignupPersonalScreen = (props) => {
 
                                 <View style={{ marginBottom: 10 }}>
                                     <Text style={[styles.text, { marginBottom: 5, borderBottomColor: nameTouched && nameError ? '#d94498' : '#5a83c2' }]}>Name</Text>
-                                    <TextInput value={name} onBlur={FormikProps.handleBlur('name')} onChangeText={FormikProps.handleChange('name')} placeholder={nameTouched && nameError ? '' : 'Name'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                    <TextInput value={name} onBlur={FormikProps.handleBlur('name')} onChangeText={FormikProps.handleChange('name')} placeholder={nameTouched && nameError ? '' : 'Eg: Ahmad bin Ali'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
                                 </View>
 
                                 {nameTouched && nameError && <Text style={styles.error}>{nameError}</Text>}
 
                                 <View style={{ marginBottom: 10 }}>
                                     <Text style={[styles.text, { marginBottom: 5, borderBottomColor: emailTouched && emailError ? '#d94498' : '#5a83c2' }]}>Email</Text>
-                                    <TextInput value={email} onBlur={FormikProps.handleBlur('email')} onChangeText={FormikProps.handleChange('email')} placeholder={emailTouched && emailError ? '' : 'Email'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                    <TextInput value={email} onBlur={FormikProps.handleBlur('email')} onChangeText={FormikProps.handleChange('email')} placeholder={emailTouched && emailError ? '' : 'Eg: abc@email.com'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
                                 </View>
 
                                 {emailTouched && emailError && <Text style={styles.error}>{emailError}</Text>}
