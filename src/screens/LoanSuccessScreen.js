@@ -59,7 +59,7 @@ const LoanSuccessScreen = (props) => {
             </View>
 
         </View>
-        
+
     )
 }
 
