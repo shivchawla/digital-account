@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
     View,
     TouchableOpacity,
@@ -10,11 +10,10 @@ import {
     ScrollView
 } from 'react-native';
 
-
+import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles/styles'
-
 
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -48,12 +47,18 @@ const validationSchema = Yup.object().shape({
 
 });
 
-
 const WithdrawScreen = (props) => {
+
+    // const dispatch = useDispatch()
+
+    const withDraw = (values) => {
+        // dispatch(actionCreator.withDraw(values))
+        props.navigation.navigate('WithdrawSuccess')
+    }
 
     return (
         <Formik
-            onSubmit={values => console.log(JSON.stringify(values))}
+            onSubmit={values => withDraw(values)}
             validationSchema={validationSchema}
         >
             {FormikProps => {
@@ -110,37 +115,37 @@ const WithdrawScreen = (props) => {
 
                                     <View style={{ marginBottom: 10 }}>
                                         <Text style={[styles.text, { marginBottom: 5 }]}>Bank Account Number</Text>
-                                        <TextInput value={bankAccountNo} onChangeText={FormikProps.handleChange('bankAccountNo')} onBlur={FormikProps.handleBlur('bankAccountNo')} style={{ borderWidth: 1, borderColor: bankAccountNoTouched && bankAccountNoError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={bankAccountNoTouched && bankAccountNoError ? '' : 'Bank Account Number'} placeholderTextColor={bankAccountNoTouched && bankAccountNoError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        <TextInput value={bankAccountNo} onChangeText={FormikProps.handleChange('bankAccountNo')} onBlur={FormikProps.handleBlur('bankAccountNo')} style={{ borderWidth: 1, borderColor: bankAccountNoTouched && bankAccountNoError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={bankAccountNoTouched && bankAccountNoError ? '' : 'Eg: 013-113-12345678'} placeholderTextColor={bankAccountNoTouched && bankAccountNoError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {bankAccountNoTouched && bankAccountNoError && <Text style={styles.error}>{bankAccountNoError}</Text>}
                                     </View>
 
                                     <View style={{ marginBottom: 10 }}>
                                         <Text style={[styles.text, { marginBottom: 5 }]}>Bank Account Name</Text>
-                                        <TextInput value={bankAccountName} onChangeText={FormikProps.handleChange('bankAccountName')} onBlur={FormikProps.handleBlur('bankAccountName')} style={{ borderWidth: 1, borderColor: bankAccountNameTouched && bankAccountNameError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={bankAccountNameTouched && bankAccountNameError ? '' : 'Bank Name'} placeholderTextColor={bankAccountNameTouched && bankAccountNameError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        <TextInput value={bankAccountName} onChangeText={FormikProps.handleChange('bankAccountName')} onBlur={FormikProps.handleBlur('bankAccountName')} style={{ borderWidth: 1, borderColor: bankAccountNameTouched && bankAccountNameError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={bankAccountNameTouched && bankAccountNameError ? '' : 'Eg: Bank Berjaya Berhad'} placeholderTextColor={bankAccountNameTouched && bankAccountNameError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {bankAccountNameTouched && bankAccountNameError && <Text style={styles.error}>{bankAccountNameError}</Text>}
                                     </View>
 
                                     <View style={{ marginBottom: 10 }}>
                                         <Text style={[styles.text, { marginBottom: 5 }]}>Bank Address</Text>
-                                        <TextInput value={bankAddress} onChangeText={FormikProps.handleChange('bankAddress')} onBlur={FormikProps.handleBlur('bankAddress')} style={{ borderWidth: 1, borderColor: bankAddressTouched && bankAddressError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={bankAddressTouched && bankAddressError ? '' : 'Bank Address'} placeholderTextColor={bankAddressTouched && bankAddressError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        <TextInput value={bankAddress} onChangeText={FormikProps.handleChange('bankAddress')} onBlur={FormikProps.handleBlur('bankAddress')} style={{ borderWidth: 1, borderColor: bankAddressTouched && bankAddressError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={bankAddressTouched && bankAddressError ? '' : 'Eg: 89, Jalan Damai, Petaling Jaya, Selangor'} placeholderTextColor={bankAddressTouched && bankAddressError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {bankAddressTouched && bankAddressError && <Text style={styles.error}>{bankAddressError}</Text>}
                                     </View>
 
                                     <View style={{ marginBottom: 10 }}>
                                         <Text style={[styles.text, { marginBottom: 5 }]}>Bank Country</Text>
-                                        <TextInput value={bankCountry} onChangeText={FormikProps.handleChange('bankCountry')} onBlur={FormikProps.handleBlur('bankCountry')} style={{ borderWidth: 1, borderColor: bankCountryTouched && bankCountryError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={bankCountryTouched && bankCountryError ? '' : 'Bank Country'} placeholderTextColor={bankCountryTouched && bankCountryError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        <TextInput value={bankCountry} onChangeText={FormikProps.handleChange('bankCountry')} onBlur={FormikProps.handleBlur('bankCountry')} style={{ borderWidth: 1, borderColor: bankCountryTouched && bankCountryError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={bankCountryTouched && bankCountryError ? '' : 'Eg: Malaysia'} placeholderTextColor={bankCountryTouched && bankCountryError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {bankCountryTouched && bankCountryError && <Text style={styles.error}>{bankCountryError}</Text>}
                                     </View>
 
                                     <View style={{ marginBottom: 10 }}>
                                         <Text style={[styles.text, { marginBottom: 5 }]}>Amount</Text>
-                                        <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} onBlur={FormikProps.handleBlur('amount')} style={{ borderWidth: 1, borderColor: amountTouched && amountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={amountTouched && amountError ? '' : 'Amount'} placeholderTextColor={amountTouched && amountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
+                                        <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} onBlur={FormikProps.handleBlur('amount')} style={{ borderWidth: 1, borderColor: amountTouched && amountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={amountTouched && amountError ? '' : 'Eg: RM890.00'} placeholderTextColor={amountTouched && amountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
                                         {amountTouched && amountError && <Text style={styles.error}>{amountError}</Text>}
                                     </View>
 
                                     <View style={{ marginBottom: 10 }}>
                                         <Text style={[styles.text, { marginBottom: 5 }]}>Remark</Text>
-                                        <TextInput value={remark} onChangeText={FormikProps.handleChange('remark')} onBlur={FormikProps.handleBlur('remark')} style={{ borderWidth: 1, borderColor: remarkTouched && remarkError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={remarkTouched && remarkError ? '' : 'Remark'} placeholderTextColor={remarkTouched && remarkError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        <TextInput value={remark} onChangeText={FormikProps.handleChange('remark')} onBlur={FormikProps.handleBlur('remark')} style={{ borderWidth: 1, borderColor: remarkTouched && remarkError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={remarkTouched && remarkError ? '' : 'Eg: For reference'} placeholderTextColor={remarkTouched && remarkError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {remarkTouched && remarkError && <Text style={styles.error}>{remarkError}</Text>}
                                     </View>
 

@@ -46,7 +46,9 @@ const validationSchema = Yup.object().shape({
 });
 
 const CompanyInformationScreen = (props) => {
+
     const dispatch = useDispatch()
+
     const companyInfo = (values) => {
         dispatch(actionCreator.companyInfo(values))
         props.navigation.navigate('CompanyContactInformation')
@@ -104,7 +106,7 @@ const CompanyInformationScreen = (props) => {
 
                             <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
 
-                            <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1 }}>
+                                <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1 }}>
                                     <LinearGradient colors={['#A4A4A4', '#A4A4A4']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                         <Text style={[styles.text, { color: '#fff' }]}>Back</Text>
                                     </LinearGradient>

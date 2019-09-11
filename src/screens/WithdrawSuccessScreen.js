@@ -17,7 +17,7 @@ import styles from '../styles/styles'
 
 import * as actionCreator from '../store/actions/action'
 
-const SignupPersonalSuccessScreen = (props) => {
+const WithdrawSuccessScreen = (props) => {
 
     useEffect(() => {
         getPersonalToken()
@@ -35,16 +35,16 @@ const SignupPersonalSuccessScreen = (props) => {
                     <View style={{ width: Layout.window.width * 0.8, justifyContent: 'center', alignItems: 'center' }}>
 
                         <Image source={require('../assets/images/logo.png')} style={{ height: Layout.window.height * 0.2, width: Layout.window.width * 0.7 }} resizeMode={'contain'} />
-                        <Text style={[styles.text, { margin: 5, fontWeight: 'bold' }]}>USER REGISTRATION</Text>
+                        <Text style={[styles.text, { margin: 5, fontWeight: 'bold' }]}>WITHDRAWAL REPORT</Text>
 
                         <View style={{ alignSelf: 'stretch', flexDirection: 'column', margin: 5 }}>
                             <Text style={[styles.text, { margin: 5, color: 'darkturquoise' }]}>Congratulation!</Text>
-                            <Text style={[styles.text, { margin: 5, marginBottom: 20 }]}>Please proceed to merchant registration or skip to dashboard</Text>
+                            <Text style={[styles.text, { margin: 5, marginBottom: 20 }]}>You can choose either to withdraw money again or skip to the dashboard.</Text>
                         </View>
 
-                        <TouchableOpacity onPress={() => props.navigation.navigate('CompanyInformation')} style={{ width: Layout.window.width * 0.4, borderWidth: 1, borderColor: '#4A90E2', borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#4A90E2' }}>
+                        <TouchableOpacity onPress={() => props.navigation.navigate('Withdraw')} style={{ width: Layout.window.width * 0.4, borderWidth: 1, borderColor: '#4A90E2', borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#4A90E2' }}>
                             <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={{ paddingTop: 5, paddingBottom: 5, alignItems: 'center', borderRadius: 15, width: Layout.window.width * 0.4, }}>
-                                <Text style={[styles.text, { color: '#fff' }]}>Merchant</Text>
+                                <Text style={[styles.text, { color: '#fff' }]}>Withdraw Money</Text>
                             </LinearGradient>
                         </TouchableOpacity>
 
@@ -63,5 +63,6 @@ const SignupPersonalSuccessScreen = (props) => {
     )
 }
 
-SignupPersonalSuccessScreen.navigationOptions = { header: null, };
-export default SignupPersonalSuccessScreen
+WithdrawSuccessScreen.navigationOptions = { header: null, };
+
+export default WithdrawSuccessScreen

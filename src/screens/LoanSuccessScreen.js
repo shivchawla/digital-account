@@ -17,7 +17,7 @@ import styles from '../styles/styles'
 
 import * as actionCreator from '../store/actions/action'
 
-const SignupPersonalSuccessScreen = (props) => {
+const LoanSuccessScreen = (props) => {
 
     useEffect(() => {
         getPersonalToken()
@@ -63,5 +63,6 @@ const SignupPersonalSuccessScreen = (props) => {
     )
 }
 
-SignupPersonalSuccessScreen.navigationOptions = { header: null, };
-export default SignupPersonalSuccessScreen
+LoanSuccessScreen.navigationOptions = { header: null, };
+
+export default LoanSuccessScreen
