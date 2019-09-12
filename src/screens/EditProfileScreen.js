@@ -35,6 +35,7 @@ const validationSchema = Yup.object().shape({
 const EditProfileScreen = (props) => {
     //const [loanData, setLoanData] = useContext(LoanApplicationContext)
     return (
+
         <Formik
 
             onSubmit={async values => {
@@ -82,42 +83,43 @@ const EditProfileScreen = (props) => {
 
                                 <View style={{ marginBottom: 10 }}>
                                     <Text style={[styles.text, { marginBottom: 5 }]}>Company Name</Text>
-                                    <TextInput value={capacity} onChangeText={FormikProps.handleChange('companyName')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                    <TextInput value={companyName} onChangeText={FormikProps.handleChange('companyName')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
                                 </View>
 
                                 <View style={{ marginBottom: 10 }}>
                                     <Text style={[styles.text, { marginBottom: 5 }]}>Registration Number</Text>
-                                    <TextInput value={name} onChangeText={FormikProps.handleChange('registrationNumber')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                    <TextInput value={companyRegNum} onChangeText={FormikProps.handleChange('companyRegNum')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
                                 </View>
 
                                 <View style={{ marginBottom: 10 }}>
                                     <Text style={[styles.text, { marginBottom: 5 }]}>Company Addresss</Text>
-                                    <TextInput value={myKad} onChangeText={FormikProps.handleChange('companyAddress')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                    <TextInput value={companyAddress} onChangeText={FormikProps.handleChange('companyAddress')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
                                 </View>
 
                                 <View style={{ marginBottom: 10 }}>
                                     <Text style={[styles.text, { marginBottom: 5 }]}>Postcode</Text>
-                                    <TextInput value={relationship} onChangeText={FormikProps.handleChange('companyPostcode')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                    <TextInput value={companyPostcode} onChangeText={FormikProps.handleChange('companyPostcode')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} keyboardType={'phone-pad'} />
                                 </View>
 
                                 <View style={{ marginBottom: 10 }}>
                                     <Text style={[styles.text, { marginBottom: 5 }]}>Company Registered Date</Text>
-                                    <TextInput value={personnelName} onChangeText={FormikProps.handleChange('companyRegisteredDate')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                    <TextInput value={companyRegisteredDate} onChangeText={FormikProps.handleChange('companyRegisteredDate')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
                                 </View>
 
                             </View>
 
                             <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
 
-                                <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, }}>
+                                <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1 }}>
                                     <LinearGradient colors={['#A4A4A4', '#A4A4A4']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                         <Text style={[styles.text, { color: '#fff' }]}>Back</Text>
                                     </LinearGradient>
                                 </TouchableOpacity>
 
-                                <TouchableOpacity onPress={FormikProps.handleSubmit} style={{ flex: 1 }} >
-                                    <LinearGradient colors={['#628BFB', '#0E47E8']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                                        <Text style={[styles.text, { color: '#fff' }]}>Save</Text>
+                                <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ flex: 1 }}>
+                                    <LinearGradient colors={FormikProps.isValid ? ['#628BFB', '#0E47E8'] : ['rgba(98, 139, 251, 0.5)', 'rgba(14, 71, 232, 0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
+                                        {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> :
+                                            <Text style={[styles.text, { color: '#fff' }]}>Submit</Text>}
                                     </LinearGradient>
                                 </TouchableOpacity>
 

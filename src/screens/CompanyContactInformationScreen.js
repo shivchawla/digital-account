@@ -15,7 +15,6 @@ import {
     KeyboardAvoidingView,
     ActivityIndicator
 
-
 } from 'react-native';
 
 import Constants from 'expo-constants'
@@ -49,9 +48,7 @@ const validationSchema = Yup.object().shape({
 
 const CompanyContactInformationScreen = (props) => {
 
-
     const dispatch = useDispatch()
-
 
     const { comp_addr, comp_addr2, comp_city, comp_state, comp_postcode } = useSelector(state => state.companyInformationReducer, shallowEqual)
 
