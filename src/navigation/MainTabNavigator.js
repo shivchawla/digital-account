@@ -37,6 +37,7 @@ import LoanSuccessScreen from '../screens/LoanSuccessScreen';
 import WithdrawSuccessScreen from '../screens/WithdrawSuccessScreen';
 import LoanDrawer from './LoanDrawer';
 import DataSettingScreen from '../screens/DataSettingScreen';
+import LoanDetailScreen from '../screens/LoanDetailScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -84,6 +85,9 @@ const DashboardStackWithModal = createStackNavigator(
     Loan: {
       screen: LoanDrawer,
     },
+    LoanDetail: {
+      screen: LoanDetailScreen,
+    },
     LoanApplication: {
       screen: LoanApplicationScreen,
     },
@@ -125,7 +129,7 @@ const DashboardStackWithModal = createStackNavigator(
 DashboardStackWithModal.navigationOptions = ({ navigation }) => {
   let tabBarVisible = true;
   let routeName = navigation.state.routes[navigation.state.index].routeName
-  if (routeName == 'WithdrawSuccess' ||routeName == 'LoanSuccessScreen' || routeName == 'ItemScreen' || routeName == 'CustomerScreen' || routeName == 'VendorScreen' || routeName == 'Withdraw' || routeName == 'Account' || routeName == 'Loan' || routeName == 'LoanApplication' || routeName == 'LoanApplicationDeclaration' || routeName == 'ConnectedParties' || routeName == 'EditProfile' || routeName == 'NewInvoice' || routeName == 'DataSetting' || routeName == 'Vendor' || routeName == 'Support') {
+  if (routeName == 'WithdrawSuccess' ||routeName == 'LoanSuccessScreen' || routeName == 'ItemScreen' || routeName == 'CustomerScreen' || routeName == 'VendorScreen' || routeName == 'Withdraw' || routeName == 'Account' || routeName == 'Loan' ||routeName == 'LoanDetail' ||  routeName == 'LoanApplication' || routeName == 'LoanApplicationDeclaration' || routeName == 'ConnectedParties' || routeName == 'EditProfile' || routeName == 'NewInvoice' || routeName == 'DataSetting' || routeName == 'Vendor' || routeName == 'Support') {
     tabBarVisible = false
   }
 

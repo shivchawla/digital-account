@@ -4,7 +4,7 @@ import {
     TouchableOpacity,
     Text,
     Image,
-    StyleSheet
+
 } from 'react-native';
 
 import { Ionicons } from '@expo/vector-icons';
@@ -30,8 +30,8 @@ const LoanScreen = (props) => {
             </View>
             <View style={{ flex: 9, padding: 10 }}>
                 <View style={{ marginTop: 10, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end' }}>
-                    <TouchableOpacity onPress={() => props.navigation.navigate('LoanApplication')}>
-                        <Text style={[styles.text, { color: '#525252' }]}>New Application</Text>
+                    <TouchableOpacity onPress={() => props.navigation.navigate('LoanApplication')} style={{ padding: 5, paddingLeft: 8, paddingRight: 8, backgroundColor: '#4D6BFA', borderRadius: 5 }}>
+                        <Text style={[styles.text, { color: '#fff' }]}>New</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={{ marginTop: 10 }}>
@@ -42,7 +42,7 @@ const LoanScreen = (props) => {
                             <Ionicons name="ios-arrow-forward" color={'#000'} style={{ fontSize: 15, paddingRight: 5 }} />
                         </TouchableOpacity>
                     </View>
-                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                    <View style={{ flexDirection: 'row', marginTop: 5, borderTopWidth: 1, borderBottomWidth: 1, borderColor: 'lightgrey', paddingTop: 3, paddingBottom: 3 }}>
                         <View style={{ flex: 1 }}>
                             <Text style={[styles.text]}>Ref</Text>
                         </View>
@@ -53,46 +53,69 @@ const LoanScreen = (props) => {
                             <Text style={[styles.text]}>Type</Text>
                         </View>
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>Currency</Text>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>Action</Text>
+                            <Text style={[styles.text]}>Status</Text>
                         </View>
                     </View>
-                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                    <TouchableOpacity onPress={() => props.navigation.navigate('LoanDetail')} style={{ flexDirection: 'row', marginTop: 5 }}>
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.small]}>112009</Text>
+                            <Text style={[styles.text]}>112009</Text>
                         </View>
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.small]}>12/3/2019</Text>
+                            <Text style={[styles.text]}>12/3/2019</Text>
                         </View>
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.small]}>Item</Text>
+                            <Text style={[styles.text]}>Item</Text>
+                        </View>
+
+                        <View style={{ flex: 1 }}>
+                            <Text style={[styles.text, { color: 'navy' }]}>Submitted</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => props.navigation.navigate('LoanDetail')} style={{ flexDirection: 'row', marginTop: 5 }}>
+                        <View style={{ flex: 1 }}>
+                            <Text style={[styles.text]}>112009</Text>
                         </View>
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.small]}>RM</Text>
+                            <Text style={[styles.text]}>12/3/2019</Text>
                         </View>
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.small]}>View</Text>
+                            <Text style={[styles.text]}>Item</Text>
                         </View>
-                    </View>
-                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.small]}>112009</Text>
+                            <Text style={[styles.text, { color: 'hotpink' }]}>Declined</Text>
                         </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => props.navigation.navigate('LoanDetail')} style={{ flexDirection: 'row', marginTop: 5 }}>
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.small]}>12/3/2019</Text>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.small]}>Item</Text>
+                            <Text style={[styles.text]}>112009</Text>
                         </View>
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.small]}>RM</Text>
+                            <Text style={[styles.text]}>12/3/2019</Text>
                         </View>
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.small]}>View</Text>
+                            <Text style={[styles.text]}>Item</Text>
                         </View>
-                    </View>
+
+                        <View style={{ flex: 1 }}>
+                            <Text style={[styles.text, { color: 'orange' }]}>Pending Agreement</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => props.navigation.navigate('LoanDetail')} style={{ flexDirection: 'row', marginTop: 5 }}>
+                        <View style={{ flex: 1 }}>
+                            <Text style={[styles.text]}>112009</Text>
+                        </View>
+                        <View style={{ flex: 1 }}>
+                            <Text style={[styles.text]}>12/3/2019</Text>
+                        </View>
+                        <View style={{ flex: 1 }}>
+                            <Text style={[styles.text]}>Item</Text>
+                        </View>
+
+                        <View style={{ flex: 1 }}>
+                            <Text style={[styles.text, { color: 'olive' }]}>Approved</Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
             </View >
         </View >

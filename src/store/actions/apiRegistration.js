@@ -16,7 +16,7 @@ export const requestToken = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ client_id: '1', client_secret: 'F1LrzGH5gf3uFGdaDmH9P7ZalcxT3smo7fCP1vJO', grant_type: 'client_credentials' }),
+      body: JSON.stringify({ client_id: '1', client_secret: 'kfKkrDAn6qMm16Qy1a887VIhHbJx9iPHYaqsX823', grant_type: 'client_credentials' }),
 
     }).then((response) => response.json())
       .then(async (responseJson) => {
@@ -65,7 +65,7 @@ export const requestPersonalToken = (screen, username, password) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ client_id: '2', client_secret: 'auBzKxkcb9V6LVevIkEqdxCYJVJFjY8HvvoVRn33', grant_type: 'password', username, password }),
+      body: JSON.stringify({ client_id: '2', client_secret: 'uf2Di1kYj7ty29LLe9xAcvNyqo9XkRQv9L85rMh0', grant_type: 'password', username, password }),
 
     }).then((response) => response.json())
       .then((responseJson) => {

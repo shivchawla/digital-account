@@ -7,7 +7,6 @@ import {
     ActivityIndicator,
     TextInput,
     KeyboardAvoidingView
-
 } from 'react-native';
 import CheckBox from 'react-native-check-box'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
@@ -19,7 +18,6 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
-
     amount: Yup
         .number()
         .positive()
@@ -40,7 +38,6 @@ const LoanApplicationScreen = (props) => {
         <Formik
             initialValues={{ smeConnected: false }}
             onSubmit={values => {
-
                 setLoanData(values)
                 props.navigation.navigate('ConnectedParties')
             }}
@@ -129,7 +126,8 @@ const LoanApplicationScreen = (props) => {
                             </View>
 
                         </View>
-                    </KeyboardAvoidingView>)
+                    </KeyboardAvoidingView>
+                    )
             }}
         </Formik >
 

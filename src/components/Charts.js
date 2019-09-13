@@ -11,7 +11,7 @@ import {
 
     ImageBackground
 } from 'react-native';
-import { PieChart, Labels, LineChart, Grid } from 'react-native-svg-charts' // 2.1.0
+import { PieChart, Labels, LineChart, Grid, YAxis, XAxis } from 'react-native-svg-charts' // 2.1.0
 import { Text } from "react-native-svg"; // Supported builtin module
 
 import { Constants, LinearGradient } from 'expo'
@@ -47,7 +47,7 @@ const Charts = () => {
         }
     ]
 
-    const dataLineChart = [50, 10, 40, 95, -4, -24, 85, 91, 35, 53, -53, 24, 50, -20, -80]
+    const dataLineChart = [50, 10, 40, 95, -4, -24, 85, 91, 35, 53, -53, 24, 50]
 
     const Labels = ({ slices, height, width }) => {
         return slices.map((slice, index) => {
@@ -70,25 +70,38 @@ const Charts = () => {
         })
     }
     return (
-        <View style={{ flex: 1 }}>
-            <LineChart
-                style={{ flex: 1, width: undefined, height: undefined }}
+        <View style={{ flex: 1, padding: 10 }}>
+            <View style={{ flex: 1, flexDirection: 'row' }}>
+                <YAxis
+                    data={dataLineChart}
+                    contentInset={{ top: 20, bottom: 20 }}
+                    svg={{
+                        fill: '#fff',
+                        fontSize: 10,
+                    }}
+                    numberOfTicks={10}
+                    formatLabel={(value) => `MYR ${value}`}
+                />
+                <LineChart
+                    style={{ flex: 1, width: undefined, height: undefined }}
+                    data={dataLineChart}
+                    svg={{ stroke: '#fff' }}
+                    contentInset={{ top: 20, bottom: 20 }}
+                    strokeWidth={5}
+                >
+
+                    <Grid />
+                </LineChart>
+            </View>
+            <XAxis
+                style={{ marginHorizontal: -10 }}
                 data={dataLineChart}
-                svg={{ stroke: 'rgb(134, 65, 244)' }}
-                contentInset={{ top: 20, bottom: 20 }}
-            >
-                <Grid />
-            </LineChart>
-            {/* <PieChart
-                style={{ flex: 1, width: undefined, height: undefined }}
-                valueAccessor={({ item }) => item.amount}
-                data={data}
-                spacing={0}
-                outerRadius={'95%'}
-            >
-                <Labels />
-            </PieChart> */}
-        </View>
+                formatLabel={(value, index) => index}
+                contentInset={{ left: 20, right: 20 }}
+                svg={{ fontSize: 10, fill: '#fff' }}
+            />
+
+        </View >
 
     );
 }

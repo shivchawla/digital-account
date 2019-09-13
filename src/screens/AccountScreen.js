@@ -16,7 +16,7 @@ import styles from '../styles/styles'
 const AccountScreen = (props) => {
     const score = 80
 
-    const scoreColor = score > 66 ? 'green' : score > 33 ? 'yellow' : 'red'
+    const scoreColor = score > 66 ? '#7ED321' : score > 33 ? 'yellow' : 'red'
     return (
         <View style={{ flex: 1, }}>
             <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#4D6BFA' }}>
