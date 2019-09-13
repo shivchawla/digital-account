@@ -57,7 +57,6 @@ const CompanyInformationScreen = (props) => {
     return (
         <Formik
 
-            // initialValues={{ email: '', password: '' }}
             onSubmit={values => companyInfo(values)}
             validationSchema={validationSchema}
         >

@@ -57,7 +57,7 @@ const SignupPersonalScreen = (props) => {
 
     return (
         <Formik
-            
+
             onSubmit={values => dispatch(actionCreator.register(values))}
             validationSchema={validationSchema}
         >
@@ -76,7 +76,7 @@ const SignupPersonalScreen = (props) => {
 
                 return (
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }}>
-                        
+
                         <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1, justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
                             <Image source={require('../assets/images/logo.png')} style={{ height: Layout.window.height * 0.2, width: Layout.window.width * 0.7 }} resizeMode={'contain'} />
                         </View>
@@ -104,7 +104,7 @@ const SignupPersonalScreen = (props) => {
 
                                 <View style={{ marginBottom: 10 }}>
                                     <Text style={[styles.text, { marginBottom: 5, borderBottomColor: passwordTouched && passwordError ? '#d94498' : '#5a83c2' }]}>Password</Text>
-                                    <TextInput secureTextEntry value={password} onBlur={FormikProps.handleBlur('password')}placeholder={passwordTouched && passwordError ? '' : '******'} onChangeText={FormikProps.handleChange('password')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholderTextColor={passwordTouched && passwordError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                    <TextInput secureTextEntry value={password} onBlur={FormikProps.handleBlur('password')} placeholder={passwordTouched && passwordError ? '' : '******'} onChangeText={FormikProps.handleChange('password')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholderTextColor={passwordTouched && passwordError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                 </View>
 
                                 {passwordTouched && passwordError && <Text style={styles.error}>{passwordError}</Text>}
@@ -118,7 +118,7 @@ const SignupPersonalScreen = (props) => {
 
                             </View>
 
-                             <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
+                            <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
 
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1 }}>
                                     <LinearGradient colors={['#A4A4A4', '#A4A4A4']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
@@ -132,9 +132,9 @@ const SignupPersonalScreen = (props) => {
                                             <Text style={[styles.text, { color: '#fff' }]}>Submit</Text>}
                                     </LinearGradient>
                                 </TouchableOpacity>
-                            
+
                             </View>
-                        
+
                         </View>
 
                     </KeyboardAvoidingView>)

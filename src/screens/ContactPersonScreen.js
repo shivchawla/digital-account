@@ -57,7 +57,7 @@ const ContactPersonScreen = (props) => {
     const dispatch = useDispatch()
     const contactPerson = (values) => {
         dispatch(actionCreator.contactPerson(values))
-        //props.navigation.navigate('CompanyContactInformation')
+        props.navigation.navigate('ContactPersonSuccess')
     }
 
     return (
