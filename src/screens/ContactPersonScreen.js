@@ -57,7 +57,7 @@ const ContactPersonScreen = (props) => {
     const dispatch = useDispatch()
     const contactPerson = (values) => {
         dispatch(actionCreator.contactPerson(values))
-        //props.navigation.navigate('CompanyContactInformation')
+        props.navigation.navigate('ContactPersonSuccess')
     }
 
     return (
@@ -84,12 +84,16 @@ const ContactPersonScreen = (props) => {
                 return (
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }}>
 
-                        <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1, justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
-                            <Image source={require('../assets/images/logo.png')} style={{ height: Layout.window.height * 0.2, width: Layout.window.width * 0.7 }} resizeMode={'contain'} />
-                        </View>
+                        <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#4D6BFA', }}>
 
-                        <View>
-                            <Text style={[styles.text, { margin: 5, fontWeight: 'bold', justifyContent: 'center' }]}>PERSON IN-CHARGE INFORMATION</Text>
+                            <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center', alignItems: 'flex-start' }}>
+                                <Text style={styles.title}>PERSON IN-CHARGE INFORMATION</Text>
+                            </View>
+
+                            <View style={{ flex: 1, justifyContent: 'center', marginRight: 3, alignItems: 'flex-end' }}>
+                                <Image source={require('../assets/images/logosmall.png')} style={{ width: 50, height: 50, borderRadius: 15 }} />
+                            </View>
+
                         </View>
 
                         <View>

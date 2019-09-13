@@ -93,6 +93,7 @@ const loadResourcesAsync = async () => {
       require('./src/assets/images/support1.png'),
       require('./src/assets/images/position.png'),
       require('./src/assets/images/user.png'),
+      require('./src/assets/images/logosmall.png'),
 
       require('./src/assets/images/bottomTabs/home.png'),
       require('./src/assets/images/bottomTabs/history.png'),
@@ -137,7 +138,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
 });
-
-
 
 export default App;

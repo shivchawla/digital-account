@@ -21,83 +21,86 @@ import Constants from 'expo-constants'
 import { LinearGradient } from 'expo-linear-gradient'
 import Layout from '../constants/Layout'
 
+import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles/styles'
+//import { Drawer, Container, Header, Content, Footer, Left, Right, Body, Title, Subtitle, Button, Icon, Card, CardItem, Text, H2, FooterTab } from 'native-base'
 
 import { connect } from 'react-redux'
 import * as actionCreator from '../store/actions/action'
 
 
-class ContactPersonSuccessScreen extends React.PureComponent {
-    static navigationOptions = {
-        header: null,
-    };
+const ContactPersonSuccessScreen = (props) => {
 
-    async done() {
+
+    const done = async () => {
         //await this.props.companyInfo()
         //this.props.contactPerson()
-        this.props.doneForNow()
-        this.props.navigation.navigate('Dashboard')
+        // this.props.doneForNow()
+        // this.props.navigation.navigate('Agreement')
     }
 
-    componentDidMount() {
-        this.props.initiateListWorkers()
+    const skip = () => {
+        // this.props.initiateCompanyInfo()
+        // this.props.navigation.navigate('Dashboard')
     }
 
-    render() {
-        return (
-            <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
-                {/* <View style={{ flex: 1, justifyContent: 'space-between' }}>
-                    <View style={{ alignItems: 'flex-start' }}>
-                        <Image source={require('../assets/images/topLeft.png')} style={{ width: 79, height: 120 }} />
-                    </View>
-                    <View style={{ alignItems: 'flex-end' }}>
-                        <Image source={require('../assets/images/bottomRight.png')} style={{ width: 106, height: 92 }} />
-                    </View>
-                </View> */}
-                <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, }}>
+    // componentDidMount() {
+    //     this.props.initiateListWorkers()
+    // }
 
 
-                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                        <View style={{ width: Layout.window.width * 0.8, justifyContent: 'center', alignItems: 'center' }}>
-                            <Image source={require('../assets/images/logo.png')} style={{ height: Layout.window.height * 0.2, width: Layout.window.width * 0.7 }} resizeMode={'contain'} />
-                            <Text style={[styles.textDefault, { margin: 5, fontWeight: 'bold' }]}>CONTACT PERSON</Text>
-                            <Text style={[styles.textDefault, { margin: 5, marginBottom: 10, color: 'darkblue', fontSize: 14 }]}>Please fill up this form to continue the process for contact person.</Text>
-                            {this.props.listWorkers && this.props.listWorkers.map(
-                                (lw, i) => <View key={i} style={{ flexDirection: 'row', }}>
-                                    <Text >{i}</Text><Text>{lw.full_name}</Text></View>
-                            )}
-                            <View style={{ flexDirection: 'row', margin: 5 }}>
-                                <TouchableOpacity onPress={() => this.done()} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10 }}>
-                                    <LinearGradient colors={['#4DCB3E', '#269B1D',]} style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, borderRadius: 15, justifyContent: 'center' }}>
-                                        <Text style={[styles.textDefault, { color: '#fff' }]}>Next</Text>
-                                    </LinearGradient>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#5A647F' }} >
-                                    <Text style={[styles.textDefault, { color: '#fff' }]}>Enter Again</Text>
-                                </TouchableOpacity>
-                            </View>
+    return (
+
+        <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
+
+            <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, }}>
+
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+
+                    <View style={{ width: Layout.window.width * 0.8, justifyContent: 'center', alignItems: 'center' }}>
+
+                        <Image source={require('../assets/images/logo.png')} style={{ height: Layout.window.height * 0.2, width: Layout.window.width * 0.7 }} resizeMode={'contain'} />
+                        <Text style={[styles.textDefault, { margin: 5, fontWeight: 'bold' }]}>PERSON-IN-CHARGE INFO</Text>
+
+                        <View style={{ alignSelf: 'stretch', flexDirection: 'column', margin: 5 }}>
+                            <Text style={[styles.textDefault, { margin: 5, color: 'darkturquoise' }]}>Congratulation!</Text>
+                            <Text style={[styles.textDefault, { margin: 5, marginBottom: 20 }]}>You have completed your company's profile.</Text>
                         </View>
+
+                        <TouchableOpacity onPress={() => props.navigation.navigate(`Dashboard`)} style={{ width: Layout.window.width * 0.4, borderWidth: 1, borderColor: '#4A90E2', borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#4A90E2' }}>
+                            <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={{ paddingTop: 5, paddingBottom: 5, alignItems: 'center', borderRadius: 15, width: Layout.window.width * 0.4, }}>
+                                <Text style={[styles.textDefault, { color: '#fff' }]}>Home</Text>
+                            </LinearGradient>
+                        </TouchableOpacity>
+
                     </View>
+
                 </View>
+
             </View>
-        );
-    }
+
+        </View>
+
+    );
 }
 
 
-function mapStateToProps(state) {
-    return {
-        listWorkers: state.listWorkersReducer.listWorkers,
 
-    }
-}
-function mapDispatchToProps(dispatch) {
-    return {
+// function mapStateToProps(state) {
+//     return {
+//         listWorkers: state.listWorkersReducer.listWorkers,
+//     }
+// }
+// function mapDispatchToProps(dispatch) {
+//     return {
 
-        initiateListWorkers: () => dispatch(actionCreator.initiateListWorkers()),
-        doneForNow: () => dispatch(actionCreator.doneForNow()),
+//         initiateListWorkers: () => dispatch(actionCreator.initiateListWorkers()),
+//         doneForNow: () => dispatch(actionCreator.doneForNow()),
+//         initiateCompanyInfo: () => dispatch(actionCreator.initiateCompanyInfo())
+//     }
+// }
 
 
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(ContactPersonSuccessScreen)
+ContactPersonSuccessScreen.navigationOptions = { header: null, };
+
+export default ContactPersonSuccessScreen 
