@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, Image,View } from 'react-native';
+import { Platform, Image, View } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
@@ -27,10 +27,14 @@ import TransactionHistoryScreen from '../screens/TransactionHistoryScreen';
 import NotificationScreen from '../screens/NotificationScreen';
 import NotiSettingScreen from '../screens/NotiSettingScreen';
 import ChangeEmailScreen from '../screens/ChangeEmailScreen';
+import CustomerScreen from '../screens/CustomerScreen';
 import VendorScreen from '../screens/VendorScreen';
+import ItemScreen from '../screens/ItemScreen';
 import LogOutScreen from '../screens/LogOutScreen';
 import ChangeNumberScreen from '../screens/ChangeNumberScreen';
 import LoanScreen from '../screens/LoanScreen';
+import LoanSuccessScreen from '../screens/LoanSuccessScreen';
+import WithdrawSuccessScreen from '../screens/WithdrawSuccessScreen';
 import LoanDrawer from './LoanDrawer';
 import DataSettingScreen from '../screens/DataSettingScreen';
 
@@ -95,8 +99,20 @@ const DashboardStackWithModal = createStackNavigator(
     Vendor: {
       screen: VendorScreen,
     },
+    Customer: {
+      screen: CustomerScreen,
+    },
+    Item: {
+      screen: ItemScreen,
+    },
     Support: {
       screen: SupportScreen,
+    },
+    LoanSuccess: {
+      screen: LoanSuccessScreen,
+    },
+    WithdrawSuccess: {
+      screen: WithdrawSuccessScreen,
     },
   },
   {
@@ -109,7 +125,7 @@ const DashboardStackWithModal = createStackNavigator(
 DashboardStackWithModal.navigationOptions = ({ navigation }) => {
   let tabBarVisible = true;
   let routeName = navigation.state.routes[navigation.state.index].routeName
-  if (routeName == 'VendorScreen' ||routeName == 'Withdraw' || routeName == 'Account' || routeName == 'Loan'|| routeName == 'LoanApplication' || routeName == 'LoanApplicationDeclaration' || routeName == 'ConnectedParties' || routeName == 'EditProfile' || routeName == 'NewInvoice'|| routeName == 'DataSetting'|| routeName == 'Vendor'|| routeName == 'Support') {
+  if (routeName == 'WithdrawSuccess' ||routeName == 'LoanSuccessScreen' || routeName == 'ItemScreen' || routeName == 'CustomerScreen' || routeName == 'VendorScreen' || routeName == 'Withdraw' || routeName == 'Account' || routeName == 'Loan' || routeName == 'LoanApplication' || routeName == 'LoanApplicationDeclaration' || routeName == 'ConnectedParties' || routeName == 'EditProfile' || routeName == 'NewInvoice' || routeName == 'DataSetting' || routeName == 'Vendor' || routeName == 'Support') {
     tabBarVisible = false
   }
 

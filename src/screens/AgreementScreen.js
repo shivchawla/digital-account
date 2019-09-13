@@ -63,24 +63,28 @@ FCGB is referred to as “we”, “us”, “our” or “ours”. Any person u
                                     <Text style={[styles.textDefault, { margin: 5, marginBottom: 10, color: 'darkblue', fontSize: 12 }]}>
                                         I have agreed on terms and condition
                             </Text>
-                                </View>
-                            </View>
+                            
                         </View>
-                    </ScrollView>
+
+                        <View style={{ flexDirection: 'row', margin: 5 }}>
+
+                            <TouchableOpacity disabled={!agreement} onPress={() => props.navigation.navigate('SignUpPersonal')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10 }}>
+                                <LinearGradient colors={agreement ? ['#4DCB3E', '#269B1D'] : ['rgba(77, 203, 62, 0.5)', 'rgba(38, 155, 29, 0.5)']} style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, borderRadius: 15, justifyContent: 'center', alignItems: 'center', }}>
+                                    <Text style={[styles.textDefault, { color: '#fff' }]}>Next</Text>
+                                </LinearGradient>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity onPress={() => () => props.navigation.goBack()} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#5A647F' }} >
+                                <Text style={[styles.textDefault, { color: '#fff' }]}>Back</Text>
+                            </TouchableOpacity>
+                        
+                        </View>
+
+                    </View>
                 </View>
-                <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
-                    <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1 }}>
-                        <LinearGradient colors={['#A4A4A4', '#A4A4A4']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={[styles.text, { color: '#fff' }]}>Back</Text>
-                        </LinearGradient>
-                    </TouchableOpacity>
-                    <TouchableOpacity disabled={!agreement} onPress={() => props.navigation.navigate('SignUpPersonal')} style={{ flex: 1 }}>
-                        <LinearGradient colors={agreement ? ['#4DCB3E', '#269B1D'] : ['rgba(77, 203, 62, 0.5)', 'rgba(38, 155, 29, 0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={[styles.text, { color: '#fff' }]}>Next</Text>
-                        </LinearGradient>
-                    </TouchableOpacity>
-                </View>
-            </View>
+            </ScrollView>
+            </View> 
+             </View>
         </KeyboardAvoidingView>
     );
 }

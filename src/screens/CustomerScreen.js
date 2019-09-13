@@ -20,26 +20,22 @@ import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
 
-    vendorName: Yup
+    customerName: Yup
         .string()
         .required()
-        .label('Vendor Name'),
-    vendorEmail: Yup
+        .label('Customer Name'),
+    customerEmail: Yup
         .string()
         .email()
         .required()
-        .label('Vendor Email'),
+        .label('Customer Email'),
     currency: Yup
         .string()
         .required()
         .label('Currency'),
-    vendorAddress: Yup
-        .string()
-        .required()
-        .label('Vendor Address'),
 });
 
-const VendorScreen = (props) => {
+const CustomerScreen = (props) => {
     return (
         <Formik onSubmit={async values => {
             console.log(JSON.stringify(values))
@@ -47,19 +43,16 @@ const VendorScreen = (props) => {
 
             validationSchema={validationSchema}>
             {FormikProps => {
-                const { vendorName, vendorEmail, currency, vendorAddress } = FormikProps.values
+                const { customerName, customerEmail, currency } = FormikProps.values
 
-                const vendorNameError = FormikProps.errors.vendorName
-                const vendorNameTouched = FormikProps.touched.vendorName
+                const customerNameError = FormikProps.errors.customerName
+                const customerNameTouched = FormikProps.touched.customerName
 
-                const vendorEmailError = FormikProps.errors.vendorEmail
-                const vendorEmailTouched = FormikProps.touched.vendorEmail
+                const customerEmailError = FormikProps.errors.customerEmail
+                const customerEmailTouched = FormikProps.touched.customerEmail
 
                 const currencyError = FormikProps.errors.currency
                 const currencyTouched = FormikProps.touched.currency
-
-                const vendorAddressError = FormikProps.errors.vendorAddress
-                const vendorAddressTouched = FormikProps.touched.vendorAddress
 
                 return (
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, justifyContent: 'center' }}>
@@ -83,7 +76,7 @@ const VendorScreen = (props) => {
                         </View>
 
                         <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 10, marginBottom: 10 }}>
-                            <Text style={styles.title}>Vendor</Text>
+                            <Text style={styles.title}>Customer</Text>
                         </View>
 
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
@@ -91,18 +84,18 @@ const VendorScreen = (props) => {
                             <View style={{ flex: 3, padding: 10, marginRight: 20 }}>
 
                                 <View style={{ marginBottom: 10 }}>
-                                    <Text style={[styles.text, { marginBottom: 5 }]}>Vendor Name</Text>
-                                    <TextInput value={vendorName} onChangeText={FormikProps.handleChange('vendorName')} onBlur={FormikProps.handleBlur('vendorName')} style={{ borderWidth: 1, borderColor: vendorNameTouched && vendorNameError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={vendorNameTouched && vendorNameError ? '' : 'Siti binti Ali'} placeholderTextColor={vendorNameTouched && vendorNameError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                    <Text style={[styles.text, { marginBottom: 5 }]}>Customer's Name</Text>
+                                    <TextInput value={customerName} onChangeText={FormikProps.handleChange('customerName')} onBlur={FormikProps.handleBlur('customerName')} style={{ borderWidth: 1, borderColor: customerNameTouched && customerNameError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={customerNameTouched && customerNameError ? '' : 'Siti binti Ali'} placeholderTextColor={customerNameTouched && customerNameError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                 </View>
 
-                                {vendorNameTouched && vendorNameError && <Text style={styles.error}>{vendorNameError}</Text>}
+                                {customerNameTouched && customerNameError && <Text style={styles.error}>{customerNameError}</Text>}
 
                                 <View style={{ marginBottom: 10 }}>
-                                    <Text style={[styles.text, { marginBottom: 5 }]}>Vendor E-mail</Text>
-                                    <TextInput value={vendorEmail} onChangeText={FormikProps.handleChange('vendorEmail')} onBlur={FormikProps.handleBlur('vendorEmail')} style={{ borderWidth: 1, borderColor: vendorEmailTouched && vendorEmailError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={vendorEmailTouched && vendorEmailError ? '' : 'example@email.com'} placeholderTextColor={vendorEmailTouched && vendorEmailError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                    <Text style={[styles.text, { marginBottom: 5 }]}>Customer's E-mail</Text>
+                                    <TextInput value={customerEmail} onChangeText={FormikProps.handleChange('customerEmail')} onBlur={FormikProps.handleBlur('customerEmail')} style={{ borderWidth: 1, borderColor: customerEmailTouched && customerEmailError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={customerEmailTouched && customerEmailError ? '' : 'example@email.com'} placeholderTextColor={customerEmailTouched && customerEmailError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                 </View>
 
-                                {vendorEmailTouched && vendorEmailError && <Text style={styles.error}>{vendorEmailError}</Text>}
+                                {customerEmailTouched && customerEmailError && <Text style={styles.error}>{customerEmailError}</Text>}
 
                                 <View style={{ marginBottom: 10 }}>
                                     <Text style={[styles.text, { marginBottom: 5 }]}>Preferred Currency</Text>
@@ -110,13 +103,6 @@ const VendorScreen = (props) => {
                                 </View>
 
                                 {currencyTouched && currencyError && <Text style={styles.error}>{currencyError}</Text>}
-
-                                <View style={{ marginBottom: 10 }}>
-                                    <Text style={[styles.text, { marginBottom: 5 }]}>Vendor Address</Text>
-                                    <TextInput value={vendorAddress} onChangeText={FormikProps.handleChange('vendorAddress')} onBlur={FormikProps.handleBlur('vendorAddress')} style={{ borderWidth: 1, borderColor: vendorAddressTouched && vendorAddressError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={vendorAddressTouched && vendorAddressError ? '' : '32, Jalan Hartamas, Bandar Baru Sendayan, Negeri Sembilan'} placeholderTextColor={vendorAddressTouched && vendorAddressError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
-                                </View>
-
-                                {vendorAddressTouched && vendorAddressError && <Text style={styles.error}>{vendorAddressError}</Text>}
 
                             </View>
 
@@ -145,8 +131,8 @@ const VendorScreen = (props) => {
     );
 }
 
-VendorScreen.navigationOptions = {
+CustomerScreen.navigationOptions = {
     header: null,
 };
 
-export default VendorScreen
+export default CustomerScreen
