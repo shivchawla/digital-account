@@ -83,9 +83,10 @@ const SignupPersonalScreen = (props) => {
                                 <Text style={styles.title}>REGISTRATION</Text>
                             </View>
 
-                            <View style={{ flex: 1, justifyContent: 'center', marginRight: 10 }}>
+                            <View style={{ flex: 1, justifyContent: 'center',alignItems: 'flex-end', marginRight: 10 }}>
                                 <Image source={require('../assets/images/logosmall.png')} style={{ width: 50, height: 50, borderRadius: 15 }} />
                             </View>
+                            
 
                         </View>
 
