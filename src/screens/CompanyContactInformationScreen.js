@@ -81,7 +81,7 @@ const CompanyContactInformationScreen = (props) => {
                         <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#4D6BFA', }}>
 
                             <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center', alignItems: 'flex-start' }}>
-                                <Text numberOfLines={1} style={styles.title}>COMPANY CONTACT INFORMATION</Text>
+                                <Text numberOfLines={1} style={styles.content} ellipsizeMode='head'>COMPANY CONTACT INFORMATION</Text>
                             </View>
 
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
