@@ -58,12 +58,14 @@ FCGB is referred to as “we”, “us”, “our” or “ours”. Any person u
 
             <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
 
-                <TouchableOpacity onPress={() => () => props.navigation.goBack()} style={{ flex: 1, backgroundColor: '#5A647F', padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={[styles.textDefault, { color: '#fff' }]}>Back</Text>
+                <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1 }}>
+                    <LinearGradient colors={['#A4A4A4', '#A4A4A4']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={[styles.text, { color: '#fff' }]}>Back</Text>
+                    </LinearGradient>
                 </TouchableOpacity>
 
                 <TouchableOpacity disabled={!agreement} onPress={() => props.navigation.navigate('SignUpPersonal')} style={{ flex: 1 }}>
-                    <LinearGradient colors={agreement ? ['#4DCB3E', '#269B1D'] : ['rgba(77, 203, 62, 0.5)', 'rgba(38, 155, 29, 0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
+                    <LinearGradient colors={agreement ? ['#628BFB', '#0E47E8'] : ['rgba(98, 139, 251, 0.5)', 'rgba(14, 71, 232, 0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={[styles.textDefault, { color: '#fff' }]}>Next</Text>
                     </LinearGradient>
                 </TouchableOpacity>

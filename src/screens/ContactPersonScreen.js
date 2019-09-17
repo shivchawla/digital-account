@@ -82,12 +82,13 @@ const ContactPersonScreen = (props) => {
                 const cddContactPersonPositionTouched = FormikProps.touched.cddContactPersonPosition
 
                 return (
+                    
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }}>
 
                         <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#4D6BFA', }}>
 
                             <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center', alignItems: 'flex-start' }}>
-                                <Text style={styles.title}>PERSON IN-CHARGE INFORMATION</Text>
+                            <Text numberOfLines={1} style={styles.title}>PERSON IN-CHARGE INFORMATION</Text>
                             </View>
 
                             <View style={{ flex: 1, justifyContent: 'center', marginRight: 3, alignItems: 'flex-end' }}>
