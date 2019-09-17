@@ -1,13 +1,13 @@
 import React from 'react';
 import { createDrawerNavigator, createAppContainer } from 'react-navigation';
 
-import LoanScreen from '../screens/LoanScreen';
+import ReportScreen from '../screens/ReportScreen';
 import FilterBar from '../components/FilterBar';
 
-const LoanContent = createDrawerNavigator(
-    
+const ReportContent = createDrawerNavigator(
+
     {
-        Loan: LoanScreen,
+        Report: ReportScreen,
     },
 
     {
@@ -20,13 +20,13 @@ const LoanContent = createDrawerNavigator(
     },
 );
 
-LoanContent.navigationOptions = {
+ReportContent.navigationOptions = {
     header: null,
 };
 
-const LoanDrawer = createAppContainer(LoanContent)
-LoanDrawer.navigationOptions = {
+const ReportDrawer = createAppContainer(ReportContent)
+ReportDrawer.navigationOptions = {
     header: null,
 };
 
-export default LoanDrawer;
+export default ReportDrawer;

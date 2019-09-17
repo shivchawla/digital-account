@@ -4,19 +4,15 @@ import {
     TouchableOpacity,
     Text,
     Image,
-    StyleSheet,
-    KeyboardAvoidingView,
-    TextInput
+
 } from 'react-native';
 
-import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
-
 
 import styles from '../styles/styles'
 
-
 const ReportScreen = (props) => {
+
     return (
 
         <View style={{ flex: 1, }}>
@@ -25,7 +21,7 @@ const ReportScreen = (props) => {
 
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
 
-                    <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
+                    <TouchableOpacity onPress={() => props.navigation.navigate('Dashboard')} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
                         <Ionicons name="ios-arrow-back" color={'#4D6BFA'} style={{ fontSize: 30, paddingLeft: 20 }} />
                     </TouchableOpacity>
 
@@ -46,11 +42,14 @@ const ReportScreen = (props) => {
                 <View style={{ marginTop: 10 }}>
 
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+
                         <Text style={styles.h2}>Report</Text>
-                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+
+                        <TouchableOpacity onPress={props.navigation.openDrawer} style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <Text style={[styles.small, { paddingRight: 5 }]}>Search</Text>
                             <Ionicons name="ios-arrow-forward" color={'#000'} style={{ fontSize: 15, paddingRight: 5 }} />
-                        </View>
+                        </TouchableOpacity>
+
                     </View>
 
                     <View style={{ flexDirection: 'row', marginTop: 5, borderTopWidth: 1, borderBottomWidth: 1, borderColor: 'lightgrey', paddingTop: 3, paddingBottom: 3 }}>
@@ -77,8 +76,8 @@ const ReportScreen = (props) => {
 
                     </View>
 
-                    <TouchableOpacity onPress={() => props.navigation.navigate('LoanDetail')} style={{ flexDirection: 'row', marginTop: 5 }}>
-                        
+                    <TouchableOpacity onPress={() => props.navigation.navigate('ReportDetail')} style={{ flexDirection: 'row', marginTop: 5 }}>
+
                         <View style={{ flex: 1 }}>
                             <Text style={[styles.text]}>112009</Text>
                         </View>
@@ -101,8 +100,8 @@ const ReportScreen = (props) => {
 
                     </TouchableOpacity>
 
-                    <TouchableOpacity onPress={() => props.navigation.navigate('LoanDetail')} style={{ flexDirection: 'row', marginTop: 5 }}>
-                        
+                    <TouchableOpacity onPress={() => props.navigation.navigate('ReportDetail')} style={{ flexDirection: 'row', marginTop: 5 }}>
+
                         <View style={{ flex: 1 }}>
                             <Text style={[styles.text]}>112009</Text>
                         </View>
@@ -125,8 +124,8 @@ const ReportScreen = (props) => {
 
                     </TouchableOpacity>
 
-                    <TouchableOpacity onPress={() => props.navigation.navigate('LoanDetail')} style={{ flexDirection: 'row', marginTop: 5 }}>
-                        
+                    <TouchableOpacity onPress={() => props.navigation.navigate('ReportDetail')} style={{ flexDirection: 'row', marginTop: 5 }}>
+
                         <View style={{ flex: 1 }}>
                             <Text style={[styles.text]}>112009</Text>
                         </View>
@@ -149,8 +148,8 @@ const ReportScreen = (props) => {
 
                     </TouchableOpacity>
 
-                    <TouchableOpacity onPress={() => props.navigation.navigate('LoanDetail')} style={{ flexDirection: 'row', marginTop: 5 }}>
-                        
+                    <TouchableOpacity onPress={() => props.navigation.navigate('ReportDetail')} style={{ flexDirection: 'row', marginTop: 5 }}>
+
                         <View style={{ flex: 1 }}>
                             <Text style={[styles.text]}>112009</Text>
                         </View>
@@ -185,6 +184,5 @@ const ReportScreen = (props) => {
 ReportScreen.navigationOptions = {
     header: null,
 };
-
 
 export default ReportScreen;

@@ -23,7 +23,7 @@ const InvoiceScreen = (props) => {
 
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
 
-                    <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
+                    <TouchableOpacity onPress={() => props.navigation.navigate('Dashboard')} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
                         <Ionicons name="ios-arrow-back" color={'#4D6BFA'} style={{ fontSize: 30, paddingLeft: 20 }} />
                     </TouchableOpacity>
 
@@ -43,21 +43,24 @@ const InvoiceScreen = (props) => {
 
                 <View style={{ marginTop: 10, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end' }}>
 
-                    <TouchableOpacity onPress={() => props.navigation.navigate('NewInvoice')}>
-                        <Text style={[styles.text, { color: '#525252' }]}>New Invoice</Text>
-                    </TouchableOpacity>
+                    <View style={{ marginTop: 10, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end' }}>
+                        <TouchableOpacity onPress={() => props.navigation.navigate('NewInvoice')} style={{ padding: 5, paddingLeft: 8, paddingRight: 8, backgroundColor: '#4D6BFA', borderRadius: 5 }}>
+                            <Text style={[styles.text, { color: '#fff' }]}>New</Text>
+                        </TouchableOpacity>
+                    </View>
 
                 </View>
 
                 <View style={{ marginTop: 10 }}>
 
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+
                         <Text style={styles.h2}>Invoices</Text>
 
-                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                        <TouchableOpacity onPress={props.navigation.openDrawer} style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <Text style={[styles.small, { paddingRight: 5 }]}>Search</Text>
                             <Ionicons name="ios-arrow-forward" color={'#000'} style={{ fontSize: 15, paddingRight: 5 }} />
-                        </View>
+                        </TouchableOpacity>
 
                     </View>
 
@@ -85,7 +88,7 @@ const InvoiceScreen = (props) => {
 
                     </View>
 
-                    <TouchableOpacity onPress={() => props.navigation.navigate('LoanDetail')} style={{ flexDirection: 'row', marginTop: 5 }}>
+                    <TouchableOpacity onPress={() => props.navigation.navigate('InvoicesDetail')} style={{ flexDirection: 'row', marginTop: 5 }}>
 
                         <View style={{ flex: 1 }}>
                             <Text style={[styles.text]}>112009</Text>
@@ -109,7 +112,7 @@ const InvoiceScreen = (props) => {
 
                     </TouchableOpacity>
 
-                    <TouchableOpacity onPress={() => props.navigation.navigate('LoanDetail')} style={{ flexDirection: 'row', marginTop: 5 }}>
+                    <TouchableOpacity onPress={() => props.navigation.navigate('InvoicesDetail')} style={{ flexDirection: 'row', marginTop: 5 }}>
 
                         <View style={{ flex: 1 }}>
                             <Text style={[styles.text]}>112009</Text>
@@ -133,7 +136,7 @@ const InvoiceScreen = (props) => {
 
                     </TouchableOpacity>
 
-                    <TouchableOpacity onPress={() => props.navigation.navigate('LoanDetail')} style={{ flexDirection: 'row', marginTop: 5 }}>
+                    <TouchableOpacity onPress={() => props.navigation.navigate('InvoicesDetail')} style={{ flexDirection: 'row', marginTop: 5 }}>
 
                         <View style={{ flex: 1 }}>
                             <Text style={[styles.text]}>112009</Text>
@@ -157,7 +160,7 @@ const InvoiceScreen = (props) => {
 
                     </TouchableOpacity>
 
-                    <TouchableOpacity onPress={() => props.navigation.navigate('LoanDetail')} style={{ flexDirection: 'row', marginTop: 5 }}>
+                    <TouchableOpacity onPress={() => props.navigation.navigate('InvoicesDetail')} style={{ flexDirection: 'row', marginTop: 5 }}>
 
                         <View style={{ flex: 1 }}>
                             <Text style={[styles.text]}>112009</Text>
