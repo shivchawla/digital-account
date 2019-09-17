@@ -36,9 +36,13 @@ import LoanScreen from '../screens/LoanScreen';
 import LoanSuccessScreen from '../screens/LoanSuccessScreen';
 import WithdrawSuccessScreen from '../screens/WithdrawSuccessScreen';
 import LoanDrawer from './LoanDrawer';
+import ReportDrawer from './ReportDrawer';
+import InvoicesDrawer from './InvoicesDrawer';
 import DataSettingScreen from '../screens/DataSettingScreen';
 import LoanDetailScreen from '../screens/LoanDetailScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import InvoicesDetailScreen from '../screens/InvoicesDetailScreen';
+import ReportDetailScreen from '../screens/ReportDetailScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -66,7 +70,7 @@ const DashboardStackWithModal = createStackNavigator(
       screen: EditProfileScreen,
     },
     Invoice: {
-      screen: InvoiceScreen,
+      screen: InvoicesDrawer,
     },
     NewInvoice: {
       screen: NewInvoiceScreen,
@@ -78,7 +82,7 @@ const DashboardStackWithModal = createStackNavigator(
       screen: SupportScreen,
     },
     Report: {
-      screen: ReportScreen,
+      screen: ReportDrawer,
     },
     BusinessHub: {
       screen: BusinessHubScreen,
@@ -122,6 +126,12 @@ const DashboardStackWithModal = createStackNavigator(
     WithdrawSuccess: {
       screen: WithdrawSuccessScreen,
     },
+    InvoicesDetail: {
+      screen: InvoicesDetailScreen,
+    },
+    ReportDetail: {
+      screen: ReportDetailScreen,
+    },
   },
   {
     mode: 'modal',
@@ -133,7 +143,7 @@ const DashboardStackWithModal = createStackNavigator(
 DashboardStackWithModal.navigationOptions = ({ navigation }) => {
   let tabBarVisible = true;
   let routeName = navigation.state.routes[navigation.state.index].routeName
-  if (routeName == 'WithdrawSuccess' ||routeName == 'LoanSuccessScreen' || routeName == 'ItemScreen' || routeName == 'CustomerScreen' || routeName == 'VendorScreen' || routeName == 'Withdraw' || routeName == 'Account' || routeName == 'Loan' ||routeName == 'LoanDetail' ||  routeName == 'LoanApplication' || routeName == 'LoanApplicationDeclaration' || routeName == 'ConnectedParties' || routeName == 'Profile' ||routeName == 'EditProfile' || routeName == 'NewInvoice' || routeName == 'DataSetting' || routeName == 'Vendor' || routeName == 'Support') {
+  if (routeName == 'ReportDetail' || routeName == 'InvoicesDetail' || routeName == 'WithdrawSuccess' || routeName == 'LoanSuccessScreen' || routeName == 'ItemScreen' || routeName == 'CustomerScreen' || routeName == 'VendorScreen' || routeName == 'Withdraw' || routeName == 'Account' || routeName == 'Loan' || routeName == 'LoanDetail' || routeName == 'LoanApplication' || routeName == 'LoanApplicationDeclaration' || routeName == 'ConnectedParties' || routeName == 'Profile' || routeName == 'EditProfile' || routeName == 'NewInvoice' || routeName == 'DataSetting' || routeName == 'Vendor' || routeName == 'Support') {
     tabBarVisible = false
   }
 

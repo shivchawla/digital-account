@@ -76,6 +76,7 @@ const CompanyInformationScreen = (props) => {
 
                             <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center', alignItems: 'flex-start' }}>
                                 <Text style={styles.title}>COMPANY INFORMATION</Text>
+                                <Text numberOfLines={1} style={styles.content} ellipsizeMode='head'>COMPANY INFORMATION</Text>
                             </View>
 
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>

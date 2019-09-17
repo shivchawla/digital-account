@@ -77,16 +77,16 @@ const SignupPersonalScreen = (props) => {
                 return (
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }}>
 
-                        <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#4D6BFA',  }}>
+                        <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#4D6BFA', }}>
 
                             <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                                <Text style={styles.title}>REGISTRATION</Text>
+                                <Text numberOfLines={1} style={styles.title} ellipsizeMode='head'>REGISTRATION</Text>
                             </View>
 
-                            <View style={{ flex: 1, justifyContent: 'center',alignItems: 'flex-end', marginRight: 10 }}>
+                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
                                 <Image source={require('../assets/images/logosmall.png')} style={{ width: 50, height: 50, borderRadius: 15 }} />
                             </View>
-                            
+
 
                         </View>
 
