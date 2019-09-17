@@ -14,8 +14,6 @@ import { Ionicons } from '@expo/vector-icons';
 
 import styles from '../styles/styles'
 
-
-
 const BusinessHubScreen = (props) => {
     return (
         <View style={{ flex: 1, }}>
@@ -38,21 +36,21 @@ const BusinessHubScreen = (props) => {
 
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 20 }}>
                         <TouchableOpacity style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                            <Ionicons name="ios-contacts" color={'#000'} style={{ fontSize: 50, paddingRight: 5 }} />
+                            <Ionicons name="ios-contacts" color={'#87cefa'} style={{ fontSize: 50, paddingRight: 5 }} />
                             <Text style={[styles.small, { paddingRight: 5 }]}>Business Directory</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                            <Ionicons name="ios-pie" color={'#000'} style={{ fontSize: 50, paddingRight: 5 }} />
+                            <Ionicons name="ios-pie" color={'#87cefa'} style={{ fontSize: 50, paddingRight: 5 }} />
                             <Text style={[styles.small, { paddingRight: 5 }]}>Zakat</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 20 }}>
                         <TouchableOpacity style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                            <Ionicons name="ios-thumbs-up" color={'#000'} style={{ fontSize: 50, paddingRight: 5 }} />
+                            <Ionicons name="ios-thumbs-up" color={'#87cefa'} style={{ fontSize: 50, paddingRight: 5 }} />
                             <Text style={[styles.small, { paddingRight: 5 }]}>Payroll</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                            <Ionicons name="ios-cash" color={'#000'} style={{ fontSize: 50, paddingRight: 5 }} />
+                            <Ionicons name="ios-cash" color={'#87cefa'} style={{ fontSize: 50, paddingRight: 5 }} />
                             <Text style={[styles.small, { paddingRight: 5 }]}>Remittance</Text>
                         </TouchableOpacity>
                     </View>

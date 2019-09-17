@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import {
     View,
     TouchableOpacity,
@@ -26,11 +26,36 @@ const LoanApplicationDeclarationScreen = (props) => {
     return (
         <Formik
             onSubmit={values => {
-
+                props.navigation.navigate("LoanSuccess")
             }}
             validationSchema={validationSchema}
+            initialValues={{ control: false, influence: false, internal: false, subsidiary: false, guaranteed: false }}
         >
             {FormikProps => {
+                const { control, influence, internal, subsidiary, guaranteed } = FormikProps.values
+                const handleCheckBox = (field) => {
+                    console.log(`field ialah ${field}`)
+
+                    switch (field) {
+                        case 'control':
+                            FormikProps.setFieldValue('control', !control)
+                            break;
+                        case 'influence':
+                            FormikProps.setFieldValue('influence', !influence)
+                            break;
+                        case 'internal':
+                            FormikProps.setFieldValue('internal', !internal)
+                            break;
+                        case 'subsidiary':
+                            FormikProps.setFieldValue('subsidiary', !subsidiary)
+                            break;
+                        case 'guaranteed':
+                            FormikProps.setFieldValue('guaranteed', !guaranteed)
+                            break;
+
+                    }
+
+                }
                 return (
 
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }}>
@@ -64,27 +89,27 @@ const LoanApplicationDeclarationScreen = (props) => {
                                     </View>
 
                                     <View style={{ flexDirection: 'row', marginBottom: 10 }}>
-                                        <CheckBox onClick={() => console.log('test')} checked={false} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', marginRight: 25 }} />
+                                        <CheckBox onClick={() => handleCheckBox('control')} isChecked={control} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', marginRight: 25 }} />
                                         <Text>Your company controls, or is controlled by Connected Parties (including their close relatives in the case of individuals)</Text>
                                     </View>
 
                                     <View style={{ flexDirection: 'row', marginBottom: 10 }}>
-                                        <CheckBox onClick={() => console.log('test')} checked={false} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', marginRight: 25 }} />
+                                        <CheckBox onClick={() => handleCheckBox('influence')} isChecked={influence} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', marginRight: 25 }} />
                                         <Text>Your company influences, or is influenced by Connected Parties (including their close relatives in the case of individuals)</Text>
                                     </View>
 
                                     <View style={{ flexDirection: 'row', marginBottom: 10 }}>
-                                        <CheckBox onClick={() => console.log('test')} checked={false} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', marginRight: 25 }} />
+                                        <CheckBox onClick={() => handleCheckBox('internal')} isChecked={internal} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', marginRight: 25 }} />
                                         <Text>Connected Parties (including their close relatives) is a director, partner, executive officer, agent or guarantor of your company, your subsidiaries and/or entities controlled by your company.</Text>
                                     </View>
 
                                     <View style={{ flexDirection: 'row', marginBottom: 10 }}>
-                                        <CheckBox onClick={() => console.log('test')} checked={false} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', marginRight: 25 }} />
+                                        <CheckBox onClick={() => handleCheckBox('subsidiary')} isChecked={subsidiary} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', marginRight: 25 }} />
                                         <Text>Your company is a subsidiary of, or an entity that is controlled by, SME Bank and its Connected Parties (including their close relatives).</Text>
                                     </View>
 
                                     <View style={{ flexDirection: 'row', marginBottom: 10 }}>
-                                        <CheckBox onClick={() => console.log('test')} checked={false} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', marginRight: 25 }} />
+                                        <CheckBox onClick={() => handleCheckBox('guaranteed')} isChecked={guaranteed} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', marginRight: 25 }} />
                                         <Text>Your company is guaranteed by SME Bank's Connected Parties (including their close relatives)</Text>
                                     </View>
 
