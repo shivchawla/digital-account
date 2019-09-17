@@ -16,6 +16,18 @@ const App = (props) => {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
   const [tokenExists, setTokenExists] = useState(false)
 
+  const checkUpdate = async () => {
+    try {
+      const update = await Expo.Updates.checkForUpdateAsync();
+      if (update.isAvailable) {
+        await Expo.Updates.fetchUpdateAsync();
+        Expo.Updates.reloadFromCache();
+      }
+    } catch (e) {
+      // handle or log error
+    }
+  }
+
   const checkLogin = async () => {
     try {
       //const personalToken = await AsyncStorage.getItem('personalToken');
@@ -31,6 +43,7 @@ const App = (props) => {
   }
 
   useEffect(() => {
+    checkUpdate()
     checkLogin()
   }, [])
 

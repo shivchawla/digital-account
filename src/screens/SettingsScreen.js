@@ -34,7 +34,7 @@ const SettingsScreen = (props) => {
 
             </View>
 
-            <View style={{ flex: 9, padding: 10 }}>
+            <View style={{ flex: 8, padding: 10 }}>
 
                 <View style={{ marginBottom: 20 }}>
                     <Text style={[styles.h2, { color: 'blue' }]}>ACCOUNT</Text>
@@ -86,8 +86,10 @@ const SettingsScreen = (props) => {
                             <Text style={[styles.text, { color: 'black', marginLeft: 50 }]}>Support</Text>
                         </TouchableOpacity>
                     </View>
-
                 </View>
+            </View>
+            <View style={{ flexDirection: 'column', flex: 1, justifyContent: 'flex-end', alignItems: 'flex-end' }}>
+                <Text style={styles.small}>Digital Account v0.1</Text>
             </View>
         </View>
     );
