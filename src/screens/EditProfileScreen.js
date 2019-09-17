@@ -77,8 +77,8 @@ const EditProfileScreen = (props) => {
 
                             <View style={{ flex: 9, margin: 10 }}>
 
-                                <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: 10 }}>
-                                    <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 90, height: 90, borderRadius: 45 }} />
+                                <View style={{ flexDirection: 'row', justifyContent: 'flex-start', marginBottom: 10 }}>
+                                    <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 90, height: 90,  }} />
                                 </View>
 
                                 <View style={{ marginBottom: 10 }}>

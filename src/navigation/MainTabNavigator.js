@@ -42,6 +42,7 @@ import DataSettingScreen from '../screens/DataSettingScreen';
 import LoanDetailScreen from '../screens/LoanDetailScreen';
 import InvoicesDetailScreen from '../screens/InvoicesDetailScreen';
 import ReportDetailScreen from '../screens/ReportDetailScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -61,6 +62,9 @@ const DashboardStackWithModal = createStackNavigator(
     },
     Account: {
       screen: AccountScreen,
+    },
+    Profile: {
+      screen: ProfileScreen,
     },
     EditProfile: {
       screen: EditProfileScreen,
@@ -139,7 +143,7 @@ const DashboardStackWithModal = createStackNavigator(
 DashboardStackWithModal.navigationOptions = ({ navigation }) => {
   let tabBarVisible = true;
   let routeName = navigation.state.routes[navigation.state.index].routeName
-  if (routeName == 'ReportDetail' || routeName == 'InvoicesDetail' || routeName == 'WithdrawSuccess' || routeName == 'LoanSuccessScreen' || routeName == 'ItemScreen' || routeName == 'CustomerScreen' || routeName == 'VendorScreen' || routeName == 'Withdraw' || routeName == 'Account' || routeName == 'Loan' || routeName == 'LoanDetail' || routeName == 'LoanApplication' || routeName == 'LoanApplicationDeclaration' || routeName == 'ConnectedParties' || routeName == 'EditProfile' || routeName == 'NewInvoice' || routeName == 'DataSetting' || routeName == 'Vendor' || routeName == 'Support') {
+  if (routeName == 'Profile' ||routeName == 'ReportDetail' || routeName == 'InvoicesDetail' || routeName == 'WithdrawSuccess' || routeName == 'LoanSuccessScreen' || routeName == 'ItemScreen' || routeName == 'CustomerScreen' || routeName == 'VendorScreen' || routeName == 'Withdraw' || routeName == 'Account' || routeName == 'Loan' || routeName == 'LoanDetail' || routeName == 'LoanApplication' || routeName == 'LoanApplicationDeclaration' || routeName == 'ConnectedParties' || routeName == 'EditProfile' || routeName == 'NewInvoice' || routeName == 'DataSetting' || routeName == 'Vendor' || routeName == 'Support') {
     tabBarVisible = false
   }
 
@@ -152,8 +156,8 @@ DashboardStackWithModal.navigationOptions = ({ navigation }) => {
 
     tabBarIcon: ({ focused }) => (
       focused ?
-        <Image source={require('../assets/images/bottomTabs/homeBlack.png')} style={{ width: 40, height: 40 }} resizeMode={'contain'} /> :
-        <Image source={require('../assets/images/bottomTabs/home.png')} style={{ width: 40, height: 40 }} resizeMode={'contain'} />
+        <Image source={require('../assets/images/bottomTabs/homeBlack.png')} style={{ width: 35, height: 35 }} resizeMode={'contain'} /> :
+        <Image source={require('../assets/images/bottomTabs/home.png')} style={{ width: 35, height: 35 }} resizeMode={'contain'} />
     ),
   }
 }
@@ -171,8 +175,8 @@ TransactionHistoryStack.navigationOptions = {
   tabBarLabel: <View />,
   tabBarIcon: ({ focused }) => (
     focused ?
-      <Image source={require('../assets/images/bottomTabs/historyBlack.png')} style={{ width: 40, height: 40 }} resizeMode={'contain'} /> :
-      <Image source={require('../assets/images/bottomTabs/history.png')} style={{ width: 40, height: 40 }} resizeMode={'contain'} />
+      <Image source={require('../assets/images/bottomTabs/historyBlack.png')} style={{ width: 35, height: 35 }} resizeMode={'contain'} /> :
+      <Image source={require('../assets/images/bottomTabs/history.png')} style={{ width: 35, height: 35 }} resizeMode={'contain'} />
   ),
 };
 
@@ -189,8 +193,8 @@ NotificationStack.navigationOptions = {
   tabBarLabel: <View />,
   tabBarIcon: ({ focused }) => (
     focused ?
-      <Image source={require('../assets/images/bottomTabs/notificationBlack.png')} style={{ width: 40, height: 40 }} resizeMode={'contain'} /> :
-      <Image source={require('../assets/images/bottomTabs/notification.png')} style={{ width: 40, height: 40 }} resizeMode={'contain'} />
+      <Image source={require('../assets/images/bottomTabs/notificationBlack.png')} style={{ width: 35, height: 35 }} resizeMode={'contain'} /> :
+      <Image source={require('../assets/images/bottomTabs/notification.png')} style={{ width: 35, height: 35 }} resizeMode={'contain'} />
   ),
 };
 
@@ -243,8 +247,8 @@ SettingsStackWithModal.navigationOptions = ({ navigation }) => {
     tabBarLabel: <View />,
     tabBarIcon: ({ focused }) => (
       focused ?
-        <Image source={require('../assets/images/bottomTabs/setingBlack.png')} style={{ width: 40, height: 40 }} resizeMode={'contain'} /> :
-        <Image source={require('../assets/images/bottomTabs/setting.png')} style={{ width: 40, height: 40 }} resizeMode={'contain'} />
+        <Image source={require('../assets/images/bottomTabs/setingBlack.png')} style={{ width: 35, height: 35 }} resizeMode={'contain'} /> :
+        <Image source={require('../assets/images/bottomTabs/setting.png')} style={{ width: 35, height: 35 }} resizeMode={'contain'} />
     ),
   }
 }

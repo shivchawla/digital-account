@@ -8,22 +8,18 @@ import {
 } from 'react-native';
 
 
-import { shallowEqual, useSelector, useDispatch } from 'react-redux'
+
 
 import Constants from 'expo-constants'
 import { LinearGradient } from 'expo-linear-gradient'
 import Layout from '../constants/Layout'
 import styles from '../styles/styles'
 
-import * as actionCreator from '../store/actions/action'
+
 
 const LoanSuccessScreen = (props) => {
 
-    useEffect(() => {
-        getPersonalToken()
-    }, []);
-    const dispatch = useDispatch()
-    const getPersonalToken = () => dispatch(actionCreator.getPersonalToken())
+ 
 
     return (
         <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
@@ -35,21 +31,15 @@ const LoanSuccessScreen = (props) => {
                     <View style={{ width: Layout.window.width * 0.8, justifyContent: 'center', alignItems: 'center' }}>
 
                         <Image source={require('../assets/images/logo.png')} style={{ height: Layout.window.height * 0.2, width: Layout.window.width * 0.7 }} resizeMode={'contain'} />
-                        <Text style={[styles.text, { margin: 5, fontWeight: 'bold' }]}>USER REGISTRATION</Text>
+                        <Text style={[styles.text, { margin: 5, fontWeight: 'bold' }]}>Loan Application Submitted</Text>
 
-                        <View style={{ alignSelf: 'stretch', flexDirection: 'column', margin: 5 }}>
+                        <View style={{ alignSelf: 'stretch', flexDirection: 'column', margin: 5,alignItems:'center' }}>
                             <Text style={[styles.text, { margin: 5, color: 'darkturquoise' }]}>Congratulation!</Text>
-                            <Text style={[styles.text, { margin: 5, marginBottom: 20 }]}>Please proceed to merchant registration or skip to dashboard</Text>
-                        </View>
-
-                        <TouchableOpacity onPress={() => props.navigation.navigate('CompanyInformation')} style={{ width: Layout.window.width * 0.4, borderWidth: 1, borderColor: '#4A90E2', borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#4A90E2' }}>
-                            <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={{ paddingTop: 5, paddingBottom: 5, alignItems: 'center', borderRadius: 15, width: Layout.window.width * 0.4, }}>
-                                <Text style={[styles.text, { color: '#fff' }]}>Merchant</Text>
-                            </LinearGradient>
-                        </TouchableOpacity>
+                            <Text style={[styles.text, { margin: 5, marginBottom: 20 }]}>Your application has been submitted. The result will be notified to you in three days time.</Text>
+                        </View>                       
 
                         <TouchableOpacity onPress={() => props.navigation.navigate('Dashboard')} style={{ width: Layout.window.width * 0.4, paddingTop: 5, paddingBottom: 5, borderWidth: 1, borderColor: '#4A90E2', borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10 }}>
-                            <Text style={[styles.text,]}>Skip</Text>
+                            <Text style={[styles.text,]}>Dashboard</Text>
                         </TouchableOpacity>
 
                     </View>
