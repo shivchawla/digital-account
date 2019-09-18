@@ -6,7 +6,7 @@ import {
     Image,
     StyleSheet,
     TextInput,
-
+    ActivityIndicator,
     KeyboardAvoidingView
 } from 'react-native';
 

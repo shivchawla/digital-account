@@ -90,9 +90,10 @@ const NewInvoiceScreen = (props) => {
     return (
         <Formik
             onSubmit={values => {
+                props.navigation.navigate("InvoiceSuccess")
                 console.log(JSON.stringify(values))
-
             }}
+
             validationSchema={validationSchema}
         >
             {FormikProps => {
@@ -177,7 +178,7 @@ const NewInvoiceScreen = (props) => {
                                     <View style={{ marginBottom: 10, alignSelf: 'stretch' }}>
 
                                         <Text style={[styles.text, { marginBottom: 5, color: '#055E7C' }]}>Type</Text>
-                                        
+
                                         <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
                                             <Picker selectedValue={type}
                                                 style={{ flex: 1, height: 35 }}
@@ -188,25 +189,25 @@ const NewInvoiceScreen = (props) => {
                                         </View>
 
                                         {typeTouched && typeError && <Text style={styles.error}>{typeError}</Text>}
-                                   
+
                                     </View>
 
                                     <View style={{ marginBottom: 10 }}>
                                         <Text style={[styles.text, { marginBottom: 5, color: '#055E7C' }]}>Customer</Text>
                                         <TextInput value={customer} onChangeText={FormikProps.handleChange('customer')} onBlur={FormikProps.handleBlur('customer')} style={{ borderWidth: 1, borderColor: customerTouched && customerError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={customerTouched && customerError ? '' : ''} placeholderTextColor={customerTouched && customerError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
-                                        
+
                                     </View>
 
                                     {customerTouched && customerError && <Text style={styles.error}>{customerError}</Text>}
 
                                     <View style={{ marginBottom: 10 }}>
-                                        <TouchableOpacity onPress={datePicker}><Text style={{ color: '#055E7C'}}>Date Picker</Text></TouchableOpacity>
+                                        <TouchableOpacity onPress={datePicker}><Text style={{ color: '#055E7C' }}>Date Picker</Text></TouchableOpacity>
                                     </View>
 
                                     <View style={{ marginBottom: 10 }}>
                                         <Text style={[styles.text, { marginBottom: 5, color: '#055E7C' }]}>Issue Date</Text>
                                         <TextInput value={issueDate} onChangeText={FormikProps.handleChange('issueDate')} onBlur={FormikProps.handleBlur('issueDate')} style={{ borderWidth: 1, borderColor: issueDateTouched && issueDateError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={issueDateTouched && issueDateError ? '' : ''} placeholderTextColor={issueDateTouched && issueDateError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
-                                        
+
                                     </View>
 
                                     {issueDateTouched && issueDateError && <Text style={styles.error}>{issueDateError}</Text>}
@@ -214,7 +215,7 @@ const NewInvoiceScreen = (props) => {
                                     <View style={{ marginBottom: 10 }}>
                                         <Text style={[styles.text, { marginBottom: 5, color: '#055E7C' }]}>Due Date</Text>
                                         <TextInput value={dueDate} onChangeText={FormikProps.handleChange('dueDate')} onBlur={FormikProps.handleBlur('dueDate')} style={{ borderWidth: 1, borderColor: dueDateTouched && dueDateError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={dueDateTouched && dueDateError ? '' : ''} placeholderTextColor={dueDateTouched && dueDateError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
-                                        
+
                                     </View>
 
                                     {dueDateTouched && dueDateError && <Text style={styles.error}>{dueDateError}</Text>}
@@ -222,7 +223,7 @@ const NewInvoiceScreen = (props) => {
                                     <View style={{ marginBottom: 10 }}>
                                         <Text style={[styles.text, { marginBottom: 5, color: '#055E7C' }]}>Invoice Number</Text>
                                         <TextInput value={invoiceNumber} onChangeText={FormikProps.handleChange('invoiceNumber')} onBlur={FormikProps.handleBlur('invoiceNumber')} style={{ borderWidth: 1, borderColor: invoiceNumberTouched && invoiceNumberError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={invoiceNumberTouched && invoiceNumberError ? '' : ''} placeholderTextColor={invoiceNumberTouched && invoiceNumberError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
-                                       
+
                                     </View>
 
                                     {invoiceNumberTouched && invoiceNumberError && <Text style={styles.error}>{invoiceNumberError}</Text>}
@@ -230,7 +231,7 @@ const NewInvoiceScreen = (props) => {
                                     <View style={{ marginBottom: 10 }}>
                                         <Text style={[styles.text, { marginBottom: 5, color: '#055E7C' }]}>Amount</Text>
                                         <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} onBlur={FormikProps.handleBlur('amount')} style={{ borderWidth: 1, borderColor: amountTouched && amountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={amountTouched && amountError ? '' : ''} placeholderTextColor={amountTouched && amountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
-                                       
+
                                     </View>
 
                                     {amountTouched && amountError && <Text style={styles.error}>{amountError}</Text>}
@@ -238,7 +239,7 @@ const NewInvoiceScreen = (props) => {
                                     <View style={{ marginBottom: 10 }}>
                                         <Text style={[styles.text, { marginBottom: 5, color: '#055E7C' }]}>Category</Text>
                                         <TextInput value={category} onChangeText={FormikProps.handleChange('category')} onBlur={FormikProps.handleBlur('category')} style={{ borderWidth: 1, borderColor: categoryTouched && categoryError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={categoryTouched && categoryError ? '' : ''} placeholderTextColor={categoryTouched && categoryError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
-                                       
+
                                     </View>
 
                                     {categoryTouched && categoryError && <Text style={styles.error}>{categoryError}</Text>}
@@ -246,7 +247,7 @@ const NewInvoiceScreen = (props) => {
                                     <View style={{ marginBottom: 10 }}>
                                         <Text style={[styles.text, { marginBottom: 5, color: '#055E7C' }]}>Customer Name</Text>
                                         <TextInput value={customerName} onChangeText={FormikProps.handleChange('customerName')} onBlur={FormikProps.handleBlur('customerName')} style={{ borderWidth: 1, borderColor: customerNameTouched && customerNameError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={customerNameTouched && customerNameError ? '' : ''} placeholderTextColor={customerNameTouched && customerNameError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
-                                       
+
                                     </View>
 
                                     {customerNameTouched && customerNameError && <Text style={styles.error}>{customerNameError}</Text>}
@@ -254,7 +255,7 @@ const NewInvoiceScreen = (props) => {
                                     <View style={{ marginBottom: 10 }}>
                                         <Text style={[styles.text, { marginBottom: 5, color: '#055E7C' }]}>Customer Email</Text>
                                         <TextInput value={customerEmail} onChangeText={FormikProps.handleChange('customerEmail')} onBlur={FormikProps.handleBlur('customerEmail')} style={{ borderWidth: 1, borderColor: customerEmailTouched && customerEmailError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={customerEmailTouched && customerEmailError ? '' : ''} placeholderTextColor={customerEmailTouched && customerEmailError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
-                                       
+
                                     </View>
 
                                     {customerEmailTouched && customerEmailError && <Text style={styles.error}>{customerEmailError}</Text>}
@@ -262,7 +263,7 @@ const NewInvoiceScreen = (props) => {
                                     <View style={{ marginBottom: 10 }}>
                                         <Text style={[styles.text, { marginBottom: 5, color: '#055E7C' }]}>Customer Phone</Text>
                                         <TextInput value={customerPhone} onChangeText={FormikProps.handleChange('customerPhone')} onBlur={FormikProps.handleBlur('customerPhone')} style={{ borderWidth: 1, borderColor: customerPhoneTouched && customerPhoneError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={customerPhoneTouched && customerPhoneError ? '' : ''} placeholderTextColor={customerPhoneTouched && customerPhoneError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
-                                       
+
                                     </View>
 
                                     {customerPhoneTouched && customerPhoneError && <Text style={styles.error}>{customerPhoneError}</Text>}
@@ -270,7 +271,7 @@ const NewInvoiceScreen = (props) => {
                                     <View style={{ marginBottom: 10 }}>
                                         <Text style={[styles.text, { marginBottom: 5, color: '#055E7C' }]}>Customer Address</Text>
                                         <TextInput value={customerAddress} onChangeText={FormikProps.handleChange('customerAddress')} onBlur={FormikProps.handleBlur('customerAddress')} style={{ borderWidth: 1, borderColor: customerAddressTouched && customerAddressError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={customerAddressTouched && customerAddressError ? '' : ''} placeholderTextColor={customerAddressTouched && customerAddressError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
-                                       
+
                                     </View>
 
                                     {customerAddressTouched && customerAddressError && <Text style={styles.error}>{customerAddressError}</Text>}
