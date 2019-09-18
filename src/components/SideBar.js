@@ -17,7 +17,7 @@ const SideBar = (props) => {
     }
 
     return (
-        <LinearGradient colors={['#80A0FD', '#4F6DFB']} style={{ position: 'absolute', top: 0, bottom: 0, right: 0, left: 0 }}>
+        <LinearGradient colors={['#055E7C', '#055E7C']} style={{ position: 'absolute', top: 0, bottom: 0, right: 0, left: 0 }}>
             
             <View style={{ padding: 10, flex: 1, justifyContent: 'space-evenly' }}>
                 

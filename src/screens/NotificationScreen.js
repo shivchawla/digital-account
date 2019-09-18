@@ -23,28 +23,40 @@ const notificationScreenArray = [{ status: 'out', description: 'RM 50.00 was ded
 { status: 'in', description: '1 June 2019 on 12.30. Disbursement Transfer for June is RM 1067.00.' }]
 
 const NotificationScreen = (props) => {
+
     return (
+
         <View style={{ flex: 1, }}>
-            <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#4D6BFA' }}>
+
+            <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#055E7C' }}>
+
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={styles.title}>Notification</Text>
+                    <Text style={[styles.title, { color: '#055E7C' }]}>Notification</Text>
                 </View>
+
                 <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
                     <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
                 </TouchableOpacity>
+
             </View>
-            <View style={{ flex: 9, padding: 10,  }}>
+
+            <View style={{ flex: 9, padding: 10, }}>
+
                 <FlatList
                     data={notificationScreenArray}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({ item }) =>
-                        <View style={{ flexDirection: 'row', alignItems: 'center',  marginBottom: 10, marginTop: 10 }}>
+
+                        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10, marginTop: 10 }}>
                             <Dot color={item.status === 'in' ? 'green' : 'red'} />
-                            <Text style={[styles.text, { textAlignVertical: 'top',paddingRight:50 }]}>{item.description}</Text>
+                            <Text style={[styles.text, { textAlignVertical: 'top', paddingRight: 50 }]}>{item.description}</Text>
                         </View>
+
                     } />
             </View>
+
         </View >
+
     );
 }
 
