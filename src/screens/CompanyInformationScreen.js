@@ -74,9 +74,8 @@ const CompanyInformationScreen = (props) => {
 
                         <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#4D6BFA' }}>
 
-                            <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center', alignItems: 'flex-start' }}>
-                                <Text style={styles.title}>COMPANY INFORMATION</Text>
-                                <Text numberOfLines={1} style={styles.content} ellipsizeMode='head'>COMPANY INFORMATION</Text>
+                            <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center', alignItems: 'flex-start',paddingLeft:10, }}>
+                                <Text numberOfLines={1} style={styles.title} ellipsizeMode='tail'>COMPANY INFORMATION</Text>
                             </View>
 
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
@@ -85,13 +84,11 @@ const CompanyInformationScreen = (props) => {
 
                         </View>
 
-                        <View>
-                            <Text style={[styles.text, { margin: 5, marginBottom: 10, color: 'darkblue', fontSize: 14 }]}>Please fill up this form to continue the process for your company.</Text>
-                        </View>
-
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
                             <View style={{ flex: 9, margin: 10 }}>
-
+                                <View>
+                                    <Text style={[styles.text, { margin: 5, marginBottom: 10, color: 'darkblue', fontSize: 14 }]}>Please fill up this form to continue the process for your company.</Text>
+                                </View>
                                 <View style={{ marginBottom: 10 }}>
                                     <Text style={[styles.text, { marginBottom: 5, borderBottomColor: cddCompanyNameTouched && cddCompanyNameError ? '#d94498' : '#5a83c2' }]}>Company's Name</Text>
                                     <TextInput value={cddCompanyName} onBlur={FormikProps.handleBlur('cddCompanyName')} onChangeText={FormikProps.handleChange('cddCompanyName')} placeholder={cddCompanyNameTouched && cddCompanyNameError ? '' : 'Eg: Syarikat ABC Sdn Bhd'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />

@@ -79,7 +79,7 @@ const SignupPersonalScreen = (props) => {
 
                         <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#4D6BFA', }}>
 
-                            <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
+                            <View style={{ flex: 3, justifyContent: 'center', alignItems: 'flex-start',paddingLeft:10 }}>
                                 <Text numberOfLines={1} style={styles.title} ellipsizeMode='head'>REGISTRATION</Text>
                             </View>
 

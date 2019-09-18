@@ -55,7 +55,7 @@ const SignupPersonalSuccessScreen = (props) => {
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => props.navigation.navigate('CompanyInformation')} style={{ flex: 1 }}>
-                    <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
+                    <LinearGradient colors={['#628BFB', '#0E47E8']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={[styles.text, { color: '#fff' }]}>Merchant</Text>
                     </LinearGradient>
                 </TouchableOpacity>

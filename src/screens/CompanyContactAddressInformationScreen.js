@@ -98,16 +98,16 @@ const CompanyContactAddressInformationScreen = (props) => {
 
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }}>
 
-                        <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1, justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
-                            <Image source={require('../assets/images/logo.png')} style={{ height: Layout.window.height * 0.2, width: Layout.window.width * 0.7 }} resizeMode={'contain'} />
-                        </View>
+                        <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#4D6BFA' }}>
 
-                        <View>
-                            <Text style={[styles.text, { margin: 5, fontWeight: 'bold', justifyContent: 'center' }]}>COMPANY ADDRESS INFORMATION</Text>
-                        </View>
+                            <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center', alignItems: 'flex-start', paddingLeft: 10, }}>
+                                <Text numberOfLines={1} style={styles.title} ellipsizeMode='tail'>ADDRESS</Text>
+                            </View>
 
-                        <View>
-                            <Text style={[styles.text, { margin: 5, marginBottom: 10, color: 'darkblue', fontSize: 14 }]}>Please fill up this form to continue the process for your company.</Text>
+                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
+                                <Image source={require('../assets/images/logosmall.png')} style={{ width: 50, height: 50, borderRadius: 15 }} />
+                            </View>
+
                         </View>
 
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
@@ -136,10 +136,10 @@ const CompanyContactAddressInformationScreen = (props) => {
 
                                 <View style={{ marginBottom: 10 }}>
                                     <Text style={[styles.text, { marginBottom: 5, borderBottomColor: comp_stateTouched && comp_stateError ? '#d94498' : '#5a83c2' }]}>State</Text>
-                                    <TextInput value={comp_state} onBlur={FormikProps.handleBlur('comp_state')} onChangeText={FormikProps.handleChange('comp_state')} placeholder={ comp_stateTouched && comp_stateError ? '' : 'Eg: Selangor Darul Ehsan'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                    <TextInput value={comp_state} onBlur={FormikProps.handleBlur('comp_state')} onChangeText={FormikProps.handleChange('comp_state')} placeholder={comp_stateTouched && comp_stateError ? '' : 'Eg: Selangor Darul Ehsan'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
                                 </View>
 
-                                { comp_stateTouched && comp_stateError && <Text style={styles.error}>{comp_stateError}</Text>}
+                                {comp_stateTouched && comp_stateError && <Text style={styles.error}>{comp_stateError}</Text>}
 
                                 <View style={{ marginBottom: 10 }}>
                                     <Text style={[styles.text, { marginBottom: 5, borderBottomColor: cddPostcodeTouched && cddPostcodeError ? '#d94498' : '#5a83c2' }]}>Line Address 2</Text>
