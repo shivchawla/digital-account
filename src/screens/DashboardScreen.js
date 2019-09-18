@@ -24,13 +24,13 @@ const DashboardScreen = (props) => {
 
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
           <TouchableOpacity onPress={props.navigation.openDrawer} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-            <Ionicons name="md-more" color={'#4D6BFA'} style={{ fontSize: 30, paddingLeft: 20 }} />
+            <Ionicons name="md-more" color={'#055E7C'} style={{ fontSize: 30, paddingLeft: 20 }} />
           </TouchableOpacity>
         </View>
 
         <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-          <Text style={styles.title}>
-            <Text style={[styles.title, { fontSize: 12 }]}>MYR</Text> 18,839.00</Text>
+          <Text style={[styles.title, {color: '#055E7C'}]}>
+            <Text style={[styles.title, {color: '#055E7C'}]}>MYR</Text> 18,839.00</Text>
         </View>
 
         <TouchableOpacity onPress={() => props.navigation.navigate('Profile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
@@ -43,21 +43,21 @@ const DashboardScreen = (props) => {
         <View style={{ marginTop: 10, flexDirection: 'row' }}>
 
           <TouchableOpacity>
-            <Text style={[styles.text, { color: '#525252' }]}>Send Money</Text>
+            <Text style={[styles.text, { color: '#055E7C' }]}>Send Money</Text>
           </TouchableOpacity>
 
           <TouchableOpacity>
-            <Text style={[styles.text, { paddingLeft: 5, paddingRight: 5, color: '#525252' }]}>|</Text>
+            <Text style={[styles.text, { paddingLeft: 5, paddingRight: 5, color: '#055E7C' }]}>|</Text>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => props.navigation.navigate('Withdraw')}>
-            <Text style={[styles.text, { color: '#525252' }]}>Withdrawal</Text>
+            <Text style={[styles.text, { color: '#055E7C' }]}>Withdrawal</Text>
           </TouchableOpacity>
 
         </View>
 
         <View style={{ marginTop: 10 }}>
-          <LinearGradient colors={['#84A4FD', '#4D6BFA']} style={{ paddingTop: 5, paddingBottom: 5, alignItems: 'center', borderRadius: 10, height: Layout.window.height / 3 }}>
+          <LinearGradient colors={['#055E7C', '#055E7C']} style={{ paddingTop: 5, paddingBottom: 5, alignItems: 'center', borderRadius: 10, height: Layout.window.height / 3 }}>
 
             <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
               <Ionicons name="ios-arrow-back" color={'#fff'} style={{ fontSize: 23, paddingLeft: 5 }} />
@@ -79,17 +79,17 @@ const DashboardScreen = (props) => {
 
           <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
 
-            <Text style={styles.h2}>Latest Transaction</Text>
+            <Text style={[styles.h2, { color: '#055E7C' }]}>Latest Transaction</Text>
 
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Text style={[styles.small, { paddingRight: 5 }]}>More</Text>
-              <Ionicons name="ios-arrow-forward" color={'#000'} style={{ fontSize: 15, paddingRight: 5 }} />
+              <Text style={[styles.small, { paddingRight: 5, color: '#055E7C' }]}>More</Text>
+              <Ionicons name="ios-arrow-forward" color={'#055E7C'} style={{ fontSize: 15, paddingRight: 5 }} />
             </View>
 
           </View>
 
           <View style={{ flexDirection: 'row', marginTop: 5 }}>
-           
+
             <View style={{ flex: 3, flexDirection: 'row', alignItems: 'center' }}>
               <Dot color='#A20F0F' />
               <Text style={styles.text}>Withdrawal Transfer</Text>
@@ -102,7 +102,7 @@ const DashboardScreen = (props) => {
           </View>
 
           <View style={{ flexDirection: 'row', marginTop: 5 }}>
-           
+
             <View style={{ flex: 3, flexDirection: 'row', alignItems: 'center' }}>
               <Dot color='#A20F0F' />
               <Text style={styles.text}>Account Transfer</Text>
@@ -115,7 +115,7 @@ const DashboardScreen = (props) => {
           </View>
 
           <View style={{ flexDirection: 'row', marginTop: 5 }}>
-           
+
             <View style={{ flex: 3, flexDirection: 'row', alignItems: 'center' }}>
               <Dot color='#7ED321' />
               <Text style={[styles.text]}>Disbursement Transfer</Text>
@@ -132,7 +132,7 @@ const DashboardScreen = (props) => {
       </View >
 
     </View >
-    
+
   );
 }
 
