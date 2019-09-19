@@ -85,16 +85,16 @@ const WithdrawScreen = (props) => {
                 return (
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }}>
 
-                        <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#4D6BFA' }}>
+                        <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#055E7C' }}>
 
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                                    <Ionicons name="ios-arrow-back" color={'#4D6BFA'} style={{ fontSize: 30, paddingLeft: 20 }} />
+                                    <Ionicons name="ios-arrow-back" color={'#055E7C'} style={{ fontSize: 30, paddingLeft: 20 }} />
                                 </TouchableOpacity>
                             </View>
 
                             <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                                <Text style={styles.title}>Withdrawal</Text>
+                                <Text style={[styles.title, { color: '#055E7C' }]}>Withdrawal</Text>
                             </View>
 
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
@@ -110,41 +110,41 @@ const WithdrawScreen = (props) => {
                                 <ScrollView style={{ padding: 10 }}>
 
                                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 }}>
-                                        <Text style={styles.h3}>Withdrawal Application Form</Text>
+                                        <Text style={[styles.h3, { color: '#055E7C' }]}>Withdrawal Application Form</Text>
                                     </View>
 
                                     <View style={{ marginBottom: 10 }}>
-                                        <Text style={[styles.text, { marginBottom: 5 }]}>Bank Account Number</Text>
+                                        <Text style={[styles.text, { marginBottom: 5, color: '#055E7C' }]}>Bank Account Number</Text>
                                         <TextInput value={bankAccountNo} onChangeText={FormikProps.handleChange('bankAccountNo')} onBlur={FormikProps.handleBlur('bankAccountNo')} style={{ borderWidth: 1, borderColor: bankAccountNoTouched && bankAccountNoError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={bankAccountNoTouched && bankAccountNoError ? '' : 'Eg: 013-113-12345678'} placeholderTextColor={bankAccountNoTouched && bankAccountNoError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {bankAccountNoTouched && bankAccountNoError && <Text style={styles.error}>{bankAccountNoError}</Text>}
                                     </View>
 
                                     <View style={{ marginBottom: 10 }}>
-                                        <Text style={[styles.text, { marginBottom: 5 }]}>Bank Account Name</Text>
+                                        <Text style={[styles.text, { marginBottom: 5, color: '#055E7C' }]}>Bank Account Name</Text>
                                         <TextInput value={bankAccountName} onChangeText={FormikProps.handleChange('bankAccountName')} onBlur={FormikProps.handleBlur('bankAccountName')} style={{ borderWidth: 1, borderColor: bankAccountNameTouched && bankAccountNameError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={bankAccountNameTouched && bankAccountNameError ? '' : 'Eg: Bank Berjaya Berhad'} placeholderTextColor={bankAccountNameTouched && bankAccountNameError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {bankAccountNameTouched && bankAccountNameError && <Text style={styles.error}>{bankAccountNameError}</Text>}
                                     </View>
 
                                     <View style={{ marginBottom: 10 }}>
-                                        <Text style={[styles.text, { marginBottom: 5 }]}>Bank Address</Text>
+                                        <Text style={[styles.text, { marginBottom: 5, color: '#055E7C' }]}>Bank Address</Text>
                                         <TextInput value={bankAddress} onChangeText={FormikProps.handleChange('bankAddress')} onBlur={FormikProps.handleBlur('bankAddress')} style={{ borderWidth: 1, borderColor: bankAddressTouched && bankAddressError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={bankAddressTouched && bankAddressError ? '' : 'Eg: 89, Jalan Damai, Petaling Jaya, Selangor'} placeholderTextColor={bankAddressTouched && bankAddressError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {bankAddressTouched && bankAddressError && <Text style={styles.error}>{bankAddressError}</Text>}
                                     </View>
 
                                     <View style={{ marginBottom: 10 }}>
-                                        <Text style={[styles.text, { marginBottom: 5 }]}>Bank Country</Text>
+                                        <Text style={[styles.text, { marginBottom: 5, color: '#055E7C' }]}>Bank Country</Text>
                                         <TextInput value={bankCountry} onChangeText={FormikProps.handleChange('bankCountry')} onBlur={FormikProps.handleBlur('bankCountry')} style={{ borderWidth: 1, borderColor: bankCountryTouched && bankCountryError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={bankCountryTouched && bankCountryError ? '' : 'Eg: Malaysia'} placeholderTextColor={bankCountryTouched && bankCountryError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {bankCountryTouched && bankCountryError && <Text style={styles.error}>{bankCountryError}</Text>}
                                     </View>
 
                                     <View style={{ marginBottom: 10 }}>
-                                        <Text style={[styles.text, { marginBottom: 5 }]}>Amount</Text>
+                                        <Text style={[styles.text, { marginBottom: 5, color: '#055E7C' }]}>Amount</Text>
                                         <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} onBlur={FormikProps.handleBlur('amount')} style={{ borderWidth: 1, borderColor: amountTouched && amountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={amountTouched && amountError ? '' : 'Eg: RM890.00'} placeholderTextColor={amountTouched && amountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
                                         {amountTouched && amountError && <Text style={styles.error}>{amountError}</Text>}
                                     </View>
 
                                     <View style={{ marginBottom: 10 }}>
-                                        <Text style={[styles.text, { marginBottom: 5 }]}>Remark</Text>
+                                        <Text style={[styles.text, { marginBottom: 5, color: '#055E7C' }]}>Remark</Text>
                                         <TextInput value={remark} onChangeText={FormikProps.handleChange('remark')} onBlur={FormikProps.handleBlur('remark')} style={{ borderWidth: 1, borderColor: remarkTouched && remarkError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={remarkTouched && remarkError ? '' : 'Eg: For reference'} placeholderTextColor={remarkTouched && remarkError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {remarkTouched && remarkError && <Text style={styles.error}>{remarkError}</Text>}
                                     </View>
@@ -155,14 +155,14 @@ const WithdrawScreen = (props) => {
 
                             <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
 
-                                <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1 }}>
-                                    <LinearGradient colors={['#A4A4A4', '#A4A4A4']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                                        <Text style={[styles.text, { color: '#fff' }]}>Back</Text>
+                                <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 }}>
+                                    <LinearGradient colors={['#FFF', '#FFF']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
+                                        <Text style={[styles.text, { color: '#000000' }]}>Back</Text>
                                     </LinearGradient>
                                 </TouchableOpacity>
 
                                 <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ flex: 1 }}>
-                                    <LinearGradient colors={FormikProps.isValid ? ['#628BFB', '#0E47E8'] : ['rgba(98, 139, 251, 0.5)', 'rgba(14, 71, 232, 0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
+                                    <LinearGradient colors={FormikProps.isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                         {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> :
                                             <Text style={[styles.text, { color: '#fff' }]}>Submit</Text>}
                                     </LinearGradient>

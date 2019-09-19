@@ -18,9 +18,9 @@ const SideBar = (props) => {
 
     return (
         <LinearGradient colors={['#055E7C', '#055E7C']} style={{ position: 'absolute', top: 0, bottom: 0, right: 0, left: 0 }}>
-            
+
             <View style={{ padding: 10, flex: 1, justifyContent: 'space-evenly' }}>
-                
+
                 <TouchableOpacity onPress={() => nav('Dashboard')} style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <Image source={require('../assets/images/dashboard.png')} style={{ width: 40, height: 40 }} resizeMode={'contain'} />
                     <Text style={[styles.text, { color: '#fff', marginLeft: 15 }]}>Dashboard</Text>
