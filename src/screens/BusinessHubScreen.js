@@ -44,14 +44,14 @@ const BusinessHubScreen = (props) => {
 
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 20 }}>
 
-                        <TouchableOpacity style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                            <Ionicons name="ios-contacts" color={'#055E7C'} style={{ fontSize: 75, paddingRight: 5 }} />
-                            <Text style={[styles.small, { paddingRight: 5, color: '#055E7C', fontSize: 20, fontWeight: 'bold' }]}>Business Directory</Text>
+                        <TouchableOpacity onPress={() => props.navigation.navigate('BusinessDirectory')} style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                            <Ionicons name="ios-contacts" color={'#055E7C'} style={{ fontSize: 75, paddingRight: 5, opacity: 0.5 }} />
+                            <Text style={[styles.small, { paddingRight: 5, color: '#055E7C', fontSize: 20 }]}>Business Directory</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity onPress={() => props.navigation.navigate('Zakat')} style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                            <Ionicons name="ios-pie" color={'#055E7C'} style={{ fontSize: 75, paddingRight: 5 }} />
-                            <Text style={[styles.small, { paddingRight: 5, color: '#055E7C', fontSize: 20, fontWeight: 'bold' }]}>Zakat</Text>
+                            <Ionicons name="ios-pie" color={'#055E7C'} style={{ fontSize: 75, paddingRight: 5, opacity: 0.5 }} />
+                            <Text style={[styles.small, { paddingRight: 5, color: '#055E7C', fontSize: 20 }]}>Zakat</Text>
                         </TouchableOpacity>
 
                     </View>
@@ -59,13 +59,13 @@ const BusinessHubScreen = (props) => {
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 20 }}>
 
                         <TouchableOpacity onPress={() => props.navigation.navigate('Payroll')} style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                            <Ionicons name="ios-thumbs-up" color={'#055E7C'} style={{ fontSize: 65, paddingRight: 5 }} />
-                            <Text style={[styles.small, { paddingRight: 5, color: '#055E7C', fontSize: 20, fontWeight: 'bold' }]}>Payroll</Text>
+                            <Ionicons name="ios-thumbs-up" color={'#055E7C'} style={{ fontSize: 65, paddingRight: 5, opacity: 0.5 }} />
+                            <Text style={[styles.small, { paddingRight: 5, color: '#055E7C', fontSize: 20 }]}>Payroll</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity onPress={() => props.navigation.navigate('Remittance')}style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                            <Ionicons name="ios-cash" color={'#055E7C'} style={{ fontSize: 75, paddingRight: 5 }} />
-                            <Text style={[styles.small, { paddingRight: 5, color: '#055E7C', fontSize: 20, fontWeight: 'bold' }]}>Remittance</Text>
+                        <TouchableOpacity onPress={() => props.navigation.navigate('Remittance')} style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                            <Ionicons name="ios-cash" color={'#055E7C'} style={{ fontSize: 75, paddingRight: 5, opacity: 0.5 }} />
+                            <Text style={[styles.small, { paddingRight: 5, color: '#055E7C', fontSize: 20 }]}>Remittance</Text>
                         </TouchableOpacity>
 
                     </View>
@@ -82,6 +82,5 @@ const BusinessHubScreen = (props) => {
 BusinessHubScreen.navigationOptions = {
     header: null,
 };
-
 
 export default BusinessHubScreen;
