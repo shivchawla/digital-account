@@ -18,6 +18,7 @@
     "aws-amplify": "^1.1.36",
     "expo": "^34.0.1",
     "expo-asset": "^6.0.0",
+    "expo-camera": "^6.0.0",
     "expo-constants": "6.0.0",
     "expo-document-picker": "^6.0.0",
     "expo-font": "~6.0.0",

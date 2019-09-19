@@ -17,7 +17,7 @@ import {
 
 
 } from 'react-native';
-
+import * as DocumentPicker from 'expo-document-picker';
 import Constants from 'expo-constants'
 //import { Constants, LinearGradient, FileSystem } from 'expo'
 import { LinearGradient } from 'expo-linear-gradient'
@@ -53,11 +53,24 @@ const validationSchema = Yup.object().shape({
 
 });
 
-const ContactPersonScreen = (props) => {
+const CompanyDocumentScreen = (props) => {
     const dispatch = useDispatch()
+    const isDocument1fileName = useSelector(state => state.companyInformationReducer.isDocument1fileName, shallowEqual)
     const contactPerson = (values) => {
         dispatch(actionCreator.contactPerson(values))
         props.navigation.navigate('ContactPersonSuccess')
+    }
+
+    const pickDoc = () => {
+        DocumentPicker.getDocumentAsync({ type: '*/*', copyToCacheDirectory: false })
+            .then(result => {
+                console.log(JSON.stringify(result))
+
+                const { uri, name } = result
+
+                //this.props.setLoanInfo({ proposal: name })
+                //this.props.saveDocument(result)
+            })
     }
 
     return (
@@ -86,54 +99,49 @@ const ContactPersonScreen = (props) => {
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }}>
 
                         <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#4D6BFA', }}>
-
-                            <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center', alignItems: 'flex-start',padding:10 }}>
-                                <Text numberOfLines={1} style={styles.title} ellipsizeMode='tail'>PERSON IN-CHARGE INFORMATION</Text>
+                            <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center', alignItems: 'flex-start', padding: 10 }}>
+                                <Text numberOfLines={1} style={styles.title} ellipsizeMode='tail'>Company Documents</Text>
                             </View>
-
                             <View style={{ flex: 1, justifyContent: 'center', marginRight: 3, alignItems: 'flex-end' }}>
                                 <Image source={require('../assets/images/logosmall.png')} style={{ width: 50, height: 50, borderRadius: 15 }} />
                             </View>
-
                         </View>
-
                         <View>
                             <Text style={[styles.text, { margin: 5, marginBottom: 10, color: 'darkblue', fontSize: 14 }]}>Please fill up this form to continue the process for your company.</Text>
                         </View>
-
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
                             <View style={{ flex: 9, margin: 10 }}>
-
                                 <View style={{ marginBottom: 10 }}>
-                                    <Text style={[styles.text, { marginBottom: 5, borderBottomColor: cddContactPersonNameTouched && cddContactPersonNameError ? '#d94498' : '#5a83c2' }]}>Name</Text>
-                                    <TextInput value={cddContactPersonName} onBlur={FormikProps.handleBlur('cddContactPersonName')} onChangeText={FormikProps.handleChange('cddContactPersonName')} placeholder={cddContactPersonNameTouched && cddContactPersonNameError ? '' : 'Eg: Siti binti Iskandar'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                    <Text style={[styles.text, { marginBottom: 5, borderBottomColor: cddContactPersonNameTouched && cddContactPersonNameError ? '#d94498' : '#5a83c2' }]}>MyKad</Text>
+                                    <View style={{flexDirection:'row'}}>
+                                        <TouchableOpacity onPress={() => props.navigation.navigate('DocumentCamera',{doc:'mykad'})} style={{ padding: 10, borderRadius: 15, justifyContent: 'center', margin: 10, backgroundColor: '#055e7c' }}>
+                                            <Text style={[styles.small, { color: '#fff' }]}>Upload documents</Text>
+                                        </TouchableOpacity>
+                                    </View>
                                 </View>
-
+                                <Text>{isDocument1fileName}</Text>
                                 {cddContactPersonNameTouched && cddContactPersonNameError && <Text style={styles.error}>{cddContactPersonNameError}</Text>}
 
                                 <View style={{ marginBottom: 10 }}>
-                                    <Text style={[styles.text, { marginBottom: 5, borderBottomColor: cddContactPersonIcTouched && cddContactPersonIcError ? '#d94498' : '#5a83c2' }]}>MyKad Number</Text>
-                                    <TextInput value={cddContactPersonIc} onBlur={FormikProps.handleBlur('cddContactPersonIc')} onChangeText={FormikProps.handleChange('cddContactPersonIc')} placeholder={cddContactPersonIcTouched && cddContactPersonIcError ? '' : 'Eg: 800310022514'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} keyboardType={'phone-pad'} />
+                                    <Text style={[styles.text, { marginBottom: 5, borderBottomColor: cddContactPersonNameTouched && cddContactPersonNameError ? '#d94498' : '#5a83c2' }]}>Company Registration Document</Text>
+                                    <View style={{flexDirection:'row'}}>
+                                    <TouchableOpacity onPress={() => props.navigation.navigate('DocumentCamera',{doc:'company'})} style={{ padding: 10, borderRadius: 15, justifyContent: 'center', margin: 10, backgroundColor: '#055e7c' }}>
+                                        <Text style={[styles.small, { color: '#fff' }]}>Upload documents</Text>
+                                    </TouchableOpacity>
+                                    </View>
                                 </View>
-
-                                {cddContactPersonIcTouched && cddContactPersonIcError && <Text style={styles.error}>{cddContactPersonIcError}</Text>}
-
+                                {cddContactPersonNameTouched && cddContactPersonNameError && <Text style={styles.error}>{cddContactPersonNameError}</Text>}
                                 <View style={{ marginBottom: 10 }}>
-                                    <Text style={[styles.text, { marginBottom: 5, borderBottomColor: cddContactPersonNumberTouched && cddContactPersonNumberError ? '#d94498' : '#5a83c2' }]}>Phone Number</Text>
-                                    <TextInput value={cddContactPersonNumber} onBlur={FormikProps.handleBlur('cddContactPersonNumber')} onChangeText={FormikProps.handleChange('cddContactPersonNumber')} placeholder={cddContactPersonNumberTouched && cddContactPersonNumberError ? '' : 'Eg: 0189852012'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} keyboardType={'phone-pad'} />
+                                    <Text style={[styles.text, { marginBottom: 5, borderBottomColor: cddContactPersonNameTouched && cddContactPersonNameError ? '#d94498' : '#5a83c2' }]}>Business</Text>
+                                    <View style={{flexDirection:'row'}}>
+                                    <TouchableOpacity onPress={() => props.navigation.navigate('DocumentCamera',{doc:'business'})} style={{ padding: 10, borderRadius: 15, justifyContent: 'center', margin: 10, backgroundColor: '#055e7c' }}>
+                                        <Text style={[styles.small, { color: '#fff' }]}>Upload documents</Text>
+                                    </TouchableOpacity>
+                                    </View>
                                 </View>
-
-                                {cddContactPersonNumberTouched && cddContactPersonNumberError && <Text style={styles.error}>{cddContactPersonNumberError}</Text>}
-
-                                <View style={{ marginBottom: 10 }}>
-                                    <Text style={[styles.text, { marginBottom: 5, borderBottomColor: cddContactPersonPositionTouched && cddContactPersonPositionError ? '#d94498' : '#5a83c2' }]}>Position</Text>
-                                    <TextInput value={cddContactPersonPosition} onBlur={FormikProps.handleBlur('cddContactPersonPosition')} onChangeText={FormikProps.handleChange('cddContactPersonPosition')} placeholder={cddContactPersonPositionTouched && cddContactPersonPositionError ? '' : 'Eg: HR Officer'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
-                                </View>
-
-                                {cddContactPersonPositionTouched && cddContactPersonPositionError && <Text style={styles.error}>{cddContactPersonPositionError}</Text>}
+                                {cddContactPersonNameTouched && cddContactPersonNameError && <Text style={styles.error}>{cddContactPersonNameError}</Text>}
 
                             </View>
-
                             <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
 
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1 }}>
@@ -159,5 +167,5 @@ const ContactPersonScreen = (props) => {
     );
 }
 
-ContactPersonScreen.navigationOptions = { header: null, };
-export default ContactPersonScreen
+CompanyDocumentScreen.navigationOptions = { header: null, };
+export default CompanyDocumentScreen

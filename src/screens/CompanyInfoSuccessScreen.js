@@ -58,13 +58,11 @@ const CompanyInfoSuccessScreen = (props) => {
                     <Image source={require('../assets/images/logo.png')} style={{ height: Layout.window.height * 0.2, width: Layout.window.width * 0.7 }} resizeMode={'contain'} />
                 </View>
 
-                <View style={{ justifyContent: 'center', alignItems: 'center', justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={[styles.text, { margin: 5, fontWeight: 'bold', flexDirection: 'row', justifyContent: 'center' }]}>COMPANY INFO</Text>
-                </View>
+                
 
                 <View style={{ alignSelf: 'stretch', flexDirection: 'column', margin: 5 }}>
                     <Text style={[styles.text, { margin: 5, color: 'darkturquoise' }]}>Congratulation!</Text>
-                    <Text style={[styles.text, { margin: 5, marginBottom: 20 }]}>You have entered your company information. You can either choose to enter merchant's info or skip to the dashboard.</Text>
+                    <Text style={[styles.text, { margin: 5, marginBottom: 20 }]}>You have entered your company information. You can either choose to enter contact info or skip to the dashboard.</Text>
                 </View>
 
             </View>
@@ -79,7 +77,7 @@ const CompanyInfoSuccessScreen = (props) => {
 
                 <TouchableOpacity onPress={() => props.navigation.navigate(`ContactPerson`)} style={{ flex: 1 }}>
                     <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                        <Text style={[styles.text, { color: '#fff' }]}>Merchant</Text>
+                        <Text style={[styles.text, { color: '#fff' }]}>Contact</Text>
                     </LinearGradient>
                 </TouchableOpacity>
 

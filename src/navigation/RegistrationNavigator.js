@@ -21,6 +21,9 @@ import CompanyContactAddressInformationScreen from '../screens/CompanyContactAdd
 import AgreementScreen from '../screens/AgreementScreen';
 import CompanyInfoSuccessScreen from '../screens/CompanyInfoSuccessScreen';
 import SignupPersonalSuccessScreen from '../screens/SignupPersonalSuccessScreen';
+import CompanyDocumentScreen from '../screens/CompanyDocumentScreen';
+import DocumentCameraScreen from '../screens/DocumentCameraScreen';
+import DocumentUploadScreen from '../screens/DocumentUploadScreen';
 // import ContactPersonSuccessScreen from '../screens/ContactPersonSuccessScreen';
 // import CameraICScreen from '../screens/CameraICScreen';
 
@@ -34,7 +37,10 @@ const Registration = createStackNavigator({
   CompanyContactAddressInformation: CompanyContactAddressInformationScreen,
   CompanyInfoSuccess: CompanyInfoSuccessScreen,
   ContactPerson: ContactPersonScreen,
-  ContactPersonSuccess: ContactPersonSuccessScreen
+  ContactPersonSuccess: ContactPersonSuccessScreen,
+  CompanyDocument:CompanyDocumentScreen,
+  DocumentCamera:DocumentCameraScreen,
+  DocumentUpload:DocumentUploadScreen
 
 
   // DetailsConnectedParties: DetailsOfConnectedPartiesScreen,

@@ -119,7 +119,6 @@ export const companyInfoAPI = () => {
       .catch((error) => {
         console.error('Error : ' + error);
       });
-
   }
 }
 
@@ -129,8 +128,6 @@ export const contactPersonAPI = (values) => {
     // const { token_type, access_token } = JSON.parse(personalToken)
     const token_type = 'Bearer'
     const access_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjQ2MTdkZmFhMzYxZjE4YmNkNWYyYjdjMDk1YmUyNWVjNWI0NmI3YTFhYmRlNThlNGM5NmUzZTA0OTNiZjc4NzE1YjM2NzhjNWQzNmNkYzUzIn0.eyJhdWQiOiIyIiwianRpIjoiNDYxN2RmYWEzNjFmMThiY2Q1ZjJiN2MwOTViZTI1ZWM1YjQ2YjdhMWFiZGU1OGU0Yzk2ZTNlMDQ5M2JmNzg3MTViMzY3OGM1ZDM2Y2RjNTMiLCJpYXQiOjE1NjcwNjM4NjQsIm5iZiI6MTU2NzA2Mzg2NCwiZXhwIjoxNTY4MzU5ODYzLCJzdWIiOiIxNCIsInNjb3BlcyI6W119.bHgh5nnCdBWMi5XKo-zII48FjxlDwnYaUlmvd6-j3iMxs4lc-d0nQlZ0iQTX-J5pmVBYr_x9wicvF4cxQ_xdnQAwaUrpgJdwp_tr7biwWYeIPPsj0-50coRvx-onpIPOj7rUB5-8bt6bN6r1HxfNbnbeDCOwKAjCVagXZ7j3CWn3uXUJWkwQloYPmg77PEJtrPrbjuw0OaVFxWnqKXgRsCtd-3qZWbMR4tt28DQFoIdUiljo-bK87AW65xJAA95jgqPm7W3umNB4sdCJtoBv4NEIohhKLAQQPTqyvsy-efX1Z6vnyKvfO-c-ul6wD3PgutWmY5GWHvy-qAcJDVEhEtKWOOZRPIsk5x9q_71rIl9wP8GzRlHj6NUmbhnN-_5XWsXItXc-syOzZWZEu593dE2zpr2_KNQoq4qdl0cAPbZjcToijWcawBU2Qt4AyqVCx8cpAHzLlC6Ufd7xVh1ZJknZjjZI515YfWMQEy_wqoqJofoKKYTcTLuMGZPx3usmuUznmTfeXdvY1aCiBX-mNO0CuVhhtxrVlrJsuqBaHRRdyee3tGjWm-CM7L1odXsrHF2or5rqV2uqMpKzYhKGUPju6YcigSMLPkDqSzSyDjY6kA_wmXiZQ--tYCTW1m65HREsbGdJLd9ZVcSMw91mN1yyU7ivnVHI_koivda6Y2M'
-
-
 
     console.log(`Company Registration : ${JSON.stringify(getState().companyInformationReducer)}`)
     const { full_name, ic_no, phone, ic_image, position } = getState().companyInformationReducer

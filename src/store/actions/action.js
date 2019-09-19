@@ -28,7 +28,7 @@ export const getToken = () => {
 export const register = (values) => {
     return async (dispatch, getState) => {
         const { name, email, password, password_confirmation } = values
-        const { token_type, access_token, expo_token } = await getState().registrationReducer        
+        const { token_type, access_token, expo_token } = await getState().registrationReducer
         await dispatch(registerApi(token_type, access_token, name, email, password, password_confirmation, expo_token))
         //await dispatch(getPersonalToken())
     }
@@ -72,9 +72,7 @@ export const registerCompany = (values) => {
 
 export const contactPerson = (values) => {
     return (dispatch, getState) => {
-
         dispatch(contactPersonAPI(values))
-
     }
 }
 
@@ -98,3 +96,107 @@ export const logout = () => {
         //dispatch({ type: 'SET_LOGIN', payload: { proceed: false } })
     }
 }
+
+
+export const saveDocPic = (result, doc) => {
+    console.log(`result yang mengasyikkan ${JSON.stringify(doc)}`)
+    const { uri } = result
+    return async (dispatch, getState) => {
+        const blob = await urlToBlob(uri)
+        const { data } = blob
+
+        const fileName = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+
+        const params = {
+            Body: blob,
+            Bucket: `${config.bucketName}`,
+            Key: fileName
+        };
+        // Sending the file to the Spaces
+        s3.putObject(params)
+            .on('build', request => {
+                request.httpRequest.headers.Host = `${config.digitalOceanSpaces}`;
+                request.httpRequest.headers['Content-Length'] = data.size;
+                request.httpRequest.headers['Content-Type'] = data.type;
+                request.httpRequest.headers['x-amz-acl'] = 'public-read';
+            })
+            .send((err) => {
+                if (err) console.log(err);
+                else {
+                    // If there is no error updating the editor with the imageUrl
+                    const imageUrl = `${config.digitalOceanSpaces}/` + fileName
+                    console.log(imageUrl);
+                    //dispatch({ type: 'SET_USER_PROFILE', payload: { profile_pic: imageUrl } })
+
+                    switch (doc) {
+                        case 'mykad':
+                            dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument1: imageUrl, isDocument1fileName: fileName } });
+                            break;
+                        case 'company':
+                            dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument2: imageUrl, isDocument1fileName: fileName } });
+                            break;
+                        case 'business':
+                            dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument3: imageUrl, isDocument1fileName: fileName } });
+                            break;
+
+                    }
+
+                   // dispatch({ type: 'SET_CONTACT_PERSON', payload: { ic_image: imageUrl, fileName } })
+                    //dispatch(editUserApi())
+                }
+            });
+
+    }
+}
+
+
+
+export const saveDocumentDO = (result,doc) => {
+    const { type, uri, name, size } = result
+    return async (dispatch, getState) => {
+        const blob = await urlToBlob(uri)
+        const { data } = blob
+
+        console.log(`blob ialah ${JSON.stringify(blob)}`)
+        const fileName = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+
+        const params = {
+            Body: blob,
+            Bucket: `${config.bucketName}`,
+            Key: fileName
+        };
+        // Sending the file to the Spaces
+        s3.putObject(params)
+            .on('build', request => {
+                request.httpRequest.headers.Host = `${config.digitalOceanSpaces}`;
+                request.httpRequest.headers['Content-Length'] = data.size;
+                request.httpRequest.headers['Content-Type'] = data.type;
+                request.httpRequest.headers['x-amz-acl'] = 'public-read';
+            })
+            .send((err) => {
+                if (err) console.log(err);
+                else {
+                    // If there is no error updating the editor with the imageUrl
+                    const imageUrl = `${config.digitalOceanSpaces}/` + fileName
+                    console.log(imageUrl, name);
+
+                    switch (doc) {
+                        case 'mykad':
+                            dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument1: imageUrl, isDocument1fileName: fileName,docPicker:true } });
+                            break;
+                        case 'company':
+                            dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument2: imageUrl, isDocument1fileName: fileName,docPicker:true } });
+                            break;
+                        case 'business':
+                            dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument3: imageUrl, isDocument1fileName: fileName,docPicker:true } });
+                            break;
+
+                    }
+
+                    //dispatch({ type: 'SET_CONTACT_PERSON', payload: { ic_image: imageUrl, fileName: name } })
+                }
+            });
+
+    }
+}
+
