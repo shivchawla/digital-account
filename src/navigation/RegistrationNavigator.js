@@ -24,23 +24,26 @@ import SignupPersonalSuccessScreen from '../screens/SignupPersonalSuccessScreen'
 import CompanyDocumentScreen from '../screens/CompanyDocumentScreen';
 import DocumentCameraScreen from '../screens/DocumentCameraScreen';
 import DocumentUploadScreen from '../screens/DocumentUploadScreen';
+import CompanyDocumentSuccessScreen from '../screens/CompanyDocumentSuccessScreen';
+import RegistrationDeclarationScreen from '../screens/RegistrationDeclarationScreen';
 // import ContactPersonSuccessScreen from '../screens/ContactPersonSuccessScreen';
 // import CameraICScreen from '../screens/CameraICScreen';
 
 const Registration = createStackNavigator({
-  Intro: IntroScreen,
-  Agreement: AgreementScreen,
-  SignUpPersonal: SignupPersonalScreen,
-  SignUpPersonalSuccess: SignupPersonalSuccessScreen,
-  CompanyInformation: CompanyInformationScreen,
-  CompanyContactInformation: CompanyContactInformationScreen,
-  CompanyContactAddressInformation: CompanyContactAddressInformationScreen,
-  CompanyInfoSuccess: CompanyInfoSuccessScreen,
-  ContactPerson: ContactPersonScreen,
-  ContactPersonSuccess: ContactPersonSuccessScreen,
-  CompanyDocument:CompanyDocumentScreen,
-  DocumentCamera:DocumentCameraScreen,
-  DocumentUpload:DocumentUploadScreen
+  // Intro: IntroScreen,
+  // Agreement: AgreementScreen,
+  // SignUpPersonal: SignupPersonalScreen,
+  // SignUpPersonalSuccess: SignupPersonalSuccessScreen,
+  // CompanyInformation: CompanyInformationScreen,
+  // CompanyContactInformation: CompanyContactInformationScreen,
+
+  // CompanyInfoSuccess: CompanyInfoSuccessScreen,
+  // ContactPerson: ContactPersonScreen,
+  // ContactPersonSuccess: ContactPersonSuccessScreen,
+  // CompanyDocument: CompanyDocumentScreen,
+
+  // CompanyDocumentSuccess: CompanyDocumentSuccessScreen,
+  RegistrationDeclaration: RegistrationDeclarationScreen
 
 
   // DetailsConnectedParties: DetailsOfConnectedPartiesScreen,
@@ -52,6 +55,10 @@ const RegistrationStack = createStackNavigator(
     Main: { screen: Registration, },
     // DocUpload: { screen: DocUploadScreen, },
     // CameraIC: { screen: CameraICScreen, },
+    DocumentCamera: { screen: DocumentCameraScreen },
+    DocumentUpload: { screen: DocumentUploadScreen },
+
+    CompanyContactAddressInformation: { screen: CompanyContactAddressInformationScreen },
 
   },
   {

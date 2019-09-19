@@ -8,7 +8,7 @@ Amplify.configure(aws_exports);///
 import s3 from '../../do/DigitalOcean'
 import config from '../../do/config'
 
-import { requestToken, kycMobile, kycMobileVerify, kycBasicInformation, requestPersonalToken, urlToBlob, kycBasicInformation2, kycPinNumber, registerApi, registerOTPApi, verifyPhoneApi, companyInfoAPI, contactPersonAPI, detailConnectAPI, declarationSignAPI, requestTokenLMS, registerLMSApi, requestPersonalTokenLMS } from './apiRegistration'
+import { requestToken, kycMobile, kycMobileVerify, kycBasicInformation, requestPersonalToken, urlToBlob, kycBasicInformation2, kycPinNumber, registerApi, registerOTPApi, verifyPhoneApi, companyInfoAPI, contactPersonAPI, submitDocApi, declarationApi, detailConnectAPI, declarationSignAPI, requestTokenLMS, registerLMSApi, requestPersonalTokenLMS } from './apiRegistration'
 import { userInfo, latestTransaction, depositApi, sendMoney, withdrawApi, requestMoney, analyticSummary, notificationApi, analytic, userList, resetPinApi, editMobileDetail, editMobileDetailVerify, pushNotification, editPersonalDetail, newsApi, eventApi, promotionApi, handbooksApi, einfoApi, applyLoanApi, getUserInfoApi, getCompanyInfoApi, getListWorkersApi, doneForNowApi, sendNotificationApi, bizDirApi, listAgencyApi, addExpoTokenApi, connectionStatusApi, getAssociateApi, getPendingApi, loanInfoApi, getCoursesApi, editUserApi, generateJWTApi, requestConnectApi, applyGrantApi, grantInfoApi, acceptApi } from './apiDashboard'
 //import {pusherListen} from './pusher'
 import moment from 'moment'
@@ -76,6 +76,17 @@ export const contactPerson = (values) => {
     }
 }
 
+export const submitDoc = (values) => {
+    return (dispatch, getState) => {
+        dispatch(submitDocApi(values))
+    }
+}
+
+export const declaration = (values) => {
+    return (dispatch, getState) => {
+        dispatch(declarationApi(values))
+    }
+}
 
 export const logout = () => {
     return async (dispatch, getState) => {
@@ -99,7 +110,7 @@ export const logout = () => {
 
 
 export const saveDocPic = (result, doc) => {
-    console.log(`result yang mengasyikkan ${JSON.stringify(doc)}`)
+    console.log(`result yang mengasyikkan ${JSON.stringify(result)}`)
     const { uri } = result
     return async (dispatch, getState) => {
         const blob = await urlToBlob(uri)
@@ -133,15 +144,15 @@ export const saveDocPic = (result, doc) => {
                             dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument1: imageUrl, isDocument1fileName: fileName } });
                             break;
                         case 'company':
-                            dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument2: imageUrl, isDocument1fileName: fileName } });
+                            dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument2: imageUrl, isDocument2fileName: fileName } });
                             break;
                         case 'business':
-                            dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument3: imageUrl, isDocument1fileName: fileName } });
+                            dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument3: imageUrl, isDocument3fileName: fileName } });
                             break;
 
                     }
 
-                   // dispatch({ type: 'SET_CONTACT_PERSON', payload: { ic_image: imageUrl, fileName } })
+                    // dispatch({ type: 'SET_CONTACT_PERSON', payload: { ic_image: imageUrl, fileName } })
                     //dispatch(editUserApi())
                 }
             });
@@ -151,7 +162,7 @@ export const saveDocPic = (result, doc) => {
 
 
 
-export const saveDocumentDO = (result,doc) => {
+export const saveDocumentDO = (result, doc) => {
     const { type, uri, name, size } = result
     return async (dispatch, getState) => {
         const blob = await urlToBlob(uri)
@@ -182,13 +193,13 @@ export const saveDocumentDO = (result,doc) => {
 
                     switch (doc) {
                         case 'mykad':
-                            dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument1: imageUrl, isDocument1fileName: fileName,docPicker:true } });
+                            dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument1: imageUrl, isDocument1fileName: fileName, docPicker: true } });
                             break;
                         case 'company':
-                            dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument2: imageUrl, isDocument1fileName: fileName,docPicker:true } });
+                            dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument2: imageUrl, isDocument2fileName: fileName, docPicker: true } });
                             break;
                         case 'business':
-                            dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument3: imageUrl, isDocument1fileName: fileName,docPicker:true } });
+                            dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument3: imageUrl, isDocument3fileName: fileName, docPicker: true } });
                             break;
 
                     }

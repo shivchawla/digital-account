@@ -25,8 +25,7 @@ const DocumentCameraScreen = (props) => {
     const saveDocPic = (val,doc) => dispatch(actionCreator.saveDocPic(val,doc));
     const saveDocumentDO = (val,doc) => dispatch(actionCreator.saveDocumentDO(val,doc));
     const [hasCameraPermission, setCameraPermission] = useState(null)
-    const [scanned, setScanned] = useState(false)
-
+  
     const takePicture = async () => {
         const doc=props.navigation.getParam('doc')
         const document = await this.camera.takePictureAsync();
@@ -53,6 +52,10 @@ const DocumentCameraScreen = (props) => {
 
     useEffect(() => {
         docPicker? props.navigation.navigate('CompanyDocument'):null
+        if(docPicker){
+            dispatch({ type: 'SET_CONTACT_PERSON', payload: { docPicker:false } });  
+            props.navigation.navigate('CompanyDocument')
+        }
         getPermission()        
     }, [docPicker]);
 
