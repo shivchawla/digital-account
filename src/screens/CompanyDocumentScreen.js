@@ -33,7 +33,6 @@ import moment from 'moment'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import * as actionCreator from '../store/actions/action'
 
-
 const validationSchema = Yup.object().shape({
     cddContactPersonName: Yup
         .string()

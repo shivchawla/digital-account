@@ -44,6 +44,9 @@ import InvoicesDetailScreen from '../screens/InvoicesDetailScreen';
 import ReportDetailScreen from '../screens/ReportDetailScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import InvoiceSuccessScreen from '../screens/InvoiceSuccessScreen';
+import ZakatScreen from '../screens/ZakatScreen';
+import PayrollScreen from '../screens/PayrollScreen';
+import RemittanceScreen from '../screens/RemittanceScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -136,6 +139,15 @@ const DashboardStackWithModal = createStackNavigator(
     InvoiceSuccess: {
       screen: InvoiceSuccessScreen,
     },
+    Zakat: {
+      screen: ZakatScreen,
+    },
+    Payroll: {
+      screen: PayrollScreen,
+    },
+    Remittance: {
+      screen: RemittanceScreen,
+    },
   },
   {
     mode: 'modal',
@@ -147,7 +159,7 @@ const DashboardStackWithModal = createStackNavigator(
 DashboardStackWithModal.navigationOptions = ({ navigation }) => {
   let tabBarVisible = true;
   let routeName = navigation.state.routes[navigation.state.index].routeName
-  if ( routeName == 'InvoiceSuccess' || routeName == 'LoanSuccess' || routeName == 'Customer' || routeName == 'Profile' || routeName == 'ReportDetail' || routeName == 'InvoicesDetail' || routeName == 'WithdrawSuccess' || routeName == 'LoanSuccessScreen' || routeName == 'Item' || routeName == 'Customer' || routeName == 'Vendor' || routeName == 'Withdraw' || routeName == 'Account' || routeName == 'Loan' || routeName == 'LoanDetail' || routeName == 'LoanApplication' || routeName == 'LoanApplicationDeclaration' || routeName == 'ConnectedParties' || routeName == 'EditProfile' || routeName == 'NewInvoice' || routeName == 'DataSetting' || routeName == 'Vendor' || routeName == 'Support') {
+  if ( routeName == 'Transfer' || routeName == 'Remittance' || routeName == 'Zakat' || routeName == 'Payroll' || routeName == 'InvoiceSuccess' || routeName == 'LoanSuccess' || routeName == 'Customer' || routeName == 'Profile' || routeName == 'ReportDetail' || routeName == 'InvoicesDetail' || routeName == 'WithdrawSuccess' || routeName == 'LoanSuccessScreen' || routeName == 'Item' || routeName == 'Customer' || routeName == 'Vendor' || routeName == 'Withdraw' || routeName == 'Account' || routeName == 'Loan' || routeName == 'LoanDetail' || routeName == 'LoanApplication' || routeName == 'LoanApplicationDeclaration' || routeName == 'ConnectedParties' || routeName == 'EditProfile' || routeName == 'NewInvoice' || routeName == 'DataSetting' || routeName == 'Vendor' || routeName == 'Support') {
     tabBarVisible = false
   }
 
