@@ -6,7 +6,7 @@ import {
     Text,
     TouchableOpacity,
     View,
-    CheckBox, KeyboardAvoidingView, ScrollView,
+    CheckBox,
 } from 'react-native';
 //import NavigationService from '../navigation/NavigationService'
 import { Ionicons } from '@expo/vector-icons';
@@ -22,7 +22,7 @@ const AgreementScreen = (props) => {
 
     return (
 
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', alignContent:'center' }}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
 
             <View style={{ flex: 10, margin: 10 }}>
 
@@ -42,7 +42,7 @@ FCGB is referred to as “we”, “us”, “our” or “ours”. Any person u
                 <Text style={[styles.caption, { alignSelf: 'flex-start', textAlign: 'left' }]}>By communicating with us, using our services, or services from us or by virtue of your engagement with us, you acknowledge that you have read and understood this Policy/Notice and agree and consent to the use, processing and transfer of your Personal Data by us as described in this Notice.
                         We shall have the right to modify, update or amend the terms of this Notice at any time by placing the updated Notice on the Websites. </Text>
 
-                <View style={{ flexDirection: 'row', marginTop: 5, justifyContent:'center', alignItems:'center' }}>
+                <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'center', alignItems: 'center' }}>
                     {(Platform.OS == 'ios') ?
 
                         <CheckBox2 isChecked={agreement} onClick={() => setAgreement(!agreement)} />

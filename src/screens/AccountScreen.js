@@ -20,7 +20,7 @@ const AccountScreen = (props) => {
 
     return (
 
-        <View style={{ flex: 1, }}>
+        <View style={{ flex: 1 }}>
 
             <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#055E7C' }}>
 
@@ -31,7 +31,7 @@ const AccountScreen = (props) => {
                 </View>
 
                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={[styles.title, {color: '#055E7C'}]}>Account</Text>
+                    <Text style={[styles.title, { color: '#055E7C' }]}>Account</Text>
                 </View>
 
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
@@ -40,17 +40,17 @@ const AccountScreen = (props) => {
 
             </View>
 
-            <View style={{ flex: 9, padding: 10 }}>
+            <View style={{ flex: 9, padding: 10, flexDirection: 'row', justifyContent: 'center' }}>
 
                 <View>
 
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10 }}>
-                        <Text style={[styles.h2, {color: '#055E7C'}]}>Health</Text>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 15 }}>
+                        <Text style={[styles.h2, { color: '#055E7C' }]}>Health</Text>
                     </View>
 
                     <View style={{ marginTop: 5 }}>
 
-                        <View style={{ width: Layout.window.width - 100, borderRadius: 10, borderWidth: 1, borderColor: 'lightgrey', flexDirection: 'row', justifyContent:'center', alignContent:'center', alignItems:'center'}}>
+                        <View style={{ width: Layout.window.width - 100, borderRadius: 10, borderWidth: 1, borderColor: 'lightgrey', flexDirection: 'row', justifyContent: 'center', alignContent: 'center', alignItems: 'center' }}>
                             <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={[scoreColor, '#fff',]} style={{ flex: score, padding: 10, borderRadius: 10, }} />
                             <View style={{ flex: 100 - score, borderRadius: 10, backgroundColor: '#fff', padding: 10, }} />
                         </View>
@@ -63,8 +63,8 @@ const AccountScreen = (props) => {
 
                     </View>
 
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10 }}>
-                        <Text style={[styles.h2, {color: '#055E7C'}]}>Account Information</Text>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 15 }}>
+                        <Text style={[styles.h2, { color: '#055E7C' }]}>Account Information</Text>
                     </View>
 
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
@@ -122,7 +122,7 @@ const AccountScreen = (props) => {
                         </View>
 
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, {color: 'green'}]}>Active</Text>
+                            <Text style={[styles.text, { color: 'green' }]}>Active</Text>
                         </View>
 
                     </View>

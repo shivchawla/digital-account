@@ -33,16 +33,16 @@ const Registration = createStackNavigator({
   // Intro: IntroScreen,
   // Agreement: AgreementScreen,
   // SignUpPersonal: SignupPersonalScreen,
-  // SignUpPersonalSuccess: SignupPersonalSuccessScreen,
-  // CompanyInformation: CompanyInformationScreen,
-  // CompanyContactInformation: CompanyContactInformationScreen,
+   SignUpPersonalSuccess: SignupPersonalSuccessScreen,
+   CompanyInformation: CompanyInformationScreen,
+   CompanyContactInformation: CompanyContactInformationScreen,
 
-  // CompanyInfoSuccess: CompanyInfoSuccessScreen,
-  // ContactPerson: ContactPersonScreen,
-  // ContactPersonSuccess: ContactPersonSuccessScreen,
-  // CompanyDocument: CompanyDocumentScreen,
+   CompanyInfoSuccess: CompanyInfoSuccessScreen,
+   ContactPerson: ContactPersonScreen,
+   ContactPersonSuccess: ContactPersonSuccessScreen,
+   CompanyDocument: CompanyDocumentScreen,
 
-  // CompanyDocumentSuccess: CompanyDocumentSuccessScreen,
+   CompanyDocumentSuccess: CompanyDocumentSuccessScreen,
   RegistrationDeclaration: RegistrationDeclarationScreen
 
 
@@ -66,6 +66,5 @@ const RegistrationStack = createStackNavigator(
     headerMode: 'none',
   },
 );
-
 
 export default RegistrationStack

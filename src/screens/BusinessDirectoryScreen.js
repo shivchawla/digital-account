@@ -4,7 +4,7 @@ import {
     TouchableOpacity,
     Text,
     Image,
-    StyleSheet
+    ScrollView
 } from 'react-native';
 
 
@@ -22,114 +22,359 @@ const BusinessDirectoryScreen = (props) => {
 
         <View style={{ flex: 1, }}>
 
-            <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#055E7C' }}>
+            <ScrollView>
 
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
-                    <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                        <Ionicons name="ios-arrow-back" color={'#055E7C'} style={{ fontSize: 30, paddingLeft: 20 }} />
-                    </TouchableOpacity>
-                </View>
+                <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#055E7C' }}>
 
-                <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={[styles.title, { color: '#055E7C' }]}>Account</Text>
-                </View>
-
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
-                    <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
-                </View>
-
-            </View>
-
-            <View style={{ flex: 9, padding: 10 }}>
-
-                <View>
-
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10 }}>
-                        <Text style={[styles.h2, { color: '#055E7C' }]}>Health</Text>
+                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
+                        <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
+                            <Ionicons name="ios-arrow-back" color={'#055E7C'} style={{ fontSize: 30, paddingLeft: 20 }} />
+                        </TouchableOpacity>
                     </View>
 
-                    <View style={{ marginTop: 5 }}>
-
-                        <View style={{ width: Layout.window.width - 100, borderRadius: 10, borderWidth: 1, borderColor: 'lightgrey', flexDirection: 'row', justifyContent: 'center', alignContent: 'center', alignItems: 'center' }}>
-                            <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} locations={[0.0, 1.0]} colors={[scoreColor, '#fff',]} style={{ flex: score, padding: 10, borderRadius: 10, }} />
-                            <View style={{ flex: 100 - score, borderRadius: 10, backgroundColor: '#fff', padding: 10 }} />
-                        </View>
-
-                        <View style={{ width: Layout.window.width - 100, flexDirection: 'row', justifyContent: 'space-evenly' }}>
-                            <Text style={[styles.small, { color: '#055E7C' }]}>Poor</Text>
-                            <Text style={[styles.small, { color: '#055E7C' }]}>Average</Text>
-                            <Text style={[styles.small, { color: '#055E7C' }]}>Good</Text>
-                        </View>
-
+                    <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={[styles.title, { color: '#055E7C' }]}>Business Directory</Text>
                     </View>
 
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10 }}>
-                        <Text style={[styles.h2, { color: '#055E7C' }]}>Account Information</Text>
-                    </View>
-
-                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
-
-                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={styles.text}>Account Number</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={styles.text}>123456789</Text>
-                        </View>
-
-                    </View>
-
-                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
-
-                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={styles.text}>Account Type</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={styles.text}>Business</Text>
-                        </View>
-
-                    </View>
-
-                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
-
-                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={styles.text}>Balance</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={styles.text}>RM18,839.00</Text>
-                        </View>
-
-                    </View>
-
-                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
-
-                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={styles.text}>Balance</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={styles.text}>RM18,839.00</Text>
-                        </View>
-
-                    </View>
-
-                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
-
-                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={styles.text}>Status</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, { color: 'green' }]}>Active</Text>
-                        </View>
-
+                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
+                        <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
                     </View>
 
                 </View>
 
-            </View>
+                <View style={{ flex: 9, padding: 10 }}>
+
+                    <View style={{ borderRadius: 5, margin: 15, padding: 15, borderColor: '#808080', borderWidth: 1 }}>
+
+                        <View style={{ flexDirection: 'row', marginTop: 5 }}>
+
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Name</Text>
+                            </View>
+
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Shawl Publika Sdn. Bhd.</Text>
+                            </View>
+
+                        </View>
+
+                        <View style={{ flexDirection: 'row', marginTop: 5 }}>
+
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Phone Number</Text>
+                            </View>
+
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>03-3362 408</Text>
+                            </View>
+
+                        </View>
+
+                        <View style={{ flexDirection: 'row', marginTop: 5 }}>
+
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Industry</Text>
+                            </View>
+
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Fashion & Apparel</Text>
+                            </View>
+
+                        </View>
+
+                        <View style={{ flexDirection: 'row', marginTop: 5 }}>
+
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Address</Text>
+                            </View>
+
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>No. 2A, Jalan Setia Dagang U13/AK, Seksyen U13, Setia Alam, 40170, Shah Alam, Selangor</Text>
+                            </View>
+
+                        </View>
+
+                    </View>
+
+                    <View style={{ borderRadius: 5, margin: 15, marginTop: 15, padding: 15, borderColor: '#808080', borderWidth: 1 }}>
+
+                        <View style={{ flexDirection: 'row', marginTop: 5 }}>
+
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Name</Text>
+                            </View>
+
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>MY Gogoprint Sdn. Bhd.</Text>
+                            </View>
+
+                        </View>
+
+                        <View style={{ flexDirection: 'row', marginTop: 5 }}>
+
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Phone Number</Text>
+                            </View>
+
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>03-3457 8907</Text>
+                            </View>
+
+                        </View>
+
+                        <View style={{ flexDirection: 'row', marginTop: 5 }}>
+
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Industry</Text>
+                            </View>
+
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Printing Service</Text>
+                            </View>
+
+                        </View>
+
+                        <View style={{ flexDirection: 'row', marginTop: 5 }}>
+
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Address</Text>
+                            </View>
+
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Wisma E&C, Suite 302, Level 2, No 2, Lorong Dungun Kiri, Bukit Damansara, 50490, Kuala Lumpur</Text>
+                            </View>
+
+                        </View>
+
+                    </View>
+
+                    <View style={{ borderRadius: 5, margin: 15, marginTop: 15, padding: 15, borderColor: '#808080', borderWidth: 1 }}>
+
+                        <View style={{ flexDirection: 'row', marginTop: 5 }}>
+
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Name</Text>
+                            </View>
+
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>MY Gogoprint Sdn. Bhd.</Text>
+                            </View>
+
+                        </View>
+
+                        <View style={{ flexDirection: 'row', marginTop: 5 }}>
+
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Phone Number</Text>
+                            </View>
+
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>03-3457 8907</Text>
+                            </View>
+
+                        </View>
+
+                        <View style={{ flexDirection: 'row', marginTop: 5 }}>
+
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Industry</Text>
+                            </View>
+
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Printing Service</Text>
+                            </View>
+
+                        </View>
+
+                        <View style={{ flexDirection: 'row', marginTop: 5 }}>
+
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Address</Text>
+                            </View>
+
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Wisma E&C, Suite 302, Level 2, No 2, Lorong Dungun Kiri, Bukit Damansara, 50490, Kuala Lumpur</Text>
+                            </View>
+
+                        </View>
+
+                    </View>
+
+                    <View style={{ borderRadius: 5, margin: 15, marginTop: 15, padding: 15, borderColor: '#808080', borderWidth: 1 }}>
+
+                        <View style={{ flexDirection: 'row', marginTop: 5 }}>
+
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Name</Text>
+                            </View>
+
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>MY Gogoprint Sdn. Bhd.</Text>
+                            </View>
+
+                        </View>
+
+                        <View style={{ flexDirection: 'row', marginTop: 5 }}>
+
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Phone Number</Text>
+                            </View>
+
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>03-3457 8907</Text>
+                            </View>
+
+                        </View>
+
+                        <View style={{ flexDirection: 'row', marginTop: 5 }}>
+
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Industry</Text>
+                            </View>
+
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Printing Service</Text>
+                            </View>
+
+                        </View>
+
+                        <View style={{ flexDirection: 'row', marginTop: 5 }}>
+
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Address</Text>
+                            </View>
+
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Wisma E&C, Suite 302, Level 2, No 2, Lorong Dungun Kiri, Bukit Damansara, 50490, Kuala Lumpur</Text>
+                            </View>
+
+                        </View>
+
+                    </View>
+
+                    <View style={{ borderRadius: 5, margin: 15, marginTop: 15, padding: 15, borderColor: '#808080', borderWidth: 1 }}>
+
+                        <View style={{ flexDirection: 'row', marginTop: 5 }}>
+
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Name</Text>
+                            </View>
+
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>MY Gogoprint Sdn. Bhd.</Text>
+                            </View>
+
+                        </View>
+
+                        <View style={{ flexDirection: 'row', marginTop: 5 }}>
+
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Phone Number</Text>
+                            </View>
+
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>03-3457 8907</Text>
+                            </View>
+
+                        </View>
+
+                        <View style={{ flexDirection: 'row', marginTop: 5 }}>
+
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Industry</Text>
+                            </View>
+
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Printing Service</Text>
+                            </View>
+
+                        </View>
+
+                        <View style={{ flexDirection: 'row', marginTop: 5 }}>
+
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Address</Text>
+                            </View>
+
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Wisma E&C, Suite 302, Level 2, No 2, Lorong Dungun Kiri, Bukit Damansara, 50490, Kuala Lumpur</Text>
+                            </View>
+
+                        </View>
+
+                    </View>
+
+                    <View style={{ borderRadius: 5, margin: 15, marginTop: 15, padding: 15, borderColor: '#808080', borderWidth: 1 }}>
+
+                        <View style={{ flexDirection: 'row', marginTop: 5 }}>
+
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Name</Text>
+                            </View>
+
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>MY Gogoprint Sdn. Bhd.</Text>
+                            </View>
+
+                        </View>
+
+                        <View style={{ flexDirection: 'row', marginTop: 5 }}>
+
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Phone Number</Text>
+                            </View>
+
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>03-3457 8907</Text>
+                            </View>
+
+                        </View>
+
+                        <View style={{ flexDirection: 'row', marginTop: 5 }}>
+
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Industry</Text>
+                            </View>
+
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Printing Service</Text>
+                            </View>
+
+                        </View>
+
+                        <View style={{ flexDirection: 'row', marginTop: 5 }}>
+
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Address</Text>
+                            </View>
+
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.small, { color: '#055E7C' }]}>Wisma E&C, Suite 302, Level 2, No 2, Lorong Dungun Kiri, Bukit Damansara, 50490, Kuala Lumpur</Text>
+                            </View>
+
+                        </View>
+
+                    </View>
+
+                    <View style={{ flex: 1, flexDirection: 'row', marginTop: 5, justifyContent: 'space-evenly', marginBottom: 10 }}>
+
+                        <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}>
+                            <Text style={[styles.small, { color: '#055E7C' }]}>Previous</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}>
+                            <Text style={[styles.small, { color: '#055E7C' }]}>1</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}>
+                            <Text style={[styles.small, { color: '#055E7C' }]}>Next</Text>
+                        </TouchableOpacity>
+
+                    </View>
+
+                </View>
+
+            </ScrollView>
 
         </View>
 
