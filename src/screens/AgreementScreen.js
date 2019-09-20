@@ -6,7 +6,7 @@ import {
     Text,
     TouchableOpacity,
     View,
-    CheckBox, KeyboardAvoidingView, ScrollView,
+    CheckBox,
 } from 'react-native';
 
 import { LinearGradient } from 'expo-linear-gradient'
@@ -40,7 +40,7 @@ FCGB is referred to as “we”, “us”, “our” or “ours”. Any person u
                 <Text style={[styles.small, { alignSelf: 'flex-start', textAlign: 'left', margin: 5, }]}>By communicating with us, using our services, or services from us or by virtue of your engagement with us, you acknowledge that you have read and understood this Policy/Notice and agree and consent to the use, processing and transfer of your Personal Data by us as described in this Notice.
                         We shall have the right to modify, update or amend the terms of this Notice at any time by placing the updated Notice on the Websites. </Text>
 
-                <View style={{ flexDirection: 'row', marginTop: 10, justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+                <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'center', alignItems: 'center' }}>
                     {(Platform.OS == 'ios') ?
 
                         <CheckBox2 isChecked={agreement} onClick={() => setAgreement(!agreement)} />

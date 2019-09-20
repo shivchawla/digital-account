@@ -54,23 +54,23 @@ const ReportScreen = (props) => {
                     <View style={{ flexDirection: 'row', marginTop: 5, borderTopWidth: 1, borderBottomWidth: 1, borderColor: '055E7C', paddingTop: 3, paddingBottom: 3 }}>
 
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, { color: '#055E7C' }]}>Ref</Text>
+                            <Text style={[styles.text]}>Ref</Text>
                         </View>
 
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, { color: '#055E7C' }]}>Date</Text>
+                            <Text style={[styles.text]}>Date</Text>
                         </View>
 
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, { color: '#055E7C' }]}>Type</Text>
+                            <Text style={[styles.text]}>Type</Text>
                         </View>
 
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, { color: '#055E7C' }]}>Currency</Text>
+                            <Text style={[styles.text]}>Currency</Text>
                         </View>
 
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, { color: '#055E7C' }]}>Action</Text>
+                            <Text style={[styles.text, { marginLeft: 25 }]}>Action</Text>
                         </View>
 
                     </View>
@@ -94,7 +94,7 @@ const ReportScreen = (props) => {
                         </View>
 
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>View</Text>
+                            <Text style={[styles.text, { marginLeft: 25 }]}>View</Text>
                         </View>
 
                     </TouchableOpacity>
@@ -118,7 +118,7 @@ const ReportScreen = (props) => {
                         </View>
 
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>View</Text>
+                            <Text style={[styles.text, { marginLeft: 25 }]}>View</Text>
                         </View>
 
                     </TouchableOpacity>
@@ -142,7 +142,7 @@ const ReportScreen = (props) => {
                         </View>
 
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>View</Text>
+                            <Text style={[styles.text, { marginLeft: 25 }]}>View</Text>
                         </View>
 
                     </TouchableOpacity>
@@ -166,7 +166,7 @@ const ReportScreen = (props) => {
                         </View>
 
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>View</Text>
+                            <Text style={[styles.text, { marginLeft: 25 }]}>View</Text>
                         </View>
 
                     </TouchableOpacity>

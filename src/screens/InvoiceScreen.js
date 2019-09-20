@@ -45,7 +45,7 @@ const InvoiceScreen = (props) => {
 
                     <View style={{ marginTop: 10, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end' }}>
                         <TouchableOpacity onPress={() => props.navigation.navigate('NewInvoice')} style={{ padding: 5, paddingLeft: 8, paddingRight: 8, backgroundColor: '#055E7C', borderRadius: 5 }}>
-                            <Text style={[styles.text, { color: '#fff' }]}>New</Text>
+                            <Text style={[styles.text, { color: '#fff' }]}>New Invoice</Text>
                         </TouchableOpacity>
                     </View>
 
@@ -55,10 +55,10 @@ const InvoiceScreen = (props) => {
 
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
 
-                        <Text style={[styles.h2, {color:'#055E7C'}]}>Invoices</Text>
+                        <Text style={[styles.h2, { color: '#055E7C' }]}>Invoices</Text>
 
                         <TouchableOpacity onPress={props.navigation.openDrawer} style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={[styles.small, { paddingRight: 5, color:'#055E7C' }]}>Search</Text>
+                            <Text style={[styles.small, { paddingRight: 5, color: '#055E7C' }]}>Search</Text>
                             <Ionicons name="ios-arrow-forward" color={'#000'} style={{ fontSize: 15, paddingRight: 5 }} />
                         </TouchableOpacity>
 
@@ -67,23 +67,23 @@ const InvoiceScreen = (props) => {
                     <View style={{ flexDirection: 'row', marginTop: 5, borderTopWidth: 1, borderBottomWidth: 1, borderColor: '055E7C', paddingTop: 3, paddingBottom: 3 }}>
 
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, {color:'#055E7C'}]}>Ref</Text>
+                            <Text style={styles.text}>Ref</Text>
                         </View>
 
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, {color:'#055E7C'}]}>Date</Text>
+                            <Text style={styles.text}>Date</Text>
                         </View>
 
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, {color:'#055E7C'}]}>Type</Text>
+                            <Text style={styles.text}>Type</Text>
                         </View>
 
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, {color:'#055E7C'}]}>Currency</Text>
+                            <Text style={styles.text}>Currency</Text>
                         </View>
 
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, {color:'#055E7C'}]}>Action</Text>
+                            <Text style={[styles.text, { marginLeft: 25 }]}>Action</Text>
                         </View>
 
                     </View>
@@ -107,7 +107,7 @@ const InvoiceScreen = (props) => {
                         </View>
 
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>View</Text>
+                            <Text style={[styles.text, { marginLeft: 25 }]}>View</Text>
                         </View>
 
                     </TouchableOpacity>
@@ -131,7 +131,7 @@ const InvoiceScreen = (props) => {
                         </View>
 
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>View</Text>
+                            <Text style={[styles.text, { marginLeft: 25 }]}>View</Text>
                         </View>
 
                     </TouchableOpacity>
@@ -155,7 +155,7 @@ const InvoiceScreen = (props) => {
                         </View>
 
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>View</Text>
+                            <Text style={[styles.text, { marginLeft: 25 }]}>View</Text>
                         </View>
 
                     </TouchableOpacity>
@@ -179,7 +179,7 @@ const InvoiceScreen = (props) => {
                         </View>
 
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>View</Text>
+                            <Text style={[styles.text, { marginLeft: 25 }]}>View</Text>
                         </View>
 
                     </TouchableOpacity>
