@@ -31,7 +31,7 @@ const validationSchema = Yup.object().shape({
 
 const LoanApplicationScreen = (props) => {
     //const loanData = useSelector(state => state.loanApplicationReducer, shallowEqual)
-    
+
     const dispatch = useDispatch()
     const setLoanData = (val) => dispatch({ type: 'SET_LOAN_DATA', payload: { ...val } });
 
@@ -69,8 +69,8 @@ const LoanApplicationScreen = (props) => {
                                 </TouchableOpacity>
                             </View>
 
-                            <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                                <Text style={[styles.title, {color: '#055E7C'}]}>Loan</Text>
+                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                                <Text style={styles.title}>Loan</Text>
                             </View>
 
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
@@ -78,28 +78,33 @@ const LoanApplicationScreen = (props) => {
                             </View>
 
                         </View>
-                        <View style={{ justifyContent: 'space-between', flex: 9 }}>
+                        <View style={{ flex: 9 }}>
 
-                            <View style={{ flex: 9, margin: 10 }}>
-                                <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 }}>
-                                    <Text style={[styles.h3, {color: '#055E7C'}]}>Financing</Text>
+                            <View style={{ flex: 9, margin: 30 }}>
+
+                                <View style={{ flexDirection: 'row', marginBottom: 10 }}>
+                                    <Text style={styles.h3}>Financing</Text>
                                 </View>
 
                                 <View style={{ marginBottom: 10 }}>
-                                    <Text style={[styles.text, { marginBottom: 5, color: '#055E7C' }]}>Total Financing (MYR)</Text>
+                                    <Text style={[styles.text, { marginBottom: 5 }]}>Total Financing (MYR)</Text>
                                     <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} onBlur={FormikProps.handleBlur('amount')} style={{ borderWidth: 1, borderColor: amountTouched && amountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={amountTouched && amountError ? '' : ''} placeholderTextColor={amountTouched && amountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
                                     {amountTouched && amountError && <Text style={styles.error}>{amountError}</Text>}
                                 </View>
 
                                 <View style={{ marginBottom: 10 }}>
-                                    <Text style={[styles.text, { marginBottom: 5, color: '#055E7C' }]}>Purpose</Text>
+                                    <Text style={[styles.text, { marginBottom: 5 }]}>Purpose</Text>
                                     <TextInput value={purpose} onChangeText={FormikProps.handleChange('purpose')} onBlur={FormikProps.handleBlur('purpose')} style={{ borderWidth: 1, borderColor: purposeTouched && purposeError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={purposeTouched && purposeError ? '' : ''} placeholderTextColor={purposeTouched && purposeError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                     {purposeTouched && purposeError && <Text style={styles.error}>{purposeError}</Text>}
                                 </View>
 
+                                <View style={{ marginBottom: 25, marginTop: 25 }}>
+                                    <Text style={styles.text}>Financing Declaration</Text>
+                                </View>
+
                                 <View style={{ marginBottom: 10 }}>
 
-                                    <Text style={[styles.text, { marginBottom: 5, color: '#055E7C' }]}>Is company connected with SME Bank</Text>
+                                    <Text style={[styles.text, { marginBottom: 5 }]}>Is company connected with SME Bank?</Text>
 
                                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                         <CheckBox onClick={() => handleCheckBox()} isChecked={smeConnected} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', paddingRight: 10 }} /><Text>Yes</Text>
@@ -112,7 +117,7 @@ const LoanApplicationScreen = (props) => {
                                 </View>
                             </View>
 
-                             <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
+                            <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
 
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 }}>
                                     <LinearGradient colors={['#FFF', '#FFF']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
@@ -131,7 +136,7 @@ const LoanApplicationScreen = (props) => {
 
                         </View>
                     </KeyboardAvoidingView>
-                    )
+                )
             }}
         </Formik >
 

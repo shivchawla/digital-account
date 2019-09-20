@@ -8,36 +8,36 @@ export default StyleSheet.create({
   text: {
     fontSize,
     fontFamily: 'Montserrat_light',
-    color: '#000'
+    color: '#055E7C'
   },
   title: {
     fontSize,
     fontFamily: 'Montserrat_medium',
-    color: '#4D6BFA',
+    color: '#055E7C',
     fontSize: fontSize * 1.4
   },
   h3: {
     fontSize,
     fontFamily: 'Montserrat_medium',
-    color: '#000',
+    color: '#055E7C',
     fontSize: fontSize * 1.2
   },
   h2: {
     fontSize,
     fontFamily: 'Montserrat_medium',
-    color: '#000',
+    color: '#055E7C',
     fontSize: fontSize * 1.3
   },
   h1: {
     fontSize,
     fontFamily: 'Montserrat_medium',
-    color: '#000',
+    color: '#055E7C',
     fontSize: fontSize * 1.4
   },
   small: {
     fontSize,
     fontFamily: 'Montserrat_thin',
-    color: '#000',
+    color: '#055E7C',
     fontSize: fontSize * 0.8
   },
   error: {

@@ -50,7 +50,7 @@ const ChangeNumberScreen = (props) => {
                             </View>
 
                             <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                                <Text style={[styles.title, { color: '#055E7C' }]}>Change Phone Number</Text>
+                                <Text numberOfLines={1} style={styles.title} ellipsizeMode='tail'>Change Phone Number</Text>
                             </View>
 
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>

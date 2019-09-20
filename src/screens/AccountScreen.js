@@ -31,7 +31,7 @@ const AccountScreen = (props) => {
                 </View>
 
                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={[styles.title, { color: '#055E7C' }]}>Account</Text>
+                    <Text style={styles.title}>Account</Text>
                 </View>
 
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
@@ -45,7 +45,7 @@ const AccountScreen = (props) => {
                 <View>
 
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 15 }}>
-                        <Text style={[styles.h2, { color: '#055E7C' }]}>Health</Text>
+                        <Text style={styles.h2}>Health</Text>
                     </View>
 
                     <View style={{ marginTop: 5 }}>
@@ -56,15 +56,15 @@ const AccountScreen = (props) => {
                         </View>
 
                         <View style={{ width: Layout.window.width - 100, flexDirection: 'row', justifyContent: 'space-evenly' }}>
-                            <Text style={[styles.small, { color: '#055E7C' }]}>Poor</Text>
-                            <Text style={[styles.small, { color: '#055E7C' }]}>Average</Text>
-                            <Text style={[styles.small, { color: '#055E7C' }]}>Good</Text>
+                            <Text style={styles.small}>Poor</Text>
+                            <Text style={styles.small}>Average</Text>
+                            <Text style={styles.small}>Good</Text>
                         </View>
 
                     </View>
 
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 15 }}>
-                        <Text style={[styles.h2, { color: '#055E7C' }]}>Account Information</Text>
+                        <Text style={styles.h2}>Account Information</Text>
                     </View>
 
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>

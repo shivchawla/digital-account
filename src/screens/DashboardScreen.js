@@ -20,7 +20,7 @@ const DashboardScreen = (props) => {
   return (
     <View style={{ flex: 1, }}>
 
-      <View style={{ flex: 1, flexDirection: 'row' }}>
+      <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#055E7C' }}>
 
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
           <TouchableOpacity onPress={props.navigation.openDrawer} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
@@ -28,9 +28,9 @@ const DashboardScreen = (props) => {
           </TouchableOpacity>
         </View>
 
-        <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-          <Text style={[styles.title, {color: '#055E7C'}]}>
-            <Text style={[styles.title, {color: '#055E7C'}]}>MYR</Text> 18,839.00</Text>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <Text style={[styles.title, { color: '#055E7C' }]}>
+            <Text style={[styles.title, { color: '#055E7C' }]}>MYR</Text> 18,839.00</Text>
         </View>
 
         <TouchableOpacity onPress={() => props.navigation.navigate('Profile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
@@ -38,9 +38,10 @@ const DashboardScreen = (props) => {
         </TouchableOpacity>
 
       </View>
+
       <View style={{ flex: 9, padding: 10 }}>
 
-        <View style={{ marginTop: 10, flexDirection: 'row' }}>
+        <View style={{ flexDirection: 'row' }}>
 
           <TouchableOpacity>
             <Text style={[styles.text, { color: '#055E7C' }]}>Send Money</Text>

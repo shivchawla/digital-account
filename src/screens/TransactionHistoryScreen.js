@@ -11,11 +11,11 @@ import {
 import styles from '../styles/styles'
 import Dot from '../components/Dot'
 
-const transactionHistoryArray = [{ status: 'out', description: 'Withdrawal Transfer', amount: 50.00 },
-{ status: 'out', description: 'Account Transfer', amount: 46.00 },
-{ status: 'in', description: 'Disbursement Transfer', amount: 4952.00 },
-{ status: 'out', description: 'Account Transfer', amount: 100.00 },
-{ status: 'out', description: 'Withdrawal Transfer', amount: 60.00 }]
+const transactionHistoryArray = [{ status: 'out', description: 'Withdrawal Transfer', amount: 'RM50.00' },
+{ status: 'out', description: 'Account Transfer', amount: 'RM46.00' },
+{ status: 'in', description: 'Disbursement Transfer', amount: 'RM4952.00' },
+{ status: 'out', description: 'Account Transfer', amount: 'RM100.00' },
+{ status: 'out', description: 'Withdrawal Transfer', amount: 'RM60.00' }]
 
 const TransactionHistoryScreen = (props) => {
 
@@ -42,7 +42,7 @@ const TransactionHistoryScreen = (props) => {
                     <View style={{ marginTop: 10 }}>
 
                         <View style={{ flexDirection: 'row' }}>
-                            <Text style={[styles.h2, { marginBottom: 10, marginTop: 10, color:'#055E7C' }]}>Transaction History</Text>
+                            <Text style={[styles.h2, { marginBottom: 10, marginTop: 10, color: '#055E7C' }]}>Transaction History</Text>
                         </View>
 
                         <FlatList

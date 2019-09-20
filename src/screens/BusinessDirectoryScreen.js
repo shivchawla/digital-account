@@ -33,7 +33,7 @@ const BusinessDirectoryScreen = (props) => {
                     </View>
 
                     <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                        <Text style={[styles.title, { color: '#055E7C' }]}>Business Directory</Text>
+                        <Text style={styles.title}>Business Directory</Text>
                     </View>
 
                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
@@ -49,11 +49,11 @@ const BusinessDirectoryScreen = (props) => {
                         <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Name</Text>
+                                <Text style={styles.small}>Name</Text>
                             </View>
 
                             <View style={{ flex: 1 }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Shawl Publika Sdn. Bhd.</Text>
+                                <Text style={styles.small}>Shawl Publika Sdn. Bhd.</Text>
                             </View>
 
                         </View>
@@ -61,11 +61,11 @@ const BusinessDirectoryScreen = (props) => {
                         <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Phone Number</Text>
+                                <Text style={styles.small}>Phone Number</Text>
                             </View>
 
                             <View style={{ flex: 1 }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>03-3362 408</Text>
+                                <Text style={styles.small}>03-3362 408</Text>
                             </View>
 
                         </View>
@@ -73,11 +73,11 @@ const BusinessDirectoryScreen = (props) => {
                         <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Industry</Text>
+                                <Text style={[styles.small]}>Industry</Text>
                             </View>
 
                             <View style={{ flex: 1 }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Fashion & Apparel</Text>
+                                <Text style={styles.small}>Fashion & Apparel</Text>
                             </View>
 
                         </View>
@@ -85,11 +85,11 @@ const BusinessDirectoryScreen = (props) => {
                         <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Address</Text>
+                                <Text style={styles.small}>Address</Text>
                             </View>
 
                             <View style={{ flex: 1 }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>No. 2A, Jalan Setia Dagang U13/AK, Seksyen U13, Setia Alam, 40170, Shah Alam, Selangor</Text>
+                                <Text style={styles.small}>No. 2A, Jalan Setia Dagang U13/AK, Seksyen U13, Setia Alam, 40170, Shah Alam, Selangor</Text>
                             </View>
 
                         </View>
@@ -101,11 +101,11 @@ const BusinessDirectoryScreen = (props) => {
                         <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Name</Text>
+                                <Text style={styles.small}>Name</Text>
                             </View>
 
                             <View style={{ flex: 1 }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>MY Gogoprint Sdn. Bhd.</Text>
+                                <Text style={styles.small}>MY Gogoprint Sdn. Bhd.</Text>
                             </View>
 
                         </View>
@@ -113,11 +113,11 @@ const BusinessDirectoryScreen = (props) => {
                         <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Phone Number</Text>
+                                <Text style={styles.small}>Phone Number</Text>
                             </View>
 
                             <View style={{ flex: 1 }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>03-3457 8907</Text>
+                                <Text style={styles.small}>03-3457 8907</Text>
                             </View>
 
                         </View>
@@ -125,11 +125,11 @@ const BusinessDirectoryScreen = (props) => {
                         <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Industry</Text>
+                                <Text style={styles.small}>Industry</Text>
                             </View>
 
                             <View style={{ flex: 1 }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Printing Service</Text>
+                                <Text style={styles.small}>Printing Service</Text>
                             </View>
 
                         </View>
@@ -137,11 +137,11 @@ const BusinessDirectoryScreen = (props) => {
                         <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Address</Text>
+                                <Text style={styles.small}>Address</Text>
                             </View>
 
                             <View style={{ flex: 1 }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Wisma E&C, Suite 302, Level 2, No 2, Lorong Dungun Kiri, Bukit Damansara, 50490, Kuala Lumpur</Text>
+                                <Text style={styles.small}>Wisma E&C, Suite 302, Level 2, No 2, Lorong Dungun Kiri, Bukit Damansara, 50490, Kuala Lumpur</Text>
                             </View>
 
                         </View>
@@ -153,11 +153,11 @@ const BusinessDirectoryScreen = (props) => {
                         <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Name</Text>
+                                <Text style={styles.small}>Name</Text>
                             </View>
 
                             <View style={{ flex: 1 }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>MY Gogoprint Sdn. Bhd.</Text>
+                                <Text style={styles.small}>MY Gogoprint Sdn. Bhd.</Text>
                             </View>
 
                         </View>
@@ -165,11 +165,11 @@ const BusinessDirectoryScreen = (props) => {
                         <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Phone Number</Text>
+                                <Text style={styles.small}>Phone Number</Text>
                             </View>
 
                             <View style={{ flex: 1 }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>03-3457 8907</Text>
+                                <Text style={styles.small}>03-3457 8907</Text>
                             </View>
 
                         </View>
@@ -177,11 +177,11 @@ const BusinessDirectoryScreen = (props) => {
                         <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Industry</Text>
+                                <Text style={styles.small}>Industry</Text>
                             </View>
 
                             <View style={{ flex: 1 }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Printing Service</Text>
+                                <Text style={styles.small}>Printing Service</Text>
                             </View>
 
                         </View>
@@ -189,11 +189,11 @@ const BusinessDirectoryScreen = (props) => {
                         <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Address</Text>
+                                <Text style={styles.small}>Address</Text>
                             </View>
 
                             <View style={{ flex: 1 }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Wisma E&C, Suite 302, Level 2, No 2, Lorong Dungun Kiri, Bukit Damansara, 50490, Kuala Lumpur</Text>
+                                <Text style={styles.small}>Wisma E&C, Suite 302, Level 2, No 2, Lorong Dungun Kiri, Bukit Damansara, 50490, Kuala Lumpur</Text>
                             </View>
 
                         </View>
@@ -205,11 +205,11 @@ const BusinessDirectoryScreen = (props) => {
                         <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Name</Text>
+                                <Text style={styles.small}>Name</Text>
                             </View>
 
                             <View style={{ flex: 1 }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>MY Gogoprint Sdn. Bhd.</Text>
+                                <Text style={styles.small}>MY Gogoprint Sdn. Bhd.</Text>
                             </View>
 
                         </View>
@@ -217,11 +217,11 @@ const BusinessDirectoryScreen = (props) => {
                         <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Phone Number</Text>
+                                <Text style={styles.small}>Phone Number</Text>
                             </View>
 
                             <View style={{ flex: 1 }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>03-3457 8907</Text>
+                                <Text style={styles.small}>03-3457 8907</Text>
                             </View>
 
                         </View>
@@ -229,11 +229,11 @@ const BusinessDirectoryScreen = (props) => {
                         <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Industry</Text>
+                                <Text style={styles.small}>Industry</Text>
                             </View>
 
                             <View style={{ flex: 1 }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Printing Service</Text>
+                                <Text style={styles.small}>Printing Service</Text>
                             </View>
 
                         </View>
@@ -241,11 +241,11 @@ const BusinessDirectoryScreen = (props) => {
                         <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Address</Text>
+                                <Text style={styles.small}>Address</Text>
                             </View>
 
                             <View style={{ flex: 1 }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Wisma E&C, Suite 302, Level 2, No 2, Lorong Dungun Kiri, Bukit Damansara, 50490, Kuala Lumpur</Text>
+                                <Text style={styles.small}>Wisma E&C, Suite 302, Level 2, No 2, Lorong Dungun Kiri, Bukit Damansara, 50490, Kuala Lumpur</Text>
                             </View>
 
                         </View>
@@ -257,11 +257,11 @@ const BusinessDirectoryScreen = (props) => {
                         <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Name</Text>
+                                <Text style={styles.small}>Name</Text>
                             </View>
 
                             <View style={{ flex: 1 }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>MY Gogoprint Sdn. Bhd.</Text>
+                                <Text style={styles.small}>MY Gogoprint Sdn. Bhd.</Text>
                             </View>
 
                         </View>
@@ -269,11 +269,11 @@ const BusinessDirectoryScreen = (props) => {
                         <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Phone Number</Text>
+                                <Text style={styles.small}>Phone Number</Text>
                             </View>
 
                             <View style={{ flex: 1 }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>03-3457 8907</Text>
+                                <Text style={styles.small}>03-3457 8907</Text>
                             </View>
 
                         </View>
@@ -281,11 +281,11 @@ const BusinessDirectoryScreen = (props) => {
                         <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Industry</Text>
+                                <Text style={styles.small}>Industry</Text>
                             </View>
 
                             <View style={{ flex: 1 }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Printing Service</Text>
+                                <Text style={styles.small}>Printing Service</Text>
                             </View>
 
                         </View>
@@ -293,11 +293,11 @@ const BusinessDirectoryScreen = (props) => {
                         <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Address</Text>
+                                <Text style={styles.small}>Address</Text>
                             </View>
 
                             <View style={{ flex: 1 }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Wisma E&C, Suite 302, Level 2, No 2, Lorong Dungun Kiri, Bukit Damansara, 50490, Kuala Lumpur</Text>
+                                <Text style={styles.small}>Wisma E&C, Suite 302, Level 2, No 2, Lorong Dungun Kiri, Bukit Damansara, 50490, Kuala Lumpur</Text>
                             </View>
 
                         </View>
@@ -309,11 +309,11 @@ const BusinessDirectoryScreen = (props) => {
                         <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Name</Text>
+                                <Text style={styles.small}>Name</Text>
                             </View>
 
                             <View style={{ flex: 1 }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>MY Gogoprint Sdn. Bhd.</Text>
+                                <Text style={styles.small}>MY Gogoprint Sdn. Bhd.</Text>
                             </View>
 
                         </View>
@@ -321,11 +321,11 @@ const BusinessDirectoryScreen = (props) => {
                         <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Phone Number</Text>
+                                <Text style={styles.small}>Phone Number</Text>
                             </View>
 
                             <View style={{ flex: 1 }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>03-3457 8907</Text>
+                                <Text style={styles.small}>03-3457 8907</Text>
                             </View>
 
                         </View>
@@ -333,11 +333,11 @@ const BusinessDirectoryScreen = (props) => {
                         <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Industry</Text>
+                                <Text style={styles.small}>Industry</Text>
                             </View>
 
                             <View style={{ flex: 1 }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Printing Service</Text>
+                                <Text style={styles.small}>Printing Service</Text>
                             </View>
 
                         </View>
@@ -345,29 +345,29 @@ const BusinessDirectoryScreen = (props) => {
                         <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Address</Text>
+                                <Text style={styles.small}>Address</Text>
                             </View>
 
                             <View style={{ flex: 1 }}>
-                                <Text style={[styles.small, { color: '#055E7C' }]}>Wisma E&C, Suite 302, Level 2, No 2, Lorong Dungun Kiri, Bukit Damansara, 50490, Kuala Lumpur</Text>
+                                <Text style={styles.small}>Wisma E&C, Suite 302, Level 2, No 2, Lorong Dungun Kiri, Bukit Damansara, 50490, Kuala Lumpur</Text>
                             </View>
 
                         </View>
 
                     </View>
 
-                    <View style={{ flex: 1, flexDirection: 'row', marginTop: 5, justifyContent: 'space-evenly', marginBottom: 10 }}>
+                    <View style={{ flex: 1, flexDirection: 'row', marginTop: 5, justifyContent: 'space-between', marginBottom: 10 }}>
 
                         <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={[styles.small, { color: '#055E7C' }]}>Previous</Text>
+                            <Text style={styles.small}>Previous</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={[styles.small, { color: '#055E7C' }]}>1</Text>
+                            <Text style={styles.small}>1</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={[styles.small, { color: '#055E7C' }]}>Next</Text>
+                            <Text style={styles.small}>Next</Text>
                         </TouchableOpacity>
 
                     </View>

@@ -40,7 +40,7 @@ const WithdrawSuccessScreen = (props) => {
                 </View>
 
                 <View style={{ alignSelf: 'stretch', flexDirection: 'column', margin: 5 }}>
-                    <Text style={[styles.text, { margin: 5, color: 'darkturquoise' }]}>Congratulation!</Text>
+                    <Text style={[styles.text, { margin: 5, color: 'darkturquoise' }]}>Withdrawal Success!</Text>
                     <Text style={[styles.text, { margin: 5, marginBottom: 20 }]}>You can either choose to withdraw money again or go to the Dashboard.</Text>
                 </View>
 
