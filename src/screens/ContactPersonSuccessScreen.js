@@ -58,11 +58,11 @@ const ContactPersonSuccessScreen = (props) => {
                 <View style={{ justifyContent: 'center', alignItems: 'center', justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
                     <Image source={require('../assets/images/logo.png')} style={{ height: Layout.window.height * 0.2, width: Layout.window.width * 0.7 }} resizeMode={'contain'} />
                 </View>
-
-                
-
-                <View style={{ alignSelf: 'stretch', flexDirection: 'column', margin: 5 }}>
-                    <Text style={[styles.text, { margin: 5, color: 'darkturquoise' }]}>Congratulation!</Text>
+                <View style={{ margin:5,justifyContent: 'center', alignItems: 'center', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+                    <Text style={[styles.h3, { margin: 5, flexDirection: 'row', justifyContent: 'flex-start' }]}>CONTACT INFO SUBMITTED</Text>
+                </View>
+                <View style={{ alignSelf: 'stretch', margin: 5 }}>
+                    <Text style={[styles.text, { margin: 5 }]}>Congratulation!</Text>
                     <Text style={[styles.text, { margin: 5, marginBottom: 20 }]}>You have entered your contact information. You can either choose to submit document or skip to the dashboard.</Text>
                 </View>
 
@@ -70,20 +70,19 @@ const ContactPersonSuccessScreen = (props) => {
 
             <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
 
-                <TouchableOpacity onPress={() => props.navigation.navigate('Dashboard')} style={{ flex: 1 }}>
-                    <LinearGradient colors={['#A4A4A4', '#A4A4A4']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                        <Text style={[styles.text,]}>Skip</Text>
+                <TouchableOpacity onPress={() => props.navigation.navigate('Dashboard')} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 }}>
+                    <LinearGradient colors={['#fff', '#fff']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={[styles.butang, { color: 'lightgrey' }]}>Skip</Text>
                     </LinearGradient>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => props.navigation.navigate(`CompanyDocument`)} style={{ flex: 1 }}>
-                    <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                        <Text style={[styles.text, { color: '#fff' }]}>Document</Text>
+                <TouchableOpacity onPress={() => props.navigation.navigate('CompanyDocument')} style={{ flex: 1, borderColor: '#0A6496', borderWidth: 1 }}>
+                    <LinearGradient colors={['#0A6496', '#055E7C']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={[styles.butang, { color: '#fff' }]}>Document</Text>
                     </LinearGradient>
                 </TouchableOpacity>
 
             </View>
-
         </View>
 
     );

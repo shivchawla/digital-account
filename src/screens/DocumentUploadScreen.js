@@ -23,8 +23,7 @@ const DocumentUploadScreen = (props) => {
             .then(result => {
                 console.log(JSON.stringify(result))
                 //this.props.saveDocument(result)
-                saveDocumentDO(result)
-                
+                saveDocumentDO(result)                
             })
             console.log(`boleh patah balik ker ni?`)
             props.navigation.goBack()
@@ -49,7 +48,7 @@ const DocumentUploadScreen = (props) => {
                     <Text style={[styles.textDefault, { color: '#fff' }]}>Done</Text>
                 </TouchableOpacity>
             </View>
-        </View >
+        </View>
     )
 }
 

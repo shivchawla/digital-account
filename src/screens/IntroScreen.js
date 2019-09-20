@@ -9,11 +9,7 @@ import {
 
 } from 'react-native';
 
-import Constants from 'expo-constants'
 import { LinearGradient } from 'expo-linear-gradient'
-
-//import NavigationService from '../navigation/NavigationService'
-
 import ImageSlider from 'react-native-image-slider';
 
 import styles from '../styles/styles'
@@ -48,7 +44,7 @@ const IntroScreen = (props) => {
                                     width: undefined,
                                     flex: 1,
                                 }} />
-                                <Text style={[styles.text,{alignSelf: 'center', textAlign: 'center', marginLeft: 15, marginRight: 15, marginBottom: 10, marginTop: 10 }]}>
+                                <Text style={[styles.text,{alignSelf: 'center', textAlign: 'center', marginLeft: 15, marginRight: 15, marginBottom: 10, marginTop: 10,padding:10 }]}>
                                     {item.title}
                                 </Text>
                             </View>
@@ -73,10 +69,14 @@ const IntroScreen = (props) => {
                 </View>
 
                 <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
-
+                <TouchableOpacity onPress={() => props.navigation.navigate('Welcome')} style={{ flex: 1 }}>
+                    <LinearGradient colors={['#fff', '#fff']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center', borderColor: '#D3D3D3', borderWidth: 1 }}>
+                        <Text style={[styles.butang, { color: 'lightgrey' }]}>Later</Text>
+                    </LinearGradient>
+                </TouchableOpacity>
                     <TouchableOpacity onPress={() => props.navigation.navigate('Agreement')} style={{ flex: 1 }}>
-                        <LinearGradient colors={['#628BFB', '#0E47E8']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={[styles.text, { color: '#fff' }]}>Next</Text>
+                        <LinearGradient colors={['#055e7c', '#055e7c']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={[styles.butang, { color: '#fff' }]}>Next</Text>
                         </LinearGradient>
                     </TouchableOpacity>
 

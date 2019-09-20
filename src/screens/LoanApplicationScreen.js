@@ -31,7 +31,7 @@ const validationSchema = Yup.object().shape({
 
 const LoanApplicationScreen = (props) => {
     //const loanData = useSelector(state => state.loanApplicationReducer, shallowEqual)
-    
+
     const dispatch = useDispatch()
     const setLoanData = (val) => dispatch({ type: 'SET_LOAN_DATA', payload: { ...val } });
 
@@ -70,7 +70,7 @@ const LoanApplicationScreen = (props) => {
                             </View>
 
                             <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                                <Text style={[styles.title, {color: '#055E7C'}]}>Loan</Text>
+                                <Text style={[styles.title, { color: '#055E7C' }]}>Loan</Text>
                             </View>
 
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
@@ -82,7 +82,7 @@ const LoanApplicationScreen = (props) => {
 
                             <View style={{ flex: 9, margin: 10 }}>
                                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 }}>
-                                    <Text style={[styles.h3, {color: '#055E7C'}]}>Financing</Text>
+                                    <Text style={[styles.h3, { color: '#055E7C' }]}>Financing</Text>
                                 </View>
 
                                 <View style={{ marginBottom: 10 }}>
@@ -112,7 +112,7 @@ const LoanApplicationScreen = (props) => {
                                 </View>
                             </View>
 
-                             <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
+                            <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
 
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 }}>
                                     <LinearGradient colors={['#FFF', '#FFF']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
@@ -131,7 +131,7 @@ const LoanApplicationScreen = (props) => {
 
                         </View>
                     </KeyboardAvoidingView>
-                    )
+                )
             }}
         </Formik >
 

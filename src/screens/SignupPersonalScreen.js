@@ -15,9 +15,9 @@ import * as Yup from 'yup';
 
 
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
-import Constants from 'expo-constants'
+
 import { LinearGradient } from 'expo-linear-gradient'
-import Layout from '../constants/Layout'
+
 import styles from '../styles/styles'
 import * as actionCreator from '../store/actions/action'
 
@@ -44,7 +44,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const SignupPersonalScreen = (props) => {
-    //const access_token = useSelector(state => state.registrationReducer.access_token, shallowEqual)
+
     const proceed = useSelector(state => state.registrationReducer.proceed, shallowEqual)
 
     useEffect(() => {
@@ -52,8 +52,7 @@ const SignupPersonalScreen = (props) => {
         proceed && props.navigation.navigate('SignUpPersonalSuccess');
     }, [proceed]);
     const dispatch = useDispatch()
-    // const register = async (values) => await dispatch(actionCreator.register(values))
-    //const getToken = () => dispatch(actionCreator.requestToken())
+
 
     return (
         <Formik
@@ -79,10 +78,10 @@ const SignupPersonalScreen = (props) => {
                 return (
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }}>
 
-                        <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#4D6BFA', }}>
+                        <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#055E7C', }}>
 
-                            <View style={{ flex: 3, justifyContent: 'center', alignItems: 'flex-start',paddingLeft:10 }}>
-                                <Text numberOfLines={1} style={styles.title} ellipsizeMode='head'>REGISTRATION</Text>
+                            <View style={{ flex: 3, justifyContent: 'center', alignItems: 'flex-start', paddingLeft: 10 }}>
+                                <Text numberOfLines={1} style={[styles.title]} ellipsizeMode='head'>REGISTRATION</Text>
                             </View>
 
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
@@ -104,7 +103,7 @@ const SignupPersonalScreen = (props) => {
 
                                 <View style={{ marginBottom: 10 }}>
                                     <Text style={[styles.text, { marginBottom: 5, borderBottomColor: emailTouched && emailError ? '#d94498' : '#5a83c2' }]}>Email</Text>
-                                    <TextInput value={email} onBlur={FormikProps.handleBlur('email')} onChangeText={FormikProps.handleChange('email')} placeholder={emailTouched && emailError ? '' : 'Eg: abc@email.com'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                    <TextInput value={email} onBlur={FormikProps.handleBlur('email')} onChangeText={FormikProps.handleChange('email')} placeholder={emailTouched && emailError ? '' : 'Eg: abc@email.com'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} keyboardType={'email-address'} />
                                 </View>
 
                                 {emailTouched && emailError && <Text style={styles.error}>{emailError}</Text>}
@@ -127,16 +126,16 @@ const SignupPersonalScreen = (props) => {
 
                             <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
 
-                                <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1 }}>
-                                    <LinearGradient colors={['#A4A4A4', '#A4A4A4']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                                        <Text style={[styles.text, { color: '#fff' }]}>Back</Text>
+                                <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 }}>
+                                    <LinearGradient colors={['#FFF', '#FFF']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
+                                        <Text style={[styles.butang, { color: 'lightgrey' }]}>Back</Text>
                                     </LinearGradient>
                                 </TouchableOpacity>
 
-                                <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ flex: 1 }}>
-                                    <LinearGradient colors={FormikProps.isValid ? ['#628BFB', '#0E47E8'] : ['rgba(98, 139, 251, 0.5)', 'rgba(14, 71, 232, 0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
+                                <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ flex: 1, borderColor: FormikProps.isValid ? '#0A6496' : 'rgba(10,100,150,0.5)', borderWidth: 1 }}>
+                                    <LinearGradient colors={FormikProps.isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                         {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> :
-                                            <Text style={[styles.text, { color: '#fff' }]}>Submit</Text>}
+                                            <Text style={[styles.butang, { color: '#fff' }]}>Next</Text>}
                                     </LinearGradient>
                                 </TouchableOpacity>
 
