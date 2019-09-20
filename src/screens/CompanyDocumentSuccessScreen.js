@@ -29,7 +29,7 @@ import { connect } from 'react-redux'
 import * as actionCreator from '../store/actions/action'
 
 
-const ContactPersonSuccessScreen = (props) => {
+const CompanyDocumentSuccessScreen = (props) => {
 
 
     const done = async () => {
@@ -72,15 +72,11 @@ const ContactPersonSuccessScreen = (props) => {
 
                 <TouchableOpacity onPress={() => props.navigation.navigate('Dashboard')} style={{ flex: 1 }}>
                     <LinearGradient colors={['#A4A4A4', '#A4A4A4']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                        <Text style={[styles.text,]}>Skip</Text>
+                        <Text style={[styles.text,]}>Dashboard</Text>
                     </LinearGradient>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => props.navigation.navigate(`CompanyDocument`)} style={{ flex: 1 }}>
-                    <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                        <Text style={[styles.text, { color: '#fff' }]}>Document</Text>
-                    </LinearGradient>
-                </TouchableOpacity>
+               
 
             </View>
 
@@ -106,6 +102,6 @@ const ContactPersonSuccessScreen = (props) => {
 // }
 
 
-ContactPersonSuccessScreen.navigationOptions = { header: null, };
+CompanyDocumentSuccessScreen.navigationOptions = { header: null, };
 
-export default ContactPersonSuccessScreen 
+export default CompanyDocumentSuccessScreen 
