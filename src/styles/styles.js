@@ -13,7 +13,12 @@ export default StyleSheet.create({
   title: {
     fontSize,
     fontFamily: 'Montserrat_medium',
-    color: '#055E7C',
+    color: '#055e7c',
+    fontSize: fontSize * 1.4
+  },
+  butang: {
+    fontSize,
+    fontFamily: 'Montserrat_medium', 
     fontSize: fontSize * 1.4
   },
   h3: {

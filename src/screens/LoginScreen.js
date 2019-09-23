@@ -94,14 +94,14 @@ const LoginScreen = (props) => {
                                     <View style={{ flex: 3, backgroundColor: '#fff', borderTopLeftRadius: 20, borderTopRightRadius: 20, padding: 20 }}>
 
                                         <View style={{ marginBottom: 10 }}>
-                                            <Text style={[styles.text, { marginBottom: 5, color: '#055E7C', borderBottomColor: emailTouched && emailError ? '#d94498' : '#5a83c2' }]}>Email</Text>
+                                            <Text style={[styles.text, { marginBottom: 5,  borderBottomColor: emailTouched && emailError ? '#d94498' : '#5a83c2' }]}>Email</Text>
                                             <TextInput value={email} onBlur={FormikProps.handleBlur('email')} onChangeText={FormikProps.handleChange('email')} placeholder={emailTouched && emailError ? '' : 'Email'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
                                         </View>
 
                                         {emailTouched && emailError && <Text style={styles.error}>{emailError}</Text>}
 
                                         <View style={{ marginBottom: 10 }}>
-                                            <Text style={[styles.text, { marginBottom: 5, color: '#055E7C', borderBottomColor: passwordTouched && passwordError ? '#d94498' : '#5a83c2' }]}>Password</Text>
+                                            <Text style={[styles.text, { marginBottom: 5, borderBottomColor: passwordTouched && passwordError ? '#d94498' : '#5a83c2' }]}>Password</Text>
                                             <TextInput secureTextEntry value={password} onBlur={FormikProps.handleBlur('password')} placeholder={passwordTouched && passwordError ? '' : '******'} onChangeText={FormikProps.handleChange('password')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholderTextColor={passwordTouched && passwordError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         </View>
 

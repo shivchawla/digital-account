@@ -11,9 +11,6 @@ import {
 
 import { LinearGradient } from 'expo-linear-gradient'
 
-import { Formik } from 'formik';
-import * as Yup from 'yup';
-
 import styles from '../styles/styles'
 
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
@@ -45,7 +42,6 @@ const CompanyDocumentScreen = (props) => {
     const isDocument2 = useSelector(state => state.companyInformationReducer.isDocument2, shallowEqual)
     const isDocument3 = useSelector(state => state.companyInformationReducer.isDocument3, shallowEqual)
 
-
     const submitDoc = (val) => {
         dispatch(actionCreator.submitDoc(val))
         props.navigation.navigate('CompanyDocumentSuccess')
@@ -54,7 +50,7 @@ const CompanyDocumentScreen = (props) => {
     return (
 
         <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }}>
-            <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#4D6BFA', }}>
+            <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#055E7C', }}>
                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center', alignItems: 'flex-start', padding: 10 }}>
                     <Text numberOfLines={1} style={styles.title} ellipsizeMode='tail'>Company Documents</Text>
                 </View>
@@ -62,9 +58,7 @@ const CompanyDocumentScreen = (props) => {
                     <Image source={require('../assets/images/logosmall.png')} style={{ width: 50, height: 50, borderRadius: 15 }} />
                 </View>
             </View>
-            <View>
-                <Text style={[styles.text, { margin: 5, marginBottom: 10, color: 'darkblue', fontSize: 14 }]}>Please fill up this form to continue the process for your company.</Text>
-            </View>
+
             <View style={{ justifyContent: 'space-between', flex: 9 }}>
                 <View style={{ flex: 9, margin: 10 }}>
                     <Text>{JSON.stringify(docPicker)}</Text>
@@ -102,20 +96,21 @@ const CompanyDocumentScreen = (props) => {
                 </View>
                 <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
 
-                    <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1 }}>
-                        <LinearGradient colors={['#A4A4A4', '#A4A4A4']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={[styles.text, { color: '#fff' }]}>Back</Text>
+
+                    <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 }}>
+                        <LinearGradient colors={['#FFF', '#FFF']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={[styles.butang, { color: 'lightgrey' }]}>Back</Text>
                         </LinearGradient>
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                        onPress={() => submitDoc({isDocument1,isDocument2,isDocument3})}
+                        onPress={() => submitDoc({ isDocument1, isDocument2, isDocument3 })}
                         disabled={!(isDocument1 && isDocument2 && isDocument3)}
                         style={{ flex: 1 }}>
                         <LinearGradient
-                            colors={(isDocument1 && isDocument2 && isDocument3) ? ['#628BFB', '#0E47E8'] : ['rgba(98, 139, 251, 0.5)', 'rgba(14, 71, 232, 0.5)']}
+                            colors={(isDocument1 && isDocument2 && isDocument3) ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']}
                             style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={[styles.text, { color: '#fff' }]}>Save</Text>
+                            <Text style={[styles.butang, { color: '#fff' }]}>Save</Text>
                         </LinearGradient>
                     </TouchableOpacity>
 
