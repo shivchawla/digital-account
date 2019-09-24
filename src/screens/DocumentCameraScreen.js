@@ -22,8 +22,8 @@ import * as actionCreator from '../store/actions/action'
 const DocumentCameraScreen = (props) => {
     const docPicker = useSelector(state => state.companyInformationReducer.docPicker, shallowEqual)
     const dispatch = useDispatch()
-    const saveDocPic = (val,doc) => dispatch(actionCreator.saveDocPic(val,doc));
-    const saveDocumentDO = (val,doc) => dispatch(actionCreator.saveDocumentDO(val,doc));
+    const saveDocPic = (val,doc) => dispatch(actionCreator.saveDocPic1(val,doc));
+    const saveDocumentDO = (val,doc) => dispatch(actionCreator.saveDocumentDO1(val,doc));
     const [hasCameraPermission, setCameraPermission] = useState(null)
   
     const takePicture = async () => {

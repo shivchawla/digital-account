@@ -81,6 +81,17 @@ export const submitDoc = (values) => {
     }
 }
 
+export const submitDoc1 = (values) => {
+
+    return async (dispatch, getState) => {
+        const { isDocument1, isDocument2, isDocument3 } = values
+        await dispatch(uploadPic(isDocument1, 'mykad'))
+        await dispatch(uploadPic(isDocument2, 'company'))
+        await dispatch(uploadPic(isDocument3, 'business'))
+        await dispatch(submitDocApi())
+    }
+}
+
 export const declaration = (values) => {
     return (dispatch, getState) => {
         dispatch(declarationApi(values))
@@ -160,6 +171,80 @@ export const saveDocPic = (result, doc) => {
 }
 
 
+export const uploadPic = (uri, doc) => {
+   // console.log(`result yang mengasyikkan ${JSON.stringify(result)}`)
+    //const { uri } = result
+    return async (dispatch, getState) => {
+        const blob = await urlToBlob(uri)
+        const { data } = blob
+
+        const fileName = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+
+        const params = {
+            Body: blob,
+            Bucket: `${config.bucketName}`,
+            Key: fileName
+        };
+        // Sending the file to the Spaces
+        s3.putObject(params)
+            .on('build', request => {
+                request.httpRequest.headers.Host = `${config.digitalOceanSpaces}`;
+                request.httpRequest.headers['Content-Length'] = data.size;
+                request.httpRequest.headers['Content-Type'] = data.type;
+                request.httpRequest.headers['x-amz-acl'] = 'public-read';
+            })
+            .send((err) => {
+                if (err) console.log(err);
+                else {
+                    // If there is no error updating the editor with the imageUrl
+                    const imageUrl = `${config.digitalOceanSpaces}/` + fileName
+                    console.log(imageUrl);
+                    //dispatch({ type: 'SET_USER_PROFILE', payload: { profile_pic: imageUrl } })
+
+                    switch (doc) {
+                        case 'mykad':
+                            dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument1: imageUrl } });
+                            break;
+                        case 'company':
+                            dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument2: imageUrl } });
+                            break;
+                        case 'business':
+                            dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument3: imageUrl } });
+                            break;
+
+                    }
+
+                    // dispatch({ type: 'SET_CONTACT_PERSON', payload: { ic_image: imageUrl, fileName } })
+                    //dispatch(editUserApi())
+                }
+            });
+
+    }
+}
+
+export const saveDocPic1 = (result, doc) => {
+    console.log(`result yang mengasyikkan ${JSON.stringify(result)}`)
+    const { uri } = result
+    return async (dispatch, getState) => {
+
+        switch (doc) {
+            case 'mykad':
+                dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument1: uri, isDocument1fileName: 'NA' } });
+                break;
+            case 'company':
+                dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument2: uri, isDocument2fileName: 'NA' } });
+                break;
+            case 'business':
+                dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument3: uri, isDocument3fileName: 'NA' } });
+                break;
+
+        }
+
+
+    }
+}
+
+
 
 export const saveDocumentDO = (result, doc) => {
     const { type, uri, name, size } = result
@@ -210,3 +295,23 @@ export const saveDocumentDO = (result, doc) => {
     }
 }
 
+
+export const saveDocumentDO1 = (result, doc) => {
+    const { type, uri, name, size } = result
+    return async (dispatch, getState) => {
+        const fileName = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+        switch (doc) {
+            case 'mykad':
+                dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument1: uri, isDocument1fileName: fileName, docPicker: true } });
+                break;
+            case 'company':
+                dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument2: uri, isDocument2fileName: fileName, docPicker: true } });
+                break;
+            case 'business':
+                dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument3: uri, isDocument3fileName: fileName, docPicker: true } });
+                break;
+
+        }
+
+    }
+}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, {  useEffect } from 'react';
 import {
     Image,
     Text,
@@ -49,13 +49,19 @@ const SignupPersonalScreen = (props) => {
     const message = useSelector(state => state.registrationReducer.message, shallowEqual)
     const proceed = useSelector(state => state.registrationReducer.proceed, shallowEqual)
 
+    const register=async (values)=>{
+        await dispatch(actionCreator.register(values));
+    }
+
     useEffect(() => {
         //dispatch(actionCreator.getToken());
         // if (message === "Unauthenticated") {
         //     props.navigation.navigate('SignUpPersonalSuccess');
         // }
+        console.log(`proceed ialah ${proceed}`)
+        proceed&&props.navigation.navigate('SignUpPersonalSuccess');
 
-    }, []);
+    }, [proceed]);
     const dispatch = useDispatch()
 
     if (message === "Unauthenticated") {
@@ -66,7 +72,7 @@ const SignupPersonalScreen = (props) => {
 
                 onSubmit={
                     (values, actions) => {
-                        dispatch(actionCreator.register(values));
+                        register(values)
                         actions.setSubmitting(false)
                     }
                 }

@@ -8,15 +8,21 @@ import {
     View,
     CheckBox,
 } from 'react-native';
-
+import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { LinearGradient } from 'expo-linear-gradient'
 import Layout from '../constants/Layout'
 import styles from '../styles/styles'
 import CheckBox2 from 'react-native-check-box'
 
+import * as actionCreator from '../store/actions/action'
 
 const AgreementScreen = (props) => {
     const [agreement, setAgreement] = useState(false)
+    const dispatch = useDispatch()
+    const signUp = () => {
+        dispatch(actionCreator.getToken());
+        props.navigation.navigate('SignUpPersonal')
+    }
 
     return (
 
@@ -60,7 +66,7 @@ FCGB is referred to as “we”, “us”, “our” or “ours”. Any person u
                     </LinearGradient>
                 </TouchableOpacity>
 
-                <TouchableOpacity disabled={!agreement} onPress={() => props.navigation.navigate('SignUpPersonal')} style={{ flex: 1 }}>
+                <TouchableOpacity disabled={!agreement} onPress={() => signUp()} style={{ flex: 1 }}>
                     <LinearGradient colors={agreement ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={[styles.butang, { color: '#fff' }]}>Next</Text>
                     </LinearGradient>
