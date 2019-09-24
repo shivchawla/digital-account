@@ -107,6 +107,7 @@ const loadResourcesAsync = async () => {
       require('./src/assets/images/position.png'),
       require('./src/assets/images/user.png'),
       require('./src/assets/images/logosmall.png'),
+      require('./src/assets/images/logout.png'),
 
       require('./src/assets/images/cardborder.png'),
 
@@ -128,6 +129,7 @@ const loadResourcesAsync = async () => {
       // We include SpaceMono because we use it in HomeScreen.js. Feel free to
       // remove this if you are not using it in your app
       'Montserrat_medium': require('./src/assets/fonts/Montserrat/Montserrat-Medium.ttf'),
+      'Montserrat_regular': require('./src/assets/fonts/Montserrat/Montserrat-Regular.ttf'),
       'Montserrat_light': require('./src/assets/fonts/Montserrat/Montserrat-Light.ttf'),
       'Montserrat_thin': require('./src/assets/fonts/Montserrat/Montserrat-Thin.ttf'),
       'Montserrat_bold': require('./src/assets/fonts/Montserrat/Montserrat-Bold.ttf'),

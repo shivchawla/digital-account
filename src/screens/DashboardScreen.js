@@ -20,17 +20,36 @@ const DashboardScreen = (props) => {
   return (
     <View style={{ flex: 1, }}>
 
-      <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#055E7C' }}>
+      <View style={{ flex: 1, flexDirection: 'row' }}>
 
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
           <TouchableOpacity onPress={props.navigation.openDrawer} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-            <Ionicons name="md-more" color={'#055E7C'} style={{ fontSize: 30, paddingLeft: 20 }} />
+            <Ionicons name="md-more" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 20 }} />
           </TouchableOpacity>
         </View>
 
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <Text style={[styles.title, { color: '#055E7C' }]}>
-            <Text style={[styles.title, { color: '#055E7C' }]}>MYR</Text> 18,839.00</Text>
+        <View style={{ flexDirection: 'column', justifyContent: 'center' }}>
+
+          <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+            <Text style={styles.title}>MYR 18,839.00</Text>
+          </View>
+
+          <View style={{ flexDirection: 'row' }}>
+
+            <TouchableOpacity>
+              <Text style={[styles.text, { color: '#055E7C' }]}>Send Money</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity>
+              <Text style={[styles.text, { paddingLeft: 5, paddingRight: 5, color: '#055E7C' }]}>|</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => props.navigation.navigate('Withdraw')}>
+              <Text style={[styles.text, { color: '#055E7C' }]}>Withdrawal</Text>
+            </TouchableOpacity>
+
+          </View>
+
         </View>
 
         <TouchableOpacity onPress={() => props.navigation.navigate('Profile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
@@ -41,21 +60,7 @@ const DashboardScreen = (props) => {
 
       <View style={{ flex: 9, padding: 10 }}>
 
-        <View style={{ flexDirection: 'row' }}>
 
-          <TouchableOpacity>
-            <Text style={[styles.text, { color: '#055E7C' }]}>Send Money</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity>
-            <Text style={[styles.text, { paddingLeft: 5, paddingRight: 5, color: '#055E7C' }]}>|</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => props.navigation.navigate('Withdraw')}>
-            <Text style={[styles.text, { color: '#055E7C' }]}>Withdrawal</Text>
-          </TouchableOpacity>
-
-        </View>
 
         <View style={{ marginTop: 10 }}>
           <LinearGradient colors={['#055E7C', '#055E7C']} style={{ paddingTop: 5, paddingBottom: 5, alignItems: 'center', borderRadius: 10, height: Layout.window.height / 3 }}>
@@ -80,11 +85,11 @@ const DashboardScreen = (props) => {
 
           <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
 
-            <Text style={[styles.h2, { color: '#055E7C' }]}>Latest Transaction</Text>
+            <Text style={[styles.h2, { color: '#04A2BD' }]}>Latest Transaction</Text>
 
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Text style={[styles.small, { paddingRight: 5, color: '#055E7C' }]}>More</Text>
-              <Ionicons name="ios-arrow-forward" color={'#055E7C'} style={{ fontSize: 15, paddingRight: 5 }} />
+              <Text style={[styles.small, { paddingRight: 5, color: '#04A2BD' }]}>More</Text>
+              <Ionicons name="ios-arrow-forward" color={'#04A2BD'} style={{ fontSize: 15, paddingRight: 5 }} />
             </View>
 
           </View>

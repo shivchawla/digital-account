@@ -59,7 +59,7 @@ const SettingsScreen = (props) => {
                 </View>
 
                 <View style={{ flexDirection: 'row', marginTop: 20, marginLeft: 30, alignItems: 'center' }}>
-                    <Image source={require('../assets/images/changepassword.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                    <Image source={require('../assets/images/logout.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
                     <TouchableOpacity onPress={() => logout()}>
                         <Text style={[styles.text, { color: '#055E7C', marginLeft: 50 }]}>Log Out</Text>
                     </TouchableOpacity>

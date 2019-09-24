@@ -16,25 +16,6 @@ import styles from '../styles/styles'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import * as actionCreator from '../store/actions/action'
 
-const validationSchema = Yup.object().shape({
-    cddContactPersonName: Yup
-        .string()
-        .required(),
-
-    cddContactPersonIc: Yup
-        .string()
-        .required(),
-
-    cddContactPersonNumber: Yup
-        .string()
-        .required(),
-
-    cddContactPersonPosition: Yup
-        .string()
-        .required(),
-
-});
-
 const CompanyDocumentScreen = (props) => {
     const dispatch = useDispatch()
     const docPicker = useSelector(state => state.companyInformationReducer.docPicker, shallowEqual)

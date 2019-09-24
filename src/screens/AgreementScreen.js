@@ -22,7 +22,7 @@ const AgreementScreen = (props) => {
 
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
 
-            <View style={{ flex: 10, margin: 10 }}>
+            <View style={{ flex: 10, margin: 25 }}>
 
                 <View style={{ justifyContent: 'center', alignItems: 'center', alignItems: 'center', flexDirection: 'row' }}>
                     <Image source={require('../assets/images/logo.png')} style={{ height: Layout.window.height * 0.2, width: Layout.window.width * 0.7 }} resizeMode={'contain'} />

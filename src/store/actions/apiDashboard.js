@@ -8,13 +8,12 @@ import * as SecureStore from 'expo-secure-store'
 
 import moment from 'moment'
 
-
 // import Amplify, { Auth, Storage } from 'aws-amplify';
 // import aws_exports from '../../aws-exports';
 // import { sendNotification } from './action';
 // Amplify.configure(aws_exports);///
 
-const apiUrl = 'https://staging.bxcess.my/'
+const apiUrl = 'https://staging.niyo.my/'
 const lmsApiUrl = 'https://lms.bxcess.my/'
 
 export const newsApi = () => {
@@ -71,6 +70,34 @@ export const eventApi = () => {
   }
 }
 
+export const retrieveMerchantInfoApi = () => {
+  return async (dispatch, getState) => {
+
+    //const personalToken = await AsyncStorage.getItem('personalToken');
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    fetch(`${apiUrl}api/setup/merchant`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const merchantInfo = responseJson.data
+console.log('Success'+JSON.stringify(responseJson))
+        dispatch({ type: 'SET_MERCHANT', payload: { ...merchantInfo } })
+
+      })
+      .catch((error) => {
+        console.log('Error initiating merchant info : ' + error);
+      });
+  }
+}
 
 export const promotionApi = () => {
   return async (dispatch, getState) => {
@@ -125,7 +152,6 @@ export const handbooksApi = () => {
       });
   }
 }
-
 
 export const einfoApi = () => {
   return async (dispatch, getState) => {
@@ -209,7 +235,6 @@ export const getAssociateApi = () => {
   }
 }
 
-
 export const getPendingApi = () => {
   return async (dispatch, getState) => {
     const personalToken = await SecureStore.getItemAsync('personalToken')
@@ -236,7 +261,6 @@ export const getPendingApi = () => {
       });
   }
 }
-
 
 export const listAgencyApi = () => {
   return async (dispatch, getState) => {
@@ -364,7 +388,7 @@ export const requestConnectApi = (connect_id) => {
       }, body: JSON.stringify({ access_credential, connect_id }),
     }).then((response) => response.json())
       .then(async (responseJson) => {
-        console.log(`inilah request connect : ${JSON.stringify(responseJson)}`)        
+        console.log(`inilah request connect : ${JSON.stringify(responseJson)}`)
       })
       .catch((error) => {
         console.log('Error expo token Api : ' + error);
@@ -378,7 +402,7 @@ export const acceptApi = (connect_id) => {
     const { token_type, access_token } = JSON.parse(personalToken)
     const { expo_token } = getState().registrationReducer
     const access_credential = 'api'
-    
+
     console.log(`connect id ialah : ${connect_id}`)
     fetch(`${apiUrl}api/business_directory/acceptConnection`, {
       method: 'POST',
@@ -401,8 +425,6 @@ export const acceptApi = (connect_id) => {
       });
   }
 }
-
-
 
 export const connectionStatusApi = () => {
   return async (dispatch, getState) => {
@@ -433,9 +455,6 @@ export const connectionStatusApi = () => {
   }
 }
 
-
-
-
 export const applyLoanApi = () => {
   return async (dispatch, getState) => {
     const personalToken = await SecureStore.getItemAsync('personalToken')
@@ -456,14 +475,12 @@ export const applyLoanApi = () => {
         const einfosArray = await responseJson.data
         await console.log(`Loan Application  ${JSON.stringify(einfosArray)}`)
 
-
       })
       .catch((error) => {
         console.log('Error Loan Application : ' + error);
       });
   }
 }
-
 
 export const applyGrantApi = () => {
   return async (dispatch, getState) => {
@@ -486,14 +503,12 @@ export const applyGrantApi = () => {
         const einfosArray = await responseJson.data
         await console.log(`Loan Application  ${JSON.stringify(einfosArray)}`)
 
-
       })
       .catch((error) => {
         console.log('Error Loan Application : ' + error);
       });
   }
 }
-
 
 export const uploadDocApi = (blob) => {
   return async (dispatch, getState) => {
@@ -519,14 +534,12 @@ export const uploadDocApi = (blob) => {
         const einfosArray = await responseJson.data
         await console.log(`upload success  ${JSON.stringify(einfosArray)}`)
 
-
       })
       .catch((error) => {
         console.log('Error Upload : ' + error);
       });
   }
 }
-
 
 export const getUserInfoApi = () => {
   return async (dispatch, getState) => {
@@ -611,7 +624,6 @@ export const generateJWTApi = () => {
   }
 }
 
-
 export const getCompanyInfoApi = () => {
   return async (dispatch, getState) => {
     const personalToken = await SecureStore.getItemAsync('personalToken')
@@ -638,8 +650,6 @@ export const getCompanyInfoApi = () => {
       });
   }
 }
-
-
 
 export const getListWorkersApi = () => {
   return async (dispatch, getState) => {
@@ -671,7 +681,7 @@ export const sendNotificationApi = (expo_token, id, title) => {
   return async (dispatch, getState) => {
 
     console.log(`kemantapan sejati ${expo_token} dan ${id} dan ${title}`)
-    const expo_token_from=getState().registrationReducer.expo_token
+    const expo_token_from = getState().registrationReducer.expo_token
     fetch(`https://exp.host/--/api/v2/push/send`, {
       method: 'POST',
       headers: {
@@ -679,7 +689,7 @@ export const sendNotificationApi = (expo_token, id, title) => {
         'accept': 'application/json',
         'accept-encoding': 'gzip,deflate',
         'content-type': 'application/json',
-      }, body: JSON.stringify({ to: expo_token, title: 'BXcess Notification', body: 'None', data: { title, id,expo_token_from } }),
+      }, body: JSON.stringify({ to: expo_token, title: 'BXcess Notification', body: 'None', data: { title, id, expo_token_from } }),
     }).then((response) => response.json())
       .then(async (responseJson) => {
         console.log(`inilah response JSON sendNotification : ${JSON.stringify(responseJson)}`)
@@ -689,8 +699,6 @@ export const sendNotificationApi = (expo_token, id, title) => {
       });
   }
 }
-
-
 
 export const doneForNowApi = () => {
   return async (dispatch, getState) => {
@@ -716,9 +724,6 @@ export const doneForNowApi = () => {
       });
   }
 }
-
-
-
 
 export const getCoursesApi = () => {
   return async (dispatch, getState) => {
@@ -747,7 +752,6 @@ export const getCoursesApi = () => {
       });
   }
 }
-
 
 //////////////////////////////////LUNAWALLET/////////////////////////////////////////
 
@@ -789,8 +793,6 @@ export const userInfo = () => {
   }
 }
 
-
-
 export const latestTransaction = () => {
   return async (dispatch, getState) => {
     //const personalToken = await AsyncStorage.getItem('personalToken');
@@ -810,10 +812,8 @@ export const latestTransaction = () => {
     }).then((response) => response.json())
       .then(async (responseJson) => {
 
-
         await console.log(`latest transaction info  ${JSON.stringify(responseJson)}`)
         dispatch({ type: 'SET_DASHBOARD', payload: { latestTransaction: responseJson.data } })
-
 
       })
       .catch((error) => {
@@ -824,8 +824,6 @@ export const latestTransaction = () => {
 
 export const analyticSummary = () => {
   return async (dispatch, getState) => {
-
-
 
     //const personalToken = await AsyncStorage.getItem('personalToken');
     const personalToken = await SecureStore.getItemAsync('personalToken')
@@ -904,14 +902,12 @@ export const notificationApi = () => {
 
         dispatch({ type: 'SET_NOTIFICATION', payload: { notificationList: notificationByDate } })
 
-
       })
       .catch((error) => {
         console.log('Error initiating notification : ' + error);
       });
   }
 }
-
 
 export const depositApi = () => {
   return async (dispatch, getState) => {
@@ -931,7 +927,6 @@ export const depositApi = () => {
     const personalToken = await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
 
-
     fetch(`${apiUrl}api/Deposit`, {
       method: 'POST',
       headers: {
@@ -948,8 +943,6 @@ export const depositApi = () => {
         const { status } = await responseJson
         await console.log(`deposit ${JSON.stringify(responseJson)}`)
         await dispatch({ type: 'SET_DEPOSIT', payload: { status } })
-
-
 
       })
       .catch((error) => {
@@ -988,7 +981,6 @@ export const userList = () => {
           phoneNoList6.push((rL.phone_no ? rL.phone_no.replace(/[^A-Z0-9]+/ig, "").substr(rL.phone_no.length - 6) : 'NA'))
         })
 
-
         await dispatch({ type: 'SET_RECIPIENT_LIST', payload: { recipientList, phoneNoList, phoneNoList6, memberFilter: true } })
         await dispatch({ type: 'SET_PAYER_LIST', payload: { payerList: recipientList, phoneNoList, phoneNoList6, memberFilter: true } })
 
@@ -998,7 +990,6 @@ export const userList = () => {
       });
   }
 }
-
 
 export const sendMoney = () => {
   return async (dispatch, getState) => {
@@ -1037,7 +1028,6 @@ export const sendMoney = () => {
   }
 }
 
-
 export const withdrawApi = () => {
   return async (dispatch, getState) => {
 
@@ -1054,8 +1044,6 @@ export const withdrawApi = () => {
     console.log(`amount ialah ${amount}`)
     //const personalToken = await AsyncStorage.getItem('personalToken');
     const personalToken = await SecureStore.getItemAsync('personalToken')
-
-
 
     const { token_type, access_token } = JSON.parse(personalToken)
 
@@ -1076,14 +1064,12 @@ export const withdrawApi = () => {
         await console.log(`withdraw ${JSON.stringify(responseJson)}`)
         await dispatch({ type: 'SET_WITHDRAW', payload: { status } })
 
-
       })
       .catch((error) => {
         console.log('Error withdraw : ' + error);
       });
   }
 }
-
 
 export const requestMoney = () => {
   return async (dispatch, getState) => {
@@ -1096,11 +1082,9 @@ export const requestMoney = () => {
     //const payer='59707060'
     const remark = 'NA'
 
-
     console.log(`amount ialah ${amount}`)
     // const personalToken = await AsyncStorage.getItem('personalToken');   
     const personalToken = await SecureStore.getItemAsync('personalToken')
-
 
     const { token_type, access_token } = JSON.parse(personalToken)
 
@@ -1142,7 +1126,6 @@ export const payRequestMoney = () => {
     //const personalToken = await AsyncStorage.getItem('personalToken');    
     const personalToken = await SecureStore.getItemAsync('personalToken')
 
-
     const { token_type, access_token } = JSON.parse(personalToken)
 
     fetch(`${apiUrl}api/payRequestMoney`, {
@@ -1161,15 +1144,12 @@ export const payRequestMoney = () => {
         const { status } = await responseJson
         await console.log(`pay request money : ${JSON.stringify(responseJson)}`)
 
-
-
       })
       .catch((error) => {
         console.log('Error request money : ' + error);
       });
   }
 }
-
 
 export const resetPinApi = () => {
   return async (dispatch, getState) => {
@@ -1180,7 +1160,6 @@ export const resetPinApi = () => {
 
     //const personalToken = await AsyncStorage.getItem('personalToken');
     const personalToken = await SecureStore.getItemAsync('personalToken')
-
 
     const { token_type, access_token } = JSON.parse(personalToken)
 
@@ -1272,16 +1251,12 @@ export const editMobileDetailVerify = (d) => {
 
         //dispatch({ type: 'SET_INDICATOR_PHONE_VERIFICATION', payload: { displayIndicator: false, proceed: true,actionList:false } })
 
-
-
       })
       .catch((error) => {
         console.error('Error : ' + error);
       });
   }
 }
-
-
 
 /////////////////////////////
 
@@ -1366,12 +1341,8 @@ export const editPersonalDetail = () => {
       national_id_passport: dashboard.national_id_passport
     }
 
-
-
-
     console.log(`dashboard ialah ${JSON.stringify(dashboard)}`)
     console.log(`expo token ialah ${JSON.stringify(expoToken)}`)
-
 
     fetch(`${apiUrl}api/EditPersonalDetail`, {
       method: 'POST',
