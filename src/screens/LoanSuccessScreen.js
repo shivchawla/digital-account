@@ -19,8 +19,6 @@ import styles from '../styles/styles'
 
 const LoanSuccessScreen = (props) => {
 
- 
-
     return (
         <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
 
@@ -33,10 +31,10 @@ const LoanSuccessScreen = (props) => {
                         <Image source={require('../assets/images/logo.png')} style={{ height: Layout.window.height * 0.2, width: Layout.window.width * 0.7 }} resizeMode={'contain'} />
                         <Text style={[styles.text, { margin: 5, fontWeight: 'bold' }]}>Loan Application Submitted</Text>
 
-                        <View style={{ alignSelf: 'stretch', flexDirection: 'column', margin: 5,alignItems:'center' }}>
-                            <Text style={[styles.text, { margin: 5, color: 'darkturquoise' }]}>Congratulation!</Text>
+                        <View style={{ alignSelf: 'stretch', flexDirection: 'column', margin: 5, alignItems: 'center' }}>
+                            <Text style={[styles.text, { margin: 5, color: '#09A4BF' }]}>Congratulation!</Text>
                             <Text style={[styles.text, { margin: 5, marginBottom: 20 }]}>Your application has been submitted. The result will be notified to you in three days time.</Text>
-                        </View>                       
+                        </View>
 
                         <TouchableOpacity onPress={() => props.navigation.navigate('Dashboard')} style={{ width: Layout.window.width * 0.4, paddingTop: 5, paddingBottom: 5, borderWidth: 1, borderColor: '#4A90E2', borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10 }}>
                             <Text style={[styles.text,]}>Dashboard</Text>

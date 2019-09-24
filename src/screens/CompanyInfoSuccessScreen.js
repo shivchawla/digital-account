@@ -58,12 +58,12 @@ const CompanyInfoSuccessScreen = (props) => {
                     <Image source={require('../assets/images/logo.png')} style={{ height: Layout.window.height * 0.2, width: Layout.window.width * 0.7 }} resizeMode={'contain'} />
                 </View>
 
-                <View style={{ margin:5,justifyContent: 'center', alignItems: 'center', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+                <View style={{ margin: 5, justifyContent: 'center', alignItems: 'center', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
                     <Text style={[styles.h3, { margin: 5, flexDirection: 'row', justifyContent: 'flex-start' }]}>MERCHANT INFO SUBMITTED</Text>
                 </View>
 
                 <View style={{ alignSelf: 'stretch', flexDirection: 'column', margin: 5 }}>
-                    <Text style={[styles.text, { margin: 5 }]}>Congratulation!</Text>
+                    <Text style={[styles.text, { margin: 5, color: '#09A4BF' }]}>Congratulation!</Text>
                     <Text style={[styles.text, { margin: 5, marginBottom: 20 }]}>You have entered your company information. You can either choose to enter contact info or skip to the dashboard.</Text>
                 </View>
 

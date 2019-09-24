@@ -3,9 +3,7 @@ import { FileSystem, Notifications } from 'expo'
 import * as SecureStore from 'expo-secure-store'
 import moment from 'moment'
 
-
 const apiUrl = 'https://staging.niyo.my/'
-
 
 export const requestToken = () => {
   console.log('baca x ni')
@@ -32,7 +30,6 @@ export const requestToken = () => {
       });
   }
 }
-
 
 export const registerApi = (token_type, access_token, name, email, password, password_confirmation, expo_token) => {
   return async (dispatch, getState) => {
@@ -66,7 +63,6 @@ export const registerApi = (token_type, access_token, name, email, password, pas
   }
 }
 
-
 export const requestPersonalToken = (screen, username, password) => {
   console.log(`kat api : ${username} dan ${password}`)
   return async (dispatch, getState) => {
@@ -93,8 +89,6 @@ export const requestPersonalToken = (screen, username, password) => {
       });
   }
 }
-
-
 
 export const companyInfoAPI = () => {
   return async (dispatch, getState) => {
@@ -194,7 +188,6 @@ export const submitDocApi = () => {
   }
 }
 
-
 export const declarationApi = (values) => {
   return async (dispatch, getState) => {
     const personalToken = await SecureStore.getItemAsync('personalToken')
@@ -225,8 +218,6 @@ export const declarationApi = (values) => {
 
   }
 }
-
-
 
 /////////////////////////////////////////////////////////
 

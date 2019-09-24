@@ -69,10 +69,10 @@ const CompanyContactInformationScreen = (props) => {
 
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }}>
 
-                        <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#055E7C', }}>
+                        <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4', }}>
 
                             <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center', alignItems: 'flex-start', paddingLeft: 10 }}>
-                                <Text numberOfLines={1} style={styles.title} ellipsizeMode='tail'>COMPANY CONTACT INFORMATION</Text>
+                                <Text style={styles.title} >COMPANY CONTACT INFORMATION</Text>
                             </View>
 
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
@@ -83,24 +83,25 @@ const CompanyContactInformationScreen = (props) => {
 
 
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
-                            <View style={{ flex: 9, margin: 10 }}>
 
-                                <View style={{ marginBottom: 10 }}>
-                                    <Text style={[styles.text, { marginBottom: 5, borderBottomColor: cddTelephoneTouched && cddTelephoneError ? '#d94498' : '#5a83c2' }]}>Phone Number</Text>
-                                    <TextInput value={cddTelephone} onBlur={FormikProps.handleBlur('cddTelephone')} onChangeText={FormikProps.handleChange('cddTelephone')} placeholder={cddTelephoneTouched && cddTelephoneError ? '' : 'Eg: 6076541258'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                            <View style={[styles.screenMargin, { flex: 9 }]}>
+
+                                <View style={[styles.formElement]}>
+                                    <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: cddTelephoneTouched && cddTelephoneError ? '#d94498' : '#5a83c2' }]}>Phone Number</Text>
+                                    <TextInput value={cddTelephone} onBlur={FormikProps.handleBlur('cddTelephone')} onChangeText={FormikProps.handleChange('cddTelephone')} placeholder={cddTelephoneTouched && cddTelephoneError ? '' : 'Eg: 6076541258'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} keyboardType={'phone-pad'} />
+                                    {cddTelephoneTouched && cddTelephoneError && <Text style={styles.error}>{cddTelephoneError}</Text>}
                                 </View>
 
-                                {cddTelephoneTouched && cddTelephoneError && <Text style={styles.error}>{cddTelephoneError}</Text>}
-
-                                <View style={{ marginBottom: 10 }}>
-                                    <Text style={[styles.text, { marginBottom: 5, borderBottomColor: cddEmailTouched && cddEmailError ? '#d94498' : '#5a83c2' }]}>Email Address</Text>
-                                    <TextInput value={cddEmail} onBlur={FormikProps.handleBlur('cddEmail')} onChangeText={FormikProps.handleChange('cddEmail')} placeholder={cddEmailTouched && cddEmailError ? '' : 'Eg: abc@email.com'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }}  keyboardType={'email-address'}  />
+                                <View style={[styles.formElement]}>
+                                    <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: cddEmailTouched && cddEmailError ? '#d94498' : '#5a83c2' }]}>Email Address</Text>
+                                    <TextInput value={cddEmail} onBlur={FormikProps.handleBlur('cddEmail')} onChangeText={FormikProps.handleChange('cddEmail')} placeholder={cddEmailTouched && cddEmailError ? '' : 'Eg: abc@email.com'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                    {cddEmailTouched && cddEmailError && <Text style={styles.error}>{cddEmailError}</Text>}
                                 </View>
 
-                                {cddEmailTouched && cddEmailError && <Text style={styles.error}>{cddEmailError}</Text>}
-                                <View style={{ marginBottom: 10 }}>
+                                <View style={[styles.formElement]}>
+
                                     <TouchableOpacity onPress={() => props.navigation.navigate('CompanyContactAddressInformation')}>
-                                        <Text style={[styles.text, { marginBottom: 5 }]}>Address</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 5 }]}>Address</Text>
                                         {!comp_state ? <TextInput editable={false} value={comp_addr} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
                                             :
                                             <View style={{ marginRight: 3, padding: 5, borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
@@ -113,7 +114,9 @@ const CompanyContactInformationScreen = (props) => {
                                                 <Text>{comp_state}</Text>
                                             </View>}
                                     </TouchableOpacity>
+
                                 </View>
+
                             </View>
 
                             <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
@@ -124,8 +127,8 @@ const CompanyContactInformationScreen = (props) => {
                                     </LinearGradient>
                                 </TouchableOpacity>
 
-                                <TouchableOpacity disabled={!(FormikProps.isValid&&comp_addr)} onPress={FormikProps.handleSubmit} style={{ flex: 1, borderColor: FormikProps.isValid ? '#0A6496' : 'rgba(10,100,150,0.5)', borderWidth: 1 }}>
-                                    <LinearGradient colors={(FormikProps.isValid&&comp_addr) ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
+                                <TouchableOpacity disabled={!(FormikProps.isValid && comp_addr)} onPress={FormikProps.handleSubmit} style={{ flex: 1, borderColor: FormikProps.isValid ? '#0A6496' : 'rgba(10,100,150,0.5)', borderWidth: 1 }}>
+                                    <LinearGradient colors={(FormikProps.isValid && comp_addr) ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                         {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> :
                                             <Text style={[styles.butang, { color: '#fff' }]}>Next</Text>}
                                     </LinearGradient>

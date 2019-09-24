@@ -28,7 +28,7 @@ const AgreementScreen = (props) => {
 
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
 
-            <View style={{ flex: 10, margin: 10 }}>
+            <View style={{ flex: 10, margin: 25 }}>
 
                 <View style={{ justifyContent: 'center', alignItems: 'center', alignItems: 'center', flexDirection: 'row' }}>
                     <Image source={require('../assets/images/logo.png')} style={{ height: Layout.window.height * 0.2, width: Layout.window.width * 0.7 }} resizeMode={'contain'} />
@@ -46,7 +46,7 @@ FCGB is referred to as “we”, “us”, “our” or “ours”. Any person u
                 <Text style={[styles.small, { alignSelf: 'flex-start', textAlign: 'left', margin: 5, }]}>By communicating with us, using our services, or services from us or by virtue of your engagement with us, you acknowledge that you have read and understood this Policy/Notice and agree and consent to the use, processing and transfer of your Personal Data by us as described in this Notice.
                         We shall have the right to modify, update or amend the terms of this Notice at any time by placing the updated Notice on the Websites. </Text>
 
-                <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'center', alignItems: 'center' }}>
+                <View style={{ flexDirection: 'row', marginTop: 10, justifyContent: 'flex-start', alignItems: 'flex-start' }}>
                     {(Platform.OS == 'ios') ?
 
                         <CheckBox2 isChecked={agreement} onClick={() => setAgreement(!agreement)} />

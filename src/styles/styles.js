@@ -13,14 +13,19 @@ export default StyleSheet.create({
   title: {
     fontSize,
     fontFamily: 'Montserrat_medium',
-    color: '#000',
+    color: '#055E7C',
+    fontSize: fontSize * 1.4
+  },
+  butang: {
+    fontSize,
+    fontFamily: 'Montserrat_medium',
     fontSize: fontSize * 1.4
   },
   h3: {
     fontSize,
     fontFamily: 'Montserrat_medium',
     color: '#000',
-    fontSize: fontSize * 1.2
+    fontSize: fontSize * 1.1
   },
   h2: {
     fontSize,
@@ -36,9 +41,15 @@ export default StyleSheet.create({
   },
   small: {
     fontSize,
-    fontFamily: 'Montserrat_thin',
+    fontFamily: 'Montserrat_regular',
     color: '#000',
-    fontSize: fontSize * 0.8
+    fontSize: fontSize * 0.9
+  },
+  titleBox: {
+    fontSize,
+    fontFamily: 'Montserrat_medium',
+    color: '#000',
+    fontSize: fontSize * 1.2
   },
   error: {
     fontSize,
@@ -46,11 +57,12 @@ export default StyleSheet.create({
     color: 'rgba(255,0,0,0.5)',
     fontSize: fontSize * 0.8
   },
-  butang: {
-    fontSize,
-    fontFamily: 'Montserrat_medium', 
-    color: '#055E7C',
-    fontSize: fontSize * 1.4
+  screenMargin: {
+    margin: 30
   },
+  formElement: {
+    marginBottom: 20
+  }
+
 
 })

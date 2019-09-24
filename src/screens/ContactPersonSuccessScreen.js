@@ -58,11 +58,11 @@ const ContactPersonSuccessScreen = (props) => {
                 <View style={{ justifyContent: 'center', alignItems: 'center', justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
                     <Image source={require('../assets/images/logo.png')} style={{ height: Layout.window.height * 0.2, width: Layout.window.width * 0.7 }} resizeMode={'contain'} />
                 </View>
-                <View style={{ margin:5,justifyContent: 'center', alignItems: 'center', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+                <View style={{ margin: 5, justifyContent: 'center', alignItems: 'center', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
                     <Text style={[styles.h3, { margin: 5, flexDirection: 'row', justifyContent: 'flex-start' }]}>CONTACT INFO SUBMITTED</Text>
                 </View>
                 <View style={{ alignSelf: 'stretch', margin: 5 }}>
-                    <Text style={[styles.text, { margin: 5 }]}>Congratulation!</Text>
+                    <Text style={[styles.text, { margin: 5, color: '#09A4BF' }]}>Congratulation!</Text>
                     <Text style={[styles.text, { margin: 5, marginBottom: 20 }]}>You have entered your contact information. You can either choose to submit document or skip to the dashboard.</Text>
                 </View>
 
