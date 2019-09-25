@@ -40,6 +40,8 @@ const merchantInfoReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_MERCHANT':
             return { ...state, ...action.payload }
+            case 'MERCHANT_RESET':
+            return state = []
        
         default:
             return state

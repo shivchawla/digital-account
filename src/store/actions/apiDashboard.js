@@ -14,7 +14,13 @@ import moment from 'moment'
 // Amplify.configure(aws_exports);///
 
 const apiUrl = 'https://staging.niyo.my/'
-const lmsApiUrl = 'https://lms.bxcess.my/'
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////
+//////////INI YANG LAMA PUNYA//////////////////////////////////////////////
 
 export const newsApi = () => {
   return async (dispatch, getState) => {
@@ -89,7 +95,7 @@ export const retrieveMerchantInfoApi = () => {
     }).then((response) => response.json())
       .then(async (responseJson) => {
         const merchantInfo = responseJson.data
-console.log('Success'+JSON.stringify(responseJson))
+        console.log('Success' + JSON.stringify(responseJson))
         dispatch({ type: 'SET_MERCHANT', payload: { ...merchantInfo } })
 
       })
@@ -99,6 +105,99 @@ console.log('Success'+JSON.stringify(responseJson))
   }
 }
 
+
+export const checkDeclareApi = () => {
+  return async (dispatch, getState) => {
+
+    //const personalToken = await AsyncStorage.getItem('personalToken');
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    fetch(`${apiUrl}api/setup/business_declaration`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const {isDeclaration_one} = responseJson.data[0]
+        console.log('Success business_declaration : ' + JSON.stringify(isDeclaration_one))
+        dispatch({ type: 'SET_MERCHANT', payload: { isDeclaration_one} })
+
+      })
+      .catch((error) => {
+        console.log('Error initiating merchant info : ' + error);
+        dispatch({ type: 'SET_MERCHANT', payload: { isDeclaration_one:0} })
+      });
+  }
+}
+
+export const checkDocumentApi = () => {
+  return async (dispatch, getState) => {
+
+    //const personalToken = await AsyncStorage.getItem('personalToken');
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    fetch(`${apiUrl}api/setup/business_document`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const {isDocument1} = responseJson.data[0]
+        console.log('Success' + JSON.stringify(responseJson))
+        dispatch({ type: 'SET_MERCHANT', payload: { isDocument1 } })
+
+      })
+      .catch((error) => {
+        console.log('Error initiating document info : ' + error);
+      });
+  }
+}
+
+export const checkContactApi = () => {
+  return async (dispatch, getState) => {
+
+    //const personalToken = await AsyncStorage.getItem('personalToken');
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    fetch(`${apiUrl}api/setup/business_contact`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const {full_name} = responseJson.data[0]
+        console.log('Success' + JSON.stringify(responseJson))
+        dispatch({ type: 'SET_MERCHANT', payload: { full_name} })
+
+      })
+      .catch((error) => {
+        console.log('Error initiating check contact : ' + error);
+      });
+  }
+}
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////
 export const promotionApi = () => {
   return async (dispatch, getState) => {
     const personalToken = await SecureStore.getItemAsync('personalToken')
