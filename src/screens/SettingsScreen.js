@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import * as actionCreator from '../store/actions/action'
+import { Ionicons } from '@expo/vector-icons';
 
 import styles from '../styles/styles'
 
@@ -19,10 +20,16 @@ const SettingsScreen = (props) => {
     return (
         <View style={{ flex: 1, }}>
 
-            <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#4D6BFA' }}>
+            <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
+
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
+                    <TouchableOpacity onPress={props.navigation.openDrawer} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
+                        <Ionicons name="md-more" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 20 }} />
+                    </TouchableOpacity>
+                </View>
 
                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={[styles.title, { color: '#055E7C' }]}>OPTION</Text>
+                    <Text style={[styles.title]}>OPTION</Text>
                 </View>
 
                 <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
@@ -31,7 +38,7 @@ const SettingsScreen = (props) => {
 
             </View>
 
-            <View style={{ flex: 8, padding: 10 }}>
+            <View style={[styles.screenMargin, { flex: 8 }]}>
 
                 <View style={{ marginBottom: 20 }}>
                     <Text style={[styles.h2, { color: '#055E7C' }]}>ACCOUNT</Text>

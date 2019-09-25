@@ -7,16 +7,13 @@ import {
     StyleSheet
 } from 'react-native';
 
-
+import Dot from '../components/Dot'
 import Layout from '../constants/Layout'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles/styles'
 
 const AccountScreen = (props) => {
-    const score = 80
-
-    const scoreColor = score > 66 ? '#7ED321' : score > 33 ? 'yellow' : 'red'
 
     return (
 
@@ -40,13 +37,9 @@ const AccountScreen = (props) => {
 
             </View>
 
-            <View style={{ flex: 9, padding: 10, flexDirection: 'row', justifyContent: 'center' }}>
+            <View style={[styles.screenMargin, { flex: 9, flexDirection: 'row' }]}>
 
                 <View>
-
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 15 }}>
-                        <Text style={styles.h2}>Health</Text>
-                    </View>
 
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 15 }}>
                         <Text style={styles.h2}>Account Information</Text>
@@ -91,11 +84,11 @@ const AccountScreen = (props) => {
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={styles.text}>Balance</Text>
+                            <Text style={styles.text}>Colour Indicator</Text>
                         </View>
 
                         <View style={{ flex: 1 }}>
-                            <Text style={styles.text}>RM18,839.00</Text>
+                            <Text style={[styles.text, { color: 'green' }]}>Active</Text>
                         </View>
 
                     </View>
@@ -107,7 +100,7 @@ const AccountScreen = (props) => {
                         </View>
 
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, { color: 'green' }]}>Active</Text>
+                            <Dot color='#7ED321' />
                         </View>
 
                     </View>

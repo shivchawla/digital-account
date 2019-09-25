@@ -19,12 +19,12 @@ const InvoiceScreen = (props) => {
 
         <View style={{ flex: 1, }}>
 
-            <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#055E7C' }}>
+            <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
 
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
 
                     <TouchableOpacity onPress={() => props.navigation.navigate('Dashboard')} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                        <Ionicons name="ios-arrow-back" color={'#055E7C'} style={{ fontSize: 30, paddingLeft: 20 }} />
+                        <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 20 }} />
                     </TouchableOpacity>
 
                 </View>
@@ -55,7 +55,7 @@ const InvoiceScreen = (props) => {
 
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
 
-                        <Text style={[styles.h2, { color: '#055E7C' }]}>Invoices</Text>
+                        <Text style={[styles.h2]}>Invoices</Text>
 
                         <TouchableOpacity onPress={props.navigation.openDrawer} style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <Text style={[styles.small, { paddingRight: 5, color: '#055E7C' }]}>Search</Text>

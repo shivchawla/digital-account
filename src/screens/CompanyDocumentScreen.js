@@ -32,7 +32,7 @@ const CompanyDocumentScreen = (props) => {
     return (
 
         <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }}>
-            <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#055E7C', }}>
+            <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4', }}>
                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center', alignItems: 'flex-start', padding: 10 }}>
                     <Text numberOfLines={1} style={styles.title} ellipsizeMode='tail'>Company Documents</Text>
                 </View>

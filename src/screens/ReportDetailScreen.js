@@ -58,11 +58,12 @@ const ReportDetailScreen = (props) => {
 
                 return (
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }}>
-                        <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#4D6BFA' }}>
+
+                        <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
 
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                                    <Ionicons name="ios-arrow-back" color={'#4D6BFA'} style={{ fontSize: 30, paddingLeft: 20 }} />
+                                    <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 20 }} />
                                 </TouchableOpacity>
                             </View>
 
@@ -75,35 +76,38 @@ const ReportDetailScreen = (props) => {
                             </View>
 
                         </View>
+
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
 
-                            <View style={{ flex: 9 }}>
-                                <ScrollView style={{ padding: 10 }}>
+                            <View style={[styles.titleBox, { flex: 9 }]}>
+
+                                <ScrollView style={[styles.screenMargin]}>
+
                                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 }}>
-                                        <Text style={styles.h3}>Financing</Text>
+                                        <Text style={styles.h2}>Financing</Text>
                                     </View>
 
                                     <View style={{ marginBottom: 10 }}>
-                                        <Text style={[styles.text, { marginBottom: 5 }]}>Total Financing (MYR)</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 5 }]}>Total Financing (MYR)</Text>
                                         <Text style={[styles.text, { marginBottom: 5 }]}>1,000.00</Text>
 
                                     </View>
 
                                     <View style={{ marginBottom: 10 }}>
-                                        <Text style={[styles.text, { marginBottom: 5 }]}>Purpose</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 5 }]}>Purpose</Text>
                                         <Text style={[styles.text, { marginBottom: 5 }]}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur facilisis pretium est, vitae commodo nisl rutrum nec.</Text>
                                     </View>
 
                                     <View style={{ marginBottom: 10 }}>
 
-                                        <Text style={[styles.text, { marginBottom: 5 }]}>Is company connected with SME Bank</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 5 }]}>Is company connected with SME Bank?</Text>
 
                                         <Text style={[styles.text, { marginBottom: 5 }]}>Yes</Text>
 
                                     </View>
 
                                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 }}>
-                                        <Text style={styles.h3}>Declaration</Text>
+                                        <Text style={styles.h2}>Declaration</Text>
                                     </View>
 
                                     <View style={{ flexDirection: 'row', marginBottom: 10 }}>
@@ -134,28 +138,28 @@ const ReportDetailScreen = (props) => {
                                         <Text style={styles.h3}>Connected Parties</Text>
                                     </View>
                                     <View style={{ marginBottom: 10 }}>
-                                        <Text style={[styles.text, { marginBottom: 5 }]}>Capacity</Text>
+                                        <Text style={[styles.titleBox]}>Capacity</Text>
                                         <Text style={[styles.text, { marginBottom: 5 }]}>Capacity</Text>
 
                                     </View>
                                     <View style={{ marginBottom: 10 }}>
-                                        <Text style={[styles.text, { marginBottom: 5 }]}>Name</Text>
+                                        <Text style={[styles.titleBox]}>Name</Text>
                                         <Text style={[styles.text, { marginBottom: 5 }]}>John Doe</Text>
                                     </View>
                                     <View style={{ marginBottom: 10 }}>
-                                        <Text style={[styles.text, { marginBottom: 5 }]}>MyKad</Text>
+                                        <Text style={[styles.titleBox]}>MyKad</Text>
                                         <Text style={[styles.text, { marginBottom: 5 }]}>800112-10-1234</Text>
                                     </View>
                                     <View style={{ marginBottom: 10 }}>
-                                        <Text style={[styles.text, { marginBottom: 5 }]}>Relationship</Text>
+                                        <Text style={[styles.titleBox]}>Relationship</Text>
                                         <Text style={[styles.text, { marginBottom: 5 }]}>Bro</Text>
                                     </View>
                                     <View style={{ marginBottom: 10 }}>
-                                        <Text style={[styles.text, { marginBottom: 5 }]}>Bank Personnel Name</Text>
+                                        <Text style={[styles.titleBox]}>Bank Personnel Name</Text>
                                         <Text style={[styles.text, { marginBottom: 5 }]}>Max Power</Text>
                                     </View>
                                     <View style={{ marginBottom: 10 }}>
-                                        <Text style={[styles.text, { marginBottom: 5 }]}>Email</Text>
+                                        <Text style={[styles.titleBox]}>Email</Text>
                                         <Text style={[styles.text, { marginBottom: 5 }]}>email@address.com</Text>
                                     </View>
 

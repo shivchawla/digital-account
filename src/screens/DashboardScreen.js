@@ -58,7 +58,7 @@ const DashboardScreen = (props) => {
 
       </View>
 
-      <View style={[styles.screenMargin,{ flex: 9, }]}>
+      <View style={[styles.screenMargin, { flex: 9, }]}>
 
         <View style={{ marginTop: 10 }}>
           <LinearGradient colors={['#055E7C', '#055E7C']} style={{ paddingTop: 5, paddingBottom: 5, alignItems: 'center', borderRadius: 10, height: Layout.window.height / 3 }}>

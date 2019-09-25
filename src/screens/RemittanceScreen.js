@@ -118,11 +118,11 @@ const RemittanceScreen = (props) => {
 
                             <View style={{ flex: 9 }}>
 
-                                <ScrollView style={{ padding: 10 }}>
+                                <ScrollView style={styles.screenMargin}>
 
-                                    <View style={{ marginBottom: 10 }}>
+                                    <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
 
-                                        <Text style={[styles.text, { marginBottom: 5, color: '#055E7C' }]}>From</Text>
+                                        <Text style={styles.titleBox}>From</Text>
 
                                         <Picker
                                             style={{ flex: 1, height: 35, borderColor: '#055E7C', borderWidth: 1 }}
@@ -134,18 +134,17 @@ const RemittanceScreen = (props) => {
                                             <Picker.Item label="Indonesian Rupiah (IDR)" value="idr" />
                                         </Picker>
 
+                                        {senderCurrencyError && senderCurrencyTouched && <Text style={styles.error}>{senderCurrencyTouched}</Text>}
+
                                         <TextInput value={senderAmount} onChangeText={FormikProps.handleChange('senderAmount')} onBlur={FormikProps.handleBlur('senderAmount')} style={{ borderWidth: 1, borderColor: senderAmountTouched && senderAmountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={senderAmountTouched && senderAmountError ? '' : 'MYR 90.00'} placeholderTextColor={senderAmountTouched && senderAmountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'phone-pad'} />
+
+                                        {senderAmountTouched && senderAmountError && <Text style={styles.error}>{senderAmountError}</Text>}
 
                                     </View>
 
-                                    {senderCurrencyError && senderCurrencyTouched && <Text style={styles.error}>{senderCurrencyTouched}</Text>}
+                                    <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
 
-
-                                    {senderAmountTouched && senderAmountError && <Text style={styles.error}>{senderAmountError}</Text>}
-
-                                    <View style={{ marginBottom: 10 }}>
-
-                                        <Text style={[styles.text, { marginBottom: 5, color: '#055E7C' }]}>To</Text>
+                                        <Text style={styles.titleBox}>To</Text>
 
                                         <Picker
                                             style={{ flex: 1, height: 35, borderColor: '#055E7C', borderWidth: 1 }}
@@ -157,34 +156,31 @@ const RemittanceScreen = (props) => {
                                             <Picker.Item label="Indonesian Rupiah (IDR)" value="idr" />
                                         </Picker>
 
+                                        {recipientCurrencyError && recipientCurrencyTouched && <Text style={styles.error}>{recipientCurrencyTouched}</Text>}
+
                                         <TextInput value={recipientAmount} onChangeText={FormikProps.handleChange('recipientAmount')} onBlur={FormikProps.handleBlur('recipientAmount')} style={{ borderWidth: 1, borderColor: recipientAmountTouched && recipientAmountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={recipientAmountTouched && recipientAmountError ? '' : 'MYR 90.00'} placeholderTextColor={recipientAmountTouched && recipientAmountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'phone-pad'} />
 
+                                        {recipientAmountTouched && recipientAmountError && <Text style={styles.error}>{recipientAmountError}</Text>}
+
                                     </View>
 
-                                    {recipientCurrencyError && recipientCurrencyTouched && <Text style={styles.error}>{recipientCurrencyTouched}</Text>}
-
-                                    {recipientAmountTouched && recipientAmountError && <Text style={styles.error}>{recipientAmountError}</Text>}
-
-                                    <View style={{ marginBottom: 10 }}>
-                                        <Text style={[styles.text, { marginBottom: 5, color: '#055E7C' }]}>Recipient Name</Text>
+                                    <View style={styles.formElement}>
+                                        <Text style={[styles.titleBox, { marginBottom: 5, color: '#055E7C' }]}>Recipient Name</Text>
                                         <TextInput value={recipientName} onChangeText={FormikProps.handleChange('recipientName')} onBlur={FormikProps.handleBlur('recipientName')} style={{ borderWidth: 1, borderColor: recipientNameTouched && recipientNameError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={recipientNameTouched && recipientNameError ? '' : 'Siti Aminah binti Wahid'} placeholderTextColor={recipientNameTouched && recipientNameError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        {recipientNameTouched && recipientNameError && <Text style={styles.error}>{recipientNameError}</Text>}
                                     </View>
 
-                                    {recipientNameTouched && recipientNameError && <Text style={styles.error}>{recipientNameError}</Text>}
-
-                                    <View style={{ marginBottom: 10 }}>
-                                        <Text style={[styles.text, { marginBottom: 5, color: '#055E7C' }]}>Recipient Phone Number</Text>
+                                    <View style={styles.formElement}>
+                                        <Text style={[styles.titleBox, { marginBottom: 5, color: '#055E7C' }]}>Recipient Phone Number</Text>
                                         <TextInput value={recipientPhoneNumber} onChangeText={FormikProps.handleChange('recipientPhoneNumber')} onBlur={FormikProps.handleBlur('recipientPhoneNumber')} style={{ textAlignVertical: 'top', borderWidth: 1, borderColor: recipientPhoneNumberTouched && recipientPhoneNumberError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={recipientPhoneNumberTouched && recipientPhoneNumberError ? '' : '0180980971'} placeholderTextColor={recipientPhoneNumberTouched && recipientPhoneNumberError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'phone-pad'} />
+                                        {recipientPhoneNumberTouched && recipientPhoneNumberError && <Text style={styles.error}>{recipientPhoneNumberError}</Text>}
                                     </View>
 
-                                    {recipientPhoneNumberTouched && recipientPhoneNumberError && <Text style={styles.error}>{recipientPhoneNumberError}</Text>}
-
-                                    <View style={{ marginBottom: 10 }}>
-                                        <Text style={[styles.text, { marginBottom: 5, color: '#055E7C' }]}>Allowance Amount</Text>
+                                    <View style={styles.formElement}>
+                                        <Text style={[styles.titleBox, { marginBottom: 5, color: '#055E7C' }]}>Recipient Email</Text>
                                         <TextInput value={recipientEmail} onChangeText={FormikProps.handleChange('recipientEmail')} onBlur={FormikProps.handleBlur('recipientEmail')} style={{ textAlignVertical: 'top', borderWidth: 1, borderColor: recipientEmailTouched && recipientEmailError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={recipientEmailTouched && recipientEmailError ? '' : 'address@email.com'} placeholderTextColor={recipientEmailTouched && recipientEmailError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        {recipientEmailTouched && recipientEmailError && <Text style={styles.error}>{recipientEmailError}</Text>}
                                     </View>
-
-                                    {recipientEmailTouched && recipientEmailError && <Text style={styles.error}>{recipientEmailError}</Text>}
 
                                 </ScrollView>
 

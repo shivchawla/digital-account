@@ -102,25 +102,25 @@ const ContactPersonScreen = (props) => {
                             <View style={[styles.screenMargin, { flex: 9 }]}>
 
                                 <View style={[styles.formElement]}>
-                                    <Text style={[styles.text, { marginBottom: 5, borderBottomColor: cddContactPersonNameTouched && cddContactPersonNameError ? '#d94498' : '#5a83c2' }]}>Name</Text>
+                                    <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: cddContactPersonNameTouched && cddContactPersonNameError ? '#d94498' : '#5a83c2' }]}>Name</Text>
                                     <TextInput value={cddContactPersonName} onBlur={FormikProps.handleBlur('cddContactPersonName')} onChangeText={FormikProps.handleChange('cddContactPersonName')} placeholder={cddContactPersonNameTouched && cddContactPersonNameError ? '' : 'Eg: Siti binti Iskandar'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
                                     {cddContactPersonNameTouched && cddContactPersonNameError && <Text style={styles.error}>{cddContactPersonNameError}</Text>}
                                 </View>
 
                                 <View style={[styles.formElement]}>
-                                    <Text style={[styles.text, { marginBottom: 5, borderBottomColor: cddContactPersonIcTouched && cddContactPersonIcError ? '#d94498' : '#5a83c2' }]}>MyKad Number</Text>
+                                    <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: cddContactPersonIcTouched && cddContactPersonIcError ? '#d94498' : '#5a83c2' }]}>MyKad Number</Text>
                                     <TextInput value={cddContactPersonIc} onBlur={FormikProps.handleBlur('cddContactPersonIc')} onChangeText={FormikProps.handleChange('cddContactPersonIc')} placeholder={cddContactPersonIcTouched && cddContactPersonIcError ? '' : 'Eg: 800310022514'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} keyboardType={'phone-pad'} />
                                     {cddContactPersonIcTouched && cddContactPersonIcError && <Text style={styles.error}>{cddContactPersonIcError}</Text>}
                                 </View>
 
                                 <View style={[styles.formElement]}>
-                                    <Text style={[styles.text, { marginBottom: 5, borderBottomColor: cddContactPersonNumberTouched && cddContactPersonNumberError ? '#d94498' : '#5a83c2' }]}>Phone Number</Text>
+                                    <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: cddContactPersonNumberTouched && cddContactPersonNumberError ? '#d94498' : '#5a83c2' }]}>Phone Number</Text>
                                     <TextInput value={cddContactPersonNumber} onBlur={FormikProps.handleBlur('cddContactPersonNumber')} onChangeText={FormikProps.handleChange('cddContactPersonNumber')} placeholder={cddContactPersonNumberTouched && cddContactPersonNumberError ? '' : 'Eg: 0189852012'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} keyboardType={'phone-pad'} />
                                     {cddContactPersonNumberTouched && cddContactPersonNumberError && <Text style={styles.error}>{cddContactPersonNumberError}</Text>}
                                 </View>
 
                                 <View style={[styles.formElement]}>
-                                    <Text style={[styles.text, { marginBottom: 5, borderBottomColor: cddContactPersonPositionTouched && cddContactPersonPositionError ? '#d94498' : '#5a83c2' }]}>Position</Text>
+                                    <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: cddContactPersonPositionTouched && cddContactPersonPositionError ? '#d94498' : '#5a83c2' }]}>Position</Text>
                                     <TextInput value={cddContactPersonPosition} onBlur={FormikProps.handleBlur('cddContactPersonPosition')} onChangeText={FormikProps.handleChange('cddContactPersonPosition')} placeholder={cddContactPersonPositionTouched && cddContactPersonPositionError ? '' : 'Eg: HR Officer'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
                                     {cddContactPersonPositionTouched && cddContactPersonPositionError && <Text style={styles.error}>{cddContactPersonPositionError}</Text>}
                                 </View>
