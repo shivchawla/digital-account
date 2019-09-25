@@ -63,6 +63,4 @@ export default StyleSheet.create({
   formElement: {
     marginBottom: 20
   }
-
-
 })
