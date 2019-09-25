@@ -58,7 +58,7 @@ export default StyleSheet.create({
     fontSize: fontSize * 0.8
   },
   screenMargin: {
-    margin: 30
+    padding: 20
   },
   formElement: {
     marginBottom: 20

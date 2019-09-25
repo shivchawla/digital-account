@@ -49,7 +49,7 @@ const validationSchema = Yup.object().shape({
 
 const WithdrawScreen = (props) => {
 
-    const [bankAccountNoActive,setBankAccountNoActive]=useState(false)
+    const [bankAccountNoActive, setBankAccountNoActive] = useState(false)
 
     // const dispatch = useDispatch()
 
@@ -107,9 +107,9 @@ const WithdrawScreen = (props) => {
 
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
 
-                            <View style={{ flex: 9 }}>
+                            <View style={[{ flex: 9 }]}>
 
-                                <ScrollView style={{ padding: 10 }}>
+                                <ScrollView style={[styles.screenMargin,{ }]}>
 
                                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 }}>
                                         <Text style={[styles.h3, { color: '#055E7C' }]}>Withdrawal Application Form</Text>
@@ -117,7 +117,7 @@ const WithdrawScreen = (props) => {
 
                                     <View style={{ marginBottom: 10 }}>
                                         <Text style={[styles.text, { marginBottom: 5, color: '#055E7C' }]}>Bank Account Number</Text>
-                                        <TextInput value={bankAccountNo} onChangeText={FormikProps.handleChange('bankAccountNo')} onFocus={()=>setBankAccountNoActive(!bankAccountNoActive)} onBlur={()=>{setBankAccountNoActive(!bankAccountNoActive);FormikProps.handleBlur('bankAccountNo')}} style={{ borderWidth: bankAccountNoActive?2:1, borderColor: bankAccountNoTouched && bankAccountNoError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={bankAccountNoTouched && bankAccountNoError ? '' : 'Eg: 013-113-12345678'} placeholderTextColor={bankAccountNoTouched && bankAccountNoError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        <TextInput value={bankAccountNo} onChangeText={FormikProps.handleChange('bankAccountNo')} onFocus={() => setBankAccountNoActive(!bankAccountNoActive)} onBlur={() => { setBankAccountNoActive(!bankAccountNoActive); FormikProps.handleBlur('bankAccountNo') }} style={{ borderWidth: bankAccountNoActive ? 2 : 1, borderColor: bankAccountNoTouched && bankAccountNoError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={bankAccountNoTouched && bankAccountNoError ? '' : 'Eg: 013-113-12345678'} placeholderTextColor={bankAccountNoTouched && bankAccountNoError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {bankAccountNoTouched && bankAccountNoError && <Text style={styles.error}>{bankAccountNoError}</Text>}
                                     </View>
 
