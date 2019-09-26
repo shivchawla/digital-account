@@ -1,4 +1,5 @@
-import { AppLoading } from 'expo';
+import { AppLoading, Notifications } from 'expo';
+import * as Permissions from 'expo-permissions'
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
 import Constants from 'expo-constants'
@@ -15,6 +16,7 @@ const store = createStore(rootReducer, applyMiddleware(thunk))
 const App = (props) => {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
   const [tokenExists, setTokenExists] = useState(false)
+  const [notification, setNotification] = useState({})
 
   const checkUpdate = async () => {
     try {
@@ -42,8 +44,37 @@ const App = (props) => {
     }
   }
 
+  registerForPushNotificationsAsync = async () => {
+    const { status: existingStatus } = await Permissions.getAsync(
+      Permissions.NOTIFICATIONS
+    );
+    let finalStatus = existingStatus;
+    if (existingStatus !== 'granted') {
+      const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+      finalStatus = status;
+    }
+    if (finalStatus !== 'granted') {
+      return;
+    }
+    let token = await Notifications.getExpoPushTokenAsync();
+    console.log(`expo token ialah ${token}`)
+    store.dispatch({ type: 'SET_REGISTER', payload: { expo_token: token } })
+    console.log(JSON.stringify({
+      token: { value: token, }, user: { username: 'Brent', },
+    }))
+  }
+
+  _handleNotification = (notification) => {
+    console.log(`notification received ${JSON.stringify(notification)}`)
+    const { data } = notification
+    store.dispatch({ type: 'SET_NOTIFICATION', payload: { ...data } })
+  };
+
+
   useEffect(() => {
-    checkUpdate()
+    //checkUpdate()
+    registerForPushNotificationsAsync();
+    _notificationSubscription = Notifications.addListener(_handleNotification);
     checkLogin()
   }, [])
 

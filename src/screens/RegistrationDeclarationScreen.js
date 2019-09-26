@@ -20,7 +20,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
-    isDeclaration1: Yup
+    isDeclaration_one: Yup
         .bool()
         .oneOf([true], 'Field must be checked')
         .required()
@@ -31,21 +31,21 @@ const RegistrationDeclarationScreen = (props) => {
     const dispatch = useDispatch()
     return (
         <Formik
-        onSubmit={values => dispatch(actionCreator.declaration(values))}
+        onSubmit={values => {dispatch(actionCreator.declaration(values));props.navigation.navigate('Dashboard')}}
             validationSchema={validationSchema}
-            initialValues={{ isDeclaration1: false, isDeclaration2: false }}
+            initialValues={{ isDeclaration_one: 0, isDeclaration_two: 0 }}
         >
             {FormikProps => {
-                const { isDeclaration1, isDeclaration2 } = FormikProps.values
+                const { isDeclaration_one, isDeclaration_two } = FormikProps.values
                 const handleCheckBox = (field) => {
                     console.log(`field ialah ${field}`)
 
                     switch (field) {
-                        case 'isDeclaration1':
-                            FormikProps.setFieldValue('isDeclaration1', !isDeclaration1)
+                        case 'isDeclaration_one':
+                            FormikProps.setFieldValue('isDeclaration_one', isDeclaration_one==0?1:0)
                             break;
-                        case 'isDeclaration2':
-                            FormikProps.setFieldValue('isDeclaration2', !isDeclaration2)
+                        case 'isDeclaration_two':
+                            FormikProps.setFieldValue('isDeclaration_two', isDeclaration_two==0?1:0)
                             break;
 
                     }
@@ -75,12 +75,12 @@ const RegistrationDeclarationScreen = (props) => {
                                     </View>
 
                                     <View style={{ flexDirection: 'row', marginBottom: 10 }}>
-                                        <CheckBox onClick={() => handleCheckBox('isDeclaration1')} isChecked={isDeclaration1} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', marginRight: 25 }} />
+                                        <CheckBox onClick={() => handleCheckBox('isDeclaration_one')} isChecked={isDeclaration_one==1} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', marginRight: 25 }} />
                                         <Text style={styles.text}>I agree on terms and condition listed</Text>
                                     </View>
 
                                     <View style={{ flexDirection: 'row', marginBottom: 10 }}>
-                                        <CheckBox onClick={() => handleCheckBox('isDeclaration2')} isChecked={isDeclaration2} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', marginRight: 25 }} />
+                                        <CheckBox onClick={() => handleCheckBox('isDeclaration_two')} isChecked={isDeclaration_two==1} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', marginRight: 25 }} />
                                         <Text style={styles.text}>Me and my company does not want to receive any marketing materials about the products and/or special offers on SME Bank</Text>
                                     </View>
 

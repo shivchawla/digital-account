@@ -124,14 +124,19 @@ export const checkDeclareApi = () => {
 
     }).then((response) => response.json())
       .then(async (responseJson) => {
-        const {isDeclaration_one} = responseJson.data[0]
-        console.log('Success business_declaration : ' + JSON.stringify(isDeclaration_one))
-        dispatch({ type: 'SET_MERCHANT', payload: { isDeclaration_one} })
+        const test = responseJson.data
+        const lastTest = test.slice(-1).pop()
+        const isDeclaration_one = lastTest.isDeclaration_one
+        console.log(`declaration paling last ialah ${isDeclaration_one}`)
+
+        // const {isDeclaration_one} = responseJson.data[0]
+        // console.log('Success business_declaration : ' + JSON.stringify(isDeclaration_one))
+        dispatch({ type: 'SET_MERCHANT', payload: { isDeclaration_one } })
 
       })
       .catch((error) => {
         console.log('Error initiating merchant info : ' + error);
-        dispatch({ type: 'SET_MERCHANT', payload: { isDeclaration_one:0} })
+        dispatch({ type: 'SET_MERCHANT', payload: { isDeclaration_one: 0 } })
       });
   }
 }
@@ -154,13 +159,17 @@ export const checkDocumentApi = () => {
 
     }).then((response) => response.json())
       .then(async (responseJson) => {
-        const {isDocument1} = responseJson.data[0]
-        console.log('Success' + JSON.stringify(responseJson))
+        const test = responseJson.data
+        console.log(`nak tengok document ade ke tak? : ${JSON.stringify(responseJson)}`)
+        const lastTest = test.slice(-1).pop()
+        const isDocument1 = lastTest.isDocument1
+        console.log(`document paling last ialah ${isDocument1}`)
         dispatch({ type: 'SET_MERCHANT', payload: { isDocument1 } })
 
       })
       .catch((error) => {
         console.log('Error initiating document info : ' + error);
+        dispatch({ type: 'SET_MERCHANT', payload: { isDocument1:'http://test' } })
       });
   }
 }
@@ -183,9 +192,12 @@ export const checkContactApi = () => {
 
     }).then((response) => response.json())
       .then(async (responseJson) => {
-        const {full_name} = responseJson.data[0]
-        console.log('Success' + JSON.stringify(responseJson))
-        dispatch({ type: 'SET_MERCHANT', payload: { full_name} })
+        const test = responseJson.data
+
+        const lastTest = test.slice(-1).pop()
+        const full_name = lastTest.full_name
+        console.log(`full_name paling last ialah ${full_name}`)
+        dispatch({ type: 'SET_MERCHANT', payload: { full_name } })
 
       })
       .catch((error) => {
