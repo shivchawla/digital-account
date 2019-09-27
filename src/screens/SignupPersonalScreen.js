@@ -94,9 +94,10 @@ const SignupPersonalScreen = (props) => {
                     const password_confirmationTouched = FormikProps.touched.password_confirmation
 
                     return (
+                        
                         <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }}>
 
-                            <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4', }}>
+                            <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4', }]}>
 
                                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'flex-start', paddingLeft: 10 }}>
                                     <Text numberOfLines={1} style={[styles.title]} ellipsizeMode='head'>REGISTRATION</Text>
@@ -105,7 +106,6 @@ const SignupPersonalScreen = (props) => {
                                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
                                     <Image source={require('../assets/images/logosmall.png')} style={{ width: 50, height: 50, borderRadius: 15 }} />
                                 </View>
-
 
                             </View>
 

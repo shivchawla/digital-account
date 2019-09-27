@@ -46,7 +46,7 @@ const NotificationScreen = (props) => {
 
             </View>
 
-            <View style={{ flex: 9, padding: 10, }}>
+            <View style={[styles.screenMargin, { flex: 9 }]}>
 
                 <FlatList
                     data={notificationScreenArray}

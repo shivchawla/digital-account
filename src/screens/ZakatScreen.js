@@ -97,7 +97,7 @@ const ZakatScreen = (props) => {
                             </View>
 
                             <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                                <Text style={styles.title}>Zakat Details</Text>
+                                <Text style={[styles.title]}>Zakat Details</Text>
                             </View>
 
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
@@ -108,9 +108,9 @@ const ZakatScreen = (props) => {
 
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
 
-                            <View style={{ flex: 9 }}>
+                            <View style={[styles.screenMargin, { flex: 9 }]}>
 
-                                <ScrollView style={{ padding: 10 }}>
+                                <ScrollView >
 
                                     <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
 
@@ -188,14 +188,14 @@ const ZakatScreen = (props) => {
 
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 }}>
                                     <LinearGradient colors={['#FFF', '#FFF']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                                        <Text style={[styles.text, { color: '#000000' }]}>Back</Text>
+                                        <Text style={[styles.butang, { color: '#000000' }]}>Back</Text>
                                     </LinearGradient>
                                 </TouchableOpacity>
 
                                 <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ flex: 1 }}>
                                     <LinearGradient colors={FormikProps.isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                         {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> :
-                                            <Text style={[styles.text, { color: '#fff' }]}>Submit</Text>}
+                                            <Text style={[styles.butang, { color: '#fff' }]}>Submit</Text>}
                                     </LinearGradient>
                                 </TouchableOpacity>
 

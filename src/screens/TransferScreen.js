@@ -86,7 +86,7 @@ const TransferScreen = (props) => {
 
                             <View style={[styles.screenMargin, { flex: 9 }]}>
 
-                                <View style={{ marginBottom: 10 }}>
+                                <View style={[styles.formElement]}>
                                     <Text style={[styles.titleBox]}>Account</Text>
                                     <TextInput value={account} onChangeText={FormikProps.handleChange('account')} onBlur={FormikProps.handleBlur('account')} style={{ borderWidth: 1, borderColor: accountTouched && accountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={accountTouched && accountError ? '' : ''} placeholderTextColor={accountTouched && accountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                     {accountTouched && accountError && <Text style={styles.error}>{accountError}</Text>}
@@ -116,14 +116,14 @@ const TransferScreen = (props) => {
 
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 }}>
                                     <LinearGradient colors={['#FFF', '#FFF']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                                        <Text style={[styles.text, { color: '#000000' }]}>Back</Text>
+                                        <Text style={[styles.butang, { color: '#000000' }]}>Back</Text>
                                     </LinearGradient>
                                 </TouchableOpacity>
 
                                 <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ flex: 1 }}>
                                     <LinearGradient colors={FormikProps.isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                         {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> :
-                                            <Text style={[styles.text, { color: '#fff' }]}>Submit</Text>}
+                                            <Text style={[styles.butang, { color: '#fff' }]}>Submit</Text>}
                                     </LinearGradient>
                                 </TouchableOpacity>
 

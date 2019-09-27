@@ -47,7 +47,7 @@ const LoginScreen = (props) => {
     const login = (values) => dispatch(actionCreator.login1(values))
 
     forgotPassword = async () => {
-        let result = await WebBrowser.openBrowserAsync('https://staging.niyo.my/password/reset');
+        let result = await WebBrowser.openBrowserAsync('https://tuah.niyo.my/password/reset');
     };
     return (
 
@@ -92,19 +92,17 @@ const LoginScreen = (props) => {
 
                                     <View style={{ flex: 3, backgroundColor: '#fff', borderTopLeftRadius: 20, borderTopRightRadius: 20, padding: 20 }}>
 
-                                        <View style={{ marginBottom: 10 }}>
-                                            <Text style={[styles.text, { marginBottom: 5, borderBottomColor: emailTouched && emailError ? '#d94498' : '#5a83c2' }]}>Email</Text>
+                                        <View style={[styles.formElement]}>
+                                            <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: emailTouched && emailError ? '#d94498' : '#5a83c2' }]}>Email</Text>
                                             <TextInput value={email} onBlur={FormikProps.handleBlur('email')} onChangeText={FormikProps.handleChange('email')} placeholder={emailTouched && emailError ? '' : 'Email'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                            {emailTouched && emailError && <Text style={styles.error}>{emailError}</Text>}
                                         </View>
 
-                                        {emailTouched && emailError && <Text style={styles.error}>{emailError}</Text>}
-
-                                        <View style={{ marginBottom: 10 }}>
-                                            <Text style={[styles.text, { marginBottom: 5, borderBottomColor: passwordTouched && passwordError ? '#d94498' : '#5a83c2' }]}>Password</Text>
+                                        <View style={[styles.formElement]}>
+                                            <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: passwordTouched && passwordError ? '#d94498' : '#5a83c2' }]}>Password</Text>
                                             <TextInput secureTextEntry value={password} onBlur={FormikProps.handleBlur('password')} placeholder={passwordTouched && passwordError ? '' : '******'} onChangeText={FormikProps.handleChange('password')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholderTextColor={passwordTouched && passwordError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                            {passwordTouched && passwordError && <Text style={styles.error}>{passwordError}</Text>}
                                         </View>
-
-                                        {passwordTouched && passwordError && <Text style={styles.error}>{passwordError}</Text>}
 
                                         <View style={{ flexDirection: 'row', marginBottom: 10 }}>
                                             <Text style={[styles.textDefault, { margin: 5 }]}>Forgot password?</Text>
@@ -124,14 +122,14 @@ const LoginScreen = (props) => {
 
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 }}>
                                     <LinearGradient colors={['#FFF', '#FFF']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                                        <Text style={[styles.text, { color: '#000000' }]}>Back</Text>
+                                        <Text style={[styles.butang, { color: '#000000' }]}>Back</Text>
                                     </LinearGradient>
                                 </TouchableOpacity>
 
                                 <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ flex: 1 }}>
                                     <LinearGradient colors={FormikProps.isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                         {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> :
-                                            <Text style={[styles.text, { color: '#fff' }]}>Submit</Text>}
+                                            <Text style={[styles.butang, { color: '#fff' }]}>Submit</Text>}
                                     </LinearGradient>
                                 </TouchableOpacity>
 

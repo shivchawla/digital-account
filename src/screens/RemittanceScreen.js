@@ -96,11 +96,11 @@ const RemittanceScreen = (props) => {
 
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }}>
 
-                        <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#055E7C' }}>
+                        <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
 
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                                    <Ionicons name="ios-arrow-back" color={'#055E7C'} style={{ fontSize: 30, paddingLeft: 20 }} />
+                                    <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 20 }} />
                                 </TouchableOpacity>
                             </View>
 
@@ -165,19 +165,19 @@ const RemittanceScreen = (props) => {
                                     </View>
 
                                     <View style={styles.formElement}>
-                                        <Text style={[styles.titleBox, { marginBottom: 5, color: '#055E7C' }]}>Recipient Name</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 5 }]}>Recipient Name</Text>
                                         <TextInput value={recipientName} onChangeText={FormikProps.handleChange('recipientName')} onBlur={FormikProps.handleBlur('recipientName')} style={{ borderWidth: 1, borderColor: recipientNameTouched && recipientNameError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={recipientNameTouched && recipientNameError ? '' : 'Siti Aminah binti Wahid'} placeholderTextColor={recipientNameTouched && recipientNameError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {recipientNameTouched && recipientNameError && <Text style={styles.error}>{recipientNameError}</Text>}
                                     </View>
 
                                     <View style={styles.formElement}>
-                                        <Text style={[styles.titleBox, { marginBottom: 5, color: '#055E7C' }]}>Recipient Phone Number</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 5 }]}>Recipient Phone Number</Text>
                                         <TextInput value={recipientPhoneNumber} onChangeText={FormikProps.handleChange('recipientPhoneNumber')} onBlur={FormikProps.handleBlur('recipientPhoneNumber')} style={{ textAlignVertical: 'top', borderWidth: 1, borderColor: recipientPhoneNumberTouched && recipientPhoneNumberError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={recipientPhoneNumberTouched && recipientPhoneNumberError ? '' : '0180980971'} placeholderTextColor={recipientPhoneNumberTouched && recipientPhoneNumberError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'phone-pad'} />
                                         {recipientPhoneNumberTouched && recipientPhoneNumberError && <Text style={styles.error}>{recipientPhoneNumberError}</Text>}
                                     </View>
 
                                     <View style={styles.formElement}>
-                                        <Text style={[styles.titleBox, { marginBottom: 5, color: '#055E7C' }]}>Recipient Email</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 5 }]}>Recipient Email</Text>
                                         <TextInput value={recipientEmail} onChangeText={FormikProps.handleChange('recipientEmail')} onBlur={FormikProps.handleBlur('recipientEmail')} style={{ textAlignVertical: 'top', borderWidth: 1, borderColor: recipientEmailTouched && recipientEmailError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={recipientEmailTouched && recipientEmailError ? '' : 'address@email.com'} placeholderTextColor={recipientEmailTouched && recipientEmailError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {recipientEmailTouched && recipientEmailError && <Text style={styles.error}>{recipientEmailError}</Text>}
                                     </View>
@@ -190,14 +190,14 @@ const RemittanceScreen = (props) => {
 
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 }}>
                                     <LinearGradient colors={['#FFF', '#FFF']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                                        <Text style={[styles.text, { color: '#000000' }]}>Back</Text>
+                                        <Text style={[styles.butang, { color: '#000000' }]}>Back</Text>
                                     </LinearGradient>
                                 </TouchableOpacity>
 
                                 <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ flex: 1 }}>
                                     <LinearGradient colors={FormikProps.isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                         {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> :
-                                            <Text style={[styles.text, { color: '#fff' }]}>Submit</Text>}
+                                            <Text style={[styles.butang, { color: '#fff' }]}>Submit</Text>}
                                     </LinearGradient>
                                 </TouchableOpacity>
 

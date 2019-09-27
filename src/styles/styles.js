@@ -10,7 +10,7 @@ export default StyleSheet.create({
     fontFamily: 'Montserrat_light',
     color: '#000'
   },
-  
+
   title: {
     fontSize,
     fontFamily: 'Montserrat_medium',
@@ -72,6 +72,11 @@ export default StyleSheet.create({
 
   formElement: {
     marginBottom: 20
+  },
+
+  titleMargin: {
+    paddingLeft: 20,
+    paddingRight: 20
   },
 
   box: {

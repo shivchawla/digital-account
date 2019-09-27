@@ -31,7 +31,7 @@ const DataSettingScreen = (props) => {
                 </View>
 
                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={[styles.title, { color: '#055E7C' }]}>SETTING</Text>
+                    <Text style={[styles.title]}>SETTING</Text>
                 </View>
 
                 <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
@@ -40,30 +40,30 @@ const DataSettingScreen = (props) => {
 
             </View>
 
-            <View style={{ flex: 9, padding: 10 }}>
-               
+            <View style={[styles.screenMargin, { flex: 8 }]}>
+
                 <View style={{ marginBottom: 20 }}>
-                    <Text style={[styles.h2, { color: '#04A2BD' }]}>SETTING</Text>
+                    <Text style={[styles.h2, { color: '#04A2BD' }]}>DATA OPTION</Text>
                 </View>
 
-                <View style={{ flexDirection: 'row', marginTop: 20, marginLeft: 30, alignItems: 'center' }}>
+                <View style={{ flexDirection: 'row', marginTop: 20, alignItems: 'center' }}>
                     <Image source={require('../assets/images/changepassword.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
                     <TouchableOpacity onPress={() => props.navigation.navigate('Vendor')}>
-                        <Text style={[styles.text, { color: 'black', marginLeft: 50, color: '#055E7C' }]}>Vendor</Text>
+                        <Text style={[styles.text, { color: 'black', marginLeft: 50 }]}>Vendor</Text>
                     </TouchableOpacity>
                 </View>
 
-                <View style={{ flexDirection: 'row', marginTop: 20, marginLeft: 30, alignItems: 'center' }}>
+                <View style={{ flexDirection: 'row', marginTop: 20, alignItems: 'center' }}>
                     <Image source={require('../assets/images/emailicon.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
                     <TouchableOpacity onPress={() => props.navigation.navigate('Customer')}>
-                        <Text style={[styles.text, { color: 'black', marginLeft: 50, color: '#055E7C' }]}>Customer</Text>
+                        <Text style={[styles.text, { color: 'black', marginLeft: 50 }]}>Customer</Text>
                     </TouchableOpacity>
                 </View>
 
-                <View style={{ flexDirection: 'row', marginTop: 20, marginLeft: 30, alignItems: 'center' }}>
+                <View style={{ flexDirection: 'row', marginTop: 20, alignItems: 'center' }}>
                     <Image source={require('../assets/images/changemobilenumber.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
                     <TouchableOpacity onPress={() => props.navigation.navigate('Item')}>
-                        <Text style={[styles.text, { color: 'black', marginLeft: 50, color: '#055E7C' }]}>Item</Text>
+                        <Text style={[styles.text, { color: 'black', marginLeft: 50 }]}>Item</Text>
                     </TouchableOpacity>
                 </View>
 

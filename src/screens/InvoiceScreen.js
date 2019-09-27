@@ -39,7 +39,7 @@ const InvoiceScreen = (props) => {
 
             </View>
 
-            <View style={{ flex: 9, padding: 10 }}>
+            <View style={[styles.screenMargin, { flex: 9 }]}>
 
                 <View style={{ marginTop: 10, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end' }}>
 

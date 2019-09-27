@@ -17,7 +17,7 @@ const AccountScreen = (props) => {
 
     return (
 
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, }}>
 
             <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
 
@@ -28,7 +28,7 @@ const AccountScreen = (props) => {
                 </View>
 
                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={styles.title}>Account</Text>
+                    <Text style={[styles.title]}>Account</Text>
                 </View>
 
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
@@ -37,34 +37,22 @@ const AccountScreen = (props) => {
 
             </View>
 
-            <View style={[styles.screenMargin, { flex: 9, flexDirection: 'row' }]}>
+            <View style={[styles.screenMargin, { flex: 9 }]}>
 
                 <View>
 
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 15 }}>
-                        <Text style={styles.h2}>Account Information</Text>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10 }}>
+                        <Text style={[styles.h2]}>Account Information</Text>
                     </View>
 
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={styles.text}>Account Number</Text>
+                            <Text style={[styles.text]}>Account Number</Text>
                         </View>
 
                         <View style={{ flex: 1 }}>
-                            <Text style={styles.text}>123456789</Text>
-                        </View>
-
-                    </View>
-
-                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
-
-                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={styles.text}>Account Type</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={styles.text}>Business</Text>
+                            <Text style={[styles.text]}>123456789</Text>
                         </View>
 
                     </View>
@@ -72,11 +60,11 @@ const AccountScreen = (props) => {
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={styles.text}>Balance</Text>
+                            <Text style={[styles.text]}>Account Type</Text>
                         </View>
 
                         <View style={{ flex: 1 }}>
-                            <Text style={styles.text}>RM18,839.00</Text>
+                            <Text style={[styles.text]}>Business</Text>
                         </View>
 
                     </View>
@@ -84,11 +72,11 @@ const AccountScreen = (props) => {
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={styles.text}>Colour Indicator</Text>
+                            <Text style={[styles.text]}>Balance</Text>
                         </View>
 
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, { color: 'green' }]}>Active</Text>
+                            <Text style={[styles.text]}>RM 18,839.00</Text>
                         </View>
 
                     </View>
@@ -96,11 +84,23 @@ const AccountScreen = (props) => {
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={styles.text}>Status</Text>
+                            <Text style={[styles.text]}>Business Health</Text>
                         </View>
 
                         <View style={{ flex: 1 }}>
-                            <Dot color='#7ED321' />
+                            <Text style={[styles.text]}>80%</Text>
+                        </View>
+
+                    </View>
+
+                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+
+                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                            <Text style={[styles.text]}>Status</Text>
+                        </View>
+
+                        <View style={{ flex: 1, marginTop: 5 }}>
+                            <Dot color='#00FD04' />
                         </View>
 
                     </View>

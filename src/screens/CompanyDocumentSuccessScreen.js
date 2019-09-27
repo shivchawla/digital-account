@@ -11,25 +11,24 @@ import { LinearGradient } from 'expo-linear-gradient'
 import Layout from '../constants/Layout'
 import styles from '../styles/styles'
 
-
 const CompanyDocumentSuccessScreen = (props) => {
 
     return (
 
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
 
-            <View style={{ flex: 10 }}>
+            <View style={[styles.screenMargin, { flex: 10 }]}>
 
                 <View style={{ justifyContent: 'center', alignItems: 'center', justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
                     <Image source={require('../assets/images/logo.png')} style={{ height: Layout.window.height * 0.2, width: Layout.window.width * 0.7 }} resizeMode={'contain'} />
                 </View>
 
-                <View style={{ margin:5,justifyContent: 'center', alignItems: 'center', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+                <View style={{ margin: 5, justifyContent: 'center', alignItems: 'center', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
                     <Text style={[styles.h3, { margin: 5, flexDirection: 'row', justifyContent: 'flex-start' }]}>DOCUMENT SUBMITTED</Text>
                 </View>
 
                 <View style={{ alignSelf: 'stretch', flexDirection: 'column', margin: 5 }}>
-                    <Text style={[styles.text, { margin: 5, }]}>Congratulation!</Text>
+                    <Text style={[styles.text, { margin: 5, color: '#09A4BF' }]}>Congratulation!</Text>
                     <Text style={[styles.text, { margin: 5, marginBottom: 20 }]}>You have submitted required document. Proceed to next screen</Text>
                 </View>
 
@@ -56,8 +55,6 @@ const CompanyDocumentSuccessScreen = (props) => {
     );
 }
 
-
-
 // function mapStateToProps(state) {
 //     return {
 //         listWorkers: state.listWorkersReducer.listWorkers,
@@ -71,7 +68,6 @@ const CompanyDocumentSuccessScreen = (props) => {
 //         initiateCompanyInfo: () => dispatch(actionCreator.initiateCompanyInfo())
 //     }
 // }
-
 
 CompanyDocumentSuccessScreen.navigationOptions = { header: null, };
 

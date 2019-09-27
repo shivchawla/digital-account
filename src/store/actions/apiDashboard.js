@@ -13,7 +13,7 @@ import moment from 'moment'
 // import { sendNotification } from './action';
 // Amplify.configure(aws_exports);///
 
-const apiUrl = 'https://staging.niyo.my/'
+const apiUrl = 'https://tuah.niyo.my/'
 const lmsApiUrl = 'https://lms.bxcess.my/'
 
 export const newsApi = () => {

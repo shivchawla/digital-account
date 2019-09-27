@@ -63,11 +63,11 @@ const ItemScreen = (props) => {
                 return (
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, justifyContent: 'center' }}>
 
-                        <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#055E7C' }}>
+                        <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
 
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                                    <Ionicons name="ios-arrow-back" color={'#055E7C'} style={{ fontSize: 30, paddingLeft: 20 }} />
+                                    <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 20 }} />
                                 </TouchableOpacity>
                             </View>
 
@@ -82,47 +82,43 @@ const ItemScreen = (props) => {
                         </View>
 
                         <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 10, marginBottom: 10 }}>
-                            <Text style={[styles.title, { color: '#055E7C' }]}>Item Details</Text>
+                            <Text style={[styles.title, { color: '#04A2BD' }]}>Item Details</Text>
                         </View>
 
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
 
-                            <View style={{ flex: 3, padding: 10, marginRight: 20 }}>
+                            <View style={[styles.screenMargin, { flex: 3 }]}>
 
-                                <View style={{ marginBottom: 10 }}>
-                                    <Text style={[styles.text, { marginBottom: 5, color: '#055E7C' }]}>Item's Name</Text>
+                                <View style={[styles.formElement]}>
+                                    <Text style={[styles.titleBox, { marginBottom: 5, color: '#055E7C' }]}>Item Name</Text>
                                     <TextInput value={itemName} onChangeText={FormikProps.handleChange('itemName')} onBlur={FormikProps.handleBlur('itemName')} style={{ borderWidth: 1, borderColor: itemNameTouched && itemNameError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={itemNameTouched && itemNameError ? '' : 'Ubat Gigi Sunshine'} placeholderTextColor={itemNameTouched && itemNameError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                    {itemNameTouched && itemNameError && <Text style={styles.error}>{itemNameError}</Text>}
+
                                 </View>
 
-                                {itemNameTouched && itemNameError && <Text style={styles.error}>{itemNameError}</Text>}
-
                                 <View style={{ marginBottom: 10 }}>
-                                    <Text style={[styles.text, { marginBottom: 5, color: '#055E7C' }]}>SKU</Text>
+                                    <Text style={[styles.titleBox, { marginBottom: 5, color: '#055E7C' }]}>SKU</Text>
                                     <TextInput value={sku} onChangeText={FormikProps.handleChange('sku')} onBlur={FormikProps.handleBlur('sku')} style={{ borderWidth: 1, borderColor: skuTouched && skuError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={skuTouched && skuError ? '' : 'JJF-TS-GN'} placeholderTextColor={skuTouched && skuError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                    {skuTouched && skuError && <Text style={styles.error}>{skuError}</Text>}
                                 </View>
 
-                                {skuTouched && skuError && <Text style={styles.error}>{skuError}</Text>}
-
-                                <View style={{ marginBottom: 10 }}>
-                                    <Text style={[styles.text, { marginBottom: 5, color: '#055E7C' }]}>Description</Text>
+                                <View style={[styles.formElement]}>
+                                    <Text style={[styles.titleBox, { marginBottom: 5, color: '#055E7C' }]}>Description</Text>
                                     <TextInput value={description} onChangeText={FormikProps.handleChange('description')} onBlur={FormikProps.handleBlur('description')} style={{ borderWidth: 1, borderColor: descriptionTouched && descriptionError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={descriptionTouched && descriptionError ? '' : 'Toothpaste 100ml'} placeholderTextColor={descriptionTouched && descriptionError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                    {descriptionTouched && descriptionError && <Text style={styles.error}>{descriptionError}</Text>}
                                 </View>
 
-                                {descriptionTouched && descriptionError && <Text style={styles.error}>{descriptionError}</Text>}
-
-                                <View style={{ marginBottom: 10 }}>
-                                    <Text style={[styles.text, { marginBottom: 5, color: '#055E7C' }]}>Sale Price</Text>
+                                <View style={[styles.formElement]}>
+                                    <Text style={[styles.titleBox, { marginBottom: 5, color: '#055E7C' }]}>Sale Price</Text>
                                     <TextInput value={salePrice} onChangeText={FormikProps.handleChange('salePrice')} onBlur={FormikProps.handleBlur('salePrice')} style={{ borderWidth: 1, borderColor: salePriceTouched && salePriceError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={salePriceTouched && salePriceError ? '' : 'RM10.00'} placeholderTextColor={salePriceTouched && salePriceError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                    {salePriceTouched && salePriceError && <Text style={styles.error}>{salePriceError}</Text>}
                                 </View>
 
-                                {salePriceTouched && salePriceError && <Text style={styles.error}>{salePriceError}</Text>}
-
-                                <View style={{ marginBottom: 10 }}>
-                                    <Text style={[styles.text, { marginBottom: 5, color: '#055E7C' }]}>Description</Text>
+                                <View style={[styles.formElement]}>
+                                    <Text style={[styles.titleBox, { marginBottom: 5, color: '#055E7C' }]}>Description</Text>
                                     <TextInput value={purchasePrice} onChangeText={FormikProps.handleChange('purchasePrice')} onBlur={FormikProps.handleBlur('purchasePrice')} style={{ borderWidth: 1, borderColor: purchasePriceTouched && purchasePriceError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={purchasePriceTouched && purchasePriceError ? '' : 'RM15.00'} placeholderTextColor={purchasePriceTouched && purchasePriceError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                    {purchasePriceTouched && purchasePriceError && <Text style={styles.error}>{purchasePriceError}</Text>}
                                 </View>
-
-                                {purchasePriceTouched && purchasePriceError && <Text style={styles.error}>{purchasePriceError}</Text>}
 
                             </View>
 
@@ -132,14 +128,14 @@ const ItemScreen = (props) => {
 
                             <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 }}>
                                 <LinearGradient colors={['#FFF', '#FFF']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                                    <Text style={[styles.text, { color: '#000000' }]}>Back</Text>
+                                    <Text style={[styles.butang, { color: '#000000' }]}>Back</Text>
                                 </LinearGradient>
                             </TouchableOpacity>
 
                             <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ flex: 1 }}>
                                 <LinearGradient colors={FormikProps.isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                     {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> :
-                                        <Text style={[styles.text, { color: '#fff' }]}>Submit</Text>}
+                                        <Text style={[styles.butang, { color: '#fff' }]}>Submit</Text>}
                                 </LinearGradient>
                             </TouchableOpacity>
 
