@@ -8,7 +8,7 @@ import s3 from '../../do/DigitalOcean'
 import config from '../../do/config'
 
 import { requestToken, kycMobile, kycMobileVerify, kycBasicInformation, requestPersonalToken, urlToBlob, kycBasicInformation2, kycPinNumber, registerApi, registerOTPApi, verifyPhoneApi, companyInfoAPI, contactPersonAPI, submitDocApi, declarationApi, detailConnectAPI, declarationSignAPI, requestTokenLMS, registerLMSApi, requestPersonalTokenLMS } from './apiRegistration'
-import { userInfo, latestTransaction, depositApi, sendMoney, withdrawApi, requestMoney, analyticSummary, notificationApi, analytic, userList, resetPinApi, editMobileDetail, editMobileDetailVerify, pushNotification, editPersonalDetail, newsApi, eventApi, promotionApi, handbooksApi, einfoApi, applyLoanApi, getUserInfoApi, getCompanyInfoApi, getListWorkersApi, doneForNowApi, sendNotificationApi, bizDirApi, listAgencyApi, addExpoTokenApi, connectionStatusApi, getAssociateApi, getPendingApi, loanInfoApi, getCoursesApi, editUserApi, generateJWTApi, requestConnectApi, applyGrantApi, grantInfoApi, acceptApi, retrieveMerchantInfoApi } from './apiDashboard'
+import { userInfo, latestTransaction, depositApi, sendMoney, withdrawApi, requestMoney, analyticSummary, notificationApi, analytic, userList, resetPinApi, editMobileDetail, editMobileDetailVerify, pushNotification, editPersonalDetail, newsApi, eventApi, promotionApi, handbooksApi, einfoApi, applyLoanApi, getUserInfoApi, getCompanyInfoApi, getListWorkersApi, doneForNowApi, sendNotificationApi, bizDirApi, listAgencyApi, addExpoTokenApi, connectionStatusApi, getAssociateApi, getPendingApi, loanInfoApi, getCoursesApi, editUserApi, generateJWTApi, requestConnectApi, applyGrantApi, grantInfoApi, acceptApi, retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi,checkCDDApi } from './apiDashboard'
 //import {pusherListen} from './pusher'
 import moment from 'moment'
 
@@ -99,9 +99,39 @@ export const declaration = (values) => {
 }
 
 export const retrieveMerchantInfo = () => {
-    return (dispatch, getState) => {console.log('Dekat Action')
+    return (dispatch, getState) => {
+        console.log('Dekat retrieve merchant info action')
         dispatch(retrieveMerchantInfoApi())
     }
+}
+
+export const checkDeclare = () => {
+    return (dispatch, getState) => {
+        console.log('Dekat check declaration action')
+        dispatch(checkDeclareApi())
+    }
+}
+
+export const checkDocument = () => {
+    return (dispatch, getState) => {
+        console.log('Dekat checkDocument action')
+        dispatch(checkDocumentApi())
+    }
+}
+
+export const checkContact = () => {
+    return (dispatch, getState) => {
+        console.log('Dekat checkContact action')
+        dispatch(checkContactApi())
+    }
+}
+
+export const setScreen = () => {
+    return (dispatch, getState) => {
+        console.log('Dekat checkContact action')
+        dispatch(checkCDDApi())
+    }
+   
 }
 
 export const logout = () => {
@@ -118,6 +148,7 @@ export const logout = () => {
         dispatch({ type: 'COMPANY_INFO_RESET' })
         dispatch({ type: 'USER_PROFILE_RESET' })
         dispatch({ type: 'BIZ_INFO_RESET' })
+        dispatch({ type: 'MERCHANT_RESET' })
 
         //dispatch({ type: 'ROOT_LOG_OUT' })
         //dispatch({ type: 'SET_LOGIN', payload: { proceed: false } })
@@ -178,7 +209,7 @@ export const saveDocPic = (result, doc) => {
 
 
 export const uploadPic = (uri, doc) => {
-   // console.log(`result yang mengasyikkan ${JSON.stringify(result)}`)
+    // console.log(`result yang mengasyikkan ${JSON.stringify(result)}`)
     //const { uri } = result
     return async (dispatch, getState) => {
         const blob = await urlToBlob(uri)

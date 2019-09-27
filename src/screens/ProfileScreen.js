@@ -4,15 +4,12 @@ import {
     TouchableOpacity,
     Text,
     Image,
-    StyleSheet
+
 } from 'react-native';
 
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 
-
-import Layout from '../constants/Layout'
-import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles/styles'
 

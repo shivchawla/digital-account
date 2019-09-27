@@ -14,7 +14,13 @@ import moment from 'moment'
 // Amplify.configure(aws_exports);///
 
 const apiUrl = 'https://tuah.niyo.my/'
-const lmsApiUrl = 'https://lms.bxcess.my/'
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////
+//////////INI YANG LAMA PUNYA//////////////////////////////////////////////
 
 export const newsApi = () => {
   return async (dispatch, getState) => {
@@ -89,7 +95,7 @@ export const retrieveMerchantInfoApi = () => {
     }).then((response) => response.json())
       .then(async (responseJson) => {
         const merchantInfo = responseJson.data
-console.log('Success'+JSON.stringify(responseJson))
+        console.log('Success' + JSON.stringify(responseJson))
         dispatch({ type: 'SET_MERCHANT', payload: { ...merchantInfo } })
 
       })
@@ -99,6 +105,168 @@ console.log('Success'+JSON.stringify(responseJson))
   }
 }
 
+
+export const checkDeclareApi = () => {
+  return async (dispatch, getState) => {
+
+    //const personalToken = await AsyncStorage.getItem('personalToken');
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    fetch(`${apiUrl}api/setup/business_declaration`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const test = responseJson.data
+        const lastTest = test.slice(-1).pop()
+        const isDeclaration_one = lastTest.isDeclaration_one
+        console.log(`declaration paling last ialah ${isDeclaration_one}`)
+
+        // const {isDeclaration_one} = responseJson.data[0]
+        // console.log('Success business_declaration : ' + JSON.stringify(isDeclaration_one))
+        dispatch({ type: 'SET_MERCHANT', payload: { isDeclaration_one } })
+
+      })
+      .catch((error) => {
+        console.log('Error initiating merchant info : ' + error);
+        dispatch({ type: 'SET_MERCHANT', payload: { isDeclaration_one: 0 } })
+      });
+  }
+}
+
+export const checkDocumentApi = () => {
+  return async (dispatch, getState) => {
+
+    //const personalToken = await AsyncStorage.getItem('personalToken');
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    fetch(`${apiUrl}api/setup/business_document`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const test = responseJson.data
+        console.log(`nak tengok document ade ke tak? : ${JSON.stringify(responseJson)}`)
+        const lastTest = test.slice(-1).pop()
+        const isDocument1 = lastTest.isDocument1
+        console.log(`document paling last ialah ${isDocument1}`)
+        dispatch({ type: 'SET_MERCHANT', payload: { isDocument1 } })
+
+      })
+      .catch((error) => {
+        console.log('Error initiating document info : ' + error);
+        dispatch({ type: 'SET_MERCHANT', payload: { isDocument1:'http://test' } })
+      });
+  }
+}
+
+export const checkContactApi = () => {
+  return async (dispatch, getState) => {
+
+    //const personalToken = await AsyncStorage.getItem('personalToken');
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    fetch(`${apiUrl}api/setup/business_contact`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const test = responseJson.data
+
+        const lastTest = test.slice(-1).pop()
+        const full_name = lastTest.full_name
+        console.log(`full_name paling last ialah ${full_name}`)
+        dispatch({ type: 'SET_MERCHANT', payload: { full_name } })
+
+      })
+      .catch((error) => {
+        console.log('Error initiating check contact : ' + error);
+      });
+  }
+}
+
+export const checkCDDApi = () => {
+  return async (dispatch, getState) => {
+
+    //const personalToken = await AsyncStorage.getItem('personalToken');
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    fetch(`${apiUrl}api/setup/cdd_verification`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const test = responseJson.data
+
+        const { business_name, full_name, isDocument1, isDeclaration_one } = await getState().merchantInfoReducer
+        await console.log('Dekat setScreen action ', business_name, full_name, isDocument1, isDeclaration_one)
+        if (business_name && full_name && (isDocument1 != 'http://test') && isDeclaration_one) {
+            // setLink('Dashboard')
+            // setDashboardDisplay(true)
+            const link = 'Dashboard'
+            dispatch({ type: 'SET_MERCHANT', payload: { link } })
+            console.log('dashboard')
+        } else if (business_name && full_name && (isDocument1 != 'http://test')) {
+            //setLink('RegistrationDeclaration')
+            const link = 'RegistrationDeclaration'
+            dispatch({ type: 'SET_MERCHANT', payload: { link } })
+            console.log('go declaration')
+        } else if (business_name && full_name) {
+            //setLink('CompanyDocument')
+            const link = 'CompanyDocument'
+            dispatch({ type: 'SET_MERCHANT', payload: { link } })
+            console.log('go company document')
+        } else if (business_name) {
+            //setLink('ContactPerson')
+            const link = 'ContactPerson'
+            dispatch({ type: 'SET_MERCHANT', payload: { link } })
+            console.log('go contact person')
+        } else {
+            //setLink('CompanyInformation')
+            const link = 'CompanyInformation'
+            dispatch({ type: 'SET_MERCHANT', payload: { link } })
+            console.log('go company info')
+        }
+
+      })
+      .catch((error) => {
+        console.log('Error initiating check contact : ' + error);
+      });
+  }
+}
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////
 export const promotionApi = () => {
   return async (dispatch, getState) => {
     const personalToken = await SecureStore.getItemAsync('personalToken')

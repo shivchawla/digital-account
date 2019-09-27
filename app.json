@@ -10,7 +10,8 @@
       "web"
     ],
     "android": {
-      "package": "com.fcgb.da"
+      "package": "com.fcgb.da",
+      "googleServicesFile": "./google-services.json"
     },
     "version": "1.0.0",
     "orientation": "portrait",

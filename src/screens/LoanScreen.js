@@ -80,7 +80,7 @@ const LoanScreen = (props) => {
 
                     </View>
 
-                    <TouchableOpacity onPress={() => props.navigation.navigate('LoanDetail')} style={{ flexDirection: 'row', marginTop: 5 }}>
+                    <TouchableOpacity onPress={() => props.navigation.navigate('LoanDetail')} style={{ flexDirection: 'row', marginTop: 10 }}>
 
                         <View style={{ flex: 1 }}>
                             <Text style={[styles.text]}>112009</Text>
@@ -100,7 +100,7 @@ const LoanScreen = (props) => {
 
                     </TouchableOpacity>
 
-                    <TouchableOpacity onPress={() => props.navigation.navigate('LoanDetail')} style={{ flexDirection: 'row', marginTop: 5 }}>
+                    <TouchableOpacity onPress={() => props.navigation.navigate('LoanDetail')} style={{ flexDirection: 'row', marginTop: 10 }}>
 
                         <View style={{ flex: 1 }}>
                             <Text style={[styles.text]}>112009</Text>
@@ -120,7 +120,7 @@ const LoanScreen = (props) => {
 
                     </TouchableOpacity>
 
-                    <TouchableOpacity onPress={() => props.navigation.navigate('LoanDetail')} style={{ flexDirection: 'row', marginTop: 5 }}>
+                    <TouchableOpacity onPress={() => props.navigation.navigate('LoanDetail')} style={{ flexDirection: 'row', marginTop: 10 }}>
                         <View style={{ flex: 1 }}>
                             <Text style={[styles.text]}>112009</Text>
                         </View>
@@ -139,7 +139,7 @@ const LoanScreen = (props) => {
 
                     </TouchableOpacity>
 
-                    <TouchableOpacity onPress={() => props.navigation.navigate('LoanDetail')} style={{ flexDirection: 'row', marginTop: 5 }}>
+                    <TouchableOpacity onPress={() => props.navigation.navigate('LoanDetail')} style={{ flexDirection: 'row', marginTop: 10 }}>
 
                         <View style={{ flex: 1 }}>
                             <Text style={[styles.text]}>112009</Text>

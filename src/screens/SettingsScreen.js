@@ -97,7 +97,7 @@ const SettingsScreen = (props) => {
             </View>
 
             <View style={{ flexDirection: 'column', flex: 1, justifyContent: 'flex-end', alignItems: 'flex-end' }}>
-                <Text style={[styles.small, { color: '#055E7C' }]}>Digital Account v0.1</Text>
+                <Text style={[styles.small, { color: '#055E7C' }]}>Digital Account v0.2</Text>
             </View>
 
         </View>
