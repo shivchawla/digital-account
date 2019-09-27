@@ -13,7 +13,7 @@ import moment from 'moment'
 // import { sendNotification } from './action';
 // Amplify.configure(aws_exports);///
 
-const apiUrl = 'https://staging.niyo.my/'
+const apiUrl = 'https://tuah.niyo.my/'
 
 
 
@@ -198,6 +198,63 @@ export const checkContactApi = () => {
         const full_name = lastTest.full_name
         console.log(`full_name paling last ialah ${full_name}`)
         dispatch({ type: 'SET_MERCHANT', payload: { full_name } })
+
+      })
+      .catch((error) => {
+        console.log('Error initiating check contact : ' + error);
+      });
+  }
+}
+
+export const checkCDDApi = () => {
+  return async (dispatch, getState) => {
+
+    //const personalToken = await AsyncStorage.getItem('personalToken');
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    fetch(`${apiUrl}api/setup/cdd_verification`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const test = responseJson.data
+
+        const { business_name, full_name, isDocument1, isDeclaration_one } = await getState().merchantInfoReducer
+        await console.log('Dekat setScreen action ', business_name, full_name, isDocument1, isDeclaration_one)
+        if (business_name && full_name && (isDocument1 != 'http://test') && isDeclaration_one) {
+            // setLink('Dashboard')
+            // setDashboardDisplay(true)
+            const link = 'Dashboard'
+            dispatch({ type: 'SET_MERCHANT', payload: { link } })
+            console.log('dashboard')
+        } else if (business_name && full_name && (isDocument1 != 'http://test')) {
+            //setLink('RegistrationDeclaration')
+            const link = 'RegistrationDeclaration'
+            dispatch({ type: 'SET_MERCHANT', payload: { link } })
+            console.log('go declaration')
+        } else if (business_name && full_name) {
+            //setLink('CompanyDocument')
+            const link = 'CompanyDocument'
+            dispatch({ type: 'SET_MERCHANT', payload: { link } })
+            console.log('go company document')
+        } else if (business_name) {
+            //setLink('ContactPerson')
+            const link = 'ContactPerson'
+            dispatch({ type: 'SET_MERCHANT', payload: { link } })
+            console.log('go contact person')
+        } else {
+            //setLink('CompanyInformation')
+            const link = 'CompanyInformation'
+            dispatch({ type: 'SET_MERCHANT', payload: { link } })
+            console.log('go company info')
+        }
 
       })
       .catch((error) => {

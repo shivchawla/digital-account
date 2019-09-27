@@ -23,25 +23,31 @@ const DashboardScreen = (props) => {
 
   const dispatch = useDispatch()
 
-  const retrieveMerchantInfo = () => {
-    dispatch(actionCreator.retrieveMerchantInfo());
+  const retrieveMerchantInfo = async () => {
+    await dispatch(actionCreator.retrieveMerchantInfo());
 
   }
 
-  const checkDeclare = () => {
-    dispatch(actionCreator.checkDeclare());
+  const checkDeclare = async () => {
+    await dispatch(actionCreator.checkDeclare());
 
   }
-  const checkDocument = () => {
-    dispatch(actionCreator.checkDocument());
-
-  }
-
-  const checkContact = () => {
-    dispatch(actionCreator.checkContact());
+  const checkDocument = async () => {
+    await dispatch(actionCreator.checkDocument());
 
   }
 
+  const checkContact = async () => {
+    await dispatch(actionCreator.checkContact());
+
+  }
+
+  const setScreen = async () => {
+    await dispatch(actionCreator.setScreen());
+
+  }
+
+  const link = useSelector(state => state.merchantInfoReducer.link, shallowEqual)
   const status = useSelector(state => state.merchantInfoReducer.status, shallowEqual)
   const business_name = useSelector(state => state.merchantInfoReducer.business_name, shallowEqual)
   const isDeclaration_one = useSelector(state => state.merchantInfoReducer.isDeclaration_one, shallowEqual)
@@ -50,40 +56,32 @@ const DashboardScreen = (props) => {
 
 
 
-  const [link, setLink] = useState("TIADA LINK")
+  //const [link, setLink] = useState("TIADA LINK")
 
-  const [dashboardDisplay, setDashboardDisplay] = useState(false)
+  const dashboardDisplay = (link == 'Dashboard') ? true : false
 
   const logout = () => {
     dispatch(actionCreator.logout())
     props.navigation.navigate('Welcome')
   }
 
+  const runCheckStatus = async () => {
+    await retrieveMerchantInfo();
+    await checkContact()
+    await checkDocument()
+    await checkDeclare()
+    await setScreen()
+  }
+
+
+
   useEffect(() => {
-    retrieveMerchantInfo();
+    runCheckStatus();
+    setScreen()
+  }, [])
 
-
-    if (business_name) {
-      checkContact()
-      if (full_name) {
-        checkDocument()
-        if (isDocument1 != 'http://test') {
-          checkDeclare()
-          if (isDeclaration_one) {
-            setLink('Dashboard')
-          } else {
-            setLink('RegistrationDeclaration')
-          }
-        } else { setLink('CompanyDocument') }
-      } else { setLink('ContactPerson') }
-    } else { setLink('CompanyInformation') }
-
-    if (link=="Dashboard"){setDashboardDisplay(true)}
-
-  }, [status, business_name, isDeclaration_one, isDocument1, full_name])
-
-    //const goTo=
-    //(link == "Dashboard") && setDashboardDisplay(true)
+  //const goTo=
+  //(link == "Dashboard") && setDashboardDisplay(true)
   return (
     <View style={{ flex: 1, }}>
       <Modal
@@ -96,12 +94,37 @@ const DashboardScreen = (props) => {
         {/* rgba(5,94,124,0.8) */}
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.7)' }}>
           <View style={{ flexDirection: 'row', alignSelf: 'stretch', paddingLeft: 20, paddingRight: 20 }}>
-            <View style={{ height: Layout.window.height / 3, backgroundColor: '#fff', flex: 1, borderRadius: 10, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-              <View style={{ margin: 5, justifyContent: 'center', alignItems: 'center', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
-                <Text style={[styles.h3, { margin: 5, flexDirection: 'row', justifyContent: 'flex-start' }]}>REGISTRATION INCOMPLETE</Text>
-              </View>
+            <View style={{ height: Layout.window.height / 2, backgroundColor: '#fff', flex: 1, borderRadius: 10, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
+  
               <View style={{ alignSelf: 'stretch', margin: 5 }}>
-                <Text style={[styles.text, { margin: 5, marginBottom: 20 }]}>You have not completed the registration process. Click the button below to continue with registration</Text>
+              <Text style={[styles.h3, { flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start',margin:5 }]}>REGISTRATION INCOMPLETE</Text>
+             
+                <Text style={[styles.text, { margin: 5, }]}>Please complete items below to access dashboard</Text>
+                
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
+                  <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Basic Info</Text>
+                  <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />
+                </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
+                  <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Merchant Info</Text>
+                  {business_name&&<Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
+                </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
+                  <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Contact Info</Text>
+                  {full_name&&<Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
+                </View>
+
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
+                  <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Document Submission</Text>
+                  {(isDocument1 != 'http://test')&&<Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
+                </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
+                  <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Declaration</Text>
+                  {/* <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} /> */}
+                </View>
+               
+
+                {/* <Text>{link}</Text> */}
               </View>
 
               <View style={{ flexDirection: 'row', alignSelf: 'stretch' }}>
