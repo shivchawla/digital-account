@@ -31,7 +31,7 @@ const RegistrationDeclarationScreen = (props) => {
     const dispatch = useDispatch()
     return (
         <Formik
-        onSubmit={values => {dispatch(actionCreator.declaration(values));props.navigation.navigate('Dashboard')}}
+            onSubmit={values => { dispatch(actionCreator.declaration(values)); props.navigation.navigate('Dashboard') }}
             validationSchema={validationSchema}
             initialValues={{ isDeclaration_one: 0, isDeclaration_two: 0 }}
         >
@@ -42,10 +42,10 @@ const RegistrationDeclarationScreen = (props) => {
 
                     switch (field) {
                         case 'isDeclaration_one':
-                            FormikProps.setFieldValue('isDeclaration_one', isDeclaration_one==0?1:0)
+                            FormikProps.setFieldValue('isDeclaration_one', isDeclaration_one == 0 ? 1 : 0)
                             break;
                         case 'isDeclaration_two':
-                            FormikProps.setFieldValue('isDeclaration_two', isDeclaration_two==0?1:0)
+                            FormikProps.setFieldValue('isDeclaration_two', isDeclaration_two == 0 ? 1 : 0)
                             break;
 
                     }
@@ -55,14 +55,14 @@ const RegistrationDeclarationScreen = (props) => {
 
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }}>
 
-<View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#055E7C', }}>
-                <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center', alignItems: 'flex-start', padding: 10 }}>
-                    <Text numberOfLines={1} style={styles.title} ellipsizeMode='tail'>Declaration</Text>
-                </View>
-                <View style={{ flex: 1, justifyContent: 'center', marginRight: 3, alignItems: 'flex-end' }}>
-                    <Image source={require('../assets/images/logosmall.png')} style={{ width: 50, height: 50, borderRadius: 15 }} />
-                </View>
-            </View>
+                        <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#055E7C', }}>
+                            <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center', alignItems: 'flex-start', padding: 10 }}>
+                                <Text numberOfLines={1} style={styles.title} ellipsizeMode='tail'>Declaration</Text>
+                            </View>
+                            <View style={{ flex: 1, justifyContent: 'center', marginRight: 3, alignItems: 'flex-end' }}>
+                                <Image source={require('../assets/images/logosmall.png')} style={{ width: 50, height: 50, borderRadius: 15 }} />
+                            </View>
+                        </View>
 
                         <View style={{ flex: 9 }}>
 
@@ -75,12 +75,12 @@ const RegistrationDeclarationScreen = (props) => {
                                     </View>
 
                                     <View style={{ flexDirection: 'row', marginBottom: 10 }}>
-                                        <CheckBox onClick={() => handleCheckBox('isDeclaration_one')} isChecked={isDeclaration_one==1} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', marginRight: 25 }} />
+                                        <CheckBox onClick={() => handleCheckBox('isDeclaration_one')} isChecked={isDeclaration_one == 1} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', marginRight: 25 }} />
                                         <Text style={styles.text}>I agree on terms and condition listed</Text>
                                     </View>
 
                                     <View style={{ flexDirection: 'row', marginBottom: 10 }}>
-                                        <CheckBox onClick={() => handleCheckBox('isDeclaration_two')} isChecked={isDeclaration_two==1} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', marginRight: 25 }} />
+                                        <CheckBox onClick={() => handleCheckBox('isDeclaration_two')} isChecked={isDeclaration_two == 1} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', marginRight: 25 }} />
                                         <Text style={styles.text}>Me and my company does not want to receive any marketing materials about the products and/or special offers on SME Bank</Text>
                                     </View>
 
