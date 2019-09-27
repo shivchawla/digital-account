@@ -60,16 +60,16 @@ const LoanApplicationDeclarationScreen = (props) => {
 
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }}>
 
-                        <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#055E7C' }}>
+                        <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
 
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                                    <Ionicons name="ios-arrow-back" color={'#055E7C'} style={{ fontSize: 30, paddingLeft: 20 }} />
+                                    <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 20 }} />
                                 </TouchableOpacity>
                             </View>
 
-                            <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                                <Text style={[styles.title, { color: '#055E7C' }]}>Declaration</Text>
+                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                                <Text style={styles.title}>Loan</Text>
                             </View>
 
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
@@ -80,7 +80,7 @@ const LoanApplicationDeclarationScreen = (props) => {
 
                         <View style={{ flex: 9 }}>
 
-                            <View style={{ flex: 9, margin: 10, marginRight: 70 }}>
+                            <View style={[styles.screenMargin, { flex: 9 }]}>
 
                                 <View style={{ marginBottom: 10 }}>
 
@@ -90,27 +90,27 @@ const LoanApplicationDeclarationScreen = (props) => {
 
                                     <View style={{ flexDirection: 'row', marginBottom: 10 }}>
                                         <CheckBox onClick={() => handleCheckBox('control')} isChecked={control} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', marginRight: 25 }} />
-                                        <Text>Your company controls, or is controlled by Connected Parties (including their close relatives in the case of individuals)</Text>
+                                        <Text style={{ marginRight: 45 }}>Your company controls, or is controlled by Connected Parties (including their close relatives in the case of individuals)</Text>
                                     </View>
 
                                     <View style={{ flexDirection: 'row', marginBottom: 10 }}>
                                         <CheckBox onClick={() => handleCheckBox('influence')} isChecked={influence} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', marginRight: 25 }} />
-                                        <Text>Your company influences, or is influenced by Connected Parties (including their close relatives in the case of individuals)</Text>
+                                        <Text style={{ marginRight: 45 }}>Your company influences, or is influenced by Connected Parties (including their close relatives in the case of individuals)</Text>
                                     </View>
 
                                     <View style={{ flexDirection: 'row', marginBottom: 10 }}>
                                         <CheckBox onClick={() => handleCheckBox('internal')} isChecked={internal} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', marginRight: 25 }} />
-                                        <Text>Connected Parties (including their close relatives) is a director, partner, executive officer, agent or guarantor of your company, your subsidiaries and/or entities controlled by your company.</Text>
+                                        <Text style={{ marginRight: 45 }}>Connected Parties (including their close relatives) is a director, partner, executive officer, agent or guarantor of your company, your subsidiaries and/or entities controlled by your company.</Text>
                                     </View>
 
                                     <View style={{ flexDirection: 'row', marginBottom: 10 }}>
                                         <CheckBox onClick={() => handleCheckBox('subsidiary')} isChecked={subsidiary} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', marginRight: 25 }} />
-                                        <Text>Your company is a subsidiary of, or an entity that is controlled by, SME Bank and its Connected Parties (including their close relatives).</Text>
+                                        <Text style={{ marginRight: 45 }}>Your company is a subsidiary of, or an entity that is controlled by, SME Bank and its Connected Parties (including their close relatives).</Text>
                                     </View>
 
                                     <View style={{ flexDirection: 'row', marginBottom: 10 }}>
                                         <CheckBox onClick={() => handleCheckBox('guaranteed')} isChecked={guaranteed} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', marginRight: 25 }} />
-                                        <Text>Your company is guaranteed by SME Bank's Connected Parties (including their close relatives)</Text>
+                                        <Text style={{ marginRight: 45 }}>Your company is guaranteed by SME Bank's Connected Parties (including their close relatives)</Text>
                                     </View>
 
                                 </View>
@@ -121,7 +121,7 @@ const LoanApplicationDeclarationScreen = (props) => {
 
                                 <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
                                     <CheckBox onClick={() => console.log('test')} checked={false} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', marginRight: 25 }} />
-                                    <Text>It is now hereby declared that the information and particulars furnished above are true and correct to the best of my/our knowledge and belief and nothing had been concealed.</Text>
+                                    <Text style={{ marginRight: 45 }}>It is now hereby declared that the information and particulars furnished above are true and correct to the best of my/our knowledge and belief and nothing had been concealed.</Text>
                                 </View>
 
                             </View>

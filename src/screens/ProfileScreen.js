@@ -31,16 +31,16 @@ const ProfileScreen = (props) => {
 
         <View style={{ flex: 1, }}>
 
-            <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#055E7C' }}>
+            <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
 
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
                     <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                        <Ionicons name="ios-arrow-back" color={'#055E7C'} style={{ fontSize: 30, paddingLeft: 20 }} />
+                        <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 20 }} />
                     </TouchableOpacity>
                 </View>
 
                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={[styles.title, { color: '#055E7C' }]}>Profile</Text>
+                    <Text style={[styles.title]}>Profile</Text>
                 </View>
 
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
@@ -49,7 +49,7 @@ const ProfileScreen = (props) => {
 
             </View>
 
-            <View style={{ flex: 9, padding: 10 }}>
+            <View style={[styles.screenMargin, { flex: 9 }]}>
 
                 <View style={{ marginTop: 10, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end' }}>
                     <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ padding: 5, paddingLeft: 8, paddingRight: 8, backgroundColor: '#055E7C', borderRadius: 5 }}>
@@ -64,13 +64,13 @@ const ProfileScreen = (props) => {
                 <View>
 
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10 }}>
-                        <Text style={[styles.h2, { color: '#055E7C' }]}>Personal Information</Text>
+                        <Text style={[styles.h2]}>Personal Information</Text>
                     </View>
 
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={[styles.text, { color: '#055E7C' }]}>Account Number</Text>
+                            <Text style={[styles.text]}>Account Number</Text>
                         </View>
 
                         <View style={{ flex: 1 }}>
@@ -82,7 +82,7 @@ const ProfileScreen = (props) => {
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={[styles.text, { color: '#055E7C' }]}>Account Type</Text>
+                            <Text style={[styles.text]}>Account Type</Text>
                         </View>
 
                         <View style={{ flex: 1 }}>
@@ -94,7 +94,7 @@ const ProfileScreen = (props) => {
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={[styles.text, { color: '#055E7C' }]}>Balance</Text>
+                            <Text style={[styles.text]}>Balance</Text>
                         </View>
 
                         <View style={{ flex: 1 }}>
@@ -106,19 +106,7 @@ const ProfileScreen = (props) => {
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={[styles.text, { color: '#055E7C' }]}>Balance</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, { color: '#055E7C' }]}>RM18,839.00</Text>
-                        </View>
-
-                    </View>
-
-                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
-
-                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={[styles.text, { color: '#055E7C' }]}>Status</Text>
+                            <Text style={[styles.text]}>Status</Text>
                         </View>
 
                         <View style={{ flex: 1 }}>
@@ -129,18 +117,16 @@ const ProfileScreen = (props) => {
 
                 </View>
 
-
-
                 <View>
 
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10 }}>
-                        <Text style={[styles.h2, { color: '#055E7C' }]}>Business Information</Text>
+                        <Text style={[styles.h2]}>Business Information</Text>
                     </View>
 
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={[styles.text, { color: '#055E7C' }]}>Business Registration Number</Text>
+                            <Text style={[styles.text]}>Business Registration Number</Text>
                         </View>
 
                         <View style={{ flex: 1 }}>
@@ -152,7 +138,7 @@ const ProfileScreen = (props) => {
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={[styles.text, { color: '#055E7C' }]}>Business Name</Text>
+                            <Text style={[styles.text]}>Business Name</Text>
                         </View>
 
                         <View style={{ flex: 1 }}>
@@ -164,7 +150,7 @@ const ProfileScreen = (props) => {
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={[styles.text, { color: '#055E7C' }]}>Contact Number</Text>
+                            <Text style={[styles.text]}>Contact Number</Text>
                         </View>
 
                         <View style={{ flex: 1 }}>
@@ -174,7 +160,9 @@ const ProfileScreen = (props) => {
                     </View>
 
                 </View>
+
             </View>
+
         </View>
 
     );

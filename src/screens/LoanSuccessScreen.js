@@ -20,6 +20,7 @@ import styles from '../styles/styles'
 const LoanSuccessScreen = (props) => {
 
     return (
+
         <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
 
             <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, }}>
@@ -32,7 +33,7 @@ const LoanSuccessScreen = (props) => {
                         <Text style={[styles.text, { margin: 5, fontWeight: 'bold' }]}>Loan Application Submitted</Text>
 
                         <View style={{ alignSelf: 'stretch', flexDirection: 'column', margin: 5, alignItems: 'center' }}>
-                            <Text style={[styles.text, { margin: 5, color: '#09A4BF' }]}>Congratulation!</Text>
+                            <Text style={[styles.text, { margin: 5, color: 'darkturquoise' }]}>Congratulation!</Text>
                             <Text style={[styles.text, { margin: 5, marginBottom: 20 }]}>Your application has been submitted. The result will be notified to you in three days time.</Text>
                         </View>
 

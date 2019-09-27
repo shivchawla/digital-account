@@ -61,11 +61,11 @@ const LoanApplicationScreen = (props) => {
 
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }}>
 
-                        <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#055E7C' }}>
+                        <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
 
-                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
+                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                                    <Ionicons name="ios-arrow-back" color={'#055E7C'} style={{ fontSize: 30, paddingLeft: 20 }} />
+                                    <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30 }} />
                                 </TouchableOpacity>
                             </View>
 
@@ -78,28 +78,29 @@ const LoanApplicationScreen = (props) => {
                             </View>
 
                         </View>
+
                         <View style={{ flex: 9 }}>
 
-                            <View style={{ flex: 9, margin: 30 }}>
+                            <View style={[styles.screenMargin, { flex: 9 }]}>
 
                                 <View style={{ flexDirection: 'row', marginBottom: 10 }}>
-                                    <Text style={styles.h3}>Financing</Text>
+                                    <Text style={styles.h2}>Financing</Text>
                                 </View>
 
                                 <View style={{ marginBottom: 10 }}>
-                                    <Text style={[styles.text, { marginBottom: 5 }]}>Total Financing (MYR)</Text>
+                                    <Text style={[styles.titleBox, { marginBottom: 5 }]}>Total Financing (MYR)</Text>
                                     <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} onBlur={FormikProps.handleBlur('amount')} style={{ borderWidth: 1, borderColor: amountTouched && amountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={amountTouched && amountError ? '' : ''} placeholderTextColor={amountTouched && amountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
                                     {amountTouched && amountError && <Text style={styles.error}>{amountError}</Text>}
                                 </View>
 
                                 <View style={{ marginBottom: 10 }}>
-                                    <Text style={[styles.text, { marginBottom: 5 }]}>Purpose</Text>
+                                    <Text style={[styles.titleBox, { marginBottom: 5 }]}>Purpose</Text>
                                     <TextInput value={purpose} onChangeText={FormikProps.handleChange('purpose')} onBlur={FormikProps.handleBlur('purpose')} style={{ borderWidth: 1, borderColor: purposeTouched && purposeError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={purposeTouched && purposeError ? '' : ''} placeholderTextColor={purposeTouched && purposeError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                     {purposeTouched && purposeError && <Text style={styles.error}>{purposeError}</Text>}
                                 </View>
 
                                 <View style={{ marginBottom: 25, marginTop: 25 }}>
-                                    <Text style={styles.text}>Financing Declaration</Text>
+                                    <Text style={styles.h2}>Financing Declaration</Text>
                                 </View>
 
                                 <View style={{ marginBottom: 10 }}>
@@ -115,20 +116,21 @@ const LoanApplicationScreen = (props) => {
                                     </View>
 
                                 </View>
+
                             </View>
 
                             <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
 
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 }}>
                                     <LinearGradient colors={['#FFF', '#FFF']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                                        <Text style={[styles.text, { color: '#000000' }]}>Back</Text>
+                                        <Text style={[styles.butang, { color: '#000000' }]}>Back</Text>
                                     </LinearGradient>
                                 </TouchableOpacity>
 
                                 <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ flex: 1 }}>
                                     <LinearGradient colors={FormikProps.isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                         {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> :
-                                            <Text style={[styles.text, { color: '#fff' }]}>Next</Text>}
+                                            <Text style={[styles.butang, { color: '#fff' }]}>Next</Text>}
                                     </LinearGradient>
                                 </TouchableOpacity>
 
