@@ -32,8 +32,8 @@ const TransactionHistoryScreen = (props) => {
                     </TouchableOpacity>
                 </View>
 
-                <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={[styles.title, { color: '#055E7C' }]}>Account: 19927483</Text>
+                <View style={{ flex: 5, justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={[styles.title]}>Account: 19927483</Text>
                 </View>
 
                 <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>

@@ -106,12 +106,29 @@ const NewInvoiceScreen = (props) => {
                         });
                         if (action !== DatePickerAndroid.dismissedAction) {
                             // Selected year, month (0-11), day
-                            FormikProps.setFieldValue('datePicked', `${year}-${month}-${day}`)
+                            FormikProps.setFieldValue('issueDate', `${year}-${month}-${day}`)
                         }
                     } catch ({ code, message }) {
                         console.warn('Cannot open date picker', message);
                     }
                 }
+
+                const datePicker2 = async () => {
+                    try {
+                        const { action, year, month, day } = await DatePickerAndroid.open({
+                            // Use `new Date()` for current date.
+                            // May 25 2020. Month 0 is January.
+                            date: new Date(2020, 4, 25),
+                        });
+                        if (action !== DatePickerAndroid.dismissedAction) {
+                            // Selected year, month (0-11), day
+                            FormikProps.setFieldValue('dueDate', `${year}-${month}-${day}`)
+                        }
+                    } catch ({ code, message }) {
+                        console.warn('Cannot open date picker', message);
+                    }
+                }
+
                 const { type, customer, issueDate, dueDate, invoiceNumber, amount, category, customerName, customerEmail, customerPhone, customerAddress } = FormikProps.values
 
                 const typeError = FormikProps.errors.type
@@ -198,18 +215,24 @@ const NewInvoiceScreen = (props) => {
                                     </View>
 
                                     <View style={[styles.formElement]}>
-                                        <TouchableOpacity onPress={datePicker}><Text style={[styles.titleBox]}>Date Picker</Text></TouchableOpacity>
-                                    </View>
-
-                                    <View style={[styles.formElement]}>
                                         <Text style={[styles.titleBox]}>Issue Date</Text>
-                                        <TextInput value={issueDate} onChangeText={FormikProps.handleChange('issueDate')} onBlur={FormikProps.handleBlur('issueDate')} style={{ borderWidth: 1, borderColor: issueDateTouched && issueDateError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={issueDateTouched && issueDateError ? '' : ''} placeholderTextColor={issueDateTouched && issueDateError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        <View style={{ flexDirection: 'row' }}>
+                                            <TouchableOpacity onPress={datePicker}>
+                                                <Image source={require('../assets/images/calendar.png')} style={{ width: 40, height: 40 }} resizeMode={'contain'} />
+                                            </TouchableOpacity>
+                                            <TextInput style={{ flex: 1, alignSelf: 'center' }} value={issueDate} style={{ borderWidth: 1, padding: 5, width: '88%' }} />
+                                        </View>
                                         {issueDateTouched && issueDateError && <Text style={styles.error}>{issueDateError}</Text>}
                                     </View>
 
                                     <View style={[styles.formElement]}>
                                         <Text style={[styles.titleBox]}>Due Date</Text>
-                                        <TextInput value={dueDate} onChangeText={FormikProps.handleChange('dueDate')} onBlur={FormikProps.handleBlur('dueDate')} style={{ borderWidth: 1, borderColor: dueDateTouched && dueDateError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={dueDateTouched && dueDateError ? '' : ''} placeholderTextColor={dueDateTouched && dueDateError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        <View style={{ flexDirection: 'row' }}>
+                                            <TouchableOpacity onPress={datePicker2}>
+                                                <Image source={require('../assets/images/calendar.png')} style={{ width: 40, height: 40 }} resizeMode={'contain'} />
+                                            </TouchableOpacity>
+                                            <TextInput style={{ flex: 1, alignSelf: 'center' }} value={dueDate} style={{ borderWidth: 1, padding: 5, width: '88%' }} />
+                                        </View>
                                         {dueDateTouched && dueDateError && <Text style={styles.error}>{dueDateError}</Text>}
                                     </View>
 
