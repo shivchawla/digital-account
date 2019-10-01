@@ -16,6 +16,8 @@ import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles/styles'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import Layout from '../constants/Layout';
+
 
 
 const validationSchema = Yup.object().shape({
