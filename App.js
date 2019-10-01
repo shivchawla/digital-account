@@ -153,6 +153,7 @@ const loadResourcesAsync = async () => {
 
       require('./src/assets/images/screenshots/1.png'),
       require('./src/assets/images/screenshots/2.png'),
+      require('./src/assets/images/screenshots/3.png'),
     ]),
     Font.loadAsync({
       // This is the font that we are using for our tab bar
