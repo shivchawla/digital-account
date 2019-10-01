@@ -95,34 +95,33 @@ const DashboardScreen = (props) => {
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.7)' }}>
           <View style={{ flexDirection: 'row', alignSelf: 'stretch', paddingLeft: 20, paddingRight: 20 }}>
             <View style={{ height: Layout.window.height / 2, backgroundColor: '#fff', flex: 1, borderRadius: 10, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-  
+
               <View style={{ alignSelf: 'stretch', margin: 5 }}>
-              <Text style={[styles.h3, { flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start',margin:5 }]}>REGISTRATION INCOMPLETE</Text>
-             
+                <Text style={[styles.h3, { flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start', margin: 5 }]}>REGISTRATION INCOMPLETE</Text>
+
                 <Text style={[styles.text, { margin: 5, }]}>Please complete items below to access dashboard</Text>
-                
+
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
                   <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Basic Info</Text>
                   <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
                   <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Merchant Info</Text>
-                  {business_name&&<Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
+                  {business_name && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
                   <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Contact Info</Text>
-                  {full_name&&<Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
+                  {full_name && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
                 </View>
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
                   <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Document Submission</Text>
-                  {(isDocument1 != 'http://test')&&<Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
+                  {(isDocument1 != 'http://test') && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
                   <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Declaration</Text>
                   {/* <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} /> */}
                 </View>
-               
 
                 {/* <Text>{link}</Text> */}
               </View>
@@ -178,8 +177,31 @@ const DashboardScreen = (props) => {
               <Text style={[styles.text, { color: '#fff' }]}>THIS MONTH</Text>
               <Ionicons name="ios-arrow-forward" color={'#fff'} style={{ fontSize: 23, paddingRight: 5 }} />
             </View>
-            <View style={{ flex: 1, height: Layout.window.height / 5, alignSelf: 'stretch' }}>
-              <Charts />
+            <View style={{ flex: 1, height: Layout.window.height / 5, alignSelf: 'stretch',flexDirection:'row' }}>
+              {/* <Charts /> */}
+              
+              <View style={{ width: Layout.window.height / 8, height: Layout.window.height / 8, justifyContent: 'center', alignItems: 'center' }}>
+                <LinearGradient colors={['green', '#fff']} start={[0.5, 0.2]} style={{ width: Layout.window.height / 10, height: Layout.window.height / 10, borderRadius: Layout.window.height / 20, justifyContent: 'center', alignItems: 'center' }}>
+                  <View style={{ width: Layout.window.height / 10.5, height: Layout.window.height / 10.5, borderRadius: Layout.window.height / 21, backgroundColor: '#055E7C' }} />
+                </LinearGradient>
+                <View style={{ position: 'absolute', bottom: 0, left: 0, right: 0, backgroundColor: '#055E7C' }}><Text style={{ padding: 10 }}>TEST</Text></View>
+              </View>
+
+              <View style={{ width: Layout.window.height / 4, height: Layout.window.height / 4, justifyContent: 'center', alignItems: 'center' }}>
+                <LinearGradient colors={['green', '#fff']} start={[0.5, 0.2]} style={{ width: Layout.window.height / 5, height: Layout.window.height / 5, borderRadius: Layout.window.height / 10, justifyContent: 'center', alignItems: 'center' }}>
+                  <View style={{ width: Layout.window.height / 5.5, height: Layout.window.height / 5.5, borderRadius: Layout.window.height / 11, backgroundColor: '#055E7C' }} />
+                </LinearGradient>
+                <View style={{ position: 'absolute', bottom: 0, left: 0, right: 0, backgroundColor: '#055E7C' }}><Text style={{ padding: 10 }}>TEST</Text></View>
+              </View>
+
+              <View style={{ width: Layout.window.height / 8, height: Layout.window.height / 8, justifyContent: 'center', alignItems: 'center' }}>
+                <LinearGradient colors={['green', '#fff']} start={[0.5, 0.2]} style={{ width: Layout.window.height / 10, height: Layout.window.height / 10, borderRadius: Layout.window.height / 20, justifyContent: 'center', alignItems: 'center' }}>
+                  <View style={{ width: Layout.window.height / 10.5, height: Layout.window.height / 10.5, borderRadius: Layout.window.height / 21, backgroundColor: '#055E7C' }} />
+                </LinearGradient>
+                <View style={{ position: 'absolute', bottom: 0, left: 0, right: 0, backgroundColor: '#055E7C' }}><Text style={{ padding: 10 }}>TEST</Text></View>
+              </View>
+
+
             </View>
           </LinearGradient>
         </View>
@@ -193,7 +215,8 @@ const DashboardScreen = (props) => {
           </View>
           <View style={{ flexDirection: 'row', marginTop: 5 }}>
             <View style={{ flex: 3, flexDirection: 'row', alignItems: 'center' }}>
-              <Dot color='#A20F0F' />
+              {/* <Dot color='#A20F0F' /> */}
+              <Ionicons name="md-remove-circle-outline" color={'#A20F0F'} style={{ fontSize: 15, paddingRight: 20 }} /> 
               <Text style={styles.text}>Withdrawal Transfer</Text>
             </View>
             <View style={{ flex: 1 }}>
@@ -202,7 +225,7 @@ const DashboardScreen = (props) => {
           </View>
           <View style={{ flexDirection: 'row', marginTop: 5 }}>
             <View style={{ flex: 3, flexDirection: 'row', alignItems: 'center' }}>
-              <Dot color='#A20F0F' />
+            <Ionicons name="md-remove-circle-outline" color={'#A20F0F'} style={{ fontSize: 15, paddingRight: 20 }} /> 
               <Text style={styles.text}>Account Transfer</Text>
             </View>
             <View style={{ flex: 1 }}>
@@ -211,7 +234,8 @@ const DashboardScreen = (props) => {
           </View>
           <View style={{ flexDirection: 'row', marginTop: 5 }}>
             <View style={{ flex: 3, flexDirection: 'row', alignItems: 'center' }}>
-              <Dot color='#7ED321' />
+              {/* <Dot color='#7ED321' /> */}
+              <Ionicons name="md-add-circle-outline" color={'#7ED321'} style={{ fontSize: 15, paddingRight: 20 }} /> 
               <Text style={[styles.text]}>Disbursement Transfer</Text>
             </View>
             <View style={{ flex: 1 }}>
@@ -219,8 +243,8 @@ const DashboardScreen = (props) => {
             </View>
           </View>
         </View>
-      </View >
-    </View >
+      </View>
+    </View>
 
   );
 

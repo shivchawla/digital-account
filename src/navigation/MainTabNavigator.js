@@ -176,8 +176,8 @@ DashboardStackWithModal.navigationOptions = ({ navigation }) => {
 
     tabBarIcon: ({ focused }) => (
       focused ?
-        <Image source={require('../assets/images/bottomTabs/homeBlack.png')} style={{ width: 35, height: 35 }} resizeMode={'contain'} /> :
-        <Image source={require('../assets/images/bottomTabs/home.png')} style={{ width: 35, height: 35 }} resizeMode={'contain'} />
+        <Image source={require('../assets/images/bottomTabs/homeBlack.png')} style={{ width: 25, height: 25 }} resizeMode={'contain'} /> :
+        <Image source={require('../assets/images/bottomTabs/home.png')} style={{ width: 25, height: 25 }} resizeMode={'contain'} />
     ),
   }
 }
@@ -195,8 +195,8 @@ TransactionHistoryStack.navigationOptions = {
   tabBarLabel: <View />,
   tabBarIcon: ({ focused }) => (
     focused ?
-      <Image source={require('../assets/images/bottomTabs/historyBlack.png')} style={{ width: 35, height: 35 }} resizeMode={'contain'} /> :
-      <Image source={require('../assets/images/bottomTabs/history.png')} style={{ width: 35, height: 35 }} resizeMode={'contain'} />
+      <Image source={require('../assets/images/bottomTabs/historyBlack.png')} style={{ width: 25, height: 25 }} resizeMode={'contain'} /> :
+      <Image source={require('../assets/images/bottomTabs/history.png')} style={{ width: 25, height: 25 }} resizeMode={'contain'} />
   ),
 };
 
@@ -213,8 +213,8 @@ NotificationStack.navigationOptions = {
   tabBarLabel: <View />,
   tabBarIcon: ({ focused }) => (
     focused ?
-      <Image source={require('../assets/images/bottomTabs/notificationBlack.png')} style={{ width: 35, height: 35 }} resizeMode={'contain'} /> :
-      <Image source={require('../assets/images/bottomTabs/notification.png')} style={{ width: 35, height: 35 }} resizeMode={'contain'} />
+      <Image source={require('../assets/images/bottomTabs/notificationBlack.png')} style={{ width: 25, height: 25 }} resizeMode={'contain'} /> :
+      <Image source={require('../assets/images/bottomTabs/notification.png')} style={{ width: 25, height: 25 }} resizeMode={'contain'} />
   ),
 };
 
@@ -266,8 +266,8 @@ SettingsStackWithModal.navigationOptions = ({ navigation }) => {
     tabBarLabel: <View />,
     tabBarIcon: ({ focused }) => (
       focused ?
-        <Image source={require('../assets/images/bottomTabs/setingBlack.png')} style={{ width: 35, height: 35 }} resizeMode={'contain'} /> :
-        <Image source={require('../assets/images/bottomTabs/setting.png')} style={{ width: 35, height: 35 }} resizeMode={'contain'} />
+        <Image source={require('../assets/images/bottomTabs/setingBlack.png')} style={{ width: 25, height: 25 }} resizeMode={'contain'} /> :
+        <Image source={require('../assets/images/bottomTabs/setting.png')} style={{ width: 25, height: 25 }} resizeMode={'contain'} />
     ),
   }
 }

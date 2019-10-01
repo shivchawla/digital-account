@@ -16,6 +16,7 @@ import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles/styles'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import Layout from '../constants/Layout';
 
 const validationSchema = Yup.object().shape({
     amount: Yup
@@ -82,9 +83,33 @@ const LoanApplicationScreen = (props) => {
                         <View style={{ flex: 9 }}>
 
                             <View style={[styles.screenMargin, { flex: 9 }]}>
+                                <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'center', marginBottom: 5 }}>
+                                    <Text style={[styles.titleBox, { marginBottom: 5 }]}>Financing</Text>
+                                </View>
+                                <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'center', marginBottom: 20 }}>
+
+                                    <View style={{ flexDirection: 'row', width: Layout.window.width / 2, justifyContent: 'space-between' }}>
+                                        <View style={{ position: 'absolute', top: 0, bottom: 0, right: 0, left: 0, justifyContent: 'center' }}>
+                                            <View style={{ width: Layout.window.width / 2, height: 8, flexDirection: 'row' }} >
+                                                <View style={{ flex: 1, backgroundColor: '#9EDBF4' }} />
+                                                <View style={{ flex: 1, backgroundColor: '#CDCDCD' }} />
+                                            </View>
+                                        </View>
+                                        <View style={{ width: 30, height: 30, borderRadius: 15, backgroundColor: '#20B8D3', justifyContent: 'center', alignItems: 'center' }}>
+                                            <Ionicons name="md-card" color={'#fff'} style={{ fontSize: 15, }} />
+                                        </View>
+                                        <View style={{ width: 30, height: 30, borderRadius: 15, backgroundColor: '#CDCDCD', justifyContent: 'center', alignItems: 'center' }}>
+                                            <Ionicons name="md-person" color={'grey'} style={{ fontSize: 15, }} />
+                                        </View>
+                                        <View style={{ width: 30, height: 30, borderRadius: 15, backgroundColor: '#CDCDCD', justifyContent: 'center', alignItems: 'center' }}>
+                                            <Ionicons name="md-clipboard" color={'grey'} style={{ fontSize: 15, }} />
+                                        </View>
+                                    </View>
+                                </View>
+
 
                                 <View style={{ flexDirection: 'row', marginBottom: 10 }}>
-                                    <Text style={styles.h2}>Financing</Text>
+                                    <Text style={styles.h2}>Application Form for Financing</Text>
                                 </View>
 
                                 <View style={{ marginBottom: 10 }}>

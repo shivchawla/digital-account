@@ -1,107 +1,128 @@
-//console.ignoredYellowBox = ['Setting a timer']
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
     Image,
-
     Text,
     TouchableOpacity,
     View,
-    Animated,
-    Easing,
-
+    TextInput,
+    KeyboardAvoidingView,
+    ActivityIndicator
 
 } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient'
+
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+
+
+import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import Constants from 'expo-constants'
-
+import { LinearGradient } from 'expo-linear-gradient'
 import Layout from '../constants/Layout'
-
 import styles from '../styles/styles'
+import * as actionCreator from '../store/actions/action'
 
-class WelcomeScreen extends React.PureComponent {
-    static navigationOptions = {
-        header: null,
+const validationSchema = Yup.object().shape({
+    email: Yup
+        .string()
+        .required()
+        .email()
+        .label('Email'),
+    password: Yup
+        .string()
+        .required()
+        .label('Password'),
+});
+
+const WelcomeScreen = (props) => {
+
+    const proceed = useSelector(state => state.loginScreenReducer.proceed, shallowEqual)
+    const all = useSelector(state => state.loginScreenReducer.message, shallowEqual)
+
+    useEffect(() => {
+        //console.log(`proceed ialah : ${proceed}`)
+        proceed && props.navigation.navigate('Main')
+    }, [proceed]);
+
+    const dispatch = useDispatch()
+    const login = (values) => dispatch(actionCreator.login1(values))
+
+    forgotPassword = async () => {
+        let result = await WebBrowser.openBrowserAsync('https://tuah.niyo.my/password/reset');
     };
+    return (
 
-    constructor(props) {
-        super(props)
-        this.logo = new Animated.Value(0)
-        this.intro = new Animated.Value(0)
-        this.buttons = new Animated.Value(0)
-    }
+        <Formik
 
-    animate() {
-        Animated.stagger(1000, [
-            Animated.timing(this.logo, {
-                toValue: 1,
-                duration: 2000,
-                easing: Easing.linear
-            }),
-            Animated.timing(this.intro, {
-                toValue: 1,
-                duration: 2000,
-                easing: Easing.linear
-            }),
-            Animated.timing(this.buttons, {
-                toValue: 1,
-                duration: 2000,
-                easing: Easing.linear
-            }),
-        ]).start();
-    }
+            initialValues={{ email: '', password: '' }}
 
-    componentDidMount() {
-        this.animate()
+            onSubmit={(values, actions) => {
+                setTimeout(() => {
 
-    }
+                    login(values);
 
-    render() {
+                    actions.setSubmitting(false);
+                }, 1000);
+            }}
+            validationSchema={validationSchema}
+        >
+            {FormikProps => {
+                const { email, password } = FormikProps.values
 
-        const logoOpac = this.logo.interpolate({
-            inputRange: [0, 1],
-            outputRange: [0, 1,]
-        })
+                const emailError = FormikProps.errors.email
+                const emailTouched = FormikProps.touched.email
 
-        const introOpac = this.intro.interpolate({
-            inputRange: [0, 1],
-            outputRange: [0, 1,]
-        })
+                const passwordError = FormikProps.errors.password
+                const passwordTouched = FormikProps.touched.password
 
-        const buttonsOpac = this.buttons.interpolate({
-            inputRange: [0, 1],
-            outputRange: [0, 1,]
-        })
+                return (
 
-
-        return (
-            <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
-                <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, }}>
-                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                        <View style={{ width: Layout.window.width * 0.8, justifyContent: 'center', alignItems: 'center' }}>
-                            <Animated.Image source={require('../assets/images/logo.png')} style={{ opacity: logoOpac, height: Layout.window.height * 0.2, width: Layout.window.width * 0.7 }} resizeMode={'contain'} />
-                            <Animated.Text style={[styles.text, { opacity: introOpac }]}>Welcome to Digital Account! Sign up now to join us or login to your account</Animated.Text>
-                            <View style={{ marginTop: 10, alignSelf: 'stretch', flexDirection: 'row' }}>
-                                <Animated.View style={{ opacity: buttonsOpac, flex: 1 }}>
-
-                                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Intro')} style={{ paddingTop: 5, paddingBottom: 5, borderWidth: 1, borderColor: 'lightgrey', justifyContent: 'center', alignItems: 'center', marginBottom: 20 }}>
-                                        <Text style={[styles.butang, { color: '#000' }]}>Sign Up</Text>
-                                    </TouchableOpacity>
-                                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')} style={{ borderWidth: 1, borderColor: '#055E7C', justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
-                                        <LinearGradient
-                                            colors={['#0A6496', '#055E7C']}
-                                            style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                                            <Text style={[styles.butang, { color: '#fff', marginTop: 5, marginBottom: 5 }]}>Log In</Text>
-                                        </LinearGradient>
-                                    </TouchableOpacity>
-                                </Animated.View>
+                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }}>
+                        {/* <LinearGradient colors={['#80A0FD', '#4F6DFB']} style={{ flex: 1 }}> */}
+                        <View style={{ justifyContent: 'space-between', flex: 9, }}>
+                            <View style={{ flex: 9 }}>
+                                <View style={{ flex: 1, backgroundColor: '#055E7C' }}>
+                                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                                        <Text style={[styles.title, { color: '#fff' }]}>Welcome to your</Text>
+                                        <Text style={[styles.title, { color: '#fff' }]}>Digital Account</Text>
+                                    </View>
+                                    <View style={{ flex: 2, backgroundColor: '#fff', borderTopLeftRadius: 30, borderTopRightRadius: 30, padding: 20 }}>
+                                        <View style={[styles.formElement]}>
+                                            <View style={{ margin: 10 }} />
+                                            <TextInput value={email} onBlur={FormikProps.handleBlur('email')} onChangeText={FormikProps.handleChange('email')} placeholder={emailTouched && emailError ? '' : 'Email'} style={{ borderBottomWidth: 1, borderColor: '#9ADAF4', padding: 5 }} />
+                                            {emailTouched && emailError && <Text style={styles.error}>{emailError}</Text>}
+                                        </View>
+                                        <View style={[styles.formElement]}>
+                                            <View style={{ margin: 10 }} />
+                                            <TextInput secureTextEntry value={password} onBlur={FormikProps.handleBlur('password')} placeholder={passwordTouched && passwordError ? '' : 'Password'} onChangeText={FormikProps.handleChange('password')} style={{ borderBottomWidth: 1, borderColor: '#9ADAF4', padding: 5 }} placeholderTextColor={passwordTouched && passwordError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                            {passwordTouched && passwordError && <Text style={styles.error}>{passwordError}</Text>}
+                                        </View>
+                                        <View style={{ flexDirection: 'row', marginBottom: 10 }}>
+                                            <Text style={[styles.textDefault, { margin: 5, color: 'darkgrey' }]}>Forgot password?</Text>
+                                            <TouchableOpacity onPress={() => forgotPassword()}>
+                                                <Text style={[styles.textDefault, { margin: 5, color: '#055E7C' }]}>Click here</Text>
+                                            </TouchableOpacity>
+                                        </View>
+                                        <View style={{ margin: 10 }} />
+                                        <View style={{ flexDirection: 'row', margin: 5 }}>
+                                            <TouchableOpacity onPress={()=>props.navigation.navigate('Intro')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10 }}>
+                                                <Text style={[styles.textDefault, { color: 'darkgrey' }]}>Register</Text>
+                                            </TouchableOpacity>
+                                            <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor:FormikProps.isValid? '#09A4BF':'rgba(9,164,191,0.5)' }} >
+                                                {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> :
+                                                    <Text style={[styles.textDefault, { color: '#fff' }]}>Log In</Text>}
+                                            </TouchableOpacity>
+                                        </View>
+                                    </View>
+                                </View>
                             </View>
-
                         </View>
-                    </View>
-                </View>
-            </View >
-        );
-    }
+                        {/* </LinearGradient> */}
+                    </KeyboardAvoidingView>)
+            }}
+        </Formik>
+    )
 }
+
+WelcomeScreen.navigationOptions = { header: null, };
 
 export default WelcomeScreen

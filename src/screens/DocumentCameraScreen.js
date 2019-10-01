@@ -22,25 +22,25 @@ import * as actionCreator from '../store/actions/action'
 const DocumentCameraScreen = (props) => {
     const docPicker = useSelector(state => state.companyInformationReducer.docPicker, shallowEqual)
     const dispatch = useDispatch()
-    const saveDocPic = (val,doc) => dispatch(actionCreator.saveDocPic1(val,doc));
-    const saveDocumentDO = (val,doc) => dispatch(actionCreator.saveDocumentDO1(val,doc));
+    const saveDocPic = (val, doc) => dispatch(actionCreator.saveDocPic1(val, doc));
+    const saveDocumentDO = (val, doc) => dispatch(actionCreator.saveDocumentDO1(val, doc));
     const [hasCameraPermission, setCameraPermission] = useState(null)
-  
+
     const takePicture = async () => {
-        const doc=props.navigation.getParam('doc')
+        const doc = props.navigation.getParam('doc')
         const document = await this.camera.takePictureAsync();
-        await saveDocPic(document,doc)
+        await saveDocPic(document, doc)
         await props.navigation.goBack()
-       
+
     }
 
     const pickDoc = () => {
-        const doc=props.navigation.getParam('doc')
+        const doc = props.navigation.getParam('doc')
         DocumentPicker.getDocumentAsync({ type: '*/*', copyToCacheDirectory: false })
             .then(result => {
                 console.log(JSON.stringify(result))
                 //this.props.saveDocument(result)
-                saveDocumentDO(result,doc)
+                saveDocumentDO(result, doc)
             })
     }
 
@@ -51,12 +51,12 @@ const DocumentCameraScreen = (props) => {
     }
 
     useEffect(() => {
-        docPicker? props.navigation.navigate('CompanyDocument'):null
-        if(docPicker){
-            dispatch({ type: 'SET_CONTACT_PERSON', payload: { docPicker:false } });  
+        docPicker ? props.navigation.navigate('CompanyDocument') : null
+        if (docPicker) {
+            dispatch({ type: 'SET_CONTACT_PERSON', payload: { docPicker: false } });
             props.navigation.navigate('CompanyDocument')
         }
-        getPermission()        
+        getPermission()
     }, [docPicker]);
 
     if (hasCameraPermission === null) {
@@ -65,7 +65,7 @@ const DocumentCameraScreen = (props) => {
     if (hasCameraPermission === false) {
         return <Text>No access to camera</Text>;
     }
-    
+
     // if(docPicker){
     //     props.navigation.navigate('CompanyDocument')
     // }
@@ -80,20 +80,20 @@ const DocumentCameraScreen = (props) => {
                     this.camera = ref;
                 }}
             >
-                <View style={{ position: 'absolute', height: Layout.window.height - Constants.statusBarHeight, width: Layout.window.width }}>
-                    <View style={{ flex: 1, alignSelf: 'stretch', backgroundColor: '#000000', }}>
+                <View style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 }}>
+                    <View style={{ flex: 1, alignSelf: 'stretch', backgroundColor: '#000000', justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={[styles.textDefault, { color: '#ffffff' }]}>Position your document inside the box</Text>
                     </View>
                     <View style={{ flex: 9, alignSelf: 'stretch' }}>
                         <View style={{ flex: 1, alignSelf: 'stretch' }}>
-                            <Image source={require('../assets/images/cardborder.png')} resizeMode={'cover'}
+                            {/* <Image source={require('../assets/images/cardborder.png')} resizeMode={'cover'}
                                 style={{ alignSelf: 'stretch', flex: 1, height: undefined, width: undefined }}
-                            />
+                            /> */}
                         </View>
                     </View>
                     <View style={{ backgroundColor: '#000000', flexDirection: 'row', flex: 1, padding: 5 }}>
                         <View style={{ flex: 1, alignSelf: 'center', justifyContent: 'center' }}>
-                            <TouchableOpacity style={{ alignSelf: 'center' }} onPress={() =>props.navigation.goBack()}>
+                            <TouchableOpacity style={{ alignSelf: 'center' }} onPress={() => props.navigation.goBack()}>
                                 <Ionicons name={'ios-arrow-back'} size={48} color={'#ffffff'} />
                             </TouchableOpacity>
                         </View>
@@ -103,7 +103,7 @@ const DocumentCameraScreen = (props) => {
                             </TouchableOpacity>
                         </View>
                         <View style={{ flex: 1, alignSelf: 'center' }}>
-                            <TouchableOpacity onPress={() =>pickDoc()}>
+                            <TouchableOpacity onPress={() => pickDoc()}>
                                 <Text style={{ color: '#ffffff' }}>Browse File</Text>
                             </TouchableOpacity>
                         </View>
