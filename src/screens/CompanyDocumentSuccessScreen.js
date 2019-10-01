@@ -27,7 +27,7 @@ const CompanyDocumentSuccessScreen = (props) => {
                     <Text style={[styles.h3, { margin: 5, flexDirection: 'row', justifyContent: 'flex-start' }]}>DOCUMENT SUBMITTED</Text>
                 </View>
 
-                <View style={{ alignSelf: 'stretch', flexDirection: 'column', margin: 5 }}>
+                <View style={{ alignSelf: 'stretch', margin: 5 }}>
                     <Text style={[styles.text, { margin: 5, color: '#09A4BF' }]}>Congratulation!</Text>
                     <Text style={[styles.text, { margin: 5, marginBottom: 20 }]}>You have submitted required document. Proceed to next screen</Text>
                 </View>
@@ -44,7 +44,7 @@ const CompanyDocumentSuccessScreen = (props) => {
 
                 <TouchableOpacity onPress={() => props.navigation.navigate('RegistrationDeclaration')} style={{ flex: 1, borderColor: '#0A6496', borderWidth: 1 }}>
                     <LinearGradient colors={['#0A6496', '#055E7C']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                        <Text style={[styles.butang, { color: '#fff' }]}>Declaration</Text>
+                        <Text style={[styles.butang, { color: '#fff' }]}>>Declaration</Text>
                     </LinearGradient>
                 </TouchableOpacity>
 

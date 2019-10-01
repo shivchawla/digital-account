@@ -80,15 +80,15 @@ const DocumentCameraScreen = (props) => {
                     this.camera = ref;
                 }}
             >
-                <View style={{ position: 'absolute', height: Layout.window.height - Constants.statusBarHeight, width: Layout.window.width }}>
-                    <View style={{ flex: 1, alignSelf: 'stretch', backgroundColor: '#000000', }}>
+                <View style={{ position: 'absolute', top:0,bottom:0,left:0,right:0 }}>
+                    <View style={{ flex: 1, alignSelf: 'stretch', backgroundColor: '#000000', justifyContent:'center',alignItems:'center' }}>
                         <Text style={[styles.textDefault, { color: '#ffffff' }]}>Position your document inside the box</Text>
                     </View>
                     <View style={{ flex: 9, alignSelf: 'stretch' }}>
                         <View style={{ flex: 1, alignSelf: 'stretch' }}>
-                            <Image source={require('../assets/images/cardborder.png')} resizeMode={'cover'}
+                            {/* <Image source={require('../assets/images/cardborder.png')} resizeMode={'cover'}
                                 style={{ alignSelf: 'stretch', flex: 1, height: undefined, width: undefined }}
-                            />
+                            /> */}
                         </View>
                     </View>
                     <View style={{ backgroundColor: '#000000', flexDirection: 'row', flex: 1, padding: 5 }}>
