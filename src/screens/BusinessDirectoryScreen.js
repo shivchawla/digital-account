@@ -7,16 +7,10 @@ import {
     ScrollView
 } from 'react-native';
 
-
-import Layout from '../constants/Layout'
-import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles/styles'
 
 const BusinessDirectoryScreen = (props) => {
-    const score = 80
-
-    const scoreColor = score > 66 ? '#7ED321' : score > 33 ? 'yellow' : 'red'
 
     return (
 
@@ -25,9 +19,11 @@ const BusinessDirectoryScreen = (props) => {
             <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
 
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
+                   
                     <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
                         <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 20 }} />
                     </TouchableOpacity>
+                    
                 </View>
 
                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
