@@ -1,20 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
     View,
     TouchableOpacity,
     Text,
     Image,
-    StyleSheet
+    FlatList
+
 } from 'react-native';
+
+import * as actionCreator from '../store/actions/action'
+
+import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 
 import { Ionicons } from '@expo/vector-icons';
 
-
 import styles from '../styles/styles'
 
-
-
 const InvoiceScreen = (props) => {
+
+    useEffect(() => {
+        dispatch(actionCreator.getInvoiceList())
+    }, [invoiceList])
+
+    const dispatch = useDispatch()
+
+    const { invoiceList } = useSelector(state => state.invoiceReducer, shallowEqual)
+
     return (
 
         <View style={{ flex: 1, }}>
@@ -82,107 +93,34 @@ const InvoiceScreen = (props) => {
                             <Text style={styles.text}>Currency</Text>
                         </View>
 
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, { marginLeft: 25 }]}>Action</Text>
-                        </View>
-
                     </View>
 
-                    <TouchableOpacity onPress={() => props.navigation.navigate('InvoicesDetail')} style={{ flexDirection: 'row', marginTop: 5 }}>
+                    {invoiceList && <FlatList
+                        data={invoiceList}
+                        keyExtractor={(item, index) => index.toString()}
+                        renderItem={({ item }) =>
 
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>112009</Text>
-                        </View>
+                            <TouchableOpacity style={{ flexDirection: 'row', marginTop: 5 }}>
 
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>12/3/2019</Text>
-                        </View>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={[styles.text]}>{item.ref} </Text>
+                                </View>
 
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>RM</Text>
-                        </View>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={[styles.text]}>{item.date}</Text>
+                                </View>
 
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>Item</Text>
-                        </View>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={[styles.text]}>{item.type}</Text>
+                                </View>
 
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, { marginLeft: 25 }]}>View</Text>
-                        </View>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={[styles.text], { color: item.status === 'Submitted' ? 'black' : 'black', color: item.status === 'Approved' ? 'red' : 'red' }}>{item.status}</Text>
+                                </View>
 
-                    </TouchableOpacity>
+                            </TouchableOpacity>
 
-                    <TouchableOpacity onPress={() => props.navigation.navigate('InvoicesDetail')} style={{ flexDirection: 'row', marginTop: 5 }}>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>112009</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>12/3/2019</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>RM</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>Item</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, { marginLeft: 25 }]}>View</Text>
-                        </View>
-
-                    </TouchableOpacity>
-
-                    <TouchableOpacity onPress={() => props.navigation.navigate('InvoicesDetail')} style={{ flexDirection: 'row', marginTop: 5 }}>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>112009</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>12/3/2019</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>RM</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>Item</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, { marginLeft: 25 }]}>View</Text>
-                        </View>
-
-                    </TouchableOpacity>
-
-                    <TouchableOpacity onPress={() => props.navigation.navigate('InvoicesDetail')} style={{ flexDirection: 'row', marginTop: 5 }}>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>112009</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>12/3/2019</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>RM</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>Item</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, { marginLeft: 25 }]}>View</Text>
-                        </View>
-
-                    </TouchableOpacity>
+                        } />}
 
                 </View>
 

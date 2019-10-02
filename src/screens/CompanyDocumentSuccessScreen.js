@@ -1,4 +1,3 @@
-//console.ignoredYellowBox = ['Setting a timer']
 import React from 'react';
 import {
     Image,
@@ -37,15 +36,19 @@ const CompanyDocumentSuccessScreen = (props) => {
             <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
 
                 <TouchableOpacity onPress={() => props.navigation.navigate('Dashboard')} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 }}>
+                   
                     <LinearGradient colors={['#fff', '#fff']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={[styles.butang, { color: 'lightgrey' }]}>Skip</Text>
                     </LinearGradient>
+
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => props.navigation.navigate('RegistrationDeclaration')} style={{ flex: 1, borderColor: '#0A6496', borderWidth: 1 }}>
+                    
                     <LinearGradient colors={['#0A6496', '#055E7C']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={[styles.butang, { color: '#fff' }]}>>Declaration</Text>
                     </LinearGradient>
+
                 </TouchableOpacity>
 
             </View>
@@ -54,20 +57,6 @@ const CompanyDocumentSuccessScreen = (props) => {
 
     );
 }
-
-// function mapStateToProps(state) {
-//     return {
-//         listWorkers: state.listWorkersReducer.listWorkers,
-//     }
-// }
-// function mapDispatchToProps(dispatch) {
-//     return {
-
-//         initiateListWorkers: () => dispatch(actionCreator.initiateListWorkers()),
-//         doneForNow: () => dispatch(actionCreator.doneForNow()),
-//         initiateCompanyInfo: () => dispatch(actionCreator.initiateCompanyInfo())
-//     }
-// }
 
 CompanyDocumentSuccessScreen.navigationOptions = { header: null, };
 

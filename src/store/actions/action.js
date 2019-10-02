@@ -8,7 +8,7 @@ import s3 from '../../do/DigitalOcean'
 import config from '../../do/config'
 
 import { requestToken, kycMobile, kycMobileVerify, kycBasicInformation, requestPersonalToken, urlToBlob, kycBasicInformation2, kycPinNumber, registerApi, registerOTPApi, verifyPhoneApi, companyInfoAPI, contactPersonAPI, submitDocApi, declarationApi, detailConnectAPI, declarationSignAPI, requestTokenLMS, registerLMSApi, requestPersonalTokenLMS } from './apiRegistration'
-import { userInfo, latestTransaction, depositApi, sendMoney, withdrawApi, requestMoney, analyticSummary, notificationApi, analytic, userList, resetPinApi, editMobileDetail, editMobileDetailVerify, pushNotification, editPersonalDetail, newsApi, eventApi, promotionApi, handbooksApi, einfoApi, applyLoanApi, getUserInfoApi, getCompanyInfoApi, getListWorkersApi, doneForNowApi, sendNotificationApi, bizDirApi, listAgencyApi, addExpoTokenApi, connectionStatusApi, getAssociateApi, getPendingApi, loanInfoApi, getCoursesApi, editUserApi, generateJWTApi, requestConnectApi, applyGrantApi, grantInfoApi, acceptApi, retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi,checkCDDApi } from './apiDashboard'
+import { userInfo, latestTransaction, depositApi, sendMoney, withdrawApi, requestMoney, analyticSummary, notificationApi, analytic, userList, resetPinApi, editMobileDetail, editMobileDetailVerify, pushNotification, editPersonalDetail, newsApi, eventApi, promotionApi, handbooksApi, einfoApi, applyLoanApi, getUserInfoApi, getCompanyInfoApi, getListWorkersApi, doneForNowApi, sendNotificationApi, bizDirApi, listAgencyApi, addExpoTokenApi, connectionStatusApi, getAssociateApi, getPendingApi, loanInfoApi, getCoursesApi, editUserApi, generateJWTApi, requestConnectApi, applyGrantApi, grantInfoApi, acceptApi, retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, reportListApi, businessDirectoryListApi } from './apiDashboard'
 //import {pusherListen} from './pusher'
 import moment from 'moment'
 
@@ -21,8 +21,6 @@ export const getToken = () => {
         dispatch(requestToken())
     }
 }
-
-
 
 export const register = (values) => {
     return async (dispatch, getState) => {
@@ -41,8 +39,6 @@ export const getPersonalToken = () => {
         await dispatch(requestPersonalToken('register', username, password))
     }
 }
-
-
 
 export const login1 = (values) => {
     return (dispatch, getState) => {
@@ -131,7 +127,7 @@ export const setScreen = () => {
         console.log('Dekat checkContact action')
         dispatch(checkCDDApi())
     }
-   
+
 }
 
 export const logout = () => {
@@ -207,7 +203,6 @@ export const saveDocPic = (result, doc) => {
     }
 }
 
-
 export const uploadPic = (uri, doc) => {
     // console.log(`result yang mengasyikkan ${JSON.stringify(result)}`)
     //const { uri } = result
@@ -277,11 +272,8 @@ export const saveDocPic1 = (result, doc) => {
 
         }
 
-
     }
 }
-
-
 
 export const saveDocumentDO = (result, doc) => {
     const { type, uri, name, size } = result
@@ -332,7 +324,6 @@ export const saveDocumentDO = (result, doc) => {
     }
 }
 
-
 export const saveDocumentDO1 = (result, doc) => {
     const { type, uri, name, size } = result
     return async (dispatch, getState) => {
@@ -349,6 +340,38 @@ export const saveDocumentDO1 = (result, doc) => {
                 break;
 
         }
+
+    }
+}
+
+export const getLoanList = () => {
+
+    return (dispatch, getState) => {
+        dispatch(loanListApi())
+
+    }
+}
+
+export const getInvoiceList = () => {
+
+    return (dispatch, getState) => {
+        dispatch(invoiceListApi())
+
+    }
+}
+
+export const getReportList = () => {
+
+    return (dispatch, getState) => {
+        dispatch(reportListApi())
+
+    }
+}
+
+export const getBusinessDirectoryList = () => {
+
+    return (dispatch, getState) => {
+        dispatch(businessListApi())
 
     }
 }

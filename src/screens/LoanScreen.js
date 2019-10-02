@@ -1,17 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
     View,
     TouchableOpacity,
     Text,
     Image,
+    FlatList
 
 } from 'react-native';
+
+import * as actionCreator from '../store/actions/action'
+
+import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 
 import { Ionicons } from '@expo/vector-icons';
 
 import styles from '../styles/styles'
 
 const LoanScreen = (props) => {
+
+    useEffect(() => {
+        dispatch(actionCreator.getLoanList())
+    }, [loanList])
+
+    const dispatch = useDispatch()
+
+    const { loanList } = useSelector(state => state.loanReducer, shallowEqual)
 
     return (
 
@@ -80,84 +93,34 @@ const LoanScreen = (props) => {
 
                     </View>
 
-                    <TouchableOpacity onPress={() => props.navigation.navigate('LoanDetail')} style={{ flexDirection: 'row', marginTop: 10 }}>
 
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>112009</Text>
-                        </View>
+                    {loanList && <FlatList
+                        data={loanList}
+                        keyExtractor={(item, index) => index.toString()}
+                        renderItem={({ item }) =>
 
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>12/3/2019</Text>
-                        </View>
+                            <TouchableOpacity style={{ flexDirection: 'row', marginTop: 5 }}>
 
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>Item</Text>
-                        </View>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={[styles.text]}>{item.ref} </Text>
+                                </View>
 
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, { color: 'navy' }]}>Submitted</Text>
-                        </View>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={[styles.text]}>{item.date}</Text>
+                                </View>
 
-                    </TouchableOpacity>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={[styles.text]}>{item.type}</Text>
+                                </View>
 
-                    <TouchableOpacity onPress={() => props.navigation.navigate('LoanDetail')} style={{ flexDirection: 'row', marginTop: 10 }}>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={[styles.text], { color: item.status === 'Submitted' ? 'black' : 'black', color: item.status === 'Approved' ? 'red' : 'red' }}>{item.status}</Text>
+                                </View>
 
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>112009</Text>
-                        </View>
+                            </TouchableOpacity>
 
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>12/3/2019</Text>
-                        </View>
 
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>Item</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, { color: 'hotpink' }]}>Declined</Text>
-                        </View>
-
-                    </TouchableOpacity>
-
-                    <TouchableOpacity onPress={() => props.navigation.navigate('LoanDetail')} style={{ flexDirection: 'row', marginTop: 10 }}>
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>112009</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>12/3/2019</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>Item</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, { color: 'orange' }]}>Pending Agreement</Text>
-                        </View>
-
-                    </TouchableOpacity>
-
-                    <TouchableOpacity onPress={() => props.navigation.navigate('LoanDetail')} style={{ flexDirection: 'row', marginTop: 10 }}>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>112009</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>12/3/2019</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>Item</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, { color: 'olive' }]}>Approved</Text>
-                        </View>
-
-                    </TouchableOpacity>
+                        } />}
 
                 </View>
 

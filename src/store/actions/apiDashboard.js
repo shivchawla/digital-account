@@ -15,10 +15,6 @@ import moment from 'moment'
 
 const apiUrl = 'https://tuah.niyo.my/'
 
-
-
-
-
 ////////////////////////////////////////////////////////////////////////////
 //////////INI YANG LAMA PUNYA//////////////////////////////////////////////
 
@@ -73,6 +69,54 @@ export const eventApi = () => {
       .catch((error) => {
         console.log('Error Event Api : ' + error);
       });
+  }
+}
+
+export const loanListApi = () => {
+  return async (dispatch, getState) => {
+    const loanList = [{ ref: 112009, date: '12/3/2019', type: 'Item', status: 'Submitted' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Decline' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Approved' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Pending' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Submitted' }]
+
+    dispatch({ type: 'SET_LOAN_LIST', payload: { loanList } })
+  }
+}
+
+export const invoiceListApi = () => {
+  return async (dispatch, getState) => {
+    const invoiceList = [{ ref: 112009, date: '12/3/2019', type: 'Item', status: 'Submitted' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Decline' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Approved' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Pending' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Submitted' }]
+
+    dispatch({ type: 'SET_INVOICE_LIST', payload: { invoiceList } })
+  }
+}
+
+export const reportListApi = () => {
+  return async (dispatch, getState) => {
+    const reportList = [{ ref: 112009, date: '12/3/2019', type: 'Item', status: 'Submitted' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Decline' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Approved' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Pending' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Submitted' }]
+
+    dispatch({ type: 'SET_REPORT_LIST', payload: { reportList } })
+  }
+}
+
+export const businessDirectoryListApi = () => {
+  return async (dispatch, getState) => {
+    const businessDirectoryList = [{ ref: 112009, date: '12/3/2019', type: 'Item', status: 'Submitted' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Decline' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Approved' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Pending' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Submitted' }]
+
+    dispatch({ type: 'SET_BUSINESS_DIRECTORY_LIST', payload: { reportList } })
   }
 }
 
@@ -169,7 +213,7 @@ export const checkDocumentApi = () => {
       })
       .catch((error) => {
         console.log('Error initiating document info : ' + error);
-        dispatch({ type: 'SET_MERCHANT', payload: { isDocument1:'http://test' } })
+        dispatch({ type: 'SET_MERCHANT', payload: { isDocument1: 'http://test' } })
       });
   }
 }
@@ -229,31 +273,31 @@ export const checkCDDApi = () => {
         const { business_name, full_name, isDocument1, isDeclaration_one } = await getState().merchantInfoReducer
         await console.log('Dekat setScreen action ', business_name, full_name, isDocument1, isDeclaration_one)
         if (business_name && full_name && (isDocument1 != 'http://test') && isDeclaration_one) {
-            // setLink('Dashboard')
-            // setDashboardDisplay(true)
-            const link = 'Dashboard'
-            dispatch({ type: 'SET_MERCHANT', payload: { link } })
-            console.log('dashboard')
+          // setLink('Dashboard')
+          // setDashboardDisplay(true)
+          const link = 'Dashboard'
+          dispatch({ type: 'SET_MERCHANT', payload: { link } })
+          console.log('dashboard')
         } else if (business_name && full_name && (isDocument1 != 'http://test')) {
-            //setLink('RegistrationDeclaration')
-            const link = 'RegistrationDeclaration'
-            dispatch({ type: 'SET_MERCHANT', payload: { link } })
-            console.log('go declaration')
+          //setLink('RegistrationDeclaration')
+          const link = 'RegistrationDeclaration'
+          dispatch({ type: 'SET_MERCHANT', payload: { link } })
+          console.log('go declaration')
         } else if (business_name && full_name) {
-            //setLink('CompanyDocument')
-            const link = 'CompanyDocument'
-            dispatch({ type: 'SET_MERCHANT', payload: { link } })
-            console.log('go company document')
+          //setLink('CompanyDocument')
+          const link = 'CompanyDocument'
+          dispatch({ type: 'SET_MERCHANT', payload: { link } })
+          console.log('go company document')
         } else if (business_name) {
-            //setLink('ContactPerson')
-            const link = 'ContactPerson'
-            dispatch({ type: 'SET_MERCHANT', payload: { link } })
-            console.log('go contact person')
+          //setLink('ContactPerson')
+          const link = 'ContactPerson'
+          dispatch({ type: 'SET_MERCHANT', payload: { link } })
+          console.log('go contact person')
         } else {
-            //setLink('CompanyInformation')
-            const link = 'CompanyInformation'
-            dispatch({ type: 'SET_MERCHANT', payload: { link } })
-            console.log('go company info')
+          //setLink('CompanyInformation')
+          const link = 'CompanyInformation'
+          dispatch({ type: 'SET_MERCHANT', payload: { link } })
+          console.log('go company info')
         }
 
       })
@@ -262,9 +306,6 @@ export const checkCDDApi = () => {
       });
   }
 }
-
-
-
 
 ///////////////////////////////////////////////////////////////////////////////////
 export const promotionApi = () => {
