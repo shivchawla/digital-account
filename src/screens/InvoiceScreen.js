@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
+
 import {
+
     View,
     TouchableOpacity,
     Text,
@@ -20,6 +22,7 @@ const InvoiceScreen = (props) => {
 
     useEffect(() => {
         dispatch(actionCreator.getInvoiceList())
+
     }, [invoiceList])
 
     const dispatch = useDispatch()
@@ -55,9 +58,11 @@ const InvoiceScreen = (props) => {
                 <View style={{ marginTop: 10, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end' }}>
 
                     <View style={{ marginTop: 10, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end' }}>
+
                         <TouchableOpacity onPress={() => props.navigation.navigate('NewInvoice')} style={{ padding: 5, paddingLeft: 8, paddingRight: 8, backgroundColor: '#055E7C', borderRadius: 5 }}>
                             <Text style={[styles.text, { color: '#fff' }]}>New Invoice</Text>
                         </TouchableOpacity>
+
                     </View>
 
                 </View>
@@ -69,8 +74,11 @@ const InvoiceScreen = (props) => {
                         <Text style={[styles.h2]}>Invoices</Text>
 
                         <TouchableOpacity onPress={props.navigation.openDrawer} style={{ flexDirection: 'row', alignItems: 'center' }}>
+
                             <Text style={[styles.small, { paddingRight: 5, color: '#055E7C' }]}>Search</Text>
+
                             <Ionicons name="ios-arrow-forward" color={'#000'} style={{ fontSize: 15, paddingRight: 5 }} />
+
                         </TouchableOpacity>
 
                     </View>
@@ -95,32 +103,29 @@ const InvoiceScreen = (props) => {
 
                     </View>
 
-                    {invoiceList && <FlatList
-                        data={invoiceList}
-                        keyExtractor={(item, index) => index.toString()}
-                        renderItem={({ item }) =>
+                    {invoiceList && <FlatList data={invoiceList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
 
-                            <TouchableOpacity style={{ flexDirection: 'row', marginTop: 5 }}>
+                        <TouchableOpacity style={{ flexDirection: 'row', marginTop: 5 }}>
 
-                                <View style={{ flex: 1 }}>
-                                    <Text style={[styles.text]}>{item.ref} </Text>
-                                </View>
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.text]}>{item.ref} </Text>
+                            </View>
 
-                                <View style={{ flex: 1 }}>
-                                    <Text style={[styles.text]}>{item.date}</Text>
-                                </View>
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.text]}>{item.date}</Text>
+                            </View>
 
-                                <View style={{ flex: 1 }}>
-                                    <Text style={[styles.text]}>{item.type}</Text>
-                                </View>
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.text]}>{item.type}</Text>
+                            </View>
 
-                                <View style={{ flex: 1 }}>
-                                    <Text style={[styles.text], { color: item.status === 'Submitted' ? 'black' : 'black', color: item.status === 'Approved' ? 'red' : 'red' }}>{item.status}</Text>
-                                </View>
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.text], { color: item.status === 'Submitted' ? 'black' : 'black', color: item.status === 'Approved' ? 'red' : 'red' }}>{item.status}</Text>
+                            </View>
 
-                            </TouchableOpacity>
+                        </TouchableOpacity>
 
-                        } />}
+                    } />}
 
                 </View>
 
@@ -130,8 +135,12 @@ const InvoiceScreen = (props) => {
     );
 }
 
-InvoiceScreen.navigationOptions = {
-    header: null,
-};
+InvoiceScreen.navigationOptions =
+
+    {
+
+        header: null,
+
+    };
 
 export default InvoiceScreen;

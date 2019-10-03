@@ -1,33 +1,19 @@
 import React from 'react';
 
 import {
+
     Image,
-    Platform,
-    ScrollView,
-    StyleSheet,
     Text,
     TouchableOpacity,
     View,
-    Dimensions,
-    TextInput,
-    AsyncStorage,
-    ImageBackground,
-    CheckBox
-} from 'react-native';
 
-import Constants from 'expo-constants'
+} from 'react-native';
 
 import { LinearGradient } from 'expo-linear-gradient'
 
 import Layout from '../constants/Layout'
 
-import { Ionicons } from '@expo/vector-icons';
-
 import styles from '../styles/styles'
-
-import { connect } from 'react-redux'
-
-import * as actionCreator from '../store/actions/action'
 
 const CompanyInfoSuccessScreen = (props) => {
 
@@ -55,7 +41,7 @@ const CompanyInfoSuccessScreen = (props) => {
             <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
 
                 <TouchableOpacity onPress={() => props.navigation.navigate('Dashboard')} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 }}>
-                   
+
                     <LinearGradient colors={['#fff', '#fff']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={[styles.butang, { color: 'lightgrey' }]}>Skip</Text>
                     </LinearGradient>
@@ -63,7 +49,7 @@ const CompanyInfoSuccessScreen = (props) => {
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => props.navigation.navigate('ContactPerson')} style={{ flex: 1, borderColor: '#0A6496', borderWidth: 1 }}>
-                   
+
                     <LinearGradient colors={['#0A6496', '#055E7C']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={[styles.butang, { color: '#fff' }]}>Contact</Text>
                     </LinearGradient>
@@ -77,6 +63,10 @@ const CompanyInfoSuccessScreen = (props) => {
     )
 }
 
-CompanyInfoSuccessScreen.navigationOptions = { header: null, };
+CompanyInfoSuccessScreen.navigationOptions =
+
+    {
+        header: null,
+    };
 
 export default CompanyInfoSuccessScreen

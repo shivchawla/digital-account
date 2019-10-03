@@ -1,8 +1,8 @@
-//console.ignoredYellowBox = ['Setting a timer']
 import React from 'react';
+
 import {
+
     Image,
-    ScrollView,
     Text,
     TouchableOpacity,
     View,
@@ -11,29 +11,35 @@ import {
 } from 'react-native';
 
 import Constants from 'expo-constants'
-//import { Constants, LinearGradient, FileSystem } from 'expo'
 
 import Layout from '../constants/Layout'
 
-import { Ionicons } from '@expo/vector-icons';
+
 import styles from '../styles/styles'
-//import { Drawer, Container, Header, Content, Footer, Left, Right, Body, Title, Subtitle, Button, Icon, Card, CardItem, Text, H2, FooterTab } from 'native-base'
 
 import { connect } from 'react-redux'
+
 import * as actionCreator from '../store/actions/action'
 
 class DetailsOfConnectedPartiesScreen extends React.PureComponent {
+
     static navigationOptions = {
+
         header: null,
+
     };
 
     async DetailConnect() {
+
         this.props.detailConnect()
         this.props.navigation.navigate('DeclarationDigitalSign')
+
     }
 
     render() {
+
         return (
+
             <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
 
                 <View style={{ flex: 1, justifyContent: 'space-between' }}>
@@ -48,8 +54,11 @@ class DetailsOfConnectedPartiesScreen extends React.PureComponent {
                         <View style={{ width: Layout.window.width * 0.8, justifyContent: 'center', alignItems: 'center' }}>
 
                             <Image source={require('../assets/images/logo.png')} style={{ height: Layout.window.height * 0.2, width: Layout.window.width * 0.7 }} resizeMode={'contain'} />
+
                             <Text style={[styles.textDefault, { margin: 5, fontWeight: 'bold' }]}>REGISTRATION</Text>
+
                             <Image source={require('../assets/images/1.png')} style={{ height: 50, width: 200, margin: 5 }} resizeMode={'stretch'} />
+
                             <Text style={[styles.textDefault, { margin: 5, color: '055E7C' }]}>Details of Connected Party</Text>
 
                             <View style={{ alignSelf: 'center', borderBottomWidth: 1, borderBottomColor: '#4A90E2', flexDirection: 'row', margin: 5, width: Layout.window.width * 0.65 }}>
@@ -98,23 +107,37 @@ class DetailsOfConnectedPartiesScreen extends React.PureComponent {
             </View>
 
         );
-    }
-}
 
+    }
+
+}
 
 function mapStateToProps(state) {
+
     return {
+
         capacity: state.companyInformationReducer.capacity,
+
         nameCP: state.companyInformationReducer.nameCP,
+
         icNumber: state.companyInformationReducer.icNumber,
+
         relationship: state.companyInformationReducer.relationship,
+
         emailSME: state.companyInformationReducer.emailSME
+
     }
+
 }
+
 function mapDispatchToProps(dispatch) {
+
     return {
+
         setDetailConnect: (value) => dispatch({ type: 'SET_DETAIL_CONNECT', payload: { ...value } }),
         detailConnect: () => dispatch(actionCreator.detailConnect())
+
     }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(DetailsOfConnectedPartiesScreen)

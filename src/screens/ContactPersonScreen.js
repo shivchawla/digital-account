@@ -54,10 +54,15 @@ const validationSchema = Yup.object().shape({
 });
 
 const ContactPersonScreen = (props) => {
+    
     const dispatch = useDispatch()
+
     const contactPerson = (values) => {
+
         dispatch(actionCreator.contactPerson(values))
+
         props.navigation.navigate('ContactPersonSuccess')
+
     }
 
     return (

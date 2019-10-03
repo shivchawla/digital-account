@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+
 import {
+
     Image,
     Platform,
     Text,
@@ -8,21 +10,30 @@ import {
     CheckBox,
     KeyboardAvoidingView,
     ScrollView
+
 } from 'react-native';
 
 import { useDispatch } from 'react-redux'
+
 import { LinearGradient } from 'expo-linear-gradient'
+
 import styles from '../styles/styles'
+
 import CheckBox2 from 'react-native-check-box'
 
 import * as actionCreator from '../store/actions/action'
 
 const AgreementScreen = (props) => {
+
     const [agreement, setAgreement] = useState(false)
+
     const dispatch = useDispatch()
+
     const signUp = () => {
+
         dispatch(actionCreator.getToken());
         props.navigation.navigate('SignUpPersonal')
+
     }
 
     return (
@@ -67,6 +78,7 @@ FCGB is referred to as “we”, “us”, “our” or “ours”. Any person u
                             }
                            
                             <Text style={[styles.text, { margin: 5, marginBottom: 10, }]}> I have agreed on terms and condition  </Text>
+                            
                         </View>
 
                     </ScrollView>

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+
 import {
+
   View,
   TouchableOpacity,
   Text,
@@ -9,14 +11,19 @@ import {
 } from 'react-native';
 
 import { LinearGradient } from 'expo-linear-gradient'
+
 import { Ionicons } from '@expo/vector-icons';
+
 import Charts from '../components/Charts'
+
 import Layout from '../constants/Layout'
+
 import styles from '../styles/styles'
+
 import Dot from '../components/Dot'
 
-
 import * as actionCreator from '../store/actions/action'
+
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 
 const DashboardScreen = (props) => {
@@ -24,74 +31,89 @@ const DashboardScreen = (props) => {
   const dispatch = useDispatch()
 
   const retrieveMerchantInfo = async () => {
+
     await dispatch(actionCreator.retrieveMerchantInfo());
 
   }
 
   const checkDeclare = async () => {
+
     await dispatch(actionCreator.checkDeclare());
 
   }
+
   const checkDocument = async () => {
+
     await dispatch(actionCreator.checkDocument());
 
   }
 
   const checkContact = async () => {
+
     await dispatch(actionCreator.checkContact());
 
   }
 
   const setScreen = async () => {
+
     await dispatch(actionCreator.setScreen());
 
   }
 
   const link = useSelector(state => state.merchantInfoReducer.link, shallowEqual)
+
   const status = useSelector(state => state.merchantInfoReducer.status, shallowEqual)
+
   const business_name = useSelector(state => state.merchantInfoReducer.business_name, shallowEqual)
+
   const isDeclaration_one = useSelector(state => state.merchantInfoReducer.isDeclaration_one, shallowEqual)
+
   const isDocument1 = useSelector(state => state.merchantInfoReducer.isDocument1, shallowEqual)
+
   const full_name = useSelector(state => state.merchantInfoReducer.full_name, shallowEqual)
-
-
-
-  //const [link, setLink] = useState("TIADA LINK")
 
   const dashboardDisplay = (link == 'Dashboard') ? true : false
 
   const logout = () => {
+
     dispatch(actionCreator.logout())
+
     props.navigation.navigate('Welcome')
+
   }
 
   const runCheckStatus = async () => {
+
     await retrieveMerchantInfo();
+
     await checkContact()
+
     await checkDocument()
+
     await checkDeclare()
+
     await setScreen()
+
   }
 
-
-
   useEffect(() => {
+
     runCheckStatus();
+
     setScreen()
+
   }, [])
 
-  //const goTo=
-  //(link == "Dashboard") && setDashboardDisplay(true)
   return (
+
     <View style={{ flex: 1, }}>
-      <Modal
-        animationType="fade"
-        transparent={true}
-        visible={!dashboardDisplay}
-        onRequestClose={() => {
-          Alert.alert('Modal has been closed.');
-        }}>
-        {/* rgba(5,94,124,0.8) */}
+
+      <Modal animationType="fade" transparent={true} visible={!dashboardDisplay} onRequestClose={() => {
+
+        Alert.alert('Modal has been closed.');
+
+      }}>
+
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.7)' }}>
 
           <View style={{ flexDirection: 'row', alignSelf: 'stretch', paddingLeft: 20, paddingRight: 20 }}>
@@ -99,6 +121,7 @@ const DashboardScreen = (props) => {
             <View style={{ height: Layout.window.height / 2, backgroundColor: '#fff', flex: 1, borderRadius: 10, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
 
               <View style={{ alignSelf: 'stretch', margin: 5 }}>
+
                 <Text style={[styles.h3, { flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start', margin: 5 }]}>REGISTRATION INCOMPLETE</Text>
                 <Text style={[styles.text, { margin: 5, }]}>Please complete items below to access dashboard</Text>
 
@@ -108,40 +131,53 @@ const DashboardScreen = (props) => {
                 </View>
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
+
                   <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Merchant Info</Text>
+
                   {business_name && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
+
                 </View>
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
+
                   <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Contact Info</Text>
+
                   {full_name && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
+
                 </View>
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
+
                   <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Document Submission</Text>
+
                   {(isDocument1 != 'http://test') && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
+
                 </View>
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
+
                   <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Declaration</Text>
-                  {/* <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} /> */}
+
                 </View>
 
-                {/* <Text>{link}</Text> */}
               </View>
 
               <View style={{ flexDirection: 'row', alignSelf: 'stretch' }}>
+
                 <TouchableOpacity style={{ flex: 1, }} onPress={() => props.navigation.navigate(link)}>
+
                   <LinearGradient colors={['#0A6496', '#055E7C']} style={{ flex: 1, padding: 20, justifyContent: 'center', alignItems: 'center' }}>
                     <Text style={[styles.butang, { color: '#fff' }]}>CONTINUE</Text>
                   </LinearGradient>
+
                 </TouchableOpacity>
+
               </View>
 
               <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end' }}>
+
                 <TouchableOpacity style={{ marginTop: 10 }} onPress={() => logout()}>
                   <Text style={[styles.small, { color: '#000' }]}>Log Out</Text>
-
                 </TouchableOpacity>
 
               </View>
@@ -157,9 +193,11 @@ const DashboardScreen = (props) => {
       <View style={{ flex: 1, flexDirection: 'row' }}>
 
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
+
           <TouchableOpacity onPress={props.navigation.openDrawer} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
             <Ionicons name="md-more" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 20 }} />
           </TouchableOpacity>
+
         </View>
 
         <View style={{ flexDirection: 'column', justifyContent: 'center' }}>
@@ -199,13 +237,14 @@ const DashboardScreen = (props) => {
           <LinearGradient colors={['#055E7C', '#055E7C']} style={{ paddingTop: 5, paddingBottom: 5, alignItems: 'center', borderRadius: 10, height: Layout.window.height / 3 }}>
 
             <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
+
               <Ionicons name="ios-arrow-back" color={'#fff'} style={{ fontSize: 23, paddingLeft: 5 }} />
               <Text style={[styles.text, { color: '#fff' }]}>THIS MONTH</Text>
               <Ionicons name="ios-arrow-forward" color={'#fff'} style={{ fontSize: 23, paddingRight: 5 }} />
+
             </View>
 
             <View style={{ flex: 1, height: Layout.window.height / 5, alignSelf: 'stretch', flexDirection: 'row' }}>
-              {/* <Charts /> */}
 
               <View style={{ width: Layout.window.height / 8, height: Layout.window.height / 8, justifyContent: 'center', alignItems: 'center' }}>
 
@@ -246,18 +285,23 @@ const DashboardScreen = (props) => {
         <View style={{ marginTop: 10 }}>
 
           <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+
             <Text style={[styles.h2, { color: '#04A2BD' }]}>Latest Transaction</Text>
+
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <Text style={[styles.small, { paddingRight: 5, color: '#04A2BD' }]}>More</Text>
               <Ionicons name="ios-arrow-forward" color={'#04A2BD'} style={{ fontSize: 15, paddingRight: 5 }} />
             </View>
+
           </View>
 
           <View style={{ flexDirection: 'row', marginTop: 5 }}>
+
             <View style={{ flex: 3, flexDirection: 'row', alignItems: 'center' }}>
-              {/* <Dot color='#A20F0F' /> */}
+
               <Ionicons name="md-remove-circle-outline" color={'#A20F0F'} style={{ fontSize: 15, paddingRight: 20 }} />
               <Text style={styles.text}>Withdrawal Transfer</Text>
+
             </View>
 
             <View style={{ flex: 1 }}>
@@ -269,8 +313,10 @@ const DashboardScreen = (props) => {
           <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
             <View style={{ flex: 3, flexDirection: 'row', alignItems: 'center' }}>
+
               <Ionicons name="md-remove-circle-outline" color={'#A20F0F'} style={{ fontSize: 15, paddingRight: 20 }} />
               <Text style={styles.text}>Account Transfer</Text>
+
             </View>
 
             <View style={{ flex: 1 }}>
@@ -282,9 +328,10 @@ const DashboardScreen = (props) => {
           <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
             <View style={{ flex: 3, flexDirection: 'row', alignItems: 'center' }}>
-              {/* <Dot color='#7ED321' /> */}
+
               <Ionicons name="md-add-circle-outline" color={'#7ED321'} style={{ fontSize: 15, paddingRight: 20 }} />
               <Text style={[styles.text]}>Disbursement Transfer</Text>
+
             </View>
 
             <View style={{ flex: 1 }}>
@@ -302,13 +349,12 @@ const DashboardScreen = (props) => {
 
   );
 
-
 }
 
 DashboardScreen.navigationOptions = {
+
   header: null,
+
 };
-
-
 
 export default DashboardScreen;

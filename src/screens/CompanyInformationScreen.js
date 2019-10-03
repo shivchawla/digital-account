@@ -8,6 +8,7 @@ import {
     TextInput,
     KeyboardAvoidingView,
     ActivityIndicator
+
 } from 'react-native';
 
 import { LinearGradient } from 'expo-linear-gradient'
@@ -41,16 +42,21 @@ const CompanyInformationScreen = (props) => {
     const dispatch = useDispatch()
 
     const companyInfo = (values) => {
+
         dispatch(actionCreator.companyInfo(values))
         props.navigation.navigate('CompanyContactInformation')
+
     }
 
     return (
+
         <Formik
 
             onSubmit={values => companyInfo(values)}
             validationSchema={validationSchema}
+
         >
+
             {FormikProps => {
 
                 const { cddCompanyName, cddRegistrationNumber } = FormikProps.values
@@ -124,14 +130,21 @@ const CompanyInformationScreen = (props) => {
                         </View>
 
                     </KeyboardAvoidingView>)
+
             }}
-            
+
         </Formik >
 
     );
 
 }
 
-CompanyInformationScreen.navigationOptions = { header: null, };
+CompanyInformationScreen.navigationOptions =
+
+    {
+
+        header: null,
+
+    };
 
 export default CompanyInformationScreen

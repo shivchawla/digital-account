@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from 'react';
+
 import {
+
     Image,
     Platform,
     ScrollView,
@@ -17,57 +19,78 @@ import {
 } from 'react-native';
 
 import Constants from 'expo-constants'
+
 import { LinearGradient } from 'expo-linear-gradient'
+
 import Layout from '../constants/Layout'
 
 import { Formik } from 'formik';
+
 import * as Yup from 'yup';
 
 import { Ionicons } from '@expo/vector-icons';
+
 import styles from '../styles/styles'
+
 import moment from 'moment'
+
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
+
 import * as actionCreator from '../store/actions/action'
 
 const validationSchema = Yup.object().shape({
+
     comp_addr: Yup
         .string()
         .required()
         .label('Address Line 1'),
+
     comp_city: Yup
         .string()
         .required()
         .label('City'),
+
     comp_state: Yup
         .string()
         .required()
         .label('State'),
+
     cddPostcode: Yup
         .string()
         .required()
         .label('Postcode'),
+
 });
+
 const CompanyContactAddressInformationScreen = (props) => {
 
 
     const dispatch = useDispatch()
+
     const proceed = useSelector(state => state.companyInformationReducer.proceed, shallowEqual)
 
     const save = async (values) => {
+
         await dispatch(actionCreator.companyInfo(values))
         await props.navigation.goBack()
+
     }
 
     return (
-        <Formik
-            onSubmit={values => {
 
-                save(values)
-                props.navigation.goBack()
-            }}
+        <Formik onSubmit={values => {
+
+            save(values)
+            props.navigation.goBack()
+
+        }}
+
             validationSchema={validationSchema}
+
         >
+
             {FormikProps => {
+
                 const { comp_addr, comp_addr2, comp_city, comp_state, cddPostcode } = FormikProps.values
 
                 const comp_addrError = FormikProps.errors.comp_addr
@@ -167,7 +190,7 @@ const CompanyContactAddressInformationScreen = (props) => {
                                         {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> :
                                             <Text style={[styles.butang, { color: '#fff' }]}>Confirm</Text>}
                                     </LinearGradient>
-                                    
+
                                 </TouchableOpacity>
 
                             </View>
@@ -175,7 +198,9 @@ const CompanyContactAddressInformationScreen = (props) => {
                         </View>
 
                     </KeyboardAvoidingView>)
+
             }}
+            
         </Formik >
 
     );

@@ -1521,6 +1521,66 @@ export const pushNotification = (expoToken) => {
   }
 }
 
+export const invoiceApi = (values) => {
+  return async (dispatch, getState) => {
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    console.log(`Submit invoice: ${JSON.stringify(values)}`)
+
+  }
+}
+
+export const expenseApi = (values) => {
+  return async (dispatch, getState) => {
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    console.log(`Submit expense: ${JSON.stringify(values)}`)
+
+  }
+}
+
+export const supportApi = (values) => {
+  return async (dispatch, getState) => {
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    console.log(`Submit support: ${JSON.stringify(values)}`)
+
+  }
+}
+
+export const vendorDataApi = (values) => {
+  return async (dispatch, getState) => {
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    console.log(`Submit vendor data: ${JSON.stringify(values)}`)
+
+  }
+}
+
+export const customerDataApi = (values) => {
+  return async (dispatch, getState) => {
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    console.log(`Submit customer data: ${JSON.stringify(values)}`)
+
+  }
+}
+
+export const itemDataApi = (values) => {
+  return async (dispatch, getState) => {
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    console.log(`Submit item data: ${JSON.stringify(values)}`)
+
+  }
+}
+
 export const editPersonalDetail = () => {
   return async (dispatch, getState) => {
     const personalToken = await SecureStore.getItemAsync('personalToken')

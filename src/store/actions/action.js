@@ -8,7 +8,7 @@ import s3 from '../../do/DigitalOcean'
 import config from '../../do/config'
 
 import { requestToken, kycMobile, kycMobileVerify, kycBasicInformation, requestPersonalToken, urlToBlob, kycBasicInformation2, kycPinNumber, registerApi, registerOTPApi, verifyPhoneApi, companyInfoAPI, contactPersonAPI, submitDocApi, declarationApi, detailConnectAPI, declarationSignAPI, requestTokenLMS, registerLMSApi, requestPersonalTokenLMS } from './apiRegistration'
-import { userInfo, latestTransaction, depositApi, sendMoney, withdrawApi, requestMoney, analyticSummary, notificationApi, analytic, userList, resetPinApi, editMobileDetail, editMobileDetailVerify, pushNotification, editPersonalDetail, newsApi, eventApi, promotionApi, handbooksApi, einfoApi, applyLoanApi, getUserInfoApi, getCompanyInfoApi, getListWorkersApi, doneForNowApi, sendNotificationApi, bizDirApi, listAgencyApi, addExpoTokenApi, connectionStatusApi, getAssociateApi, getPendingApi, loanInfoApi, getCoursesApi, editUserApi, generateJWTApi, requestConnectApi, applyGrantApi, grantInfoApi, acceptApi, retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, reportListApi, businessDirectoryListApi } from './apiDashboard'
+import { userInfo, latestTransaction, depositApi, sendMoney, withdrawApi, requestMoney, analyticSummary, notificationApi, analytic, userList, resetPinApi, editMobileDetail, editMobileDetailVerify, pushNotification, editPersonalDetail, newsApi, eventApi, promotionApi, handbooksApi, einfoApi, applyLoanApi, getUserInfoApi, getCompanyInfoApi, getListWorkersApi, doneForNowApi, sendNotificationApi, bizDirApi, listAgencyApi, addExpoTokenApi, connectionStatusApi, getAssociateApi, getPendingApi, loanInfoApi, getCoursesApi, editUserApi, generateJWTApi, requestConnectApi, applyGrantApi, grantInfoApi, acceptApi, retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, reportListApi, businessDirectoryListApi, invoiceApi, expenseApi, supportApi, vendorDataApi, customerDataApi, itemDataApi } from './apiDashboard'
 //import {pusherListen} from './pusher'
 import moment from 'moment'
 
@@ -85,6 +85,48 @@ export const submitDoc1 = (values) => {
         await dispatch(uploadPic(isDocument2, 'company'))
         await dispatch(uploadPic(isDocument3, 'business'))
         await dispatch(submitDocApi())
+    }
+}
+
+export const passInvoice = (values) => {
+    return (dispatch, getState) => {
+        console.log('Dekat retrieve invoice info action')
+        dispatch(invoiceApi(values))
+    }
+}
+
+export const passExpense = (values) => {
+    return (dispatch, getState) => {
+        console.log('Dekat retrieve expense info action')
+        dispatch(expenseApi(values))
+    }
+}
+
+export const passSupport = (values) => {
+    return (dispatch, getState) => {
+        console.log('Dekat support info action')
+        dispatch(supportApi(values))
+    }
+}
+
+export const passVendorData = (values) => {
+    return (dispatch, getState) => {
+        console.log('Dekat vendor info action')
+        dispatch(vendorDataApi(values))
+    }
+}
+
+export const passCustomerData = (values) => {
+    return (dispatch, getState) => {
+        console.log('Dekat customer info action')
+        dispatch(customerDataApi(values))
+    }
+}
+
+export const passItemData = (values) => {
+    return (dispatch, getState) => {
+        console.log('Dekat item info action')
+        dispatch(itemDataApi(values))
     }
 }
 

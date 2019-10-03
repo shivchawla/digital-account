@@ -75,8 +75,10 @@ const ConnectedPartiesScreen = (props) => {
         <Formik
 
             onSubmit={values => {
+
                 setLoanData(values)
                 props.navigation.navigate('LoanApplicationDeclaration')
+
             }}
 
             validationSchema={validationSchema}>
@@ -260,8 +262,10 @@ const ConnectedPartiesScreen = (props) => {
 
 }
 
-ConnectedPartiesScreen.navigationOptions = {
-    header: null,
-};
+ConnectedPartiesScreen.navigationOptions =
+
+    {
+        header: null,
+    };
 
 export default ConnectedPartiesScreen;

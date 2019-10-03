@@ -1,13 +1,18 @@
 import React from 'react';
+
 import {
+
     Image,
     Text,
     TouchableOpacity,
     View,
+
 } from 'react-native';
 
 import { LinearGradient } from 'expo-linear-gradient'
+
 import Layout from '../constants/Layout'
+
 import styles from '../styles/styles'
 
 const CompanyDocumentSuccessScreen = (props) => {
@@ -56,6 +61,7 @@ const CompanyDocumentSuccessScreen = (props) => {
         </View>
 
     );
+    
 }
 
 CompanyDocumentSuccessScreen.navigationOptions = { header: null, };

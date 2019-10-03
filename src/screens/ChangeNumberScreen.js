@@ -1,16 +1,22 @@
 import React from 'react';
+
 import {
+
     View,
     TouchableOpacity,
     Text,
     Image,
     KeyboardAvoidingView,
     TextInput
+
 } from 'react-native';
 
 import { LinearGradient } from 'expo-linear-gradient'
+
 import { Formik } from 'formik';
+
 import * as Yup from 'yup';
+
 import { Ionicons } from '@expo/vector-icons';
 
 import styles from '../styles/styles'
@@ -21,15 +27,21 @@ const validationSchema = Yup.object().shape({
         .string(),
     password: Yup
         .string()
+
 });
 
 const ChangeNumberScreen = (props) => {
+
     return (
+
         <Formik onSubmit={async values => {
+
             console.log(JSON.stringify(values))
+
         }}
 
             validationSchema={validationSchema}>
+
             {FormikProps => {
 
                 const { mobileNumber, password } = FormikProps.values

@@ -22,8 +22,12 @@ import styles from '../styles/styles'
 const BusinessDirectoryScreen = (props) => {
 
     useEffect(() => {
+
         dispatch(actionCreator.getReportList())
-    }, [reportList])
+
+    },
+
+        [reportList])
 
     const dispatch = useDispatch()
 
@@ -57,64 +61,65 @@ const BusinessDirectoryScreen = (props) => {
 
                 <ScrollView>
 
-                    {reportList && <FlatList
-                        data={reportList}
-                        keyExtractor={(item, index) => index.toString()}
-                        renderItem={({ item }) =>
+                    {reportList && <FlatList data={reportList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
 
-                            <View style={styles.box}>
+                        <View style={styles.box}>
 
-                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
-                                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                        <Text style={styles.small}>Name</Text>
-                                    </View>
-
-                                    <View style={{ flex: 1 }}>
-                                        <Text style={styles.small}>{item.ref}</Text>
-                                    </View>
-
+                                <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                    <Text style={styles.small}>Name</Text>
                                 </View>
 
-                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
-
-                                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                        <Text style={styles.small}>Phone Number</Text>
-                                    </View>
-
-                                    <View style={{ flex: 1 }}>
-                                        <Text style={styles.small}>{item.date}</Text>
-                                    </View>
-
-                                </View>
-
-                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
-
-                                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                        <Text style={[styles.small]}>Industry</Text>
-                                    </View>
-
-                                    <View style={{ flex: 1 }}>
-                                        <Text style={styles.small}>{item.type}</Text>
-                                    </View>
-
-                                </View>
-
-                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
-
-                                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                        <Text style={styles.small}>Address</Text>
-                                    </View>
-
-                                    <View style={{ flex: 1 }}>
-                                        <Text style={[styles.text], { color: item.status === 'Submitted' ? 'black' : 'black', color: item.status === 'Approved' ? 'red' : 'red' }}>{item.status}</Text>
-                                    </View>
-
+                                <View style={{ flex: 1 }}>
+                                    <Text style={styles.small}>{item.ref}</Text>
                                 </View>
 
                             </View>
 
-                        } />}
+                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
+
+                                <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                    <Text style={styles.small}>Phone Number</Text>
+                                </View>
+
+                                <View style={{ flex: 1 }}>
+                                    <Text style={styles.small}>{item.date}</Text>
+                                </View>
+
+                            </View>
+
+                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
+
+                                <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                    <Text style={[styles.small]}>Industry</Text>
+                                </View>
+
+                                <View style={{ flex: 1 }}>
+                                    <Text style={styles.small}>{item.type}</Text>
+                                </View>
+
+                            </View>
+
+                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
+
+                                <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                    <Text style={styles.small}>Address</Text>
+                                </View>
+
+                                <View style={{ flex: 1 }}>
+                                    <Text style={[styles.text], { color: item.status === 'Submitted' ? 'black' : 'black', color: item.status === 'Approved' ? 'red' : 'red' }}>{item.status}</Text>
+                                </View>
+
+                            </View>
+
+                        </View>
+
+                    }
+
+                    />
+                    
+                    }
 
                     <View style={{ flex: 1, flexDirection: 'row', marginTop: 5, justifyContent: 'space-around', marginBottom: 10 }}>
 
