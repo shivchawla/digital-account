@@ -1,12 +1,14 @@
-//console.ignoredYellowBox = ['Setting a timer']
 import React, { useEffect, useRef } from 'react';
+
 import {
+
     Image,
     Text,
     TouchableOpacity,
     View,
     KeyboardAvoidingView,
     ActivityIndicator
+
 } from 'react-native';
 
 import { LinearGradient } from 'expo-linear-gradient'
@@ -14,19 +16,28 @@ import { LinearGradient } from 'expo-linear-gradient'
 import styles from '../styles/styles'
 
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
+
 import * as actionCreator from '../store/actions/action'
+
 import Layout from '../constants/Layout';
 
 const CompanyDocumentScreen = (props) => {
+
     const dispatch = useDispatch()
+
     const docPicker = useSelector(state => state.companyInformationReducer.docPicker, shallowEqual)
+
     const isDocument1 = useSelector(state => state.companyInformationReducer.isDocument1, shallowEqual)
+
     const isDocument2 = useSelector(state => state.companyInformationReducer.isDocument2, shallowEqual)
+
     const isDocument3 = useSelector(state => state.companyInformationReducer.isDocument3, shallowEqual)
 
     const submitDoc = (val) => {
+
         dispatch(actionCreator.submitDoc1(val))
         props.navigation.navigate('CompanyDocumentSuccess')
+
     }
 
     return (
@@ -62,7 +73,6 @@ const CompanyDocumentScreen = (props) => {
                                 <Text style={[styles.small, { color: '#fff' }]}>Replace</Text>
                             </TouchableOpacity>
 
-
                         </View> :
 
                             <View style={{ flexDirection: 'row' }}>
@@ -78,6 +88,7 @@ const CompanyDocumentScreen = (props) => {
                     <View style={{ marginBottom: 10 }}>
 
                         <Text style={[styles.text, { marginBottom: 5, }]}>Company Registration Document</Text>
+
                         {isDocument2 ? <View style={{ backgroundColor: 'lightgrey', height: Layout.window.height / 6, width: Layout.window.width / 2, justifyContent: 'flex-end' }}>
 
                             <View style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 }}>
@@ -159,4 +170,5 @@ const CompanyDocumentScreen = (props) => {
 }
 
 CompanyDocumentScreen.navigationOptions = { header: null, };
+
 export default CompanyDocumentScreen

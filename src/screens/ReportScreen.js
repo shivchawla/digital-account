@@ -1,17 +1,36 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+
 import {
+
     View,
     TouchableOpacity,
     Text,
     Image,
+    FlatList
 
 } from 'react-native';
+
+import * as actionCreator from '../store/actions/action'
+
+import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 
 import { Ionicons } from '@expo/vector-icons';
 
 import styles from '../styles/styles'
 
 const ReportScreen = (props) => {
+
+    useEffect(() => {
+
+        dispatch(actionCreator.getReportList())
+
+    },
+
+        [reportList])
+
+    const dispatch = useDispatch()
+
+    const { reportList } = useSelector(state => state.reportReducer, shallowEqual)
 
     return (
 
@@ -26,6 +45,7 @@ const ReportScreen = (props) => {
                     </TouchableOpacity>
 
                 </View>
+
                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
                     <Text style={[styles.title, { color: '#055E7C' }]}>Report</Text>
                 </View>
@@ -69,107 +89,31 @@ const ReportScreen = (props) => {
                             <Text style={[styles.text]}>Currency</Text>
                         </View>
 
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, { marginLeft: 25 }]}>Action</Text>
-                        </View>
-
                     </View>
 
-                    <TouchableOpacity onPress={() => props.navigation.navigate('ReportDetail')} style={{ flexDirection: 'row', marginTop: 5 }}>
+                    {reportList && <FlatList data={reportList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
 
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>112009</Text>
-                        </View>
+                        <TouchableOpacity style={{ flexDirection: 'row', marginTop: 5 }}>
 
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>12/3/2019</Text>
-                        </View>
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.text]}>{item.ref} </Text>
+                            </View>
 
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>Item</Text>
-                        </View>
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.text]}>{item.date}</Text>
+                            </View>
 
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>RM</Text>
-                        </View>
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.text]}>{item.type}</Text>
+                            </View>
 
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, { marginLeft: 25 }]}>View</Text>
-                        </View>
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.text]}>{item.currency}</Text>
+                            </View>
 
-                    </TouchableOpacity>
+                        </TouchableOpacity>
 
-                    <TouchableOpacity onPress={() => props.navigation.navigate('ReportDetail')} style={{ flexDirection: 'row', marginTop: 5 }}>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>112009</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>12/3/2019</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>Item</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>RM</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, { marginLeft: 25 }]}>View</Text>
-                        </View>
-
-                    </TouchableOpacity>
-
-                    <TouchableOpacity onPress={() => props.navigation.navigate('ReportDetail')} style={{ flexDirection: 'row', marginTop: 5 }}>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>112009</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>12/3/2019</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>Item</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>RM</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, { marginLeft: 25 }]}>View</Text>
-                        </View>
-
-                    </TouchableOpacity>
-
-                    <TouchableOpacity onPress={() => props.navigation.navigate('ReportDetail')} style={{ flexDirection: 'row', marginTop: 5 }}>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>112009</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>12/3/2019</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>Item</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>RM</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, { marginLeft: 25 }]}>View</Text>
-                        </View>
-
-                    </TouchableOpacity>
+                    } />}
 
                 </View>
 

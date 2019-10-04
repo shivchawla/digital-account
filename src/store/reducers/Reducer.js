@@ -69,7 +69,6 @@ const loanApplicationReducer = (state = [], action) => {
     }
 }
 
-
 const dashboardScreenReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_DASHBOARD':
@@ -156,16 +155,6 @@ const pendingDirReducer = (state = [], action) => {
             return state
     }
 }
-
-
-// const loanApplicationReducer = (state = [], action) => {
-//     switch (action.type) {
-//         case 'SET_LOAN_INFO':
-//             return { ...state, ...action.payload }
-//         default:
-//             return state
-//     }
-// }
 
 const grantApplicationReducer = (state = [], action) => {
     switch (action.type) {
@@ -334,6 +323,46 @@ const personalInformationScreenReducer = (state = [], action) => {
 const userAccountReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_OTHER_USER':
+            return { ...state, ...action.payload }
+
+        default:
+            return state
+    }
+}
+
+const loanReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_LOAN_LIST':
+            return { ...state, ...action.payload }
+
+        default:
+            return state
+    }
+}
+
+const invoiceReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_INVOICE_LIST':
+            return { ...state, ...action.payload }
+
+        default:
+            return state
+    }
+}
+
+const reportReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_REPORT_LIST':
+            return { ...state, ...action.payload }
+
+        default:
+            return state
+    }
+}
+
+const businessDirectoryReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_BUSINESS_DIRECTORY_LIST':
             return { ...state, ...action.payload }
 
         default:
@@ -549,7 +578,7 @@ const listWorkersReducer = (state = [], action) => {
     }
 }
 
-const appReducer = combineReducers({ settingReducer, homeReducer, kycReducer, kyc1ScreenReducer, kyc2ScreenReducer, phoneVerificationReducer, termsReducer, pdpaReducer, kycVerifyReducer, passcodeCreationReducer, unlockReducer, dashboardScreenReducer, notificationScreenReducer, depositScreenReducer, personalInformationScreenReducer, transferOutScreenReducer, transferOutScanScreenReducer, scanBillReducer, personalInfoReducer, contactListReducer, requestScreenReducer, fulfillRequestScreenReducer, notificationfulfillRequestScreenReducer, withdrawScreenReducer, analyticScreenReducer, resetPinReducer, themeReducer, editInfoScreenReducer, loginScreenReducer, registrationReducer, companyInformationReducer, newsScreenReducer, eventScreenReducer, promotionScreenReducer, handbookScreenReducer, einfosScreenReducer, loanApplicationReducer, bizInfoReducer, listWorkersReducer, myAccountReducer, bizDirReducer, agencyListReducer, assoDirReducer, pendingDirReducer, trainingReducer, grantApplicationReducer, userAccountReducer, merchantInfoReducer });
+const appReducer = combineReducers({ businessDirectoryReducer, reportReducer, invoiceReducer, loanReducer, settingReducer, homeReducer, kycReducer, kyc1ScreenReducer, kyc2ScreenReducer, phoneVerificationReducer, termsReducer, pdpaReducer, kycVerifyReducer, passcodeCreationReducer, unlockReducer, dashboardScreenReducer, notificationScreenReducer, depositScreenReducer, personalInformationScreenReducer, transferOutScreenReducer, transferOutScanScreenReducer, scanBillReducer, personalInfoReducer, contactListReducer, requestScreenReducer, fulfillRequestScreenReducer, notificationfulfillRequestScreenReducer, withdrawScreenReducer, analyticScreenReducer, resetPinReducer, themeReducer, editInfoScreenReducer, loginScreenReducer, registrationReducer, companyInformationReducer, newsScreenReducer, eventScreenReducer, promotionScreenReducer, handbookScreenReducer, einfosScreenReducer, loanApplicationReducer, bizInfoReducer, listWorkersReducer, myAccountReducer, bizDirReducer, agencyListReducer, assoDirReducer, pendingDirReducer, trainingReducer, grantApplicationReducer, userAccountReducer, merchantInfoReducer });
 
 const rootReducer = (state, action) => {
     switch (action.type) {

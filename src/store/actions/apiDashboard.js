@@ -15,10 +15,6 @@ import moment from 'moment'
 
 const apiUrl = 'https://tuah.niyo.my/'
 
-
-
-
-
 ////////////////////////////////////////////////////////////////////////////
 //////////INI YANG LAMA PUNYA//////////////////////////////////////////////
 
@@ -73,6 +69,54 @@ export const eventApi = () => {
       .catch((error) => {
         console.log('Error Event Api : ' + error);
       });
+  }
+}
+
+export const loanListApi = () => {
+  return async (dispatch, getState) => {
+    const loanList = [{ ref: 112009, date: '12/3/2019', type: 'Item', status: 'Submitted' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Decline' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Approved' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Pending' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Submitted' }]
+
+    dispatch({ type: 'SET_LOAN_LIST', payload: { loanList } })
+  }
+}
+
+export const invoiceListApi = () => {
+  return async (dispatch, getState) => {
+    const invoiceList = [{ ref: 112009, date: '12/3/2019', type: 'Item', currency: 'IDR' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', currency: 'MYR' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', currency: 'MYR' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', currency: 'INR' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', currency: 'SGD' }]
+
+    dispatch({ type: 'SET_INVOICE_LIST', payload: { invoiceList } })
+  }
+}
+
+export const reportListApi = () => {
+  return async (dispatch, getState) => {
+    const reportList = [{ ref: 112009, date: '12/3/2019', type: 'Item', currency: 'IDR' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', currency: 'MYR' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', currency: 'MYR' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', currency: 'INR' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', currency: 'SGD' }]
+
+    dispatch({ type: 'SET_REPORT_LIST', payload: { reportList } })
+  }
+}
+
+export const businessDirectoryListApi = () => {
+  return async (dispatch, getState) => {
+    const businessDirectoryList = [{ name: 'Perusahaan Kecil Ah Kong Sdn. Bhd.', pNumber: 9780918, industry: 'Clothing', address: 'Jalan Bakri, 78099, Segamat, Johor Darul Tazim' },
+    { name: 'Perusahaan Kecil Ah Kong Sdn. Bhd.', pNumber: 9780918, industry: 'Clothing', address: 'Jalan Bakri, 78099, Segamat, Johor Darul Tazim' },
+    { name: 'Perusahaan Kecil Ah Kong Sdn. Bhd.', pNumber: 9780918, industry: 'Clothing', address: 'Jalan Bakri, 78099, Segamat, Johor Darul Tazim' },
+    { name: 'Perusahaan Kecil Ah Kong Sdn. Bhd.', pNumber: 9780918, industry: 'Clothing', address: 'Jalan Bakri, 78099, Segamat, Johor Darul Tazim' },
+    { name: 'Perusahaan Kecil Ah Kong Sdn. Bhd.', pNumber: 9780918, industry: 'Clothing', address: 'Jalan Bakri, 78099, Segamat, Johor Darul Tazim' }]
+
+    dispatch({ type: 'SET_BUSINESS_DIRECTORY_LIST', payload: { businessDirectoryList } })
   }
 }
 
@@ -169,7 +213,7 @@ export const checkDocumentApi = () => {
       })
       .catch((error) => {
         console.log('Error initiating document info : ' + error);
-        dispatch({ type: 'SET_MERCHANT', payload: { isDocument1:'http://test' } })
+        dispatch({ type: 'SET_MERCHANT', payload: { isDocument1: 'http://test' } })
       });
   }
 }
@@ -229,31 +273,31 @@ export const checkCDDApi = () => {
         const { business_name, full_name, isDocument1, isDeclaration_one } = await getState().merchantInfoReducer
         await console.log('Dekat setScreen action ', business_name, full_name, isDocument1, isDeclaration_one)
         if (business_name && full_name && (isDocument1 != 'http://test') && isDeclaration_one) {
-            // setLink('Dashboard')
-            // setDashboardDisplay(true)
-            const link = 'Dashboard'
-            dispatch({ type: 'SET_MERCHANT', payload: { link } })
-            console.log('dashboard')
+          // setLink('Dashboard')
+          // setDashboardDisplay(true)
+          const link = 'Dashboard'
+          dispatch({ type: 'SET_MERCHANT', payload: { link } })
+          console.log('dashboard')
         } else if (business_name && full_name && (isDocument1 != 'http://test')) {
-            //setLink('RegistrationDeclaration')
-            const link = 'RegistrationDeclaration'
-            dispatch({ type: 'SET_MERCHANT', payload: { link } })
-            console.log('go declaration')
+          //setLink('RegistrationDeclaration')
+          const link = 'RegistrationDeclaration'
+          dispatch({ type: 'SET_MERCHANT', payload: { link } })
+          console.log('go declaration')
         } else if (business_name && full_name) {
-            //setLink('CompanyDocument')
-            const link = 'CompanyDocument'
-            dispatch({ type: 'SET_MERCHANT', payload: { link } })
-            console.log('go company document')
+          //setLink('CompanyDocument')
+          const link = 'CompanyDocument'
+          dispatch({ type: 'SET_MERCHANT', payload: { link } })
+          console.log('go company document')
         } else if (business_name) {
-            //setLink('ContactPerson')
-            const link = 'ContactPerson'
-            dispatch({ type: 'SET_MERCHANT', payload: { link } })
-            console.log('go contact person')
+          //setLink('ContactPerson')
+          const link = 'ContactPerson'
+          dispatch({ type: 'SET_MERCHANT', payload: { link } })
+          console.log('go contact person')
         } else {
-            //setLink('CompanyInformation')
-            const link = 'CompanyInformation'
-            dispatch({ type: 'SET_MERCHANT', payload: { link } })
-            console.log('go company info')
+          //setLink('CompanyInformation')
+          const link = 'CompanyInformation'
+          dispatch({ type: 'SET_MERCHANT', payload: { link } })
+          console.log('go company info')
         }
 
       })
@@ -262,9 +306,6 @@ export const checkCDDApi = () => {
       });
   }
 }
-
-
-
 
 ///////////////////////////////////////////////////////////////////////////////////
 export const promotionApi = () => {
@@ -1477,6 +1518,66 @@ export const pushNotification = (expoToken) => {
       .catch((error) => {
         console.log('Error request money : ' + error);
       });
+  }
+}
+
+export const invoiceApi = (values) => {
+  return async (dispatch, getState) => {
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    console.log(`Submit invoice: ${JSON.stringify(values)}`)
+
+  }
+}
+
+export const expenseApi = (values) => {
+  return async (dispatch, getState) => {
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    console.log(`Submit expense: ${JSON.stringify(values)}`)
+
+  }
+}
+
+export const supportApi = (values) => {
+  return async (dispatch, getState) => {
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    console.log(`Submit support: ${JSON.stringify(values)}`)
+
+  }
+}
+
+export const vendorDataApi = (values) => {
+  return async (dispatch, getState) => {
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    console.log(`Submit vendor data: ${JSON.stringify(values)}`)
+
+  }
+}
+
+export const customerDataApi = (values) => {
+  return async (dispatch, getState) => {
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    console.log(`Submit customer data: ${JSON.stringify(values)}`)
+
+  }
+}
+
+export const itemDataApi = (values) => {
+  return async (dispatch, getState) => {
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    console.log(`Submit item data: ${JSON.stringify(values)}`)
+
   }
 }
 
