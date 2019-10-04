@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
+
 import {
+
     View,
     TouchableOpacity,
     Text,
@@ -19,8 +21,12 @@ import styles from '../styles/styles'
 const LoanScreen = (props) => {
 
     useEffect(() => {
+
         dispatch(actionCreator.getLoanList())
-    }, [loanList])
+
+    },
+
+        [loanList])
 
     const dispatch = useDispatch()
 
@@ -94,33 +100,30 @@ const LoanScreen = (props) => {
                     </View>
 
 
-                    {loanList && <FlatList
-                        data={loanList}
-                        keyExtractor={(item, index) => index.toString()}
-                        renderItem={({ item }) =>
+                    {loanList && <FlatList data={loanList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
 
-                            <TouchableOpacity style={{ flexDirection: 'row', marginTop: 5 }}>
+                        <TouchableOpacity style={{ flexDirection: 'row', marginTop: 5 }}>
 
-                                <View style={{ flex: 1 }}>
-                                    <Text style={[styles.text]}>{item.ref} </Text>
-                                </View>
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.text]}>{item.ref} </Text>
+                            </View>
 
-                                <View style={{ flex: 1 }}>
-                                    <Text style={[styles.text]}>{item.date}</Text>
-                                </View>
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.text]}>{item.date}</Text>
+                            </View>
 
-                                <View style={{ flex: 1 }}>
-                                    <Text style={[styles.text]}>{item.type}</Text>
-                                </View>
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.text]}>{item.type}</Text>
+                            </View>
 
-                                <View style={{ flex: 1 }}>
-                                    <Text style={[styles.text], { color: item.status === 'Submitted' ? 'black' : 'black', color: item.status === 'Approved' ? 'red' : 'red' }}>{item.status}</Text>
-                                </View>
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.text], { color: item.status === 'Submitted' ? '#000000' : item.status === 'Decline' ? '#FF0000' : item.status === 'Approved' ? '#54A400' : '#FA6400' }}>{item.status}</Text>
+                            </View>
 
-                            </TouchableOpacity>
+                        </TouchableOpacity>
 
 
-                        } />}
+                    } />}
 
                 </View>
 
@@ -129,6 +132,7 @@ const LoanScreen = (props) => {
         </View >
 
     );
+
 }
 
 LoanScreen.navigationOptions = {

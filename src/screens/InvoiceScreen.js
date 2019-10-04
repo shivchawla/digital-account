@@ -120,7 +120,7 @@ const InvoiceScreen = (props) => {
                             </View>
 
                             <View style={{ flex: 1 }}>
-                                <Text style={[styles.text], { color: item.status === 'Submitted' ? 'black' : 'black', color: item.status === 'Approved' ? 'red' : 'red' }}>{item.status}</Text>
+                                <Text style={[styles.text]}>{item.currency}</Text>
                             </View>
 
                         </TouchableOpacity>

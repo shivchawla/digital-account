@@ -413,7 +413,7 @@ export const getReportList = () => {
 export const getBusinessDirectoryList = () => {
 
     return (dispatch, getState) => {
-        dispatch(businessListApi())
+        dispatch(businessDirectoryListApi())
 
     }
 }

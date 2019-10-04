@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import {
 
@@ -8,13 +8,14 @@ import {
     Image,
     ActivityIndicator,
     TextInput,
-    KeyboardAvoidingView
+    KeyboardAvoidingView,
+    ScrollView
 
 } from 'react-native';
 
 import CheckBox from 'react-native-check-box'
 
-import { shallowEqual, useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import { LinearGradient } from 'expo-linear-gradient'
 
@@ -96,82 +97,86 @@ const LoanApplicationScreen = (props) => {
 
                         </View>
 
-                        <View style={{ flex: 9 }}>
+                        <View style={{ justifyContent: 'space-between', flex: 9 }}>
 
-                            <View style={[styles.screenMargin, { flex: 9 }]}>
+                            <View style={{ flex: 9, margin: 10 }}>
 
-                                <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'center', marginBottom: 5 }}>
-                                    <Text style={[styles.titleBox, { marginBottom: 5 }]}>Financing</Text>
-                                </View>
+                                <ScrollView style={[styles.screenMargin]}>
 
-                                <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'center', marginBottom: 20 }}>
+                                    <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'center', marginBottom: 5 }}>
+                                        <Text style={[styles.titleBox, { marginBottom: 5 }]}>Financing</Text>
+                                    </View>
 
-                                    <View style={{ flexDirection: 'row', width: Layout.window.width / 2, justifyContent: 'space-between' }}>
+                                    <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'center', marginBottom: 20 }}>
 
-                                        <View style={{ position: 'absolute', top: 0, bottom: 0, right: 0, left: 0, justifyContent: 'center' }}>
+                                        <View style={{ flexDirection: 'row', width: Layout.window.width / 2, justifyContent: 'space-between' }}>
 
-                                            <View style={{ width: Layout.window.width / 2, height: 8, flexDirection: 'row' }} >
-                                                <View style={{ flex: 1, backgroundColor: '#9EDBF4' }} />
-                                                <View style={{ flex: 1, backgroundColor: '#CDCDCD' }} />
+                                            <View style={{ position: 'absolute', top: 0, bottom: 0, right: 0, left: 0, justifyContent: 'center' }}>
+
+                                                <View style={{ width: Layout.window.width / 2, height: 8, flexDirection: 'row' }} >
+                                                    <View style={{ flex: 1, backgroundColor: '#9EDBF4' }} />
+                                                    <View style={{ flex: 1, backgroundColor: '#CDCDCD' }} />
+                                                </View>
+
+                                            </View>
+
+                                            <View style={{ width: 30, height: 30, borderRadius: 15, backgroundColor: '#20B8D3', justifyContent: 'center', alignItems: 'center' }}>
+                                                <Ionicons name="md-card" color={'#fff'} style={{ fontSize: 15, }} />
+                                            </View>
+
+                                            <View style={{ width: 30, height: 30, borderRadius: 15, backgroundColor: '#CDCDCD', justifyContent: 'center', alignItems: 'center' }}>
+                                                <Ionicons name="md-person" color={'grey'} style={{ fontSize: 15, }} />
+                                            </View>
+
+                                            <View style={{ width: 30, height: 30, borderRadius: 15, backgroundColor: '#CDCDCD', justifyContent: 'center', alignItems: 'center' }}>
+                                                <Ionicons name="md-clipboard" color={'grey'} style={{ fontSize: 15, }} />
                                             </View>
 
                                         </View>
 
-                                        <View style={{ width: 30, height: 30, borderRadius: 15, backgroundColor: '#20B8D3', justifyContent: 'center', alignItems: 'center' }}>
-                                            <Ionicons name="md-card" color={'#fff'} style={{ fontSize: 15, }} />
+                                    </View>
+
+                                    <View style={{ flexDirection: 'row', marginBottom: 10 }}>
+                                        <Text style={styles.h2}>Application Form for Financing</Text>
+                                    </View>
+
+                                    <View style={{ marginBottom: 10 }}>
+
+                                        <Text style={[styles.titleBox, { marginBottom: 5 }]}>Total Financing (MYR)</Text>
+                                        <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} onBlur={FormikProps.handleBlur('amount')} style={{ borderWidth: 1, borderColor: amountTouched && amountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={amountTouched && amountError ? '' : ''} placeholderTextColor={amountTouched && amountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
+
+                                        {amountTouched && amountError && <Text style={styles.error}>{amountError}</Text>}
+
+                                    </View>
+
+                                    <View style={{ marginBottom: 10 }}>
+
+                                        <Text style={[styles.titleBox, { marginBottom: 5 }]}>Purpose</Text>
+                                        <TextInput value={purpose} onChangeText={FormikProps.handleChange('purpose')} onBlur={FormikProps.handleBlur('purpose')} style={{ borderWidth: 1, borderColor: purposeTouched && purposeError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={purposeTouched && purposeError ? '' : ''} placeholderTextColor={purposeTouched && purposeError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+
+                                        {purposeTouched && purposeError && <Text style={styles.error}>{purposeError}</Text>}
+
+                                    </View>
+
+                                    <View style={{ marginBottom: 25, marginTop: 25 }}>
+                                        <Text style={styles.h2}>Financing Declaration</Text>
+                                    </View>
+
+                                    <View style={{ marginBottom: 10 }}>
+
+                                        <Text style={[styles.text, { marginBottom: 5 }]}>Is company connected with SME Bank?</Text>
+
+                                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                            <CheckBox onClick={() => handleCheckBox()} isChecked={smeConnected} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', paddingRight: 10 }} /><Text>Yes</Text>
                                         </View>
 
-                                        <View style={{ width: 30, height: 30, borderRadius: 15, backgroundColor: '#CDCDCD', justifyContent: 'center', alignItems: 'center' }}>
-                                            <Ionicons name="md-person" color={'grey'} style={{ fontSize: 15, }} />
-                                        </View>
-
-                                        <View style={{ width: 30, height: 30, borderRadius: 15, backgroundColor: '#CDCDCD', justifyContent: 'center', alignItems: 'center' }}>
-                                            <Ionicons name="md-clipboard" color={'grey'} style={{ fontSize: 15, }} />
+                                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                            <CheckBox onClick={handleCheckBox} isChecked={!smeConnected} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', paddingRight: 10 }} /><Text>No</Text>
                                         </View>
 
                                     </View>
 
-                                </View>
-
-                                <View style={{ flexDirection: 'row', marginBottom: 10 }}>
-                                    <Text style={styles.h2}>Application Form for Financing</Text>
-                                </View>
-
-                                <View style={{ marginBottom: 10 }}>
-
-                                    <Text style={[styles.titleBox, { marginBottom: 5 }]}>Total Financing (MYR)</Text>
-                                    <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} onBlur={FormikProps.handleBlur('amount')} style={{ borderWidth: 1, borderColor: amountTouched && amountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={amountTouched && amountError ? '' : ''} placeholderTextColor={amountTouched && amountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
-
-                                    {amountTouched && amountError && <Text style={styles.error}>{amountError}</Text>}
-
-                                </View>
-
-                                <View style={{ marginBottom: 10 }}>
-
-                                    <Text style={[styles.titleBox, { marginBottom: 5 }]}>Purpose</Text>
-                                    <TextInput value={purpose} onChangeText={FormikProps.handleChange('purpose')} onBlur={FormikProps.handleBlur('purpose')} style={{ borderWidth: 1, borderColor: purposeTouched && purposeError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={purposeTouched && purposeError ? '' : ''} placeholderTextColor={purposeTouched && purposeError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
-
-                                    {purposeTouched && purposeError && <Text style={styles.error}>{purposeError}</Text>}
-
-                                </View>
-
-                                <View style={{ marginBottom: 25, marginTop: 25 }}>
-                                    <Text style={styles.h2}>Financing Declaration</Text>
-                                </View>
-
-                                <View style={{ marginBottom: 10 }}>
-
-                                    <Text style={[styles.text, { marginBottom: 5 }]}>Is company connected with SME Bank?</Text>
-
-                                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                        <CheckBox onClick={() => handleCheckBox()} isChecked={smeConnected} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', paddingRight: 10 }} /><Text>Yes</Text>
-                                    </View>
-
-                                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                        <CheckBox onClick={handleCheckBox} isChecked={!smeConnected} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', paddingRight: 10 }} /><Text>No</Text>
-                                    </View>
-
-                                </View>
+                                </ScrollView>
 
                             </View>
 

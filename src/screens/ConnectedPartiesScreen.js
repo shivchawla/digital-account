@@ -58,6 +58,7 @@ const validationSchema = Yup.object().shape({
     email: Yup
         .string()
         .email()
+        .required()
         .label('Email'),
 
 });
@@ -131,7 +132,7 @@ const ConnectedPartiesScreen = (props) => {
 
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
 
-                            <View style={{ flex: 9 }}>
+                            <View style={{ flex: 9, margin: 10 }}>
 
                                 <ScrollView style={[styles.screenMargin]}>
 
@@ -157,7 +158,7 @@ const ConnectedPartiesScreen = (props) => {
                                             </View>
 
                                             <View style={{ width: 30, height: 30, borderRadius: 15, backgroundColor: '#20B8D3', justifyContent: 'center', alignItems: 'center' }}>
-                                                <Ionicons name="md-person" color={'fff'} style={{ fontSize: 15, }} />
+                                                <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 15, }} />
                                             </View>
 
                                             <View style={{ width: 30, height: 30, borderRadius: 15, backgroundColor: '#CDCDCD', justifyContent: 'center', alignItems: 'center' }}>

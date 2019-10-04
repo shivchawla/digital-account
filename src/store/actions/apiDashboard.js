@@ -86,11 +86,11 @@ export const loanListApi = () => {
 
 export const invoiceListApi = () => {
   return async (dispatch, getState) => {
-    const invoiceList = [{ ref: 112009, date: '12/3/2019', type: 'Item', status: 'Submitted' },
-    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Decline' },
-    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Approved' },
-    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Pending' },
-    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Submitted' }]
+    const invoiceList = [{ ref: 112009, date: '12/3/2019', type: 'Item', currency: 'IDR' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', currency: 'MYR' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', currency: 'MYR' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', currency: 'INR' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', currency: 'SGD' }]
 
     dispatch({ type: 'SET_INVOICE_LIST', payload: { invoiceList } })
   }
@@ -98,11 +98,11 @@ export const invoiceListApi = () => {
 
 export const reportListApi = () => {
   return async (dispatch, getState) => {
-    const reportList = [{ ref: 112009, date: '12/3/2019', type: 'Item', status: 'Submitted' },
-    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Decline' },
-    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Approved' },
-    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Pending' },
-    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Submitted' }]
+    const reportList = [{ ref: 112009, date: '12/3/2019', type: 'Item', currency: 'IDR' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', currency: 'MYR' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', currency: 'MYR' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', currency: 'INR' },
+    { ref: 112009, date: '12/3/2019', type: 'Item', currency: 'SGD' }]
 
     dispatch({ type: 'SET_REPORT_LIST', payload: { reportList } })
   }
@@ -110,13 +110,13 @@ export const reportListApi = () => {
 
 export const businessDirectoryListApi = () => {
   return async (dispatch, getState) => {
-    const businessDirectoryList = [{ ref: 112009, date: '12/3/2019', type: 'Item', status: 'Submitted' },
-    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Decline' },
-    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Approved' },
-    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Pending' },
-    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Submitted' }]
+    const businessDirectoryList = [{ name: 'Perusahaan Kecil Ah Kong Sdn. Bhd.', pNumber: 9780918, industry: 'Clothing', address: 'Jalan Bakri, 78099, Segamat, Johor Darul Tazim' },
+    { name: 'Perusahaan Kecil Ah Kong Sdn. Bhd.', pNumber: 9780918, industry: 'Clothing', address: 'Jalan Bakri, 78099, Segamat, Johor Darul Tazim' },
+    { name: 'Perusahaan Kecil Ah Kong Sdn. Bhd.', pNumber: 9780918, industry: 'Clothing', address: 'Jalan Bakri, 78099, Segamat, Johor Darul Tazim' },
+    { name: 'Perusahaan Kecil Ah Kong Sdn. Bhd.', pNumber: 9780918, industry: 'Clothing', address: 'Jalan Bakri, 78099, Segamat, Johor Darul Tazim' },
+    { name: 'Perusahaan Kecil Ah Kong Sdn. Bhd.', pNumber: 9780918, industry: 'Clothing', address: 'Jalan Bakri, 78099, Segamat, Johor Darul Tazim' }]
 
-    dispatch({ type: 'SET_BUSINESS_DIRECTORY_LIST', payload: { reportList } })
+    dispatch({ type: 'SET_BUSINESS_DIRECTORY_LIST', payload: { businessDirectoryList } })
   }
 }
 

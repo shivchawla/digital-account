@@ -18,20 +18,21 @@ import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons';
 
 import styles from '../styles/styles'
+import { businessDirectoryListApi } from '../store/actions/apiDashboard';
 
 const BusinessDirectoryScreen = (props) => {
 
     useEffect(() => {
 
-        dispatch(actionCreator.getReportList())
+        dispatch(actionCreator.getBusinessDirectoryList())
 
     },
 
-        [reportList])
+        [businessDirectoryList])
 
     const dispatch = useDispatch()
 
-    const { reportList } = useSelector(state => state.reportReducer, shallowEqual)
+    const { businessDirectoryList } = useSelector(state => state.businessDirectoryReducer, shallowEqual)
 
     return (
 
@@ -61,7 +62,7 @@ const BusinessDirectoryScreen = (props) => {
 
                 <ScrollView>
 
-                    {reportList && <FlatList data={reportList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
+                    {businessDirectoryList && <FlatList data={businessDirectoryList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
 
                         <View style={styles.box}>
 
@@ -72,7 +73,7 @@ const BusinessDirectoryScreen = (props) => {
                                 </View>
 
                                 <View style={{ flex: 1 }}>
-                                    <Text style={styles.small}>{item.ref}</Text>
+                                    <Text style={styles.small}>{item.name}</Text>
                                 </View>
 
                             </View>
@@ -84,7 +85,7 @@ const BusinessDirectoryScreen = (props) => {
                                 </View>
 
                                 <View style={{ flex: 1 }}>
-                                    <Text style={styles.small}>{item.date}</Text>
+                                    <Text style={styles.small}>{item.pNumber}</Text>
                                 </View>
 
                             </View>
@@ -96,7 +97,7 @@ const BusinessDirectoryScreen = (props) => {
                                 </View>
 
                                 <View style={{ flex: 1 }}>
-                                    <Text style={styles.small}>{item.type}</Text>
+                                    <Text style={styles.small}>{item.industry}</Text>
                                 </View>
 
                             </View>
@@ -108,7 +109,7 @@ const BusinessDirectoryScreen = (props) => {
                                 </View>
 
                                 <View style={{ flex: 1 }}>
-                                    <Text style={[styles.text], { color: item.status === 'Submitted' ? 'black' : 'black', color: item.status === 'Approved' ? 'red' : 'red' }}>{item.status}</Text>
+                                    <Text style={styles.small}>{item.address}</Text>
                                 </View>
 
                             </View>
@@ -118,7 +119,7 @@ const BusinessDirectoryScreen = (props) => {
                     }
 
                     />
-                    
+
                     }
 
                     <View style={{ flex: 1, flexDirection: 'row', marginTop: 5, justifyContent: 'space-around', marginBottom: 10 }}>

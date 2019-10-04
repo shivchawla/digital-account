@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 
 import {
+
     View,
     TouchableOpacity,
     Text,
@@ -20,8 +21,12 @@ import styles from '../styles/styles'
 const ReportScreen = (props) => {
 
     useEffect(() => {
+
         dispatch(actionCreator.getReportList())
-    }, [reportList])
+
+    },
+
+        [reportList])
 
     const dispatch = useDispatch()
 
@@ -40,6 +45,7 @@ const ReportScreen = (props) => {
                     </TouchableOpacity>
 
                 </View>
+
                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
                     <Text style={[styles.title, { color: '#055E7C' }]}>Report</Text>
                 </View>
@@ -85,32 +91,29 @@ const ReportScreen = (props) => {
 
                     </View>
 
-                    {reportList && <FlatList
-                        data={reportList}
-                        keyExtractor={(item, index) => index.toString()}
-                        renderItem={({ item }) =>
+                    {reportList && <FlatList data={reportList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
 
-                            <TouchableOpacity style={{ flexDirection: 'row', marginTop: 5 }}>
+                        <TouchableOpacity style={{ flexDirection: 'row', marginTop: 5 }}>
 
-                                <View style={{ flex: 1 }}>
-                                    <Text style={[styles.text]}>{item.ref} </Text>
-                                </View>
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.text]}>{item.ref} </Text>
+                            </View>
 
-                                <View style={{ flex: 1 }}>
-                                    <Text style={[styles.text]}>{item.date}</Text>
-                                </View>
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.text]}>{item.date}</Text>
+                            </View>
 
-                                <View style={{ flex: 1 }}>
-                                    <Text style={[styles.text]}>{item.type}</Text>
-                                </View>
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.text]}>{item.type}</Text>
+                            </View>
 
-                                <View style={{ flex: 1 }}>
-                                    <Text style={[styles.text], { color: item.status === 'Submitted' ? 'black' : 'black', color: item.status === 'Approved' ? 'red' : 'red' }}>{item.status}</Text>
-                                </View>
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.text]}>{item.currency}</Text>
+                            </View>
 
-                            </TouchableOpacity>
+                        </TouchableOpacity>
 
-                        } />}
+                    } />}
 
                 </View>
 
