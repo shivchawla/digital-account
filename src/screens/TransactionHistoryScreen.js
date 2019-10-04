@@ -60,7 +60,8 @@ const TransactionHistoryScreen = (props) => {
                                 <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                                     <View style={{ flex: 3, flexDirection: 'row', alignItems: 'center', marginTop: 10 }}>
-                                        <Dot color={item.status === 'in' ? '#228B22' : '#8B0000'} />
+                                        {/* <Dot color={item.status === 'in' ? '#228B22' : '#8B0000'} /> */}
+                                        <Ionicons name={item.status==='in'?"md-add-circle-outline":"md-remove-circle-outline"} color={item.status==='in'?"#7ED321":"#A20F0F"} style={{ fontSize: 15, paddingRight: 20 }} /> 
                                         <Text style={[styles.text]}>{item.description}</Text>
                                     </View>
 

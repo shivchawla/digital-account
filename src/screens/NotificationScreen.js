@@ -36,8 +36,8 @@ const NotificationScreen = (props) => {
                     </TouchableOpacity>
                 </View>
 
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={[styles.title]}>Notification</Text>
+                <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={[styles.title]} numberOfLines={1} ellipsizeMode={'tail'}>Notification</Text>
                 </View>
 
                 <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
@@ -54,7 +54,9 @@ const NotificationScreen = (props) => {
                     renderItem={({ item }) =>
 
                         <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10, marginTop: 10 }}>
-                            <Dot color={item.status === 'in' ? 'green' : 'red'} />
+                            {/* <Dot color={item.status === 'in' ? 'green' : 'red'} /> */} 
+                            <Ionicons name={item.status==='in'?"md-add-circle-outline":"md-remove-circle-outline"} color={item.status==='in'?"#7ED321":"#A20F0F"} style={{ fontSize: 15, paddingRight: 20 }} /> 
+                                       
                             <Text style={[styles.text, { textAlignVertical: 'top', paddingRight: 50 }]}>{item.description}</Text>
                         </View>
 
