@@ -6,13 +6,10 @@ import {
     TouchableOpacity,
     Text,
     Image,
-    StyleSheet,
-    KeyboardAvoidingView,
-    TextInput
 
 } from 'react-native';
 
-import { shallowEqual, useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import * as actionCreator from '../store/actions/action'
 

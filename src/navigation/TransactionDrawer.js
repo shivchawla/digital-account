@@ -1,18 +1,12 @@
 import React from 'react';
 import { createDrawerNavigator, createAppContainer } from 'react-navigation';
-import DashboardScreen from '../screens/DashboardScreen';
 import TransactionHistoryScreen from '../screens/TransactionHistoryScreen';
-import NotificationScreen from '../screens/NotificationScreen';
-import SettingsScreen from '../screens/SettingsScreen';
 
 import SideBar from '../components/SideBar'
 
-const DrawerContent = createDrawerNavigator(
+const TransactionDrawer = createDrawerNavigator(
     {
-        Dashboard: DashboardScreen,
         TransactionHistory: TransactionHistoryScreen,
-        Notification: NotificationScreen,
-        Settings: SettingsScreen,
     },
     {
         // define customComponent here
@@ -24,13 +18,13 @@ const DrawerContent = createDrawerNavigator(
     },
 );
 
-DrawerContent.navigationOptions = {
+TransactionDrawer.navigationOptions = {
     header: null,
 };
 
-const DrawerNavigator = createAppContainer(DrawerContent)
-DrawerNavigator.navigationOptions = {
+const TransactionDrawer = createAppContainer(TransactionDrawer)
+TransactionDrawer.navigationOptions = {
     header: null,
 };
 
-export default DrawerNavigator;
+export default TransactionDrawer;
