@@ -56,7 +56,7 @@ export default StyleSheet.create({
     fontSize,
     fontFamily: 'Montserrat_medium',
     color: '#000',
-    fontSize: fontSize * 1.2
+    fontSize: fontSize * 0.87
   },
 
   error: {
@@ -83,12 +83,13 @@ export default StyleSheet.create({
   box: {
     shadowColor: '#808080',
     shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
-    elevation: 5,
+    shadowOpacity: 0.25,
+    shadowRadius: 2.5,
+    elevation: 1,
     margin: 15,
     padding: 15,
-    borderRadius: 5,
+    borderRadius: 15,
+    borderWidth: 1,
     borderColor: '#808080',
   }
 })

@@ -139,7 +139,10 @@ const loadResourcesAsync = async () => {
       require('./src/assets/images/user.png'),
       require('./src/assets/images/logosmall.png'),
       require('./src/assets/images/logout.png'),
-
+      require('./src/assets/images/accountNumber.png'),
+      require('./src/assets/images/accountStatus.png'),
+      require('./src/assets/images/accountType.png'),
+      require('./src/assets/images/balanceReport.png'),
       require('./src/assets/images/cardborder.png'),
 
       require('./src/assets/images/bottomTabs/home.png'),

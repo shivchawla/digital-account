@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import {
 
@@ -14,13 +14,9 @@ import { LinearGradient } from 'expo-linear-gradient'
 
 import { Ionicons } from '@expo/vector-icons';
 
-import Charts from '../components/Charts'
-
 import Layout from '../constants/Layout'
 
 import styles from '../styles/styles'
-
-import Dot from '../components/Dot'
 
 import * as actionCreator from '../store/actions/action'
 
@@ -162,22 +158,26 @@ const DashboardScreen = (props) => {
 
               </View>
 
-              <View style={{ flexDirection: 'row', alignSelf: 'stretch' }}>
+              <View style={{ flexDirection: 'row', alignSelf: 'stretch', marginTop: 15 }}>
 
                 <TouchableOpacity style={{ flex: 1, }} onPress={() => props.navigation.navigate(link)}>
 
                   <LinearGradient colors={['#0A6496', '#055E7C']} style={{ flex: 1, padding: 20, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={[styles.butang, { color: '#fff' }]}>CONTINUE</Text>
+                    <Text style={[styles.textDefault, { color: '#fff' }]}>CONTINUE</Text>
                   </LinearGradient>
 
                 </TouchableOpacity>
 
               </View>
 
-              <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end' }}>
+              <View style={{ flexDirection: 'row', alignSelf: 'stretch' }}>
 
-                <TouchableOpacity style={{ marginTop: 10 }} onPress={() => logout()}>
-                  <Text style={[styles.small, { color: '#000' }]}>Log Out</Text>
+                <TouchableOpacity style={{ flex: 1, }} onPress={() => logout()}>
+
+                  <LinearGradient colors={['#808080', '#808080']} style={{ flex: 1, marginTop: 10, padding: 20, justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={[styles.textDefault, { color: '#fff' }]}>LOG OUT</Text>
+                  </LinearGradient>
+
                 </TouchableOpacity>
 
               </View>
@@ -243,10 +243,11 @@ const DashboardScreen = (props) => {
               <Ionicons name="ios-arrow-forward" color={'#fff'} style={{ fontSize: 23, paddingRight: 5 }} />
 
             </View>
-            <View style={{ flex: 1, height: Layout.window.height / 5, alignSelf: 'stretch',flexDirection:'row',borderWidth:1,justifyContent:'space-around' }}>
-              {/* <Charts /> */}
-              
-              <View style={{ width: Layout.window.height / 8, height: Layout.window.height / 8, justifyContent: 'center', alignItems: 'center',borderWidth:1 }}>
+
+            <View style={{ flex: 1, height: Layout.window.height / 5, alignSelf: 'stretch', flexDirection: 'row', borderWidth: 1, justifyContent: 'space-around' }}>
+
+              <View style={{ width: Layout.window.height / 8, height: Layout.window.height / 8, justifyContent: 'center', alignItems: 'center', borderWidth: 1 }}>
+
                 <LinearGradient colors={['green', '#fff']} start={[0.5, 0.2]} style={{ width: Layout.window.height / 10, height: Layout.window.height / 10, borderRadius: Layout.window.height / 20, justifyContent: 'center', alignItems: 'center' }}>
                   <View style={{ width: Layout.window.height / 10.5, height: Layout.window.height / 10.5, borderRadius: Layout.window.height / 21, backgroundColor: '#055E7C' }} />
                 </LinearGradient>
@@ -255,22 +256,26 @@ const DashboardScreen = (props) => {
 
               </View>
 
-              <View style={{ width: Layout.window.height / 6.5, height: Layout.window.height / 6.5 , justifyContent: 'center', alignItems: 'center',borderWidth:1 }}>
+              <View style={{ width: Layout.window.height / 6.5, height: Layout.window.height / 6.5, justifyContent: 'center', alignItems: 'center', borderWidth: 1 }}>
+
                 <LinearGradient colors={['#72FAFF', '#3EBAFF']} start={[0.5, 0.2]} style={{ width: Layout.window.height / 7, height: Layout.window.height / 7, borderRadius: Layout.window.height / 14, justifyContent: 'center', alignItems: 'center' }}>
                   <View style={{ width: Layout.window.height / 7.5, height: Layout.window.height / 7.5, borderRadius: Layout.window.height / 15, backgroundColor: '#055E7C' }} />
                 </LinearGradient>
-                <View style={{ position: 'absolute', bottom: 0, left: 0, right: 0, backgroundColor: '#055E7C' }}><View style={{paddingTop:20}} /></View>
-                <View style={{ position: 'absolute', bottom: 0, left: 0, right: 0,top:0, backgroundColor: 'transparent',justifyContent:'center',alignItems:'center' }}><Text style={{ color:'#fff' }}>TEST</Text></View>
-          
+
+                <View style={{ position: 'absolute', bottom: 0, left: 0, right: 0, backgroundColor: '#055E7C' }}><View style={{ paddingTop: 20 }} /></View>
+                <View style={{ position: 'absolute', bottom: 0, left: 0, right: 0, top: 0, backgroundColor: 'transparent', justifyContent: 'center', alignItems: 'center' }}><Text style={{ color: '#fff' }}>TEST</Text></View>
+
               </View>
 
-              <View style={{ width: Layout.window.height / 8, height: Layout.window.height / 8, justifyContent: 'center', alignItems: 'center',borderWidth:1 }}>
+              <View style={{ width: Layout.window.height / 8, height: Layout.window.height / 8, justifyContent: 'center', alignItems: 'center', borderWidth: 1 }}>
+
                 <LinearGradient colors={['green', '#fff']} start={[0.5, 0.2]} style={{ width: Layout.window.height / 10, height: Layout.window.height / 10, borderRadius: Layout.window.height / 20, justifyContent: 'center', alignItems: 'center' }}>
                   <View style={{ width: Layout.window.height / 10.5, height: Layout.window.height / 10.5, borderRadius: Layout.window.height / 21, backgroundColor: '#055E7C' }} />
                 </LinearGradient>
 
                 <View style={{ position: 'absolute', bottom: 0, left: 0, right: 0, backgroundColor: '#055E7C' }}><Text style={{ padding: 10 }}>TEST</Text></View>
-                  </View>
+
+              </View>
 
             </View>
 

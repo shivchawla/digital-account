@@ -101,7 +101,7 @@ const NewInvoiceScreen = (props) => {
 
             props.navigation.navigate("InvoiceSuccess")
 
-            dispatch(actionCreator.passInvoice())
+            dispatch(actionCreator.passInvoice(values))
 
             console.log(JSON.stringify(values))
         }}

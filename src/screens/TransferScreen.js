@@ -58,7 +58,7 @@ const TransferScreen = (props) => {
 
             props.navigation.navigate("InvoiceSuccess")
 
-            dispatch(actionCreator.passExpense())
+            dispatch(actionCreator.passExpense(values))
 
             console.log(JSON.stringify(values))
 

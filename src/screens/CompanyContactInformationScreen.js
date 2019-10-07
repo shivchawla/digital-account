@@ -77,7 +77,7 @@ const CompanyContactInformationScreen = (props) => {
 
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }}>
 
-                        <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
+                        <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4', marginBottom: 25 }]}>
 
                             <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center', alignItems: 'flex-start', paddingLeft: 10 }}>
                                 <Text style={styles.title} >COMPANY CONTACT</Text>
@@ -162,13 +162,19 @@ const CompanyContactInformationScreen = (props) => {
                         </View>
 
                     </KeyboardAvoidingView>)
+
             }}
+
         </Formik >
 
     );
 
 }
 
-CompanyContactInformationScreen.navigationOptions = { header: null, };
+CompanyContactInformationScreen.navigationOptions =
+
+    {
+        header: null,
+    };
 
 export default CompanyContactInformationScreen

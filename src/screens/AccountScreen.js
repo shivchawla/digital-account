@@ -24,7 +24,7 @@ const AccountScreen = (props) => {
             <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
 
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
-                   
+
                     <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
                         <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 20 }} />
                     </TouchableOpacity>
@@ -52,6 +52,10 @@ const AccountScreen = (props) => {
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                            <Image source={require('../assets/images/accountNumber.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                        </View>
+
+                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                             <Text style={[styles.text]}>Account Number</Text>
                         </View>
 
@@ -62,6 +66,10 @@ const AccountScreen = (props) => {
                     </View>
 
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
+
+                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                            <Image source={require('../assets/images/accountType.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                        </View>
 
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                             <Text style={[styles.text]}>Account Type</Text>
@@ -76,6 +84,10 @@ const AccountScreen = (props) => {
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                            <Image source={require('../assets/images/balanceReport.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                        </View>
+
+                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                             <Text style={[styles.text]}>Balance</Text>
                         </View>
 
@@ -88,19 +100,11 @@ const AccountScreen = (props) => {
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={[styles.text]}>Business Health</Text>
+                            <Image source={require('../assets/images/balanceReport.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
                         </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>80%</Text>
-                        </View>
-
-                    </View>
-
-                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={[styles.text]}>Status</Text>
+                            <Text style={[styles.text]}>Account Status</Text>
                         </View>
 
                         <View style={{ flex: 1, marginTop: 5 }}>

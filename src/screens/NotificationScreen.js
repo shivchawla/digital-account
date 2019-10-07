@@ -14,8 +14,6 @@ import { Ionicons } from '@expo/vector-icons';
 
 import styles from '../styles/styles'
 
-import Dot from '../components/Dot'
-
 const notificationScreenArray = [{ status: 'out', description: 'RM 50.00 was deducted from your account via withdrawal on 28 July 2019 at 17.28.' },
 { status: 'out', description: 'RM 80.00 was transfered from your account to Afi Hisam Maybank account on 25 July 2019 at 17.24.' },
 { status: 'in', description: '1 July 2019 12.30. Disbursement Transfer for July is RM 4952.00' },
@@ -48,19 +46,14 @@ const NotificationScreen = (props) => {
 
             <View style={[styles.screenMargin, { flex: 9 }]}>
 
-                <FlatList
-                    data={notificationScreenArray}
-                    keyExtractor={(item, index) => index.toString()}
-                    renderItem={({ item }) =>
+                <FlatList data={notificationScreenArray} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
 
-                        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10, marginTop: 10 }}>
-                            {/* <Dot color={item.status === 'in' ? 'green' : 'red'} /> */} 
-                            <Ionicons name={item.status==='in'?"md-add-circle-outline":"md-remove-circle-outline"} color={item.status==='in'?"#7ED321":"#A20F0F"} style={{ fontSize: 15, paddingRight: 20 }} /> 
-                                       
-                            <Text style={[styles.text, { textAlignVertical: 'top', paddingRight: 50 }]}>{item.description}</Text>
-                        </View>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10, marginTop: 10 }}>
+                        <Ionicons name={item.status === 'in' ? "md-add-circle-outline" : "md-remove-circle-outline"} color={item.status === 'in' ? "#7ED321" : "#A20F0F"} style={{ fontSize: 15, paddingRight: 20 }} />
+                        <Text style={[styles.text, { textAlignVertical: 'top', paddingRight: 50 }]}>{item.description}</Text>
+                    </View>
 
-                    } />
+                } />
             </View>
 
         </View >
