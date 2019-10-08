@@ -180,7 +180,7 @@ const NewInvoiceScreen = (props) => {
 
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }}>
 
-                        <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
+                        <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4', marginBottom: 25 }]}>
 
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
 
@@ -239,10 +239,10 @@ const NewInvoiceScreen = (props) => {
                                         <View style={{ flexDirection: 'row' }}>
 
                                             <TouchableOpacity onPress={datePicker}>
-                                                <Image source={require('../assets/images/calendar.png')} style={{ width: 40, height: 40 }} resizeMode={'contain'} />
+                                                <Image source={require('../assets/images/calendar.png')} style={{ width: 40, height: 40, marginRight: 10 }} resizeMode={'contain'} />
                                             </TouchableOpacity>
 
-                                            <TextInput style={{ flex: 1, alignSelf: 'center' }} value={issueDate} style={{ borderWidth: 1, padding: 5, width: '88%' }} />
+                                            <TextInput style={{ flex: 1, alignSelf: 'center' }} value={issueDate} style={{ borderWidth: 1, width: '85%' }} />
 
                                         </View>
 
@@ -257,10 +257,10 @@ const NewInvoiceScreen = (props) => {
                                         <View style={{ flexDirection: 'row' }}>
 
                                             <TouchableOpacity onPress={datePicker2}>
-                                                <Image source={require('../assets/images/calendar.png')} style={{ width: 40, height: 40 }} resizeMode={'contain'} />
+                                                <Image source={require('../assets/images/calendar.png')} style={{ width: 40, height: 40, marginRight: 10 }} resizeMode={'contain'} />
                                             </TouchableOpacity>
 
-                                            <TextInput style={{ flex: 1, alignSelf: 'center' }} value={dueDate} style={{ borderWidth: 1, padding: 5, width: '88%' }} />
+                                            <TextInput style={{ flex: 1, alignSelf: 'center' }} value={dueDate} style={{ borderWidth: 1, width: '85%' }} />
 
                                         </View>
 

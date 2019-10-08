@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 
 import Constants from 'expo-constants'
-import { LinearGradient } from 'expo-linear-gradient'
 import Layout from '../constants/Layout'
 import styles from '../styles/styles'
 

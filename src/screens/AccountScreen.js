@@ -1,124 +1,80 @@
 import React from 'react';
-
 import {
-
     View,
     TouchableOpacity,
     Text,
     Image,
-
+    ScrollView,
 } from 'react-native';
-
-import Dot from '../components/Dot'
-
 import { Ionicons } from '@expo/vector-icons';
-
 import styles from '../styles/styles'
 
 const AccountScreen = (props) => {
 
     return (
 
-        <View style={{ flex: 1, }}>
+        <View style={{ flex: 1 }}>
 
-            <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
-
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
-
+            <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
                     <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
                         <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 20 }} />
                     </TouchableOpacity>
-
                 </View>
-
-                <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={[styles.title]}>Account</Text>
+                <View style={{ flex: 5, justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={[styles.title]}>Account: 19927483</Text>
                 </View>
-
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
+                <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
                     <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
-                </View>
-
+                </TouchableOpacity>
             </View>
 
-            <View style={[styles.screenMargin, { flex: 9 }]}>
-
-                <View>
-
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10 }}>
-                        <Text style={[styles.h2]}>Account Information</Text>
+            <View style={{ flex: 9 }}>
+                <ScrollView>
+                    <View style={[styles.screenMargin]}>
+                        <View style={{ flexDirection: 'row' }}>
+                            <Text style={[styles.h2, { marginBottom: 10, marginTop: 10 }]}>Account Information</Text>
+                        </View>
+                        <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'center', alignItems: 'center' }}>
+                            <View style={{ flex: 1, flexDirection: 'row' }}>
+                                <Image source={require('../assets/images/accountNumber.png')} style={{ width: 30, height: 30, alignSelf: 'center' }} resizeMode={'contain'} />
+                                <Text style={[styles.text, { marginLeft: 10, alignSelf: 'center' }]}>Account Number</Text>
+                            </View>
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.boldText, { flexDirection: 'row', alignSelf: 'center', marginRight: 5 }]}>123456789</Text>
+                            </View>
+                        </View>
+                        <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'center', alignItems: 'center' }}>
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <Image source={require('../assets/images/accountType.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                                <Text style={[styles.text, { marginLeft: 10 }]}>Account Type</Text>
+                            </View>
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.boldText, { flexDirection: 'row', alignItems: 'center' }]}>Business</Text>
+                            </View>
+                        </View>
+                        <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'center', alignItems: 'center' }}>
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <Image source={require('../assets/images/balanceReport.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                                <Text style={[styles.text, { marginLeft: 10 }]}>Balance Report</Text>
+                            </View>
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.boldText, { flexDirection: 'row', alignItems: 'center' }]}>RM 18,839.00</Text>
+                            </View>
+                        </View>
+                        <View style={{ flex: 1, flexDirection: 'row', marginTop: 5, justifyContent: 'center', alignItems: 'center' }}>
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <Image source={require('../assets/images/accountStatus.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                                <Text style={[styles.text, { marginLeft: 10 }]}>Account Status</Text>
+                            </View>
+                            <View style={{ flex: 1 }}>
+                                <Text style={[styles.boldText, { color: 'green' }]}>Active</Text>
+                            </View>
+                        </View>
                     </View>
-
-                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
-
-                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Image source={require('../assets/images/accountNumber.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
-                        </View>
-
-                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={[styles.text]}>Account Number</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>123456789</Text>
-                        </View>
-
-                    </View>
-
-                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
-
-                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Image source={require('../assets/images/accountType.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
-                        </View>
-
-                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={[styles.text]}>Account Type</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>Business</Text>
-                        </View>
-
-                    </View>
-
-                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
-
-                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Image source={require('../assets/images/balanceReport.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
-                        </View>
-
-                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={[styles.text]}>Balance</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text]}>RM 18,839.00</Text>
-                        </View>
-
-                    </View>
-
-                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
-
-                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Image source={require('../assets/images/balanceReport.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
-                        </View>
-
-                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={[styles.text]}>Account Status</Text>
-                        </View>
-
-                        <View style={{ flex: 1, marginTop: 5 }}>
-                            <Dot color='#00FD04' />
-                        </View>
-
-                    </View>
-
-                </View>
-
-            </View>
-
+                </ScrollView>
+            </View >
         </View>
-
     );
 }
 
