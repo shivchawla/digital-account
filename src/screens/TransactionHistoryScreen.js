@@ -27,13 +27,12 @@ const TransactionHistoryScreen = (props) => {
                     </TouchableOpacity>
                 </View>
                 <View style={{ flex: 5, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={[styles.title]}>Account: 19927483</Text>
+                    <Text style={[styles.title]}>ACCOUNT: 19927483</Text>
                 </View>
                 <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
                     <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
                 </TouchableOpacity>
             </View>
-            
             <View style={{ flex: 9 }}>
                 <ScrollView>
                     <View style={[styles.screenMargin]}>
