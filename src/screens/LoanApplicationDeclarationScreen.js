@@ -26,16 +26,22 @@ import * as Yup from 'yup';
 
 import Layout from '../constants/Layout';
 
+import * as actionCreator from '../store/actions/action'
+
+import { useDispatch } from 'react-redux'
+
 const validationSchema = Yup.object().shape({
 
 });
 
 const LoanApplicationDeclarationScreen = (props) => {
-
+    const dispatch = useDispatch()
+    const setLoanData = (val) => dispatch({ type: 'SET_LOAN_DATA', payload: { ...val } });
     return (
 
-        <Formik onSubmit={values => {
-
+        <Formik onSubmit={async values => {
+            await setLoanData(values)
+            await dispatch(actionCreator.submitLoanApplication())
             props.navigation.navigate("LoanSuccess")
 
         }}

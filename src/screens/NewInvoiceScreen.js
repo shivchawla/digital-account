@@ -93,7 +93,7 @@ const NewInvoiceScreen = (props) => {
 
     const dispatch = useDispatch()
 
-    const setInvoiceData = (val) => dispatch({ type: 'SET_INVOICE_DATA', payload: { ...val } });
+    //const setInvoiceData = (val) => dispatch({ type: 'SET_INVOICE_DATA', payload: { ...val } });
 
     return (
 

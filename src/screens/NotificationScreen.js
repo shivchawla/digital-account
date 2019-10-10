@@ -35,7 +35,7 @@ const NotificationScreen = (props) => {
                 </View>
 
                 <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={[styles.title]} numberOfLines={1} ellipsizeMode={'tail'}>NOTIFICATION</Text>
+                    <Text style={[styles.title]} numberOfLines={1} ellipsizeMode={'tail'}>Notification</Text>
                 </View>
 
                 <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>

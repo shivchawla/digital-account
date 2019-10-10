@@ -56,73 +56,51 @@ const LoanScreen = (props) => {
 
             </View>
 
-            <View style={[styles.screenMargin, { flex: 9 }]}>
+            <View style={[styles.screenMargin, { flex: 9, paddingLeft: 0, paddingRight: 0 }]}>
 
-                <View style={{ marginTop: 10, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end' }}>
-
-                    <TouchableOpacity onPress={() => props.navigation.navigate('LoanApplication')} style={{ padding: 5, paddingLeft: 8, paddingRight: 8, backgroundColor: '#055E7C', borderRadius: 5 }}>
-                        <Text style={[styles.text, { color: '#fff' }]}>New</Text>
+                <View style={{ marginTop: 30, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-evenly' }}>
+                    <TouchableOpacity onPress={() => props.navigation.navigate('LoanApplication')} style={{ padding: 5, paddingLeft: 8, paddingRight: 8, backgroundColor: '#34C2DB', borderRadius: 5 }}>
+                        <Text style={[styles.text, { color: '#fff' }]}>New Loan</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => props.navigation.navigate('Withdraw')} style={{ padding: 5, paddingLeft: 8, paddingRight: 8, backgroundColor: '#055E7C', borderRadius: 5 }}>
+                        <Text style={[styles.text, { color: '#fff' }]}>New Withdrawal</Text>
                     </TouchableOpacity>
 
                 </View>
 
-                <View style={{ marginTop: 10 }}>
-
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-
-                        <Text style={[styles.h2, { color: '#04A2BD' }]}>Loan</Text>
-
-                        <TouchableOpacity onPress={props.navigation.openDrawer} style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <View style={{ marginTop: 20 }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'flex-end',paddingRight:10 }}>
+                        <TouchableOpacity onPress={props.navigation.openDrawer} style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 20 }}>
                             <Text style={[styles.small, { paddingRight: 5, color: '#055E7C' }]}>Search</Text>
-                            <Ionicons name="ios-arrow-forward" color={'#055E7C'} style={{ fontSize: 15, paddingRight: 5 }} />
+                            <Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 15, paddingRight: 5 }} />
                         </TouchableOpacity>
-
                     </View>
-
-                    <View style={{ flexDirection: 'row', marginTop: 5, borderTopWidth: 1, borderBottomWidth: 1, borderColor: '055E7C', paddingTop: 3, paddingBottom: 3 }}>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, { color: '#055E7C' }]}>Ref</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, { color: '#055E7C' }]}>Date</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, { color: '#055E7C' }]}>Type</Text>
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, { color: '#055E7C' }]}>Status</Text>
-                        </View>
-
-                    </View>
-
 
                     {loanList && <FlatList data={loanList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
-
-                        <TouchableOpacity style={{ flexDirection: 'row', marginTop: 5 }}>
-
-                            <View style={{ flex: 1 }}>
-                                <Text style={[styles.text]}>{item.ref} </Text>
+                        <TouchableOpacity onPress={() => props.navigation.navigate('LoanMiniDetail')} style={styles.box}>
+                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                <View style={{ flex: 1,flexDirection:'row',alignSelf:'stretch',justifyContent:'space-between' }}>
+                                    <Text style={styles.small}>Customer Id</Text>
+                                    <Ionicons name="md-arrow-dropright" color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
+                                </View>
+                                
                             </View>
-
-                            <View style={{ flex: 1 }}>
-                                <Text style={[styles.text]}>{item.date}</Text>
+                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={styles.text}>1234567890</Text>
+                                </View>
                             </View>
-
-                            <View style={{ flex: 1 }}>
-                                <Text style={[styles.text]}>{item.type}</Text>
+                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={styles.small}>Status</Text>
+                                </View>
                             </View>
-
-                            <View style={{ flex: 1 }}>
-                                <Text style={[styles.text], { color: item.status === 'Submitted' ? '#000000' : item.status === 'Decline' ? '#FF0000' : item.status === 'Approved' ? '#54A400' : '#FA6400' }}>{item.status}</Text>
+                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={[styles.text, { color: item.status === 'Submitted' ? '#000000' : item.status === 'Decline' ? '#FF0000' : item.status === 'Approved' ? '#54A400' : '#FA6400' }]}>{item.status}</Text>
+                                </View>
                             </View>
-
                         </TouchableOpacity>
-
-
                     } />}
 
                 </View>

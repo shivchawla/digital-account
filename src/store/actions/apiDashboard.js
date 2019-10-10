@@ -1521,6 +1521,17 @@ export const pushNotification = (expoToken) => {
   }
 }
 
+
+export const submitLoanApplicationApi = () => {
+  return async (dispatch, getState) => {
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+    const loanData=getState().loanApplicationReducer
+    console.log(`Submit invoice: ${JSON.stringify(loanData)}`)
+
+  }
+}
+
 export const invoiceApi = (values) => {
   return async (dispatch, getState) => {
     const personalToken = await SecureStore.getItemAsync('personalToken')

@@ -50,6 +50,7 @@ import RemittanceScreen from '../screens/RemittanceScreen';
 import BusinessDirectoryScreen from '../screens/BusinessDirectoryScreen';
 import TransferSuccessScreen from '../screens/TransferSuccessScreen';
 import SupportSuccessScreen from '../screens/SupportSuccessScreen';
+import LoanMiniDetailScreen from '../screens/LoanMiniDetailScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -102,6 +103,9 @@ const DashboardStackWithModal = createStackNavigator(
     },
     LoanDetail: {
       screen: LoanDetailScreen,
+    },
+    LoanMiniDetail: {
+      screen: LoanMiniDetailScreen,
     },
     LoanApplication: {
       screen: LoanApplicationScreen,
