@@ -68,11 +68,15 @@ const BusinessDirectoryScreen = (props) => {
 
                             <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
-                                <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <View >
+                                    <Image source={require('../assets/images/nameicon.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                                </View>
+
+                                <View >
                                     <Text style={styles.small}>Name</Text>
                                 </View>
 
-                                <View style={{ flex: 1 }}>
+                                <View>
                                     <Text style={styles.small}>{item.name}</Text>
                                 </View>
 
@@ -80,7 +84,11 @@ const BusinessDirectoryScreen = (props) => {
 
                             <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
-                                <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <View style={{ flex: 1 }}>
+                                    <Image source={require('../assets/images/phonenoicon.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                                </View>
+
+                                <View style={{ flex: 1 }}>
                                     <Text style={styles.small}>Phone Number</Text>
                                 </View>
 
@@ -92,7 +100,11 @@ const BusinessDirectoryScreen = (props) => {
 
                             <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
-                                <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <View style={{ flex: 1 }}>
+                                    <Image source={require('../assets/images/industryicon.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                                </View>
+
+                                <View style={{ flex: 1 }}>
                                     <Text style={[styles.small]}>Industry</Text>
                                 </View>
 
@@ -104,7 +116,11 @@ const BusinessDirectoryScreen = (props) => {
 
                             <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
-                                <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <View style={{ flex: 1 }}>
+                                    <Image source={require('../assets/images/addressicon.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                                </View>
+
+                                <View style={{ flex: 1 }}>
                                     <Text style={styles.small}>Address</Text>
                                 </View>
 
