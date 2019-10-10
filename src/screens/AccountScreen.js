@@ -33,9 +33,9 @@ const AccountScreen = (props) => {
                         <View style={{ flexDirection: 'row' }}>
                             <Text style={[styles.h2, { marginBottom: 10, marginTop: 10 }]}>Account Information</Text>
                         </View>
-                        <View style={{ flexDirection: 'row', margin: 5, justifyContent: 'center', alignItems: 'stretch' }}>
+                        <View style={{ flexDirection: 'row', margin: 5 }}>
 
-                            <View style={{ justifyContent: 'center', alignItems: 'center' }} >
+                            <View style={{ justifyContent: 'center', alignItems: 'center', marginLeft: 30 }} >
                                 <Image source={require('../assets/images/accountNumber.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
                             </View>
 
@@ -44,14 +44,14 @@ const AccountScreen = (props) => {
                             </View>
 
                             <View style={{ justifyContent: 'center', alignItems: 'center' }} >
-                                <Text style={[styles.boldText, { color: 'black' }]}>123456789</Text>
+                                <Text style={[styles.boldText, { color: 'black', marginLeft: 15 }]}>123456789</Text>
                             </View>
 
                         </View>
 
-                        <View style={{ flexDirection: 'row', margin: 5, justifyContent: 'center' }}>
+                        <View style={{ flexDirection: 'row', margin: 5 }}>
 
-                            <View style={{ justifyContent: 'center', alignItems: 'center' }} >
+                            <View style={{ justifyContent: 'center', alignItems: 'center', marginLeft: 30 }} >
                                 <Image source={require('../assets/images/accountType.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
                             </View>
 
@@ -60,33 +60,43 @@ const AccountScreen = (props) => {
                             </View>
 
                             <View style={{ justifyContent: 'center', alignItems: 'center' }} >
-                                <Text style={[styles.boldText, { color: 'black' }]}>Business</Text>
+                                <Text style={[styles.boldText, { color: 'black', marginLeft: 45 }]}>Business</Text>
                             </View>
 
                         </View>
 
-                        {/* 
-                        <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'center', alignItems: 'center' }}>
-                            <View style={{ flex: 1, flexDirection: 'row' }}>
-                                <Image source={require('../assets/images/accountType.png')} style={{ width: 30, height: 30, alignSelf: 'center' }} resizeMode={'contain'} />
-                                <Text style={[styles.text, { marginLeft: 10, alignSelf: 'center' }]}>Account Type</Text>
-                                <Text style={[styles.boldText, { flexDirection: 'row', alignSelf: 'center', marginLeft: 30 }]}>Business</Text>
+                        <View style={{ flexDirection: 'row', margin: 5 }}>
+
+                            <View style={{ justifyContent: 'center', alignItems: 'center', marginLeft: 30 }} >
+                                <Image source={require('../assets/images/balanceReport.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
                             </View>
+
+                            <View style={{ justifyContent: 'center', alignItems: 'center' }} >
+                                <Text style={[styles.text, { marginLeft: 10 }]}>Balance Report</Text>
+                            </View>
+
+                            <View style={{ justifyContent: 'center', alignItems: 'center' }} >
+                                <Text style={[styles.boldText, { color: 'black', marginLeft: 30 }]}>RM 18,839.00</Text>
+                            </View>
+
                         </View>
-                        <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'center', alignItems: 'center' }}>
-                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Image source={require('../assets/images/balanceReport.png')} style={{ width: 30, height: 30, alignSelf: 'center' }} resizeMode={'contain'} />
-                                <Text style={[styles.text, { marginLeft: 10, alignSelf: 'center' }]}>Balance Report</Text>
-                                <Text style={[styles.boldText, { flexDirection: 'row', alignSelf: 'center', marginLeft: 30 }]}>RM 18,839.00</Text>
+
+                        <View style={{ flexDirection: 'row', margin: 5 }}>
+
+                            <View style={{ justifyContent: 'center', alignItems: 'center', marginLeft: 30 }} >
+                                <Image source={require('../assets/images/accountStatus.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
                             </View>
+
+                            <View style={{ justifyContent: 'center', alignItems: 'center' }} >
+                                <Text style={[styles.text, { marginLeft: 10 }]}>Account Status</Text>
+                            </View>
+
+                            <View style={{ justifyContent: 'center', alignItems: 'center' }} >
+                                <Text style={[styles.boldText, { color: 'green', marginLeft: 30 }]}>Active</Text>
+                            </View>
+
                         </View>
-                        <View style={{ flex: 1, flexDirection: 'row', marginTop: 5, justifyContent: 'center', alignItems: 'center' }}>
-                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Image source={require('../assets/images/accountStatus.png')} style={{ width: 30, height: 30, alignSelf: 'center' }} resizeMode={'contain'} />
-                                <Text style={[styles.text, { marginLeft: 10, alignSelf: 'center' }]}>Account Status</Text>
-                                <Text style={[styles.boldText, { color: 'green', alignSelf: 'center', marginLeft: 30 }]}>Active</Text>
-                            </View>
-                        </View> */}
+
                     </View>
                 </ScrollView>
             </View >

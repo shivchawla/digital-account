@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-
 import {
     View,
     TouchableOpacity,
@@ -8,7 +7,6 @@ import {
     Image,
     FlatList
 } from 'react-native';
-
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons';

@@ -66,66 +66,66 @@ const BusinessDirectoryScreen = (props) => {
 
                         <View style={styles.box}>
 
-                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                            <View style={{ flexDirection: 'row', marginTop: 5, alignItems: 'center' }}>
 
                                 <View >
-                                    <Image source={require('../assets/images/nameicon.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                                    <Image source={require('../assets/images/nameicon.png')} style={{ width: 30, height: 30, marginRight: 15 }} resizeMode={'contain'} />
                                 </View>
 
                                 <View >
-                                    <Text style={styles.small}>Name</Text>
+                                    <Text style={[styles.small, { color: '#04A2BD', marginRight: 41 }]}>Name</Text>
                                 </View>
 
                                 <View>
-                                    <Text style={styles.small}>{item.name}</Text>
+                                    <Text style={[styles.small, { justifyContent: 'flex-end', marginRight: 120 }]}>{item.name}</Text>
                                 </View>
 
                             </View>
 
-                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                            <View style={{ flexDirection: 'row', marginTop: 5, alignItems: 'center' }}>
 
                                 <View >
-                                    <Image source={require('../assets/images/phonenoicon.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                                    <Image source={require('../assets/images/phonenoicon.png')} style={{ width: 30, height: 30, marginRight: 15 }} resizeMode={'contain'} />
                                 </View>
 
                                 <View>
-                                    <Text style={styles.small}>Phone Number</Text>
+                                    <Text style={[styles.small, { color: '#04A2BD', marginRight: 13 }]}>Phone No</Text>
                                 </View>
 
                                 <View >
-                                    <Text style={styles.small}>{item.pNumber}</Text>
-                                </View>
-
-                            </View>
-
-                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
-
-                                <View >
-                                    <Image source={require('../assets/images/industryicon.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
-                                </View>
-
-                                <View >
-                                    <Text style={[styles.small]}>Industry</Text>
-                                </View>
-
-                                <View >
-                                    <Text style={styles.small}>{item.industry}</Text>
+                                    <Text style={[styles.small, { justifyContent: 'flex-end' }]}>{item.pNumber}</Text>
                                 </View>
 
                             </View>
 
-                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                            <View style={{ flexDirection: 'row', marginTop: 5, alignItems: 'center' }}>
 
                                 <View >
-                                    <Image source={require('../assets/images/addressicon.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                                    <Image source={require('../assets/images/industryicon.png')} style={{ width: 30, height: 30, marginRight: 15 }} resizeMode={'contain'} />
                                 </View>
 
                                 <View >
-                                    <Text style={styles.small}>Address</Text>
+                                    <Text style={[styles.small, { color: '#04A2BD', marginRight: 23 }]}>Industry</Text>
                                 </View>
 
                                 <View >
-                                    <Text style={styles.small}>{item.address}</Text>
+                                    <Text style={[styles.small, { justifyContent: 'flex-end' }]}>{item.industry}</Text>
+                                </View>
+
+                            </View>
+
+                            <View style={{ flexDirection: 'row', marginTop: 5, alignItems: 'center' }}>
+
+                                <View >
+                                    <Image source={require('../assets/images/addressicon.png')} style={{ width: 30, height: 30, marginRight: 15 }} resizeMode={'contain'} />
+                                </View>
+
+                                <View >
+                                    <Text style={[styles.small, { color: '#04A2BD', marginRight: 25 }]}>Address</Text>
+                                </View>
+
+                                <View >
+                                    <Text style={[styles.small, { paddingRight: 85 }]}>{item.address}</Text>
                                 </View>
 
                             </View>
