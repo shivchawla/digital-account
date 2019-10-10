@@ -84,15 +84,15 @@ const BusinessDirectoryScreen = (props) => {
 
                             <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
-                                <View style={{ flex: 1 }}>
+                                <View >
                                     <Image source={require('../assets/images/phonenoicon.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
                                 </View>
 
-                                <View style={{ flex: 1 }}>
+                                <View>
                                     <Text style={styles.small}>Phone Number</Text>
                                 </View>
 
-                                <View style={{ flex: 1 }}>
+                                <View >
                                     <Text style={styles.small}>{item.pNumber}</Text>
                                 </View>
 
@@ -100,15 +100,15 @@ const BusinessDirectoryScreen = (props) => {
 
                             <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
-                                <View style={{ flex: 1 }}>
+                                <View >
                                     <Image source={require('../assets/images/industryicon.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
                                 </View>
 
-                                <View style={{ flex: 1 }}>
+                                <View >
                                     <Text style={[styles.small]}>Industry</Text>
                                 </View>
 
-                                <View style={{ flex: 1 }}>
+                                <View >
                                     <Text style={styles.small}>{item.industry}</Text>
                                 </View>
 
@@ -116,15 +116,15 @@ const BusinessDirectoryScreen = (props) => {
 
                             <View style={{ flexDirection: 'row', marginTop: 5 }}>
 
-                                <View style={{ flex: 1 }}>
+                                <View >
                                     <Image source={require('../assets/images/addressicon.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
                                 </View>
 
-                                <View style={{ flex: 1 }}>
+                                <View >
                                     <Text style={styles.small}>Address</Text>
                                 </View>
 
-                                <View style={{ flex: 1 }}>
+                                <View >
                                     <Text style={styles.small}>{item.address}</Text>
                                 </View>
 
