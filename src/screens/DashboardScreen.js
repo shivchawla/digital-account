@@ -107,8 +107,8 @@ const DashboardScreen = (props) => {
   return (
 
     <View style={{ flex: 1, }}>
-
-      <Modal animationType="fade" transparent={true} visible={!dashboardDisplay} onRequestClose={() => {
+{/* visible={!dashboardDisplay} */}
+      <Modal animationType="fade" transparent={true} visible={false} onRequestClose={() => {
 
         Alert.alert('Modal has been closed.');
 
@@ -243,10 +243,10 @@ const DashboardScreen = (props) => {
               <Ionicons name="ios-arrow-forward" color={'#fff'} style={{ fontSize: 23, paddingRight: 5 }} />
 
             </View>
-            <View style={{ flex: 1, height: Layout.window.height / 5, alignSelf: 'stretch',flexDirection:'row',borderWidth:1,justifyContent:'space-around' }}>
-              {/* <Charts /> */}
+            <View style={{ flex: 1, height: Layout.window.height / 5, alignSelf: 'stretch',flexDirection:'row',justifyContent:'space-around' }}>
+              <Charts />
               
-              <View style={{ width: Layout.window.height / 8, height: Layout.window.height / 8, justifyContent: 'center', alignItems: 'center',borderWidth:1 }}>
+              {/* <View style={{ width: Layout.window.height / 8, height: Layout.window.height / 8, justifyContent: 'center', alignItems: 'center',borderWidth:1 }}>
                 <LinearGradient colors={['green', '#fff']} start={[0.5, 0.2]} style={{ width: Layout.window.height / 10, height: Layout.window.height / 10, borderRadius: Layout.window.height / 20, justifyContent: 'center', alignItems: 'center' }}>
                   <View style={{ width: Layout.window.height / 10.5, height: Layout.window.height / 10.5, borderRadius: Layout.window.height / 21, backgroundColor: '#055E7C' }} />
                 </LinearGradient>
@@ -270,7 +270,7 @@ const DashboardScreen = (props) => {
                 </LinearGradient>
 
                 <View style={{ position: 'absolute', bottom: 0, left: 0, right: 0, backgroundColor: '#055E7C' }}><Text style={{ padding: 10 }}>TEST</Text></View>
-                  </View>
+                  </View> */}
 
             </View>
 

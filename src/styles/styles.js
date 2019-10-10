@@ -86,7 +86,7 @@ export default StyleSheet.create({
     shadowOpacity: 0.8,
     shadowRadius: 2,
     elevation: 5,
-    margin: 15,
+    margin: 10,
     padding: 15,
     borderRadius: 5,
     borderColor: '#808080',

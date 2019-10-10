@@ -59,7 +59,7 @@ const SupportScreen = (props) => {
 
             props.navigation.navigate("InvoiceSuccess")
 
-            dispatch(actionCreator.passSupport())
+            dispatch(actionCreator.passSupport(values))
 
             console.log(JSON.stringify(values))
 
