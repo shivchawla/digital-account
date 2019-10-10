@@ -1,26 +1,20 @@
 import React, { useEffect } from 'react';
 
 import {
-
     View,
     TouchableOpacity,
-
+    TouchableWithoutFeedback,
     Text,
     Image,
     FlatList
-
 } from 'react-native';
 
 import * as actionCreator from '../store/actions/action'
-
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
-
 import { Ionicons } from '@expo/vector-icons';
-
 import styles from '../styles/styles'
 
 const InvoiceScreen = (props) => {
-
     useEffect(() => {
         dispatch(actionCreator.getInvoiceList())
     }, [invoiceList])
@@ -56,7 +50,7 @@ const InvoiceScreen = (props) => {
 
                 <View style={{ marginTop: 20, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end', paddingRight: 10 }}>
                     <View style={{ marginTop: 10, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end' }}>
-                        <TouchableOpacity onPress={() => props.navigation.navigate('NewInvoice')} style={{ paddingTop: 5,paddingBottom: 5, paddingLeft: 20, paddingRight: 20, backgroundColor: '#055E7C', borderRadius: 20 }}>
+                        <TouchableOpacity onPress={() => props.navigation.navigate('NewInvoice')} style={{ paddingTop: 5, paddingBottom: 5, paddingLeft: 20, paddingRight: 20, backgroundColor: '#055E7C', borderRadius: 20 }}>
                             <Text style={[styles.text, { color: '#fff' }]}>New Invoice</Text>
                         </TouchableOpacity>
                     </View>
@@ -71,13 +65,13 @@ const InvoiceScreen = (props) => {
                     </View>
 
                     {invoiceList && <FlatList data={invoiceList} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
-                        <TouchableOpacity onPress={() => dispatch(actionCreator.setMarker(index))} style={styles.box}>
-                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                        <View style={styles.box}>
+                            <TouchableWithoutFeedback onPress={() => dispatch(actionCreator.setMarker(index))} style={{ flexDirection: 'row', marginTop: 5 }}>
                                 <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
                                     <Text style={styles.small}>Invoice No</Text>
                                     <Ionicons name={item.marker ? "md-arrow-dropdown" : "md-arrow-dropright"} color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
                                 </View>
-                            </View>
+                            </TouchableWithoutFeedback>
                             <View style={{ flexDirection: 'row', marginTop: 5, borderBottomWidth: item.marker ? 1 : 0, borderBottomColor: 'lightgrey', }}>
                                 <View style={{ flex: 1 }}>
                                     <Text style={styles.text}>1234567890</Text>
@@ -119,7 +113,7 @@ const InvoiceScreen = (props) => {
                                     </View>
                                 </View>
                             }
-                        </TouchableOpacity>
+                        </View>
 
                     } />}
                 </View>
