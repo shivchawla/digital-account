@@ -1,4 +1,4 @@
-import React, {  useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {
     Image,
     Text,
@@ -49,7 +49,7 @@ const SignupPersonalScreen = (props) => {
     const message = useSelector(state => state.registrationReducer.message, shallowEqual)
     const proceed = useSelector(state => state.registrationReducer.proceed, shallowEqual)
 
-    const register=async (values)=>{
+    const register = async (values) => {
         await dispatch(actionCreator.register(values));
     }
 
@@ -59,7 +59,7 @@ const SignupPersonalScreen = (props) => {
         //     props.navigation.navigate('SignUpPersonalSuccess');
         // }
         console.log(`proceed ialah ${proceed}`)
-        proceed&&props.navigation.navigate('SignUpPersonalSuccess');
+        proceed && props.navigation.navigate('SignUpPersonalSuccess');
 
     }, [proceed]);
     const dispatch = useDispatch()
@@ -94,9 +94,10 @@ const SignupPersonalScreen = (props) => {
                     const password_confirmationTouched = FormikProps.touched.password_confirmation
 
                     return (
+                        
                         <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }}>
 
-                            <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#055E7C', }}>
+                            <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4', }]}>
 
                                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'flex-start', paddingLeft: 10 }}>
                                     <Text numberOfLines={1} style={[styles.title]} ellipsizeMode='head'>REGISTRATION</Text>
@@ -106,43 +107,35 @@ const SignupPersonalScreen = (props) => {
                                     <Image source={require('../assets/images/logosmall.png')} style={{ width: 50, height: 50, borderRadius: 15 }} />
                                 </View>
 
-
                             </View>
 
                             <View style={{ justifyContent: 'space-between', flex: 9 }}>
-                                <View style={{ flex: 9, margin: 10 }}>
 
-                                    <View style={{ marginBottom: 10 }}>
-                                        <Text style={[styles.text, { marginBottom: 5, borderBottomColor: nameTouched && nameError ? '#d94498' : '#5a83c2' }]}>Name</Text>
+                                <View style={[styles.screenMargin, { flex: 9 }]}>
+
+                                    <View style={[styles.formElement]}>
+                                        <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: nameTouched && nameError ? '#d94498' : '#5a83c2' }]}>Name</Text>
                                         <TextInput value={name} onBlur={FormikProps.handleBlur('name')} onChangeText={FormikProps.handleChange('name')} placeholder={nameTouched && nameError ? '' : 'Eg: Ahmad bin Ali'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                        {nameTouched && nameError && <Text style={styles.error}>{nameError}</Text>}
                                     </View>
 
-                                    {nameTouched && nameError && <Text style={styles.error}>{nameError}</Text>}
-
-                                    <View style={{ marginBottom: 10 }}>
-                                        <Text style={[styles.text, { marginBottom: 5, borderBottomColor: emailTouched && emailError ? '#d94498' : '#5a83c2' }]}>Email</Text>
+                                    <View style={[styles.formElement]}>
+                                        <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: emailTouched && emailError ? '#d94498' : '#5a83c2' }]}>Email</Text>
                                         <TextInput value={email} onBlur={FormikProps.handleBlur('email')} onChangeText={FormikProps.handleChange('email')} placeholder={emailTouched && emailError ? '' : 'Eg: abc@email.com'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} keyboardType={'email-address'} />
+                                        {emailTouched && emailError && <Text style={styles.error}>{emailError}</Text>}
                                     </View>
 
-                                    {emailTouched && emailError && <Text style={styles.error}>{emailError}</Text>}
-                                    {message && <Text style={styles.error}>{JSON.stringify(message)}</Text>}
-                                    <View style={{ marginBottom: 10 }}>
-                                        <Text style={[styles.text, { marginBottom: 5, borderBottomColor: passwordTouched && passwordError ? '#d94498' : '#5a83c2' }]}>Password</Text>
+                                    <View style={[styles.formElement]}>
+                                        <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: passwordTouched && passwordError ? '#d94498' : '#5a83c2' }]}>Password</Text>
                                         <TextInput secureTextEntry value={password} onBlur={FormikProps.handleBlur('password')} placeholder={passwordTouched && passwordError ? '' : '******'} onChangeText={FormikProps.handleChange('password')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholderTextColor={passwordTouched && passwordError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        {passwordTouched && passwordError && <Text style={styles.error}>{passwordError}</Text>}
                                     </View>
 
-                                    {passwordTouched && passwordError && <Text style={styles.error}>{passwordError}</Text>}
-
-                                    <View style={{ marginBottom: 10 }}>
-                                        <Text style={[styles.text, { marginBottom: 5, borderBottomColor: password_confirmationTouched && password_confirmationError ? '#d94498' : '#5a83c2' }]}>Password Confirmation</Text>
+                                    <View style={[styles.formElement]}>
+                                        <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: password_confirmationTouched && password_confirmationError ? '#d94498' : '#5a83c2' }]}>Password Confirmation</Text>
                                         <TextInput secureTextEntry value={password_confirmation} onBlur={FormikProps.handleBlur('password_confirmation')} placeholder={password_confirmationTouched && password_confirmationError ? '' : '******'} onChangeText={FormikProps.handleChange('password_confirmation')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholderTextColor={password_confirmationTouched && password_confirmationError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        {password_confirmationTouched && password_confirmationError && <Text style={styles.error}>{password_confirmationError}</Text>}
                                     </View>
-
-                                    {password_confirmationTouched && password_confirmationError && <Text style={styles.error}>{password_confirmationError}</Text>}
-
-
-
-
 
                                 </View>
 
@@ -166,7 +159,9 @@ const SignupPersonalScreen = (props) => {
                             </View>
 
                         </KeyboardAvoidingView>)
-                }}
+                }
+
+                }
             </Formik >
 
         );

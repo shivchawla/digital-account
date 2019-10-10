@@ -44,8 +44,7 @@
     "yup": "^0.27.0"
   },
   "devDependencies": {
-    "babel-preset-expo": "^6.0.0",
-    "jest-expo": "^34.0.0"
+    "babel-preset-expo": "^6.0.0"
   },
   "private": true
 }

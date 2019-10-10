@@ -1,19 +1,19 @@
 import React from 'react';
+
 import {
+
     View,
     TouchableOpacity,
     Text,
     Image,
-    StyleSheet,
-    KeyboardAvoidingView,
     FlatList,
-    TextInput
+
 } from 'react-native';
 
-import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
 
 import styles from '../styles/styles'
+
 import Dot from '../components/Dot'
 
 const notificationScreenArray = [{ status: 'out', description: 'RM 50.00 was deducted from your account via withdrawal on 28 July 2019 at 17.28.' },
@@ -28,19 +28,25 @@ const NotificationScreen = (props) => {
 
         <View style={{ flex: 1, }}>
 
-            <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#055E7C' }}>
+            <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
 
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={[styles.title, { color: '#000' }]}>Notification</Text>
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
+                    <TouchableOpacity onPress={props.navigation.openDrawer} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
+                        <Ionicons name="md-more" color={'#3EC2D9'} style={{ fontSize: 30 }} />
+                    </TouchableOpacity>
                 </View>
 
-                <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
+                <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={[styles.title]} numberOfLines={1} ellipsizeMode={'tail'}>Notification</Text>
+                </View>
+
+                <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
                     <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
                 </TouchableOpacity>
 
             </View>
 
-            <View style={{ flex: 9, padding: 10, }}>
+            <View style={[styles.screenMargin, { flex: 9 }]}>
 
                 <FlatList
                     data={notificationScreenArray}
@@ -48,7 +54,9 @@ const NotificationScreen = (props) => {
                     renderItem={({ item }) =>
 
                         <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10, marginTop: 10 }}>
-                            <Dot color={item.status === 'in' ? 'green' : 'red'} />
+                            {/* <Dot color={item.status === 'in' ? 'green' : 'red'} /> */} 
+                            <Ionicons name={item.status==='in'?"md-add-circle-outline":"md-remove-circle-outline"} color={item.status==='in'?"#7ED321":"#A20F0F"} style={{ fontSize: 15, paddingRight: 20 }} /> 
+                                       
                             <Text style={[styles.text, { textAlignVertical: 'top', paddingRight: 50 }]}>{item.description}</Text>
                         </View>
 

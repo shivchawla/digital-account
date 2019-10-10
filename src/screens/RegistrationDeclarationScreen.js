@@ -55,18 +55,21 @@ const RegistrationDeclarationScreen = (props) => {
 
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }}>
 
-                        <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#055E7C', }}>
+                        <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#055E7C', }]}>
+
                             <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center', alignItems: 'flex-start', padding: 10 }}>
                                 <Text numberOfLines={1} style={styles.title} ellipsizeMode='tail'>Declaration</Text>
                             </View>
+
                             <View style={{ flex: 1, justifyContent: 'center', marginRight: 3, alignItems: 'flex-end' }}>
                                 <Image source={require('../assets/images/logosmall.png')} style={{ width: 50, height: 50, borderRadius: 15 }} />
                             </View>
+
                         </View>
 
                         <View style={{ flex: 9 }}>
 
-                            <View style={{ flex: 9, margin: 10, marginRight: 70 }}>
+                            <View style={[styles.screenMargin, { flex: 9 }]}>
 
                                 <View style={{ marginBottom: 10 }}>
 
@@ -84,10 +87,7 @@ const RegistrationDeclarationScreen = (props) => {
                                         <Text style={styles.text}>Me and my company does not want to receive any marketing materials about the products and/or special offers on SME Bank</Text>
                                     </View>
 
-
                                 </View>
-
-
 
                             </View>
 
@@ -114,6 +114,7 @@ const RegistrationDeclarationScreen = (props) => {
             }}
 
         </Formik >
+
     );
 }
 

@@ -92,19 +92,17 @@ const LoginScreen = (props) => {
 
                                     <View style={{ flex: 3, backgroundColor: '#fff', borderTopLeftRadius: 20, borderTopRightRadius: 20, padding: 20 }}>
 
-                                        <View style={{ marginBottom: 10 }}>
-                                            <Text style={[styles.text, { marginBottom: 5, borderBottomColor: emailTouched && emailError ? '#d94498' : '#5a83c2' }]}>Email</Text>
-                                            <TextInput value={email} onBlur={FormikProps.handleBlur('email')} onChangeText={FormikProps.handleChange('email')} placeholder={emailTouched && emailError ? '' : 'Email'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} keyboardType={'email-address'} />
+                                        <View style={[styles.formElement]}>
+                                            <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: emailTouched && emailError ? '#d94498' : '#5a83c2' }]}>Email</Text>
+                                            <TextInput value={email} onBlur={FormikProps.handleBlur('email')} onChangeText={FormikProps.handleChange('email')} placeholder={emailTouched && emailError ? '' : 'Email'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                            {emailTouched && emailError && <Text style={styles.error}>{emailError}</Text>}
                                         </View>
 
-                                        {emailTouched && emailError && <Text style={styles.error}>{emailError}</Text>}
-
-                                        <View style={{ marginBottom: 10 }}>
-                                            <Text style={[styles.text, { marginBottom: 5, borderBottomColor: passwordTouched && passwordError ? '#d94498' : '#5a83c2' }]}>Password</Text>
+                                        <View style={[styles.formElement]}>
+                                            <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: passwordTouched && passwordError ? '#d94498' : '#5a83c2' }]}>Password</Text>
                                             <TextInput secureTextEntry value={password} onBlur={FormikProps.handleBlur('password')} placeholder={passwordTouched && passwordError ? '' : '******'} onChangeText={FormikProps.handleChange('password')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholderTextColor={passwordTouched && passwordError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                            {passwordTouched && passwordError && <Text style={styles.error}>{passwordError}</Text>}
                                         </View>
-
-                                        {passwordTouched && passwordError && <Text style={styles.error}>{passwordError}</Text>}
 
                                         <View style={{ flexDirection: 'row', marginBottom: 10 }}>
                                             <Text style={[styles.textDefault, { margin: 5 }]}>Forgot password?</Text>
@@ -124,7 +122,7 @@ const LoginScreen = (props) => {
 
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 }}>
                                     <LinearGradient colors={['#FFF', '#FFF']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                                        <Text style={[styles.butang, { color: 'lightgrey' }]}>Back</Text>
+                                        <Text style={[styles.butang, { color: '#000000' }]}>Back</Text>
                                     </LinearGradient>
                                 </TouchableOpacity>
 

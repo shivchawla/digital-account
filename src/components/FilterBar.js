@@ -8,6 +8,7 @@ import {
     TextInput
 } from 'react-native';
 
+import Layout from '../constants/Layout'
 import { LinearGradient } from 'expo-linear-gradient'
 import styles from '../styles/styles'
 const FilterBar = (props) => {
@@ -25,22 +26,18 @@ const FilterBar = (props) => {
 
                 <View style={{ flex: 9, margin: 10 }}>
 
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 }}>
-                        <Text style={[styles.h3, { color: '#055E7C' }]}>Filter</Text>
-                    </View>
-
                     <View style={{ marginBottom: 10 }}>
-                        <Text style={[styles.text, { marginBottom: 5, color: '#055E7C' }]}>Type</Text>
+                        <Text style={[styles.h3, { marginBottom: 5 }]}>Type</Text>
                         <TextInput style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} keyboardType={'decimal-pad'} />
                     </View>
 
                     <View style={{ marginBottom: 10 }}>
-                        <Text style={[styles.text, { marginBottom: 5, color: '#055E7C' }]}>Status</Text>
+                        <Text style={[styles.h3, { marginBottom: 5 }]}>Status</Text>
                         <TextInput style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
                     </View>
 
                     <View style={{ marginBottom: 10 }}>
-                        <Text style={[styles.text, { marginBottom: 5, color: '#055E7C' }]}>Date</Text>
+                        <Text style={[styles.h3, { marginBottom: 5 }]}>Date</Text>
                         <TextInput style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
                     </View>
 
@@ -52,7 +49,5 @@ const FilterBar = (props) => {
 
     );
 }
-
-
 
 export default FilterBar
