@@ -2,14 +2,10 @@ import React from 'react';
 import {
     TouchableOpacity,
     View,
-    StyleSheet,
     Text,
-    Image,
     TextInput
 } from 'react-native';
-
 import Layout from '../constants/Layout'
-import { LinearGradient } from 'expo-linear-gradient'
 import styles from '../styles/styles'
 const FilterBar = (props) => {
 
@@ -42,6 +38,18 @@ const FilterBar = (props) => {
                     </View>
 
                 </View>
+
+            </View>
+
+            <View style={{ flexDirection: 'row', margin: 5, justifyContent: 'center' }}>
+
+                <TouchableOpacity style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, borderColor: 'black', borderWidth: 1 }}>
+                    <Text style={[styles.textDefault, { color: 'black' }]}>Reset</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }} >
+                    <Text style={[styles.textDefault, { color: '#fff' }]}>Filter</Text>
+                </TouchableOpacity>
 
             </View>
 

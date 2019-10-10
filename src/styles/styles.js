@@ -45,6 +45,13 @@ export default StyleSheet.create({
     fontSize: fontSize * 1.4
   },
 
+  boldText: {
+    fontSize,
+    fontFamily: 'Montserrat_medium',
+    color: '#000',
+    fontSize: fontSize
+  },
+
   small: {
     fontSize,
     fontFamily: 'Montserrat_regular',
@@ -56,7 +63,7 @@ export default StyleSheet.create({
     fontSize,
     fontFamily: 'Montserrat_medium',
     color: '#000',
-    fontSize: fontSize * 1.2
+    fontSize: fontSize * 0.87
   },
 
   error: {

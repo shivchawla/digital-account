@@ -6,13 +6,10 @@ import {
     TouchableOpacity,
     Text,
     Image,
-    StyleSheet,
-    KeyboardAvoidingView,
-    TextInput
 
 } from 'react-native';
 
-import { shallowEqual, useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import * as actionCreator from '../store/actions/action'
 
@@ -35,30 +32,24 @@ const DataSettingScreen = (props) => {
 
         <View style={{ flex: 1, }}>
 
-            <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
-
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
-
+            <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
                     <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                        <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 20 }} />
+                        <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30 }} />
                     </TouchableOpacity>
-
                 </View>
-
-                <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
+                <View style={{ flex: 5, justifyContent: 'center', alignItems: 'center' }}>
                     <Text style={[styles.title]}>SETTING</Text>
                 </View>
-
-                <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
+                <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
                     <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
                 </TouchableOpacity>
-
             </View>
 
-            <View style={[styles.screenMargin, { flex: 8 }]}>
+            <View style={[styles.screenMargin, { flex: 9 }]}>
 
                 <View style={{ marginBottom: 20 }}>
-                    <Text style={[styles.h2, { color: '#04A2BD' }]}>DATA OPTION</Text>
+                    <Text style={[styles.h2, { color: '#04A2BD', marginTop: 20 }]}>DATA OPTION</Text>
                 </View>
 
                 <View style={{ flexDirection: 'row', marginTop: 20, alignItems: 'center' }}>

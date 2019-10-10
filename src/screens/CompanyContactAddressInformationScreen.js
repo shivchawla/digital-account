@@ -112,7 +112,7 @@ const CompanyContactAddressInformationScreen = (props) => {
 
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }}>
 
-                        <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
+                        <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4', marginBottom: 25 }]}>
 
                             <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center', alignItems: 'flex-start', paddingLeft: 10 }}>
                                 <Text numberOfLines={1} style={styles.title} ellipsizeMode='tail'>ADDRESS</Text>
@@ -131,6 +131,7 @@ const CompanyContactAddressInformationScreen = (props) => {
                                 <View style={[styles.formElement]}>
 
                                     <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: comp_addrTouched && comp_addrError ? '#d94498' : '#5a83c2' }]}>Address Line 1</Text>
+
                                     <TextInput value={comp_addr} onBlur={FormikProps.handleBlur('comp_addr')} onChangeText={FormikProps.handleChange('comp_addr')} placeholder={comp_addrTouched && comp_addrError ? '' : 'Eg: 89, Jalan Bestari'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
 
                                     {comp_addrTouched && comp_addrError && <Text style={styles.error}>{comp_addrError}</Text>}
@@ -140,6 +141,7 @@ const CompanyContactAddressInformationScreen = (props) => {
                                 <View style={[styles.formElement]}>
 
                                     <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: comp_addr2Touched && comp_addr2Error ? '#d94498' : '#5a83c2' }]}>Line Address 2</Text>
+
                                     <TextInput value={comp_addr2} onBlur={FormikProps.handleBlur('comp_addr2')} onChangeText={FormikProps.handleChange('comp_addr2')} placeholder={comp_addr2Touched && comp_addr2Error ? '' : 'Eg: Taman Enggang Utama'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
 
                                     {comp_addr2Touched && comp_addr2Error && <Text style={styles.error}>{comp_addr2Error}</Text>}
@@ -149,6 +151,7 @@ const CompanyContactAddressInformationScreen = (props) => {
                                 <View style={[styles.formElement]}>
 
                                     <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: comp_cityTouched && comp_cityError ? '#d94498' : '#5a83c2' }]}>City</Text>
+
                                     <TextInput value={comp_city} onBlur={FormikProps.handleBlur('comp_city')} onChangeText={FormikProps.handleChange('comp_city')} placeholder={comp_cityTouched && comp_cityError ? '' : 'Eg: Bandar Cheras Utama'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
 
                                     {comp_cityTouched && comp_cityError && <Text style={styles.error}>{comp_cityError}</Text>}
@@ -158,6 +161,7 @@ const CompanyContactAddressInformationScreen = (props) => {
                                 <View style={[styles.formElement]}>
 
                                     <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: comp_stateTouched && comp_stateError ? '#d94498' : '#5a83c2' }]}>State</Text>
+
                                     <TextInput value={comp_state} onBlur={FormikProps.handleBlur('comp_state')} onChangeText={FormikProps.handleChange('comp_state')} placeholder={comp_stateTouched && comp_stateError ? '' : 'Eg: Selangor Darul Ehsan'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
 
                                     {comp_stateTouched && comp_stateError && <Text style={styles.error}>{comp_stateError}</Text>}
@@ -167,6 +171,7 @@ const CompanyContactAddressInformationScreen = (props) => {
                                 <View style={[styles.formElement]}>
 
                                     <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: cddPostcodeTouched && cddPostcodeError ? '#d94498' : '#5a83c2' }]}>Postcode</Text>
+
                                     <TextInput value={cddPostcode} onBlur={FormikProps.handleBlur('cddPostcode')} onChangeText={FormikProps.handleChange('cddPostcode')} placeholder={cddPostcodeTouched && cddPostcodeError ? '' : 'Eg: 60901'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} keyboardType={'phone-pad'} />
 
                                     {cddPostcodeTouched && cddPostcodeError && <Text style={styles.error}>{cddPostcodeError}</Text>}
@@ -182,13 +187,13 @@ const CompanyContactAddressInformationScreen = (props) => {
                                     <LinearGradient colors={['#FFF', '#FFF']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                         <Text style={[styles.butang, { color: 'lightgrey' }]}>Back</Text>
                                     </LinearGradient>
+
                                 </TouchableOpacity>
 
                                 <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ flex: 1, borderColor: FormikProps.isValid ? '#0A6496' : 'rgba(10,100,150,0.5)', borderWidth: 1 }}>
 
                                     <LinearGradient colors={FormikProps.isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                                        {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> :
-                                            <Text style={[styles.butang, { color: '#fff' }]}>Confirm</Text>}
+                                        {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> : <Text style={[styles.butang, { color: '#fff' }]}>Confirm</Text>}
                                     </LinearGradient>
 
                                 </TouchableOpacity>
@@ -200,12 +205,16 @@ const CompanyContactAddressInformationScreen = (props) => {
                     </KeyboardAvoidingView>)
 
             }}
-            
+
         </Formik >
 
     );
 }
 
-CompanyContactAddressInformationScreen.navigationOptions = { header: null, };
+CompanyContactAddressInformationScreen.navigationOptions =
+
+    {
+        header: null,
+    };
 
 export default CompanyContactAddressInformationScreen
