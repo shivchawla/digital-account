@@ -384,7 +384,7 @@ const businessDirectoryReducer = (state = [], action) => {
 
 const notificationScreenReducer = (state = [], action) => {
     switch (action.type) {
-        case 'SET_NOTIFICATION':
+        case 'SET_NOTIFICATION_LIST':
             return { ...state, ...action.payload }
 
         default:

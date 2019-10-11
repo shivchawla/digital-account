@@ -8,7 +8,7 @@ import s3 from '../../do/DigitalOcean'
 import config from '../../do/config'
 
 import { requestToken, kycMobile, kycMobileVerify, kycBasicInformation, requestPersonalToken, urlToBlob, kycBasicInformation2, kycPinNumber, registerApi, registerOTPApi, verifyPhoneApi, companyInfoAPI, contactPersonAPI, submitDocApi, declarationApi, detailConnectAPI, declarationSignAPI, requestTokenLMS, registerLMSApi, requestPersonalTokenLMS } from './apiRegistration'
-import { userInfo, latestTransaction, depositApi, sendMoney, withdrawApi, requestMoney, analyticSummary, notificationApi, analytic, userList, resetPinApi, editMobileDetail, editMobileDetailVerify, pushNotification, editPersonalDetail, newsApi, eventApi, promotionApi, handbooksApi, einfoApi, applyLoanApi, getUserInfoApi, getCompanyInfoApi, getListWorkersApi, doneForNowApi, sendNotificationApi, bizDirApi, listAgencyApi, addExpoTokenApi, connectionStatusApi, getAssociateApi, getPendingApi, loanInfoApi, getCoursesApi, editUserApi, generateJWTApi, requestConnectApi, applyGrantApi, grantInfoApi, acceptApi, retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, reportListApi, businessDirectoryListApi, invoiceApi, expenseApi, supportApi, vendorDataApi, customerDataApi, itemDataApi, submitLoanApplicationApi } from './apiDashboard'
+import { userInfo, latestTransaction, depositApi, sendMoney, withdrawApi, requestMoney, analyticSummary, notificationApi, analytic, userList, resetPinApi, editMobileDetail, editMobileDetailVerify, pushNotification, editPersonalDetail, newsApi, eventApi, promotionApi, handbooksApi, einfoApi, applyLoanApi, getUserInfoApi, getCompanyInfoApi, getListWorkersApi, doneForNowApi, sendNotificationApi, bizDirApi, listAgencyApi, addExpoTokenApi, connectionStatusApi, getAssociateApi, getPendingApi, loanInfoApi, getCoursesApi, editUserApi, generateJWTApi, requestConnectApi, applyGrantApi, grantInfoApi, acceptApi, retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, notificationListApi, invoiceListApi, reportListApi, businessDirectoryListApi, invoiceApi, expenseApi, supportApi, vendorDataApi, customerDataApi, itemDataApi, submitLoanApplicationApi } from './apiDashboard'
 //import {pusherListen} from './pusher'
 import moment from 'moment'
 
@@ -102,15 +102,28 @@ export const passInvoice = (values) => {
     }
 }
 
+export const setMarkers = (index) => {
+    return (dispatch, getState) => {
+
+        const { notificationList } = getState().notificationScreenReducer
+        console.log(`notification list ialah : ${JSON.stringify(notificationList)}`)
+        const newArr = []
+        notificationList.map((i, n) => (n === index) ? newArr.push({ ...i, marker: true }) : newArr.push({ ...i, marker: false }))
+        console.log(`new notification list ialah : ${JSON.stringify(newArr)}`)
+        dispatch({ type: 'SET_NOTIFICATION_LIST', payload: { notificationList: newArr } })
+
+    }
+}
+
 export const setMarker = (index) => {
     return (dispatch, getState) => {
 
-        const {invoiceList} = getState().invoiceReducer
+        const { invoiceList } = getState().invoiceReducer
         console.log(`invoice list ialah : ${JSON.stringify(invoiceList)}`)
         const newArr = []
-        invoiceList.map((i,n) => (n===index)?newArr.push({ ...i, marker: true }):newArr.push({ ...i, marker: false }))
+        invoiceList.map((i, n) => (n === index) ? newArr.push({ ...i, marker: true }) : newArr.push({ ...i, marker: false }))
         console.log(`new invoice list ialah : ${JSON.stringify(newArr)}`)
-        dispatch({ type: 'SET_INVOICE_LIST', payload: { invoiceList:newArr } })
+        dispatch({ type: 'SET_INVOICE_LIST', payload: { invoiceList: newArr } })
 
     }
 }
@@ -402,6 +415,14 @@ export const saveDocumentDO1 = (result, doc) => {
                 break;
 
         }
+
+    }
+}
+
+export const getNotificationList = () => {
+
+    return (dispatch, getState) => {
+        dispatch(notificationListApi())
 
     }
 }

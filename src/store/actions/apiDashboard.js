@@ -72,6 +72,18 @@ export const eventApi = () => {
   }
 }
 
+export const notificationListApi = () => {
+  return async (dispatch, getState) => {
+    const notificationList = [{ status: 'Withdrawal', title: 'RM 50.00 was deducted', description: 'RM 50.00 was deducted from your account via withdrawal on 28 July 2019 at 17.28.' },
+    { status: 'Transfer', title: 'RM80.00 was transferred', description: 'RM 80.00 was transfered from your account to Afi Hisam Maybank account on 25 July 2019 at 17.24.' },
+    { status: 'Disbursement', title: 'RM 4952.00 disbursed', description: '1 July 2019 12.30. Disbursement Transfer for July is RM 4952.00' },
+    { status: 'Transfer', title: 'RM 100.00 was transfered', description: 'RM 100.00 was transfered from your account to Aisya Ramli RHB Bank account on 25 June 2019 at 11.00.' },
+    { status: 'Disbursement', title: 'RM 1067.00 disbursed', description: '1 June 2019 on 12.30. Disbursement Transfer for June is RM 1067.00.' }]
+
+    dispatch({ type: 'SET_NOTIFICATION_LIST', payload: { notificationList } })
+  }
+}
+
 export const loanListApi = () => {
   return async (dispatch, getState) => {
     const loanList = [{ ref: 112009, date: '12/3/2019', type: 'Item', status: 'Submitted' },
@@ -148,7 +160,6 @@ export const retrieveMerchantInfoApi = () => {
       });
   }
 }
-
 
 export const checkDeclareApi = () => {
   return async (dispatch, getState) => {
@@ -1089,35 +1100,6 @@ export const analytic = () => {
   }
 }
 
-export const notificationApi = () => {
-  return async (dispatch, getState) => {
-
-    //const personalToken = await AsyncStorage.getItem('personalToken');
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
-
-    fetch(`${apiUrl}api/Notification`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token_type + ' ' + access_token
-
-      }
-
-    }).then((response) => response.json())
-      .then(async (responseJson) => {
-        const notificationByDate = [...responseJson.data.promotion, ...responseJson.data.annoucement, ...responseJson.data.advertisement]
-
-        dispatch({ type: 'SET_NOTIFICATION', payload: { notificationList: notificationByDate } })
-
-      })
-      .catch((error) => {
-        console.log('Error initiating notification : ' + error);
-      });
-  }
-}
-
 export const depositApi = () => {
   return async (dispatch, getState) => {
 
@@ -1526,11 +1508,39 @@ export const submitLoanApplicationApi = () => {
   return async (dispatch, getState) => {
     const personalToken = await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
-    const loanData=getState().loanApplicationReducer
+    const loanData = getState().loanApplicationReducer
     console.log(`Submit invoice: ${JSON.stringify(loanData)}`)
 
   }
 }
+
+// export const notificationApi = () => {
+//   return async (dispatch, getState) => {
+
+//     const personalToken = await SecureStore.getItemAsync('personalToken')
+//     const { token_type, access_token } = JSON.parse(personalToken)
+
+// fetch(`${apiUrl}api/Notification`, {
+//   method: 'GET',
+//   headers: {
+//     'Content-Type': 'application/json',
+//     'Accept': 'application/json',
+//     'Authorization': token_type + ' ' + access_token
+
+//   }
+
+// }).then((response) => response.json())
+//   .then(async (responseJson) => {
+//     const notificationByDate = [...responseJson.data.promotion, ...responseJson.data.annoucement, ...responseJson.data.advertisement]
+
+//     dispatch({ type: 'SET_NOTIFICATION', payload: { notificationList: notificationByDate } })
+
+//   })
+//   .catch((error) => {
+//     console.log('Error initiating notification : ' + error);
+//   });
+//   }
+// }
 
 export const invoiceApi = (values) => {
   return async (dispatch, getState) => {
