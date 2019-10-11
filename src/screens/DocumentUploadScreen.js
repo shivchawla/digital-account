@@ -1,25 +1,15 @@
 import React from 'react';
-
 import {
-
     Text,
     TouchableOpacity,
     View,
-
 } from 'react-native';
-
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
-
 import Constants from 'expo-constants'
-
 import * as DocumentPicker from 'expo-document-picker';
-
 import { LinearGradient } from 'expo-linear-gradient'
-
 import Layout from '../constants/Layout'
-
 import styles from '../styles/styles'
-
 import * as actionCreator from '../store/actions/action'
 
 const DocumentUploadScreen = (props) => {

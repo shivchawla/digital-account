@@ -68,6 +68,7 @@ const App = (props) => {
     console.log(`notification received ${JSON.stringify(notification)}`)
     const { data } = notification
     store.dispatch({ type: 'SET_NOTIFICATION', payload: { ...data } })
+    //store.dispatch({ type: 'SET_NOTIFICATION', payload: { notification } })
   };
 
 
@@ -139,8 +140,23 @@ const loadResourcesAsync = async () => {
       require('./src/assets/images/user.png'),
       require('./src/assets/images/logosmall.png'),
       require('./src/assets/images/logout.png'),
-
+      require('./src/assets/images/accountNumber.png'),
+      require('./src/assets/images/accountStatus.png'),
+      require('./src/assets/images/accountType.png'),
+      require('./src/assets/images/balanceReport.png'),
       require('./src/assets/images/cardborder.png'),
+      require('./src/assets/images/contactsuccess.png'),
+      require('./src/assets/images/merchantsuccess.png'),
+      require('./src/assets/images/signupsuccess.png'),
+      require('./src/assets/images/loanapplication.png'),
+      require('./src/assets/images/transfersuccess.png'),
+      require('./src/assets/images/supportsuccess.png'),
+      require('./src/assets/images/invoicesuccess.png'),
+      require('./src/assets/images/documentsubmit.png'),
+      require('./src/assets/images/nameicon.png'),
+      require('./src/assets/images/phonenoicon.png'),
+      require('./src/assets/images/industryicon.png'),
+      require('./src/assets/images/addressicon.png'),
 
       require('./src/assets/images/bottomTabs/home.png'),
       require('./src/assets/images/bottomTabs/history.png'),

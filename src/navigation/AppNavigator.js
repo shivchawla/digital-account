@@ -10,7 +10,6 @@ const LoggedIn = createSwitchNavigator({
   Main: MainTabNavigator,
 }, {
     initialRouteName: 'Main'
-
   }); 
 
 const Authentication = createSwitchNavigator({

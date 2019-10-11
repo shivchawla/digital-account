@@ -42,7 +42,7 @@ const SettingsScreen = (props) => {
 
                 </View>
 
-                <View style={{ flex: 5, justifyContent: 'center', alignItems: 'center' }}>
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                     <Text style={[styles.title]}>SETTING</Text>
                 </View>
 

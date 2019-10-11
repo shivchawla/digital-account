@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import {
 
@@ -14,17 +14,15 @@ import { LinearGradient } from 'expo-linear-gradient'
 
 import { Ionicons } from '@expo/vector-icons';
 
-import Charts from '../components/Charts'
-
 import Layout from '../constants/Layout'
 
 import styles from '../styles/styles'
 
-import Dot from '../components/Dot'
-
 import * as actionCreator from '../store/actions/action'
 
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
+
+import Charts from '../components/Charts'
 
 const DashboardScreen = (props) => {
 
@@ -75,33 +73,23 @@ const DashboardScreen = (props) => {
   const dashboardDisplay = (link == 'Dashboard') ? true : false
 
   const logout = () => {
-
     dispatch(actionCreator.logout())
-
     props.navigation.navigate('Welcome')
 
   }
 
   const runCheckStatus = async () => {
-
     await retrieveMerchantInfo();
-
     await checkContact()
-
     await checkDocument()
-
     await checkDeclare()
-
     await setScreen()
 
   }
 
   useEffect(() => {
-
     runCheckStatus();
-
     setScreen()
-
   }, [])
 
   return (
@@ -162,22 +150,26 @@ const DashboardScreen = (props) => {
 
               </View>
 
-              <View style={{ flexDirection: 'row', alignSelf: 'stretch' }}>
+              <View style={{ flexDirection: 'row', alignSelf: 'stretch', marginTop: 15 }}>
 
                 <TouchableOpacity style={{ flex: 1, }} onPress={() => props.navigation.navigate(link)}>
 
                   <LinearGradient colors={['#0A6496', '#055E7C']} style={{ flex: 1, padding: 20, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={[styles.butang, { color: '#fff' }]}>CONTINUE</Text>
+                    <Text style={[styles.textDefault, { color: '#fff' }]}>CONTINUE</Text>
                   </LinearGradient>
 
                 </TouchableOpacity>
 
               </View>
 
-              <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end' }}>
+              <View style={{ flexDirection: 'row', alignSelf: 'stretch' }}>
 
-                <TouchableOpacity style={{ marginTop: 10 }} onPress={() => logout()}>
-                  <Text style={[styles.small, { color: '#000' }]}>Log Out</Text>
+                <TouchableOpacity style={{ flex: 1, }} onPress={() => logout()}>
+
+                  <LinearGradient colors={['#808080', '#808080']} style={{ flex: 1, marginTop: 10, padding: 20, justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={[styles.textDefault, { color: '#fff' }]}>LOG OUT</Text>
+                  </LinearGradient>
+
                 </TouchableOpacity>
 
               </View>
@@ -238,9 +230,9 @@ const DashboardScreen = (props) => {
 
             <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
 
-              <Ionicons name="ios-arrow-back" color={'#fff'} style={{ fontSize: 23, paddingLeft: 5 }} />
+              <Ionicons name="ios-arrow-back" color={'#fff'} style={{ fontSize: 23, paddingLeft: 30 }} />
               <Text style={[styles.text, { color: '#fff' }]}>THIS MONTH</Text>
-              <Ionicons name="ios-arrow-forward" color={'#fff'} style={{ fontSize: 23, paddingRight: 5 }} />
+              <Ionicons name="ios-arrow-forward" color={'#fff'} style={{ fontSize: 23, paddingRight: 30 }} />
 
             </View>
             <View style={{ flex: 1, height: Layout.window.height / 5, alignSelf: 'stretch',flexDirection:'row',justifyContent:'space-around' }}>

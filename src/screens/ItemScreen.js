@@ -7,9 +7,14 @@ import {
     Text,
     Image,
     KeyboardAvoidingView,
-    TextInput
+    TextInput,
+    ActivityIndicator
 
 } from 'react-native';
+
+import * as actionCreator from '../store/actions/action'
+
+import { useDispatch } from 'react-redux'
 
 import { LinearGradient } from 'expo-linear-gradient'
 
@@ -23,21 +28,30 @@ import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
 
-    customerName: Yup
+    itemName: Yup
         .string()
         .required()
-        .label('Customer Name'),
+        .label('Item Name'),
 
-    customerEmail: Yup
+    sku: Yup
         .string()
-        .email()
         .required()
-        .label('Customer Email'),
+        .label('SKU'),
 
-    currency: Yup
+    description: Yup
         .string()
         .required()
-        .label('Currency'),
+        .label('Description'),
+
+    purchasePrice: Yup
+        .number()
+        .required()
+        .label('Purchase Price'),
+
+    salePrice: Yup
+        .number()
+        .required()
+        .label('Sale Price'),
 
 });
 
@@ -81,6 +95,7 @@ const ItemScreen = (props) => {
                 const purchasePriceTouched = FormikProps.touched.purchasePrice
 
                 return (
+
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, justifyContent: 'center' }}>
 
                         <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
@@ -143,18 +158,18 @@ const ItemScreen = (props) => {
 
                                 <View style={[styles.formElement]}>
 
-                                    <Text style={[styles.titleBox, { marginBottom: 5, color: '#055E7C' }]}>Sale Price</Text>
+                                    <Text style={[styles.titleBox, { marginBottom: 5, color: '#055E7C' }]}>Purchase Price</Text>
 
-                                    <TextInput value={salePrice} onChangeText={FormikProps.handleChange('salePrice')} onBlur={FormikProps.handleBlur('salePrice')} style={{ borderWidth: 1, borderColor: salePriceTouched && salePriceError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={salePriceTouched && salePriceError ? '' : 'RM10.00'} placeholderTextColor={salePriceTouched && salePriceError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                    <TextInput value={salePrice} onChangeText={FormikProps.handleChange('salePrice')} onBlur={FormikProps.handleBlur('salePrice')} style={{ borderWidth: 1, borderColor: salePriceTouched && salePriceError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={salePriceTouched && salePriceError ? '' : 'RM10.00'} placeholderTextColor={salePriceTouched && salePriceError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'phone-pad'} />
                                     {salePriceTouched && salePriceError && <Text style={styles.error}>{salePriceError}</Text>}
 
                                 </View>
 
                                 <View style={[styles.formElement]}>
 
-                                    <Text style={[styles.titleBox, { marginBottom: 5, color: '#055E7C' }]}>Description</Text>
+                                    <Text style={[styles.titleBox, { marginBottom: 5, color: '#055E7C' }]}>Sale Price</Text>
 
-                                    <TextInput value={purchasePrice} onChangeText={FormikProps.handleChange('purchasePrice')} onBlur={FormikProps.handleBlur('purchasePrice')} style={{ borderWidth: 1, borderColor: purchasePriceTouched && purchasePriceError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={purchasePriceTouched && purchasePriceError ? '' : 'RM15.00'} placeholderTextColor={purchasePriceTouched && purchasePriceError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                    <TextInput value={purchasePrice} onChangeText={FormikProps.handleChange('purchasePrice')} onBlur={FormikProps.handleBlur('purchasePrice')} style={{ borderWidth: 1, borderColor: purchasePriceTouched && purchasePriceError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={purchasePriceTouched && purchasePriceError ? '' : 'RM15.00'} placeholderTextColor={purchasePriceTouched && purchasePriceError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'phone-pad'} />
 
                                     {purchasePriceTouched && purchasePriceError && <Text style={styles.error}>{purchasePriceError}</Text>}
 

@@ -33,6 +33,7 @@ export const requestToken = () => {
 
 export const registerApi = (token_type, access_token, name, email, password, password_confirmation, expo_token) => {
   return async (dispatch, getState) => {
+    console.log(`expo token ialah : ${expo_token}`)
     fetch(`${apiUrl}api/register`, {
       method: 'POST',
       headers: {
