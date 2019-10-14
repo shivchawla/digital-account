@@ -24,6 +24,8 @@ import * as actionCreator from '../store/actions/action'
 
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 
+import Charts from '../components/Charts'
+
 const DashboardScreen = (props) => {
 
   const dispatch = useDispatch()
@@ -73,33 +75,23 @@ const DashboardScreen = (props) => {
   const dashboardDisplay = (link == 'Dashboard') ? true : false
 
   const logout = () => {
-
     dispatch(actionCreator.logout())
-
     props.navigation.navigate('Welcome')
 
   }
 
   const runCheckStatus = async () => {
-
     await retrieveMerchantInfo();
-
     await checkContact()
-
     await checkDocument()
-
     await checkDeclare()
-
     await setScreen()
 
   }
 
   useEffect(() => {
-
     runCheckStatus();
-
     setScreen()
-
   }, [])
 
   return (
@@ -240,12 +232,12 @@ const DashboardScreen = (props) => {
 
             <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
 
-              <Ionicons name="ios-arrow-back" color={'#fff'} style={{ fontSize: 23, paddingLeft: 5 }} />
+              <Ionicons name="ios-arrow-back" color={'#fff'} style={{ fontSize: 23, paddingLeft: 30 }} />
               <Text style={[styles.text, { color: '#fff' }]}>THIS MONTH</Text>
-              <Ionicons name="ios-arrow-forward" color={'#fff'} style={{ fontSize: 23, paddingRight: 5 }} />
+              <Ionicons name="ios-arrow-forward" color={'#fff'} style={{ fontSize: 23, paddingRight: 30 }} />
 
             </View>
-            <View style={{ flex: 1, height: Layout.window.height / 5, alignSelf: 'stretch', flexDirection: 'row', justifyContent: 'space-around' }}>
+            <View style={{ flex: 1, height: Layout.window.height / 5, alignSelf: 'stretch',flexDirection:'row',justifyContent:'space-around' }}>
               <Charts />
 
               {/* <View style={{ width: Layout.window.height / 8, height: Layout.window.height / 8, justifyContent: 'center', alignItems: 'center',borderWidth:1 }}>

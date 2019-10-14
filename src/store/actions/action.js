@@ -7,8 +7,8 @@ Amplify.configure(aws_exports);///
 import s3 from '../../do/DigitalOcean'
 import config from '../../do/config'
 
-import { requestToken, kycMobile, kycMobileVerify, kycBasicInformation, requestPersonalToken, urlToBlob, kycBasicInformation2, kycPinNumber, registerApi, registerOTPApi, verifyPhoneApi, companyInfoAPI, contactPersonAPI, submitDocApi, declarationApi, detailConnectAPI, declarationSignAPI, requestTokenLMS, registerLMSApi, requestPersonalTokenLMS } from './apiRegistration'
-import { userInfo, latestTransaction, depositApi, sendMoney, withdrawApi, requestMoney, analyticSummary, notificationApi, analytic, userList, resetPinApi, editMobileDetail, editMobileDetailVerify, pushNotification, editPersonalDetail, newsApi, eventApi, promotionApi, handbooksApi, einfoApi, applyLoanApi, getUserInfoApi, getCompanyInfoApi, getListWorkersApi, doneForNowApi, sendNotificationApi, bizDirApi, listAgencyApi, addExpoTokenApi, connectionStatusApi, getAssociateApi, getPendingApi, loanInfoApi, getCoursesApi, editUserApi, generateJWTApi, requestConnectApi, applyGrantApi, grantInfoApi, acceptApi, retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, notificationListApi, invoiceListApi, reportListApi, businessDirectoryListApi, invoiceApi, expenseApi, supportApi, vendorDataApi, customerDataApi, itemDataApi, submitLoanApplicationApi } from './apiDashboard'
+import { requestToken, requestPersonalToken, urlToBlob, registerApi, companyInfoAPI, contactPersonAPI, submitDocApi, declarationApi, } from './apiRegistration'
+import { retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, reportListApi, businessDirectoryListApi, invoiceApi, expenseApi, supportApi, vendorDataApi, customerDataApi, itemDataApi, submitLoanApplicationApi, addBankApi, bankListApi, deleteAllBankApi } from './apiDashboard'
 //import {pusherListen} from './pusher'
 import moment from 'moment'
 
@@ -90,7 +90,6 @@ export const submitDoc1 = (values) => {
 
 export const submitLoanApplication = () => {
     return (dispatch, getState) => {
-
         dispatch(submitLoanApplicationApi())
     }
 }
@@ -119,12 +118,19 @@ export const setMarker = (index) => {
     return (dispatch, getState) => {
 
         const { invoiceList } = getState().invoiceReducer
-        console.log(`invoice list ialah : ${JSON.stringify(invoiceList)}`)
         const newArr = []
         invoiceList.map((i, n) => (n === index) ? newArr.push({ ...i, marker: true }) : newArr.push({ ...i, marker: false }))
-        console.log(`new invoice list ialah : ${JSON.stringify(newArr)}`)
         dispatch({ type: 'SET_INVOICE_LIST', payload: { invoiceList: newArr } })
+    }
+}
 
+export const setMarkerBankList = (index) => {
+    return (dispatch, getState) => {
+
+        const { bankList } = getState().bankListReducer
+        const newArr = []
+        bankList.map((i, n) => (n === index) ? newArr.push({ ...i, marker: true }) : newArr.push({ ...i, marker: false }))
+        dispatch({ type: 'SET_BANK_LIST', payload: { bankList: newArr } })
     }
 }
 
@@ -321,11 +327,9 @@ export const uploadPic = (uri, doc) => {
 
                     }
 
-                    // dispatch({ type: 'SET_CONTACT_PERSON', payload: { ic_image: imageUrl, fileName } })
-                    //dispatch(editUserApi())
+
                 }
             });
-
     }
 }
 
@@ -344,9 +348,7 @@ export const saveDocPic1 = (result, doc) => {
             case 'business':
                 dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument3: uri, isDocument3fileName: 'NA' } });
                 break;
-
         }
-
     }
 }
 
@@ -378,7 +380,6 @@ export const saveDocumentDO = (result, doc) => {
                     // If there is no error updating the editor with the imageUrl
                     const imageUrl = `${config.digitalOceanSpaces}/` + fileName
                     console.log(imageUrl, name);
-
                     switch (doc) {
                         case 'mykad':
                             dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument1: imageUrl, isDocument1fileName: fileName, docPicker: true } });
@@ -389,13 +390,10 @@ export const saveDocumentDO = (result, doc) => {
                         case 'business':
                             dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument3: imageUrl, isDocument3fileName: fileName, docPicker: true } });
                             break;
-
                     }
-
                     //dispatch({ type: 'SET_CONTACT_PERSON', payload: { ic_image: imageUrl, fileName: name } })
                 }
             });
-
     }
 }
 
@@ -413,7 +411,6 @@ export const saveDocumentDO1 = (result, doc) => {
             case 'business':
                 dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument3: uri, isDocument3fileName: fileName, docPicker: true } });
                 break;
-
         }
 
     }
@@ -447,14 +444,49 @@ export const getReportList = () => {
 
     return (dispatch, getState) => {
         dispatch(reportListApi())
-
     }
 }
 
 export const getBusinessDirectoryList = () => {
-
     return (dispatch, getState) => {
         dispatch(businessDirectoryListApi())
+    }
+}
 
+export const bankList = () => {
+    return (dispatch, getState) => {
+        dispatch(bankListApi())
+    }
+}
+
+export const addBank = (values) => {
+    return async (dispatch, getState) => {
+        console.log(`add bank masuk action`)
+        await dispatch(addBankApi(values))
+        await dispatch(bankList(values))
+    }
+}
+
+
+export const deleteAllBank = () => {
+    return async (dispatch, getState) => {
+        console.log(`delete action`)
+        await dispatch(deleteAllBankApi())
+        await dispatch(bankList())
+    }
+}
+
+
+
+export const filterLoanList = (values) => {
+    return async (dispatch, getState) => {
+        console.log(`filter loan list action`)
+        console.log(`filter loan list action : ${JSON.stringify(values)}`)
+        const { loanList } = getState().loanReducer
+        //const newLoanList=_.filter(loanList, _.matches({ 'a': 4, 'c': 6 }));
+        const newLoanList = _.filter(loanList, _.matches(values));
+        console.log(`new Loan List : ${JSON.stringify(newLoanList)}`)
+        // await dispatch(deleteAllBankApi())
+        // await dispatch(bankList())
     }
 }

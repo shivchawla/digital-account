@@ -68,6 +68,7 @@ const App = (props) => {
     console.log(`notification received ${JSON.stringify(notification)}`)
     const { data } = notification
     store.dispatch({ type: 'SET_NOTIFICATION', payload: { ...data } })
+    //store.dispatch({ type: 'SET_NOTIFICATION', payload: { notification } })
   };
 
 
