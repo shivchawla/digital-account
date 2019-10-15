@@ -140,8 +140,6 @@ const WelcomeScreen = (props) => {
 
                                         </View>
 
-                                        <View style={{ margin: 10 }} />
-
                                         <View style={{ flexDirection: 'row', margin: 5, justifyContent: 'center' }}>
 
                                             <TouchableOpacity onPress={() => props.navigation.navigate('Intro')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, borderColor: 'black', borderWidth: 1 }}>

@@ -15,16 +15,12 @@ import styles from '../styles/styles'
 const BusinessDirectoryScreen = (props) => {
 
     useEffect(() => {
-
         dispatch(actionCreator.getBusinessDirectoryList())
-
     },
-
         [businessDirectoryList])
-
     const dispatch = useDispatch()
 
-    const { businessDirectoryList } = useSelector(state => state.notificationScreenReducer, shallowEqual)
+    const { businessDirectoryList } = useSelector(state => state.businessDirectoryReducer, shallowEqual)
 
     return (
 

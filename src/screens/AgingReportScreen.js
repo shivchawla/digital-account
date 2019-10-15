@@ -12,12 +12,12 @@ import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles/styles'
 
-const InvoiceScreen = (props) => {
+const AgingReportScreen = (props) => {
     useEffect(() => {
-        dispatch(actionCreator.getInvoiceList())
-    }, [invoiceList])
+        dispatch(actionCreator.getAgingList())
+    }, [agingList])
     const dispatch = useDispatch()
-    const { invoiceList } = useSelector(state => state.invoiceReducer, shallowEqual)
+    const { agingList } = useSelector(state => state.agingReducer, shallowEqual)
 
     return (
 
@@ -29,20 +29,19 @@ const InvoiceScreen = (props) => {
                     </TouchableOpacity>
                 </View>
                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={[styles.title, { color: '#055E7C' }]}>Invoices</Text>
+                    <Text style={[styles.title, { color: '#055E7C' }]}>Aging Report</Text>
                 </View>
                 <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
                     <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
                 </TouchableOpacity>
             </View>
-            <View style={[styles.screenMargin, { flex: 9 }]}>
-                <View style={{ marginTop: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <TouchableOpacity onPress={() => props.navigation.navigate('NewInvoice')} style={{ paddingTop: 5, paddingBottom: 5, paddingLeft: 20, paddingRight: 20, backgroundColor: '#34C2DB', borderRadius: 20 }}>
-                        <Text style={[styles.text, { color: '#fff' }]}>New Invoice</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => props.navigation.navigate('Aging')} style={{ paddingTop: 5, paddingBottom: 5, paddingLeft: 20, paddingRight: 20, backgroundColor: '#055E7C', borderRadius: 20 }}>
-                        <Text style={[styles.text, { color: '#fff' }]}>Aging Report</Text>
-                    </TouchableOpacity>
+            <View style={[styles.screenMargin, { flex: 9, paddingLeft: 0, paddingRight: 0 }]}>
+                <View style={{ marginTop: 20, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end', paddingRight: 10 }}>
+                    <View style={{ marginTop: 10, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end' }}>
+                        <TouchableOpacity onPress={() => props.navigation.navigate('NewInvoice')} style={{ paddingTop: 5, paddingBottom: 5, paddingLeft: 20, paddingRight: 20, backgroundColor: '#34C2DB', borderRadius: 20 }}>
+                            <Text style={[styles.text, { color: '#fff' }]}>New Invoice</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
                 <View style={{ marginTop: 20 }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 10 }}>
@@ -51,10 +50,9 @@ const InvoiceScreen = (props) => {
                             <Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 15, paddingRight: 5 }} />
                         </TouchableOpacity>
                     </View>
-
-                    {invoiceList && <FlatList data={invoiceList} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
+                    {agingList && <FlatList data={agingList} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
                         <View style={styles.box}>
-                            <TouchableWithoutFeedback onPress={() => dispatch(actionCreator.setMarker(index))} style={{ flexDirection: 'row', marginTop: 5 }}>
+                            <TouchableWithoutFeedback onPress={() => dispatch(actionCreator.setMarkerAgingList(index))} style={{ flexDirection: 'row', marginTop: 5 }}>
                                 <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
                                     <Text style={styles.small}>Invoice No</Text>
                                     <Ionicons name={item.marker ? "md-arrow-dropdown" : "md-arrow-dropright"} color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
@@ -109,9 +107,9 @@ const InvoiceScreen = (props) => {
     );
 }
 
-InvoiceScreen.navigationOptions =
+AgingReportScreen.navigationOptions =
     {
         header: null,
     };
 
-export default InvoiceScreen;
+export default AgingReportScreen;

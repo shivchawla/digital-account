@@ -43,52 +43,22 @@ const NotificationScreen = (props) => {
             </View>
 
             <View style={[styles.screenMargin, { flex: 9 }]}>
-                {notificationList && <FlatList data={notificationList} keyExtractor={(item, index) => index.toString()} renderItem={({ item,index }) =>
+                {notificationList && <FlatList data={notificationList} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
                     <View style={styles.box}>
                         <TouchableWithoutFeedback onPress={() => dispatch(actionCreator.setMarkers(index))} style={{ flexDirection: 'row', marginTop: 5 }}>
                             <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
-                                <Text style={styles.small}>Invoice No</Text>
+                                <Image source={item.status === 'Withdrawal' ? require('../assets/images/withdrawal.png') : item.status === 'Transfer' ? require('../assets/images/transfer.png') : require('../assets/images/disbursement.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                                <View style={flexDirection = 'column'}>
+                                    <Text style={[styles.text, { color: item.status === 'Withdrawal' ? '#FA6400' : item.status === 'Transfer' ? '#3EC2D9' : '#019842' }]}>{item.status}</Text>
+                                    <Text style={[styles.text]}>{item.title}</Text>
+                                </View>
                                 <Ionicons name={item.markers ? "md-arrow-dropdown" : "md-arrow-dropright"} color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
                             </View>
                         </TouchableWithoutFeedback>
                         <View style={{ flexDirection: 'row', marginTop: 5, borderBottomWidth: item.marker ? 1 : 0, borderBottomColor: 'lightgrey', }}>
-                            <View style={{ flex: 1 }}>
-                                <Text style={styles.text}>1234567890</Text>
-                            </View>
                         </View>
                         {item.marker && <View style={{ flex: 1 }}>
-                            <View style={{ flexDirection: 'row', marginTop: 20 }}>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={styles.small}>Type</Text>
-                                    <Text style={styles.text}>Vendor</Text>
-                                </View>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={styles.small}>Date</Text>
-                                    <Text style={styles.text}>[date]</Text>
-                                </View>
-                            </View>
-                            <View style={{ flexDirection: 'row', marginTop: 20 }}>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={styles.small}>Currency</Text>
-                                    <Text style={styles.text}>RM</Text>
-                                </View>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={styles.small}>Amount</Text>
-                                    <Text style={styles.text}>9</Text>
-                                </View>
-                            </View>
-                            <View style={{ flexDirection: 'row', marginTop: 20 }}>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={styles.small}>Customer Name</Text>
-                                    <Text style={styles.text}>Puteri Nursyahirah</Text>
-                                </View>
-                            </View>
-                            <View style={{ flexDirection: 'row', marginTop: 20 }}>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={styles.small}>Customer Email</Text>
-                                    <Text style={styles.text}>puterimuhd@gmail.com</Text>
-                                </View>
-                            </View>
+                            <Text style={[styles.text]}>{item.description}</Text>
                         </View>
                         }
                     </View>

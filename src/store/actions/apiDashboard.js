@@ -2,23 +2,12 @@ import { AsyncStorage } from 'react-native'
 import { Notifications } from 'expo'
 import * as SecureStore from 'expo-secure-store'
 
-// import Amplify, { Auth,Storage } from 'aws-amplify';
-// import aws_exports from '../../aws-exports';
-// Amplify.configure(aws_exports);///
-
 import moment from 'moment'
-
-// import Amplify, { Auth, Storage } from 'aws-amplify';
-// import aws_exports from '../../aws-exports';
-// import { sendNotification } from './action';
-// Amplify.configure(aws_exports);///
 
 const apiUrl = 'https://tuah.niyo.my/'
 
 ////////////////////////////////////////////////////////////////////////////
 //////////INI YANG LAMA PUNYA//////////////////////////////////////////////
-
-
 
 export const notificationListApi = () => {
   return async (dispatch, getState) => {
@@ -34,23 +23,35 @@ export const notificationListApi = () => {
 
 export const loanListApi = () => {
   return async (dispatch, getState) => {
-    const loanList = [{ ref: 112009, date: '12/3/2019', type: 'Item', status: 'Submitted' },
-    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Decline' },
-    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Approved' },
-    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Pending' },
-    { ref: 112009, date: '12/3/2019', type: 'Item', status: 'Submitted' }]
+    const loanList = [{ ref: 112000, date: '12/3/2019', type: 'Business', status: 'Submitted' },
+    { ref: 112001, date: '13/3/2019', type: 'Business', status: 'Decline' },
+    { ref: 112002, date: '13/3/2019', type: 'Business', status: 'Approved' },
+    { ref: 112003, date: '14/3/2019', type: 'Business', status: 'Pending' },
+    { ref: 112004, date: '15/3/2019', type: 'Business', status: 'Submitted' }]
 
     dispatch({ type: 'SET_LOAN_LIST', payload: { loanList } })
+  }
+}
+
+export const agingListApi = () => {
+  return async (dispatch, getState) => {
+    const agingList = [{ ref: 112009, date: '12/3/2019', type: 'Item', currency: 'IDR' },
+    { ref: 112000, date: '13/3/2019', type: 'Item', currency: 'MYR' },
+    { ref: 112001, date: '14/3/2019', type: 'Item', currency: 'MYR' },
+    { ref: 112022, date: '14/3/2019', type: 'Item', currency: 'INR' },
+    { ref: 112023, date: '15/3/2019', type: 'Item', currency: 'SGD' }]
+
+    dispatch({ type: 'SET_AGING_LIST', payload: { agingList } })
   }
 }
 
 export const invoiceListApi = () => {
   return async (dispatch, getState) => {
     const invoiceList = [{ ref: 112009, date: '12/3/2019', type: 'Item', currency: 'IDR' },
-    { ref: 112009, date: '12/3/2019', type: 'Item', currency: 'MYR' },
-    { ref: 112009, date: '12/3/2019', type: 'Item', currency: 'MYR' },
-    { ref: 112009, date: '12/3/2019', type: 'Item', currency: 'INR' },
-    { ref: 112009, date: '12/3/2019', type: 'Item', currency: 'SGD' }]
+    { ref: 112000, date: '13/3/2019', type: 'Item', currency: 'MYR' },
+    { ref: 112001, date: '14/3/2019', type: 'Item', currency: 'MYR' },
+    { ref: 112022, date: '14/3/2019', type: 'Item', currency: 'INR' },
+    { ref: 112023, date: '15/3/2019', type: 'Item', currency: 'SGD' }]
 
     dispatch({ type: 'SET_INVOICE_LIST', payload: { invoiceList } })
   }
@@ -58,11 +59,11 @@ export const invoiceListApi = () => {
 
 export const reportListApi = () => {
   return async (dispatch, getState) => {
-    const reportList = [{ ref: 112009, date: '12/3/2019', type: 'Item', currency: 'IDR' },
-    { ref: 112009, date: '12/3/2019', type: 'Item', currency: 'MYR' },
-    { ref: 112009, date: '12/3/2019', type: 'Item', currency: 'MYR' },
-    { ref: 112009, date: '12/3/2019', type: 'Item', currency: 'INR' },
-    { ref: 112009, date: '12/3/2019', type: 'Item', currency: 'SGD' }]
+    const reportList = [{ ref: 112005, date: '12/4/2019', type: 'Item', currency: 'IDR' },
+    { ref: 112004, date: '24/3/2019', type: 'Loan', currency: 'MYR' },
+    { ref: 112019, date: '20/5/2019', type: 'Withdrawal', currency: 'MYR' },
+    { ref: 112509, date: '11/6/2019', type: 'Disbursement', currency: 'INR' },
+    { ref: 112190, date: '12/7/2019', type: 'Loan', currency: 'SGD' }]
 
     dispatch({ type: 'SET_REPORT_LIST', payload: { reportList } })
   }
@@ -71,10 +72,8 @@ export const reportListApi = () => {
 export const businessDirectoryListApi = () => {
   return async (dispatch, getState) => {
     const businessDirectoryList = [{ name: 'Perusahaan Kecil Ah Kong Sdn. Bhd.', pNumber: 9780918, industry: 'Clothing', address: 'Jalan Bakri, 78099, Segamat, Johor Darul Tazim' },
-    { name: 'Perusahaan Kecil Ah Kong Sdn. Bhd.', pNumber: 9780918, industry: 'Clothing', address: 'Jalan Bakri, 78099, Segamat, Johor Darul Tazim' },
-    { name: 'Perusahaan Kecil Ah Kong Sdn. Bhd.', pNumber: 9780918, industry: 'Clothing', address: 'Jalan Bakri, 78099, Segamat, Johor Darul Tazim' },
-    { name: 'Perusahaan Kecil Ah Kong Sdn. Bhd.', pNumber: 9780918, industry: 'Clothing', address: 'Jalan Bakri, 78099, Segamat, Johor Darul Tazim' },
-    { name: 'Perusahaan Kecil Ah Kong Sdn. Bhd.', pNumber: 9780918, industry: 'Clothing', address: 'Jalan Bakri, 78099, Segamat, Johor Darul Tazim' }]
+    { name: 'Perniagaan Abdul Wahub', pNumber: 6756781, industry: 'Service', address: '78, 88, Jalan Merlimau Jaya, Melaka' },
+    { name: 'StarBright Enterprise', pNumber: 956079, industry: 'Service', address: '78, Taman Lipat Kajang Perdana, Melaka' }]
 
     dispatch({ type: 'SET_BUSINESS_DIRECTORY_LIST', payload: { businessDirectoryList } })
   }

@@ -40,19 +40,14 @@ const validationSchema = Yup.object().shape({
 const SupportScreen = (props) => {
 
     const dispatch = useDispatch()
-
     const setSupport = (val) => dispatch({ type: 'SET_SUPPORT', payload: { ...val } });
 
     return (
 
         <Formik onSubmit={async values => {
-
             props.navigation.navigate("SupportSuccess")
-
             dispatch(actionCreator.passSupport(values))
-
             console.log(JSON.stringify(values))
-
         }}
 
             validationSchema={validationSchema}

@@ -10,8 +10,6 @@ import {
 
 } from 'react-native';
 
-import Charts from '../components/Charts'
-
 import { LinearGradient } from 'expo-linear-gradient'
 
 import { Ionicons } from '@expo/vector-icons';
