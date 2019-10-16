@@ -9,7 +9,9 @@ import {
     TextInput,
     KeyboardAvoidingView,
     ScrollView,
-    Picker
+    Picker,
+    Modal,
+    Platform
 } from 'react-native';
 
 import * as actionCreator from '../store/actions/action'
@@ -55,6 +57,9 @@ const validationSchema = Yup.object().shape({
 const WithdrawScreen = (props) => {
 
     const [bankLabelActive, setbankLabelActive] = useState(false)
+    const [iosPickerVisible, setIosPickerVisible] = useState(false)
+
+    const ios = Platform.OS === "ios" ? true : false
 
     // const dispatch = useDispatch()
 
@@ -82,6 +87,7 @@ const WithdrawScreen = (props) => {
             onSubmit={values => withDraw(values)}
             validationSchema={validationSchema}
         >
+
             {FormikProps => {
                 const { bankLabel, amount, remark } = FormikProps.values
                 const bankLabelError = FormikProps.errors.bankLabel
@@ -93,7 +99,26 @@ const WithdrawScreen = (props) => {
 
                 return (
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }}>
-
+                        <Modal animationType={'slide'}
+                            visible={iosPickerVisible}
+                            presentationStyle={'pageSheet'}
+                            onRequestClose={() => console.log('modal closed')}
+                        >
+                            <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', paddingTop: 30 }}>
+                                <Picker
+                                    style={{ flex: 1, height: 35 }}
+                                    selectedValue={bankLabel}
+                                    onValueChange={(itemValue, itemIndex) => {
+                                        FormikProps.setFieldValue('bankLabel', itemValue);
+                                        setSelectedBank(itemValue)
+                                    }
+                                    }>
+                                    <Picker.Item label={'Please Select'} value={undefined} />
+                                    {bankList && bankList.map((b, i) => <Picker.Item key={i} label={b.bankLabel} value={b.bankLabel} />)}
+                                </Picker>
+                                <TouchableOpacity onPress={() => setIosPickerVisible(!iosPickerVisible)}><Text>Close Modal</Text></TouchableOpacity>
+                            </View>
+                        </Modal>
                         <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
@@ -110,27 +135,18 @@ const WithdrawScreen = (props) => {
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
                             <View style={[{ flex: 9 }]}>
                                 <ScrollView style={[styles.screenMargin]}>
-                                    {/* {selectedBankDetail && <Text>{JSON.stringify(selectedBankDetail)}</Text>} */}
-                                    {/* <Text>{JSON.stringify(bankList)}</Text>
-                                    {bankList && bankList.map(t => <Text>Test:{t.bankLabel}</Text>)} */}
-                                    <View style={[styles.formElement, { marginTop: 20 }]}>
+
+
+                                    {ios ? <View style={[styles.formElement, { marginTop: 20 }]}>
                                         <Text style={[styles.titleBox, { marginBottom: 5 }]}>Bank</Text>
                                         {(bankExists && bankList) ?
                                             <View>
-                                                <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
-                                                    <Picker
-                                                        style={{ flex: 1, height: 35 }}
-                                                        selectedValue={bankLabel}
-                                                        onValueChange={(itemValue, itemIndex) => {
-                                                            FormikProps.setFieldValue('bankLabel', itemValue);
-                                                            setSelectedBank(itemValue)
-                                                        }
-                                                        }>
-                                                        <Picker.Item label={'Please Select'} value={undefined} />
-                                                        {bankList && bankList.map((b, i) => <Picker.Item key={i} label={b.bankLabel} value={b.bankLabel} />)}
-                                                    </Picker>
-                                                </View>
-                                                <TouchableWithoutFeedback onPress={() => props.navigation.navigate(`BankList`)}>
+
+                                                <TouchableOpacity onPress={() => setIosPickerVisible(!iosPickerVisible)} style={{ marginTop: 5 }}>
+                                                    <Text style={[styles.small, { color: '#0A6496' }]}>Select Bank</Text>
+                                                    </TouchableOpacity>
+
+                                                <TouchableWithoutFeedback onPress={() => props.navigation.navigate(`BankList`)} style={{ marginTop: 5 }}>
                                                     <Text style={[styles.small, { color: '#0A6496' }]}>Manage Bank</Text>
                                                 </TouchableWithoutFeedback>
                                             </View> : <TouchableWithoutFeedback onPress={() => props.navigation.navigate(`BankList`)}>
@@ -138,6 +154,33 @@ const WithdrawScreen = (props) => {
                                             </TouchableWithoutFeedback>}
                                         {bankLabelTouched && bankLabelError && <Text style={styles.error}>{bankLabelError}</Text>}
                                     </View>
+                                        :
+                                        <View style={[styles.formElement, { marginTop: 20 }]}>
+                                            <Text style={[styles.titleBox, { marginBottom: 5 }]}>Bank</Text>
+                                            {(bankExists && bankList) ?
+                                                <View>
+                                                    <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
+                                                        <Picker
+                                                            style={{ flex: 1, height: 35 }}
+                                                            selectedValue={bankLabel}
+                                                            onValueChange={(itemValue, itemIndex) => {
+                                                                FormikProps.setFieldValue('bankLabel', itemValue);
+                                                                setSelectedBank(itemValue)
+                                                            }
+                                                            }>
+                                                            <Picker.Item label={'Please Select'} value={undefined} />
+                                                            {bankList && bankList.map((b, i) => <Picker.Item key={i} label={b.bankLabel} value={b.bankLabel} />)}
+                                                        </Picker>
+                                                    </View>
+                                                    <TouchableWithoutFeedback onPress={() => props.navigation.navigate(`BankList`)}>
+                                                        <Text style={[styles.small, { color: '#0A6496' }]}>Manage Bank</Text>
+                                                    </TouchableWithoutFeedback>
+                                                </View> : <TouchableWithoutFeedback onPress={() => props.navigation.navigate(`BankList`)}>
+                                                    <Text style={[styles.small, { color: '#0A6496' }]}>Click Here to Add Bank</Text>
+                                                </TouchableWithoutFeedback>}
+                                            {bankLabelTouched && bankLabelError && <Text style={styles.error}>{bankLabelError}</Text>}
+                                        </View>
+                                    }
                                     {selectedBankDetail &&
                                         <View>
                                             <View style={[styles.formElement]}>
