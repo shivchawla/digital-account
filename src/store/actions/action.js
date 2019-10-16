@@ -114,6 +114,16 @@ export const setMarkers = (index) => {
     }
 }
 
+export const setMarkerReportList = (index) => {
+    return (dispatch, getState) => {
+
+        const { reportList } = getState().reportReducer
+        const newArr = []
+        reportList.map((i, n) => (n === index) ? newArr.push({ ...i, marker: true }) : newArr.push({ ...i, marker: false }))
+        dispatch({ type: 'SET_REPORT_LIST', payload: { reportList: newArr } })
+    }
+}
+
 export const setMarkerAgingList = (index) => {
     return (dispatch, getState) => {
 
