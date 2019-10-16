@@ -16,6 +16,8 @@ import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 
 import { Ionicons } from '@expo/vector-icons';
 
+import moment from 'moment'
+
 import styles from '../styles/styles'
 
 const LoanScreen = (props) => {
@@ -67,14 +69,14 @@ const LoanScreen = (props) => {
                     {loanList && <FlatList data={loanList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
                         <TouchableOpacity onPress={() => props.navigation.navigate('LoanMiniDetail')} style={styles.box}>
                             <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
-                                    <Text style={styles.small}>Customer Id</Text>
+                                <View style={{ flex: 1,flexDirection:'row',alignSelf:'stretch',justifyContent:'space-between' }}>
+                                    <Text style={styles.small}>{moment(item.created_at).format("MMMM Do YYYY, h:mm:ss a")}</Text>
                                     <Ionicons name="md-arrow-dropright" color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
                                 </View>
                             </View>
                             <View style={{ flexDirection: 'row', marginTop: 5 }}>
                                 <View style={{ flex: 1 }}>
-                                    <Text style={styles.text}>1234567890</Text>
+                                    <Text style={styles.text}>{item.type}</Text>
                                 </View>
                             </View>
                             <View style={{ flexDirection: 'row', marginTop: 5 }}>

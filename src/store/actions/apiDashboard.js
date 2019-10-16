@@ -23,13 +23,38 @@ export const notificationListApi = () => {
 
 export const loanListApi = () => {
   return async (dispatch, getState) => {
-    const loanList = [{ ref: 112000, date: '12/3/2019', type: 'Business', status: 'Submitted' },
-    { ref: 112001, date: '13/3/2019', type: 'Business', status: 'Decline' },
-    { ref: 112002, date: '13/3/2019', type: 'Business', status: 'Approved' },
-    { ref: 112003, date: '14/3/2019', type: 'Business', status: 'Pending' },
-    { ref: 112004, date: '15/3/2019', type: 'Business', status: 'Submitted' }]
 
-    dispatch({ type: 'SET_LOAN_LIST', payload: { loanList } })
+     //const personalToken = await AsyncStorage.getItem('personalToken');
+     const personalToken = await SecureStore.getItemAsync('personalToken')
+     const { token_type, access_token } = JSON.parse(personalToken)
+ 
+     fetch(`${apiUrl}api/loan/list`, {
+       method: 'GET',
+       headers: {
+         'Content-Type': 'application/json',
+         'Accept': 'application/json',
+         'Authorization': token_type + ' ' + access_token
+ 
+       }
+ 
+     }).then((response) => response.json())
+       .then(async (responseJson) => {
+         const loanList = responseJson.data
+         console.log('Success loan list' + JSON.stringify(responseJson))
+         dispatch({ type: 'SET_LOAN_LIST', payload: { loanList } })
+ 
+       })
+       .catch((error) => {
+         console.log('Error initiating loan list info : ' + error);
+       });
+
+    // const invoiceList = [{ ref: 112009, date: '12/3/2019', type: 'Item', currency: 'IDR' },
+    // { ref: 112009, date: '12/3/2019', type: 'Item', currency: 'MYR' },
+    // { ref: 112009, date: '12/3/2019', type: 'Item', currency: 'MYR' },
+    // { ref: 112009, date: '12/3/2019', type: 'Item', currency: 'INR' },
+    // { ref: 112009, date: '12/3/2019', type: 'Item', currency: 'SGD' }]
+
+    // dispatch({ type: 'SET_INVOICE_LIST', payload: { invoiceList } })
   }
 }
 
