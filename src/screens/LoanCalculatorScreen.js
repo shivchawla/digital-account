@@ -37,23 +37,23 @@ const validationSchema = Yup.object().shape({
 
 const LoanCalculatorScreen = (props) => {
 
-    const [loanAmount, setloanAmount] = useState()
-    const [interestRate, setinterestRate] = useState()
-    const [loanTerm, setloanTerm] = useState()
+    const [monthly, setMonthly] = useState(null)
 
-    // const dispatch = useDispatch()
-
-    // const setVendor = (val) => dispatch({ type: 'SET_VENDOR_DATA', payload: { ...val } });
+    const calc = (values) => {
+        const { loanAmount, interestRate, loanTerm } = values
+        const monthly = (loanAmount * (1 + interestRate / 100) / loanTerm).toFixed(2)
+        return monthly;
+    }
 
     return (
 
-        <Formik onSubmit={async values => {
-
-            // props.navigation.navigate("InvoiceSuccess")
-
-            // dispatch(actionCreator.passVendorData())
+        <Formik onSubmit={async (values, actions) => {
 
             console.log(JSON.stringify(values))
+            // calc(values)
+            // FormikProps.setFieldValue('monthly', calc(values))
+            setMonthly(calc(values).toString())
+            actions.setSubmitting(false);
 
         }}
 
@@ -107,8 +107,9 @@ const LoanCalculatorScreen = (props) => {
                                         {loanTermTouched && loanTermError && <Text style={styles.error}>{loanTermError}</Text>}
                                     </View>
                                     <View style={{ flexDirection: 'row', margin: 5 }}>
-                                        <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, backgroundColor: FormikProps.isValid ? '#09A4BF' : 'rgba(9,164,191,0.5)', justifyContent: 'flex-end' }} >
-                                            {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> : <Text style={[styles.textDefault, { color: '#fff', justifyContent: 'center', alignItems: 'center' }]}>Calculate</Text>}
+
+                                        <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ padding: 5, paddingLeft: 8, paddingRight: 8, backgroundColor: FormikProps.isValid ? '#09A4BF' : 'rgba(9,164,191,0.5)', borderRadius: 15 }}>
+                                            <Text style={[styles.text, { color: '#fff' }]}>Calculate</Text>
                                         </TouchableOpacity>
                                     </View>
                                 </View>
@@ -118,8 +119,8 @@ const LoanCalculatorScreen = (props) => {
                                 <View style={styles.box}>
                                     <View style={[styles.formElement]}>
                                         <Text style={[styles.text]}>Mothly Repayment</Text>
-                                        <TextInput value={loanAmount} onChangeText={FormikProps.handleChange('loanAmount')} onBlur={FormikProps.handleBlur('loanAmount')} style={{ borderWidth: 1, borderColor: loanAmountTouched && loanAmountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={loanAmountTouched && loanAmountError ? '' : '5000.00'} placeholderTextColor={loanAmountTouched && loanAmountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
-                                        {loanAmountTouched && loanAmountError && <Text style={styles.error}>{loanAmountError}</Text>}
+                                        <TextInput value={monthly} style={{ borderWidth: 1, borderColor: loanAmountTouched && loanAmountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={loanAmountTouched && loanAmountError ? '' : '5000.00'} placeholderTextColor={loanAmountTouched && loanAmountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
+
                                     </View>
                                 </View>
                             </ScrollView>
