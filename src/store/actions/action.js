@@ -7,8 +7,8 @@ Amplify.configure(aws_exports);///
 import s3 from '../../do/DigitalOcean'
 import config from '../../do/config'
 
-import { requestToken, requestPersonalToken, urlToBlob, registerApi, companyInfoAPI, contactPersonAPI, submitDocApi, declarationApi, } from './apiRegistration'
-import { retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, reportListApi, businessDirectoryListApi, invoiceApi, expenseApi, supportApi, vendorDataApi, customerDataApi, itemDataApi, submitLoanApplicationApi, addBankApi, bankListApi, deleteAllBankApi } from './apiDashboard'
+import { requestToken, requestPersonalToken, urlToBlob, registerApi, companyInfoAPI, contactPersonAPI, submitDocApi, declarationApi } from './apiRegistration'
+import { retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, agingListApi, reportListApi, businessDirectoryListApi, invoiceApi, expenseApi, supportApi, vendorDataApi, customerDataApi, itemDataApi, submitLoanApplicationApi, addBankApi, bankListApi, deleteAllBankApi, notificationListApi } from './apiDashboard'
 //import {pusherListen} from './pusher'
 import moment from 'moment'
 
@@ -98,6 +98,29 @@ export const passInvoice = (values) => {
     return (dispatch, getState) => {
         console.log('Dekat retrieve invoice info action')
         dispatch(invoiceApi(values))
+    }
+}
+
+export const setMarkers = (index) => {
+    return (dispatch, getState) => {
+
+        const { notificationList } = getState().notificationScreenReducer
+        console.log(`notification list ialah : ${JSON.stringify(notificationList)}`)
+        const newArr = []
+        notificationList.map((i, n) => (n === index) ? newArr.push({ ...i, marker: true }) : newArr.push({ ...i, marker: false }))
+        console.log(`new notification list ialah : ${JSON.stringify(newArr)}`)
+        dispatch({ type: 'SET_NOTIFICATION_LIST', payload: { notificationList: newArr } })
+
+    }
+}
+
+export const setMarkerAgingList = (index) => {
+    return (dispatch, getState) => {
+
+        const { agingList } = getState().agingReducer
+        const newArr = []
+        agingList.map((i, n) => (n === index) ? newArr.push({ ...i, marker: true }) : newArr.push({ ...i, marker: false }))
+        dispatch({ type: 'SET_AGING_LIST', payload: { agingList: newArr } })
     }
 }
 
@@ -403,10 +426,26 @@ export const saveDocumentDO1 = (result, doc) => {
     }
 }
 
+export const getNotificationList = () => {
+
+    return (dispatch, getState) => {
+        dispatch(notificationListApi())
+
+    }
+}
+
 export const getLoanList = () => {
 
     return (dispatch, getState) => {
         dispatch(loanListApi())
+
+    }
+}
+
+export const getAgingList = () => {
+
+    return (dispatch, getState) => {
+        dispatch(agingListApi())
 
     }
 }

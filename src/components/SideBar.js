@@ -66,6 +66,11 @@ const SideBar = (props) => {
                     <Text style={[styles.text, { color: '#fff', marginLeft: 15 }]}>Settings</Text>
                 </TouchableOpacity>
 
+                <TouchableOpacity onPress={() => nav('Calculator')} style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <Image source={require('../assets/images/setting.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                    <Text style={[styles.text, { color: '#fff', marginLeft: 15 }]}>Calculator</Text>
+                </TouchableOpacity>
+
             </View>
 
         </LinearGradient>

@@ -53,6 +53,9 @@ import TransferSuccessScreen from '../screens/TransferSuccessScreen';
 import SupportSuccessScreen from '../screens/SupportSuccessScreen';
 import BankListScreen from '../screens/BankListScreen';
 import AddBankScreen from '../screens/AddBankScreen';
+import LoanCalculatorScreen from '../screens/LoanCalculatorScreen';
+import TACScreen from '../screens/TACScreen';
+import AgingReportScreen from '../screens/AgingReportScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -100,11 +103,11 @@ const DashboardStackWithModal = createStackNavigator(
     Withdraw: {
       screen: WithdrawScreen,
     },
-    BankList:{
-      screen:BankListScreen
+    BankList: {
+      screen: BankListScreen
     },
-    AddBank:{
-      screen:AddBankScreen
+    AddBank: {
+      screen: AddBankScreen
     },
     Loan: {
       screen: LoanDrawer,
@@ -172,6 +175,15 @@ const DashboardStackWithModal = createStackNavigator(
     SupportSuccess: {
       screen: SupportSuccessScreen,
     },
+    Calculator: {
+      screen: LoanCalculatorScreen,
+    },
+    TAC: {
+      screen: TACScreen,
+    },
+    Aging: {
+      screen: AgingReportScreen,
+    }
   },
   {
     mode: 'modal',
@@ -183,7 +195,7 @@ const DashboardStackWithModal = createStackNavigator(
 DashboardStackWithModal.navigationOptions = ({ navigation }) => {
   let tabBarVisible = true;
   let routeName = navigation.state.routes[navigation.state.index].routeName
-  if (routeName == 'BankList' ||routeName == 'AddBank' ||routeName == 'SupportSuccess' || routeName == 'TransferSuccess' || routeName == 'LoanApplication' || routeName == 'BusinessDirectory' || routeName == 'Transfer' || routeName == 'Remittance' || routeName == 'Zakat' || routeName == 'Payroll' || routeName == 'InvoiceSuccess' || routeName == 'LoanSuccess' || routeName == 'Customer' || routeName == 'Profile' || routeName == 'ReportDetail' || routeName == 'InvoicesDetail' || routeName == 'WithdrawSuccess' || routeName == 'LoanSuccessScreen' || routeName == 'Item' || routeName == 'Customer' || routeName == 'Vendor' || routeName == 'Withdraw' || routeName == 'LoanDetail' || routeName == 'LoanApplicationDeclaration' || routeName == 'ConnectedParties' || routeName == 'EditProfile' || routeName == 'NewInvoice' || routeName == 'Vendor' || routeName == 'Support') {
+  if (routeName == 'Aging' || routeName == 'TAC' || routeName == 'Calculator' || routeName == 'BankList' || routeName == 'AddBank' || routeName == 'SupportSuccess' || routeName == 'TransferSuccess' || routeName == 'LoanApplication' || routeName == 'BusinessDirectory' || routeName == 'Transfer' || routeName == 'Remittance' || routeName == 'Zakat' || routeName == 'Payroll' || routeName == 'InvoiceSuccess' || routeName == 'LoanSuccess' || routeName == 'Customer' || routeName == 'Profile' || routeName == 'ReportDetail' || routeName == 'InvoicesDetail' || routeName == 'WithdrawSuccess' || routeName == 'LoanSuccessScreen' || routeName == 'Item' || routeName == 'Customer' || routeName == 'Vendor' || routeName == 'Withdraw' || routeName == 'LoanDetail' || routeName == 'LoanApplicationDeclaration' || routeName == 'ConnectedParties' || routeName == 'EditProfile' || routeName == 'NewInvoice' || routeName == 'Vendor' || routeName == 'Support') {
     tabBarVisible = false
   }
 
