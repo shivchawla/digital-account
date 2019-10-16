@@ -41,8 +41,8 @@ const BusinessDirectoryScreen = (props) => {
             <View style={{ flex: 9, padding: 10 }}>
                 <ScrollView>
                     {businessDirectoryList && <FlatList data={businessDirectoryList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
-                        <View style={styles.box}>
-                            <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'space-between', alignItems: 'center' }}>
+                        <View style={styles.RectangleShapeView}>
+                            <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'space-evenly', alignItems: 'center' }}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                     <Image source={require('../assets/images/nameicon.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
                                     <Text style={[styles.small, { color: '#04A2BD' }]}>Name</Text>
@@ -51,7 +51,7 @@ const BusinessDirectoryScreen = (props) => {
                                     <Text style={[styles.small]}>{item.name}</Text>
                                 </View>
                             </View>
-                            <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'space-between', alignItems: 'center' }}>
+                            <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'space-evenly', alignItems: 'center' }}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                     <Image source={require('../assets/images/phonenoicon.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
                                     <Text style={[styles.small, { color: '#04A2BD' }]}>Phone No</Text>
@@ -60,7 +60,7 @@ const BusinessDirectoryScreen = (props) => {
                                     <Text style={[styles.small]}>{item.pNumber}</Text>
                                 </View>
                             </View>
-                            <View style={{ flexDirection: 'row', marginTop: 5, alignItems: 'center', justifyContent: 'space-between' }}>
+                            <View style={{ flexDirection: 'row', marginTop: 5, alignItems: 'center', justifyContent: 'space-evenly' }}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                     <Image source={require('../assets/images/industryicon.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
                                     <Text style={[styles.small, { color: '#04A2BD' }]}>Industry</Text>
@@ -69,7 +69,7 @@ const BusinessDirectoryScreen = (props) => {
                                     <Text style={[styles.small]}>{item.industry}</Text>
                                 </View>
                             </View>
-                            <View style={{ flexDirection: 'row', marginTop: 5, alignItems: 'center', justifyContent: 'space-between' }}>
+                            <View style={{ flexDirection: 'row', marginTop: 5, alignItems: 'center', justifyContent: 'space-evenly' }}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                     <Image source={require('../assets/images/addressicon.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
                                     <Text style={[styles.small, { color: '#04A2BD' }]}>Address</Text>

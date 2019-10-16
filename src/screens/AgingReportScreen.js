@@ -54,46 +54,34 @@ const AgingReportScreen = (props) => {
                         <View style={styles.box}>
                             <TouchableWithoutFeedback onPress={() => dispatch(actionCreator.setMarkerAgingList(index))} style={{ flexDirection: 'row', marginTop: 5 }}>
                                 <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
-                                    <Text style={styles.small}>Invoice No</Text>
+                                    <Text style={styles.small}>Customer ID</Text>
                                     <Ionicons name={item.marker ? "md-arrow-dropdown" : "md-arrow-dropright"} color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
                                 </View>
                             </TouchableWithoutFeedback>
                             <View style={{ flexDirection: 'row', marginTop: 5, borderBottomWidth: item.marker ? 1 : 0, borderBottomColor: 'lightgrey', }}>
                                 <View style={{ flex: 1 }}>
-                                    <Text style={styles.text}>1234567890</Text>
+                                    <Text style={styles.boldText}>1234567890</Text>
                                 </View>
                             </View>
                             {item.marker && <View style={{ flex: 1 }}>
                                 <View style={{ flexDirection: 'row', marginTop: 20 }}>
                                     <View style={{ flex: 1 }}>
-                                        <Text style={styles.small}>Type</Text>
-                                        <Text style={styles.text}>Vendor</Text>
+                                        <Text style={styles.small}>Total Invoice</Text>
+                                        <Text style={styles.boldText}>30</Text>
                                     </View>
                                     <View style={{ flex: 1 }}>
-                                        <Text style={styles.small}>Date</Text>
-                                        <Text style={styles.text}>[date]</Text>
-                                    </View>
-                                </View>
-                                <View style={{ flexDirection: 'row', marginTop: 20 }}>
-                                    <View style={{ flex: 1 }}>
-                                        <Text style={styles.small}>Currency</Text>
-                                        <Text style={styles.text}>RM</Text>
-                                    </View>
-                                    <View style={{ flex: 1 }}>
-                                        <Text style={styles.small}>Amount</Text>
-                                        <Text style={styles.text}>9</Text>
+                                        <Text style={styles.small}>Current Month</Text>
+                                        <Text style={styles.boldText}>8</Text>
                                     </View>
                                 </View>
                                 <View style={{ flexDirection: 'row', marginTop: 20 }}>
                                     <View style={{ flex: 1 }}>
-                                        <Text style={styles.small}>Customer Name</Text>
-                                        <Text style={styles.text}>Puteri Nursyahirah</Text>
+                                        <Text style={styles.small}>Previous Month</Text>
+                                        <Text style={styles.boldText}>13</Text>
                                     </View>
-                                </View>
-                                <View style={{ flexDirection: 'row', marginTop: 20 }}>
                                     <View style={{ flex: 1 }}>
-                                        <Text style={styles.small}>Customer Email</Text>
-                                        <Text style={styles.text}>puterimuhd@gmail.com</Text>
+                                        <Text style={styles.small}>>60 Days</Text>
+                                        <Text style={styles.boldText}>9</Text>
                                     </View>
                                 </View>
                             </View>
