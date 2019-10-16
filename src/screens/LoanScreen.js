@@ -23,12 +23,8 @@ import styles from '../styles/styles'
 const LoanScreen = (props) => {
 
     useEffect(() => {
-
         dispatch(actionCreator.getLoanList())
-
-    },
-
-        [loanList])
+    },   [loanList])
 
     const dispatch = useDispatch()
 

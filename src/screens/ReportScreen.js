@@ -5,7 +5,8 @@ import {
     Text,
     Image,
     FlatList,
-    ScrollView
+    ScrollView,
+    TouchableWithoutFeedback
 } from 'react-native';
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
@@ -15,12 +16,8 @@ import styles from '../styles/styles'
 const ReportScreen = (props) => {
 
     useEffect(() => {
-
         dispatch(actionCreator.getReportList())
-
-    },
-
-        [reportList])
+    }, [reportList])
 
     const dispatch = useDispatch()
 
@@ -54,10 +51,10 @@ const ReportScreen = (props) => {
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 5, borderTopWidth: 1, borderBottomWidth: 1, borderColor: '055E7C', paddingTop: 3, paddingBottom: 3 }}>
                             <View style={{ flex: 1 }}>
-                                <Text style={[styles.text]}>Ref</Text>
+                                <Text style={[styles.text]}>Transaction Number</Text>
                             </View>
                             <View style={{ flex: 1 }}>
-                                <Text style={[styles.text]}>Date</Text>
+                                <Text style={[styles.text]}>type</Text>
                             </View>
                             <View style={{ flex: 1 }}>
                                 <Text style={[styles.text]}>Type</Text>
@@ -66,22 +63,29 @@ const ReportScreen = (props) => {
                                 <Text style={[styles.text]}>Currency</Text>
                             </View>
                         </View>
-                        {reportList && <FlatList data={reportList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
-                            <TouchableOpacity style={{ flexDirection: 'row', marginTop: 5 }}>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={[styles.text]}>{item.ref} </Text>
+                        {/* <View>
+                            <Text>{JSON.stringify(reportList)}</Text>
+                        </View> */}
+                        <View style={[styles.screenMargin, { flex: 9 }]}>
+                            {reportList && <FlatList data={reportList} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
+                                <View style={styles.box}>
+                                    <TouchableWithoutFeedback onPress={() => dispatch(actionCreator.setMarkerReportList(index))} style={{ flexDirection: 'row', marginTop: 5 }}>
+                                        <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
+                                            <Text style={[styles.text]}>{item.transaction_no}</Text>
+                                            <Text style={[styles.text]}>{item.type}</Text>
+                                            <Ionicons name={item.marker ? "md-arrow-dropdown" : "md-arrow-dropright"} color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
+                                        </View>
+                                    </TouchableWithoutFeedback>
+                                    <View style={{ flexDirection: 'row', marginTop: 5, borderBottomWidth: item.marker ? 1 : 0, borderBottomColor: 'lightgrey', }}>
+                                    </View>
+                                    {item.marker && <View style={{ flex: 1 }}>
+                                        <Text style={[styles.text]}>{item.credit_debit}</Text>
+                                        <Text style={[styles.text]}>{item.amount}</Text>
+                                    </View>
+                                    }
                                 </View>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={[styles.text]}>{item.date}</Text>
-                                </View>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={[styles.text]}>{item.type}</Text>
-                                </View>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={[styles.text]}>{item.currency}</Text>
-                                </View>
-                            </TouchableOpacity>
-                        } />}
+                            } />}
+                        </View>
                     </View>
                 </ScrollView>
             </View >

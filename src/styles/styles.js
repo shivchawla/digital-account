@@ -89,13 +89,14 @@ export default StyleSheet.create({
 
   box: {
     shadowColor: '#808080',
-    shadowOffset: { width: 0, height: 0.5 },
-    shadowOpacity: 0.5,
-    shadowRadius: 1,
-    elevation: 5,
+    shadowOffset: { width: 0, height: 0.1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 0.5,
+    elevation: 1,
     margin: 10,
     padding: 15,
     borderRadius: 15,
-    borderColor: '#808080',
+    borderColor: '#000000',
+    borderWidth: 1
   }
 })
