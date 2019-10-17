@@ -42,45 +42,41 @@ const ReportScreen = (props) => {
             <View style={{ flex: 9 }}>
                 <ScrollView>
                     <View style={[styles.screenMargin]}>
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10 }}>
-                            <Text style={[styles.h2, { color: '#055E7C' }]}>Report</Text>
+                        <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginTop: 10 }}>
                             <TouchableOpacity onPress={props.navigation.openDrawer} style={{ flexDirection: 'row', alignItems: 'center' }}>
                                 <Text style={[styles.small, { paddingRight: 5, color: '#055E7C' }]}>Search</Text>
-                                <Ionicons name="ios-arrow-forward" color={'#055E7C'} style={{ fontSize: 15, paddingRight: 5 }} />
+                                <Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 15, paddingRight: 5 }} />
                             </TouchableOpacity>
                         </View>
-                        <View style={{ flexDirection: 'row', marginTop: 5, borderTopWidth: 1, borderBottomWidth: 1, borderColor: '055E7C', paddingTop: 3, paddingBottom: 3 }}>
-                            <View style={{ flex: 1 }}>
-                                <Text style={[styles.text]}>Transaction Number</Text>
-                            </View>
-                            <View style={{ flex: 1 }}>
-                                <Text style={[styles.text]}>type</Text>
-                            </View>
-                            <View style={{ flex: 1 }}>
-                                <Text style={[styles.text]}>Type</Text>
-                            </View>
-                            <View style={{ flex: 1 }}>
-                                <Text style={[styles.text]}>Currency</Text>
-                            </View>
-                        </View>
-                        {/* <View>
-                            <Text>{JSON.stringify(reportList)}</Text>
-                        </View> */}
                         <View style={[styles.screenMargin, { flex: 9 }]}>
                             {reportList && <FlatList data={reportList} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
                                 <View style={styles.box}>
                                     <TouchableWithoutFeedback onPress={() => dispatch(actionCreator.setMarkerReportList(index))} style={{ flexDirection: 'row', marginTop: 5 }}>
                                         <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
-                                            <Text style={[styles.text]}>{item.transaction_no}</Text>
-                                            <Text style={[styles.text]}>{item.type}</Text>
+                                            <Text style={[styles.boldText], { flex: 1 }}>{item.transaction_no}</Text>
+                                            <Text style={[styles.boldText], { flex: 1 }}>{item.type}</Text>
                                             <Ionicons name={item.marker ? "md-arrow-dropdown" : "md-arrow-dropright"} color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
                                         </View>
                                     </TouchableWithoutFeedback>
                                     <View style={{ flexDirection: 'row', marginTop: 5, borderBottomWidth: item.marker ? 1 : 0, borderBottomColor: 'lightgrey', }}>
                                     </View>
                                     {item.marker && <View style={{ flex: 1 }}>
-                                        <Text style={[styles.text]}>{item.credit_debit}</Text>
-                                        <Text style={[styles.text]}>{item.amount}</Text>
+                                        <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                                <Text style={[styles.boldText]}>Type</Text>
+                                            </View>
+                                            <View style={{ flex: 1 }}>
+                                                <Text style={[styles.text, { color: '#055E7C' }]}>{item.credit_debit}</Text>
+                                            </View>
+                                        </View>
+                                        <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                                <Text style={[styles.boldText]}>Amount</Text>
+                                            </View>
+                                            <View style={{ flex: 1 }}>
+                                                <Text style={[styles.text, { color: '#055E7C' }]}>{item.amount}</Text>
+                                            </View>
+                                        </View>
                                     </View>
                                     }
                                 </View>

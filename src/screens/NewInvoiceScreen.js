@@ -148,7 +148,7 @@ const NewInvoiceScreen = (props) => {
                         }
                     }
 
-                    
+
                 }
 
                 const { type, customer, issueDate, dueDate, invoiceNumber, amount, category, customerName, customerEmail, customerPhone, customerAddress } = FormikProps.values
@@ -252,7 +252,7 @@ const NewInvoiceScreen = (props) => {
                                             <TouchableOpacity onPress={datePicker}>
                                                 <Image source={require('../assets/images/calendar.png')} style={{ width: 40, height: 40 }} resizeMode={'contain'} />
                                             </TouchableOpacity>
-                                            <TextInput style={{ flex: 1, alignSelf: 'center' }} value={issueDate} style={{ borderWidth: 1, width: '85%' }} />
+                                            <TextInput style={{ flex: 1, borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }} value={issueDate} />
                                         </View>
                                         {issueDateTouched && issueDateError && <Text style={styles.error}>{issueDateError}</Text>}
                                     </View>
@@ -262,7 +262,7 @@ const NewInvoiceScreen = (props) => {
                                             <TouchableOpacity onPress={datePicker2}>
                                                 <Image source={require('../assets/images/calendar.png')} style={{ width: 40, height: 40 }} resizeMode={'contain'} />
                                             </TouchableOpacity>
-                                            <TextInput style={{ flex: 1, alignSelf: 'center' }} value={dueDate} style={{ borderWidth: 1, width: '85%' }} />
+                                            <TextInput style={{ flex: 1, borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }} value={dueDate} />
                                         </View>
                                         {dueDateTouched && dueDateError && <Text style={styles.error}>{dueDateError}</Text>}
                                     </View>

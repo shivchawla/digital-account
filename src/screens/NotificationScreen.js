@@ -52,7 +52,7 @@ const NotificationScreen = (props) => {
                                     <Text style={[styles.text, { color: item.status === 'Withdrawal' ? '#FA6400' : item.status === 'Transfer' ? '#3EC2D9' : '#019842' }]}>{item.status}</Text>
                                     <Text style={[styles.text]}>{item.title}</Text>
                                 </View>
-                                <Ionicons name={item.markers ? "md-arrow-dropdown" : "md-arrow-dropright"} color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
+                                <Ionicons name={item.marker ? "md-arrow-dropdown" : "md-arrow-dropright"} color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
                             </View>
                         </TouchableWithoutFeedback>
                         <View style={{ flexDirection: 'row', marginTop: 5, borderBottomWidth: item.marker ? 1 : 0, borderBottomColor: 'lightgrey', }}>
