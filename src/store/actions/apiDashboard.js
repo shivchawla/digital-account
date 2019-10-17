@@ -24,37 +24,28 @@ export const notificationListApi = () => {
 export const loanListApi = () => {
   return async (dispatch, getState) => {
 
-     //const personalToken = await AsyncStorage.getItem('personalToken');
-     const personalToken = await SecureStore.getItemAsync('personalToken')
-     const { token_type, access_token } = JSON.parse(personalToken)
- 
-     fetch(`${apiUrl}api/loan/list`, {
-       method: 'GET',
-       headers: {
-         'Content-Type': 'application/json',
-         'Accept': 'application/json',
-         'Authorization': token_type + ' ' + access_token
- 
-       }
- 
-     }).then((response) => response.json())
-       .then(async (responseJson) => {
-         const loanList = responseJson.data
-         console.log('Success loan list' + JSON.stringify(responseJson))
-         dispatch({ type: 'SET_LOAN_LIST', payload: { loanList } })
- 
-       })
-       .catch((error) => {
-         console.log('Error initiating loan list info : ' + error);
-       });
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
 
-    // const invoiceList = [{ ref: 112009, date: '12/3/2019', type: 'Item', currency: 'IDR' },
-    // { ref: 112009, date: '12/3/2019', type: 'Item', currency: 'MYR' },
-    // { ref: 112009, date: '12/3/2019', type: 'Item', currency: 'MYR' },
-    // { ref: 112009, date: '12/3/2019', type: 'Item', currency: 'INR' },
-    // { ref: 112009, date: '12/3/2019', type: 'Item', currency: 'SGD' }]
+    fetch(`${apiUrl}api/loan/list`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      }
 
-    // dispatch({ type: 'SET_INVOICE_LIST', payload: { invoiceList } })
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const loanList = responseJson.data
+        console.log('Success loan list' + JSON.stringify(responseJson))
+        dispatch({ type: 'SET_LOAN_LIST', payload: { loanList } })
+
+      })
+      .catch((error) => {
+        console.log('Error initiating loan list info : ' + error);
+      });
+
   }
 }
 
@@ -72,25 +63,70 @@ export const agingListApi = () => {
 
 export const invoiceListApi = () => {
   return async (dispatch, getState) => {
-    const invoiceList = [{ ref: 112009, date: '12/3/2019', type: 'Item', currency: 'IDR' },
-    { ref: 112000, date: '13/3/2019', type: 'Item', currency: 'MYR' },
-    { ref: 112001, date: '14/3/2019', type: 'Item', currency: 'MYR' },
-    { ref: 112022, date: '14/3/2019', type: 'Item', currency: 'INR' },
-    { ref: 112023, date: '15/3/2019', type: 'Item', currency: 'SGD' }]
 
-    dispatch({ type: 'SET_INVOICE_LIST', payload: { invoiceList } })
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    fetch(`${apiUrl}api/invoices/list`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const invoiceList = responseJson.data
+        console.log('Success invoice list' + JSON.stringify(responseJson))
+        dispatch({ type: 'SET_INVOICE_LIST', payload: { invoiceList } })
+
+      })
+      .catch((error) => {
+        console.log('Error initiating invoice list info : ' + error);
+      });
+    // const invoiceList = [{ ref: 112009, date: '12/3/2019', type: 'Item', currency: 'IDR' },
+    // { ref: 112000, date: '13/3/2019', type: 'Item', currency: 'MYR' },
+    // { ref: 112001, date: '14/3/2019', type: 'Item', currency: 'MYR' },
+    // { ref: 112022, date: '14/3/2019', type: 'Item', currency: 'INR' },
+    // { ref: 112023, date: '15/3/2019', type: 'Item', currency: 'SGD' }]
+
+    // dispatch({ type: 'SET_INVOICE_LIST', payload: { invoiceList } })
   }
 }
 
 export const reportListApi = () => {
   return async (dispatch, getState) => {
-    const reportList = [{ ref: 112005, date: '12/4/2019', type: 'Item', currency: 'IDR' },
-    { ref: 112004, date: '24/3/2019', type: 'Loan', currency: 'MYR' },
-    { ref: 112019, date: '20/5/2019', type: 'Withdrawal', currency: 'MYR' },
-    { ref: 112509, date: '11/6/2019', type: 'Disbursement', currency: 'INR' },
-    { ref: 112190, date: '12/7/2019', type: 'Loan', currency: 'SGD' }]
 
-    dispatch({ type: 'SET_REPORT_LIST', payload: { reportList } })
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    fetch(`${apiUrl}api/transactions`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const {data} = responseJson.data
+        const reportList=data
+        console.log('Success report list' + JSON.stringify(responseJson))
+        dispatch({ type: 'SET_REPORT_LIST', payload: { reportList } })
+
+      })
+      .catch((error) => {
+        console.log('Error initiating report list info : ' + error);
+      });
+    // const reportList = [{ ref: 112005, date: '12/4/2019', type: 'Item', currency: 'IDR' },
+    // { ref: 112004, date: '24/3/2019', type: 'Loan', currency: 'MYR' },
+    // { ref: 112019, date: '20/5/2019', type: 'Withdrawal', currency: 'MYR' },
+    // { ref: 112509, date: '11/6/2019', type: 'Disbursement', currency: 'INR' },
+    // { ref: 112190, date: '12/7/2019', type: 'Loan', currency: 'SGD' }]
+
+    //dispatch({ type: 'SET_REPORT_LIST', payload: { reportList } })
   }
 }
 
@@ -290,7 +326,6 @@ export const checkCDDApi = () => {
   }
 }
 
-
 export const bankListApi = () => {
   return async (dispatch, getState) => {
     console.log(`bank list masuk api`)
@@ -305,7 +340,6 @@ export const bankListApi = () => {
 
     console.log(`bankList ialah : ${bankList}`)
 
-
   }
 }
 
@@ -314,7 +348,6 @@ export const addBankApi = (values) => {
     console.log(`add bank masuk api`)
     //const personalToken = await AsyncStorage.getItem('personalToken');
     const personalToken = await SecureStore.getItemAsync('personalToken')
-
 
     const bankListStored = await AsyncStorage.getItem('bankListStored');
     // bankListStored && bankList.push(JSON.parse(bankListStored))
@@ -350,8 +383,6 @@ export const deleteAllBankApi = (values) => {
   }
 }
 
-
-
 export const sendNotificationApi = (expo_token, id, title) => {
   return async (dispatch, getState) => {
 
@@ -374,8 +405,6 @@ export const sendNotificationApi = (expo_token, id, title) => {
       });
   }
 }
-
-
 
 //////////////////////////////////LUNAWALLET/////////////////////////////////////////
 
