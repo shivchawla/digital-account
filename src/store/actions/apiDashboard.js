@@ -21,6 +21,34 @@ export const notificationListApi = () => {
   }
 }
 
+export const loanApplicationDataApi = (id) => {
+  return async (dispatch, getState) => {
+
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    fetch(`${apiUrl}api/loan/details?id=${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const loanData = responseJson.data
+        console.log('Success loan data' + JSON.stringify(responseJson))
+        dispatch({ type: 'SET_LOAN_DATA', payload: { loanData } })
+
+      })
+      .catch((error) => {
+        console.log('Error initiating loan data info : ' + error);
+      });
+
+  }
+}
+
 export const loanListApi = () => {
   return async (dispatch, getState) => {
 
