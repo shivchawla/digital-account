@@ -1,7 +1,5 @@
 import React from 'react';
-
 import {
-
     View,
     TouchableOpacity,
     Text,
@@ -11,21 +9,13 @@ import {
     TextInput,
     Picker,
     ActivityIndicator
-
 } from 'react-native';
-
 import * as actionCreator from '../store/actions/action'
-
 import { useDispatch } from 'react-redux'
-
 import { LinearGradient } from 'expo-linear-gradient'
-
 import { Ionicons } from '@expo/vector-icons';
-
 import { Formik } from 'formik';
-
 import * as Yup from 'yup';
-
 import styles from '../styles/styles'
 
 const validationSchema = Yup.object().shape({
@@ -50,19 +40,14 @@ const validationSchema = Yup.object().shape({
 const SupportScreen = (props) => {
 
     const dispatch = useDispatch()
-
     const setSupport = (val) => dispatch({ type: 'SET_SUPPORT', payload: { ...val } });
 
     return (
 
         <Formik onSubmit={async values => {
-
-            props.navigation.navigate("InvoiceSuccess")
-
+            props.navigation.navigate("SupportSuccess")
             dispatch(actionCreator.passSupport(values))
-
             console.log(JSON.stringify(values))
-
         }}
 
             validationSchema={validationSchema}

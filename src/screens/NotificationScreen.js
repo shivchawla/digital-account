@@ -1,26 +1,24 @@
-import React from 'react';
-
+import React, { useEffect } from 'react';
 import {
-
     View,
     TouchableOpacity,
+    TouchableWithoutFeedback,
     Text,
     Image,
-    FlatList,
-
+    FlatList
 } from 'react-native';
-
+import * as actionCreator from '../store/actions/action'
+import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons';
-
 import styles from '../styles/styles'
 
-const notificationScreenArray = [{ status: 'out', description: 'RM 50.00 was deducted from your account via withdrawal on 28 July 2019 at 17.28.' },
-{ status: 'out', description: 'RM 80.00 was transfered from your account to Afi Hisam Maybank account on 25 July 2019 at 17.24.' },
-{ status: 'in', description: '1 July 2019 12.30. Disbursement Transfer for July is RM 4952.00' },
-{ status: 'out', description: 'RM 100.00 was transfered from your account to Aisya Ramli RHB Bank account on 25 June 2019 at 11.00.' },
-{ status: 'in', description: '1 June 2019 on 12.30. Disbursement Transfer for June is RM 1067.00.' }]
-
 const NotificationScreen = (props) => {
+    useEffect(() => {
+        dispatch(actionCreator.getNotificationList())
+    }, [notificationList])
+    const dispatch = useDispatch()
+    const { notificationList } = useSelector(state => state.notificationScreenReducer, shallowEqual)
+
 
     return (
 
@@ -45,15 +43,26 @@ const NotificationScreen = (props) => {
             </View>
 
             <View style={[styles.screenMargin, { flex: 9 }]}>
-
-                <FlatList data={notificationScreenArray} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
-
-                    <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10, marginTop: 10 }}>
-                        <Ionicons name={item.status === 'in' ? "md-add-circle-outline" : "md-remove-circle-outline"} color={item.status === 'in' ? "#7ED321" : "#A20F0F"} style={{ fontSize: 15, paddingRight: 20 }} />
-                        <Text style={[styles.text, { textAlignVertical: 'top', paddingRight: 50 }]}>{item.description}</Text>
+                {notificationList && <FlatList data={notificationList} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
+                    <View style={styles.box}>
+                        <TouchableWithoutFeedback onPress={() => dispatch(actionCreator.setMarkers(index))} style={{ flexDirection: 'row', marginTop: 5 }}>
+                            <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
+                                <Image source={item.status === 'Withdrawal' ? require('../assets/images/withdrawal.png') : item.status === 'Transfer' ? require('../assets/images/transfer.png') : require('../assets/images/disbursement.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                                <View style={flexDirection = 'column'}>
+                                    <Text style={[styles.text, { color: item.status === 'Withdrawal' ? '#FA6400' : item.status === 'Transfer' ? '#3EC2D9' : '#019842' }]}>{item.status}</Text>
+                                    <Text style={[styles.text]}>{item.title}</Text>
+                                </View>
+                                <Ionicons name={item.markers ? "md-arrow-dropdown" : "md-arrow-dropright"} color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
+                            </View>
+                        </TouchableWithoutFeedback>
+                        <View style={{ flexDirection: 'row', marginTop: 5, borderBottomWidth: item.marker ? 1 : 0, borderBottomColor: 'lightgrey', }}>
+                        </View>
+                        {item.marker && <View style={{ flex: 1 }}>
+                            <Text style={[styles.text]}>{item.description}</Text>
+                        </View>
+                        }
                     </View>
-
-                } />
+                } />}
             </View>
 
         </View >

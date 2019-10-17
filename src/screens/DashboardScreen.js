@@ -95,7 +95,7 @@ const DashboardScreen = (props) => {
   return (
 
     <View style={{ flex: 1, }}>
-{/* visible={!dashboardDisplay} */}
+      {/* visible={!dashboardDisplay} */}
       <Modal animationType="fade" transparent={true} visible={false} onRequestClose={() => {
 
         Alert.alert('Modal has been closed.');
@@ -237,7 +237,7 @@ const DashboardScreen = (props) => {
             </View>
             <View style={{ flex: 1, height: Layout.window.height / 5, alignSelf: 'stretch',flexDirection:'row',justifyContent:'space-around' }}>
               <Charts />
-              
+
               {/* <View style={{ width: Layout.window.height / 8, height: Layout.window.height / 8, justifyContent: 'center', alignItems: 'center',borderWidth:1 }}>
                 <LinearGradient colors={['green', '#fff']} start={[0.5, 0.2]} style={{ width: Layout.window.height / 10, height: Layout.window.height / 10, borderRadius: Layout.window.height / 20, justifyContent: 'center', alignItems: 'center' }}>
                   <View style={{ width: Layout.window.height / 10.5, height: Layout.window.height / 10.5, borderRadius: Layout.window.height / 21, backgroundColor: '#055E7C' }} />

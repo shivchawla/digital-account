@@ -5,8 +5,7 @@ import {
     Text,
     Image,
     KeyboardAvoidingView,
-    TextInput,
-    ActivityIndicator
+    TextInput
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'
 import { Formik } from 'formik';
@@ -16,10 +15,8 @@ import styles from '../styles/styles'
 
 const validationSchema = Yup.object().shape({
 
-    mobileNumber: Yup
+    TACNumber: Yup
         .string(),
-    password: Yup
-        .string()
 
 });
 
@@ -28,15 +25,16 @@ const ChangeNumberScreen = (props) => {
     return (
 
         <Formik onSubmit={async values => {
-            props.navigation.navigate("TAC")
+
             console.log(JSON.stringify(values))
 
         }}
+
             validationSchema={validationSchema}>
 
             {FormikProps => {
 
-                const { mobileNumber, password } = FormikProps.values
+                const { TACNumber } = FormikProps.values
 
                 return (
 
@@ -54,29 +52,21 @@ const ChangeNumberScreen = (props) => {
                                 <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
                             </View>
                         </View>
-                        <View style={{ justifyContent: 'space-between', flex: 9 }}>
+                        <View style={{ flex: 9 }}>
                             <View style={[styles.screenMargin, { flex: 3, marginTop: 25 }]}>
-                                <View style={[styles.formElement]}>
-                                    <Text style={[styles.titleBox, { marginBottom: 5 }]}>New Phone Number</Text>
-                                    <TextInput value={mobileNumber} onChangeText={FormikProps.handleChange('mobileNumber')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} keyboardType={'phone-pad'} />
-                                </View>
-                                <View style={[styles.formElement]}>
-                                    <Text style={[styles.titleBox, { marginBottom: 5 }]}>Password</Text>
-                                    <TextInput value={password} onChangeText={FormikProps.handleChange('password')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                <Text style={[styles.titleBox, { marginBottom: 25, justifyContent: 'center', flexDirection: 'row' }]}>We have sent TAC to your new number.</Text>
+                                <Text style={[styles.titleBox, { marginBottom: 25, justifyContent: 'center' }]}>We have sent TAC to your new number.</Text>
+                                <View style={{ justifyContent: 'space-between', flex: 9 }}>
+                                    <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: 25 }}>
+                                        <Text style={[styles.text]}>Didn't get TAC number?</Text>
+                                        <TouchableOpacity onPress={() => props.navigation.navigate('ChangeNumber')}>
+                                            <Text style={[styles.text, { color: '#04A2BD' }]}>Re-send TAC.</Text>
+                                        </TouchableOpacity>
+                                    </View>
                                 </View>
                             </View>
                         </View>
                         <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
-                            <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 }}>
-                                <LinearGradient colors={['#FFF', '#FFF']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                                    <Text style={[styles.butang, { color: '#000000' }]}>Back</Text>
-                                </LinearGradient>
-                            </TouchableOpacity>
-                            <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ flex: 1 }}>
-                                <LinearGradient colors={FormikProps.isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                                    {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> : <Text style={[styles.butang, { color: '#fff' }]}>Save</Text>}
-                                </LinearGradient>
-                            </TouchableOpacity>
                         </View>
                     </KeyboardAvoidingView>)
             }}

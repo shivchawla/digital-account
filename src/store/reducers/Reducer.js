@@ -351,6 +351,16 @@ const loanReducer = (state = [], action) => {
     }
 }
 
+const agingReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_AGING_LIST':
+            return { ...state, ...action.payload }
+
+        default:
+            return state
+    }
+}
+
 const invoiceReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_INVOICE_LIST':
@@ -395,7 +405,7 @@ const businessDirectoryReducer = (state = [], action) => {
 
 const notificationScreenReducer = (state = [], action) => {
     switch (action.type) {
-        case 'SET_NOTIFICATION':
+        case 'SET_NOTIFICATION_LIST':
             return { ...state, ...action.payload }
 
         default:
@@ -589,7 +599,7 @@ const listWorkersReducer = (state = [], action) => {
     }
 }
 
-const appReducer = combineReducers({ businessDirectoryReducer, reportReducer, invoiceReducer, loanReducer, settingReducer, homeReducer, kycReducer, kyc1ScreenReducer, kyc2ScreenReducer, phoneVerificationReducer, termsReducer, pdpaReducer, kycVerifyReducer, passcodeCreationReducer, unlockReducer, dashboardScreenReducer, notificationScreenReducer, depositScreenReducer, personalInformationScreenReducer, transferOutScreenReducer, transferOutScanScreenReducer, scanBillReducer, personalInfoReducer, contactListReducer, requestScreenReducer, fulfillRequestScreenReducer, notificationfulfillRequestScreenReducer, withdrawScreenReducer, analyticScreenReducer, resetPinReducer, themeReducer, editInfoScreenReducer, loginScreenReducer, registrationReducer, companyInformationReducer, newsScreenReducer, eventScreenReducer, promotionScreenReducer, handbookScreenReducer, einfosScreenReducer, loanApplicationReducer, bizInfoReducer, listWorkersReducer, myAccountReducer, bizDirReducer, agencyListReducer, assoDirReducer, pendingDirReducer, trainingReducer, grantApplicationReducer, userAccountReducer, merchantInfoReducer,bankListReducer });
+const appReducer = combineReducers({ businessDirectoryReducer, reportReducer, agingReducer, invoiceReducer, loanReducer, settingReducer, homeReducer, kycReducer, kyc1ScreenReducer, kyc2ScreenReducer, phoneVerificationReducer, termsReducer, pdpaReducer, kycVerifyReducer, passcodeCreationReducer, unlockReducer, dashboardScreenReducer, notificationScreenReducer, depositScreenReducer, personalInformationScreenReducer, transferOutScreenReducer, transferOutScanScreenReducer, scanBillReducer, personalInfoReducer, contactListReducer, requestScreenReducer, fulfillRequestScreenReducer, notificationfulfillRequestScreenReducer, withdrawScreenReducer, analyticScreenReducer, resetPinReducer, themeReducer, editInfoScreenReducer, loginScreenReducer, registrationReducer, companyInformationReducer, newsScreenReducer, eventScreenReducer, promotionScreenReducer, handbookScreenReducer, einfosScreenReducer, loanApplicationReducer, bizInfoReducer, listWorkersReducer, myAccountReducer, bizDirReducer, agencyListReducer, assoDirReducer, pendingDirReducer, trainingReducer, grantApplicationReducer, userAccountReducer, merchantInfoReducer, bankListReducer });
 
 const rootReducer = (state, action) => {
     switch (action.type) {
