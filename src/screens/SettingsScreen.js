@@ -16,6 +16,7 @@ const SettingsScreen = (props) => {
 
    
     const { expo_token } = useSelector(state => state.registrationReducer, shallowEqual)
+    const { test_notification } = useSelector(state => state.notificationScreenReducer, shallowEqual)
 
     const dispatch = useDispatch()
     const logout = () => {
@@ -88,6 +89,7 @@ const SettingsScreen = (props) => {
             <View style={{ flexDirection: 'column', flex: 1, justifyContent: 'flex-end', alignItems: 'flex-end' }}>
                 <Text style={[styles.small, { color: '#055E7C' }]}>Digital Account v0.2</Text>
                 <Text style={[styles.small, { color: '#055E7C' }]}>{expo_token}</Text>
+                {test_notification&&<Text style={[styles.small, { color: '#055E7C' }]}>{test_notification}</Text>}
             </View>
         </View>
     );
