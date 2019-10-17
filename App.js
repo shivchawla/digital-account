@@ -35,11 +35,11 @@ const App = (props) => {
       //const personalToken = await AsyncStorage.getItem('personalToken');
       const personalToken = await SecureStore.getItemAsync('personalToken')
       if (personalToken !== null && !personalToken.includes('error')) {
-        console.log(`personal token ialah : ${personalToken}`)
+        //console.log(`personal token ialah : ${personalToken}`)
         setTokenExists(true)
       }
     } catch (error) {
-      console.log(`personalToken error ${error}`)
+      //console.log(`personalToken error ${error}`)
       return 'takde'
     }
   }
@@ -65,7 +65,7 @@ const App = (props) => {
   }
 
   _handleNotification = (notification) => {
-    console.log(`notification received ${JSON.stringify(notification)}`)
+    //console.log(`notification received ${JSON.stringify(notification)}`)
     const { data } = notification
     store.dispatch({ type: 'SET_NOTIFICATION_LIST', payload: { ...data } })
     //store.dispatch({ type: 'SET_NOTIFICATION', payload: { notification } })

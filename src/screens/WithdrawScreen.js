@@ -13,7 +13,7 @@ import {
     Modal,
     Platform
 } from 'react-native';
-
+import Constants from 'expo-constants';
 import * as actionCreator from '../store/actions/action'
 
 
@@ -104,20 +104,34 @@ const WithdrawScreen = (props) => {
                             presentationStyle={'pageSheet'}
                             onRequestClose={() => console.log('modal closed')}
                         >
-                            <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', paddingTop: 30 }}>
-                                <Picker
-                                    style={{ flex: 1, height: 35 }}
-                                    selectedValue={bankLabel}
-                                    onValueChange={(itemValue, itemIndex) => {
-                                        FormikProps.setFieldValue('bankLabel', itemValue);
-                                        setSelectedBank(itemValue)
-                                    }
-                                    }>
-                                    <Picker.Item label={'Please Select'} value={undefined} />
-                                    {bankList && bankList.map((b, i) => <Picker.Item key={i} label={b.bankLabel} value={b.bankLabel} />)}
-                                </Picker>
-                                <TouchableOpacity onPress={() => setIosPickerVisible(!iosPickerVisible)}><Text>Close Modal</Text></TouchableOpacity>
+                            <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
+                                <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4', marginBottom: 25 }]}>
+
+                                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
+                                        <TouchableOpacity onPress={() => setIosPickerVisible(!iosPickerVisible)} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
+                                            <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 20 }} />
+                                        </TouchableOpacity>
+                                    </View>
+                                    <View style={{ flex: 4, justifyContent: 'center', alignItems: 'center' }}>
+                                        <Text style={[styles.title, { color: '#055E7C' }]}>Select</Text>
+                                    </View>
+
+                                </View>
+                                <View style={{ flex: 9, justifyContent: 'flex-start' }}>
+                                    <Picker
+                                        style={{ flex: 1, height: 35 }}
+                                        selectedValue={bankLabel}
+                                        onValueChange={(itemValue, itemIndex) => {
+                                            FormikProps.setFieldValue('bankLabel', itemValue);
+                                            setSelectedBank(itemValue)
+                                        }
+                                        }>
+                                        <Picker.Item label={'Please Select'} value={undefined} />
+                                        {bankList && bankList.map((b, i) => <Picker.Item key={i} label={b.bankLabel} value={b.bankLabel} />)}
+                                    </Picker>
+                                </View>
                             </View>
+
                         </Modal>
                         <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
@@ -144,7 +158,7 @@ const WithdrawScreen = (props) => {
 
                                                 <TouchableOpacity onPress={() => setIosPickerVisible(!iosPickerVisible)} style={{ marginTop: 5 }}>
                                                     <Text style={[styles.small, { color: '#0A6496' }]}>Select Bank</Text>
-                                                    </TouchableOpacity>
+                                                </TouchableOpacity>
 
                                                 <TouchableWithoutFeedback onPress={() => props.navigation.navigate(`BankList`)} style={{ marginTop: 5 }}>
                                                     <Text style={[styles.small, { color: '#0A6496' }]}>Manage Bank</Text>
