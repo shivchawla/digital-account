@@ -518,11 +518,15 @@ export const filterLoanList = (values) => {
     return async (dispatch, getState) => {
         console.log(`filter loan list action`)
         console.log(`filter loan list action : ${JSON.stringify(values)}`)
-        const { loanList } = getState().loanReducer
+        //await dispatch(loanListApi())
+        const { loanList } =  getState().loanReducer
         //const newLoanList=_.filter(loanList, _.matches({ 'a': 4, 'c': 6 }));
-        const newLoanList = _.filter(loanList, _.matches(values));
+        const { status, type } = values
+        const filterParam = (status && type) ? { status, type } : status ? { status } : type ? { type } : null
+        const newLoanList = _.filter(loanList, _.matches(filterParam));
         console.log(`new Loan List : ${JSON.stringify(newLoanList)}`)
         // await dispatch(deleteAllBankApi())
         // await dispatch(bankList())
+        dispatch({ type: 'SET_LOAN_LIST', payload: { loanList: newLoanList } })
     }
 }
