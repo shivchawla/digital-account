@@ -106,7 +106,6 @@ const WithdrawScreen = (props) => {
                         >
                             <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
                                 <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4', marginBottom: 25 }]}>
-
                                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
                                         <TouchableOpacity onPress={() => setIosPickerVisible(!iosPickerVisible)} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
                                             <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 20 }} />
@@ -115,23 +114,18 @@ const WithdrawScreen = (props) => {
                                     <View style={{ flex: 4, justifyContent: 'center', alignItems: 'center' }}>
                                         <Text style={[styles.title, { color: '#055E7C' }]}>Select</Text>
                                     </View>
-
                                 </View>
                                 <View style={{ flex: 9, justifyContent: 'flex-start' }}>
-                                    <Picker
-                                        style={{ flex: 1, height: 35 }}
-                                        selectedValue={bankLabel}
-                                        onValueChange={(itemValue, itemIndex) => {
-                                            FormikProps.setFieldValue('bankLabel', itemValue);
-                                            setSelectedBank(itemValue)
-                                        }
-                                        }>
+                                    <Picker style={{ flex: 1, height: 35 }} selectedValue={bankLabel} onValueChange={(itemValue, itemIndex) => {
+                                        FormikProps.setFieldValue('bankLabel', itemValue);
+                                        setSelectedBank(itemValue)
+                                    }
+                                    }>
                                         <Picker.Item label={'Please Select'} value={undefined} />
                                         {bankList && bankList.map((b, i) => <Picker.Item key={i} label={b.bankLabel} value={b.bankLabel} />)}
                                     </Picker>
                                 </View>
                             </View>
-
                         </Modal>
                         <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
@@ -140,7 +134,7 @@ const WithdrawScreen = (props) => {
                                 </TouchableOpacity>
                             </View>
                             <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                                <Text style={[styles.title, { color: '#055E7C' }]}>Withdrawal</Text>
+                                <Text style={[styles.title, { color: '#055E7C' }]}>WITHDRAWAL</Text>
                             </View>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
                                 <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
@@ -149,17 +143,13 @@ const WithdrawScreen = (props) => {
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
                             <View style={[{ flex: 9 }]}>
                                 <ScrollView style={[styles.screenMargin]}>
-
-
                                     {ios ? <View style={[styles.formElement, { marginTop: 20 }]}>
                                         <Text style={[styles.titleBox, { marginBottom: 5 }]}>Bank</Text>
                                         {(bankExists && bankList) ?
                                             <View>
-
                                                 <TouchableOpacity onPress={() => setIosPickerVisible(!iosPickerVisible)} style={{ marginTop: 5 }}>
                                                     <Text style={[styles.small, { color: '#0A6496' }]}>Select Bank</Text>
                                                 </TouchableOpacity>
-
                                                 <TouchableWithoutFeedback onPress={() => props.navigation.navigate(`BankList`)} style={{ marginTop: 5 }}>
                                                     <Text style={[styles.small, { color: '#0A6496' }]}>Manage Bank</Text>
                                                 </TouchableWithoutFeedback>
@@ -167,21 +157,15 @@ const WithdrawScreen = (props) => {
                                                 <Text style={[styles.small, { color: '#0A6496' }]}>Click Here to Add Bank</Text>
                                             </TouchableWithoutFeedback>}
                                         {bankLabelTouched && bankLabelError && <Text style={styles.error}>{bankLabelError}</Text>}
-                                    </View>
-                                        :
-                                        <View style={[styles.formElement, { marginTop: 20 }]}>
+                                    </View> : <View style={[styles.formElement, { marginTop: 20 }]}>
                                             <Text style={[styles.titleBox, { marginBottom: 5 }]}>Bank</Text>
                                             {(bankExists && bankList) ?
                                                 <View>
                                                     <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
-                                                        <Picker
-                                                            style={{ flex: 1, height: 35 }}
-                                                            selectedValue={bankLabel}
-                                                            onValueChange={(itemValue, itemIndex) => {
-                                                                FormikProps.setFieldValue('bankLabel', itemValue);
-                                                                setSelectedBank(itemValue)
-                                                            }
-                                                            }>
+                                                        <Picker style={{ flex: 1, height: 35 }} selectedValue={bankLabel} onValueChange={(itemValue, itemIndex) => {
+                                                            FormikProps.setFieldValue('bankLabel', itemValue); setSelectedBank(itemValue)
+                                                        }
+                                                        }>
                                                             <Picker.Item label={'Please Select'} value={undefined} />
                                                             {bankList && bankList.map((b, i) => <Picker.Item key={i} label={b.bankLabel} value={b.bankLabel} />)}
                                                         </Picker>
@@ -195,25 +179,24 @@ const WithdrawScreen = (props) => {
                                             {bankLabelTouched && bankLabelError && <Text style={styles.error}>{bankLabelError}</Text>}
                                         </View>
                                     }
-                                    {selectedBankDetail &&
-                                        <View>
-                                            <View style={[styles.formElement]}>
-                                                <Text style={[styles.titleBox, { marginBottom: 5 }]}>Bank Name</Text>
-                                                <Text style={[styles.text]}>{selectedBankDetail.bankAccountName}</Text>
-                                            </View>
-                                            <View style={[styles.formElement]}>
-                                                <Text style={[styles.titleBox, { marginBottom: 5 }]}>Account No</Text>
-                                                <Text style={[styles.text]}>{selectedBankDetail.bankAccountNo}</Text>
-                                            </View>
-                                            <View style={[styles.formElement]}>
-                                                <Text style={[styles.titleBox, { marginBottom: 5 }]}>Bank Address</Text>
-                                                <Text style={[styles.text]}>{selectedBankDetail.bankAddress}</Text>
-                                            </View>
-                                            <View style={[styles.formElement]}>
-                                                <Text style={[styles.titleBox, { marginBottom: 5 }]}>Bank Country</Text>
-                                                <Text style={[styles.text]}>{selectedBankDetail.bankCountry}</Text>
-                                            </View>
-                                        </View>}
+                                    {selectedBankDetail && <View>
+                                        <View style={[styles.formElement]}>
+                                            <Text style={[styles.titleBox, { marginBottom: 5 }]}>Bank Name</Text>
+                                            <Text style={[styles.text]}>{selectedBankDetail.bankAccountName}</Text>
+                                        </View>
+                                        <View style={[styles.formElement]}>
+                                            <Text style={[styles.titleBox, { marginBottom: 5 }]}>Account No</Text>
+                                            <Text style={[styles.text]}>{selectedBankDetail.bankAccountNo}</Text>
+                                        </View>
+                                        <View style={[styles.formElement]}>
+                                            <Text style={[styles.titleBox, { marginBottom: 5 }]}>Bank Address</Text>
+                                            <Text style={[styles.text]}>{selectedBankDetail.bankAddress}</Text>
+                                        </View>
+                                        <View style={[styles.formElement]}>
+                                            <Text style={[styles.titleBox, { marginBottom: 5 }]}>Bank Country</Text>
+                                            <Text style={[styles.text]}>{selectedBankDetail.bankCountry}</Text>
+                                        </View>
+                                    </View>}
                                     <View style={[styles.formElement]}>
                                         <Text style={[styles.titleBox, { marginBottom: 5 }]}>Amount</Text>
                                         <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} onBlur={FormikProps.handleBlur('amount')} style={{ borderWidth: 1, borderColor: amountTouched && amountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={amountTouched && amountError ? '' : 'Eg: RM890.00'} placeholderTextColor={amountTouched && amountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />

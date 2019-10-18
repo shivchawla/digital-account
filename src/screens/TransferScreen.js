@@ -1,29 +1,11 @@
 import React from 'react';
-
-import {
-
-    View,
-    TouchableOpacity,
-    Text,
-    Image,
-    ActivityIndicator,
-    KeyboardAvoidingView,
-    TextInput
-
-} from 'react-native';
-
+import { View, TouchableOpacity, Text, Image, ActivityIndicator, KeyboardAvoidingView, TextInput } from 'react-native';
 import * as actionCreator from '../store/actions/action'
-
-import { useDispatch } from 'react-redux'
-
+import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { LinearGradient } from 'expo-linear-gradient'
-
 import { Ionicons } from '@expo/vector-icons';
-
 import { Formik } from 'formik';
-
 import * as Yup from 'yup';
-
 import styles from '../styles/styles'
 
 const validationSchema = Yup.object().shape({
@@ -49,25 +31,18 @@ const validationSchema = Yup.object().shape({
 const TransferScreen = (props) => {
 
     const dispatch = useDispatch()
-
-    const setExpenseData = (val) => dispatch({ type: 'SET_EXPENSE_DATA', payload: { ...val } });
+    const setExpenseData = (val) => dispatch({ type: 'SET_NEW_EXPENSE', payload: { ...val } });
+    const expenseData = useSelector(state => state.expenseReducer, shallowEqual)
 
     return (
 
         <Formik onSubmit={async values => {
-
             props.navigation.navigate("TransferSuccess")
-
-            dispatch(actionCreator.passExpense(values))
-
+            dispatch(actionCreator.submitNewExpense())
             console.log(JSON.stringify(values))
-
         }}
-
             validationSchema={validationSchema}
-
         >
-
             {FormikProps => {
 
                 const { account, amount, transferTo, reference } = FormikProps.values
@@ -142,9 +117,8 @@ const TransferScreen = (props) => {
     );
 }
 
-TransferScreen.navigationOptions =
-    {
-        header: null,
-    };
+TransferScreen.navigationOptions = {
+    header: null,
+};
 
 export default TransferScreen;

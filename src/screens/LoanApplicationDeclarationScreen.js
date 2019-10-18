@@ -36,7 +36,7 @@ const validationSchema = Yup.object().shape({
 
 const LoanApplicationDeclarationScreen = (props) => {
     const dispatch = useDispatch()
-    const setLoanData = (val) => dispatch({ type: 'SET_LOAN_DATA', payload: { ...val } });
+    const setLoanData = (val) => dispatch({ type: 'SET_LOAN_APPLICATION', payload: { ...val } });
     return (
 
         <Formik onSubmit={async values => {

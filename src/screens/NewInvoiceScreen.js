@@ -1,29 +1,12 @@
 import React, { useState } from 'react';
-
-import {
-    View,
-    TouchableOpacity,
-    Text,
-    Image,
-    ActivityIndicator,
-    KeyboardAvoidingView,
-    TextInput,
-    ScrollView,
-    DatePickerAndroid,
-    Picker,
-    DatePickerIOS,
-    Modal,
-    Platform
-
-} from 'react-native';
+import { View, TouchableOpacity, Text, Image, ActivityIndicator, KeyboardAvoidingView, TextInput, ScrollView, DatePickerAndroid, Picker, DatePickerIOS, Modal, Platform } from 'react-native';
 import * as actionCreator from '../store/actions/action'
-import { useDispatch } from 'react-redux'
+import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import styles from '../styles/styles'
-import moment from 'moment';
 import Constants from 'expo-constants';
 
 const validationSchema = Yup.object().shape({
@@ -90,19 +73,19 @@ const NewInvoiceScreen = (props) => {
     const [iosPickerVisible, setIosPickerVisible] = useState(false)
     const [modalContent, setModalContent] = useState('')
     const ios = Platform.OS === "ios" ? true : false
-    const dispatch = useDispatch()
-    //const setInvoiceData = (val) => dispatch({ type: 'SET_INVOICE_DATA', payload: { ...val } });
     const [tarikh, setTarikh] = useState(new Date())
+
+    const dispatch = useDispatch()
+    const setInvoiceData = (val) => dispatch({ type: 'SET_INVOICE_APPLICATION', payload: { ...val } });
+    const invoiceData = useSelector(state => state.invoiceReducer, shallowEqual)
 
     return (
 
         <Formik onSubmit={values => {
-
             props.navigation.navigate("InvoiceSuccess")
-            dispatch(actionCreator.passInvoice(values))
+            dispatch(actionCreator.submitNewInvoice())
             console.log(JSON.stringify(values))
         }}
-
 
             validationSchema={validationSchema}
         >
@@ -198,13 +181,10 @@ const NewInvoiceScreen = (props) => {
 
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }}>
                         <Modal animationType={'slide'}
-                            visible={iosPickerVisible}
-
-                            onRequestClose={() => FormikProps.setFieldValue('dueDate', tarikh.toString())}
+                            visible={iosPickerVisible} onRequestClose={() => FormikProps.setFieldValue('dueDate', tarikh.toString())}
                         >
                             <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
                                 <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4', marginBottom: 25 }]}>
-
                                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
                                         <TouchableOpacity onPress={() => setIosPickerVisible(!iosPickerVisible)} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
                                             <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 20 }} />
@@ -213,33 +193,25 @@ const NewInvoiceScreen = (props) => {
                                     <View style={{ flex: 4, justifyContent: 'center', alignItems: 'center' }}>
                                         <Text style={[styles.title, { color: '#055E7C' }]}>Select</Text>
                                     </View>
-
                                 </View>
                                 <View style={{ flex: 9, justifyContent: 'flex-start' }}>
-
                                     {(modalContent === "type") ? <Picker selectedValue={type} style={{ flex: 1, height: 35 }} onValueChange={(itemValue, itemIndex) => FormikProps.setFieldValue('type', itemValue)}>
                                         <Picker.Item label="Merchant" value="Merchant" />
                                         <Picker.Item label="Customer" value="Customer" />
-                                    </Picker> : <DatePickerIOS
-                                            date={tarikh}
-                                            onDateChange={(newDate) => handleDateChange(newDate, modalContent)}
-                                        />}
-
+                                    </Picker> : <DatePickerIOS date={tarikh} onDateChange={(newDate) => handleDateChange(newDate, modalContent)} />}
                                 </View>
                             </View>
-
                         </Modal>
-                        <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4', marginBottom: 25 }]}>
-
-                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
-                                <TouchableOpacity onPress={() => props.navigation.navigate('Dashboard')} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                                    <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 20 }} />
+                        <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
+                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
+                                <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
+                                    <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30 }} />
                                 </TouchableOpacity>
                             </View>
-                            <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                                <Text style={[styles.title, { color: '#055E7C' }]}>New Invoice</Text>
+                            <View style={{ flex: 5, justifyContent: 'center', alignItems: 'center' }}>
+                                <Text style={[styles.title]}>NEW INVOICE</Text>
                             </View>
-                            <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
+                            <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
                                 <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
                             </TouchableOpacity>
                         </View>
@@ -344,9 +316,8 @@ const NewInvoiceScreen = (props) => {
 
 }
 
-NewInvoiceScreen.navigationOptions =
-    {
-        header: null,
-    };
+NewInvoiceScreen.navigationOptions = {
+    header: null,
+};
 
 export default NewInvoiceScreen;

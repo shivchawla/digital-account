@@ -13,6 +13,7 @@ const LoanMiniDetailScreen = (props) => {
 
     useEffect(() => {
         const id = props.navigation.getParam('id', 'NO-ID')
+
         dispatch(actionCreator.getLoanData(id))
     }, [loanData])
     const dispatch = useDispatch()
