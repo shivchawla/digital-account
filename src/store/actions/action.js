@@ -8,7 +8,7 @@ import s3 from '../../do/DigitalOcean'
 import config from '../../do/config'
 
 import { requestToken, requestPersonalToken, urlToBlob, registerApi, companyInfoAPI, contactPersonAPI, submitDocApi, declarationApi } from './apiRegistration'
-import { retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, agingListApi, reportListApi, businessDirectoryListApi, invoiceApi, expenseApi, supportApi, vendorDataApi, customerDataApi, itemDataApi, submitLoanApplicationApi, addBankApi, bankListApi, deleteAllBankApi, notificationListApi, loanApplicationDataApi } from './apiDashboard'
+import { retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, agingListApi, reportListApi, businessDirectoryListApi, invoiceApi, newExpenseApi, supportApi, vendorDataApi, customerDataApi, itemDataApi, submitLoanApplicationApi, addBankApi, bankListApi, deleteAllBankApi, notificationListApi, loanApplicationDataApi, submitInvoiceApi, submitSupportApi } from './apiDashboard'
 //import {pusherListen} from './pusher'
 import moment from 'moment'
 
@@ -94,12 +94,30 @@ export const submitLoanApplication = () => {
     }
 }
 
-export const passInvoice = (values) => {
+export const submitNewSupport = () => {
     return (dispatch, getState) => {
-        console.log('Dekat retrieve invoice info action')
-        dispatch(invoiceApi(values))
+        dispatch(submitSupportApi())
     }
 }
+
+export const submitNewInvoice = () => {
+    return (dispatch, getState) => {
+        dispatch(submitInvoiceApi())
+    }
+}
+
+export const submitNewExpense = () => {
+    return (dispatch, getState) => {
+        dispatch(newExpenseApi())
+    }
+}
+
+// export const passInvoice = (values) => {
+//     return (dispatch, getState) => {
+//         console.log('Dekat retrieve invoice info action')
+//         dispatch(invoiceApi(values))
+//     }
+// }
 
 export const setMarkers = (index) => {
     return (dispatch, getState) => {
@@ -154,12 +172,12 @@ export const setMarkerBankList = (index) => {
     }
 }
 
-export const passExpense = (values) => {
-    return (dispatch, getState) => {
-        console.log('Dekat retrieve expense info action')
-        dispatch(expenseApi(values))
-    }
-}
+// export const passExpense = (values) => {
+//     return (dispatch, getState) => {
+//         console.log('Dekat retrieve expense info action')
+//         dispatch(expenseApi(values))
+//     }
+// }
 
 export const passSupport = (values) => {
     return (dispatch, getState) => {

@@ -57,7 +57,6 @@ const SignupPersonalScreen = (props) => {
     }
 
     useEffect(() => {
-
         console.log(`proceed ialah ${proceed}`)
         proceed && props.navigation.navigate('SignUpPersonalSuccess');
     }, [proceed]);
@@ -78,12 +77,16 @@ const SignupPersonalScreen = (props) => {
                 {FormikProps => {
 
                     const { name, email, password, password_confirmation } = FormikProps.values
+
                     const nameError = FormikProps.errors.name
                     const nameTouched = FormikProps.touched.name
+
                     const emailError = FormikProps.errors.email
                     const emailTouched = FormikProps.touched.email
+
                     const passwordError = FormikProps.errors.password
                     const passwordTouched = FormikProps.touched.password
+                    
                     const password_confirmationError = FormikProps.errors.password_confirmation
                     const password_confirmationTouched = FormikProps.touched.password_confirmation
 

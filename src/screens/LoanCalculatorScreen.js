@@ -1,15 +1,5 @@
 import React, { useState } from 'react';
-import {
-    View,
-    TouchableOpacity,
-    Text,
-    Image,
-    TextInput,
-    ScrollView,
-    ActivityIndicator
-} from 'react-native';
-// import * as actionCreator from '../store/actions/action'
-// import { useDispatch } from 'react-redux'
+import { View, TouchableOpacity, Text, Image, TextInput, ScrollView, ActivityIndicator } from 'react-native';
 import Layout from '../constants/Layout'
 import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles/styles'
@@ -36,9 +26,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const LoanCalculatorScreen = (props) => {
-
     const [monthly, setMonthly] = useState(null)
-
     const calc = (values) => {
         const { loanAmount, interestRate, loanTerm } = values
         const monthly = (loanAmount * (1 + interestRate / 100) / loanTerm).toFixed(2)
@@ -48,13 +36,9 @@ const LoanCalculatorScreen = (props) => {
     return (
 
         <Formik onSubmit={async (values, actions) => {
-
             console.log(JSON.stringify(values))
-            // calc(values)
-            // FormikProps.setFieldValue('monthly', calc(values))
             setMonthly(calc(values).toString())
             actions.setSubmitting(false);
-
         }}
 
             validationSchema={validationSchema}>
@@ -82,7 +66,7 @@ const LoanCalculatorScreen = (props) => {
                                 </TouchableOpacity>
                             </View>
                             <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                                <Text style={styles.title}>Loan Calculator</Text>
+                                <Text style={styles.title}>LOAN CALCULATOR</Text>
                             </View>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
                                 <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
@@ -107,7 +91,6 @@ const LoanCalculatorScreen = (props) => {
                                         {loanTermTouched && loanTermError && <Text style={styles.error}>{loanTermError}</Text>}
                                     </View>
                                     <View style={{ flexDirection: 'row', margin: 5 }}>
-
                                         <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ padding: 5, paddingLeft: 8, paddingRight: 8, backgroundColor: FormikProps.isValid ? '#09A4BF' : 'rgba(9,164,191,0.5)', borderRadius: 15 }}>
                                             <Text style={[styles.text, { color: '#fff' }]}>Calculate</Text>
                                         </TouchableOpacity>
@@ -131,9 +114,8 @@ const LoanCalculatorScreen = (props) => {
     );
 }
 
-LoanCalculatorScreen.navigationOptions =
-    {
-        header: null,
-    };
+LoanCalculatorScreen.navigationOptions = {
+    header: null,
+};
 
 export default LoanCalculatorScreen

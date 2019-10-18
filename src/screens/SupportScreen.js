@@ -1,17 +1,7 @@
 import React from 'react';
-import {
-    View,
-    TouchableOpacity,
-    Text,
-    Image,
-    ScrollView,
-    KeyboardAvoidingView,
-    TextInput,
-    Picker,
-    ActivityIndicator
-} from 'react-native';
+import { View, TouchableOpacity, Text, Image, ScrollView, KeyboardAvoidingView, TextInput, Picker, ActivityIndicator } from 'react-native';
 import * as actionCreator from '../store/actions/action'
-import { useDispatch } from 'react-redux'
+import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
 import { Formik } from 'formik';
@@ -40,18 +30,17 @@ const validationSchema = Yup.object().shape({
 const SupportScreen = (props) => {
 
     const dispatch = useDispatch()
-    const setSupport = (val) => dispatch({ type: 'SET_SUPPORT', payload: { ...val } });
+    const setSupportData = (val) => dispatch({ type: 'SET_SUBMIT_SUPPORT', payload: { ...val } });
+    const supportData = useSelector(state => state.supportReducer, shallowEqual)
 
     return (
 
         <Formik onSubmit={async values => {
             props.navigation.navigate("SupportSuccess")
-            dispatch(actionCreator.passSupport(values))
+            dispatch(actionCreator.submitNewSupport())
             console.log(JSON.stringify(values))
         }}
-
             validationSchema={validationSchema}
-
         >
             {FormikProps => {
 
@@ -126,9 +115,8 @@ const SupportScreen = (props) => {
     );
 }
 
-SupportScreen.navigationOptions =
-    {
-        header: null,
-    };
+SupportScreen.navigationOptions = {
+    header: null,
+};
 
 export default SupportScreen;
