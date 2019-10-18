@@ -11,8 +11,9 @@ import {
     ScrollView,
     DatePickerAndroid,
     Picker,
-
-    Modal, Platform
+    DatePickerIOS,
+    Modal,
+    Platform
 
 } from 'react-native';
 import * as actionCreator from '../store/actions/action'
@@ -22,6 +23,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import styles from '../styles/styles'
+import moment from 'moment';
+import Constants from 'expo-constants';
 
 const validationSchema = Yup.object().shape({
 
@@ -85,15 +88,11 @@ const validationSchema = Yup.object().shape({
 
 const NewInvoiceScreen = (props) => {
     const [iosPickerVisible, setIosPickerVisible] = useState(false)
-    const [modalContent, setModalContent] = useState(false)
+    const [modalContent, setModalContent] = useState('')
     const ios = Platform.OS === "ios" ? true : false
     const dispatch = useDispatch()
-
-    const handleIosPicker = (content) => {
-        setModalContent(content)
-        setIosPickerVisible(!iosPickerVisible)
-    }
     //const setInvoiceData = (val) => dispatch({ type: 'SET_INVOICE_DATA', payload: { ...val } });
+    const [tarikh, setTarikh] = useState(new Date())
 
     return (
 
@@ -104,11 +103,22 @@ const NewInvoiceScreen = (props) => {
             console.log(JSON.stringify(values))
         }}
 
+
             validationSchema={validationSchema}
         >
             {FormikProps => {
-                const datePicker = async () => {
 
+                const handleIosPicker = (content) => {
+                    setModalContent(content)
+                    setIosPickerVisible(!iosPickerVisible)
+                }
+
+                const handleDateChange = async (newDate, whichDate) => {
+                    await setTarikh(newDate)
+                    FormikProps.setFieldValue((whichDate == "datepicker") ? 'issueDate' : 'dueDate', tarikh.toString())
+                }
+
+                const datePicker = async () => {
                     if (ios) {
                         handleIosPicker('datepicker')
                     } else {
@@ -147,8 +157,6 @@ const NewInvoiceScreen = (props) => {
                             console.warn('Cannot open date picker', message);
                         }
                     }
-
-
                 }
 
                 const { type, customer, issueDate, dueDate, invoiceNumber, amount, category, customerName, customerEmail, customerPhone, customerAddress } = FormikProps.values
@@ -191,23 +199,35 @@ const NewInvoiceScreen = (props) => {
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }}>
                         <Modal animationType={'slide'}
                             visible={iosPickerVisible}
-                            presentationStyle={'pageSheet'}
-                            onRequestClose={() => console.log('modal closed')}
+
+                            onRequestClose={() => FormikProps.setFieldValue('dueDate', tarikh.toString())}
                         >
-                            <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', paddingTop: 30 }}>
-                                {/* <Picker
-                                    style={{ flex: 1, height: 35 }}
-                                    selectedValue={bankLabel}
-                                    onValueChange={(itemValue, itemIndex) => {
-                                        FormikProps.setFieldValue('bankLabel', itemValue);
-                                        setSelectedBank(itemValue)
-                                    }
-                                    }>
-                                    <Picker.Item label={'Please Select'} value={undefined} />
-                                    {bankList && bankList.map((b, i) => <Picker.Item key={i} label={b.bankLabel} value={b.bankLabel} />)}
-                                </Picker> */}
-                                <TouchableOpacity onPress={() => setIosPickerVisible(!iosPickerVisible)}><Text>Close Modal</Text></TouchableOpacity>
+                            <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
+                                <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4', marginBottom: 25 }]}>
+
+                                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
+                                        <TouchableOpacity onPress={() => setIosPickerVisible(!iosPickerVisible)} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
+                                            <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 20 }} />
+                                        </TouchableOpacity>
+                                    </View>
+                                    <View style={{ flex: 4, justifyContent: 'center', alignItems: 'center' }}>
+                                        <Text style={[styles.title, { color: '#055E7C' }]}>Select</Text>
+                                    </View>
+
+                                </View>
+                                <View style={{ flex: 9, justifyContent: 'flex-start' }}>
+
+                                    {(modalContent === "type") ? <Picker selectedValue={type} style={{ flex: 1, height: 35 }} onValueChange={(itemValue, itemIndex) => FormikProps.setFieldValue('type', itemValue)}>
+                                        <Picker.Item label="Merchant" value="Merchant" />
+                                        <Picker.Item label="Customer" value="Customer" />
+                                    </Picker> : <DatePickerIOS
+                                            date={tarikh}
+                                            onDateChange={(newDate) => handleDateChange(newDate, modalContent)}
+                                        />}
+
+                                </View>
                             </View>
+
                         </Modal>
                         <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4', marginBottom: 25 }]}>
 
@@ -229,7 +249,7 @@ const NewInvoiceScreen = (props) => {
                                     {ios ? <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
                                         <Text style={[styles.titleBox]}>Type</Text>
                                         <TouchableOpacity onPress={() => handleIosPicker('type')} style={{ marginTop: 5 }}>
-                                            <Text style={[styles.small, { color: '#0A6496' }]}>Select Bank</Text>
+                                            <Text style={[styles.small, { color: '#0A6496' }]}>{type ? type : 'Select Type'}</Text>
                                         </TouchableOpacity>
                                     </View> : <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
                                             <Text style={[styles.titleBox]}>Type</Text>
