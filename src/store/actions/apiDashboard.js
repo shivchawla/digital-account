@@ -21,6 +21,34 @@ export const notificationListApi = () => {
   }
 }
 
+export const loanApplicationDataApi = (id) => {
+  return async (dispatch, getState) => {
+
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    fetch(`${apiUrl}api/loan/details?id=${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const loanData = responseJson.data
+        console.log('Success loan data' + JSON.stringify(responseJson))
+        dispatch({ type: 'SET_LOAN_DATA', payload: { loanData } })
+
+      })
+      .catch((error) => {
+        console.log('Error initiating loan data info : ' + error);
+      });
+
+  }
+}
+
 export const loanListApi = () => {
   return async (dispatch, getState) => {
 
@@ -111,8 +139,8 @@ export const reportListApi = () => {
 
     }).then((response) => response.json())
       .then(async (responseJson) => {
-        const {data} = responseJson.data
-        const reportList=data
+        const { data } = responseJson.data
+        const reportList = data
         console.log('Success report list' + JSON.stringify(responseJson))
         dispatch({ type: 'SET_REPORT_LIST', payload: { reportList } })
 
@@ -477,10 +505,6 @@ export const notificationApi = () => {
   }
 }
 
-
-
-
-
 /////////////////////////////
 
 export const urlToBlob = (url) => {
@@ -535,3 +559,118 @@ export const pushNotification = (expoToken) => {
   }
 }
 
+export const submitLoanApplicationApi = () => {
+  return async (dispatch, getState) => {
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+    const values = getState().loanApplicationReducer
+    const access_credential = 'api'
+    console.log(`New loan api : ${JSON.stringify(values)}`)
+
+    fetch(`${apiUrl}/api/loan/submit`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      },
+      body: JSON.stringify({ ...values, access_credential }),
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const { status } = await responseJson
+        await dispatch({ type: 'SET_LOAN_APPLICATION', payload: { status, proceedMain: true } })
+        await console.log(`loan api  ${JSON.stringify(responseJson)}`)
+      })
+      .catch((error) => {
+        console.error('Error : ' + error);
+      });
+
+  }
+}
+
+export const submitInvoiceApi = () => {
+  return async (dispatch, getState) => {
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+    const values = getState().invoiceReducer
+    const access_credential = 'api'
+    console.log(`New invoice api : ${JSON.stringify(values)}`)
+
+    fetch(`${apiUrl}/api/invoice/submit`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      },
+      body: JSON.stringify({ ...values, access_credential }),
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const { status } = await responseJson
+        await dispatch({ type: 'SET_INVOICE_APPLICATION', payload: { status, proceedMain: true } })
+        await console.log(`invoice api  ${JSON.stringify(responseJson)}`)
+      })
+      .catch((error) => {
+        console.error('Error : ' + error);
+      });
+
+  }
+}
+
+export const submitSupportApi = () => {
+  return async (dispatch, getState) => {
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+    const values = getState().supportReducer
+    const access_credential = 'api'
+    console.log(`New support api : ${JSON.stringify(values)}`)
+
+    fetch(`${apiUrl}/api/ticket/submit`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      },
+      body: JSON.stringify({ ...values, access_credential }),
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const { status } = await responseJson
+        await dispatch({ type: 'SET_SUBMIT_SUPPORT', payload: { status, proceedMain: true } })
+        await console.log(`support api  ${JSON.stringify(responseJson)}`)
+      })
+      .catch((error) => {
+        console.error('Error : ' + error);
+      });
+
+  }
+}
+
+export const newExpenseApi = () => {
+  return async (dispatch, getState) => {
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+    const values = getState().expenseReducer
+    const access_credential = 'api'
+    console.log(`New expense api : ${JSON.stringify(values)}`)
+
+    fetch(`${apiUrl}/api/expenses/transfer/submit`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      },
+      body: JSON.stringify({ ...values, access_credential }),
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const { status } = await responseJson
+        await dispatch({ type: 'SET_NEW_EXPENSE', payload: { status, proceedMain: true } })
+        await console.log(`expense api  ${JSON.stringify(responseJson)}`)
+      })
+      .catch((error) => {
+        console.error('Error : ' + error);
+      });
+
+  }
+}

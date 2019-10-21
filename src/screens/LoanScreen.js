@@ -1,33 +1,23 @@
 import React, { useEffect } from 'react';
-
 import {
-
     View,
     TouchableOpacity,
     Text,
     Image,
     FlatList
-
 } from 'react-native';
-
 import * as actionCreator from '../store/actions/action'
-
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
-
 import { Ionicons } from '@expo/vector-icons';
-
 import moment from 'moment'
-
 import styles from '../styles/styles'
 
 const LoanScreen = (props) => {
 
     useEffect(() => {
         dispatch(actionCreator.getLoanList())
-    },   [loanList])
-
+    }, [loanList])
     const dispatch = useDispatch()
-
     const { loanList } = useSelector(state => state.loanReducer, shallowEqual)
 
     return (
@@ -40,7 +30,7 @@ const LoanScreen = (props) => {
                     </TouchableOpacity>
                 </View>
                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={[styles.title, { color: '#055E7C' }]}>Loan Application</Text>
+                    <Text style={[styles.title, { color: '#055E7C' }]}>LOAN APPLICATION</Text>
                 </View>
                 <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
                     <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
@@ -63,9 +53,9 @@ const LoanScreen = (props) => {
                         </TouchableOpacity>
                     </View>
                     {loanList && <FlatList data={loanList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
-                        <TouchableOpacity onPress={() => props.navigation.navigate('LoanMiniDetail')} style={styles.box}>
+                        <TouchableOpacity onPress={() => props.navigation.navigate('LoanMiniDetail', { id: item.id })} style={styles.box}>
                             <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                <View style={{ flex: 1,flexDirection:'row',alignSelf:'stretch',justifyContent:'space-between' }}>
+                                <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
                                     <Text style={styles.small}>{moment(item.created_at).format("MMMM Do YYYY, h:mm:ss a")}</Text>
                                     <Ionicons name="md-arrow-dropright" color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
                                 </View>

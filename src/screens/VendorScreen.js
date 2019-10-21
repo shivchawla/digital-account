@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-    View,
-    TouchableOpacity,
-    Text,
-    Image,
-    KeyboardAvoidingView,
-    TextInput,
-    ActivityIndicator
-} from 'react-native';
+import { View, TouchableOpacity, Text, Image, KeyboardAvoidingView, TextInput, ActivityIndicator } from 'react-native';
 import * as actionCreator from '../store/actions/action'
 import { useDispatch } from 'react-redux'
 import { LinearGradient } from 'expo-linear-gradient'
@@ -44,25 +36,19 @@ const validationSchema = Yup.object().shape({
 const VendorScreen = (props) => {
 
     const dispatch = useDispatch()
-
     const setVendor = (val) => dispatch({ type: 'SET_VENDOR_DATA', payload: { ...val } });
 
     return (
 
         <Formik onSubmit={async values => {
-
             props.navigation.navigate("InvoiceSuccess")
-
             dispatch(actionCreator.passVendorData())
-
             console.log(JSON.stringify(values))
-
         }}
 
             validationSchema={validationSchema}>
 
             {FormikProps => {
-
                 const { vendorName, vendorEmail, currency, vendorAddress } = FormikProps.values
 
                 const vendorNameError = FormikProps.errors.vendorName
@@ -131,15 +117,12 @@ const VendorScreen = (props) => {
                         </View>
                     </KeyboardAvoidingView>)
             }}
-
         </Formik >
-
     );
 }
 
-VendorScreen.navigationOptions =
-    {
-        header: null,
-    };
+VendorScreen.navigationOptions = {
+    header: null,
+};
 
 export default VendorScreen

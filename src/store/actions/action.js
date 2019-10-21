@@ -8,7 +8,7 @@ import s3 from '../../do/DigitalOcean'
 import config from '../../do/config'
 
 import { requestToken, requestPersonalToken, urlToBlob, registerApi, companyInfoAPI, contactPersonAPI, submitDocApi, declarationApi } from './apiRegistration'
-import { retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, agingListApi, reportListApi, businessDirectoryListApi, invoiceApi, expenseApi, supportApi, vendorDataApi, customerDataApi, itemDataApi, submitLoanApplicationApi, addBankApi, bankListApi, deleteAllBankApi, notificationListApi } from './apiDashboard'
+import { retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, agingListApi, reportListApi, businessDirectoryListApi, invoiceApi, newExpenseApi, supportApi, vendorDataApi, customerDataApi, itemDataApi, submitLoanApplicationApi, addBankApi, bankListApi, deleteAllBankApi, notificationListApi, loanApplicationDataApi, submitInvoiceApi, submitSupportApi } from './apiDashboard'
 //import {pusherListen} from './pusher'
 import moment from 'moment'
 
@@ -94,12 +94,30 @@ export const submitLoanApplication = () => {
     }
 }
 
-export const passInvoice = (values) => {
+export const submitNewSupport = () => {
     return (dispatch, getState) => {
-        console.log('Dekat retrieve invoice info action')
-        dispatch(invoiceApi(values))
+        dispatch(submitSupportApi())
     }
 }
+
+export const submitNewInvoice = () => {
+    return (dispatch, getState) => {
+        dispatch(submitInvoiceApi())
+    }
+}
+
+export const submitNewExpense = () => {
+    return (dispatch, getState) => {
+        dispatch(newExpenseApi())
+    }
+}
+
+// export const passInvoice = (values) => {
+//     return (dispatch, getState) => {
+//         console.log('Dekat retrieve invoice info action')
+//         dispatch(invoiceApi(values))
+//     }
+// }
 
 export const setMarkers = (index) => {
     return (dispatch, getState) => {
@@ -154,12 +172,12 @@ export const setMarkerBankList = (index) => {
     }
 }
 
-export const passExpense = (values) => {
-    return (dispatch, getState) => {
-        console.log('Dekat retrieve expense info action')
-        dispatch(expenseApi(values))
-    }
-}
+// export const passExpense = (values) => {
+//     return (dispatch, getState) => {
+//         console.log('Dekat retrieve expense info action')
+//         dispatch(expenseApi(values))
+//     }
+// }
 
 export const passSupport = (values) => {
     return (dispatch, getState) => {
@@ -444,6 +462,14 @@ export const getNotificationList = () => {
     }
 }
 
+export const getLoanData = (id) => {
+
+    return (dispatch, getState) => {
+        dispatch(loanApplicationDataApi(id))
+
+    }
+}
+
 export const getLoanList = () => {
 
     return (dispatch, getState) => {
@@ -510,11 +536,15 @@ export const filterLoanList = (values) => {
     return async (dispatch, getState) => {
         console.log(`filter loan list action`)
         console.log(`filter loan list action : ${JSON.stringify(values)}`)
-        const { loanList } = getState().loanReducer
+        //await dispatch(loanListApi())
+        const { loanList } =  getState().loanReducer
         //const newLoanList=_.filter(loanList, _.matches({ 'a': 4, 'c': 6 }));
-        const newLoanList = _.filter(loanList, _.matches(values));
+        const { status, type } = values
+        const filterParam = (status && type) ? { status, type } : status ? { status } : type ? { type } : null
+        const newLoanList = _.filter(loanList, _.matches(filterParam));
         console.log(`new Loan List : ${JSON.stringify(newLoanList)}`)
         // await dispatch(deleteAllBankApi())
         // await dispatch(bankList())
+        dispatch({ type: 'SET_LOAN_LIST', payload: { loanList: newLoanList } })
     }
 }
