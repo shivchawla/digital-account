@@ -22,7 +22,7 @@ export const getToken = () => {
     }
 }
 
-export const register = (values) => {
+export const register =  (values) => {
     return async (dispatch, getState) => {
         const { name, email, password, password_confirmation } = values
         const { token_type, access_token, expo_token } = await getState().registrationReducer

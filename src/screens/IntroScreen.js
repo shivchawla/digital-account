@@ -1,5 +1,5 @@
-import React from 'react';
-
+import React,{useEffect} from 'react';
+import {  Notifications } from 'expo';
 import {
 
     Image,
@@ -10,15 +10,13 @@ import {
     SafeAreaView
 
 } from 'react-native';
+import { useDispatch } from 'react-redux'
 
 import { LinearGradient } from 'expo-linear-gradient'
-
 import ImageSlider from 'react-native-image-slider';
-
 import styles from '../styles/styles'
 
 const IntroScreen = (props) => {
-
     const images =
         [
 
@@ -27,6 +25,24 @@ const IntroScreen = (props) => {
             { id: 1, title: 'Welcome to Digital Account! Sign up now to join us or login to your account', screenshotUri: require('../assets/images/screenshots/3.png') },
 
         ]
+
+        const dispatch = useDispatch()
+
+        getExpoToken = async () => {
+           
+            let token = await Notifications.getExpoPushTokenAsync();
+            console.log(`expo token ialah ${token}`)
+            dispatch({ type: 'SET_REGISTER', payload: { expo_token: token } })
+            console.log(JSON.stringify({
+              token: { value: token, }, user: { username: 'Brent', },
+            }))
+          }
+
+          useEffect(() => {
+            //checkUpdate()
+            getExpoToken();
+           
+          }, [])
 
     return (
 
