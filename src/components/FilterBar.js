@@ -3,7 +3,8 @@ import {
     TouchableOpacity,
     View,
     Text,
-    TextInput
+    TextInput,
+    Picker
 } from 'react-native';
 import Layout from '../constants/Layout'
 import styles from '../styles/styles'
@@ -21,10 +22,12 @@ const FilterBar = (props) => {
     const [type, setType] = useState(null)
     const [status, setStatus] = useState(null)
 
-    const filterLoanList = () => {
+    const filterLoanList =  async () => {
         console.log(`type : ${type} and status : ${status}`)
         const values = { type, status }
-        dispatch(actionCreator.filterLoanList(values))
+        //await  dispatch(actionCreator.getLoanList())
+        await dispatch(actionCreator.filterLoanList(values))
+        
     }
 
     const dispatch = useDispatch()
@@ -35,12 +38,30 @@ const FilterBar = (props) => {
                 <View style={{ flex: 9, margin: 10 }}>
                     <View style={{ marginBottom: 10 }}>
                         <Text style={[styles.h3, { marginBottom: 5 }]}>Type</Text>
-                        <TextInput onChangeText={(val) => setType(val)} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} keyboardType={'decimal-pad'} />
+                        <Picker
+                                        style={{ height: 35 }}
+                                        selectedValue={type}
+                                        onValueChange={(val) => setType(val)} >
+                                        <Picker.Item label={'Please Select'} value={undefined} />
+                                        <Picker.Item label={'Business'} value={'Business'} />
+                                       
+                                        
+                                    </Picker>
                     </View>
                     <View style={{ marginBottom: 10 }}>
                         <Text style={[styles.h3, { marginBottom: 5 }]}>Status</Text>
-                        <TextInput onChangeText={(val) => setStatus(val)} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                        <Picker
+                                        style={{ height: 35 }}
+                                        selectedValue={status}
+                                        onValueChange={(val) => setStatus(val)} >
+                                        <Picker.Item label={'Please Select'} value={undefined} />
+                                        <Picker.Item label={'Approved'} value={'Approved'} />
+                                        <Picker.Item label={'Disbursed'} value={'Disbursed'} />
+                                        
+                                    </Picker>
                     </View>
+                   
+                    
 
                     <View style={{ marginBottom: 10 }}>
                         <Text style={[styles.h3, { marginBottom: 5 }]}>Date</Text>

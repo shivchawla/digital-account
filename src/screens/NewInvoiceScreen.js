@@ -104,7 +104,7 @@ const NewInvoiceScreen = (props) => {
                 const datePicker = async () => {
                     if (ios) {
                         handleIosPicker('datepicker')
-                    } else {
+                    } else { 
                         try {
                             const { action, year, month, day } = await DatePickerAndroid.open({
                                 // Use `new Date()` for current date.
