@@ -24,7 +24,6 @@
         "INTERNET"
       ]
     },
-    
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./src/assets/images/icon.png",
@@ -43,6 +42,9 @@
       "bundleIdentifier": "com.fcgb.da",
       "googleServicesFile": "./google-services.json",
       "supportsTablet": true
-    }
-  }
+    },
+    "entryPoint": "node_modules/expo/AppEntry.js"
+  },
+  "displayName": "Digital Account",
+  "name": "Niyo"
 }
