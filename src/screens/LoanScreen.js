@@ -18,7 +18,7 @@ const LoanScreen = (props) => {
         dispatch(actionCreator.getLoanList())
     }, [loanList])
     const dispatch = useDispatch()
-    const { loanList } = useSelector(state => state.loanReducer, shallowEqual)
+    const { loanList,filteredLoanList,filterEnabled } = useSelector(state => state.loanReducer, shallowEqual)
 
     return (
 
@@ -52,7 +52,7 @@ const LoanScreen = (props) => {
                             <Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 15, paddingRight: 5 }} />
                         </TouchableOpacity>
                     </View>
-                    {loanList && <FlatList data={loanList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
+                    {loanList && <FlatList data={filterEnabled?filteredLoanList:loanList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
                         <TouchableOpacity onPress={() => props.navigation.navigate('LoanMiniDetail', { id: item.id })} style={styles.box}>
                             <View style={{ flexDirection: 'row', marginTop: 5 }}>
                                 <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
@@ -82,7 +82,6 @@ const LoanScreen = (props) => {
         </View >
 
     );
-
 }
 
 LoanScreen.navigationOptions = {

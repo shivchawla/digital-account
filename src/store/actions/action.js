@@ -545,6 +545,6 @@ export const filterLoanList = (values) => {
         console.log(`new Loan List : ${JSON.stringify(newLoanList)}`)
         // await dispatch(deleteAllBankApi())
         // await dispatch(bankList())
-        dispatch({ type: 'SET_LOAN_LIST', payload: { loanList: newLoanList } })
+        dispatch({ type: 'SET_LOAN_LIST', payload: { filteredLoanList: newLoanList,filterEnabled:true } })
     }
 }
