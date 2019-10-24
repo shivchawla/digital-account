@@ -1,52 +1,42 @@
-import React, { useState, useEffect, useRef } from 'react';
-import {
-    View,
-    TouchableOpacity,
-    TouchableWithoutFeedback,
-    Text,
-    Image,
-    ActivityIndicator,
-    TextInput,
-    KeyboardAvoidingView,
-    ScrollView,
-    Picker,
-    Modal,
-    Platform
-} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, TouchableOpacity, TouchableWithoutFeedback, Text, Image, ActivityIndicator, TextInput, KeyboardAvoidingView, ScrollView, Picker, Modal, Platform } from 'react-native';
 import Constants from 'expo-constants';
 import * as actionCreator from '../store/actions/action'
-
-
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles/styles'
-
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
+
     bankLabel: Yup
         .string()
         .required()
         .label('Bank Account No'),
+
     bankAccountName: Yup
         .string()
         .required()
         .label('Bank Account Name'),
+
     bankAddress: Yup
         .string()
         .required()
         .label('Bank Address'),
+
     bankCountry: Yup
         .string()
         .required()
         .label('Bank Country'),
+
     amount: Yup
         .number()
         .positive()
         .required()
         .label('Amount'),
+
     remark: Yup
         .string()
         .required()
@@ -61,19 +51,14 @@ const WithdrawScreen = (props) => {
 
     const ios = Platform.OS === "ios" ? true : false
 
-    // const dispatch = useDispatch()
-
     const withDraw = (values) => {
-        // dispatch(actionCreator.withDraw(values))
         props.navigation.navigate('WithdrawSuccess')
     }
-
 
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(actionCreator.bankList())
-
     }, [bankList])
 
     const { bankList } = useSelector(state => state.bankListReducer, shallowEqual)
@@ -83,27 +68,26 @@ const WithdrawScreen = (props) => {
     const selectedBankDetail = selectedBank ? bankList.find(b => b.bankLabel === selectedBank) : null
 
     return (
-        <Formik
-            onSubmit={values => withDraw(values)}
+        <Formik onSubmit={values => withDraw(values)}
             validationSchema={validationSchema}
         >
 
             {FormikProps => {
+
                 const { bankLabel, amount, remark } = FormikProps.values
+
                 const bankLabelError = FormikProps.errors.bankLabel
                 const bankLabelTouched = FormikProps.touched.bankLabel
+
                 const amountError = FormikProps.errors.amount
                 const amountTouched = FormikProps.touched.amount
+
                 const remarkError = FormikProps.errors.remark
                 const remarkTouched = FormikProps.touched.remark
 
                 return (
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }}>
-                        <Modal animationType={'slide'}
-                            visible={iosPickerVisible}
-                            presentationStyle={'pageSheet'}
-                            onRequestClose={() => console.log('modal closed')}
-                        >
+                        <Modal animationType={'slide'} visible={iosPickerVisible} presentationStyle={'pageSheet'} onRequestClose={() => console.log('modal closed')}                      >
                             <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
                                 <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4', marginBottom: 25 }]}>
                                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>

@@ -1,21 +1,13 @@
 import React from 'react';
-import {
-    View,
-    TouchableOpacity,
-    Text,
-    Image,
-    FlatList,
-    ScrollView
-} from 'react-native';
+import { View, TouchableOpacity, Text, Image, FlatList, ScrollView } from 'react-native';
 import styles from '../styles/styles'
 import { Ionicons } from '@expo/vector-icons';
 
-const transactionHistoryArray = [{ status: 'out', description: 'Withdrawal Transfer', amount: 'RM 50.00' },
-
-{ status: 'out', description: 'Account Transfer', amount: 'RM 46.00' },
-{ status: 'in', description: 'Disbursement Transfer', amount: 'RM 52.00' },
-{ status: 'out', description: 'Account Transfer', amount: 'RM 100.00' },
-{ status: 'out', description: 'Withdrawal Transfer', amount: 'RM 60.00' }]
+const transactionHistoryArray = [{ status: 'out', description: 'Withdrawal Transfer', amount: '- RM 50.00' },
+{ status: 'out', description: 'Account Transfer', amount: '- RM 46.00' },
+{ status: 'in', description: 'Disbursement Transfer', amount: '+ RM 52.00' },
+{ status: 'out', description: 'Account Transfer', amount: '- RM 100.00' },
+{ status: 'out', description: 'Withdrawal Transfer', amount: '- RM 60.00' }]
 
 const TransactionHistoryScreen = (props) => {
     return (
@@ -41,11 +33,11 @@ const TransactionHistoryScreen = (props) => {
                         </View>
                         <FlatList data={transactionHistoryArray} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
                             <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'center' }}>
-                                <View style={{ flex: 3, flexDirection: 'row', alignItems: 'center', marginTop: 10 }}>
+                                <View style={{ flex: 4, flexDirection: 'row', alignItems: 'center', marginTop: 10 }}>
                                     <Ionicons name={item.status === 'in' ? "md-add-circle-outline" : "md-remove-circle-outline"} color={item.status === 'in' ? "#7ED321" : "#A20F0F"} style={{ fontSize: 15, paddingRight: 20 }} />
                                     <Text style={[styles.text]}>{item.description}</Text>
                                 </View>
-                                <View style={{ flex: 1 }}>
+                                <View style={{ flex: 2 }}>
                                     <Text style={[styles.text, { marginTop: 10, marginRight: 5, color: item.status === 'in' ? '#228B22' : '#8B0000' }]}>{item.amount}</Text>
                                 </View>
                             </View>

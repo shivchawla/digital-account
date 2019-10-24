@@ -1,29 +1,11 @@
 import React from 'react';
-
-import {
-
-    View,
-    TouchableOpacity,
-    Text,
-    Image,
-    KeyboardAvoidingView,
-    TextInput,
-    ActivityIndicator
-
-} from 'react-native';
-
+import {   View,   TouchableOpacity,   Text,   Image,    KeyboardAvoidingView,    TextInput,   ActivityIndicator} from 'react-native';
 import * as actionCreator from '../store/actions/action'
-
 import { useDispatch } from 'react-redux'
-
 import { LinearGradient } from 'expo-linear-gradient'
-
 import { Ionicons } from '@expo/vector-icons';
-
 import styles from '../styles/styles'
-
 import { Formik } from 'formik';
-
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
@@ -56,19 +38,14 @@ const validationSchema = Yup.object().shape({
 });
 
 const ItemScreen = (props) => {
-
     const dispatch = useDispatch()
-
     const setItem = (val) => dispatch({ type: 'SET_ITEM_DATA', payload: { ...val } });
 
     return (
 
         <Formik onSubmit={async values => {
-
             props.navigation.navigate("InvoiceSuccess")
-
             dispatch(actionCreator.passItemData())
-
             console.log(JSON.stringify(values))
 
         }}
