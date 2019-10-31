@@ -4,14 +4,24 @@ import DashboardScreen from '../screens/DashboardScreen';
 import TransactionHistoryScreen from '../screens/TransactionHistoryScreen';
 import NotificationScreen from '../screens/NotificationScreen';
 import SettingsScreen from '../screens/SettingsScreen';
-
+import AccountScreen from '../screens/AccountScreen';
 import SideBar from '../components/SideBar'
+import SupportScreen from '../screens/SupportScreen';
+import BusinessHubScreen from '../screens/BusinessHubScreen';
+import TransferScreen from '../screens/TransferScreen';
+import DataSettingScreen from '../screens/DataSettingScreen';
 
 const DrawerContent = createDrawerNavigator(
     {
         Dashboard: DashboardScreen,
+        Account: AccountScreen,
+        // Loan: LoanScreen,
         TransactionHistory: TransactionHistoryScreen,
         Notification: NotificationScreen,
+        DataSetting: DataSettingScreen,
+        Transfer: TransferScreen,
+        Support: SupportScreen,
+        BusinessHub: BusinessHubScreen,
         Settings: SettingsScreen,
     },
     {

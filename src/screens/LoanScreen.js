@@ -1,11 +1,5 @@
 import React, { useEffect } from 'react';
-import {
-    View,
-    TouchableOpacity,
-    Text,
-    Image,
-    FlatList
-} from 'react-native';
+import { View, TouchableOpacity, Text, Image, FlatList } from 'react-native';
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons';
@@ -23,16 +17,16 @@ const LoanScreen = (props) => {
     return (
 
         <View style={{ flex: 1, }}>
-            <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
-                    <TouchableOpacity onPress={() => props.navigation.navigate('Dashboard')} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                        <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 20 }} />
+            <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
+                    <TouchableOpacity onPress={props.navigation.openDrawer} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
+                        <Ionicons name="md-more" color={'#3EC2D9'} style={{ fontSize: 30 }} />
                     </TouchableOpacity>
                 </View>
-                <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={[styles.title, { color: '#055E7C' }]}>LOAN APPLICATION</Text>
+                <View style={{ flex: 5, justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={[styles.title]}>LOAN APPLICATION</Text>
                 </View>
-                <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
+                <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
                     <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
                 </TouchableOpacity>
             </View>

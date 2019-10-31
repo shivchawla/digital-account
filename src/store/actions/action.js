@@ -530,8 +530,6 @@ export const deleteAllBank = () => {
     }
 }
 
-
-
 export const filterLoanList = (values) => {
     return async (dispatch, getState) => {
         console.log(`filter loan list action`)
@@ -546,5 +544,31 @@ export const filterLoanList = (values) => {
         // await dispatch(deleteAllBankApi())
         // await dispatch(bankList())
         dispatch({ type: 'SET_LOAN_LIST', payload: { loanList: newLoanList } })
+    }
+}
+
+export const filterInvoicesList = (values) => {
+    return async (dispatch, getState) => {
+        console.log(`filter invoice list action`)
+        console.log(`filter invoice list action : ${JSON.stringify(values)}`)
+        const { invoiceList } =  getState().invoiceReducer
+        const { status, type } = values
+        const filterParam = (status && type) ? { status, type } : status ? { status } : type ? { type } : null
+        const newInvoicesList = _.filter(invoiceList, _.matches(filterParam));
+        console.log(`new invoice List : ${JSON.stringify(newInvoicesList)}`)
+        dispatch({ type: 'SET_INVOICE_LIST', payload: { loanList: newInvoicesList } })
+    }
+}
+
+export const filterReportList = (values) => {
+    return async (dispatch, getState) => {
+        console.log(`filter report list action`)
+        console.log(`filter report list action : ${JSON.stringify(values)}`)
+        const { reportList } =  getState().reportReducer
+        const { status, type } = values
+        const filterParam = (status && type) ? { status, type } : status ? { status } : type ? { type } : null
+        const newReportList = _.filter(reportList, _.matches(filterParam));
+        console.log(`new report List : ${JSON.stringify(newReportList)}`)
+        dispatch({ type: 'SET_REPORT_LIST', payload: { reportList: newReportList } })
     }
 }

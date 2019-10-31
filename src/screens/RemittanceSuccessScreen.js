@@ -4,7 +4,7 @@ import Constants from 'expo-constants'
 import Layout from '../constants/Layout'
 import styles from '../styles/styles'
 
-const InvoiceSuccessScreen = (props) => {
+const RemittanceSuccessScreen = (props) => {
 
     return (
 
@@ -13,18 +13,18 @@ const InvoiceSuccessScreen = (props) => {
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                     <View style={{ width: Layout.window.width * 0.85, justifyContent: 'center', alignItems: 'center' }}>
                         <Image source={require('../assets/images/logo.png')} style={{ height: Layout.window.height * 0.2, width: Layout.window.width * 0.5 }} resizeMode={'contain'} />
-                        <Image source={require('../assets/images/invoicesuccess.png')} style={{ height: Layout.window.height * 0.3, width: Layout.window.width * 0.7 }} resizeMode={'contain'} />
-                        <Text style={[styles.h3, { margin: 5, fontWeight: 'bold' }]}>Invoice Created</Text>
+                        <Image source={require('../assets/images/remittancesuccess.png')} style={{ height: Layout.window.height * 0.3, width: Layout.window.width * 0.7 }} resizeMode={'contain'} />
+                        <Text style={[styles.h3, { margin: 5, fontWeight: 'bold' }]}>Remittance Paid!</Text>
                         <View style={{ alignSelf: 'stretch', flexDirection: 'column', margin: 5, alignItems: 'center' }}>
                             <Text style={[styles.text, { margin: 5, color: 'darkturquoise' }]}>Congratulation!</Text>
-                            <Text style={[styles.text, { margin: 5, marginBottom: 20 }]}>Proceed to create new invoice again or skip to the dashboard.</Text>
+                            <Text style={[styles.text, { margin: 5, marginBottom: 20 }]}>Proceed to pay remittance again or skip to the dashboard.</Text>
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                             <TouchableOpacity onPress={() => props.navigation.navigate('Dashboard')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, borderColor: 'black', borderWidth: 1 }}>
                                 <Text style={[styles.textDefault]}>Skip</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => props.navigation.navigate('Invoice')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }}>
-                                <Text style={[styles.textDefault, { color: 'white' }]}>Invoice</Text>
+                            <TouchableOpacity onPress={() => props.navigation.navigate('Remittance')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }}>
+                                <Text style={[styles.textDefault, { color: 'white' }]}>Remittance</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -35,8 +35,8 @@ const InvoiceSuccessScreen = (props) => {
     )
 }
 
-InvoiceSuccessScreen.navigationOptions = {
+RemittanceSuccessScreen.navigationOptions = {
     header: null,
 };
 
-export default InvoiceSuccessScreen
+export default RemittanceSuccessScreen

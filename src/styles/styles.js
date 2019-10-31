@@ -1,13 +1,11 @@
 import { StyleSheet } from 'react-native'
-import Layout from '../constants/Layout'
-import { Constants } from 'expo'
 
 const fontSize = 15
 
 export default StyleSheet.create({
   text: {
     fontSize,
-    fontFamily: 'Montserrat_light',
+    fontFamily: 'Montserrat_medium',
     color: '#000'
   },
 

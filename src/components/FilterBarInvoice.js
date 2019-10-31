@@ -5,7 +5,7 @@ import styles from '../styles/styles'
 import * as actionCreator from '../store/actions/action'
 import { useDispatch } from 'react-redux'
 
-const FilterBar = (props) => {
+const FilterBarInvoice = (props) => {
 
     const nav = (screen) => {
         props.close()
@@ -15,11 +15,11 @@ const FilterBar = (props) => {
     const [type, setType] = useState(null)
     const [status, setStatus] = useState(null)
 
-    const filterLoanList = async () => {
+    const filterInvoicesList = async () => {
         console.log(`type : ${type} and status : ${status}`)
         const values = { type, status }
         //await  dispatch(actionCreator.getLoanList())
-        await dispatch(actionCreator.filterLoanList(values))
+        await dispatch(actionCreator.filterInvoicesList(values))
 
     }
 
@@ -30,14 +30,14 @@ const FilterBar = (props) => {
             <View style={{ padding: 10, flex: 1, justifyContent: 'space-evenly' }}>
                 <View style={{ flex: 9, margin: 10 }}>
                     <View style={{ marginBottom: 10 }}>
-                        <Text style={[styles.h3, { marginBottom: 5 }]}>Type</Text>
+                        <Text style={[styles.h3, { marginBottom: 5 }]}>Satu</Text>
                         <Picker style={{ height: 35 }} selectedValue={type} onValueChange={(val) => setType(val)} >
                             <Picker.Item label={'Please Select'} value={undefined} />
                             <Picker.Item label={'Business'} value={'Business'} />
                         </Picker>
                     </View>
                     <View style={{ marginBottom: 10 }}>
-                        <Text style={[styles.h3, { marginBottom: 5 }]}>Status</Text>
+                        <Text style={[styles.h3, { marginBottom: 5 }]}>Dua</Text>
                         <Picker style={{ height: 35 }} selectedValue={status} onValueChange={(val) => setStatus(val)} >
                             <Picker.Item label={'Please Select'} value={undefined} />
                             <Picker.Item label={'Approved'} value={'Approved'} />
@@ -54,7 +54,7 @@ const FilterBar = (props) => {
                 <TouchableOpacity style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, borderColor: 'black', borderWidth: 1 }}>
                     <Text style={[styles.textDefault, { color: 'black' }]}>Reset</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => filterLoanList()} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }} >
+                <TouchableOpacity onPress={() => filterInvoicesList()} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }} >
                     <Text style={[styles.textDefault, { color: '#fff' }]}>Filter</Text>
                 </TouchableOpacity>
             </View>
@@ -63,4 +63,4 @@ const FilterBar = (props) => {
     );
 }
 
-export default FilterBar
+export default FilterBarInvoice

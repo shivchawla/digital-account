@@ -101,7 +101,7 @@ const ConnectedPartiesScreen = (props) => {
                             <View style={{ flex: 9, margin: 10 }}>
                                 <ScrollView style={[styles.screenMargin]}>
                                     <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'center', marginBottom: 5 }}>
-                                        <Text style={[styles.titleBox, { marginBottom: 5 }]}>Connected Parties</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 10, marginTop: 10 }]}>Connected Parties</Text>
                                     </View>
                                     <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'center', marginBottom: 20 }}>
                                         <View style={{ flexDirection: 'row', width: Layout.window.width / 2, justifyContent: 'space-between' }}>
@@ -122,36 +122,36 @@ const ConnectedPartiesScreen = (props) => {
                                             </View>
                                         </View>
                                     </View>
-                                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 }}>
+                                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10, marginTop: 10 }}>
                                         <Text style={[styles.h2]}>Detail of Connected Parties</Text>
                                     </View>
                                     <View style={[styles.formElement]}>
-                                        <Text style={[styles.titleBox, { marginBottom: 5 }]}>Capacity</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Capacity</Text>
                                         <TextInput value={capacity} onChangeText={FormikProps.handleChange('capacity')} onBlur={FormikProps.handleBlur('capacity')} style={{ borderWidth: 1, borderColor: capacityTouched && capacityError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={capacityTouched && capacityError ? '' : 'Eg: 40'} placeholderTextColor={capacityTouched && capacityError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'phone-pad'} />
                                         {capacityTouched && capacityError && <Text style={styles.error}>{capacityError}</Text>}
                                     </View>
                                     <View style={[styles.formElement]}>
-                                        <Text style={[styles.titleBox, { marginBottom: 5 }]}>Name</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Name</Text>
                                         <TextInput value={name} onChangeText={FormikProps.handleChange('name')} onBlur={FormikProps.handleBlur('name')} style={{ borderWidth: 1, borderColor: nameTouched && nameError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={nameTouched && nameError ? '' : 'Eg: Ali bin Ahmad'} placeholderTextColor={nameTouched && nameError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {nameTouched && nameError && <Text style={styles.error}>{nameError}</Text>}
                                     </View>
                                     <View style={[styles.formElement]}>
-                                        <Text style={[styles.titleBox, { marginBottom: 5 }]}>MyKad</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>MyKad</Text>
                                         <TextInput value={myKad} onChangeText={FormikProps.handleChange('myKad')} onBlur={FormikProps.handleBlur('myKad')} style={{ borderWidth: 1, borderColor: myKadTouched && myKadError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={myKadTouched && myKadError ? '' : 'Eg: 670901029871'} placeholderTextColor={myKadTouched && myKadError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'phone-pad'} />
                                         {myKadTouched && myKadError && <Text style={styles.error}>{myKadError}</Text>}
                                     </View>
                                     <View style={[styles.formElement]}>
-                                        <Text style={[styles.titleBox, { marginBottom: 5 }]}>Relationship</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Relationship</Text>
                                         <TextInput value={relationship} onChangeText={FormikProps.handleChange('relationship')} onBlur={FormikProps.handleBlur('relationship')} style={{ borderWidth: 1, borderColor: relationshipTouched && relationshipError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={relationshipTouched && relationshipError ? '' : 'Eg: Guarantor'} placeholderTextColor={relationshipTouched && relationshipError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {relationshipTouched && relationshipError && <Text style={styles.error}>{relationshipError}</Text>}
                                     </View>
                                     <View style={[styles.formElement]}>
-                                        <Text style={[styles.titleBox, { marginBottom: 5 }]}>Bank Personnel Name</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Bank Personnel Name</Text>
                                         <TextInput value={personnelName} onChangeText={FormikProps.handleChange('personnelName')} onBlur={FormikProps.handleBlur('personnelName')} style={{ borderWidth: 1, borderColor: personnelNameTouched && personnelNameError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={personnelNameTouched && personnelNameError ? '' : 'Eg: Bank ABC'} placeholderTextColor={personnelNameTouched && personnelNameError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {personnelNameTouched && personnelNameError && <Text style={styles.error}>{personnelNameError}</Text>}
                                     </View>
                                     <View style={[styles.formElement]}>
-                                        <Text style={[styles.titleBox, { marginBottom: 5 }]}>Email</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Email</Text>
                                         <TextInput value={email} onChangeText={FormikProps.handleChange('email')} onBlur={FormikProps.handleBlur('email')} style={{ borderWidth: 1, borderColor: emailTouched && emailError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={emailTouched && emailError ? '' : 'abc@email.com'} placeholderTextColor={emailTouched && emailError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {emailTouched && emailError && <Text style={styles.error}>{emailError}</Text>}
                                     </View>

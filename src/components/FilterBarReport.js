@@ -15,11 +15,10 @@ const FilterBar = (props) => {
     const [type, setType] = useState(null)
     const [status, setStatus] = useState(null)
 
-    const filterLoanList = async () => {
+    const filterReportList = async () => {
         console.log(`type : ${type} and status : ${status}`)
         const values = { type, status }
-        //await  dispatch(actionCreator.getLoanList())
-        await dispatch(actionCreator.filterLoanList(values))
+        await dispatch(actionCreator.filterReportList(values))
 
     }
 
@@ -54,7 +53,7 @@ const FilterBar = (props) => {
                 <TouchableOpacity style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, borderColor: 'black', borderWidth: 1 }}>
                     <Text style={[styles.textDefault, { color: 'black' }]}>Reset</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => filterLoanList()} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }} >
+                <TouchableOpacity onPress={() => filterReportList()} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }} >
                     <Text style={[styles.textDefault, { color: '#fff' }]}>Filter</Text>
                 </TouchableOpacity>
             </View>

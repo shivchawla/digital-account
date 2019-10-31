@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-    View,
-    TouchableOpacity,
-    Text,
-    Image,
-    KeyboardAvoidingView,
-    TextInput
-} from 'react-native';
+import { View, TouchableOpacity, Text, Image, KeyboardAvoidingView, TextInput } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
 import { Formik } from 'formik';
@@ -35,11 +28,8 @@ const validationSchema = Yup.object().shape({
 const EditProfileScreen = (props) => {
 
     return (
-
         <Formik onSubmit={async values => {
-
         }}
-
             validationSchema={validationSchema}
         >
             {FormikProps => {
@@ -64,7 +54,7 @@ const EditProfileScreen = (props) => {
                         </View>
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
                             <View style={[styles.screenMargin, { flex: 9 }]}>
-                                <View style={{ flexDirection: 'row', justifyContent: 'flex-start', marginBottom: 10 }}>
+                                <View style={{ flexDirection: 'row', justifyContent: 'flex-start', marginBottom: 10, marginTop: 10 }}>
                                     <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 90, height: 90, }} />
                                 </View>
                                 <View style={[styles.formElement]}>
@@ -104,16 +94,11 @@ const EditProfileScreen = (props) => {
                     </KeyboardAvoidingView>)
             }}
         </Formik >
-
     );
 }
 
-EditProfileScreen.navigationOptions =
-
-    {
-
-        header: null,
-
-    };
+EditProfileScreen.navigationOptions = {
+    header: null,
+};
 
 export default EditProfileScreen;

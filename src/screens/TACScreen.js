@@ -55,8 +55,21 @@ const ChangeNumberScreen = (props) => {
                         <View style={{ flex: 9 }}>
                             <View style={[styles.screenMargin, { flex: 3, marginTop: 25 }]}>
                                 <Text style={[styles.titleBox, { marginBottom: 25, justifyContent: 'center', flexDirection: 'row' }]}>We have sent TAC to your new number.</Text>
-                                <Text style={[styles.titleBox, { marginBottom: 25, justifyContent: 'center' }]}>We have sent TAC to your new number.</Text>
                                 <View style={{ justifyContent: 'space-between', flex: 9 }}>
+                                    <View style={{ flex: 1, flexDirection: 'row' }}>
+                                        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', padding: 10, borderWidth: 1, borderRadius: 5, margin: 5, height: 25 }}>
+                                            <TextInput keyboardType={'number-pad'} autoFocus={true} maxLength={1} placeholder={''} style={[styles.text, { textAlign: 'center', height: 10 }]} />
+                                        </View>
+                                        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', padding: 10, borderWidth: 1, borderRadius: 5, margin: 5, height: 25  }}>
+                                            <TextInput keyboardType={'number-pad'} autoFocus={true} maxLength={1} placeholder={''} style={[styles.text, { textAlign: 'center', height: 10 }]} />
+                                        </View>
+                                        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', padding: 10, borderWidth: 1, borderRadius: 5, margin: 5, height: 25  }}>
+                                            <TextInput keyboardType={'number-pad'} autoFocus={true} maxLength={1} placeholder={''} style={[styles.text, { textAlign: 'center', height: 10 }]} />
+                                        </View>
+                                        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', padding: 10, borderWidth: 1, borderRadius: 5, margin: 5 , height: 25 }}>
+                                            <TextInput keyboardType={'number-pad'} autoFocus={true} maxLength={1} placeholder={''} style={[styles.text, { textAlign: 'center', height: 10 }]} />
+                                        </View>
+                                    </View>
                                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: 25 }}>
                                         <Text style={[styles.text]}>Didn't get TAC number?</Text>
                                         <TouchableOpacity onPress={() => props.navigation.navigate('ChangeNumber')}>

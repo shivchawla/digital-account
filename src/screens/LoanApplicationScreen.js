@@ -66,7 +66,7 @@ const LoanApplicationScreen = (props) => {
                             <View style={{ flex: 9, margin: 10 }}>
                                 <ScrollView style={[styles.screenMargin]}>
                                     <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'center', marginBottom: 5 }}>
-                                        <Text style={[styles.titleBox, { marginBottom: 5 }]}>Financing</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 10, marginTop: 10 }]}>Financing</Text>
                                     </View>
                                     <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'center', marginBottom: 20 }}>
                                         <View style={{ flexDirection: 'row', width: Layout.window.width / 2, justifyContent: 'space-between' }}>
@@ -87,16 +87,16 @@ const LoanApplicationScreen = (props) => {
                                             </View>
                                         </View>
                                     </View>
-                                    <View style={{ flexDirection: 'row', marginBottom: 10 }}>
+                                    <View style={{ flexDirection: 'row', marginBottom: 20 }}>
                                         <Text style={styles.h2}>Application Form for Financing</Text>
                                     </View>
                                     <View style={{ marginBottom: 10 }}>
-                                        <Text style={[styles.titleBox, { marginBottom: 5 }]}>Total Financing (MYR)</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Total Financing (MYR)</Text>
                                         <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} onBlur={FormikProps.handleBlur('amount')} style={{ borderWidth: 1, borderColor: amountTouched && amountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={amountTouched && amountError ? '' : ''} placeholderTextColor={amountTouched && amountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
                                         {amountTouched && amountError && <Text style={styles.error}>{amountError}</Text>}
                                     </View>
                                     <View style={{ marginBottom: 10 }}>
-                                        <Text style={[styles.titleBox, { marginBottom: 5 }]}>Purpose</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Purpose</Text>
                                         <TextInput value={purpose} onChangeText={FormikProps.handleChange('purpose')} onBlur={FormikProps.handleBlur('purpose')} style={{ borderWidth: 1, borderColor: purposeTouched && purposeError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={purposeTouched && purposeError ? '' : ''} placeholderTextColor={purposeTouched && purposeError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
 
                                         {purposeTouched && purposeError && <Text style={styles.error}>{purposeError}</Text>}

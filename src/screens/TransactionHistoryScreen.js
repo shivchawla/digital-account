@@ -29,7 +29,7 @@ const TransactionHistoryScreen = (props) => {
                 <ScrollView>
                     <View style={[styles.screenMargin]}>
                         <View style={{ flexDirection: 'row' }}>
-                            <Text style={[styles.h2, { marginBottom: 10, marginTop: 10 }]}>Transaction History</Text>
+                            <Text style={[styles.h2, { marginBottom: 10, marginTop: 25 }]}>Transaction History</Text>
                         </View>
                         <FlatList data={transactionHistoryArray} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
                             <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'center' }}>

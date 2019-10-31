@@ -56,6 +56,9 @@ import AddBankScreen from '../screens/AddBankScreen';
 import LoanCalculatorScreen from '../screens/LoanCalculatorScreen';
 import TACScreen from '../screens/TACScreen';
 import AgingReportScreen from '../screens/AgingReportScreen';
+import ZakatSuccessScreen from '../screens/ZakatSuccessScreen';
+import PayrollSuccessScreen from '../screens/PayrollSuccessScreen';
+import RemittanceSuccessScreen from '../screens/RemittanceSuccessScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -183,7 +186,17 @@ const DashboardStackWithModal = createStackNavigator(
     },
     Aging: {
       screen: AgingReportScreen,
+    },
+    ZakatSuccess: {
+      screen: ZakatSuccessScreen,
+    },
+    PayrollSuccess: {
+      screen: PayrollSuccessScreen,
+    },
+    RemittanceSuccess: {
+      screen: RemittanceSuccessScreen,
     }
+
   },
   {
     mode: 'modal',
@@ -193,11 +206,11 @@ const DashboardStackWithModal = createStackNavigator(
 );
 
 DashboardStackWithModal.navigationOptions = ({ navigation }) => {
-  let tabBarVisible = true;
-  let routeName = navigation.state.routes[navigation.state.index].routeName
-  if (routeName == 'Aging' || routeName == 'TAC' || routeName == 'Calculator' || routeName == 'BankList' || routeName == 'AddBank' || routeName == 'SupportSuccess' || routeName == 'TransferSuccess' || routeName == 'LoanApplication' || routeName == 'BusinessDirectory' || routeName == 'Transfer' || routeName == 'Remittance' || routeName == 'Zakat' || routeName == 'Payroll' || routeName == 'InvoiceSuccess' || routeName == 'LoanSuccess' || routeName == 'Customer' || routeName == 'Profile' || routeName == 'ReportDetail' || routeName == 'InvoicesDetail' || routeName == 'WithdrawSuccess' || routeName == 'LoanSuccessScreen' || routeName == 'Item' || routeName == 'Customer' || routeName == 'Vendor' || routeName == 'Withdraw' || routeName == 'LoanDetail' || routeName == 'LoanApplicationDeclaration' || routeName == 'ConnectedParties' || routeName == 'EditProfile' || routeName == 'NewInvoice' || routeName == 'Vendor' || routeName == 'Support') {
-    tabBarVisible = false
-  }
+  let tabBarVisible = false;
+  // let routeName = navigation.state.routes[navigation.state.index].routeName
+  // if (routeName == 'Aging' || routeName == 'TAC' || routeName == 'Calculator' || routeName == 'BankList' || routeName == 'AddBank' || routeName == 'SupportSuccess' || routeName == 'TransferSuccess' || routeName == 'LoanApplication' || routeName == 'BusinessDirectory' || routeName == 'Transfer' || routeName == 'Remittance' || routeName == 'Zakat' || routeName == 'Payroll' || routeName == 'InvoiceSuccess' || routeName == 'LoanSuccess' || routeName == 'Customer' || routeName == 'Profile' || routeName == 'ReportDetail' || routeName == 'InvoicesDetail' || routeName == 'WithdrawSuccess' || routeName == 'LoanSuccessScreen' || routeName == 'Item' || routeName == 'Customer' || routeName == 'Vendor' || routeName == 'Withdraw' || routeName == 'LoanDetail' || routeName == 'LoanApplicationDeclaration' || routeName == 'ConnectedParties' || routeName == 'EditProfile' || routeName == 'NewInvoice' || routeName == 'Vendor' || routeName == 'Support') {
+  //   tabBarVisible = false
+  // }
 
   return {
     tabBarVisible: tabBarVisible,

@@ -1,13 +1,5 @@
 import React, { useEffect } from 'react';
-import {
-    View,
-    TouchableOpacity,
-    Text,
-    Image,
-    FlatList,
-    ScrollView,
-    TouchableWithoutFeedback
-} from 'react-native';
+import { View, TouchableOpacity, Text, Image, FlatList, ScrollView, TouchableWithoutFeedback } from 'react-native';
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons';
@@ -28,8 +20,8 @@ const ReportScreen = (props) => {
         <View style={{ flex: 1 }}>
             <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
-                    <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                        <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30 }} />
+                    <TouchableOpacity onPress={props.navigation.openDrawer} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
+                        <Ionicons name="md-more" color={'#3EC2D9'} style={{ fontSize: 30 }} />
                     </TouchableOpacity>
                 </View>
                 <View style={{ flex: 5, justifyContent: 'center', alignItems: 'center' }}>
@@ -89,9 +81,8 @@ const ReportScreen = (props) => {
     );
 }
 
-ReportScreen.navigationOptions =
-    {
-        header: null,
-    };
+ReportScreen.navigationOptions = {
+    header: null,
+};
 
 export default ReportScreen;
