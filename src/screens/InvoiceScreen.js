@@ -55,40 +55,40 @@ const InvoiceScreen = (props) => {
                             </TouchableWithoutFeedback>
                             <View style={{ flexDirection: 'row', marginTop: 5, borderBottomWidth: item.marker ? 1 : 0, borderBottomColor: 'lightgrey', }}>
                                 <View style={{ flex: 1 }}>
-                                    <Text style={styles.text}>1234567890</Text>
+                                    <Text style={styles.text}>{item.invoice_number}</Text>
                                 </View>
                             </View>
                             {item.marker && <View style={{ flex: 1 }}>
                                 <View style={{ flexDirection: 'row', marginTop: 20 }}>
                                     <View style={{ flex: 1 }}>
-                                        <Text style={styles.small}>Type</Text>
-                                        <Text style={styles.text}>Vendor</Text>
+                                        <Text style={styles.small}>Name</Text>
+                                        <Text style={styles.text}>{item.customer_name}</Text>
                                     </View>
                                     <View style={{ flex: 1 }}>
                                         <Text style={styles.small}>Date</Text>
-                                        <Text style={styles.text}>[date]</Text>
+                                        <Text style={styles.text}>{item.invoice_date}</Text>
                                     </View>
                                 </View>
                                 <View style={{ flexDirection: 'row', marginTop: 20 }}>
                                     <View style={{ flex: 1 }}>
                                         <Text style={styles.small}>Currency</Text>
-                                        <Text style={styles.text}>RM</Text>
+                                        <Text style={styles.text}>{item.currency_code}</Text>
                                     </View>
                                     <View style={{ flex: 1 }}>
                                         <Text style={styles.small}>Amount</Text>
-                                        <Text style={styles.text}>9</Text>
+                                        <Text style={styles.text}>{item.amount}</Text>
                                     </View>
                                 </View>
                                 <View style={{ flexDirection: 'row', marginTop: 20 }}>
                                     <View style={{ flex: 1 }}>
-                                        <Text style={styles.small}>Customer Name</Text>
-                                        <Text style={styles.text}>Puteri Nursyahirah</Text>
+                                        <Text style={styles.small}>Phone Number</Text>
+                                        <Text style={styles.text}>{item.customer_phone}</Text>
                                     </View>
                                 </View>
                                 <View style={{ flexDirection: 'row', marginTop: 20 }}>
                                     <View style={{ flex: 1 }}>
-                                        <Text style={styles.small}>Customer Email</Text>
-                                        <Text style={styles.text}>puterimuhd@gmail.com</Text>
+                                        <Text style={styles.small}>Email</Text>
+                                        <Text style={styles.text}>{item.customer_email}</Text>
                                     </View>
                                 </View>
                             </View>

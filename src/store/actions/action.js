@@ -535,7 +535,7 @@ export const filterLoanList = (values) => {
         console.log(`filter loan list action`)
         console.log(`filter loan list action : ${JSON.stringify(values)}`)
         //await dispatch(loanListApi())
-        const { loanList } =  getState().loanReducer
+        const { loanList } = getState().loanReducer
         //const newLoanList=_.filter(loanList, _.matches({ 'a': 4, 'c': 6 }));
         const { status, type } = values
         const filterParam = (status && type) ? { status, type } : status ? { status } : type ? { type } : null
@@ -551,12 +551,12 @@ export const filterInvoicesList = (values) => {
     return async (dispatch, getState) => {
         console.log(`filter invoice list action`)
         console.log(`filter invoice list action : ${JSON.stringify(values)}`)
-        const { invoiceList } =  getState().invoiceReducer
-        const { status, type } = values
-        const filterParam = (status && type) ? { status, type } : status ? { status } : type ? { type } : null
+        const { invoiceList } = getState().invoiceReducer
+        const { currency_code, customer_name } = values
+        const filterParam = (currency_code && customer_name) ? { currency_code, customer_name } : currency_code ? { currency_code } : customer_name ? { customer_name } : null
         const newInvoicesList = _.filter(invoiceList, _.matches(filterParam));
         console.log(`new invoice List : ${JSON.stringify(newInvoicesList)}`)
-        dispatch({ type: 'SET_INVOICE_LIST', payload: { loanList: newInvoicesList } })
+        dispatch({ type: 'SET_INVOICE_LIST', payload: { invoiceList: newInvoicesList } })
     }
 }
 
@@ -564,9 +564,9 @@ export const filterReportList = (values) => {
     return async (dispatch, getState) => {
         console.log(`filter report list action`)
         console.log(`filter report list action : ${JSON.stringify(values)}`)
-        const { reportList } =  getState().reportReducer
-        const { status, type } = values
-        const filterParam = (status && type) ? { status, type } : status ? { status } : type ? { type } : null
+        const { reportList } = getState().reportReducer
+        const { currency, type, credit_debit } = values
+        const filterParam = (currency && type && credit_debit) ? { currency, type, credit_debit } : currency ? { currency } : type ? { type } : credit_debit ? { credit_debit } : null
         const newReportList = _.filter(reportList, _.matches(filterParam));
         console.log(`new report List : ${JSON.stringify(newReportList)}`)
         dispatch({ type: 'SET_REPORT_LIST', payload: { reportList: newReportList } })

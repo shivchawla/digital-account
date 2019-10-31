@@ -1,7 +1,7 @@
 import React from 'react';
 import { createDrawerNavigator, createAppContainer } from 'react-navigation';
 import ReportScreen from '../screens/ReportScreen';
-import FilterBar from '../components/FilterBar';
+import FilterBarReport from '../components/FilterBarReport';
 
 const ReportContent = createDrawerNavigator(
 
@@ -14,7 +14,7 @@ const ReportContent = createDrawerNavigator(
         contentComponent: props => {
             const close = () => { props.navigation.closeDrawer() }
             const nav = (screen) => { props.navigation.navigate(screen) }
-            return (<FilterBar nav={nav} close={close} />)
+            return (<FilterBarReport nav={nav} close={close} />)
         }, drawerPosition: 'right'
     },
 );

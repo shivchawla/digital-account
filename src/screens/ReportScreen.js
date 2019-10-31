@@ -12,7 +12,6 @@ const ReportScreen = (props) => {
     }, [reportList])
 
     const dispatch = useDispatch()
-
     const { reportList } = useSelector(state => state.reportReducer, shallowEqual)
 
     return (

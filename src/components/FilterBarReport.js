@@ -5,19 +5,20 @@ import styles from '../styles/styles'
 import * as actionCreator from '../store/actions/action'
 import { useDispatch } from 'react-redux'
 
-const FilterBar = (props) => {
+const FilterBarReport = (props) => {
 
     const nav = (screen) => {
         props.close()
         props.nav(screen)
     }
 
+    const [currency, setCurrency] = useState(null)
     const [type, setType] = useState(null)
-    const [status, setStatus] = useState(null)
+    const [credit_debit, setCreditDebit] = useState(null)
 
     const filterReportList = async () => {
-        console.log(`type : ${type} and status : ${status}`)
-        const values = { type, status }
+        console.log(`currency : ${currency} and type : ${type} and credit/debit : ${credit_debit}`)
+        const values = { currency, type, credit_debit }
         await dispatch(actionCreator.filterReportList(values))
 
     }
@@ -29,18 +30,26 @@ const FilterBar = (props) => {
             <View style={{ padding: 10, flex: 1, justifyContent: 'space-evenly' }}>
                 <View style={{ flex: 9, margin: 10 }}>
                     <View style={{ marginBottom: 10 }}>
-                        <Text style={[styles.h3, { marginBottom: 5 }]}>Type</Text>
-                        <Picker style={{ height: 35 }} selectedValue={type} onValueChange={(val) => setType(val)} >
-                            <Picker.Item label={'Please Select'} value={undefined} />
-                            <Picker.Item label={'Business'} value={'Business'} />
+                        <Text style={[styles.h3, { marginBottom: 5 }]}>Currency</Text>
+                        <Picker style={{ height: 35 }} selectedValue={currency} onValueChange={(val) => setCurrency(val)} >
+                            <Picker.Item label={'MYR'} value={'MYR'} />
+                            <Picker.Item label={'IDR'} value={'IDR'} />
                         </Picker>
                     </View>
                     <View style={{ marginBottom: 10 }}>
-                        <Text style={[styles.h3, { marginBottom: 5 }]}>Status</Text>
-                        <Picker style={{ height: 35 }} selectedValue={status} onValueChange={(val) => setStatus(val)} >
+                        <Text style={[styles.h3, { marginBottom: 5 }]}>Transaction Type</Text>
+                        <Picker style={{ height: 35 }} selectedValue={type} onValueChange={(val) => setType(val)} >
                             <Picker.Item label={'Please Select'} value={undefined} />
-                            <Picker.Item label={'Approved'} value={'Approved'} />
-                            <Picker.Item label={'Disbursed'} value={'Disbursed'} />
+                            <Picker.Item label={'Loan Payment'} value={'Loan Payment'} />
+                            <Picker.Item label={'Disbursement Transfer'} value={'Disbursement Transfer'} />
+                        </Picker>
+                    </View>
+                    <View style={{ marginBottom: 10 }}>
+                        <Text style={[styles.h3, { marginBottom: 5 }]}>Credit / Debit</Text>
+                        <Picker style={{ height: 35 }} selectedValue={credit_debit} onValueChange={(val) => setCreditDebit(val)} >
+                            <Picker.Item label={'Please Select'} value={undefined} />
+                            <Picker.Item label={'Credit'} value={'CREDIT'} />
+                            <Picker.Item label={'Debit'} value={'DEBIT'} />
                         </Picker>
                     </View>
                     <View style={{ marginBottom: 10 }}>
@@ -62,4 +71,4 @@ const FilterBar = (props) => {
     );
 }
 
-export default FilterBar
+export default FilterBarReport

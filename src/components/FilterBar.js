@@ -20,7 +20,6 @@ const FilterBar = (props) => {
         const values = { type, status }
         //await  dispatch(actionCreator.getLoanList())
         await dispatch(actionCreator.filterLoanList(values))
-
     }
 
     const dispatch = useDispatch()
