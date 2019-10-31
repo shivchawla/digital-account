@@ -1,12 +1,5 @@
 import React, { useEffect } from 'react';
-import {
-    View,
-    TouchableOpacity,
-    TouchableWithoutFeedback,
-    Text,
-    Image,
-    FlatList
-} from 'react-native';
+import { View, TouchableOpacity, TouchableWithoutFeedback, Text, Image, FlatList } from 'react-native';
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons';
@@ -22,10 +15,10 @@ const InvoiceScreen = (props) => {
     return (
 
         <View style={{ flex: 1, }}>
-            <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
-                    <TouchableOpacity onPress={() => props.navigation.navigate('Dashboard')} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                        <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 20 }} />
+            <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
+                    <TouchableOpacity onPress={props.navigation.openDrawer} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
+                        <Ionicons name="md-more" color={'#3EC2D9'} style={{ fontSize: 30 }} />
                     </TouchableOpacity>
                 </View>
                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
@@ -36,7 +29,7 @@ const InvoiceScreen = (props) => {
                 </TouchableOpacity>
             </View>
             <View style={[styles.screenMargin, { flex: 9 }]}>
-                <View style={{ marginTop: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                <View style={{ marginTop: 25, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around' }}>
                     <TouchableOpacity onPress={() => props.navigation.navigate('NewInvoice')} style={{ paddingTop: 5, paddingBottom: 5, paddingLeft: 20, paddingRight: 20, backgroundColor: '#34C2DB', borderRadius: 20 }}>
                         <Text style={[styles.text, { color: '#fff' }]}>New Invoice</Text>
                     </TouchableOpacity>

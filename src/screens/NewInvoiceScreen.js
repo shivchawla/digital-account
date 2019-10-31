@@ -104,7 +104,7 @@ const NewInvoiceScreen = (props) => {
                 const datePicker = async () => {
                     if (ios) {
                         handleIosPicker('datepicker')
-                    } else { 
+                    } else {
                         try {
                             const { action, year, month, day } = await DatePickerAndroid.open({
                                 // Use `new Date()` for current date.
@@ -128,12 +128,9 @@ const NewInvoiceScreen = (props) => {
                     } else {
                         try {
                             const { action, year, month, day } = await DatePickerAndroid.open({
-                                // Use `new Date()` for current date.
-                                // May 25 2020. Month 0 is January.
                                 date: new Date(2020, 4, 25),
                             });
                             if (action !== DatePickerAndroid.dismissedAction) {
-                                // Selected year, month (0-11), day
                                 FormikProps.setFieldValue('dueDate', `${year}-${month}-${day}`)
                             }
                         } catch ({ code, message }) {
@@ -224,7 +221,7 @@ const NewInvoiceScreen = (props) => {
                                             <Text style={[styles.small, { color: '#0A6496' }]}>{type ? type : 'Select Type'}</Text>
                                         </TouchableOpacity>
                                     </View> : <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
-                                            <Text style={[styles.titleBox]}>Type</Text>
+                                            <Text style={[styles.titleBox], { marginBottom: 10 }}>Type</Text>
                                             <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
                                                 <Picker selectedValue={type} style={{ flex: 1, height: 35 }} onValueChange={(itemValue, itemIndex) => FormikProps.setFieldValue('type', itemValue)}>
                                                     <Picker.Item label="Merchant" value="Merchant" />
@@ -234,62 +231,62 @@ const NewInvoiceScreen = (props) => {
                                             </View>
                                         </View>}
                                     <View style={[styles.formElement]}>
-                                        <Text style={[styles.titleBox]}>Customer</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Customer</Text>
                                         <TextInput value={customer} onChangeText={FormikProps.handleChange('customer')} onBlur={FormikProps.handleBlur('customer')} style={{ borderWidth: 1, borderColor: customerTouched && customerError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={customerTouched && customerError ? '' : ''} placeholderTextColor={customerTouched && customerError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {customerTouched && customerError && <Text style={styles.error}>{customerError}</Text>}
                                     </View>
                                     <View style={[styles.formElement]}>
-                                        <Text style={[styles.titleBox]}>Issue Date</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Issue Date</Text>
                                         <View style={{ flexDirection: 'row' }}>
                                             <TouchableOpacity onPress={datePicker}>
-                                                <Image source={require('../assets/images/calendar.png')} style={{ width: 40, height: 40 }} resizeMode={'contain'} />
+                                                <Image source={require('../assets/images/calendar.png')} style={{ width: 30, height: 30, marginRight: 10 }} resizeMode={'contain'} />
                                             </TouchableOpacity>
                                             <TextInput style={{ flex: 1, borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }} value={issueDate} />
                                         </View>
                                         {issueDateTouched && issueDateError && <Text style={styles.error}>{issueDateError}</Text>}
                                     </View>
                                     <View style={[styles.formElement]}>
-                                        <Text style={[styles.titleBox]}>Due Date</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Due Date</Text>
                                         <View style={{ flexDirection: 'row' }}>
                                             <TouchableOpacity onPress={datePicker2}>
-                                                <Image source={require('../assets/images/calendar.png')} style={{ width: 40, height: 40 }} resizeMode={'contain'} />
+                                                <Image source={require('../assets/images/calendar.png')} style={{ width: 30, height: 30, marginRight: 10 }} resizeMode={'contain'} />
                                             </TouchableOpacity>
                                             <TextInput style={{ flex: 1, borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }} value={dueDate} />
                                         </View>
                                         {dueDateTouched && dueDateError && <Text style={styles.error}>{dueDateError}</Text>}
                                     </View>
                                     <View style={[styles.formElement]}>
-                                        <Text style={[styles.titleBox]}>Invoice Number</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Invoice Number</Text>
                                         <TextInput value={invoiceNumber} onChangeText={FormikProps.handleChange('invoiceNumber')} onBlur={FormikProps.handleBlur('invoiceNumber')} style={{ borderWidth: 1, borderColor: invoiceNumberTouched && invoiceNumberError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={invoiceNumberTouched && invoiceNumberError ? '' : ''} placeholderTextColor={invoiceNumberTouched && invoiceNumberError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
                                         {invoiceNumberTouched && invoiceNumberError && <Text style={styles.error}>{invoiceNumberError}</Text>}
                                     </View>
                                     <View style={[styles.formElement]}>
-                                        <Text style={[styles.titleBox]}>Amount</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Amount</Text>
                                         <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} onBlur={FormikProps.handleBlur('amount')} style={{ borderWidth: 1, borderColor: amountTouched && amountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={amountTouched && amountError ? '' : ''} placeholderTextColor={amountTouched && amountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
                                         {amountTouched && amountError && <Text style={styles.error}>{amountError}</Text>}
                                     </View>
                                     <View style={[styles.formElement]}>
-                                        <Text style={[styles.titleBox]}>Category</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Category</Text>
                                         <TextInput value={category} onChangeText={FormikProps.handleChange('category')} onBlur={FormikProps.handleBlur('category')} style={{ borderWidth: 1, borderColor: categoryTouched && categoryError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={categoryTouched && categoryError ? '' : ''} placeholderTextColor={categoryTouched && categoryError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {categoryTouched && categoryError && <Text style={styles.error}>{categoryError}</Text>}
                                     </View>
                                     <View style={[styles.formElement]}>
-                                        <Text style={[styles.titleBox]}>Customer Name</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Customer Name</Text>
                                         <TextInput value={customerName} onChangeText={FormikProps.handleChange('customerName')} onBlur={FormikProps.handleBlur('customerName')} style={{ borderWidth: 1, borderColor: customerNameTouched && customerNameError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={customerNameTouched && customerNameError ? '' : ''} placeholderTextColor={customerNameTouched && customerNameError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {customerNameTouched && customerNameError && <Text style={styles.error}>{customerNameError}</Text>}
                                     </View>
                                     <View style={[styles.formElement]}>
-                                        <Text style={[styles.titleBox]}>Customer Email</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Customer Email</Text>
                                         <TextInput value={customerEmail} onChangeText={FormikProps.handleChange('customerEmail')} onBlur={FormikProps.handleBlur('customerEmail')} style={{ borderWidth: 1, borderColor: customerEmailTouched && customerEmailError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={customerEmailTouched && customerEmailError ? '' : ''} placeholderTextColor={customerEmailTouched && customerEmailError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {customerEmailTouched && customerEmailError && <Text style={styles.error}>{customerEmailError}</Text>}
                                     </View>
                                     <View style={[styles.formElement]}>
-                                        <Text style={[styles.titleBox]}>Customer Phone</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Customer Phone</Text>
                                         <TextInput value={customerPhone} onChangeText={FormikProps.handleChange('customerPhone')} onBlur={FormikProps.handleBlur('customerPhone')} style={{ borderWidth: 1, borderColor: customerPhoneTouched && customerPhoneError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={customerPhoneTouched && customerPhoneError ? '' : ''} placeholderTextColor={customerPhoneTouched && customerPhoneError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
                                         {customerPhoneTouched && customerPhoneError && <Text style={styles.error}>{customerPhoneError}</Text>}
                                     </View>
                                     <View style={[styles.formElement]}>
-                                        <Text style={[styles.titleBox]}>Customer Address</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Customer Address</Text>
                                         <TextInput value={customerAddress} onChangeText={FormikProps.handleChange('customerAddress')} onBlur={FormikProps.handleBlur('customerAddress')} style={{ borderWidth: 1, borderColor: customerAddressTouched && customerAddressError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={customerAddressTouched && customerAddressError ? '' : ''} placeholderTextColor={customerAddressTouched && customerAddressError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {customerAddressTouched && customerAddressError && <Text style={styles.error}>{customerAddressError}</Text>}
                                     </View>

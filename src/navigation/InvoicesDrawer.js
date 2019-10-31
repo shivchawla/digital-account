@@ -1,9 +1,7 @@
 import React from 'react';
 import { createDrawerNavigator, createAppContainer } from 'react-navigation';
-
-import Layout from '../constants/Layout'
 import InvoiceScreen from '../screens/InvoiceScreen';
-import FilterBar from '../components/FilterBar';
+import FilterBarInvoice from '../components/FilterBarInvoice';
 
 const InvoicesContent = createDrawerNavigator(
 
@@ -16,7 +14,7 @@ const InvoicesContent = createDrawerNavigator(
         contentComponent: props => {
             const close = () => { props.navigation.closeDrawer() }
             const nav = (screen) => { props.navigation.navigate(screen) }
-            return (<FilterBar nav={nav} close={close} />)
+            return (<FilterBarInvoice nav={nav} close={close} />)
         }, drawerPosition: 'right'
     },
 );

@@ -1,7 +1,5 @@
 import React from 'react';
 import { createDrawerNavigator, createAppContainer } from 'react-navigation';
-
-import Layout from '../constants/Layout'
 import ReportScreen from '../screens/ReportScreen';
 import FilterBar from '../components/FilterBar';
 

@@ -157,6 +157,13 @@ const loadResourcesAsync = async () => {
       require('./src/assets/images/phonenoicon.png'),
       require('./src/assets/images/industryicon.png'),
       require('./src/assets/images/addressicon.png'),
+      require('./src/assets/images/historywhiteicon.png'),
+      require('./src/assets/images/notificationicon.png'),
+      require('./src/assets/images/notificationicon.png'),
+      require('./src/assets/images/itemicon.png'),
+      require('./src/assets/images/customericon.png'),
+      require('./src/assets/images/vendoricon.png'),
+      require('./src/assets/images/changeaccount.png'),
 
       require('./src/assets/images/bottomTabs/home.png'),
       require('./src/assets/images/bottomTabs/history.png'),
@@ -165,7 +172,6 @@ const loadResourcesAsync = async () => {
       require('./src/assets/images/bottomTabs/homeBlack.png'),
       require('./src/assets/images/bottomTabs/historyBlack.png'),
       require('./src/assets/images/bottomTabs/notificationBlack.png'),
-      require('./src/assets/images/bottomTabs/setingBlack.png'),
 
       require('./src/assets/images/screenshots/1.png'),
       require('./src/assets/images/screenshots/2.png'),
