@@ -38,6 +38,9 @@ const LoginScreen = (props) => {
     const proceed = useSelector(state => state.loginScreenReducer.proceed, shallowEqual)
     const all = useSelector(state => state.loginScreenReducer.message, shallowEqual)
 
+    const [emailActive, setEmailActive] = useState(false)
+    const [passwordActive, setPasswordActive] = useState(false)
+
     useEffect(() => {
         //console.log(`proceed ialah : ${proceed}`)
         proceed && props.navigation.navigate('Main')
@@ -94,13 +97,13 @@ const LoginScreen = (props) => {
 
                                         <View style={[styles.formElement]}>
                                             <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: emailTouched && emailError ? '#d94498' : '#5a83c2' }]}>Email</Text>
-                                            <TextInput value={email} onBlur={FormikProps.handleBlur('email')} onChangeText={FormikProps.handleChange('email')} placeholder={emailTouched && emailError ? '' : 'Email'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                            <TextInput value={email} onFocus={setEmailActive(!emailActive)} onBlur={() => { setEmailActive(!emailActive); FormikProps.handleBlur('email') }} onChangeText={FormikProps.handleChange('email')} placeholder={emailTouched && emailError ? '' : 'Email'} style={{ borderWidth: emailActive ? 2 : 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
                                             {emailTouched && emailError && <Text style={styles.error}>{emailError}</Text>}
                                         </View>
 
                                         <View style={[styles.formElement]}>
                                             <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: passwordTouched && passwordError ? '#d94498' : '#5a83c2' }]}>Password</Text>
-                                            <TextInput secureTextEntry value={password} onBlur={FormikProps.handleBlur('password')} placeholder={passwordTouched && passwordError ? '' : '******'} onChangeText={FormikProps.handleChange('password')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholderTextColor={passwordTouched && passwordError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                            <TextInput secureTextEntry value={password} onFocus={setPasswordActive(!passwordActive)} onBlur={() => { setPasswordActive(!passwordActive); FormikProps.handleBlur('password') }} placeholder={passwordTouched && passwordError ? '' : '******'} onChangeText={FormikProps.handleChange('password')} style={{ borderWidth: passwordActive ? 2 : 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholderTextColor={passwordTouched && passwordError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                             {passwordTouched && passwordError && <Text style={styles.error}>{passwordError}</Text>}
                                         </View>
 
@@ -112,7 +115,6 @@ const LoginScreen = (props) => {
                                             </TouchableOpacity>
 
                                         </View>
-
                                     </View>
                                 </View>
 
