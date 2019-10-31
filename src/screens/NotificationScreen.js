@@ -1,12 +1,5 @@
 import React, { useEffect } from 'react';
-import {
-    View,
-    TouchableOpacity,
-    TouchableWithoutFeedback,
-    Text,
-    Image,
-    FlatList
-} from 'react-native';
+import { View, TouchableOpacity, TouchableWithoutFeedback, Text, Image, FlatList } from 'react-native';
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons';
@@ -16,32 +9,26 @@ const NotificationScreen = (props) => {
     useEffect(() => {
         dispatch(actionCreator.getNotificationList())
     }, [notificationList])
+
     const dispatch = useDispatch()
     const { notificationList } = useSelector(state => state.notificationScreenReducer, shallowEqual)
-
 
     return (
 
         <View style={{ flex: 1, }}>
-
             <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
-
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
-                    <TouchableOpacity onPress={props.navigation.openDrawer} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                        <Ionicons name="md-more" color={'#3EC2D9'} style={{ fontSize: 30 }} />
+                    <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
+                        <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30 }} />
                     </TouchableOpacity>
                 </View>
-
                 <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center' }}>
                     <Text style={[styles.title]} numberOfLines={1} ellipsizeMode={'tail'}>NOTIFICATION</Text>
                 </View>
-
                 <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
                     <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
                 </TouchableOpacity>
-
             </View>
-
             <View style={[styles.screenMargin, { flex: 9 }]}>
                 {notificationList && <FlatList data={notificationList} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
                     <View style={styles.box}>
@@ -64,7 +51,6 @@ const NotificationScreen = (props) => {
                     </View>
                 } />}
             </View>
-
         </View >
 
     );

@@ -12,15 +12,13 @@ const FilterBarInvoice = (props) => {
         props.nav(screen)
     }
 
-    const [type, setType] = useState(null)
-    const [status, setStatus] = useState(null)
+    const [currency_code, setCurrencyCode] = useState(null)
+    const [customer_name, setCustomerName] = useState(null)
 
     const filterInvoicesList = async () => {
-        console.log(`type : ${type} and status : ${status}`)
-        const values = { type, status }
-        //await  dispatch(actionCreator.getLoanList())
+        console.log(`currency_code : ${currency_code} and customer_name : ${customer_name}`)
+        const values = { currency_code, customer_name }
         await dispatch(actionCreator.filterInvoicesList(values))
-
     }
 
     const dispatch = useDispatch()
@@ -30,18 +28,15 @@ const FilterBarInvoice = (props) => {
             <View style={{ padding: 10, flex: 1, justifyContent: 'space-evenly' }}>
                 <View style={{ flex: 9, margin: 10 }}>
                     <View style={{ marginBottom: 10 }}>
-                        <Text style={[styles.h3, { marginBottom: 5 }]}>Satu</Text>
-                        <Picker style={{ height: 35 }} selectedValue={type} onValueChange={(val) => setType(val)} >
-                            <Picker.Item label={'Please Select'} value={undefined} />
-                            <Picker.Item label={'Business'} value={'Business'} />
+                        <Text style={[styles.h3, { marginBottom: 5 }]}>Currency</Text>
+                        <Picker style={{ height: 35 }} selectedValue={currency_code} onValueChange={(val) => setCurrencyCode(val)} >
+                            <Picker.Item label={'MYR'} value={'myr'} />
                         </Picker>
                     </View>
                     <View style={{ marginBottom: 10 }}>
-                        <Text style={[styles.h3, { marginBottom: 5 }]}>Dua</Text>
-                        <Picker style={{ height: 35 }} selectedValue={status} onValueChange={(val) => setStatus(val)} >
-                            <Picker.Item label={'Please Select'} value={undefined} />
-                            <Picker.Item label={'Approved'} value={'Approved'} />
-                            <Picker.Item label={'Disbursed'} value={'Disbursed'} />
+                        <Text style={[styles.h3, { marginBottom: 5 }]}>Name</Text>
+                        <Picker style={{ height: 35 }} selectedValue={customer_name} onValueChange={(val) => setCustomerName(val)} >
+                            <Picker.Item label={'Adiyaaa Aloyaa'} value={'aa'} />
                         </Picker>
                     </View>
                     <View style={{ marginBottom: 10 }}>

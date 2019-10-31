@@ -32,7 +32,7 @@ const BusinessDirectoryScreen = (props) => {
             <View style={{ flex: 9, padding: 10 }}>
                 <ScrollView>
                     {businessDirectoryList && <FlatList data={businessDirectoryList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
-                        <View style={styles.box}>
+                        <View style={[styles.box, { marginBottom: 15 }]}>
 
                             <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'flex-start', alignItems: 'center', alignSelf: 'stretch' }}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1.2 }}>
@@ -71,17 +71,6 @@ const BusinessDirectoryScreen = (props) => {
                                 </View>
                             </View>
                         </View>} />}
-                    <View style={{ flex: 1, flexDirection: 'row', marginTop: 5, justifyContent: 'space-around', marginBottom: 10 }}>
-                        <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={styles.small}>Previous</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={styles.small}>1</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <Text style={styles.small}>Next</Text>
-                        </TouchableOpacity>
-                    </View>
                 </ScrollView>
             </View>
         </View>
