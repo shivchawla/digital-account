@@ -146,13 +146,50 @@ const DashboardScreen = (props) => {
           </LinearGradient>
         </View>
         <View style={{ marginTop: 10 }}>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          <TouchableOpacity onPress={()=>props.navigation.navigate('TransactionHistory')}  style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
             <Text style={[styles.h2, { color: '#04A2BD' }]}>Latest Transaction</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <Text style={[styles.small, { paddingRight: 5, color: '#04A2BD' }]}>More</Text>
               <Ionicons name="ios-arrow-forward" color={'#04A2BD'} style={{ fontSize: 15, paddingRight: 5 }} />
             </View>
+          </TouchableOpacity>
+          <View style={{ flexDirection: 'row', marginTop: 5 }}>
+            <View style={{ flex: 3, flexDirection: 'row', alignItems: 'center' }}>
+              <Ionicons name="md-remove-circle-outline" color={'#A20F0F'} style={{ fontSize: 15, paddingRight: 20 }} />
+              <Text style={styles.text}>Withdrawal Transfer</Text>
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text style={[styles.text, { color: '#A20F0F' }]}>- RM5</Text>
+            </View>
           </View>
+          <View style={{ flexDirection: 'row', marginTop: 5 }}>
+            <View style={{ flex: 3, flexDirection: 'row', alignItems: 'center' }}>
+              <Ionicons name="md-remove-circle-outline" color={'#A20F0F'} style={{ fontSize: 15, paddingRight: 20 }} />
+              <Text style={styles.text}>Account Transfer</Text>
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text style={[styles.text, { color: '#A20F0F' }]}>- RM5</Text>
+            </View>
+          </View>
+          <View style={{ flexDirection: 'row', marginTop: 5 }}>
+            <View style={{ flex: 3, flexDirection: 'row', alignItems: 'center' }}>
+              <Ionicons name="md-add-circle-outline" color={'#7ED321'} style={{ fontSize: 15, paddingRight: 20 }} />
+              <Text style={[styles.text]}>Disbursement Transfer</Text>
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text style={[styles.text, { color: '#7ED321' }]}>+ RM5</Text>
+            </View>
+          </View>
+        </View>
+
+        <View style={{ marginTop: 20 }}>
+          <TouchableOpacity onPress={()=>props.navigation.navigate('Notification')} style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <Text style={[styles.h2, { color: '#04A2BD' }]}>Latest Notifications</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <Text style={[styles.small, { paddingRight: 5, color: '#04A2BD' }]}>More</Text>
+              <Ionicons name="ios-arrow-forward" color={'#04A2BD'} style={{ fontSize: 15, paddingRight: 5 }} />
+            </View>
+          </TouchableOpacity>
           <View style={{ flexDirection: 'row', marginTop: 5 }}>
             <View style={{ flex: 3, flexDirection: 'row', alignItems: 'center' }}>
               <Ionicons name="md-remove-circle-outline" color={'#A20F0F'} style={{ fontSize: 15, paddingRight: 20 }} />
