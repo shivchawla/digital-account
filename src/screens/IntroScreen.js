@@ -4,6 +4,9 @@ import { LinearGradient } from 'expo-linear-gradient'
 import ImageSlider from 'react-native-image-slider';
 import styles from '../styles/styles'
 
+//import * as actionCreator from '../store/actions/action'
+import { useDispatch } from 'react-redux'
+
 const IntroScreen = (props) => {
     const images =
         [
