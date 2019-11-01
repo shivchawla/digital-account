@@ -22,7 +22,7 @@ export const getToken = () => {
     }
 }
 
-export const register =  (values) => {
+export const register = (values) => {
     return async (dispatch, getState) => {
         const { name, email, password, password_confirmation } = values
         const { token_type, access_token, expo_token } = await getState().registrationReducer
@@ -543,7 +543,7 @@ export const filterLoanList = (values) => {
         console.log(`new Loan List : ${JSON.stringify(newLoanList)}`)
         // await dispatch(deleteAllBankApi())
         // await dispatch(bankList())
-        dispatch({ type: 'SET_LOAN_LIST', payload: { filteredLoanList: newLoanList,filterEnabled:true } })
+        dispatch({ type: 'SET_LOAN_LIST', payload: { filteredLoanList: newLoanList, filterEnabled: true } })
     }
 }
 
@@ -556,7 +556,7 @@ export const filterInvoicesList = (values) => {
         const filterParam = (currency_code && customer_name) ? { currency_code, customer_name } : currency_code ? { currency_code } : customer_name ? { customer_name } : null
         const newInvoicesList = _.filter(invoiceList, _.matches(filterParam));
         console.log(`new invoice List : ${JSON.stringify(newInvoicesList)}`)
-        dispatch({ type: 'SET_INVOICE_LIST', payload: { invoiceList: newInvoicesList } })
+        dispatch({ type: 'SET_INVOICE_LIST', payload: { invoiceList: newInvoicesList, filterEnabled: true } })
     }
 }
 
@@ -569,6 +569,6 @@ export const filterReportList = (values) => {
         const filterParam = (currency && type && credit_debit) ? { currency, type, credit_debit } : currency ? { currency } : type ? { type } : credit_debit ? { credit_debit } : null
         const newReportList = _.filter(reportList, _.matches(filterParam));
         console.log(`new report List : ${JSON.stringify(newReportList)}`)
-        dispatch({ type: 'SET_REPORT_LIST', payload: { reportList: newReportList } })
+        dispatch({ type: 'SET_REPORT_LIST', payload: { reportList: newReportList, filterEnabled: true } })
     }
 }

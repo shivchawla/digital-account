@@ -404,7 +404,6 @@ export const deleteAllBankApi = (values) => {
 
     AsyncStorage.removeItem('bankListStored')
 
-
     // const { token_type, access_token } = JSON.parse(personalToken)
 
 
@@ -473,8 +472,6 @@ export const userInfo = () => {
       });
   }
 }
-
-
 
 export const notificationApi = () => {
   return async (dispatch, getState) => {

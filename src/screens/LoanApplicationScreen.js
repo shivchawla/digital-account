@@ -101,7 +101,7 @@ const LoanApplicationScreen = (props) => {
 
                                         {purposeTouched && purposeError && <Text style={styles.error}>{purposeError}</Text>}
                                     </View>
-                                    <View style={{ marginBottom: 25, marginTop: 25 }}>
+                                    <View style={{ marginBottom: 20, marginTop: 25 }}>
                                         <Text style={styles.h2}>Financing Declaration</Text>
                                     </View>
                                     <View style={{ marginBottom: 10 }}>
