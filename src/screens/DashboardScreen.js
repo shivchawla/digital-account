@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, TouchableOpacity, Text, Image, Modal } from 'react-native';
+import { View, TouchableOpacity, Text, Image, Modal,StatusBar } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
 import Layout from '../constants/Layout'
@@ -7,6 +7,11 @@ import styles from '../styles/styles'
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import Charts from '../components/Charts'
+import { copilot, walkthroughable, CopilotStep } from 'react-native-copilot'
+import Constants from 'expo-constants';
+
+const CopilotText = walkthroughable(Text)
+const CopilotImage = walkthroughable(Image)
 
 const DashboardScreen = (props) => {
 
@@ -36,6 +41,9 @@ const DashboardScreen = (props) => {
   const full_name = useSelector(state => state.merchantInfoReducer.full_name, shallowEqual)
   const dashboardDisplay = (link == 'Dashboard') ? true : false
 
+
+
+
   const logout = () => {
     dispatch(actionCreator.logout())
     props.navigation.navigate('Welcome')
@@ -51,9 +59,42 @@ const DashboardScreen = (props) => {
   }
 
   useEffect(() => {
+    handleStart();
     runCheckStatus();
     setScreen()
   }, [])
+
+  const handleStart = () => {
+    props.start()
+  }
+
+  const MiddleHeader = ({ copilot }) => <View {...copilot} style={{ flexDirection: 'column', justifyContent: 'center' }}>
+    <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+      <Text style={styles.title}>MYR 18,839.00</Text>
+    </View>
+    <View style={{ flexDirection: 'row', marginTop: 10 }}>
+      <TouchableOpacity>
+        <Text style={[styles.text, { color: '#055E7C' }]}>Send Money</Text>
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Text style={[styles.text, { paddingLeft: 5, paddingRight: 5, color: '#055E7C' }]}>|</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => props.navigation.navigate('Withdraw')}>
+        <Text style={[styles.text, { color: '#055E7C' }]}>Withdrawal</Text>
+      </TouchableOpacity>
+    </View>
+  </View>
+
+  const RightHeader=({copilot})=><View {...copilot}><TouchableOpacity onPress={() => props.navigation.navigate('Profile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
+  <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
+</TouchableOpacity>
+</View>
+
+const LeftHeader=({copilot})=><View {...copilot} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
+<TouchableOpacity onPress={props.navigation.openDrawer} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
+  <Ionicons name="md-more" color={'#3EC2D9'} style={{ fontSize: 30 }} />
+</TouchableOpacity>
+</View>
 
   return (
 
@@ -106,33 +147,21 @@ const DashboardScreen = (props) => {
           </View>
         </View>
       </Modal>
+      <StatusBar hidden={true} />
       <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', marginBottom: 15 }]}>
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
-          <TouchableOpacity onPress={props.navigation.openDrawer} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-            <Ionicons name="md-more" color={'#3EC2D9'} style={{ fontSize: 30 }} />
-          </TouchableOpacity>
-        </View>
-        <View style={{ flexDirection: 'column', justifyContent: 'center' }}>
-          <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-            <Text style={styles.title}>MYR 18,839.00</Text>
-          </View>
-          <View style={{ flexDirection: 'row', marginTop: 10 }}>
-            <TouchableOpacity>
-              <Text style={[styles.text, { color: '#055E7C' }]}>Send Money</Text>
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Text style={[styles.text, { paddingLeft: 5, paddingRight: 5, color: '#055E7C' }]}>|</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => props.navigation.navigate('Withdraw')}>
-              <Text style={[styles.text, { color: '#055E7C' }]}>Withdrawal</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <TouchableOpacity onPress={() => props.navigation.navigate('Profile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
-          <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
-        </TouchableOpacity>
+      <CopilotStep text="LeftHeader" order={3} name="tiga" >
+          <LeftHeader />
+        </CopilotStep>
+        <CopilotStep text="MiddleHeader" order={1} name="satu" >
+          <MiddleHeader />
+        </CopilotStep>
+        <CopilotStep text="RightHeader" order={2} name="dua" >
+          <RightHeader />
+        </CopilotStep>
       </View>
       <View style={[styles.screenMargin, { flex: 9 }]}>
+       
+
         <View style={{ marginTop: 10, marginBottom: 15 }}>
           <LinearGradient colors={['#055E7C', '#055E7C']} style={{ paddingTop: 5, paddingBottom: 5, alignItems: 'center', borderRadius: 10, height: Layout.window.height / 3 }}>
             <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
@@ -146,7 +175,7 @@ const DashboardScreen = (props) => {
           </LinearGradient>
         </View>
         <View style={{ marginTop: 10 }}>
-          <TouchableOpacity onPress={()=>props.navigation.navigate('TransactionHistory')}  style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          <TouchableOpacity onPress={() => props.navigation.navigate('TransactionHistory')} style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
             <Text style={[styles.h2, { color: '#04A2BD' }]}>Latest Transaction</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <Text style={[styles.small, { paddingRight: 5, color: '#04A2BD' }]}>More</Text>
@@ -183,7 +212,7 @@ const DashboardScreen = (props) => {
         </View>
 
         <View style={{ marginTop: 20 }}>
-          <TouchableOpacity onPress={()=>props.navigation.navigate('Notification')} style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          <TouchableOpacity onPress={() => props.navigation.navigate('Notification')} style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
             <Text style={[styles.h2, { color: '#04A2BD' }]}>Latest Notifications</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <Text style={[styles.small, { paddingRight: 5, color: '#04A2BD' }]}>More</Text>
@@ -227,4 +256,4 @@ DashboardScreen.navigationOptions = {
   header: null
 };
 
-export default DashboardScreen;
+export default copilot({ overlay: 'View', animated: true,androidStatusBarVisible:false,verticalOffset:Constants.statusBarHeight})(DashboardScreen);
