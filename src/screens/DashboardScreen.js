@@ -7,6 +7,7 @@ import styles from '../styles/styles'
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import Charts from '../components/Charts'
+import LottieView from 'lottie-react-native'
 
 const DashboardScreen = (props) => {
 
@@ -51,6 +52,7 @@ const DashboardScreen = (props) => {
   }
 
   useEffect(() => {
+    //this.animation.play()
     runCheckStatus();
     setScreen()
   }, [])
@@ -134,90 +136,15 @@ const DashboardScreen = (props) => {
       </View>
       <View style={[styles.screenMargin, { flex: 9 }]}>
         <View style={{ marginTop: 10, marginBottom: 15 }}>
-          <LinearGradient colors={['#055E7C', '#055E7C']} style={{ paddingTop: 5, paddingBottom: 5, alignItems: 'center', borderRadius: 10, height: Layout.window.height / 3 }}>
-            <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
-              <Ionicons name="ios-arrow-back" color={'#fff'} style={{ fontSize: 23, paddingLeft: 30 }} />
-              <Text style={[styles.text, { color: '#fff' }]}>THIS MONTH</Text>
-              <Ionicons name="ios-arrow-forward" color={'#fff'} style={{ fontSize: 23, paddingRight: 30 }} />
-            </View>
-            <View style={{ flex: 1, height: Layout.window.height / 5, alignSelf: 'stretch', flexDirection: 'row', justifyContent: 'space-around' }}>
-              <Charts />
-            </View>
-          </LinearGradient>
+        <LottieView
+           
+              style={{width:400,height:400,backgroundColor:'#fff'}}
+              source={require('../assets/lottie/scanner.json')}
+              autoPlay
+              loop
+              />
         </View>
-        <View style={{ marginTop: 10 }}>
-          <TouchableOpacity onPress={()=>props.navigation.navigate('TransactionHistory')}  style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-            <Text style={[styles.h2, { color: '#04A2BD' }]}>Latest Transaction</Text>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Text style={[styles.small, { paddingRight: 5, color: '#04A2BD' }]}>More</Text>
-              <Ionicons name="ios-arrow-forward" color={'#04A2BD'} style={{ fontSize: 15, paddingRight: 5 }} />
-            </View>
-          </TouchableOpacity>
-          <View style={{ flexDirection: 'row', marginTop: 5 }}>
-            <View style={{ flex: 3, flexDirection: 'row', alignItems: 'center' }}>
-              <Ionicons name="md-remove-circle-outline" color={'#A20F0F'} style={{ fontSize: 15, paddingRight: 20 }} />
-              <Text style={styles.text}>Withdrawal Transfer</Text>
-            </View>
-            <View style={{ flex: 1 }}>
-              <Text style={[styles.text, { color: '#A20F0F' }]}>- RM5</Text>
-            </View>
-          </View>
-          <View style={{ flexDirection: 'row', marginTop: 5 }}>
-            <View style={{ flex: 3, flexDirection: 'row', alignItems: 'center' }}>
-              <Ionicons name="md-remove-circle-outline" color={'#A20F0F'} style={{ fontSize: 15, paddingRight: 20 }} />
-              <Text style={styles.text}>Account Transfer</Text>
-            </View>
-            <View style={{ flex: 1 }}>
-              <Text style={[styles.text, { color: '#A20F0F' }]}>- RM5</Text>
-            </View>
-          </View>
-          <View style={{ flexDirection: 'row', marginTop: 5 }}>
-            <View style={{ flex: 3, flexDirection: 'row', alignItems: 'center' }}>
-              <Ionicons name="md-add-circle-outline" color={'#7ED321'} style={{ fontSize: 15, paddingRight: 20 }} />
-              <Text style={[styles.text]}>Disbursement Transfer</Text>
-            </View>
-            <View style={{ flex: 1 }}>
-              <Text style={[styles.text, { color: '#7ED321' }]}>+ RM5</Text>
-            </View>
-          </View>
-        </View>
-
-        <View style={{ marginTop: 20 }}>
-          <TouchableOpacity onPress={()=>props.navigation.navigate('Notification')} style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-            <Text style={[styles.h2, { color: '#04A2BD' }]}>Latest Notifications</Text>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Text style={[styles.small, { paddingRight: 5, color: '#04A2BD' }]}>More</Text>
-              <Ionicons name="ios-arrow-forward" color={'#04A2BD'} style={{ fontSize: 15, paddingRight: 5 }} />
-            </View>
-          </TouchableOpacity>
-          <View style={{ flexDirection: 'row', marginTop: 5 }}>
-            <View style={{ flex: 3, flexDirection: 'row', alignItems: 'center' }}>
-              <Ionicons name="md-remove-circle-outline" color={'#A20F0F'} style={{ fontSize: 15, paddingRight: 20 }} />
-              <Text style={styles.text}>Withdrawal Transfer</Text>
-            </View>
-            <View style={{ flex: 1 }}>
-              <Text style={[styles.text, { color: '#A20F0F' }]}>- RM5</Text>
-            </View>
-          </View>
-          <View style={{ flexDirection: 'row', marginTop: 5 }}>
-            <View style={{ flex: 3, flexDirection: 'row', alignItems: 'center' }}>
-              <Ionicons name="md-remove-circle-outline" color={'#A20F0F'} style={{ fontSize: 15, paddingRight: 20 }} />
-              <Text style={styles.text}>Account Transfer</Text>
-            </View>
-            <View style={{ flex: 1 }}>
-              <Text style={[styles.text, { color: '#A20F0F' }]}>- RM5</Text>
-            </View>
-          </View>
-          <View style={{ flexDirection: 'row', marginTop: 5 }}>
-            <View style={{ flex: 3, flexDirection: 'row', alignItems: 'center' }}>
-              <Ionicons name="md-add-circle-outline" color={'#7ED321'} style={{ fontSize: 15, paddingRight: 20 }} />
-              <Text style={[styles.text]}>Disbursement Transfer</Text>
-            </View>
-            <View style={{ flex: 1 }}>
-              <Text style={[styles.text, { color: '#7ED321' }]}>+ RM5</Text>
-            </View>
-          </View>
-        </View>
+        
       </View>
     </View>
   );
