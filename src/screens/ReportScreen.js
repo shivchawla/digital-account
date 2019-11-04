@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, TouchableOpacity, Text, Image, FlatList, ScrollView, TouchableWithoutFeedback } from 'react-native';
+import { View, TouchableOpacity, Text, Image, FlatList, ScrollView, TouchableWithoutFeedback, TextInput } from 'react-native';
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons';
@@ -12,7 +12,7 @@ const ReportScreen = (props) => {
     }, [reportList])
 
     const dispatch = useDispatch()
-    const { reportList } = useSelector(state => state.reportReducer, shallowEqual)
+    const { reportList, filterReportList, filterEnabled } = useSelector(state => state.reportReducer, shallowEqual)
 
     return (
 
@@ -33,14 +33,19 @@ const ReportScreen = (props) => {
             <View style={{ flex: 9 }}>
                 <ScrollView>
                     <View style={[styles.screenMargin]}>
-                        <View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginTop: 10 }}>
-                            <TouchableOpacity onPress={props.navigation.openDrawer} style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.small, { paddingRight: 5, color: '#055E7C' }]}>Search</Text>
-                                <Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 15, paddingRight: 5 }} />
-                            </TouchableOpacity>
+                        <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 10 }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 20, flex: 1, borderWidth: 1, borderColor: 'lightgrey', padding: 10, borderRadius: 10 }}>
+                                <View>
+                                    <Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
+                                </View>
+                                <TextInput placeholder='Please Enter Keyword' style={{ flex: 4 }} />
+                                <TouchableOpacity onPress={props.navigation.openDrawer} >
+                                    <Ionicons name="ios-options" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
+                                </TouchableOpacity>
+                            </View>
                         </View>
                         <View style={[styles.screenMargin, { flex: 9 }]}>
-                            {reportList && <FlatList data={reportList} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
+                            {reportList && <FlatList data={filterEnabled ? filterReportList : reportList} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
                                 <View style={styles.box}>
                                     <TouchableWithoutFeedback onPress={() => dispatch(actionCreator.setMarkerReportList(index))} style={{ flexDirection: 'row', marginTop: 5 }}>
                                         <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>

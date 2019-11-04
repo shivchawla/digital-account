@@ -75,7 +75,7 @@ const SupportScreen = (props) => {
                             <View style={{ flex: 9 }}>
                                 <ScrollView style={styles.screenMargin}>
                                     <View style={[styles.formElement, { alignSelf: 'stretch', marginTop: 25 }]}>
-                                        <Text style={styles.titleBox}>Category</Text>
+                                        <Text style={[styles.titleBox], { marginBottom: 10 }}>Category</Text>
                                         <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
                                             <Picker style={{ flex: 1, height: 35 }} selectedValue={category} onValueChange={(itemValue, itemIndex) => FormikProps.setFieldValue('category', itemValue)}>
                                                 <Picker.Item label="General" value="General" />
@@ -85,12 +85,12 @@ const SupportScreen = (props) => {
                                         </View>
                                     </View>
                                     <View style={styles.formElement}>
-                                        <Text style={styles.titleBox}>Subject</Text>
+                                        <Text style={[styles.titleBox], { marginBottom: 10 }}>Subject</Text>
                                         <TextInput value={subject} onChangeText={FormikProps.handleChange('subject')} onBlur={FormikProps.handleBlur('subject')} style={{ borderWidth: 1, borderColor: subjectTouched && subjectError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={subjectTouched && subjectError ? '' : 'Subject'} placeholderTextColor={subjectTouched && subjectError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {subjectTouched && subjectError && <Text style={styles.error}>{subjectError}</Text>}
                                     </View>
                                     <View style={styles.formElement}>
-                                        <Text style={styles.titleBox}>Inquiry</Text>
+                                        <Text style={[styles.titleBox], { marginBottom: 10 }}>Inquiry</Text>
                                         <TextInput value={msg} onChangeText={FormikProps.handleChange('msg')} onBlur={FormikProps.handleBlur('msg')} style={{ textAlignVertical: 'top', borderWidth: 1, borderColor: msgTouched && msgError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={msgTouched && msgError ? '' : 'Assign To'} placeholderTextColor={msgTouched && msgError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} multiline numberOfLines={5} />
                                         {msgTouched && msgError && <Text style={styles.error}>{msgError}</Text>}
                                     </View>

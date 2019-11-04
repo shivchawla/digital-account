@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, TouchableOpacity, Text, Image, FlatList,TextInput } from 'react-native';
+import { View, TouchableOpacity, Text, Image, FlatList, TextInput } from 'react-native';
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons';
@@ -12,7 +12,7 @@ const LoanScreen = (props) => {
         dispatch(actionCreator.getLoanList())
     }, [loanList])
     const dispatch = useDispatch()
-    const { loanList,filteredLoanList,filterEnabled } = useSelector(state => state.loanReducer, shallowEqual)
+    const { loanList, filteredLoanList, filterEnabled } = useSelector(state => state.loanReducer, shallowEqual)
 
     return (
 
@@ -40,24 +40,18 @@ const LoanScreen = (props) => {
                     </TouchableOpacity>
                 </View>
                 <View style={{ marginTop: 20 }}>
-                    {/* <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 10 }}>
-                        <TouchableOpacity onPress={props.navigation.openDrawer} style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 20 }}>
-                            <Text style={[styles.small, { paddingRight: 5, color: '#055E7C' }]}>Search</Text>
-                            <Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 15, paddingRight: 5 }} />
-                        </TouchableOpacity>
-                    </View> */}
                     <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 10 }}>
-                        <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 20, flex:1,borderWidth:1,borderColor:'lightgrey', padding:10, borderRadius:10 }}>
-                        <View><Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
-                        </View>
-                            
-                            <TextInput placeholder='Please Enter Keyword' style={{flex:4}} />
-                            <TouchableOpacity onPress={props.navigation.openDrawer} ><Ionicons name="ios-options" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
-                        </TouchableOpacity>
-                        
+                        <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 20, flex: 1, borderWidth: 1, borderColor: 'lightgrey', padding: 10, borderRadius: 10 }}>
+                            <View>
+                                <Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
+                            </View>
+                            <TextInput placeholder='Please Enter Keyword' style={{ flex: 4 }} />
+                            <TouchableOpacity onPress={props.navigation.openDrawer} >
+                                <Ionicons name="ios-options" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
+                            </TouchableOpacity>
                         </View>
                     </View>
-                    {loanList && <FlatList data={filterEnabled?filteredLoanList:loanList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
+                    {loanList && <FlatList data={filterEnabled ? filteredLoanList : loanList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
                         <TouchableOpacity onPress={() => props.navigation.navigate('LoanMiniDetail', { id: item.id })} style={styles.box}>
                             <View style={{ flexDirection: 'row', marginTop: 5 }}>
                                 <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>

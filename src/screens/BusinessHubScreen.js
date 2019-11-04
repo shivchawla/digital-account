@@ -21,30 +21,28 @@ const BusinessHubScreen = (props) => {
                     <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
                 </TouchableOpacity>
             </View>
-            <View style={[styles.screenMargin, { flex: 9 }]}>
-                <View style={{ flexDirection: 'row', marginTop: 20, alignItems: 'center' }}>
-                    <Ionicons name="ios-contacts" color={'#055E7C'} style={{ fontSize: 65, paddingRight: 5, opacity: 0.5 }} />
-                    <TouchableOpacity onPress={() => props.navigation.navigate('BusinessDirectory')}>
-                        <Text style={[styles.text, { marginLeft: 30 }]}>Business Directory</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={{ flexDirection: 'row', marginTop: 20, alignItems: 'center' }}>
-                    <Ionicons name="ios-pie" color={'#055E7C'} style={{ fontSize: 65, paddingRight: 5, opacity: 0.5 }} />
-                    <TouchableOpacity onPress={() => props.navigation.navigate('Zakat')}>
-                        <Text style={[styles.text, { marginLeft: 30 }]}>Zakat</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={{ flexDirection: 'row', marginTop: 20, alignItems: 'center' }}>
-                    <Ionicons name="ios-thumbs-up" color={'#055E7C'} style={{ fontSize: 65, paddingRight: 5, opacity: 0.5 }} />
-                    <TouchableOpacity onPress={() => props.navigation.navigate('Payroll')}>
-                        <Text style={[styles.text, { marginLeft: 40 }]}>Payroll</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={{ flexDirection: 'row', marginTop: 20, alignItems: 'center' }}>
-                    <Ionicons name="ios-cash" color={'#055E7C'} style={{ fontSize: 65, paddingRight: 5, opacity: 0.5 }} />
-                    <TouchableOpacity onPress={() => props.navigation.navigate('Remittance')}>
-                        <Text style={[styles.text, { marginLeft: 30 }]}>Remittance</Text>
-                    </TouchableOpacity>
+            <View style={[styles.screenMargin, { flex: 9, flexDirection: 'row' }]}>
+                <View style={{ flex: 1 }}>
+                    <View style={{ flexDirection: 'row' }}>
+                        <TouchableOpacity onPress={() => props.navigation.navigate('BusinessDirectory')} style={{ flex: 1, alignItems: 'center', borderWidth: 1, borderColor: '#d3d3d3', borderRadius: 10, padding: 25, margin: 25 }}>
+                            <Image source={require('../assets/images/businessdirectory.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                            <Text style={[styles.small], { textAlign: 'center' }}>Business Directory</Text>
+                        </TouchableOpacity>
+                        < TouchableOpacity onPress={() => props.navigation.navigate('Zakat')} style={{ flex: 1, alignItems: 'center', borderWidth: 1, borderColor: '#d3d3d3', borderRadius: 10, padding: 25, margin: 25 }}>
+                            <Image source={require('../assets/images/zakaticon.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                            <Text style={[styles.small], { textAlign: 'center' }}>Zakat</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={{ flexDirection: 'row' }}>
+                        <TouchableOpacity onPress={() => props.navigation.navigate('Remittance')} style={{ flex: 1, alignItems: 'center', borderWidth: 1, borderColor: '#d3d3d3', borderRadius: 10, padding: 25, margin: 25 }}>
+                            <Image source={require('../assets/images/remittanceicon.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                            <Text style={[styles.small], { textAlign: 'center' }}>Remittance</Text>
+                        </TouchableOpacity>
+                        <  TouchableOpacity onPress={() => props.navigation.navigate('Payroll')} style={{ flex: 1, alignItems: 'center', borderWidth: 1, borderColor: '#d3d3d3', borderRadius: 10, padding: 25, margin: 25 }}>
+                            <Image source={require('../assets/images/payrollicon.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                            <Text style={[styles.small], { textAlign: 'center' }}>Payroll</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
         </View >

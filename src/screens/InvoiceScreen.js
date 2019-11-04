@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, TouchableOpacity, TouchableWithoutFeedback, Text, Image, FlatList } from 'react-native';
+import { View, TouchableOpacity, TouchableWithoutFeedback, Text, Image, FlatList, TextInput } from 'react-native';
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons';
@@ -10,7 +10,7 @@ const InvoiceScreen = (props) => {
         dispatch(actionCreator.getInvoiceList())
     }, [invoiceList])
     const dispatch = useDispatch()
-    const { invoiceList } = useSelector(state => state.invoiceReducer, shallowEqual)
+    const { invoiceList, filterInvoicesList, filterEnabled } = useSelector(state => state.invoiceReducer, shallowEqual)
 
     return (
 
@@ -39,13 +39,17 @@ const InvoiceScreen = (props) => {
                 </View>
                 <View style={{ marginTop: 20 }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 10 }}>
-                        <TouchableOpacity onPress={props.navigation.openDrawer} style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 20 }}>
-                            <Text style={[styles.small, { paddingRight: 5, color: '#055E7C' }]}>Search</Text>
-                            <Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 15, paddingRight: 5 }} />
-                        </TouchableOpacity>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 20, flex: 1, borderWidth: 1, borderColor: 'lightgrey', padding: 10, borderRadius: 10 }}>
+                            <View>
+                                <Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
+                            </View>
+                            <TextInput placeholder='Please Enter Keyword' style={{ flex: 4 }} />
+                            <TouchableOpacity onPress={props.navigation.openDrawer} >
+                                <Ionicons name="ios-options" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
+                            </TouchableOpacity>
+                        </View>
                     </View>
-
-                    {invoiceList && <FlatList data={invoiceList} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
+                    {invoiceList && <FlatList data={filterEnabled ? filterInvoicesList : invoiceList} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
                         <View style={styles.box}>
                             <TouchableWithoutFeedback onPress={() => dispatch(actionCreator.setMarker(index))} style={{ flexDirection: 'row', marginTop: 5 }}>
                                 <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
