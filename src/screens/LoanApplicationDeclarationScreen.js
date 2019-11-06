@@ -11,7 +11,6 @@ import * as actionCreator from '../store/actions/action'
 import { useDispatch } from 'react-redux'
 
 const validationSchema = Yup.object().shape({
-
 });
 
 const LoanApplicationDeclarationScreen = (props) => {
@@ -60,7 +59,6 @@ const LoanApplicationDeclarationScreen = (props) => {
                 }
 
                 return (
-
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }}>
                         <View style={[{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
@@ -76,7 +74,7 @@ const LoanApplicationDeclarationScreen = (props) => {
                             </View>
                         </View>
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
-                            <View style={{ flex: 9, margin: 10 }}>
+                            <View style={{ flex: 9 }}>
                                 <ScrollView style={[styles.screenMargin]}>
                                     <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'center', marginBottom: 5 }}>
                                         <Text style={[styles.titleBox, { marginBottom: 5 }]}>Financing</Text>
@@ -148,18 +146,14 @@ const LoanApplicationDeclarationScreen = (props) => {
                                 </TouchableOpacity>
                             </View>
                         </View>
-                    </KeyboardAvoidingView>)
-
+                    </KeyboardAvoidingView>
+                )
             }}
-
         </Formik >
-
     );
-
 }
 
 LoanApplicationDeclarationScreen.navigationOptions = {
-
     header: null,
 };
 

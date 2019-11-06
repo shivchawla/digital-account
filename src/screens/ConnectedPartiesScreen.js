@@ -98,7 +98,7 @@ const ConnectedPartiesScreen = (props) => {
                             </View>
                         </View>
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
-                            <View style={{ flex: 9, margin: 10 }}>
+                            <View style={{ flex: 9 }}>
                                 <ScrollView style={[styles.screenMargin]}>
                                     <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'center', marginBottom: 5 }}>
                                         <Text style={[styles.titleBox, { marginBottom: 10, marginTop: 10 }]}>Connected Parties</Text>

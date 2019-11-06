@@ -29,8 +29,8 @@ const BusinessDirectoryScreen = (props) => {
                     <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
                 </View>
             </View>
-            <View style={{ flex: 9, padding: 10 }}>
-                <ScrollView>
+            <View style={{ flex: 9, }}>
+                <ScrollView Style={styles.screenMargin}>
                     {businessDirectoryList && <FlatList data={businessDirectoryList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
                         <View style={[styles.box, { marginBottom: 15 }]}>
 

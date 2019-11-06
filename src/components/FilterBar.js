@@ -30,18 +30,22 @@ const FilterBar = (props) => {
                 <View style={{ flex: 9, margin: 10 }}>
                     <View style={{ marginBottom: 10 }}>
                         <Text style={[styles.h3, { marginBottom: 5 }]}>Type</Text>
-                        <Picker style={{ height: 35 }} selectedValue={type} onValueChange={(val) => setType(val)} >
-                            <Picker.Item label={'Please Select'} value={undefined} />
-                            <Picker.Item label={'Business'} value={'Business'} />
-                        </Picker>
+                        <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
+                            <Picker style={{ height: 35, borderWidth: 1 }} selectedValue={type} onValueChange={(val) => setType(val)} >
+                                <Picker.Item label={'Please Select'} value={undefined} />
+                                <Picker.Item label={'Business'} value={'Business'} />
+                            </Picker>
+                        </View>
                     </View>
                     <View style={{ marginBottom: 10 }}>
                         <Text style={[styles.h3, { marginBottom: 5 }]}>Status</Text>
-                        <Picker style={{ height: 35 }} selectedValue={status} onValueChange={(val) => setStatus(val)} >
-                            <Picker.Item label={'Please Select'} value={undefined} />
-                            <Picker.Item label={'Approved'} value={'Approved'} />
-                            <Picker.Item label={'Disbursed'} value={'Disbursed'} />
-                        </Picker>
+                        <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
+                            <Picker style={{ height: 35, borderWidth: 1 }} selectedValue={status} onValueChange={(val) => setStatus(val)} >
+                                <Picker.Item label={'Please Select'} value={undefined} />
+                                <Picker.Item label={'Approved'} value={'Approved'} />
+                                <Picker.Item label={'Disbursed'} value={'Disbursed'} />
+                            </Picker>
+                        </View>
                     </View>
                     <View style={{ marginBottom: 10 }}>
                         <Text style={[styles.h3, { marginBottom: 5 }]}>Date</Text>
