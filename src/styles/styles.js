@@ -2,6 +2,18 @@ import { StyleSheet } from 'react-native'
 
 const fontSize = 15
 
+const elevationShadowStyle=(elevation)=> {
+  return {
+    elevation,
+    shadowColor: 'black',
+    shadowOffset: { width: 0, height: 0.5 * elevation },
+    shadowOpacity: 0.3,
+    shadowRadius: 0.8 * elevation
+  };
+}
+
+
+
 export default StyleSheet.create({
   text: {
     fontSize,
@@ -10,6 +22,12 @@ export default StyleSheet.create({
   },
 
   title: {
+    fontSize,
+    fontFamily: 'Montserrat_medium',
+    color: '#055E7C',
+    fontSize: fontSize * 1.6
+  },
+  subTitle: {
     fontSize,
     fontFamily: 'Montserrat_medium',
     color: '#055E7C',
@@ -54,7 +72,7 @@ export default StyleSheet.create({
     fontSize,
     fontFamily: 'Montserrat_regular',
     color: '#000',
-    fontSize: fontSize * 0.9
+    fontSize: fontSize * 0.7
   },
 
   titleBox: {
@@ -85,7 +103,7 @@ export default StyleSheet.create({
     paddingRight: 20
   },
 
-  box: {
+  boxOld: {
     // shadowColor: '#000',
     // shadowOffset: { width: 0, height: 3 },
     // shadowOpacity: 0.27,
@@ -108,5 +126,19 @@ export default StyleSheet.create({
     marginLeft: 5,
     marginRight: 5,
     marginTop: 10,
+  },
+  box: {
+    margin: 10,
+    padding: 15,
+
+    borderWidth: 1,
+    borderRadius: 5,
+     borderColor: '#ddd',
+  
+  
+  },
+  shadow: {
+    ...elevationShadowStyle(5),
+    backgroundColor: 'white' // It'll look weird without a background color!
   }
 })
