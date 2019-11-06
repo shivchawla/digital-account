@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, TouchableOpacity, Text, Image, ActivityIndicator, TextInput, KeyboardAvoidingView, ScrollView } from 'react-native';
-import CheckBox from 'react-native-check-box'
+import { View, TouchableOpacity, Text, Image, ActivityIndicator, TextInput, KeyboardAvoidingView, ScrollView, CheckBox, Platform } from 'react-native';
+import CheckBox2 from 'react-native-check-box'
 import { useDispatch } from 'react-redux'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
@@ -28,7 +28,7 @@ const LoanApplicationScreen = (props) => {
     const dispatch = useDispatch()
     const setLoanApplication = (val) => dispatch({ type: 'SET_LOAN_APPLICATION', payload: { ...val } });
     return (
-        <Formik initialValues={{ smeConnected: false }} onSubmit={values => {
+        <Formik initialValues={{ smeConnected: true }} onSubmit={values => {
             setLoanApplication(values)
             props.navigation.navigate('ConnectedParties')
         }}
@@ -44,7 +44,7 @@ const LoanApplicationScreen = (props) => {
                 const amountError = FormikProps.errors.amount
                 const amountTouched = FormikProps.touched.amount
 
-                const handleCheckBox = () => { FormikProps.setFieldValue('smeConnected', !smeConnected) }
+                const handleCheckBox = () => {console.log(`apa ni ${smeConnected}`); FormikProps.setFieldValue('smeConnected', !smeConnected) }
 
                 return (
 
@@ -107,10 +107,20 @@ const LoanApplicationScreen = (props) => {
                                     <View style={{ marginBottom: 10 }}>
                                         <Text style={[styles.text, { marginBottom: 5 }]}>Is company connected with SME Bank?</Text>
                                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                            <CheckBox onClick={() => handleCheckBox()} isChecked={smeConnected} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', paddingRight: 10 }} /><Text>Yes</Text>
+
+                                            {(Platform.OS == 'ios') ?
+                                                <CheckBox2 onClick={() => handleCheckBox()} isChecked={smeConnected} style={{ paddingRight: 10 }} />
+                                                :
+                                                <CheckBox onValueChange={handleCheckBox} value={smeConnected} style={{ paddingRight: 10 }} />
+                                            }
+                                            <Text style={styles.text}>Yes</Text>
                                         </View>
                                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                            <CheckBox onClick={handleCheckBox} isChecked={!smeConnected} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', paddingRight: 10 }} /><Text>No</Text>
+                                        {(Platform.OS == 'ios') ?
+                                                <CheckBox2 onClick={() => handleCheckBox()} isChecked={!smeConnected} style={{ paddingRight: 10 }} />
+                                                :
+                                                <CheckBox onValueChange={handleCheckBox} value={!smeConnected} style={{ paddingRight: 10 }} />
+                                            }<Text style={styles.text}>No</Text>
                                         </View>
                                     </View>
                                 </ScrollView>

@@ -6,6 +6,8 @@ import ImageSlider from 'react-native-image-slider';
 import { useDispatch } from 'react-redux'
 import styles from '../styles/styles'
 
+//import * as actionCreator from '../store/actions/action'
+
 const IntroScreen = (props) => {
     const images =
         [

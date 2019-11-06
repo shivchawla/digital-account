@@ -521,7 +521,6 @@ export const addBank = (values) => {
     }
 }
 
-
 export const deleteAllBank = () => {
     return async (dispatch, getState) => {
         console.log(`delete action`)

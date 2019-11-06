@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableOpacity, Text, Image, ActivityIndicator, KeyboardAvoidingView, ScrollView } from 'react-native';
+import { View, TouchableOpacity, Text, Image, ActivityIndicator, KeyboardAvoidingView, ScrollView,TextInput } from 'react-native';
 import CheckBox from 'react-native-check-box'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
@@ -25,11 +25,18 @@ const LoanApplicationDeclarationScreen = (props) => {
 
         }}
             validationSchema={validationSchema}
-            initialValues={{ control: false, influence: false, internal: false, subsidiary: false, guaranteed: false }}
+            initialValues={{ control: false, influence: false, internal: false, subsidiary: false, guaranteed: false,truth:false }}
         >
             {FormikProps => {
 
-                const { control, influence, internal, subsidiary, guaranteed } = FormikProps.values
+                const { control, influence, internal, subsidiary, guaranteed,declareName,declarePosition,truth} = FormikProps.values
+
+                const declareNameError = FormikProps.errors.declareName
+                const declareNameTouched = FormikProps.touched.declareName
+
+                const declarePositionError= FormikProps.errors.declarePosition
+                const declarePositionTouched = FormikProps.touched.declarePosition
+
                 const handleCheckBox = (field) => {
                     console.log(`field ialah ${field}`)
 
@@ -53,6 +60,9 @@ const LoanApplicationDeclarationScreen = (props) => {
 
                         case 'guaranteed':
                             FormikProps.setFieldValue('guaranteed', !guaranteed)
+                            break;
+                            case 'truth':
+                            FormikProps.setFieldValue('truth', !truth)
                             break;
 
                     }
@@ -128,8 +138,20 @@ const LoanApplicationDeclarationScreen = (props) => {
                                         <Text style={[styles.text, { marginBottom: 10, color: '#055E7C' }]}>Application Declaration</Text>
                                     </View>
                                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                        <CheckBox onClick={() => console.log('test')} checked={false} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)' }} />
+                                        <CheckBox onClick={() => handleCheckBox('truth')} isChecked={truth} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)' }} />
                                         <Text style={{ flex: 1, flexWrap: 'wrap', paddingLeft: 20 }}>It is now hereby declared that the information and particulars furnished above are true and correct to the best of my/our knowledge and belief and nothing had been concealed.</Text>
+                                    </View>
+                                    <View style={{ marginBottom: 10 }}>
+                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Name</Text>
+                                        <TextInput value={declareName} onChangeText={FormikProps.handleChange('declareName')} onBlur={FormikProps.handleBlur('declareName')} style={{ borderWidth: 1, borderColor: declareNameTouched && declareNameError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={declareNameTouched && declareNameError ? '' : ''} placeholderTextColor={declareNameTouched && declareNameError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+
+                                        {declareNameTouched && declareNameError && <Text style={styles.error}>{declareNameError}</Text>}
+                                    </View>
+                                    <View style={{ marginBottom: 10 }}>
+                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Position</Text>
+                                        <TextInput value={declarePosition} onChangeText={FormikProps.handleChange('declarePosition')} onBlur={FormikProps.handleBlur('declarePosition')} style={{ borderWidth: 1, borderColor: declarePositionTouched && declarePositionError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={declarePositionTouched && declarePositionError ? '' : ''} placeholderTextColor={declarePositionTouched && declarePositionError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+
+                                        {declarePositionTouched && declarePositionError && <Text style={styles.error}>{declarePositionError}</Text>}
                                     </View>
                                 </ScrollView>
                             </View>

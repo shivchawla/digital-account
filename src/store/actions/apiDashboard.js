@@ -561,6 +561,64 @@ export const submitLoanApplicationApi = () => {
     const personalToken = await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
     const values = getState().loanApplicationReducer
+
+    const {amount,
+      purpose,
+      smeConnected,
+      capacity,
+      name,
+      myKad,
+      relationship,
+      personnelName,
+      email,
+      control,
+      influence,
+      internal,
+      subsidiary,
+      guaranteed,
+      truth,
+      declareName,
+      declarePosition}=values
+
+
+
+  const  total_financing=	amount
+  const purpose_financing=	purpose
+  const cddChkFinancingDeclare1=	smeConnected
+  const cddConCapacity1	=capacity
+  const cddConName1	=name
+  const cddConMykad1=	myKad
+  const cddConRelation1=	relationship
+  const cddConRelationName1=	personnelName
+  const cddConRelationEmail1=	email
+  const cddChkFinancingDeclare2=	control
+  const cddChkFinancingDeclare3	=influence
+  const cddChkFinancingDeclare4=	internal
+  const cddChkFinancingDeclare5=	subsidiary
+  const cddChkFinancingDeclare6=	guaranteed
+  const cddChkAppDeclare1=	truth
+  const cddAppDeclareName=	declareName
+  const cddAppDeclarePosition=	declarePosition
+
+  const values2={total_financing,
+    purpose_financing,
+    cddChkFinancingDeclare1,
+    cddConCapacity1,
+    cddConName1,
+    cddConMykad1,
+    cddConRelation1,
+    cddConRelationName1,
+    cddConRelationEmail1,
+    cddChkFinancingDeclare2,
+    cddChkFinancingDeclare3,
+    cddChkFinancingDeclare4,
+    cddChkFinancingDeclare5,
+    cddChkFinancingDeclare6,
+    cddChkAppDeclare1,
+    cddAppDeclareName,
+    cddAppDeclarePosition}
+
+
     const access_credential = 'api'
     console.log(`New loan api : ${JSON.stringify(values)}`)
 
@@ -571,7 +629,7 @@ export const submitLoanApplicationApi = () => {
         'Accept': 'application/json',
         'Authorization': token_type + ' ' + access_token
       },
-      body: JSON.stringify({ ...values, access_credential }),
+      body: JSON.stringify({ ...values2, access_credential }),
     }).then((response) => response.json())
       .then(async (responseJson) => {
         const { status } = await responseJson

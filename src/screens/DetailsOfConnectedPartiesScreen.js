@@ -18,9 +18,7 @@ class DetailsOfConnectedPartiesScreen extends React.PureComponent {
     }
 
     render() {
-
         return (
-
             <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
                 <View style={{ flex: 1, justifyContent: 'space-between' }}>
                     <View style={{ alignItems: 'flex-start' }}><Image source={require('../assets/images/topLeft.png')} style={{ width: 79, height: 120 }} /></View>

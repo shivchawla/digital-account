@@ -16,20 +16,20 @@ const validationSchema = Yup.object().shape({
         .required()
         .label('Bank Account No'),
 
-    bankAccountName: Yup
-        .string()
-        .required()
-        .label('Bank Account Name'),
+    // bankAccountName: Yup
+    //     .string()
+    //     .required()
+    //     .label('Bank Account Name'),
 
-    bankAddress: Yup
-        .string()
-        .required()
-        .label('Bank Address'),
+    // bankAddress: Yup
+    //     .string()
+    //     .required()
+    //     .label('Bank Address'),
 
-    bankCountry: Yup
-        .string()
-        .required()
-        .label('Bank Country'),
+    // bankCountry: Yup
+    //     .string()
+    //     .required()
+    //     .label('Bank Country'),
 
     amount: Yup
         .number()

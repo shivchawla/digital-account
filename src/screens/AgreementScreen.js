@@ -7,7 +7,6 @@ import CheckBox2 from 'react-native-check-box'
 import * as actionCreator from '../store/actions/action'
 
 const AgreementScreen = (props) => {
-
     const [agreement, setAgreement] = useState(false)
     const dispatch = useDispatch()
     const signUp = () => {
@@ -43,7 +42,7 @@ FCGB is referred to as “we”, “us”, “our” or “ours”. Any person u
                                 :
                                 <CheckBox value={agreement} onValueChange={() => setAgreement(!agreement)} />
                             }
-                            <Text style={[styles.text, { margin: 5, marginBottom: 10, }]}> I have agreed on terms and condition  </Text>
+                            <Text style={[styles.text, { margin: 5, marginBottom: 10 }]}> I have agreed on terms and condition  </Text>
                         </View>
                     </ScrollView>
                 </View>
