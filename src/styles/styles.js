@@ -140,5 +140,24 @@ export default StyleSheet.create({
   shadow: {
     ...elevationShadowStyle(5),
     backgroundColor: 'white' // It'll look weird without a background color!
-  }
+  },
+  borderStyleBase: {
+    width: 45,
+    height: 45
+  },
+
+  borderStyleHighLighted: {
+    borderColor: "#03DAC6",
+  },
+
+  underlineStyleBase: {
+    width: 30,
+    height: 45,
+    borderWidth: 0,
+    borderBottomWidth: 1,
+  },
+
+  underlineStyleHighLighted: {
+    borderColor: "#03DAC6",
+  },
 })

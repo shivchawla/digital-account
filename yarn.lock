@@ -1104,6 +1104,11 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
   integrity sha512-ONhaKPIufzzrlNbqtWFFd+jlnemX6lJAgq9ZeiZtS7I1PIf/la7CW4m83rTXRnVnsMbW2k56pGYu7AUFJD9Pow==
 
+"@twotalltotems/react-native-otp-input@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@twotalltotems/react-native-otp-input/-/react-native-otp-input-1.1.0.tgz#33d238223052e1328cea70b6877be5f51e178590"
+  integrity sha512-zxbQTfZUahDfh2awC0lX3JgTzr64Cuq0uVCgFsMeZ3ftmAANShxz4DckcZ38nuWMbg6Fl5FNaSQRQKQcUSkHwQ==
+
 "@types/fbemitter@^2.0.32":
   version "2.0.32"
   resolved "https://registry.yarnpkg.com/@types/fbemitter/-/fbemitter-2.0.32.tgz#8ed204da0f54e9c8eaec31b1eec91e25132d082c"

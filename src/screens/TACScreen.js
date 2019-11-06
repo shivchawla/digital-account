@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import {
     View,
     TouchableOpacity,
@@ -12,33 +12,20 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles/styles'
+import OTPInputView from '@twotalltotems/react-native-otp-input'
 
-const validationSchema = Yup.object().shape({
 
-    TACNumber: Yup
-        .string(),
 
-});
 
 const ChangeNumberScreen = (props) => {
 
-    return (
+    const [code,updateCode]=useState("")
 
-        <Formik onSubmit={async values => {
 
-            console.log(JSON.stringify(values))
-
-        }}
-
-            validationSchema={validationSchema}>
-
-            {FormikProps => {
-
-                const { TACNumber } = FormikProps.values
 
                 return (
 
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }}>
+                    <View style={{ flex: 1, }}>
                         <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
@@ -55,21 +42,28 @@ const ChangeNumberScreen = (props) => {
                         <View style={{ flex: 9 }}>
                             <View style={[styles.screenMargin, { flex: 3, marginTop: 25 }]}>
                                 <Text style={[styles.titleBox, { marginBottom: 25, justifyContent: 'center', flexDirection: 'row' }]}>We have sent TAC to your new number.</Text>
-                                <View style={{ justifyContent: 'space-between', flex: 9 }}>
-                                    <View style={{ flex: 1, flexDirection: 'row' }}>
-                                        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', padding: 10, borderWidth: 1, borderRadius: 5, margin: 5, height: 25 }}>
-                                            <TextInput keyboardType={'number-pad'} autoFocus={true} maxLength={1} placeholder={''} style={[styles.text, { textAlign: 'center', height: 10 }]} />
-                                        </View>
-                                        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', padding: 10, borderWidth: 1, borderRadius: 5, margin: 5, height: 25  }}>
-                                            <TextInput keyboardType={'number-pad'} autoFocus={true} maxLength={1} placeholder={''} style={[styles.text, { textAlign: 'center', height: 10 }]} />
-                                        </View>
-                                        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', padding: 10, borderWidth: 1, borderRadius: 5, margin: 5, height: 25  }}>
-                                            <TextInput keyboardType={'number-pad'} autoFocus={true} maxLength={1} placeholder={''} style={[styles.text, { textAlign: 'center', height: 10 }]} />
-                                        </View>
-                                        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', padding: 10, borderWidth: 1, borderRadius: 5, margin: 5 , height: 25 }}>
-                                            <TextInput keyboardType={'number-pad'} autoFocus={true} maxLength={1} placeholder={''} style={[styles.text, { textAlign: 'center', height: 10 }]} />
-                                        </View>
-                                    </View>
+                                <View style={{ justifyContent: 'space-between', flex: 9,alignItems:'center' }}>
+                                    
+                                    <OTPInputView
+                                        style={{ width: '80%', height: 200 }}
+                                        pinCount={4}
+                                        code={code}
+                                        
+                                        autoFocusOnLoad
+                                         codeInputFieldStyle={styles.borderStyleBase}
+                                         codeInputHighlightStyle={styles.borderStyleHighLighted}
+                                        //codeInputFieldStyle={styles.underlineStyleBase}
+                                        //codeInputHighlightStyle={styles.underlineStyleHighLighted}
+                                        onCodeFilled={code => {
+                                            updateCode(code);
+                                            console.log(`Code is ${code}, you are good to go!`)
+                                        }}
+                                        onCodeChanged={code => {
+                                            updateCode(code);
+                                            console.log(`Code is ${code} wei, you are good to go!`)
+                                        }}
+                                    />
+                                    {/* <Text>TAC : {code}</Text> */}
                                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: 25 }}>
                                         <Text style={[styles.text]}>Didn't get TAC number?</Text>
                                         <TouchableOpacity onPress={() => props.navigation.navigate('ChangeNumber')}>
@@ -81,9 +75,7 @@ const ChangeNumberScreen = (props) => {
                         </View>
                         <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
                         </View>
-                    </KeyboardAvoidingView>)
-            }}
-        </Formik >
+                    </View>
     );
 }
 
