@@ -52,7 +52,12 @@ const WithdrawScreen = (props) => {
     const ios = Platform.OS === "ios" ? true : false
 
     const withDraw = (values) => {
-        props.navigation.navigate('WithdrawSuccess')
+        const newValues={...values,...values.bankDetail}
+        const {bankDetail,...cleanValue}=newValues
+
+        console.log(`values ialah : ${JSON.stringify(cleanValue)}`)
+        dispatch(actionCreator.withDraw(cleanValue))
+        //props.navigation.navigate('WithdrawSuccess')
     }
 
     const dispatch = useDispatch()
@@ -73,7 +78,7 @@ const WithdrawScreen = (props) => {
 
             {FormikProps => {
 
-                const { bankLabel, amount, remark } = FormikProps.values
+                const { bankLabel, amount, remark, bankDetail } = FormikProps.values
 
                 const bankLabelError = FormikProps.errors.bankLabel
                 const bankLabelTouched = FormikProps.touched.bankLabel
@@ -83,6 +88,12 @@ const WithdrawScreen = (props) => {
 
                 const remarkError = FormikProps.errors.remark
                 const remarkTouched = FormikProps.touched.remark
+
+                const populateBankInfo = (itemValue)=>{
+                    setSelectedBank(itemValue)
+                    const bankDetail=bankList.find(b => b.bankLabel === itemValue)
+                    FormikProps.setFieldValue('bankDetail',bankDetail)
+                }
 
                 return (
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }}>
@@ -102,6 +113,7 @@ const WithdrawScreen = (props) => {
                                     <Picker style={{ flex: 1, height: 35 }} selectedValue={bankLabel} onValueChange={(itemValue, itemIndex) => {
                                         FormikProps.setFieldValue('bankLabel', itemValue);
                                         setSelectedBank(itemValue)
+
                                     }
                                     }>
                                         <Picker.Item label={'Please Select'} value={undefined} />
@@ -146,7 +158,9 @@ const WithdrawScreen = (props) => {
                                                 <View>
                                                     <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
                                                         <Picker style={{ flex: 1, height: 35 }} selectedValue={bankLabel} onValueChange={(itemValue, itemIndex) => {
-                                                            FormikProps.setFieldValue('bankLabel', itemValue); setSelectedBank(itemValue)
+                                                            FormikProps.setFieldValue('bankLabel', itemValue);
+                                                            populateBankInfo(itemValue)
+
                                                         }
                                                         }>
                                                             <Picker.Item label={'Please Select'} value={undefined} />
@@ -180,6 +194,9 @@ const WithdrawScreen = (props) => {
                                             <Text style={[styles.text]}>{selectedBankDetail.bankCountry}</Text>
                                         </View>
                                     </View>}
+                                    {/* {selectedBankDetail && FormikProps.setFieldValue('test', {bankAccountName:selectedBankDetail.bankAccountName,bankAddress:selectedBankDetail.bankAddress,bankCountry:selectedBankDetail.bankCountry})
+                                     
+                                    }  */}
                                     <View style={[styles.formElement]}>
                                         <Text style={[styles.titleBox, { marginBottom: 10 }]}>Amount</Text>
                                         <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} onBlur={FormikProps.handleBlur('amount')} style={{ borderWidth: 1, borderColor: amountTouched && amountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={amountTouched && amountError ? '' : 'Eg: RM890.00'} placeholderTextColor={amountTouched && amountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />

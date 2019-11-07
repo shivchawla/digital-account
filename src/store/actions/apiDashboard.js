@@ -89,6 +89,70 @@ export const agingListApi = () => {
   }
 }
 
+export const withDrawApi = (values) => {
+  return async (dispatch, getState) => {
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+    //const values = getState().loanApplicationReducer
+
+    const { amount,
+      bankLabel,
+      remark,
+      bankAccountNo,
+      bankAccountName,
+      bankAddress,
+      bankCountry } = values
+
+
+    const account_no = bankAccountNo
+    const account_name = bankAccountName
+    const bank_name = bankLabel
+    const bank_address = bankAddress
+    const bank_country = bankCountry
+    const amount_request = amount
+    const amount_fee = 2
+    const reason_request = remark
+
+  
+    
+
+    const values2 = {
+      account_no,
+      account_name,
+      bank_name,
+      bank_address,
+      bank_country,
+      amount_request,
+      amount_fee,
+      reason_request,
+      
+    }
+
+
+    const access_credential = 'api'
+    console.log(`New loan api : ${JSON.stringify(values2)}`)
+
+    fetch(`${apiUrl}/api/withdrawal/submit`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      },
+      body: JSON.stringify({ ...values2, access_credential }),
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const { status } = await responseJson
+        //await dispatch({ type: 'SET_LOAN_APPLICATION', payload: { status, proceedMain: true } })
+        await console.log(`withdrawal api  ${JSON.stringify(responseJson)}`)
+      })
+      .catch((error) => {
+        console.error('Error : ' + error);
+      });
+
+  }
+}
+
 export const invoiceListApi = () => {
   return async (dispatch, getState) => {
 
@@ -562,7 +626,7 @@ export const submitLoanApplicationApi = () => {
     const { token_type, access_token } = JSON.parse(personalToken)
     const values = getState().loanApplicationReducer
 
-    const {amount,
+    const { amount,
       purpose,
       smeConnected,
       capacity,
@@ -578,45 +642,47 @@ export const submitLoanApplicationApi = () => {
       guaranteed,
       truth,
       declareName,
-      declarePosition}=values
+      declarePosition } = values
 
 
 
-  const  total_financing=	amount
-  const purpose_financing=	purpose
-  const cddChkFinancingDeclare1=	smeConnected
-  const cddConCapacity1	=capacity
-  const cddConName1	=name
-  const cddConMykad1=	myKad
-  const cddConRelation1=	relationship
-  const cddConRelationName1=	personnelName
-  const cddConRelationEmail1=	email
-  const cddChkFinancingDeclare2=	control
-  const cddChkFinancingDeclare3	=influence
-  const cddChkFinancingDeclare4=	internal
-  const cddChkFinancingDeclare5=	subsidiary
-  const cddChkFinancingDeclare6=	guaranteed
-  const cddChkAppDeclare1=	truth
-  const cddAppDeclareName=	declareName
-  const cddAppDeclarePosition=	declarePosition
+    const total_financing = amount
+    const purpose_financing = purpose
+    const cddChkFinancingDeclare1 = smeConnected
+    const cddConCapacity1 = capacity
+    const cddConName1 = name
+    const cddConMykad1 = myKad
+    const cddConRelation1 = relationship
+    const cddConRelationName1 = personnelName
+    const cddConRelationEmail1 = email
+    const cddChkFinancingDeclare2 = control
+    const cddChkFinancingDeclare3 = influence
+    const cddChkFinancingDeclare4 = internal
+    const cddChkFinancingDeclare5 = subsidiary
+    const cddChkFinancingDeclare6 = guaranteed
+    const cddChkAppDeclare1 = truth
+    const cddAppDeclareName = declareName
+    const cddAppDeclarePosition = declarePosition
 
-  const values2={total_financing,
-    purpose_financing,
-    cddChkFinancingDeclare1,
-    cddConCapacity1,
-    cddConName1,
-    cddConMykad1,
-    cddConRelation1,
-    cddConRelationName1,
-    cddConRelationEmail1,
-    cddChkFinancingDeclare2,
-    cddChkFinancingDeclare3,
-    cddChkFinancingDeclare4,
-    cddChkFinancingDeclare5,
-    cddChkFinancingDeclare6,
-    cddChkAppDeclare1,
-    cddAppDeclareName,
-    cddAppDeclarePosition}
+    const values2 = {
+      total_financing,
+      purpose_financing,
+      cddChkFinancingDeclare1,
+      cddConCapacity1,
+      cddConName1,
+      cddConMykad1,
+      cddConRelation1,
+      cddConRelationName1,
+      cddConRelationEmail1,
+      cddChkFinancingDeclare2,
+      cddChkFinancingDeclare3,
+      cddChkFinancingDeclare4,
+      cddChkFinancingDeclare5,
+      cddChkFinancingDeclare6,
+      cddChkAppDeclare1,
+      cddAppDeclareName,
+      cddAppDeclarePosition
+    }
 
 
     const access_credential = 'api'
