@@ -94,12 +94,6 @@ const DataSettingScreen = (props) => {
                                 <Text style={[styles.text, { marginLeft: 25 }]}>Notification</Text>
                             </TouchableOpacity>
                         </View>
-                        <View style={{ flexDirection: 'row', marginTop: 20, alignItems: 'center' }}>
-                            <Image source={require('../assets/images/support1.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
-                            <TouchableOpacity onPress={() => props.navigation.navigate('Support')}>
-                                <Text style={[styles.text, { marginLeft: 25 }]}>Support</Text>
-                            </TouchableOpacity>
-                        </View>
                     </View>
                 </ScrollView>
             </View>

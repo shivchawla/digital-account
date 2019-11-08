@@ -9,7 +9,6 @@ const NotificationScreen = (props) => {
     useEffect(() => {
         dispatch(actionCreator.getNotificationList())
     }, [notificationList])
-
     const dispatch = useDispatch()
     const { notificationList } = useSelector(state => state.notificationScreenReducer, shallowEqual)
 
@@ -29,7 +28,7 @@ const NotificationScreen = (props) => {
                     <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
                 </TouchableOpacity>
             </View>
-            <View style={[styles.screenMargin, { flex: 9 }]}>
+            <View style={[styles.screenMargin, { flex: 9, marginTop: 25 }]}>
                 {notificationList && <FlatList data={notificationList} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
                     <View style={styles.box}>
                         <TouchableWithoutFeedback onPress={() => dispatch(actionCreator.setMarkers(index))} style={{ flexDirection: 'row', marginTop: 5 }}>
@@ -52,7 +51,6 @@ const NotificationScreen = (props) => {
                 } />}
             </View>
         </View >
-
     );
 }
 

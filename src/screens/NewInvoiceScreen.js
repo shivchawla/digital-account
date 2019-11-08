@@ -213,11 +213,11 @@ const NewInvoiceScreen = (props) => {
                             </TouchableOpacity>
                         </View>
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
-                            <View style={{ flex: 9, margin: 10 }}>
+                            <View style={{ flex: 9 }}>
                                 <ScrollView style={[styles.screenMargin]}>
                                     {ios ? <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
-                                        <Text style={[styles.titleBox]}>Type</Text>
-                                        <TouchableOpacity onPress={() => handleIosPicker('type')} style={{ marginTop: 5 }}>
+                                        <Text style={[styles.titleBox], { marginTop: 20 }}>Type</Text>
+                                        <TouchableOpacity onPress={() => handleIosPicker('type')}>
                                             <Text style={[styles.small, { color: '#0A6496' }]}>{type ? type : 'Select Type'}</Text>
                                         </TouchableOpacity>
                                     </View> : <View style={[styles.formElement, { alignSelf: 'stretch' }]}>

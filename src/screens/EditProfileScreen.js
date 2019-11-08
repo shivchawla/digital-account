@@ -54,27 +54,27 @@ const EditProfileScreen = (props) => {
                         </View>
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
                             <View style={[styles.screenMargin, { flex: 9 }]}>
-                                <View style={{ flexDirection: 'row', justifyContent: 'flex-start', marginBottom: 10, marginTop: 10 }}>
+                                <View style={{ flexDirection: 'row', justifyContent: 'flex-start', marginBottom: 10, marginTop: 25, marginBottom: 25 }}>
                                     <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 90, height: 90, }} />
                                 </View>
                                 <View style={[styles.formElement]}>
-                                    <Text style={[styles.titleBox, { marginBottom: 5 }]}>Company Name</Text>
+                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Company Name</Text>
                                     <TextInput value={companyName} onChangeText={FormikProps.handleChange('companyName')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
                                 </View>
                                 <View style={[styles.formElement]}>
-                                    <Text style={[styles.titleBox, { marginBottom: 5 }]}>Registration Number</Text>
+                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Registration Number</Text>
                                     <TextInput value={companyRegNum} onChangeText={FormikProps.handleChange('companyRegNum')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
                                 </View>
                                 <View style={[styles.formElement]}>
-                                    <Text style={[styles.titleBox, { marginBottom: 5 }]}>Company Addresss</Text>
+                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Company Addresss</Text>
                                     <TextInput value={companyAddress} onChangeText={FormikProps.handleChange('companyAddress')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
                                 </View>
                                 <View style={[styles.formElement]}>
-                                    <Text style={[styles.titleBox, { marginBottom: 5 }]}>Postcode</Text>
+                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Postcode</Text>
                                     <TextInput value={companyPostcode} onChangeText={FormikProps.handleChange('companyPostcode')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} keyboardType={'phone-pad'} />
                                 </View>
                                 <View style={[styles.formElement]}>
-                                    <Text style={[styles.titleBox, { marginBottom: 5 }]}>Company Registered Date</Text>
+                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Company Registered Date</Text>
                                     <TextInput value={companyRegisteredDate} onChangeText={FormikProps.handleChange('companyRegisteredDate')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
                                 </View>
                             </View>

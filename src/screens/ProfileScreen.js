@@ -1,10 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import {
-    View,
-    TouchableOpacity,
-    Text,
-    Image,
-} from 'react-native';
+import { View, TouchableOpacity, Text, Image, } from 'react-native';
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons';
@@ -16,9 +11,7 @@ const ProfileScreen = (props) => {
     }, [])
 
     const dispatch = useDispatch()
-
     const retrieveMerchantInfo = () => { dispatch(actionCreator.retrieveMerchantInfo()) }
-
     const business_name = useSelector(state => state.merchantInfoReducer.business_name, shallowEqual)
     const business_reg_no = useSelector(state => state.merchantInfoReducer.business_reg_no, shallowEqual)
     const contact_no = useSelector(state => state.merchantInfoReducer.contact_no, shallowEqual)
@@ -27,7 +20,6 @@ const ProfileScreen = (props) => {
     const business_postcode = useSelector(state => state.merchantInfoReducer.business_postcode, shallowEqual)
 
     return (
-
         <View style={{ flex: 1, }}>
             <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
@@ -44,7 +36,7 @@ const ProfileScreen = (props) => {
             </View>
             <View style={[styles.screenMargin, { flex: 9 }]}>
                 <View style={{ marginTop: 10, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end' }}>
-                    <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ padding: 5, paddingLeft: 8, paddingRight: 8, backgroundColor: '#055E7C', borderRadius: 5 }}>
+                    <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ padding: 5, paddingLeft: 8, paddingRight: 8, backgroundColor: '#055E7C', borderRadius: 15 }}>
                         <Text style={[styles.text, { color: '#fff' }]}>Edit</Text>
                     </TouchableOpacity>
                 </View>
@@ -96,7 +88,7 @@ const ProfileScreen = (props) => {
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                             <Text style={[styles.boldText]}>Business Reg Number</Text>
                         </View>
-                        <View style={{ flex: 1 }}>
+                        <View style={{ flex: 2 }}>
                             <Text style={[styles.text, { color: '#055E7C' }]}>{business_reg_no}</Text>
                         </View>
                     </View>
@@ -104,7 +96,7 @@ const ProfileScreen = (props) => {
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                             <Text style={[styles.boldText]}>Business Name</Text>
                         </View>
-                        <View style={{ flex: 1 }}>
+                        <View style={{ flex: 2 }}>
                             <Text style={[styles.text, { color: '#055E7C' }]}>{business_name}</Text>
                         </View>
                     </View>
@@ -112,7 +104,7 @@ const ProfileScreen = (props) => {
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                             <Text style={[styles.boldText]}>Contact Number</Text>
                         </View>
-                        <View style={{ flex: 1 }}>
+                        <View style={{ flex: 2 }}>
                             <Text style={[styles.text, { color: '#055E7C' }]}>{contact_no}</Text>
                         </View>
                     </View>
@@ -120,7 +112,7 @@ const ProfileScreen = (props) => {
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                             <Text style={[styles.boldText]}>Email</Text>
                         </View>
-                        <View style={{ flex: 1 }}>
+                        <View style={{ flex: 2 }}>
                             <Text style={[styles.text, { color: '#055E7C' }]}>{support_email}</Text>
                         </View>
                     </View>
@@ -128,14 +120,13 @@ const ProfileScreen = (props) => {
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                             <Text style={[styles.boldText]}>Address</Text>
                         </View>
-                        <View style={{ flex: 1 }}>
+                        <View style={{ flex: 2 }}>
                             <Text style={[styles.text, { color: '#055E7C' }]}>{business_address}</Text>
                         </View>
                     </View>
                 </View>
             </View>
         </View>
-
     );
 }
 

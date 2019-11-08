@@ -29,14 +29,14 @@ const FilterBarReport = (props) => {
         <View style={{ position: 'absolute', top: 0, bottom: 0, right: 0, left: 0 }}>
             <View style={{ padding: 10, flex: 1, justifyContent: 'space-evenly' }}>
                 <View style={{ flex: 9, margin: 10 }}>
-                    <View style={{ marginBottom: 10 }}>
+                    <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', marginBottom: 10 }}>
                         <Text style={[styles.h3, { marginBottom: 5 }]}>Currency</Text>
                         <Picker style={{ height: 35 }} selectedValue={currency} onValueChange={(val) => setCurrency(val)} >
                             <Picker.Item label={'MYR'} value={'MYR'} />
                             <Picker.Item label={'IDR'} value={'IDR'} />
                         </Picker>
                     </View>
-                    <View style={{ marginBottom: 10 }}>
+                    <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', marginBottom: 10 }}>
                         <Text style={[styles.h3, { marginBottom: 5 }]}>Transaction Type</Text>
                         <Picker style={{ height: 35 }} selectedValue={type} onValueChange={(val) => setType(val)} >
                             <Picker.Item label={'Please Select'} value={undefined} />
@@ -44,7 +44,7 @@ const FilterBarReport = (props) => {
                             <Picker.Item label={'Disbursement Transfer'} value={'Disbursement Transfer'} />
                         </Picker>
                     </View>
-                    <View style={{ marginBottom: 10 }}>
+                    <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', marginBottom: 10 }}>
                         <Text style={[styles.h3, { marginBottom: 5 }]}>Credit / Debit</Text>
                         <Picker style={{ height: 35 }} selectedValue={credit_debit} onValueChange={(val) => setCreditDebit(val)} >
                             <Picker.Item label={'Please Select'} value={undefined} />

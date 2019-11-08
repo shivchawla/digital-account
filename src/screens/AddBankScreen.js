@@ -92,7 +92,7 @@ const AddBankScreen = (props) => {
                             </View>
                         </View>
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
-                            <View style={[{ flex: 9 }]}>
+                            <View style={{ flex: 9 }}>
                                 <ScrollView style={[styles.screenMargin]}>
                                     <View style={[styles.formElement, { marginTop: 20 }]}>
                                         <Text style={[styles.titleBox, { marginBottom: 10 }]}>Bank Account Number</Text>

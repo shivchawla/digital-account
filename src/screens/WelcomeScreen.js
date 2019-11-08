@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Image, Text, TouchableOpacity, View, TextInput, KeyboardAvoidingView, ActivityIndicator } from 'react-native';
+import React, { useEffect } from 'react';
+import { Text, TouchableOpacity, View, TextInput, KeyboardAvoidingView, ActivityIndicator } from 'react-native';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
-import Constants from 'expo-constants'
-import { LinearGradient } from 'expo-linear-gradient'
 import Layout from '../constants/Layout'
 import styles from '../styles/styles'
 import * as actionCreator from '../store/actions/action'
@@ -50,7 +48,7 @@ const WelcomeScreen = (props) => {
             validationSchema={validationSchema}
         >
             {FormikProps => {
-                
+
                 const { email, password } = FormikProps.values
 
                 const emailError = FormikProps.errors.email
@@ -105,9 +103,7 @@ const WelcomeScreen = (props) => {
                         </View>
                     </KeyboardAvoidingView>)
             }}
-
         </Formik>
-
     )
 }
 

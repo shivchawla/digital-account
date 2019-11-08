@@ -33,7 +33,7 @@ const ReportScreen = (props) => {
             <View style={{ flex: 9 }}>
                 <ScrollView>
                     <View style={[styles.screenMargin]}>
-                        <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 10 }}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 10, marginTop: 20 }}>
                             <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 20, flex: 1, borderWidth: 1, borderColor: 'lightgrey', padding: 10, borderRadius: 10 }}>
                                 <View>
                                     <Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />

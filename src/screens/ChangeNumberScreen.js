@@ -40,7 +40,7 @@ const ChangeNumberScreen = (props) => {
                                 </TouchableOpacity>
                             </View>
                             <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                                <Text numberOfLines={1} style={styles.title} ellipsizeMode='tail'>Change Phone</Text>
+                                <Text numberOfLines={1} style={styles.title} ellipsizeMode='tail'>CHANGE NUMBER</Text>
                             </View>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
                                 <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
