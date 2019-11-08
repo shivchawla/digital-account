@@ -89,6 +89,119 @@ export const agingListApi = () => {
   }
 }
 
+
+export const withdrawDataApi = (id) => {
+  return async (dispatch, getState) => {
+
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    fetch(`${apiUrl}api/withdrawal/details?id=${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const withdrawData = responseJson.data
+        console.log('Success withdraw data' + JSON.stringify(responseJson))
+        dispatch({ type: 'SET_WITHDRAWAL_LIST', payload: { withdrawData } })
+
+      })
+      .catch((error) => {
+        console.log('Error initiating withdraw data info : ' + error);
+      });
+
+  }
+}
+
+export const withdrawListApi = () => {
+  return async (dispatch, getState) => {
+
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    fetch(`${apiUrl}api/withdrawal/list`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const withdrawList = responseJson.data
+        console.log('Success withdraw list' + JSON.stringify(responseJson))
+        dispatch({ type: 'SET_WITHDRAWAL_LIST', payload: { withdrawList } })
+
+      })
+      .catch((error) => {
+        console.log('Error initiating withdraw list info : ' + error);
+      });
+
+  }
+}
+
+export const vendorListApi = () => {
+  return async (dispatch, getState) => {
+
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    fetch(`${apiUrl}api/setting/vendor/list`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const vendorList = responseJson.data
+        console.log('Success vendor list' + JSON.stringify(responseJson))
+        dispatch({ type: 'SET_VENDOR_LIST', payload: { vendorList } })
+
+      })
+      .catch((error) => {
+        console.log('Error initiating vendor list info : ' + error);
+      });
+
+  }
+}
+
+export const vendorDataRetrieveApi = (id) => {
+  return async (dispatch, getState) => {
+
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    fetch(`${apiUrl}api/setting/vendor/details?id=${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const vendorData = responseJson.data
+        console.log('Success withdraw data' + JSON.stringify(responseJson))
+        dispatch({ type: 'SET_VENDOR_LIST', payload: { vendorData } })
+
+      })
+      .catch((error) => {
+        console.log('Error initiating vendor data info : ' + error);
+      });
+
+  }
+}
+
 export const withDrawApi = (values) => {
   return async (dispatch, getState) => {
     const personalToken = await SecureStore.getItemAsync('personalToken')
@@ -152,6 +265,119 @@ export const withDrawApi = (values) => {
 
   }
 }
+
+export const customerListApi = () => {
+  return async (dispatch, getState) => {
+
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    fetch(`${apiUrl}api/setting/customer/list`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const customerList = responseJson.data
+        console.log('Success vendor list' + JSON.stringify(responseJson))
+        dispatch({ type: 'SET_CUSTOMER_LIST', payload: { customerList } })
+
+      })
+      .catch((error) => {
+        console.log('Error initiating customer list info : ' + error);
+      });
+
+  }
+}
+
+export const customerDataRetrieveApi = (id) => {
+  return async (dispatch, getState) => {
+
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    fetch(`${apiUrl}api/setting/customer/details?id=${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const customerData = responseJson.data
+        console.log('Success customer data' + JSON.stringify(responseJson))
+        dispatch({ type: 'SET_CUSTOMER_LIST', payload: { customerData } })
+
+      })
+      .catch((error) => {
+        console.log('Error initiating customer data info : ' + error);
+      });
+
+  }
+}
+
+export const itemListApi = () => {
+  return async (dispatch, getState) => {
+
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    fetch(`${apiUrl}api/setting/item/list`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const itemList = responseJson.data
+        console.log('Success vendor list' + JSON.stringify(responseJson))
+        dispatch({ type: 'SET_ITEM_LIST', payload: { itemList } })
+
+      })
+      .catch((error) => {
+        console.log('Error initiating item list info : ' + error);
+      });
+
+  }
+}
+
+export const itemDataRetrieveApi = (id) => {
+  return async (dispatch, getState) => {
+
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    fetch(`${apiUrl}api/setting/item/details?id=${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const itemData = responseJson.data
+        console.log('Success item data' + JSON.stringify(responseJson))
+        dispatch({ type: 'SET_ITEM_LIST', payload: { itemData } })
+
+      })
+      .catch((error) => {
+        console.log('Error initiating item data info : ' + error);
+      });
+
+  }
+}
+
 
 export const invoiceListApi = () => {
   return async (dispatch, getState) => {
@@ -224,11 +450,36 @@ export const reportListApi = () => {
 
 export const businessDirectoryListApi = () => {
   return async (dispatch, getState) => {
-    const businessDirectoryList = [{ name: 'Perusahaan Kecil Ah Kong Sdn. Bhd.', pNumber: 9780918, industry: 'Clothing', address: 'Jalan Bakri, 78099, Segamat, Johor Darul Tazim' },
-    { name: 'Perniagaan Abdul Wahub', pNumber: 6756781, industry: 'Service', address: '78, 88, Jalan Merlimau Jaya, Melaka' },
-    { name: 'StarBright Enterprise', pNumber: 956079, industry: 'Service', address: '78, Taman Lipat Kajang Perdana, Melaka' }]
 
-    dispatch({ type: 'SET_BUSINESS_DIRECTORY_LIST', payload: { businessDirectoryList } })
+    //const personalToken = await AsyncStorage.getItem('personalToken');
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    fetch(`${apiUrl}api/business/list`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const businessDirectoryList = responseJson.data
+        console.log('Success' + JSON.stringify(responseJson))
+        dispatch({ type: 'SET_BUSINESS_DIRECTORY_LIST', payload: { businessDirectoryList } })
+
+      })
+      .catch((error) => {
+        console.log('Error initiating business dir info : ' + error);
+      });
+
+    // const businessDirectoryList = [{ name: 'Perusahaan Kecil Ah Kong Sdn. Bhd.', pNumber: 9780918, industry: 'Clothing', address: 'Jalan Bakri, 78099, Segamat, Johor Darul Tazim' },
+    // { name: 'Perniagaan Abdul Wahub', pNumber: 6756781, industry: 'Service', address: '78, 88, Jalan Merlimau Jaya, Melaka' },
+    // { name: 'StarBright Enterprise', pNumber: 956079, industry: 'Service', address: '78, Taman Lipat Kajang Perdana, Melaka' }]
+
+    // dispatch({ type: 'SET_BUSINESS_DIRECTORY_LIST', payload: { businessDirectoryList } })
   }
 }
 
@@ -730,6 +981,94 @@ export const submitInvoiceApi = () => {
         const { status } = await responseJson
         await dispatch({ type: 'SET_INVOICE_APPLICATION', payload: { status, proceedMain: true } })
         await console.log(`invoice api  ${JSON.stringify(responseJson)}`)
+      })
+      .catch((error) => {
+        console.error('Error : ' + error);
+      });
+
+  }
+}
+
+export const vendorDataApi = (values) => {
+  return async (dispatch, getState) => {
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+    //const values = getState().invoiceReducer
+    const access_credential = 'api'
+    console.log(`New add vendor api : ${JSON.stringify(values)}`)
+
+    fetch(`${apiUrl}/api/setting/vendor/submit`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      },
+      body: JSON.stringify({ ...values, access_credential }),
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const { status } = await responseJson
+        await dispatch({ type: 'SET_VENDOR_SUBMIT', payload: { status, proceedMain: true } })
+        await console.log(`vendor submit api  ${JSON.stringify(responseJson)}`)
+      })
+      .catch((error) => {
+        console.error('Error : ' + error);
+      });
+
+  }
+}
+
+export const customerDataApi = (values) => {
+  return async (dispatch, getState) => {
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+    //const values = getState().invoiceReducer
+    const access_credential = 'api'
+    console.log(`New add customer api : ${JSON.stringify(values)}`)
+
+    fetch(`${apiUrl}/api/setting/customer/submit`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      },
+      body: JSON.stringify({ ...values, access_credential }),
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const { status } = await responseJson
+        await dispatch({ type: 'SET_CUSTOMER_LIST', payload: { status, proceedMain: true } })
+        await console.log(`customer submit api  ${JSON.stringify(responseJson)}`)
+      })
+      .catch((error) => {
+        console.error('Error : ' + error);
+      });
+
+  }
+}
+
+
+export const itemDataApi = (values) => {
+  return async (dispatch, getState) => {
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+    //const values = getState().invoiceReducer
+    const access_credential = 'api'
+    console.log(`New add item api : ${JSON.stringify(values)}`)
+
+    fetch(`${apiUrl}/api/setting/item/submit`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      },
+      body: JSON.stringify({ ...values, access_credential }),
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const { status } = await responseJson
+        await dispatch({ type: 'SET_ITEM_LIST', payload: { status, proceedMain: true } })
+        await console.log(`item submit api  ${JSON.stringify(responseJson)}`)
       })
       .catch((error) => {
         console.error('Error : ' + error);

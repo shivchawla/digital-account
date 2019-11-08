@@ -40,7 +40,7 @@ const BusinessDirectoryScreen = (props) => {
                                     <Text style={[styles.small, { color: '#04A2BD' }]}>Name</Text>
                                 </View>
                                 <View style={{ flex: 2 }}>
-                                    <Text style={[styles.small]}>{item.name}</Text>
+                                    <Text style={[styles.small]}>{item.company_name}</Text>
                                 </View>
                             </View>
                             <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'flex-start', alignItems: 'center', alignSelf: 'stretch' }}>
@@ -49,7 +49,7 @@ const BusinessDirectoryScreen = (props) => {
                                     <Text style={[styles.small, { color: '#04A2BD' }]}>Phone No</Text>
                                 </View>
                                 <View style={{ flex: 2 }}>
-                                    <Text style={[styles.small]}>{item.pNumber}</Text>
+                                    <Text style={[styles.small]}>{item.phone_number}</Text>
                                 </View>
                             </View>
                             <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'flex-start', alignItems: 'center', alignSelf: 'stretch' }}>

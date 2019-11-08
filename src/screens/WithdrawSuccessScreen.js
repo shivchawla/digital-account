@@ -8,11 +8,7 @@ import * as actionCreator from '../store/actions/action'
 
 const WithdrawSuccessScreen = (props) => {
 
-    useEffect(() => {
-        getPersonalToken()
-    }, []);
-    const dispatch = useDispatch()
-    const getPersonalToken = () => dispatch(actionCreator.getPersonalToken())
+
 
     return (
 

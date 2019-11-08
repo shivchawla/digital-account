@@ -8,7 +8,7 @@ import s3 from '../../do/DigitalOcean'
 import config from '../../do/config'
 
 import { requestToken, requestPersonalToken, urlToBlob, registerApi, companyInfoAPI, contactPersonAPI, submitDocApi, declarationApi } from './apiRegistration'
-import { retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, agingListApi, reportListApi, businessDirectoryListApi, invoiceApi, newExpenseApi, supportApi, vendorDataApi, customerDataApi, itemDataApi, submitLoanApplicationApi, addBankApi, bankListApi, deleteAllBankApi, notificationListApi, loanApplicationDataApi, submitInvoiceApi, submitSupportApi,withDrawApi } from './apiDashboard'
+import { retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, agingListApi, reportListApi, businessDirectoryListApi, invoiceApi, newExpenseApi, supportApi, customerDataApi, itemDataApi, submitLoanApplicationApi, addBankApi, bankListApi, deleteAllBankApi, notificationListApi, loanApplicationDataApi, submitInvoiceApi, submitSupportApi,withDrawApi,withdrawListApi,vendorListApi,withdrawDataApi,vendorDataApi,vendorDataRetrieveApi,customerListApi,customerDataRetrieveApi,itemListApi,itemDataRetrieveApi } from './apiDashboard'
 //import {pusherListen} from './pusher'
 import moment from 'moment'
 
@@ -211,6 +211,23 @@ export const passItemData = (values) => {
     return (dispatch, getState) => {
         console.log('Dekat item info action')
         dispatch(itemDataApi(values))
+    }
+}
+
+
+export const getItemList = () => {
+
+    return (dispatch, getState) => {
+        dispatch(itemListApi())
+
+    }
+}
+
+export const getItemData = (id) => {
+
+    return (dispatch, getState) => {
+        dispatch(itemDataRetrieveApi(id))
+
     }
 }
 
@@ -481,6 +498,55 @@ export const getLoanList = () => {
 
     return (dispatch, getState) => {
         dispatch(loanListApi())
+
+    }
+}
+
+export const getWithdrawData = (id) => {
+
+    return (dispatch, getState) => {
+        dispatch(withdrawDataApi(id))
+
+    }
+}
+
+export const getVendorData = (id) => {
+
+    return (dispatch, getState) => {
+        dispatch(vendorDataRetrieveApi(id))
+
+    }
+}
+
+export const getWithdrawList = () => {
+
+    return (dispatch, getState) => {
+        dispatch(withdrawListApi())
+
+    }
+}
+
+export const getVendorList = () => {
+
+    return (dispatch, getState) => {
+        dispatch(vendorListApi())
+
+    }
+}
+
+export const getCustomerList = () => {
+
+    return (dispatch, getState) => {
+        dispatch(customerListApi())
+
+    }
+}
+
+
+export const getCustomerData = (id) => {
+
+    return (dispatch, getState) => {
+        dispatch(customerDataRetrieveApi(id))
 
     }
 }

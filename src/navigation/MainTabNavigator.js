@@ -59,6 +59,17 @@ import AgingReportScreen from '../screens/AgingReportScreen';
 import ZakatSuccessScreen from '../screens/ZakatSuccessScreen';
 import PayrollSuccessScreen from '../screens/PayrollSuccessScreen';
 import RemittanceSuccessScreen from '../screens/RemittanceSuccessScreen';
+import WIthdrawApplicationScreen from '../screens/WIthdrawApplicationScreen';
+import WithdrawalDetailScreen from '../screens/WithdrawalDetailScreen';
+import VendorAddSuccessScreen from '../screens/VendorAddSuccessScreen';
+import VendorApplicationScreen from '../screens/VendorApplicationScreen';
+import VendorDetailScreen from '../screens/VendorDetailScreen';
+import CustomerAddScreen from '../screens/CustomerAddScreen';
+import CustomerDetailScreen from '../screens/CustomerDetailScreen';
+import CustomerAddSuccessScreen from '../screens/CustomerAddSuccessScreen';
+import ItemAddSuccessScreen from '../screens/ItemAddSuccessScreen';
+import ItemAddScreen from '../screens/ItemAddScreen';
+import ItemDetailScreen from '../screens/ItemDetailScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -124,6 +135,12 @@ const DashboardStackWithModal = createStackNavigator(
     LoanApplication: {
       screen: LoanApplicationScreen,
     },
+    WithdrawalApplication: {
+      screen: WIthdrawApplicationScreen,
+    },
+    WithdrawalDetail: {
+      screen: WithdrawalDetailScreen,
+    },
     LoanApplicationDeclaration: {
       screen: LoanApplicationDeclarationScreen,
     },
@@ -136,11 +153,35 @@ const DashboardStackWithModal = createStackNavigator(
     Vendor: {
       screen: VendorScreen,
     },
+    VendorApplication: {
+      screen: VendorApplicationScreen,
+    },
+    VendorDetail: {
+      screen: VendorDetailScreen,
+    },
     Customer: {
       screen: CustomerScreen,
     },
+    CustomerAdd: {
+      screen: CustomerAddScreen,
+    },
+    CustomerDetail: {
+      screen: CustomerDetailScreen,
+    },
+    CustomerAddSuccess: {
+      screen: CustomerAddSuccessScreen,
+    },
     Item: {
       screen: ItemScreen,
+    },
+    ItemDetail: {
+      screen: ItemDetailScreen,
+    },
+    ItemAdd: {
+      screen: ItemAddScreen,
+    },
+    ItemAddSuccess: {
+      screen: ItemAddSuccessScreen,
     },
     Support: {
       screen: SupportScreen,
@@ -159,6 +200,9 @@ const DashboardStackWithModal = createStackNavigator(
     },
     InvoiceSuccess: {
       screen: InvoiceSuccessScreen,
+    },
+    VendorAddSuccess: {
+      screen: VendorAddSuccessScreen,
     },
     Zakat: {
       screen: ZakatScreen,
