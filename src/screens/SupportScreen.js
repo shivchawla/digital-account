@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, TouchableOpacity, Text, Image, ScrollView, KeyboardAvoidingView, TextInput, Picker, ActivityIndicator } from 'react-native';
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
@@ -15,15 +15,15 @@ const validationSchema = Yup.object().shape({
         .required()
         .label('Subject'),
 
-    category: Yup
+    type: Yup
         .string()
         .required()
-        .label('Category'),
+        .label('type'),
 
-    msg: Yup
+    description: Yup
         .string()
         .required()
-        .label('msg'),
+        .label('description'),
 
 });
 
@@ -33,27 +33,36 @@ const SupportScreen = (props) => {
     const setSupportData = (val) => dispatch({ type: 'SET_SUBMIT_SUPPORT', payload: { ...val } });
     const supportData = useSelector(state => state.supportReducer, shallowEqual)
 
+    // useEffect(() => {
+    //     dispatch(actionCreator.getWithdrawList())
+    // }, [])
+
+    const [tag, setTag] = useState((Math.floor(100000000 + Math.random() * 900000000)).toString())
+
     return (
 
         <Formik onSubmit={async values => {
             props.navigation.navigate("SupportSuccess")
-            dispatch(actionCreator.submitNewSupport())
-            console.log(JSON.stringify(values))
+            dispatch(actionCreator.submitNewSupport({ ...values, tag }))
+            //console.log(JSON.stringify(values))
         }}
             validationSchema={validationSchema}
         >
             {FormikProps => {
 
-                const { subject, category, msg } = FormikProps.values
+                const { subject, type, description, priority } = FormikProps.values
 
                 const subjectError = FormikProps.errors.subject
                 const subjectTouched = FormikProps.touched.subject
 
-                const categoryError = FormikProps.errors.category
-                const categoryTouched = FormikProps.touched.category
+                const typeError = FormikProps.errors.type
+                const typeTouched = FormikProps.touched.type
 
-                const msgError = FormikProps.errors.msg
-                const msgTouched = FormikProps.touched.msg
+                const descriptionError = FormikProps.errors.description
+                const descriptionTouched = FormikProps.touched.description
+
+                const priorityError = FormikProps.errors.priority
+                const priorityTouched = FormikProps.touched.priority
 
                 return (
 
@@ -74,14 +83,34 @@ const SupportScreen = (props) => {
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
                             <View style={{ flex: 9 }}>
                                 <ScrollView style={styles.screenMargin}>
+                                    <View style={styles.formElement}>
+                                        <Text style={[styles.titleBox], { marginBottom: 10 }}>Tag</Text>
+                                        <TextInput disable={true} value={tag} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                        {/* {subjectTouched && subjectError && <Text style={styles.error}>{subjectError}</Text>} */}
+                                    </View>
                                     <View style={[styles.formElement, { alignSelf: 'stretch', marginTop: 25 }]}>
-                                        <Text style={[styles.titleBox], { marginBottom: 10 }}>Category</Text>
+                                        <Text style={[styles.titleBox], { marginBottom: 10 }}>Type</Text>
                                         <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
-                                            <Picker style={{ flex: 1, height: 35 }} selectedValue={category} onValueChange={(itemValue, itemIndex) => FormikProps.setFieldValue('category', itemValue)}>
-                                                <Picker.Item label="General" value="General" />
-                                                <Picker.Item label="Technical" value="Technical" />
+                                            <Picker style={{ flex: 1, height: 35 }} selectedValue={type} onValueChange={(itemValue, itemIndex) => FormikProps.setFieldValue('type', itemValue)}>
+                                                <Picker.Item label="Question" value="Question" />
+                                                <Picker.Item label="Incident" value="Incident" />
+                                                <Picker.Item label="Problem" value="Problem" />
+                                                <Picker.Item label="Feature Request" value="Feature Request" />
+                                                <Picker.Item label="Refund" value="Refund" />
                                             </Picker>
-                                            {categoryTouched && categoryError && <Text style={styles.error}>{categoryError}</Text>}
+                                            {typeTouched && typeError && <Text style={styles.error}>{typeError}</Text>}
+                                        </View>
+                                    </View>
+                                    <View style={[styles.formElement, { alignSelf: 'stretch', marginTop: 25 }]}>
+                                        <Text style={[styles.titleBox], { marginBottom: 10 }}>Priority</Text>
+                                        <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
+                                            <Picker style={{ flex: 1, height: 35 }} selectedValue={priority} onValueChange={(itemValue, itemIndex) => FormikProps.setFieldValue('priority', itemValue)}>
+                                                <Picker.Item value="1" label="Low" />
+                                                <Picker.Item value="2" label="Medium" />
+                                                <Picker.Item value="3" label="High" />
+                                                <Picker.Item value="4" label="Urgent" />
+                                            </Picker>
+                                            {priorityTouched && priorityError && <Text style={styles.error}>{priorityError}</Text>}
                                         </View>
                                     </View>
                                     <View style={styles.formElement}>
@@ -90,9 +119,9 @@ const SupportScreen = (props) => {
                                         {subjectTouched && subjectError && <Text style={styles.error}>{subjectError}</Text>}
                                     </View>
                                     <View style={styles.formElement}>
-                                        <Text style={[styles.titleBox], { marginBottom: 10 }}>Inquiry</Text>
-                                        <TextInput value={msg} onChangeText={FormikProps.handleChange('msg')} onBlur={FormikProps.handleBlur('msg')} style={{ textAlignVertical: 'top', borderWidth: 1, borderColor: msgTouched && msgError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={msgTouched && msgError ? '' : 'Assign To'} placeholderTextColor={msgTouched && msgError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} multiline numberOfLines={5} />
-                                        {msgTouched && msgError && <Text style={styles.error}>{msgError}</Text>}
+                                        <Text style={[styles.titleBox], { marginBottom: 10 }}>Description</Text>
+                                        <TextInput value={description} onChangeText={FormikProps.handleChange('description')} onBlur={FormikProps.handleBlur('description')} style={{ textAlignVertical: 'top', borderWidth: 1, borderColor: descriptionTouched && descriptionError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={descriptionTouched && descriptionError ? '' : 'Assign To'} placeholderTextColor={descriptionTouched && descriptionError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} multiline numberOfLines={5} />
+                                        {descriptionTouched && descriptionError && <Text style={styles.error}>{descriptionError}</Text>}
                                     </View>
                                 </ScrollView>
                             </View>

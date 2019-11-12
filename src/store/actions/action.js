@@ -94,9 +94,9 @@ export const submitLoanApplication = () => {
     }
 }
 
-export const submitNewSupport = () => {
+export const submitNewSupport = (values) => {
     return (dispatch, getState) => {
-        dispatch(submitSupportApi())
+        dispatch(submitSupportApi(values))
     }
 }
 

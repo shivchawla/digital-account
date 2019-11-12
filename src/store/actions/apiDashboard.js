@@ -1077,11 +1077,11 @@ export const itemDataApi = (values) => {
   }
 }
 
-export const submitSupportApi = () => {
+export const submitSupportApi = (values) => {
   return async (dispatch, getState) => {
     const personalToken = await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
-    const values = getState().supportReducer
+    //const values = getState().supportReducer
     const access_credential = 'api'
     console.log(`New support api : ${JSON.stringify(values)}`)
 
