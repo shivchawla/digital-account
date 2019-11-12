@@ -168,6 +168,13 @@ const loadResourcesAsync = async () => {
       require('./src/assets/images/zakaticon.png'),
       require('./src/assets/images/payrollicon.png'),
       require('./src/assets/images/remittanceicon.png'),
+      require('./src/assets/images/withdrawalsuccess.png'),
+      require('./src/assets/images/itemsuccess.png'),
+      require('./src/assets/images/vendorsuccess.png'),
+      require('./src/assets/images/customersuccess.png'),
+      require('./src/assets/images/passwordsuccess.png'),
+      require('./src/assets/images/emailsuccess.png'),
+      require('./src/assets/images/phonesuccess.png'),
 
       require('./src/assets/images/bottomTabs/home.png'),
       require('./src/assets/images/bottomTabs/history.png'),

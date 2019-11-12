@@ -32,7 +32,7 @@ const WithdrawScreen = (props) => {
             </View>
             <View style={[styles.screenMargin, { flex: 9, paddingLeft: 0, paddingRight: 0 }]}>
                 <View style={{ marginTop: 30, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-evenly' }}>
-                    <TouchableOpacity onPress={() => props.navigation.navigate('WithdrawalApplication')} style={{ padding: 5, paddingLeft: 8, paddingRight: 8, backgroundColor: '#34C2DB', borderRadius: 15 }}>
+                    <TouchableOpacity onPress={() => props.navigation.navigate('Loan')} style={{ padding: 5, paddingLeft: 8, paddingRight: 8, backgroundColor: '#34C2DB', borderRadius: 15 }}>
                         <Text style={[styles.text, { color: '#fff' }]}>New Loan</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => props.navigation.navigate('WithdrawalApplication')} style={{ padding: 5, paddingLeft: 8, paddingRight: 8, backgroundColor: '#055E7C', borderRadius: 15 }}>

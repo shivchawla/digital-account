@@ -7,10 +7,6 @@ import styles from '../styles/styles'
 import { ScrollView } from 'react-native-gesture-handler';
 
 const ItemDetailScreen = (props) => {
-    // const itemData = useSelector(state => state.loanApplicationReducer, shallowEqual)
-    // const dispatch = useDispatch()
-    //const setitemData = (val) => dispatch({ type: 'SET_WITHDRAW_DATA', payload: { ...val } });
-
     useEffect(() => {
         const id = props.navigation.getParam('id', 'NO-ID')
 
@@ -67,21 +63,6 @@ const ItemDetailScreen = (props) => {
                                     <Text style={styles.text}>{itemData.type}</Text>
                                 </View>
                             </View>
-                            {/* <View style={{ marginTop: 20 }}>
-                                <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', justifyContent: 'flex-end' }}>
-                                    <View style={{ alignItems: 'flex-end', marginTop: 20 }} >
-                                        <TouchableOpacity onPress={() => props.navigation.navigate('LoanDetail')} style={{ marginTop: 10, paddingLeft: 20, paddingRight: 20, paddingTop: 5, paddingBottom: 5, borderRadius: 20, borderWidth: 1 }}>
-                                            <Text style={styles.small}>See application</Text>
-                                        </TouchableOpacity>
-                                        <TouchableOpacity style={{ marginTop: 10, paddingLeft: 20, paddingRight: 20, paddingTop: 5, paddingBottom: 5, borderRadius: 20, borderWidth: 1 }}>
-                                            <Text style={styles.small}>Repayment info</Text>
-                                        </TouchableOpacity>
-                                        <TouchableOpacity style={{ marginTop: 10, paddingLeft: 20, paddingRight: 20, paddingTop: 5, paddingBottom: 5, borderRadius: 20, backgroundColor: '#34C2DB' }}>
-                                            <Text style={[styles.small, { color: '#fff' }]}>Pay Now!</Text>
-                                        </TouchableOpacity>
-                                    </View>
-                                </View>
-                            </View> */}
                         </View>}
                     </ScrollView>
                 </View>

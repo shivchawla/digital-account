@@ -36,6 +36,7 @@ import LoanScreen from '../screens/LoanScreen';
 import LoanSuccessScreen from '../screens/LoanSuccessScreen';
 import WithdrawSuccessScreen from '../screens/WithdrawSuccessScreen';
 import LoanDrawer from './LoanDrawer';
+import WithdrawalDrawer from './WithdrawalDrawer';
 import ReportDrawer from './ReportDrawer';
 import InvoicesDrawer from './InvoicesDrawer';
 import DataSettingScreen from '../screens/DataSettingScreen';
@@ -70,6 +71,9 @@ import CustomerAddSuccessScreen from '../screens/CustomerAddSuccessScreen';
 import ItemAddSuccessScreen from '../screens/ItemAddSuccessScreen';
 import ItemAddScreen from '../screens/ItemAddScreen';
 import ItemDetailScreen from '../screens/ItemDetailScreen';
+import ChangePhoneSuccessScreen from '../screens/ChangePhoneSuccessScreen';
+import ChangePasswordSuccessScreen from '../screens/ChangePasswordSuccessScreen';
+import ChangeEmailSuccessScreen from '../screens/ChangeEmailSuccessScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -110,6 +114,9 @@ const DashboardStackWithModal = createStackNavigator(
     },
     Report: {
       screen: ReportDrawer,
+    },
+    Withdraw: {
+      screen: WithdrawalDrawer,
     },
     BusinessHub: {
       screen: BusinessHubScreen,
@@ -239,6 +246,15 @@ const DashboardStackWithModal = createStackNavigator(
     },
     RemittanceSuccess: {
       screen: RemittanceSuccessScreen,
+    },
+    NumberSuccess: {
+      screen: ChangePhoneSuccessScreen,
+    },
+    PasswordSuccess: {
+      screen: ChangePasswordSuccessScreen,
+    },
+    EmailSuccess: {
+      screen: ChangeEmailSuccessScreen,
     }
 
   },

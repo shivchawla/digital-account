@@ -8,7 +8,7 @@ import s3 from '../../do/DigitalOcean'
 import config from '../../do/config'
 
 import { requestToken, requestPersonalToken, urlToBlob, registerApi, companyInfoAPI, contactPersonAPI, submitDocApi, declarationApi } from './apiRegistration'
-import { retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, agingListApi, reportListApi, businessDirectoryListApi, invoiceApi, newExpenseApi, supportApi, customerDataApi, itemDataApi, submitLoanApplicationApi, addBankApi, bankListApi, deleteAllBankApi, notificationListApi, loanApplicationDataApi, submitInvoiceApi, submitSupportApi,withDrawApi,withdrawListApi,vendorListApi,withdrawDataApi,vendorDataApi,vendorDataRetrieveApi,customerListApi,customerDataRetrieveApi,itemListApi,itemDataRetrieveApi } from './apiDashboard'
+import { retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, agingListApi, reportListApi, businessDirectoryListApi, invoiceApi, newExpenseApi, supportApi, customerDataApi, itemDataApi, submitLoanApplicationApi, addBankApi, bankListApi, deleteAllBankApi, notificationListApi, loanApplicationDataApi, submitInvoiceApi, submitSupportApi, withDrawApi, withdrawListApi, vendorListApi, withdrawDataApi, vendorDataApi, vendorDataRetrieveApi, customerListApi, customerDataRetrieveApi, itemListApi, itemDataRetrieveApi } from './apiDashboard'
 //import {pusherListen} from './pusher'
 import moment from 'moment'
 
@@ -642,5 +642,18 @@ export const filterReportList = (values) => {
         const newReportList = _.filter(reportList, _.matches(filterParam));
         console.log(`new report List : ${JSON.stringify(newReportList)}`)
         dispatch({ type: 'SET_REPORT_LIST', payload: { reportList: newReportList, filterEnabled: true } })
+    }
+}
+
+export const filterWithdrawalList = (values) => {
+    return async (dispatch, getState) => {
+        console.log(`filter withdrawal list action`)
+        console.log(`filter withdrawal list action : ${JSON.stringify(values)}`)
+        const { withdrawData } = getState().withdrawReducer
+        const { status, country, bank_name } = values
+        const filterParam = (status && country && bank_name) ? { status, country, bank_name } : status ? { status } : country ? { country } : bank_name ? { bank_name } : null
+        const newWithdrawalList = _.filter(withdrawData, _.matches(filterParam));
+        console.log(`new withdrawal List : ${JSON.stringify(newWithdrawalList)}`)
+        dispatch({ type: 'SET_WITHDRAWAL_LIST', payload: { withdrawData: newWithdrawalList, filterEnabled: true } })
     }
 }

@@ -7,9 +7,6 @@ import styles from '../styles/styles'
 import { ScrollView } from 'react-native-gesture-handler';
 
 const WithdrawalDetailScreen = (props) => {
-    // const withdrawData = useSelector(state => state.loanApplicationReducer, shallowEqual)
-    // const dispatch = useDispatch()
-    //const setwithdrawData = (val) => dispatch({ type: 'SET_WITHDRAW_DATA', payload: { ...val } });
 
     useEffect(() => {
         const id = props.navigation.getParam('id', 'NO-ID')
@@ -30,7 +27,7 @@ const WithdrawalDetailScreen = (props) => {
                     </TouchableOpacity>
                 </View>
                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={styles.title}>Loan Detail</Text>
+                    <Text style={styles.title}>WITHDRAWAL DETAILS</Text>
                 </View>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
                     <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
@@ -42,46 +39,57 @@ const WithdrawalDetailScreen = (props) => {
                         {withdrawData && <View style={[styles.box, { marginTop: 20 }]}>
                             <View style={{ marginTop: 5, borderBottomWidth: 1, borderBottomColor: 'lightgrey', paddingBottom: 20 }}>
                                 <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
-                                    <Text style={styles.boldText}>Customer Id</Text>
+                                    <Text style={styles.boldText}>Customer ID</Text>
+                                    {/* <Text style={styles.boldText}>Niyo Account</Text> */}
                                     <Ionicons name="md-arrow-dropdown" color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
                                 </View>
-                                <Text style={styles.text}>{withdrawData.merchant_id}</Text>
+                                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between' }}>
+                                    <Text style={styles.text}>{withdrawData.merchant_id}</Text>
+                                    {/* <Text style={styles.text}>{withdrawData.account_no}</Text> */}
+                                </View>
                             </View>
-                            <View style={{ flexDirection: 'row', marginTop: 20 }}>
-                                <View style={{ flex: 1 }}>
+                            <View style={{ flexDirection: 'row', alignContent: 'stretch', marginTop: 20 }}>
+                                <View style={{ flex: 2.7 }}>
                                     <Text style={styles.boldText}>Status</Text>
-                                    <Text style={styles.text}>{withdrawData.status}</Text>
+                                    <Text style={[styles.text, { color: withdrawData.status === 'Approved' ? '#008000' : withdrawData.status === 'Disbursed' ? '#ffa500' : withdrawData.status === 'Reject' ? '#ff0000' : '#000000' }]}>{withdrawData.status}</Text>
                                 </View>
-                                <View style={{ flex: 1 }}>
+                                <View style={{ flex: 3 }}>
                                     <Text style={styles.boldText}>Amount</Text>
-                                    <Text style={styles.text}>{withdrawData.total_request}</Text>
+                                    <Text style={styles.text}>{withdrawData.amount}</Text>
                                 </View>
-                                <View style={{ flex: 1 }}>
+                                <View style={{ flex: 3 }}>
                                     <Text style={styles.boldText}>Reason</Text>
                                     <Text style={styles.text}>{withdrawData.reason_request}</Text>
                                 </View>
                             </View>
-                            <View style={{ flexDirection: 'row', marginTop: 20 }}>
-                                <View style={{ flex: 1 }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'stretch', marginTop: 20 }}>
+                                <View style={{ flex: 2.7 }}>
+                                    <Text style={styles.boldText}>Bank Name</Text>
+                                    <Text style={styles.text}>{withdrawData.bank_name}</Text>
+                                </View>
+                                <View style={{ flex: 3 }}>
+                                    <Text style={styles.boldText}>Bank Account</Text>
+                                    <Text style={styles.text}>{withdrawData.bank_account}</Text>
+                                </View>
+                                <View style={{ flex: 3 }}>
+                                    <Text style={styles.boldText}>Account Name</Text>
+                                    <Text style={styles.text}>{withdrawData.bank_account_name}</Text>
+                                </View>
+                            </View>
+                            <View style={{ flexDirection: 'row', alignSelf: 'stretch', marginTop: 20 }}>
+                                <View style={{ flex: 2.7 }}>
                                     <Text style={styles.boldText}>Type</Text>
                                     <Text style={styles.text}>{withdrawData.type}</Text>
                                 </View>
-                            </View>
-                            {/* <View style={{ marginTop: 20 }}>
-                                <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', justifyContent: 'flex-end' }}>
-                                    <View style={{ alignItems: 'flex-end', marginTop: 20 }} >
-                                        <TouchableOpacity onPress={() => props.navigation.navigate('LoanDetail')} style={{ marginTop: 10, paddingLeft: 20, paddingRight: 20, paddingTop: 5, paddingBottom: 5, borderRadius: 20, borderWidth: 1 }}>
-                                            <Text style={styles.small}>See application</Text>
-                                        </TouchableOpacity>
-                                        <TouchableOpacity style={{ marginTop: 10, paddingLeft: 20, paddingRight: 20, paddingTop: 5, paddingBottom: 5, borderRadius: 20, borderWidth: 1 }}>
-                                            <Text style={styles.small}>Repayment info</Text>
-                                        </TouchableOpacity>
-                                        <TouchableOpacity style={{ marginTop: 10, paddingLeft: 20, paddingRight: 20, paddingTop: 5, paddingBottom: 5, borderRadius: 20, backgroundColor: '#34C2DB' }}>
-                                            <Text style={[styles.small, { color: '#fff' }]}>Pay Now!</Text>
-                                        </TouchableOpacity>
-                                    </View>
+                                <View style={{ flex: 3 }}>
+                                    <Text style={styles.boldText}>Bank Address</Text>
+                                    <Text style={styles.text}>{withdrawData.bank_address}</Text>
                                 </View>
-                            </View> */}
+                                <View style={{ flex: 3 }}>
+                                    <Text style={styles.boldText}>Country</Text>
+                                    <Text style={styles.text}>{withdrawData.bank_country}</Text>
+                                </View>
+                            </View>
                         </View>}
                     </ScrollView>
                 </View>

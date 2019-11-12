@@ -18,6 +18,7 @@ const ChangeEmailScreen = (props) => {
 
     return (
         <Formik onSubmit={async values => {
+            props.navigation.navigate("EmailSuccess")
             console.log(JSON.stringify(values))
         }}
             validationSchema={validationSchema}>
