@@ -39,7 +39,7 @@ const WithdrawalDetailScreen = (props) => {
                         {withdrawData && <View style={[styles.box, { marginTop: 20 }]}>
                             <View style={{ marginTop: 5, borderBottomWidth: 1, borderBottomColor: 'lightgrey', paddingBottom: 20 }}>
                                 <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
-                                    <Text style={styles.boldText}>Customer ID</Text>
+                                    <Text style={styles.small}>Customer ID</Text>
                                     {/* <Text style={styles.boldText}>Niyo Account</Text> */}
                                     <Ionicons name="md-arrow-dropdown" color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
                                 </View>
@@ -48,45 +48,41 @@ const WithdrawalDetailScreen = (props) => {
                                     {/* <Text style={styles.text}>{withdrawData.account_no}</Text> */}
                                 </View>
                             </View>
-                            <View style={{ flexDirection: 'row', alignContent: 'stretch', marginTop: 20 }}>
-                                <View style={{ flex: 2.7 }}>
-                                    <Text style={styles.boldText}>Status</Text>
+                            <View style={{ justifyContent: 'space-between', marginTop: 20 }}>
+                                <View style={[styles.formElement]}>
+                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Status</Text>
                                     <Text style={[styles.text, { color: withdrawData.status === 'Approved' ? '#008000' : withdrawData.status === 'Disbursed' ? '#ffa500' : withdrawData.status === 'Reject' ? '#ff0000' : '#000000' }]}>{withdrawData.status}</Text>
                                 </View>
-                                <View style={{ flex: 3 }}>
-                                    <Text style={styles.boldText}>Amount</Text>
+                                <View style={[styles.formElement]}>
+                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Amount</Text>
                                     <Text style={styles.text}>{withdrawData.amount}</Text>
                                 </View>
-                                <View style={{ flex: 3 }}>
-                                    <Text style={styles.boldText}>Reason</Text>
+                                <View style={[styles.formElement]}>
+                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Reason</Text>
                                     <Text style={styles.text}>{withdrawData.reason_request}</Text>
                                 </View>
-                            </View>
-                            <View style={{ flexDirection: 'row', alignItems: 'stretch', marginTop: 20 }}>
-                                <View style={{ flex: 2.7 }}>
-                                    <Text style={styles.boldText}>Bank Name</Text>
+                                <View style={[styles.formElement]}>
+                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Bank Name</Text>
                                     <Text style={styles.text}>{withdrawData.bank_name}</Text>
                                 </View>
-                                <View style={{ flex: 3 }}>
-                                    <Text style={styles.boldText}>Bank Account</Text>
+                                <View style={[styles.formElement]}>
+                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Bank Account</Text>
                                     <Text style={styles.text}>{withdrawData.bank_account}</Text>
                                 </View>
-                                <View style={{ flex: 3 }}>
-                                    <Text style={styles.boldText}>Account Name</Text>
+                                <View style={[styles.formElement]}>
+                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Account Name</Text>
                                     <Text style={styles.text}>{withdrawData.bank_account_name}</Text>
                                 </View>
-                            </View>
-                            <View style={{ flexDirection: 'row', alignSelf: 'stretch', marginTop: 20 }}>
-                                <View style={{ flex: 2.7 }}>
-                                    <Text style={styles.boldText}>Type</Text>
+                                <View style={[styles.formElement]}>
+                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Type</Text>
                                     <Text style={styles.text}>{withdrawData.type}</Text>
                                 </View>
-                                <View style={{ flex: 3 }}>
-                                    <Text style={styles.boldText}>Bank Address</Text>
+                                <View style={[styles.formElement]}>
+                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Bank Address</Text>
                                     <Text style={styles.text}>{withdrawData.bank_address}</Text>
                                 </View>
-                                <View style={{ flex: 3 }}>
-                                    <Text style={styles.boldText}>Country</Text>
+                                <View style={[styles.formElement]}>
+                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Country</Text>
                                     <Text style={styles.text}>{withdrawData.bank_country}</Text>
                                 </View>
                             </View>

@@ -17,7 +17,7 @@ const FilterBarWithdrawal = (props) => {
     const [bank_name, setBankName] = useState(null)
 
     const filterWithdrawalList = async () => {
-        console.log(`status : ${status} and country : ${country} and bank_name/debit : ${bank_name}`)
+        console.log(`status : ${status} and country : ${country} and bank_name : ${bank_name}`)
         const values = { status, country, bank_name }
         await dispatch(actionCreator.filterWithdrawalList(values))
 
@@ -29,29 +29,35 @@ const FilterBarWithdrawal = (props) => {
         <View style={{ position: 'absolute', top: 0, bottom: 0, right: 0, left: 0 }}>
             <View style={{ padding: 10, flex: 1, justifyContent: 'space-evenly' }}>
                 <View style={{ flex: 9, margin: 10 }}>
-                    <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', marginBottom: 10 }}>
+                    <View style={{ alignSelf: 'stretch', marginBottom: 10 }}>
                         <Text style={[styles.h3, { marginBottom: 5 }]}>Status</Text>
-                        <Picker style={{ height: 35 }} selectedValue={status} onValueChange={(val) => setStatus(val)} >
-                            <Picker.Item label={'Please Select'} value={undefined} />
-                            <Picker.Item label={'Approved'} value={'Approved'} />
-                            <Picker.Item label={'Reject'} value={'Reject'} />
-                            <Picker.Item label={'New'} value={'New'} />
-                            <Picker.Item label={'Disbursed'} value={'Disbursed'} />
-                        </Picker>
+                        <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
+                            <Picker style={{ height: 35 }} selectedValue={status} onValueChange={(val) => setStatus(val)} >
+                                <Picker.Item label={'Please Select'} value={undefined} />
+                                <Picker.Item label={'Approved'} value={'Approved'} />
+                                <Picker.Item label={'Reject'} value={'Reject'} />
+                                <Picker.Item label={'New'} value={'New'} />
+                                <Picker.Item label={'Disbursed'} value={'Disbursed'} />
+                            </Picker>
+                        </View>
                     </View>
-                    <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', marginBottom: 10 }}>
+                    <View style={{ alignSelf: 'stretch', marginBottom: 10 }}>
                         <Text style={[styles.h3, { marginBottom: 5 }]}>Bank Name</Text>
-                        <Picker style={{ height: 35 }} selectedValue={bank_name} onValueChange={(val) => setBankName(val)} >
-                            <Picker.Item label={'Please Select'} value={undefined} />
-                            <Picker.Item label={'Malaysia Bank'} value={'Malaysia Bank'} />
-                        </Picker>
+                        <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
+                            <Picker style={{ height: 35 }} selectedValue={bank_name} onValueChange={(val) => setBankName(val)} >
+                                <Picker.Item label={'Please Select'} value={undefined} />
+                                <Picker.Item label={'Malaysia Bank'} value={'Malaysia Bank'} />
+                            </Picker>
+                        </View>
                     </View>
-                    <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', marginBottom: 10 }}>
+                    <View style={{ alignSelf: 'stretch', marginBottom: 10 }}>
                         <Text style={[styles.h3, { marginBottom: 5 }]}>Country</Text>
-                        <Picker style={{ height: 35 }} selectedValue={country} onValueChange={(val) => setCountry(val)} >
-                            <Picker.Item label={'Please Select'} value={undefined} />
-                            <Picker.Item label={'Malaysia'} value={'Malaysia'} />
-                        </Picker>
+                        <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
+                            <Picker style={{ height: 35 }} selectedValue={country} onValueChange={(val) => setCountry(val)} >
+                                <Picker.Item label={'Please Select'} value={undefined} />
+                                <Picker.Item label={'Malaysia'} value={'Malaysia'} />
+                            </Picker>
+                        </View>
                     </View>
                 </View>
             </View>

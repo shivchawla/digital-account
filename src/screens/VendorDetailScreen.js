@@ -47,41 +47,24 @@ const VendorDetailScreen = (props) => {
                                 </View>
                                 <Text style={styles.text}>{vendorData.merchant_id}</Text>
                             </View>
-                            <View style={{ flexDirection: 'row', marginTop: 20 }}>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={styles.boldText}>Name</Text>
+                            <View style={{ justifyContent: 'space-between', marginTop: 20 }}>
+                                <View style={[styles.formElement]}>
+                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Name</Text>
                                     <Text style={styles.text}>{vendorData.name}</Text>
                                 </View>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={styles.boldText}>Amount</Text>
-                                    <Text style={styles.text}>{vendorData.total_request}</Text>
+                                <View style={[styles.formElement]}>
+                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Email</Text>
+                                    <Text style={styles.text}>{vendorData.email}</Text>
                                 </View>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={styles.boldText}>Reason</Text>
-                                    <Text style={styles.text}>{vendorData.reason_request}</Text>
+                                <View style={[styles.formElement]}>
+                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Currency</Text>
+                                    <Text style={styles.text}>{vendorData.currency}</Text>
                                 </View>
-                            </View>
-                            <View style={{ flexDirection: 'row', marginTop: 20 }}>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={styles.boldText}>Type</Text>
-                                    <Text style={styles.text}>{vendorData.type}</Text>
+                                <View style={[styles.formElement]}>
+                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Address</Text>
+                                    <Text style={styles.text}>{vendorData.address}</Text>
                                 </View>
                             </View>
-                            {/* <View style={{ marginTop: 20 }}>
-                                <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', justifyContent: 'flex-end' }}>
-                                    <View style={{ alignItems: 'flex-end', marginTop: 20 }} >
-                                        <TouchableOpacity onPress={() => props.navigation.navigate('LoanDetail')} style={{ marginTop: 10, paddingLeft: 20, paddingRight: 20, paddingTop: 5, paddingBottom: 5, borderRadius: 20, borderWidth: 1 }}>
-                                            <Text style={styles.small}>See application</Text>
-                                        </TouchableOpacity>
-                                        <TouchableOpacity style={{ marginTop: 10, paddingLeft: 20, paddingRight: 20, paddingTop: 5, paddingBottom: 5, borderRadius: 20, borderWidth: 1 }}>
-                                            <Text style={styles.small}>Repayment info</Text>
-                                        </TouchableOpacity>
-                                        <TouchableOpacity style={{ marginTop: 10, paddingLeft: 20, paddingRight: 20, paddingTop: 5, paddingBottom: 5, borderRadius: 20, backgroundColor: '#34C2DB' }}>
-                                            <Text style={[styles.small, { color: '#fff' }]}>Pay Now!</Text>
-                                        </TouchableOpacity>
-                                    </View>
-                                </View>
-                            </View> */}
                         </View>}
                     </ScrollView>
                 </View>

@@ -42,7 +42,7 @@ const TACScreen = (props) => {
                             }}
                         />
                         {/* <Text>TAC : {code}</Text> */}
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: 25 }}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginBottom: 25 }}>
                             <Text style={[styles.text]}>Didn't get TAC number?</Text>
                             <TouchableOpacity onPress={() => props.navigation.navigate('ChangeNumber')}>
                                 <Text style={[styles.text, { color: '#04A2BD' }]}>Re-send TAC.</Text>
@@ -50,8 +50,6 @@ const TACScreen = (props) => {
                         </View>
                     </View>
                 </View>
-            </View>
-            <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
             </View>
         </View>
     );

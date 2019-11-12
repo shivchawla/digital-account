@@ -26,7 +26,7 @@ const ItemDetailScreen = (props) => {
                     </TouchableOpacity>
                 </View>
                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={styles.title}>Item Detail</Text>
+                    <Text style={styles.title}>ITEM DETAIL</Text>
                 </View>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
                     <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
@@ -38,29 +38,35 @@ const ItemDetailScreen = (props) => {
                         {itemData && <View style={[styles.box, { marginTop: 20 }]}>
                             <View style={{ marginTop: 5, borderBottomWidth: 1, borderBottomColor: 'lightgrey', paddingBottom: 20 }}>
                                 <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
-                                    <Text style={styles.boldText}>Customer Id</Text>
+                                    <Text style={styles.boldText}>Item ID</Text>
                                     <Ionicons name="md-arrow-dropdown" color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
                                 </View>
-                                <Text style={styles.text}>{itemData.merchant_id}</Text>
+                                <Text style={styles.text}>{itemData.id}</Text>
                             </View>
-                            <View style={{ flexDirection: 'row', marginTop: 20 }}>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={styles.boldText}>Name</Text>
-                                    <Text style={styles.text}>{itemData.name}</Text>
+                            <View style={{ justifyContent: 'space-between', marginTop: 20 }}>
+                                <View style={[styles.formElement]}>
+                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Name</Text>
+                                    <Text style={[styles.text]}>{itemData.name}</Text>
                                 </View>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={styles.boldText}>Amount</Text>
-                                    <Text style={styles.text}>{itemData.total_request}</Text>
+                                <View style={[styles.formElement]}>
+                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Brand</Text>
+                                    <Text style={styles.text}>{itemData.brand}</Text>
                                 </View>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={styles.boldText}>Reason</Text>
-                                    <Text style={styles.text}>{itemData.reason_request}</Text>
+                                <View style={[styles.formElement]}>
+                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>SKU</Text>
+                                    <Text style={styles.text}>{itemData.sku}</Text>
                                 </View>
-                            </View>
-                            <View style={{ flexDirection: 'row', marginTop: 20 }}>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={styles.boldText}>Type</Text>
-                                    <Text style={styles.text}>{itemData.type}</Text>
+                                <View style={[styles.formElement]}>
+                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Selling Price</Text>
+                                    <Text style={styles.text}>{itemData.sale_price}</Text>
+                                </View>
+                                <View style={[styles.formElement]}>
+                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Buying Price</Text>
+                                    <Text style={styles.text}>{itemData.purchase_price}</Text>
+                                </View>
+                                <View style={[styles.formElement]}>
+                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Quantity</Text>
+                                    <Text style={styles.text}>{itemData.quantity}</Text>
                                 </View>
                             </View>
                         </View>}

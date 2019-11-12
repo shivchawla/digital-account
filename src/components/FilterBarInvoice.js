@@ -43,10 +43,6 @@ const FilterBarInvoice = (props) => {
                             </Picker>
                         </View>
                     </View>
-                    <View style={{ marginBottom: 10 }}>
-                        <Text style={[styles.h3, { marginBottom: 5 }]}>Date</Text>
-                        <TextInput style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
-                    </View>
                 </View>
             </View>
             <View style={{ flexDirection: 'row', margin: 5, justifyContent: 'center' }}>

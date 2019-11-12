@@ -121,9 +121,6 @@ const DashboardStackWithModal = createStackNavigator(
     BusinessHub: {
       screen: BusinessHubScreen,
     },
-    Withdraw: {
-      screen: WithdrawScreen,
-    },
     BankList: {
       screen: BankListScreen
     },

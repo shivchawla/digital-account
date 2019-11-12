@@ -31,17 +31,14 @@ const CustomerScreen = (props) => {
                 </TouchableOpacity>
             </View>
             <View style={[styles.screenMargin, { flex: 9, paddingLeft: 0, paddingRight: 0 }]}>
-                <View style={{ marginTop: 30, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-evenly' }}>
+                <View style={{ marginTop: 30, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end', paddingRight: 10 }}>
                     <TouchableOpacity onPress={() => props.navigation.navigate('CustomerAdd')} style={{ padding: 5, paddingLeft: 8, paddingRight: 8, backgroundColor: '#34C2DB', borderRadius: 15 }}>
-                        <Text style={[styles.text, { color: '#fff' }]}>Add Customer</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => props.navigation.navigate('CustomerAdd')} style={{ padding: 5, paddingLeft: 8, paddingRight: 8, backgroundColor: '#055E7C', borderRadius: 15 }}>
                         <Text style={[styles.text, { color: '#fff' }]}>Add Customer</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={{ marginTop: 20 }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 10 }}>
-                        <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 20, flex: 1, borderWidth: 1, borderColor: 'lightgrey', padding: 10, borderRadius: 10 }}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 10, flex: 1, borderWidth: 1, borderColor: 'lightgrey', padding: 10, borderRadius: 10 }}>
                             <View>
                                 <Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
                             </View>
@@ -59,22 +56,18 @@ const CustomerScreen = (props) => {
                                     <Ionicons name="md-arrow-dropright" color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
                                 </View>
                             </View>
-                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                            <View style={{ flexDirection: 'row', alignContent: 'stretch', marginTop: 20 }}>
                                 <View style={{ flex: 1 }}>
-                                    <Text style={styles.text}>Name</Text>
+                                    <Text style={styles.small}>Name</Text>
+                                    <Text style={[styles.text]}>{item.name}</Text>
+                                </View>
+                                <View style={{ flex: 2.5 }}>
+                                    <Text style={styles.small}>Email</Text>
+                                    <Text style={styles.text}>{item.email}</Text>
                                 </View>
                                 <View style={{ flex: 1 }}>
-                                    <Text style={styles.text}>{item.name}</Text>
-                                </View>
-                            </View>
-                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={styles.small}>Status</Text>
-                                </View>
-                            </View>
-                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={[styles.text, { color: item.status === 'Submitted' ? '#000000' : item.status === 'Decline' ? '#FF0000' : item.status === 'Approved' ? '#54A400' : '#FA6400' }]}>{item.status}</Text>
+                                    <Text style={styles.small}>Currency</Text>
+                                    <Text style={styles.text}>{item.currency}</Text>
                                 </View>
                             </View>
                         </TouchableOpacity>

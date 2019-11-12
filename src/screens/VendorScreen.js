@@ -31,17 +31,14 @@ const VendorScreen = (props) => {
                 </TouchableOpacity>
             </View>
             <View style={[styles.screenMargin, { flex: 9, paddingLeft: 0, paddingRight: 0 }]}>
-                <View style={{ marginTop: 30, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-evenly' }}>
+                <View style={{ marginTop: 30, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end', paddingRight: 10 }}>
                     <TouchableOpacity onPress={() => props.navigation.navigate('VendorApplication')} style={{ padding: 5, paddingLeft: 8, paddingRight: 8, backgroundColor: '#34C2DB', borderRadius: 15 }}>
-                        <Text style={[styles.text, { color: '#fff' }]}>Add Vendor</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => props.navigation.navigate('VendorApplication')} style={{ padding: 5, paddingLeft: 8, paddingRight: 8, backgroundColor: '#055E7C', borderRadius: 15 }}>
                         <Text style={[styles.text, { color: '#fff' }]}>Add Vendor</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={{ marginTop: 20 }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 10 }}>
-                        <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 20, flex: 1, borderWidth: 1, borderColor: 'lightgrey', padding: 10, borderRadius: 10 }}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 10, flex: 1, borderWidth: 1, borderColor: 'lightgrey', padding: 10, borderRadius: 10 }}>
                             <View>
                                 <Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
                             </View>
