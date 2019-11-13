@@ -5,21 +5,21 @@ import styles from '../styles/styles'
 import * as actionCreator from '../store/actions/action'
 import { useDispatch } from 'react-redux'
 
-const FilterBarWithdrawal = (props) => {
+const FilterBarCustomer = (props) => {
 
     const nav = (screen) => {
         props.close()
         props.nav(screen)
     }
 
-    const [status, setStatus] = useState(null)
-    const [type, setType] = useState(null)
+    const [currency, setCurrency] = useState(null)
+    const [email, setEmail] = useState(null)
 
-    const filterWithdrawalList = async () => {
-        console.log(`status : ${status} and type : ${type} `)
-        const values = { status, type }
-        await dispatch(actionCreator.filterWithdrawalList(values))
-
+    const filterCustomerList = async () => {
+        console.log(`currency : ${currency}and email : ${email}`)
+        const values = { currency }
+        //await  dispatch(actionCreator.getLoanList())
+        await dispatch(actionCreator.filterCustomerList(values))
     }
 
     const dispatch = useDispatch()
@@ -28,24 +28,22 @@ const FilterBarWithdrawal = (props) => {
         <View style={{ position: 'absolute', top: 0, bottom: 0, right: 0, left: 0 }}>
             <View style={{ padding: 10, flex: 1, justifyContent: 'space-evenly' }}>
                 <View style={{ flex: 9, margin: 10 }}>
-                    <View style={{ alignSelf: 'stretch', marginBottom: 10 }}>
-                        <Text style={[styles.h3, { marginBottom: 5 }]}>Status</Text>
+                    <View style={{ marginBottom: 10 }}>
+                        <Text style={[styles.h3, { marginBottom: 5 }]}>Currency</Text>
                         <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
-                            <Picker style={{ height: 35 }} selectedValue={status} onValueChange={(val) => setStatus(val)} >
+                            <Picker style={{ height: 35 }} selectedValue={currency} onValueChange={(val) => setCurrency(val)} >
                                 <Picker.Item label={'Please Select'} value={undefined} />
-                                <Picker.Item label={'Approved'} value={'Approved'} />
-                                <Picker.Item label={'Reject'} value={'Reject'} />
-                                <Picker.Item label={'New'} value={'New'} />
-                                <Picker.Item label={'Disbursed'} value={'Disbursed'} />
+                                <Picker.Item label={'MYR'} value={'MYR'} />
                             </Picker>
                         </View>
                     </View>
-                    <View style={{ alignSelf: 'stretch', marginBottom: 10 }}>
-                        <Text style={[styles.h3, { marginBottom: 5 }]}>Type</Text>
+                    <View style={{ marginBottom: 10 }}>
+                        <Text style={[styles.h3, { marginBottom: 5 }]}>Email</Text>
                         <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
-                            <Picker style={{ height: 35 }} selectedValue={type} onValueChange={(val) => setType(val)} >
+                            <Picker style={{ height: 35 }} selectedValue={email} onValueChange={(val) => setEmail(val)} >
                                 <Picker.Item label={'Please Select'} value={undefined} />
-                                <Picker.Item label={'Business'} value={'Business'} />
+                                <Picker.Item label={'imannajwamohdrazly@gmail.com'} value={'imannajwamohdrazly@gmail.com'} />
+                                <Picker.Item label={'sarimah@gmail.com'} value={'sarimah@gmail.com'} />
                             </Picker>
                         </View>
                     </View>
@@ -55,7 +53,7 @@ const FilterBarWithdrawal = (props) => {
                 <TouchableOpacity style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, borderColor: 'black', borderWidth: 1 }}>
                     <Text style={[styles.textDefault, { color: 'black' }]}>Reset</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => filterWithdrawalList()} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }} >
+                <TouchableOpacity onPress={() => filterCustomerList()} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }} >
                     <Text style={[styles.textDefault, { color: '#fff' }]}>Filter</Text>
                 </TouchableOpacity>
             </View>
@@ -64,4 +62,4 @@ const FilterBarWithdrawal = (props) => {
     );
 }
 
-export default FilterBarWithdrawal
+export default FilterBarCustomer

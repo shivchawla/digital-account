@@ -27,7 +27,6 @@ import TransactionHistoryScreen from '../screens/TransactionHistoryScreen';
 import NotificationScreen from '../screens/NotificationScreen';
 import NotiSettingScreen from '../screens/NotiSettingScreen';
 import ChangeEmailScreen from '../screens/ChangeEmailScreen';
-import CustomerScreen from '../screens/CustomerScreen';
 import VendorScreen from '../screens/VendorScreen';
 import ItemScreen from '../screens/ItemScreen';
 import LogOutScreen from '../screens/LogOutScreen';
@@ -39,6 +38,7 @@ import LoanDrawer from './LoanDrawer';
 import WithdrawalDrawer from './WithdrawalDrawer';
 import ReportDrawer from './ReportDrawer';
 import InvoicesDrawer from './InvoicesDrawer';
+import ItemDrawer from './ItemDrawer';
 import DataSettingScreen from '../screens/DataSettingScreen';
 import LoanDetailScreen from '../screens/LoanDetailScreen';
 import InvoicesDetailScreen from '../screens/InvoicesDetailScreen';
@@ -74,6 +74,7 @@ import ItemDetailScreen from '../screens/ItemDetailScreen';
 import ChangePhoneSuccessScreen from '../screens/ChangePhoneSuccessScreen';
 import ChangePasswordSuccessScreen from '../screens/ChangePasswordSuccessScreen';
 import ChangeEmailSuccessScreen from '../screens/ChangeEmailSuccessScreen';
+import CustomerDrawer from './ItemDrawer';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -115,8 +116,14 @@ const DashboardStackWithModal = createStackNavigator(
     Report: {
       screen: ReportDrawer,
     },
+    Item: {
+      screen: ItemDrawer,
+    },
     Withdraw: {
       screen: WithdrawalDrawer,
+    },
+    Customer: {
+      screen: CustomerDrawer,
     },
     BusinessHub: {
       screen: BusinessHubScreen,
@@ -163,9 +170,6 @@ const DashboardStackWithModal = createStackNavigator(
     VendorDetail: {
       screen: VendorDetailScreen,
     },
-    Customer: {
-      screen: CustomerScreen,
-    },
     CustomerAdd: {
       screen: CustomerAddScreen,
     },
@@ -174,9 +178,6 @@ const DashboardStackWithModal = createStackNavigator(
     },
     CustomerAddSuccess: {
       screen: CustomerAddSuccessScreen,
-    },
-    Item: {
-      screen: ItemScreen,
     },
     ItemDetail: {
       screen: ItemDetailScreen,

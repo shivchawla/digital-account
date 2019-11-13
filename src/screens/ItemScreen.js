@@ -62,10 +62,6 @@ const ItemScreen = (props) => {
                                     <Text style={[styles.text]}>{item.name}</Text>
                                 </View>
                                 <View style={{ flex: 3 }}>
-                                    <Text style={styles.small}>SKU</Text>
-                                    <Text style={styles.text}>{item.sku}</Text>
-                                </View>
-                                <View style={{ flex: 3 }}>
                                     <Text style={styles.small}>Brand</Text>
                                     <Text style={styles.text}>{item.brand}</Text>
                                 </View>

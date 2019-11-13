@@ -628,7 +628,7 @@ export const filterInvoicesList = (values) => {
         const filterParam = (currency_code && customer_name) ? { currency_code, customer_name } : currency_code ? { currency_code } : customer_name ? { customer_name } : null
         const newInvoicesList = _.filter(invoiceList, _.matches(filterParam));
         console.log(`new invoice List : ${JSON.stringify(newInvoicesList)}`)
-        dispatch({ type: 'SET_INVOICE_LIST', payload: { invoiceList: newInvoicesList, filterEnabled: true } })
+        dispatch({ type: 'SET_INVOICE_LIST', payload: { filterInvoicesList: newInvoicesList, filterEnabled: true } })
     }
 }
 
@@ -641,7 +641,7 @@ export const filterReportList = (values) => {
         const filterParam = (currency && type && credit_debit) ? { currency, type, credit_debit } : currency ? { currency } : type ? { type } : credit_debit ? { credit_debit } : null
         const newReportList = _.filter(reportList, _.matches(filterParam));
         console.log(`new report List : ${JSON.stringify(newReportList)}`)
-        dispatch({ type: 'SET_REPORT_LIST', payload: { reportList: newReportList, filterEnabled: true } })
+        dispatch({ type: 'SET_REPORT_LIST', payload: { filterReportList: newReportList, filterEnabled: true } })
     }
 }
 
@@ -649,11 +649,37 @@ export const filterWithdrawalList = (values) => {
     return async (dispatch, getState) => {
         console.log(`filter withdrawal list action`)
         console.log(`filter withdrawal list action : ${JSON.stringify(values)}`)
-        const { withdrawData } = getState().withdrawReducer
-        const { status, country, bank_name } = values
-        const filterParam = (status && country && bank_name) ? { status, country, bank_name } : status ? { status } : country ? { country } : bank_name ? { bank_name } : null
-        const newWithdrawalList = _.filter(withdrawData, _.matches(filterParam));
+        const { withdrawList } = getState().withdrawReducer
+        const { status, type } = values
+        const filterParam = (status && type) ? { status, type } : status ? { status } : type ? { type } : null
+        const newWithdrawalList = _.filter(withdrawList, _.matches(filterParam));
         console.log(`new withdrawal List : ${JSON.stringify(newWithdrawalList)}`)
-        dispatch({ type: 'SET_WITHDRAWAL_LIST', payload: { withdrawData: newWithdrawalList, filterEnabled: true } })
+        dispatch({ type: 'SET_WITHDRAWAL_LIST', payload: { filteredWithdrawList: newWithdrawalList, filterEnabled: true } })
+    }
+}
+
+export const filterItemList = (values) => {
+    return async (dispatch, getState) => {
+        console.log(`filter item list action`)
+        console.log(`filter item list action : ${JSON.stringify(values)}`)
+        const { itemList } = getState().itemReducer
+        const { name, brand } = values
+        const filterParam = (name && brand) ? { name, brand } : name ? { name } : brand ? { brand } : null
+        const newItemList = _.filter(itemList, _.matches(filterParam));
+        console.log(`new item List : ${JSON.stringify(newItemList)}`)
+        dispatch({ type: 'SET_ITEM_LIST', payload: { filteredItemList: newItemList, filterEnabled: true } })
+    }
+}
+
+export const filterCustomerList = (values) => {
+    return async (dispatch, getState) => {
+        console.log(`filter customer list action`)
+        console.log(`filter customer list action : ${JSON.stringify(values)}`)
+        const { customerList } = getState().customerReducer
+        const { currency, email } = values
+        const filterParam = (currency && email) ? { currency, email } : currency ? { name } : email ? { email } : null
+        const newCustomerList = _.filter(customerList, _.matches(filterParam));
+        console.log(`new customer List : ${JSON.stringify(newCustomerList)}`)
+        dispatch({ type: 'SET_CUSTOMER_LIST', payload: { filteredCustomerList: newCustomerList, filterEnabled: true } })
     }
 }
