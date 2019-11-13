@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, TouchableOpacity, View, TextInput, KeyboardAvoidingView, ActivityIndicator } from 'react-native';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -34,7 +34,7 @@ const WelcomeScreen = (props) => {
     forgotPassword = async () => {
         let result = await WebBrowser.openBrowserAsync('https://tuah.niyo.my/password/reset');
     };
-    const [secure,secureItem]=useState(true)
+    const [secure, secureItem] = useState(true)
 
     return (
 
@@ -63,7 +63,7 @@ const WelcomeScreen = (props) => {
                         <View style={{ justifyContent: 'space-between', flex: 9, }}>
                             <View style={{ flex: 9 }}>
                                 <View style={{ flex: 1, backgroundColor: '#055E7C' }}>
-                                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' ,padding:10}}>
+                                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', padding: 10 }}>
                                         <Text style={[styles.subTitle, { color: '#fff' }]}>Welcome to your</Text>
                                         <Text style={[styles.title, { color: '#fff' }]}>Digital Account</Text>
                                     </View>
@@ -75,13 +75,13 @@ const WelcomeScreen = (props) => {
                                         </View>
                                         <View style={[styles.formElement]}>
                                             <View style={{ margin: 10 }} />
-                                            <View style={{flexDirection:'row',alignSelf:'stretch',justifyContent:'space-between', borderBottomWidth: 1, borderColor: '#9ADAF4', padding: 5 }}>
-                                            <TextInput secureTextEntry={secure} value={password} onBlur={FormikProps.handleBlur('password')} placeholder={passwordTouched && passwordError ? '' : 'Password'} onChangeText={FormikProps.handleChange('password')} style={{}} placeholderTextColor={passwordTouched && passwordError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
-                                           <TouchableOpacity onPress={()=>secureItem(!secure)}> 
-                                               <Ionicons name={secure?'ios-eye-off':'ios-eye'} style={{fontSize:25,color:secure?'lightgrey':'grey'}}   />
-                                           </TouchableOpacity>
+                                            <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between', borderBottomWidth: 1, borderColor: '#9ADAF4', padding: 5 }}>
+                                                <TextInput secureTextEntry={secure} value={password} onBlur={FormikProps.handleBlur('password')} placeholder={passwordTouched && passwordError ? '' : 'Password'} onChangeText={FormikProps.handleChange('password')} style={{}} placeholderTextColor={passwordTouched && passwordError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                                <TouchableOpacity onPress={() => secureItem(!secure)}>
+                                                    <Ionicons name={secure ? 'ios-eye-off' : 'ios-eye'} style={{ fontSize: 25, color: secure ? 'lightgrey' : 'grey' }} />
+                                                </TouchableOpacity>
                                             </View>
-                                             {passwordTouched && passwordError && <Text style={styles.error}>{passwordError}</Text>}
+                                            {passwordTouched && passwordError && <Text style={styles.error}>{passwordError}</Text>}
                                         </View>
                                         <View style={{ flexDirection: 'row', marginBottom: 10 }}>
                                             <Text style={[styles.textDefault, { margin: 5, color: 'darkgrey' }]}>Forgot password?</Text>

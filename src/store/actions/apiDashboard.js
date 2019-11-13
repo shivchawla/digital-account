@@ -108,7 +108,7 @@ export const withdrawDataApi = (id) => {
       .then(async (responseJson) => {
         const withdrawData = responseJson.data
         console.log('Success withdraw data' + JSON.stringify(responseJson))
-        dispatch({ type: 'SET_WITHDRAWAL_LIST', payload: { withdrawData } })
+        dispatch({ type: 'SET_WITHDRAWAL_DATA', payload: { withdrawData } })
 
       })
       .catch((error) => {
@@ -191,7 +191,7 @@ export const vendorDataRetrieveApi = (id) => {
     }).then((response) => response.json())
       .then(async (responseJson) => {
         const vendorData = responseJson.data
-        console.log('Success withdraw data' + JSON.stringify(responseJson))
+        console.log('Success vendor data' + JSON.stringify(responseJson))
         dispatch({ type: 'SET_VENDOR_LIST', payload: { vendorData } })
 
       })
@@ -283,7 +283,7 @@ export const customerListApi = () => {
     }).then((response) => response.json())
       .then(async (responseJson) => {
         const customerList = responseJson.data
-        console.log('Success vendor list' + JSON.stringify(responseJson))
+        console.log('Success customer list' + JSON.stringify(responseJson))
         dispatch({ type: 'SET_CUSTOMER_LIST', payload: { customerList } })
 
       })
@@ -339,7 +339,7 @@ export const itemListApi = () => {
     }).then((response) => response.json())
       .then(async (responseJson) => {
         const itemList = responseJson.data
-        console.log('Success vendor list' + JSON.stringify(responseJson))
+        console.log('Success item list' + JSON.stringify(responseJson))
         dispatch({ type: 'SET_ITEM_LIST', payload: { itemList } })
 
       })

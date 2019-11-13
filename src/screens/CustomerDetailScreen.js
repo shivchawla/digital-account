@@ -7,13 +7,9 @@ import styles from '../styles/styles'
 import { ScrollView } from 'react-native-gesture-handler';
 
 const CustomerDetailScreen = (props) => {
-    // const customerData = useSelector(state => state.loanApplicationReducer, shallowEqual)
-    // const dispatch = useDispatch()
-    //const setcustomerData = (val) => dispatch({ type: 'SET_WITHDRAW_DATA', payload: { ...val } });
 
     useEffect(() => {
         const id = props.navigation.getParam('id', 'NO-ID')
-
         dispatch(actionCreator.getCustomerData(id))
     }, [customerData])
     const dispatch = useDispatch()
@@ -30,7 +26,7 @@ const CustomerDetailScreen = (props) => {
                     </TouchableOpacity>
                 </View>
                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={styles.title}>Vendor Detail</Text>
+                    <Text style={styles.title}>CUSTOMER DETAIL</Text>
                 </View>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
                     <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
@@ -42,46 +38,25 @@ const CustomerDetailScreen = (props) => {
                         {customerData && <View style={[styles.box, { marginTop: 20 }]}>
                             <View style={{ marginTop: 5, borderBottomWidth: 1, borderBottomColor: 'lightgrey', paddingBottom: 20 }}>
                                 <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
-                                    <Text style={styles.boldText}>Customer Id</Text>
+                                    <Text style={styles.small}>Customer ID</Text>
                                     <Ionicons name="md-arrow-dropdown" color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
                                 </View>
-                                <Text style={styles.text}>{customerData.merchant_id}</Text>
+                                <Text style={styles.text}>{customerData.id}</Text>
                             </View>
-                            <View style={{ flexDirection: 'row', marginTop: 20 }}>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={styles.boldText}>Name</Text>
+                            <View style={{ justifyContent: 'space-between', marginTop: 20 }}>
+                                <View style={[styles.formElement]}>
+                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Name</Text>
                                     <Text style={styles.text}>{customerData.name}</Text>
                                 </View>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={styles.boldText}>Amount</Text>
-                                    <Text style={styles.text}>{customerData.total_request}</Text>
+                                <View style={[styles.formElement]}>
+                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Email</Text>
+                                    <Text style={styles.text}>{customerData.email}</Text>
                                 </View>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={styles.boldText}>Reason</Text>
-                                    <Text style={styles.text}>{customerData.reason_request}</Text>
-                                </View>
-                            </View>
-                            <View style={{ flexDirection: 'row', marginTop: 20 }}>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={styles.boldText}>Type</Text>
-                                    <Text style={styles.text}>{customerData.type}</Text>
+                                <View style={[styles.formElement]}>
+                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Currency</Text>
+                                    <Text style={styles.text}>{customerData.currency}</Text>
                                 </View>
                             </View>
-                            {/* <View style={{ marginTop: 20 }}>
-                                <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', justifyContent: 'flex-end' }}>
-                                    <View style={{ alignItems: 'flex-end', marginTop: 20 }} >
-                                        <TouchableOpacity onPress={() => props.navigation.navigate('LoanDetail')} style={{ marginTop: 10, paddingLeft: 20, paddingRight: 20, paddingTop: 5, paddingBottom: 5, borderRadius: 20, borderWidth: 1 }}>
-                                            <Text style={styles.small}>See application</Text>
-                                        </TouchableOpacity>
-                                        <TouchableOpacity style={{ marginTop: 10, paddingLeft: 20, paddingRight: 20, paddingTop: 5, paddingBottom: 5, borderRadius: 20, borderWidth: 1 }}>
-                                            <Text style={styles.small}>Repayment info</Text>
-                                        </TouchableOpacity>
-                                        <TouchableOpacity style={{ marginTop: 10, paddingLeft: 20, paddingRight: 20, paddingTop: 5, paddingBottom: 5, borderRadius: 20, backgroundColor: '#34C2DB' }}>
-                                            <Text style={[styles.small, { color: '#fff' }]}>Pay Now!</Text>
-                                        </TouchableOpacity>
-                                    </View>
-                                </View>
-                            </View> */}
                         </View>}
                     </ScrollView>
                 </View>

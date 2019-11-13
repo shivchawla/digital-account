@@ -29,8 +29,8 @@ const CompanyDocumentScreen = (props) => {
                     <Image source={require('../assets/images/logosmall.png')} style={{ width: 50, height: 50, borderRadius: 15 }} />
                 </View>
             </View>
-            <View style={{ justifyContent: 'space-between', flex: 9 }}>
-                <View style={[styles.screenMargin, { flex: 9 }]}>
+            <View style={[styles.screenMargin, { flex: 9 }]}>
+                <View style={{ marginBottom: 10 }}>
                     <Text style={[styles.text, { marginBottom: 5, marginTop: 20 }]}>MyKad</Text>
                     {isDocument1 ? <View style={{ backgroundColor: 'lightgrey', height: Layout.window.height / 6, width: Layout.window.width / 2, justifyContent: 'flex-end' }}>
                         <View style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 }}>

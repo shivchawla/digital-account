@@ -44,7 +44,7 @@ const LoanApplicationScreen = (props) => {
                 const amountError = FormikProps.errors.amount
                 const amountTouched = FormikProps.touched.amount
 
-                const handleCheckBox = () => {console.log(`apa ni ${smeConnected}`); FormikProps.setFieldValue('smeConnected', !smeConnected) }
+                const handleCheckBox = () => { console.log(`apa ni ${smeConnected}`); FormikProps.setFieldValue('smeConnected', !smeConnected) }
 
                 return (
 
@@ -92,12 +92,12 @@ const LoanApplicationScreen = (props) => {
                                     </View>
                                     <View style={{ marginBottom: 10 }}>
                                         <Text style={[styles.titleBox, { marginBottom: 10 }]}>Total Financing (MYR)</Text>
-                                        <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} onBlur={FormikProps.handleBlur('amount')} style={{ borderWidth: 1, borderColor: amountTouched && amountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={amountTouched && amountError ? '' : ''} placeholderTextColor={amountTouched && amountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
+                                        <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} onBlur={FormikProps.handleBlur('amount')} style={{ borderWidth: 1, borderColor: amountTouched && amountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={amountTouched && amountError ? '' : 'Eg: RM 1000.00'} placeholderTextColor={amountTouched && amountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
                                         {amountTouched && amountError && <Text style={styles.error}>{amountError}</Text>}
                                     </View>
                                     <View style={{ marginBottom: 10 }}>
                                         <Text style={[styles.titleBox, { marginBottom: 10 }]}>Purpose</Text>
-                                        <TextInput value={purpose} onChangeText={FormikProps.handleChange('purpose')} onBlur={FormikProps.handleBlur('purpose')} style={{ borderWidth: 1, borderColor: purposeTouched && purposeError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={purposeTouched && purposeError ? '' : ''} placeholderTextColor={purposeTouched && purposeError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        <TextInput value={purpose} onChangeText={FormikProps.handleChange('purpose')} onBlur={FormikProps.handleBlur('purpose')} style={{ borderWidth: 1, borderColor: purposeTouched && purposeError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={purposeTouched && purposeError ? '' : 'Eg: Pay salary'} placeholderTextColor={purposeTouched && purposeError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
 
                                         {purposeTouched && purposeError && <Text style={styles.error}>{purposeError}</Text>}
                                     </View>
@@ -116,7 +116,7 @@ const LoanApplicationScreen = (props) => {
                                             <Text style={styles.text}>Yes</Text>
                                         </View>
                                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                        {(Platform.OS == 'ios') ?
+                                            {(Platform.OS == 'ios') ?
                                                 <CheckBox2 onClick={() => handleCheckBox()} isChecked={!smeConnected} style={{ paddingRight: 10 }} />
                                                 :
                                                 <CheckBox onValueChange={handleCheckBox} value={!smeConnected} style={{ paddingRight: 10 }} />

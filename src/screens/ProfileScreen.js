@@ -44,7 +44,7 @@ const ProfileScreen = (props) => {
                     <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 90, height: 90, borderWidth: 1, borderColor: '#055E7C' }} />
                 </View>
                 <View>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10 }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 25 }}>
                         <Text style={[styles.h2]}>Personal Information</Text>
                     </View>
                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
@@ -55,7 +55,7 @@ const ProfileScreen = (props) => {
                             <Text style={[styles.text, { color: '#055E7C' }]}>123456789</Text>
                         </View>
                     </View>
-                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                    <View style={{ flexDirection: 'row', marginTop: 10 }}>
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                             <Text style={[styles.boldText]}>Account Type</Text>
                         </View>
@@ -63,7 +63,7 @@ const ProfileScreen = (props) => {
                             <Text style={[styles.text, { color: '#055E7C' }]}>Business</Text>
                         </View>
                     </View>
-                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                    <View style={{ flexDirection: 'row', marginTop: 10 }}>
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                             <Text style={[styles.boldText]}>Balance</Text>
                         </View>
@@ -71,7 +71,7 @@ const ProfileScreen = (props) => {
                             <Text style={[styles.text, { color: '#055E7C' }]}>RM18,839.00</Text>
                         </View>
                     </View>
-                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                    <View style={{ flexDirection: 'row', marginTop: 10 }}>
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                             <Text style={[styles.boldText]}>Status</Text>
                         </View>
@@ -81,10 +81,10 @@ const ProfileScreen = (props) => {
                     </View>
                 </View>
                 <View>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 10 }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 25 }}>
                         <Text style={[styles.h2]}>Business Information</Text>
                     </View>
-                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                    <View style={{ flexDirection: 'row', marginTop: 10 }}>
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                             <Text style={[styles.boldText]}>Business Reg Number</Text>
                         </View>
@@ -92,7 +92,7 @@ const ProfileScreen = (props) => {
                             <Text style={[styles.text, { color: '#055E7C' }]}>{business_reg_no}</Text>
                         </View>
                     </View>
-                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                    <View style={{ flexDirection: 'row', marginTop: 10 }}>
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                             <Text style={[styles.boldText]}>Business Name</Text>
                         </View>
@@ -100,7 +100,7 @@ const ProfileScreen = (props) => {
                             <Text style={[styles.text, { color: '#055E7C' }]}>{business_name}</Text>
                         </View>
                     </View>
-                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                    <View style={{ flexDirection: 'row', marginTop: 10 }}>
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                             <Text style={[styles.boldText]}>Contact Number</Text>
                         </View>
@@ -108,7 +108,7 @@ const ProfileScreen = (props) => {
                             <Text style={[styles.text, { color: '#055E7C' }]}>{contact_no}</Text>
                         </View>
                     </View>
-                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                    <View style={{ flexDirection: 'row', marginTop: 10 }}>
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                             <Text style={[styles.boldText]}>Email</Text>
                         </View>
@@ -116,7 +116,7 @@ const ProfileScreen = (props) => {
                             <Text style={[styles.text, { color: '#055E7C' }]}>{support_email}</Text>
                         </View>
                     </View>
-                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                    <View style={{ flexDirection: 'row', marginTop: 10 }}>
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                             <Text style={[styles.boldText]}>Address</Text>
                         </View>

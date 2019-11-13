@@ -33,6 +33,7 @@ const ChangePasswordScreen = (props) => {
 
     return (
         <Formik onSubmit={async values => {
+            props.navigation.navigate("PasswordSuccess")
             console.log(JSON.stringify(values))
         }}
             validationSchema={validationSchema}>

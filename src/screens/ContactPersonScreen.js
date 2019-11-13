@@ -1,38 +1,11 @@
-//console.ignoredYellowBox = ['Setting a timer']
-import React, { useEffect, useRef } from 'react';
-import {
-    Image,
-    Platform,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
-    Dimensions,
-    TextInput,
-    AsyncStorage,
-    ImageBackground,
-    KeyboardAvoidingView,
-    ActivityIndicator
-
-
-} from 'react-native';
-
-import Constants from 'expo-constants'
-//import { Constants, LinearGradient, FileSystem } from 'expo'
+import React from 'react';
+import { Image, Text, TouchableOpacity, View, TextInput, KeyboardAvoidingView, ActivityIndicator } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'
-import Layout from '../constants/Layout'
-
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-
-import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles/styles'
-//import { DatePicker } from 'native-base'
-import moment from 'moment'
-import { shallowEqual, useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import * as actionCreator from '../store/actions/action'
-
 
 const validationSchema = Yup.object().shape({
     cddContactPersonName: Yup
@@ -56,11 +29,8 @@ const validationSchema = Yup.object().shape({
 const ContactPersonScreen = (props) => {
 
     const dispatch = useDispatch()
-
     const contactPerson = (values) => {
-
         dispatch(actionCreator.contactPerson(values))
-
         props.navigation.navigate('ContactPersonSuccess')
 
     }
