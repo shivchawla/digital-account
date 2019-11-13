@@ -25,13 +25,13 @@ export default StyleSheet.create({
     fontSize,
     fontFamily: 'Montserrat_medium',
     color: '#055E7C',
-    fontSize: fontSize * 1.6
+    fontSize: fontSize * 1.4
   },
   subTitle: {
     fontSize,
     fontFamily: 'Montserrat_medium',
     color: '#055E7C',
-    fontSize: fontSize * 1.4
+    fontSize: fontSize * 1.2
   },
 
   butang: {
