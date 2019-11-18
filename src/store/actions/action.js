@@ -677,9 +677,22 @@ export const filterCustomerList = (values) => {
         console.log(`filter customer list action : ${JSON.stringify(values)}`)
         const { customerList } = getState().customerReducer
         const { currency, email } = values
-        const filterParam = (currency && email) ? { currency, email } : currency ? { name } : email ? { email } : null
+        const filterParam = (currency && email) ? { currency, email } : currency ? { currency } : email ? { email } : null
         const newCustomerList = _.filter(customerList, _.matches(filterParam));
         console.log(`new customer List : ${JSON.stringify(newCustomerList)}`)
         dispatch({ type: 'SET_CUSTOMER_LIST', payload: { filteredCustomerList: newCustomerList, filterEnabled: true } })
+    }
+}
+
+export const filterBusinessList = (values) => {
+    return async (dispatch, getState) => {
+        console.log(`filter business list action`)
+        console.log(`filter business list action : ${JSON.stringify(values)}`)
+        const { businessDirectoryList } = getState().businessDirectoryReducer
+        const { industry, address } = values
+        const filterParam = (industry && address) ? { industry, address } : industry ? { industry } : address ? { address } : null
+        const newBusinessList = _.filter(businessDirectoryList, _.matches(filterParam));
+        console.log(`new business List : ${JSON.stringify(newBusinessList)}`)
+        dispatch({ type: 'SET_BUSINESS_LIST', payload: { filterBusinessList: newBusinessList, filterEnabled: true } })
     }
 }

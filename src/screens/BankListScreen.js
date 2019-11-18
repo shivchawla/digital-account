@@ -1,14 +1,5 @@
 import React, { useEffect } from 'react';
-
-import {
-    View,
-    TouchableOpacity,
-    TouchableWithoutFeedback,
-    Text,
-    Image,
-    FlatList
-} from 'react-native';
-
+import { View, TouchableOpacity, TouchableWithoutFeedback, Text, Image, FlatList } from 'react-native';
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons';
@@ -17,14 +8,10 @@ import styles from '../styles/styles'
 const BankListScreen = (props) => {
     useEffect(() => {
         dispatch(actionCreator.getInvoiceList())
-
     }, [invoiceList])
-
     useEffect(() => {
         dispatch(actionCreator.bankList())
-
     }, [bankList])
-
     const dispatch = useDispatch()
     const { invoiceList } = useSelector(state => state.invoiceReducer, shallowEqual)
     const { bankList } = useSelector(state => state.bankListReducer, shallowEqual)
@@ -32,7 +19,6 @@ const BankListScreen = (props) => {
     return (
 
         <View style={{ flex: 1, }}>
-
             <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
                     <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
@@ -61,7 +47,6 @@ const BankListScreen = (props) => {
                             <Ionicons name="md-close-circle-outline" color={'red'} style={{ fontSize: 15, paddingRight: 5 }} />
                         </TouchableOpacity>
                     </View>}
-
                     {bankList && <FlatList data={bankList} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
                         <View style={styles.box}>
                             <TouchableWithoutFeedback onPress={() => dispatch(actionCreator.setMarkerBankList(index))} style={{ flexDirection: 'row', marginTop: 5 }}>
@@ -77,26 +62,6 @@ const BankListScreen = (props) => {
                             </View>
                             {item.marker &&
                                 <View style={{ flex: 1 }}>
-                                    {/* <View style={{ flexDirection: 'row', marginTop: 20 }}>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={styles.small}>Type</Text>
-                                            <Text style={styles.text}>Vendor</Text>
-                                        </View>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={styles.small}>Date</Text>
-                                            <Text style={styles.text}>[date]</Text>
-                                        </View>
-                                    </View>
-                                    <View style={{ flexDirection: 'row', marginTop: 20 }}>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={styles.small}>Currency</Text>
-                                            <Text style={styles.text}>RM</Text>
-                                        </View>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={styles.small}>Amount</Text>
-                                            <Text style={styles.text}>9</Text>
-                                        </View>
-                                    </View> */}
                                     <View style={{ flexDirection: 'row', marginTop: 20 }}>
                                         <View style={{ flex: 1 }}>
                                             <Text style={styles.small}>Bank Name</Text>
@@ -118,7 +83,6 @@ const BankListScreen = (props) => {
                                 </View>
                             }
                         </View>
-
                     } />}
                 </View>
             </View >
@@ -126,12 +90,8 @@ const BankListScreen = (props) => {
     );
 }
 
-BankListScreen.navigationOptions =
-
-    {
-
-        header: null,
-
-    };
+BankListScreen.navigationOptions = {
+    header: null,
+};
 
 export default BankListScreen;

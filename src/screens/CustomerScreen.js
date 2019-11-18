@@ -32,7 +32,7 @@ const CustomerScreen = (props) => {
             </View>
             <View style={[styles.screenMargin, { flex: 9, paddingLeft: 0, paddingRight: 0 }]}>
                 <View style={{ marginTop: 30, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end', paddingRight: 10 }}>
-                    <TouchableOpacity onPress={() => props.navigation.navigate('CustomerAdd')} style={{ padding: 5, paddingLeft: 8, paddingRight: 8, backgroundColor: '#34C2DB', borderRadius: 15 }}>
+                    <TouchableOpacity onPress={() => props.navigation.navigate('CustomerAdd')} style={{ paddingTop: 5, paddingBottom: 5, paddingLeft: 20, paddingRight: 20, backgroundColor: '#34C2DB', borderRadius: 15 }}>
                         <Text style={[styles.text, { color: '#fff' }]}>Add Customer</Text>
                     </TouchableOpacity>
                 </View>

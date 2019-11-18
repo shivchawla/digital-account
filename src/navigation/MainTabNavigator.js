@@ -48,7 +48,7 @@ import InvoiceSuccessScreen from '../screens/InvoiceSuccessScreen';
 import ZakatScreen from '../screens/ZakatScreen';
 import PayrollScreen from '../screens/PayrollScreen';
 import RemittanceScreen from '../screens/RemittanceScreen';
-import BusinessDirectoryScreen from '../screens/BusinessDirectoryScreen';
+import BusinessDrawer from './BusinessDrawer';
 import LoanMiniDetailScreen from '../screens/LoanMiniDetailScreen';
 import TransferSuccessScreen from '../screens/TransferSuccessScreen';
 import SupportSuccessScreen from '../screens/SupportSuccessScreen';
@@ -74,7 +74,7 @@ import ItemDetailScreen from '../screens/ItemDetailScreen';
 import ChangePhoneSuccessScreen from '../screens/ChangePhoneSuccessScreen';
 import ChangePasswordSuccessScreen from '../screens/ChangePasswordSuccessScreen';
 import ChangeEmailSuccessScreen from '../screens/ChangeEmailSuccessScreen';
-import CustomerDrawer from './ItemDrawer';
+import CustomerDrawer from './CustomerDrawer';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -219,7 +219,7 @@ const DashboardStackWithModal = createStackNavigator(
       screen: RemittanceScreen,
     },
     BusinessDirectory: {
-      screen: BusinessDirectoryScreen,
+      screen: BusinessDrawer,
     },
     TransferSuccess: {
       screen: TransferSuccessScreen,

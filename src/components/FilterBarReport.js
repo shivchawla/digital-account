@@ -38,7 +38,7 @@ const FilterBarReport = (props) => {
                             </Picker>
                         </View>
                     </View>
-                    <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', marginBottom: 10 }}>
+                    <View style={{ alignSelf: 'stretch', marginBottom: 10 }}>
                         <Text style={[styles.h3, { marginBottom: 5 }]}>Transaction Type</Text>
                         <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
                             <Picker style={{ height: 35 }} selectedValue={type} onValueChange={(val) => setType(val)} >
@@ -48,7 +48,7 @@ const FilterBarReport = (props) => {
                             </Picker>
                         </View>
                     </View>
-                    <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', marginBottom: 10 }}>
+                    <View style={{ alignSelf: 'stretch', marginBottom: 10 }}>
                         <Text style={[styles.h3, { marginBottom: 5 }]}>Credit / Debit</Text>
                         <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
                             <Picker style={{ height: 35, borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }} selectedValue={credit_debit} onValueChange={(val) => setCreditDebit(val)} >

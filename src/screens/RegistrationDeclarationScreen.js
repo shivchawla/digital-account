@@ -90,14 +90,14 @@ const RegistrationDeclarationScreen = (props) => {
                                     </View>
                                     <View style={{ flexDirection: 'row', marginBottom: 10 }}>
 
-                                        <CheckBox onClick={() => handleCheckBox('isDeclaration_one')} isChecked={isDeclaration_one == 1} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', marginRight: 25 }} />
+                                        <CheckBox onClick={() => handleCheckBox('isDeclaration_one')} isChecked={isDeclaration_one == 1} checkBoxColor={'rgba(62,194,217,1)'} style={{ borderColor: 'rgba(0,0,0,0.3)', marginRight: 25 }} />
 
                                         <Text style={styles.text}>I agree on terms and condition listed</Text>
 
                                     </View>
                                     <View style={{ flexDirection: 'row', marginBottom: 10 }}>
 
-                                        <CheckBox onClick={() => handleCheckBox('isDeclaration_two')} isChecked={isDeclaration_two == 1} checkBoxColor={'rgba(0,0,0,0.3)'} style={{ borderColor: 'rgba(0,0,0,0.3)', marginRight: 25 }} />
+                                        <CheckBox onClick={() => handleCheckBox('isDeclaration_two')} isChecked={isDeclaration_two == 1} checkBoxColor={'rgba(62,194,217,1)'} style={{ borderColor: 'rgba(0,0,0,0.3)', marginRight: 25 }} />
 
                                         <Text style={[styles.text, { flex: 1, flexWrap: 'wrap' }]}>Me and my company does not want to receive any marketing materials about the products and/or special offers on SME Bank</Text>
 

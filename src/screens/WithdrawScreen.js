@@ -30,10 +30,10 @@ const WithdrawScreen = (props) => {
                     <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
                 </TouchableOpacity>
             </View>
-            <View style={[{ flex: 9 }]}>
+            <View style={{ justifyContent: 'space-between', flex: 9 }}>
                 <ScrollView style={[styles.screenMargin]}>
                     <View style={{ marginTop: 25, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end', paddingRight: 10 }}>
-                        <TouchableOpacity onPress={() => props.navigation.navigate('WithdrawalApplication')} style={{ padding: 5, paddingLeft: 8, paddingRight: 8, backgroundColor: '#055E7C', borderRadius: 15 }}>
+                        <TouchableOpacity onPress={() => props.navigation.navigate('WithdrawalApplication')} style={{ paddingTop: 5, paddingBottom: 5, paddingLeft: 20, paddingRight: 20, backgroundColor: '#055E7C', borderRadius: 15 }}>
                             <Text style={[styles.text, { color: '#fff' }]}>New Withdrawal</Text>
                         </TouchableOpacity>
                     </View>

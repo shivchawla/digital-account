@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, TouchableOpacity, Text, Image, FlatList, ScrollView } from 'react-native';
+import { View, TouchableOpacity, Text, Image, FlatList, ScrollView, TextInput } from 'react-native';
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons';
@@ -11,28 +11,45 @@ const BusinessDirectoryScreen = (props) => {
     }, [businessDirectoryList])
     const dispatch = useDispatch()
 
-    const { businessDirectoryList } = useSelector(state => state.businessDirectoryReducer, shallowEqual)
+    // const { businessDirectoryList } = useSelector(state => state.businessDirectoryReducer, shallowEqual)
+
+    const { businessDirectoryList, filterBusinessList, filterEnabled } = useSelector(state => state.businessDirectoryReducer, shallowEqual)
 
     return (
 
         <View style={{ flex: 1, }}>
             <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
-                    <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
+                    <TouchableOpacity onPress={() => props.navigation.navigate("BusinessHub")} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
                         <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 20 }} />
                     </TouchableOpacity>
                 </View>
                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={[styles.title,{}]} numberOfLines={1} ellipsizeMode={'tail'}>Business Directory</Text>
+                    <Text style={[styles.title, {}]} numberOfLines={1} ellipsizeMode={'tail'}>Business Directory</Text>
                 </View>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
                     <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
                 </View>
             </View>
-            <View style={{ flex: 9, }}>
+            <View style={{ flex: 9, marginTop: 20 }}>
                 <ScrollView Style={styles.screenMargin}>
-                    {businessDirectoryList && <FlatList data={businessDirectoryList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
-                        <View style={[styles.box,styles.shadow, { marginBottom: 15,borderRadius:15 }]}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 10 }}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 10, flex: 1, borderWidth: 1, borderColor: 'lightgrey', padding: 10, borderRadius: 10 }}>
+                            <View>
+                                <Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
+                            </View>
+                            <TextInput placeholder='Please Enter Keyword' style={{ flex: 4 }} />
+                            <TouchableOpacity onPress={props.navigation.openDrawer} >
+                                <Ionicons name="ios-options" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+
+                    {/* {businessDirectoryList && <FlatList data={businessDirectoryList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) => */}
+
+                    {businessDirectoryList && <FlatList data={filterEnabled ? filterBusinessList : businessDirectoryList} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
+
+                        <View style={[styles.box, styles.shadow, { marginBottom: 15, borderRadius: 15 }]}>
 
                             <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'flex-start', alignItems: 'center', alignSelf: 'stretch' }}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1.2 }}>
