@@ -27,7 +27,6 @@ import TransactionHistoryScreen from '../screens/TransactionHistoryScreen';
 import NotificationScreen from '../screens/NotificationScreen';
 import NotiSettingScreen from '../screens/NotiSettingScreen';
 import ChangeEmailScreen from '../screens/ChangeEmailScreen';
-import CustomerScreen from '../screens/CustomerScreen';
 import VendorScreen from '../screens/VendorScreen';
 import ItemScreen from '../screens/ItemScreen';
 import LogOutScreen from '../screens/LogOutScreen';
@@ -39,6 +38,7 @@ import LoanDrawer from './LoanDrawer';
 import WithdrawalDrawer from './WithdrawalDrawer';
 import ReportDrawer from './ReportDrawer';
 import InvoicesDrawer from './InvoicesDrawer';
+import ItemDrawer from './ItemDrawer';
 import DataSettingScreen from '../screens/DataSettingScreen';
 import LoanDetailScreen from '../screens/LoanDetailScreen';
 import InvoicesDetailScreen from '../screens/InvoicesDetailScreen';
@@ -48,7 +48,7 @@ import InvoiceSuccessScreen from '../screens/InvoiceSuccessScreen';
 import ZakatScreen from '../screens/ZakatScreen';
 import PayrollScreen from '../screens/PayrollScreen';
 import RemittanceScreen from '../screens/RemittanceScreen';
-import BusinessDirectoryScreen from '../screens/BusinessDirectoryScreen';
+import BusinessDrawer from './BusinessDrawer';
 import LoanMiniDetailScreen from '../screens/LoanMiniDetailScreen';
 import TransferSuccessScreen from '../screens/TransferSuccessScreen';
 import SupportSuccessScreen from '../screens/SupportSuccessScreen';
@@ -75,6 +75,7 @@ import ChangePhoneSuccessScreen from '../screens/ChangePhoneSuccessScreen';
 import ChangePasswordSuccessScreen from '../screens/ChangePasswordSuccessScreen';
 import ChangeEmailSuccessScreen from '../screens/ChangeEmailSuccessScreen';
 import NewInvoiceItemsScreen from '../screens/NewInvoiceItemsScreen';
+import CustomerDrawer from './CustomerDrawer';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -119,8 +120,14 @@ const DashboardStackWithModal = createStackNavigator(
     Report: {
       screen: ReportDrawer,
     },
+    Item: {
+      screen: ItemDrawer,
+    },
     Withdraw: {
       screen: WithdrawalDrawer,
+    },
+    Customer: {
+      screen: CustomerDrawer,
     },
     BusinessHub: {
       screen: BusinessHubScreen,
@@ -167,9 +174,6 @@ const DashboardStackWithModal = createStackNavigator(
     VendorDetail: {
       screen: VendorDetailScreen,
     },
-    Customer: {
-      screen: CustomerScreen,
-    },
     CustomerAdd: {
       screen: CustomerAddScreen,
     },
@@ -178,9 +182,6 @@ const DashboardStackWithModal = createStackNavigator(
     },
     CustomerAddSuccess: {
       screen: CustomerAddSuccessScreen,
-    },
-    Item: {
-      screen: ItemScreen,
     },
     ItemDetail: {
       screen: ItemDetailScreen,
@@ -222,7 +223,7 @@ const DashboardStackWithModal = createStackNavigator(
       screen: RemittanceScreen,
     },
     BusinessDirectory: {
-      screen: BusinessDirectoryScreen,
+      screen: BusinessDrawer,
     },
     TransferSuccess: {
       screen: TransferSuccessScreen,

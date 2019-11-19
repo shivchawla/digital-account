@@ -84,11 +84,11 @@ const SupportScreen = (props) => {
                             <View style={{ flex: 9 }}>
                                 <ScrollView style={styles.screenMargin}>
                                     <View style={styles.formElement}>
-                                        <Text style={[styles.titleBox], { marginBottom: 10 }}>Tag</Text>
+                                        <Text style={[styles.titleBox], { marginBottom: 10, marginTop: 20 }}>Tag</Text>
                                         <TextInput disable={true} value={tag} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
                                         {/* {subjectTouched && subjectError && <Text style={styles.error}>{subjectError}</Text>} */}
                                     </View>
-                                    <View style={[styles.formElement, { alignSelf: 'stretch', marginTop: 25 }]}>
+                                    <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
                                         <Text style={[styles.titleBox], { marginBottom: 10 }}>Type</Text>
                                         <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
                                             <Picker style={{ flex: 1, height: 35 }} selectedValue={type} onValueChange={(itemValue, itemIndex) => FormikProps.setFieldValue('type', itemValue)}>
@@ -101,7 +101,7 @@ const SupportScreen = (props) => {
                                             {typeTouched && typeError && <Text style={styles.error}>{typeError}</Text>}
                                         </View>
                                     </View>
-                                    <View style={[styles.formElement, { alignSelf: 'stretch', marginTop: 25 }]}>
+                                    <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
                                         <Text style={[styles.titleBox], { marginBottom: 10 }}>Priority</Text>
                                         <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
                                             <Picker style={{ flex: 1, height: 35 }} selectedValue={priority} onValueChange={(itemValue, itemIndex) => FormikProps.setFieldValue('priority', itemValue)}>

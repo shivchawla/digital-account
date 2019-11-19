@@ -11,11 +11,11 @@ const validationSchema = Yup.object().shape({
     mobileNumber: Yup
         .number()
         .min(10)
-        .required()
-        .max(11),
+        .required(),
 
     password: Yup
         .string()
+        .min(6)
         .required(),
 
 });

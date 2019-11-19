@@ -30,10 +30,10 @@ const WithdrawScreen = (props) => {
                     <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
                 </TouchableOpacity>
             </View>
-            <View style={[{ flex: 9 }]}>
+            <View style={{ justifyContent: 'space-between', flex: 9 }}>
                 <ScrollView style={[styles.screenMargin]}>
                     <View style={{ marginTop: 25, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end', paddingRight: 10 }}>
-                        <TouchableOpacity onPress={() => props.navigation.navigate('WithdrawalApplication')} style={{ padding: 5, paddingLeft: 8, paddingRight: 8, backgroundColor: '#055E7C', borderRadius: 15 }}>
+                        <TouchableOpacity onPress={() => props.navigation.navigate('WithdrawalApplication')} style={{ paddingTop: 5, paddingBottom: 5, paddingLeft: 20, paddingRight: 20, backgroundColor: '#055E7C', borderRadius: 15 }}>
                             <Text style={[styles.text, { color: '#fff' }]}>New Withdrawal</Text>
                         </TouchableOpacity>
                     </View>
@@ -69,7 +69,7 @@ const WithdrawScreen = (props) => {
                                 </View>
                                 <View style={{ flexDirection: 'row', marginTop: 5 }}>
                                     <View style={{ flex: 1 }}>
-                                        <Text style={[styles.text, { color: item.status === 'Submitted' ? '#000000' : item.status === 'Decline' ? '#FF0000' : item.status === 'Approved' ? '#54A400' : '#FA6400' }]}>{item.status}</Text>
+                                        <Text style={[styles.text, { color: item.status === 'New' ? '#000000' : item.status === 'Rejected' ? '#FF0000' : item.status === 'Approved' ? '#54A400' : '#FA6400' }]}>{item.status}</Text>
                                     </View>
                                 </View>
                             </TouchableOpacity>

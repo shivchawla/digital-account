@@ -64,8 +64,8 @@ const WelcomeScreen = (props) => {
                             <View style={{ flex: 9 }}>
                                 <View style={{ flex: 1, backgroundColor: '#055E7C' }}>
                                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', padding: 10 }}>
-                                        <Text style={[styles.subTitle, { color: '#fff' }]}>Welcome to your</Text>
-                                        <Text style={[styles.title, { color: '#fff' }]}>Digital Account</Text>
+                                        <Text style={[styles.subTitle, { color: '#fff', fontSize: 28.5 }]}>Welcome to your</Text>
+                                        <Text style={[styles.title, { color: '#fff', fontWeight: 'bold', fontSize: 30 }]}>Digital Account</Text>
                                     </View>
                                     <View style={{ flex: 2, backgroundColor: '#fff', borderTopLeftRadius: 30, borderTopRightRadius: 30, padding: 20 }}>
                                         <View style={[styles.formElement]}>

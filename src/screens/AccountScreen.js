@@ -26,8 +26,8 @@ const AccountScreen = (props) => {
                     <View style={{ flexDirection: 'row' }}>
                         <Text style={[styles.h2, { marginBottom: 10, marginTop: 10 }]}>Account Information</Text>
                     </View>
-                    <View style={{ flexDirection: 'row', margin: 5 }}>
-                        <View style={{ justifyContent: 'center', alignItems: 'center', marginLeft: 30, marginRight: 15 }} >
+                    <View style={{ flexDirection: 'row', marginBottom: 5, marginTop: 5 }}>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', marginRight: 15 }} >
                             <Image source={require('../assets/images/accountNumber.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center' }} >
@@ -37,8 +37,8 @@ const AccountScreen = (props) => {
                             <Text style={[styles.boldText, { color: 'black', marginLeft: 15 }]}>123456789</Text>
                         </View>
                     </View>
-                    <View style={{ flexDirection: 'row', margin: 5 }}>
-                        <View style={{ justifyContent: 'center', alignItems: 'center', marginLeft: 30, marginRight: 15 }} >
+                    <View style={{ flexDirection: 'row', marginBottom: 5, marginTop: 5 }}>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', marginRight: 15 }} >
                             <Image source={require('../assets/images/accountType.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center' }} >
@@ -48,8 +48,8 @@ const AccountScreen = (props) => {
                             <Text style={[styles.boldText, { color: 'black', marginLeft: 45 }]}>Business</Text>
                         </View>
                     </View>
-                    <View style={{ flexDirection: 'row', margin: 5 }}>
-                        <View style={{ justifyContent: 'center', alignItems: 'center', marginLeft: 30, marginRight: 15 }} >
+                    <View style={{ flexDirection: 'row', marginBottom: 5, marginTop: 5 }}>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', marginRight: 15 }} >
                             <Image source={require('../assets/images/balanceReport.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center' }} >
@@ -59,8 +59,8 @@ const AccountScreen = (props) => {
                             <Text style={[styles.boldText, { color: 'black', marginLeft: 30 }]}>RM 18,839.00</Text>
                         </View>
                     </View>
-                    <View style={{ flexDirection: 'row', margin: 5 }}>
-                        <View style={{ justifyContent: 'center', alignItems: 'center', marginLeft: 30, marginRight: 15 }} >
+                    <View style={{ flexDirection: 'row', marginBottom: 5, marginTop: 5 }}>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', marginRight: 15 }} >
                             <Image source={require('../assets/images/accountStatus.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center' }} >

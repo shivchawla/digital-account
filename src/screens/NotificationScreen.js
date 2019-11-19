@@ -43,7 +43,7 @@ const NotificationScreen = (props) => {
                         </TouchableWithoutFeedback>
                         <View style={{ flexDirection: 'row', marginTop: 5, borderBottomWidth: item.marker ? 1 : 0, borderBottomColor: 'lightgrey', }}>
                         </View>
-                        {item.marker && <View style={{ flex: 1 }}>
+                        {item.marker && <View style={{ flex: 1, marginTop: 15 }}>
                             <Text style={[styles.text]}>{item.description}</Text>
                         </View>
                         }

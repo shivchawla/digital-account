@@ -42,7 +42,7 @@ const DataSettingScreen = (props) => {
                     <View style={{ flexDirection: 'row', marginTop: 20, alignItems: 'center' }}>
                         <Image source={require('../assets/images/customericon.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
                         <TouchableOpacity onPress={() => props.navigation.navigate('Customer')}>
-                            <Text style={[styles.text, { color: 'black', marginLeft: 25 }]}>Customer</Text>
+                            <Text style={[styles.text, { color: 'black', marginLeft: 25 }]}>Customers</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={{ flexDirection: 'row', marginTop: 20, marginBottom: 20, alignItems: 'center' }}>

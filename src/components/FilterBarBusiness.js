@@ -5,20 +5,20 @@ import styles from '../styles/styles'
 import * as actionCreator from '../store/actions/action'
 import { useDispatch } from 'react-redux'
 
-const FilterBarWithdrawal = (props) => {
+const FilterBarBusiness = (props) => {
 
     const nav = (screen) => {
         props.close()
         props.nav(screen)
     }
 
-    const [status, setStatus] = useState(null)
-    const [type, setType] = useState(null)
+    const [industry, setIndustry] = useState(null)
+    const [address, setAddress] = useState(null)
 
-    const filterWithdrawalList = async () => {
-        console.log(`status : ${status} and type : ${type} `)
-        const values = { status, type }
-        await dispatch(actionCreator.filterWithdrawalList(values))
+    const filterBusinessList = async () => {
+        console.log(`industry : ${industry} and address : ${address} `)
+        const values = { industry, address }
+        await dispatch(actionCreator.filterBusinessList(values))
 
     }
 
@@ -29,23 +29,28 @@ const FilterBarWithdrawal = (props) => {
             <View style={{ padding: 10, flex: 1, justifyContent: 'space-evenly' }}>
                 <View style={{ flex: 9, margin: 10 }}>
                     <View style={{ alignSelf: 'stretch', marginBottom: 10 }}>
-                        <Text style={[styles.h3, { marginBottom: 5 }]}>Status</Text>
+                        <Text style={[styles.h3, { marginBottom: 5 }]}>Industry</Text>
                         <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
-                            <Picker style={{ height: 35 }} selectedValue={status} onValueChange={(val) => setStatus(val)} >
+                            <Picker style={{ height: 35 }} selectedValue={industry} onValueChange={(val) => setIndustry(val)} >
                                 <Picker.Item label={'Please Select'} value={undefined} />
-                                <Picker.Item label={'Approved'} value={'Approved'} />
-                                <Picker.Item label={'Reject'} value={'Reject'} />
-                                <Picker.Item label={'New'} value={'New'} />
-                                <Picker.Item label={'Disbursed'} value={'Disbursed'} />
+                                <Picker.Item label={'Karangkraf'} value={'Karangkraf'} />
+                                <Picker.Item label={'Shipping'} value={'Shipping'} />
+                                <Picker.Item label={'Heavy Machine'} value={'Heavy Machine'} />
+                                <Picker.Item label={'Tourism'} value={'Perhotelan'} />
+                                <Picker.Item label={'Information Technology'} value={'Techonology Information'} />
                             </Picker>
                         </View>
                     </View>
                     <View style={{ alignSelf: 'stretch', marginBottom: 10 }}>
-                        <Text style={[styles.h3, { marginBottom: 5 }]}>Type</Text>
+                        <Text style={[styles.h3, { marginBottom: 5 }]}>Address</Text>
                         <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
-                            <Picker style={{ height: 35 }} selectedValue={type} onValueChange={(val) => setType(val)} >
+                            <Picker style={{ height: 35 }} selectedValue={address} onValueChange={(val) => setAddress(val)} >
                                 <Picker.Item label={'Please Select'} value={undefined} />
-                                <Picker.Item label={'Business'} value={'Business'} />
+                                <Picker.Item label={'Selangor'} value={'Selangor'} />
+                                <Picker.Item label={'Sabah'} value={'Sabah'} />
+                                <Picker.Item label={'Perak'} value={'Perak'} />
+                                <Picker.Item label={'Negeri Sembilan'} value={'Negeri Sembilan'} />
+                                <Picker.Item label={'Sarawak'} value={'Sarawak'} />
                             </Picker>
                         </View>
                     </View>
@@ -55,7 +60,7 @@ const FilterBarWithdrawal = (props) => {
                 <TouchableOpacity style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, borderColor: 'black', borderWidth: 1 }}>
                     <Text style={[styles.textDefault, { color: 'black' }]}>Reset</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => filterWithdrawalList()} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }} >
+                <TouchableOpacity onPress={() => filterBusinessList()} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }} >
                     <Text style={[styles.textDefault, { color: '#fff' }]}>Filter</Text>
                 </TouchableOpacity>
             </View>
@@ -64,4 +69,4 @@ const FilterBarWithdrawal = (props) => {
     );
 }
 
-export default FilterBarWithdrawal
+export default FilterBarBusiness
