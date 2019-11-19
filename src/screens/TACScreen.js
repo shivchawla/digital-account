@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, TouchableOpacity, Text, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient'
 import styles from '../styles/styles'
 import OTPInputView from '@twotalltotems/react-native-otp-input'
 import Layout from '../constants/Layout'
@@ -25,12 +26,11 @@ const TACScreen = (props) => {
                     <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
                 </View>
             </View>
-            <View style={{ flex: 9 }}>
-                <View style={[styles.screenMargin, { flex: 1, marginTop: 25 }]}>
-                    <Text style={[styles.titleBox, { flex: 7, marginBottom: 25, justifyContent: 'center', flexDirection: 'row' }]}>We have sent TAC to your new number.</Text>
-                    <View style={{ justifyContent: 'space-between', flex: 5, alignItems: 'center' }}>
-
-                        <OTPInputView style={{ width: '80%', height: 200 }} pinCount={4} code={code} autoFocusOnLoad codeInputFieldStyle={styles.borderStyleBase} codeInputHighlightStyle={styles.borderStyleHighLighted}
+            <View style={{ justifyContent: 'space-between', flex: 9 }}>
+                <View style={[styles.screenMargin, { flex: 8 }]}>
+                    <Text style={[styles.titleBox, { marginTop: 25, justifyContent: 'center', flexDirection: 'row' }]}>We have sent TAC to your new number.</Text>
+                    <View style={[styles.formElement, { justifyContent: 'center' }]}>
+                        <OTPInputView style={{ width: '80%', height: 100 }} pinCount={4} code={code} autoFocusOnLoad codeInputFieldStyle={styles.borderStyleBase} codeInputHighlightStyle={styles.borderStyleHighLighted}
                             //codeInputFieldStyle={styles.underlineStyleBase}
                             //codeInputHighlightStyle={styles.underlineStyleHighLighted}
                             onCodeFilled={code => {
@@ -42,19 +42,18 @@ const TACScreen = (props) => {
                                 console.log(`Code is ${code} wei, you are good to go!`)
                             }}
                         />
-                        {/* <Text>TAC : {code}</Text> */}
-                        <View style={{ flex: 2, flexDirection: 'row', justifyContent: 'space-around', marginBottom: 25 }}>
-                            <Text style={[styles.text]}>Didn't get TAC number?</Text>
-                            <TouchableOpacity onPress={() => props.navigation.navigate('ChangeNumber')}>
-                                <Text style={[styles.text, { color: '#04A2BD' }]}>Re-send TAC.</Text>
-                            </TouchableOpacity>
-                        </View>
                     </View>
-                    <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: 25 }}>
-                        <TouchableOpacity onPress={() => props.navigation.navigate('NumberSuccess')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }}>
-                            <Text style={[styles.textDefault, { color: 'white' }]}>Submit</Text>
+                    <View style={[styles.formElement, { flexDirection: 'row' }]}>
+                        <Text style={[styles.text]}>Didn't get TAC number?</Text>
+                        <TouchableOpacity onPress={() => props.navigation.navigate('ChangeNumber')}>
+                            <Text style={[styles.text, { color: '#04A2BD' }]}>Re-send TAC.</Text>
                         </TouchableOpacity>
                     </View>
+                </View>
+                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
+                    <TouchableOpacity onPress={() => props.navigation.navigate('NumberSuccess')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }}>
+                        <Text style={[styles.textDefault, { color: 'white' }]}>Submit</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         </View>

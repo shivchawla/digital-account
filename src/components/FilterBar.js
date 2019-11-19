@@ -44,6 +44,8 @@ const FilterBar = (props) => {
                                 <Picker.Item label={'Please Select'} value={undefined} />
                                 <Picker.Item label={'Approved'} value={'Approved'} />
                                 <Picker.Item label={'Disbursed'} value={'Disbursed'} />
+                                <Picker.Item label={'New'} value={'New'} />
+                                <Picker.Item label={'Rejected'} value={'Rejected'} />
                             </Picker>
                         </View>
                     </View>

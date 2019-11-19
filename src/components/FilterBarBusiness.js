@@ -17,7 +17,7 @@ const FilterBarBusiness = (props) => {
 
     const filterBusinessList = async () => {
         console.log(`industry : ${industry} and address : ${address} `)
-        const values = { address, address }
+        const values = { industry, address }
         await dispatch(actionCreator.filterBusinessList(values))
 
     }

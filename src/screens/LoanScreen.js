@@ -71,7 +71,7 @@ const LoanScreen = (props) => {
                                 </View>
                                 <View style={{ flexDirection: 'row', marginTop: 5 }}>
                                     <View style={{ flex: 1 }}>
-                                        <Text style={[styles.text, { color: item.status === 'Submitted' ? '#000000' : item.status === 'Decline' ? '#FF0000' : item.status === 'Approved' ? '#54A400' : '#FA6400' }]}>{item.status}</Text>
+                                        <Text style={[styles.text, { color: item.status === 'New' ? '#000000' : item.status === 'Rejected' ? '#FF0000' : item.status === 'Approved' ? '#54A400' : '#FA6400' }]}>{item.status}</Text>
                                     </View>
                                 </View>
                             </TouchableOpacity>
