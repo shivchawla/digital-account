@@ -74,6 +74,7 @@ import ItemDetailScreen from '../screens/ItemDetailScreen';
 import ChangePhoneSuccessScreen from '../screens/ChangePhoneSuccessScreen';
 import ChangePasswordSuccessScreen from '../screens/ChangePasswordSuccessScreen';
 import ChangeEmailSuccessScreen from '../screens/ChangeEmailSuccessScreen';
+import NewInvoiceItemsScreen from '../screens/NewInvoiceItemsScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -105,6 +106,9 @@ const DashboardStackWithModal = createStackNavigator(
     },
     NewInvoice: {
       screen: NewInvoiceScreen,
+    },
+    NewInvoiceItems: {
+      screen: NewInvoiceItemsScreen,
     },
     Transfer: {
       screen: TransferScreen,

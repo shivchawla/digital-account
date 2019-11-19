@@ -226,8 +226,8 @@ export const withDrawApi = (values) => {
     const amount_fee = 2
     const reason_request = remark
 
-  
-    
+
+
 
     const values2 = {
       account_no,
@@ -238,7 +238,7 @@ export const withDrawApi = (values) => {
       amount_request,
       amount_fee,
       reason_request,
-      
+
     }
 
 
@@ -508,6 +508,35 @@ export const retrieveMerchantInfoApi = () => {
       })
       .catch((error) => {
         console.log('Error initiating merchant info : ' + error);
+      });
+  }
+}
+
+export const retrieveAccountInfoApi = () => {
+  return async (dispatch, getState) => {
+
+    //const personalToken = await AsyncStorage.getItem('personalToken');
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    fetch(`${apiUrl}api/account/info`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const accountInfo = responseJson.data
+        console.log('account info ialah' + JSON.stringify(accountInfo[0]))
+        dispatch({ type: 'SET_USER_PROFILE', payload: { ...accountInfo[0] } })
+
+      })
+      .catch((error) => {
+        console.log('Error initiating account info : ' + error);
       });
   }
 }
@@ -964,30 +993,62 @@ export const submitInvoiceApi = () => {
   return async (dispatch, getState) => {
     const personalToken = await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
-    const values = getState().invoiceReducer
-    const access_credential = 'api'
-    console.log(`New invoice api : ${JSON.stringify(values)}`)
+    const { newInvoice, items } = getState().invoiceReducer
 
-    fetch(`${apiUrl}/api/invoice/submit`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token_type + ' ' + access_token
-      },
-      body: JSON.stringify({ ...values, access_credential }),
-    }).then((response) => response.json())
-      .then(async (responseJson) => {
-        const { status } = await responseJson
-        await dispatch({ type: 'SET_INVOICE_APPLICATION', payload: { status, proceedMain: true } })
-        await console.log(`invoice api  ${JSON.stringify(responseJson)}`)
-      })
-      .catch((error) => {
-        console.error('Error : ' + error);
-      });
+    const strNewInvoice = []
+    //newInvoice.map()
+    for (var p in newInvoice) {
+      if (newInvoice.hasOwnProperty(p)) {
+        strNewInvoice.push(p + "=" + newInvoice[p])
+      }
+      //strNewInvoice.join("&")
+    }
+
+    var strItems = []
+        items.map((c, i) => {
+      strItems += `&invoice_item[${i}]=${c.invoice_item}`
+      strItems += `&item[${i}]=${c.item}`
+      strItems += `&quantity[${i}]=${c.quantity}`
+      strItems += `&currencyItem[${i}]=${c.currencyItem}`
+      strItems += `&priceItem[${i}]=${c.priceItem}`
+    })
+
+    const strTest = "access_credential=api&"+strNewInvoice + "&" + strItems
+    //const strTest = 'dueDate=2020-4-11&invoiceNumber=Ddfg&amount=123&category=3&invoiceType=1&invoiceDate=2020-4-11&entityName=Sy&entityEmail=syahrizan.ali@gmail.com&entityPhone=123456789&entityAddress=Ssd&access_credential=api&entityId=14&currency=MYR&invoice_item[0]=Dd&item[0]=88&quantity[0]=13&currencyItem[0]=MYR&priceItem[0]=12'
+
+    // const strNewInvoiceAndItems = strNewInvoice + strItems + ', "access_credential":"api"}'
+    // const prms=new URLSearchParams(JSON.parse(strTest))
+    // const encodePrms=encodeURIComponent(prms)
+
+    // console.log(`inilah encoded Prms yang mantap : ${encodePrms}`)
+    console.log(`inilah kemantapan sejati : ${strTest.replace(new RegExp("\\[", "g"), '%5B').replace(new RegExp("\\]", "g"), '%5D').replace(new RegExp(",", "g"), '&')}`)
+    var data = strTest.replace(new RegExp("\\[", "g"), '%5B').replace(new RegExp("\\]", "g"), '%5D').replace(new RegExp(",", "g"), '&')
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+
+    xhr.addEventListener("readystatechange", function () {
+      if (this.readyState === 4) {
+        console.log(this.responseText);
+      }
+    });
+
+    xhr.open("POST", "https://tuah.niyo.my/api/invoice/submit");
+    xhr.setRequestHeader("Authorization", token_type + ' ' + access_token);
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr.setRequestHeader("Cache-Control", "no-cache");
+
+    xhr.setRequestHeader("Host", "tuah.niyo.my");
+    xhr.setRequestHeader("Accept-Encoding", "gzip, deflate");
+
+
+    xhr.send(data);
 
   }
 }
+
+
 
 export const vendorDataApi = (values) => {
   return async (dispatch, getState) => {
@@ -1106,11 +1167,11 @@ export const submitSupportApi = (values) => {
   }
 }
 
-export const newExpenseApi = () => {
+export const newExpenseApi = (values) => {
   return async (dispatch, getState) => {
     const personalToken = await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
-    const values = getState().expenseReducer
+    //const values = getState().expenseReducer
     const access_credential = 'api'
     console.log(`New expense api : ${JSON.stringify(values)}`)
 

@@ -12,9 +12,7 @@ const DashboardScreen = (props) => {
 
   const dispatch = useDispatch()
 
-  const retrieveMerchantInfo = async () => {
-    await dispatch(actionCreator.retrieveMerchantInfo());
-  }
+ 
   const checkDeclare = async () => {
     await dispatch(actionCreator.checkDeclare());
   }
@@ -42,7 +40,8 @@ const DashboardScreen = (props) => {
   }
 
   const runCheckStatus = async () => {
-    await retrieveMerchantInfo();
+    await dispatch(actionCreator.retrieveMerchantInfo())
+    await dispatch(actionCreator.retrieveAccountInfo())
     await checkContact()
     await checkDocument()
     await checkDeclare()

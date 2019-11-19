@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, TouchableOpacity, Text, Image, ActivityIndicator, KeyboardAvoidingView, TextInput, ScrollView, DatePickerAndroid, Picker, DatePickerIOS, Modal, Platform } from 'react-native';
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
@@ -11,61 +11,61 @@ import Constants from 'expo-constants';
 
 const validationSchema = Yup.object().shape({
 
-    type: Yup
-        .string()
-        .required()
-        .label('Type'),
+    // invoiceType: Yup
+    //     .string()
+    //     .required()
+    //     .label('invoiceType'),
 
-    customer: Yup
-        .string()
-        .required()
-        .label('Customer'),
+    // customer: Yup
+    //     .string()
+    //     .required()
+    //     .label('Customer'),
 
-    issueDate: Yup
-        .string()
-        .required()
-        .label('Issue Date'),
+    // invoiceDate: Yup
+    //     .string()
+    //     .required()
+    //     .label('Issue Date'),
 
-    dueDate: Yup
-        .string()
-        .required()
-        .label('Due Date'),
+    // dueDate: Yup
+    //     .string()
+    //     .required()
+    //     .label('Due Date'),
 
-    invoiceNumber: Yup
-        .string()
-        .required()
-        .label('Invoice Number'),
+    // invoiceNumber: Yup
+    //     .string()
+    //     .required()
+    //     .label('Invoice Number'),
 
-    amount: Yup
-        .string()
-        .required()
-        .label('Amount'),
+    // amount: Yup
+    //     .string()
+    //     .required()
+    //     .label('Amount'),
 
-    category: Yup
-        .string()
-        .required()
-        .label('Category'),
+    // category: Yup
+    //     .string()
+    //     .required()
+    //     .label('Category'),
 
-    customerName: Yup
-        .string()
-        .required()
-        .label('Customer Name'),
+    // entityName: Yup
+    //     .string()
+    //     .required()
+    //     .label('Customer Name'),
 
-    customerEmail: Yup
-        .string()
-        .email()
-        .required()
-        .label('Customer Email'),
+    // entityEmail: Yup
+    //     .string()
+    //     .email()
+    //     .required()
+    //     .label('Customer Email'),
 
-    customerPhone: Yup
-        .string()
-        .required()
-        .label('Customer Phone'),
+    // entityPhone: Yup
+    //     .string()
+    //     .required()
+    //     .label('Customer Phone'),
 
-    customerAddress: Yup
-        .string()
-        .required()
-        .label('Customer Address'),
+    // entityAddress: Yup
+    //     .string()
+    //     .required()
+    //     .label('Customer Address'),
 
 });
 
@@ -76,18 +76,28 @@ const NewInvoiceScreen = (props) => {
     const [tarikh, setTarikh] = useState(new Date())
 
     const dispatch = useDispatch()
-    const setInvoiceData = (val) => dispatch({ type: 'SET_INVOICE_APPLICATION', payload: { ...val } });
+    const setInvoiceData = (val) => dispatch({ type: 'SET_INVOICE_APPLICATION', payload: { newInvoice: val } });
     const invoiceData = useSelector(state => state.invoiceReducer, shallowEqual)
+    const { customerList } = useSelector(state => state.customerReducer, shallowEqual)
+
+    //const test={'animal[0]':'kucing',food:'catfood'}
+    //const 'test[0]'='test'
+
+    useEffect(() => { dispatch(actionCreator.getCustomerList()) }, [])
 
     return (
 
         <Formik onSubmit={values => {
-            props.navigation.navigate("InvoiceSuccess")
-            dispatch(actionCreator.submitNewInvoice())
-            console.log(JSON.stringify(values))
-        }}
+            console.log(` ini formik ${JSON.stringify(values)}`)
+            setInvoiceData(values)
+            //console.log(` ini reducer ${JSON.stringify(values)}`)
+            //dispatch(actionCreator.submitNewInvoice())
+            props.navigation.navigate("NewInvoiceItems")
 
-            validationSchema={validationSchema}
+        }}
+        initialValues={{currency:'MYR'}}
+
+        //validationSchema={validationSchema}
         >
             {FormikProps => {
 
@@ -98,7 +108,7 @@ const NewInvoiceScreen = (props) => {
 
                 const handleDateChange = async (newDate, whichDate) => {
                     await setTarikh(newDate)
-                    FormikProps.setFieldValue((whichDate == "datepicker") ? 'issueDate' : 'dueDate', tarikh.toString())
+                    FormikProps.setFieldValue((whichDate == "datepicker") ? 'invoiceDate' : 'dueDate', tarikh.toString())
                 }
 
                 const datePicker = async () => {
@@ -113,7 +123,7 @@ const NewInvoiceScreen = (props) => {
                             });
                             if (action !== DatePickerAndroid.dismissedAction) {
                                 // Selected year, month (0-11), day
-                                FormikProps.setFieldValue('issueDate', `${year}-${month}-${day}`)
+                                FormikProps.setFieldValue('invoiceDate', `${year}-${month}-${day}`)
                             }
                         } catch ({ code, message }) {
                             console.warn('Cannot open date picker', message);
@@ -139,16 +149,16 @@ const NewInvoiceScreen = (props) => {
                     }
                 }
 
-                const { type, customer, issueDate, dueDate, invoiceNumber, amount, category, customerName, customerEmail, customerPhone, customerAddress } = FormikProps.values
+                const { invoiceType, currency, invoiceDate, dueDate, invoiceNumber, amount, category, entityId, entityName, entityEmail, entityPhone, entityAddress } = FormikProps.values
 
-                const typeError = FormikProps.errors.type
-                const typeTouched = FormikProps.touched.type
+                const invoiceTypeError = FormikProps.errors.invoiceType
+                const invoiceTypeTouched = FormikProps.touched.invoiceType
 
-                const customerError = FormikProps.errors.customer
-                const customerTouched = FormikProps.touched.customer
+                const currencyError = FormikProps.errors.currency
+                const currencyTouched = FormikProps.touched.currency
 
-                const issueDateError = FormikProps.errors.issueDate
-                const issueDateTouched = FormikProps.touched.issueDate
+                const invoiceDateError = FormikProps.errors.invoiceDate
+                const invoiceDateTouched = FormikProps.touched.invoiceDate
 
                 const dueDateError = FormikProps.errors.dueDate
                 const dueDateTouched = FormikProps.touched.dueDate
@@ -162,22 +172,30 @@ const NewInvoiceScreen = (props) => {
                 const categoryError = FormikProps.errors.category
                 const categoryTouched = FormikProps.touched.category
 
-                const customerNameError = FormikProps.errors.customerName
-                const customerNameTouched = FormikProps.touched.customerName
+                const entityIdError = FormikProps.errors.entityId
+                const entityIdTouched = FormikProps.touched.entityId
 
-                const customerEmailError = FormikProps.errors.customerEmail
-                const customerEmailTouched = FormikProps.touched.customerEmail
+                const entityNameError = FormikProps.errors.entityName
+                const entityNameTouched = FormikProps.touched.entityName
 
-                const customerPhoneError = FormikProps.errors.customerPhone
-                const customerPhoneTouched = FormikProps.touched.customerPhone
+                const entityEmailError = FormikProps.errors.entityEmail
+                const entityEmailTouched = FormikProps.touched.entityEmail
 
-                const customerAddressError = FormikProps.errors.customerAddress
-                const customerAddressTouched = FormikProps.touched.customerAddress
+                const entityPhoneError = FormikProps.errors.entityPhone
+                const entityPhoneTouched = FormikProps.touched.entityPhone
+
+                const entityAddressError = FormikProps.errors.entityAddress
+                const entityAddressTouched = FormikProps.touched.entityAddress
+
+
+                /////////////////////
+
+
 
                 return (
 
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }}>
-                        <Modal animationType={'slide'}
+                        <Modal animationinvoiceType={'slide'}
                             visible={iosPickerVisible} onRequestClose={() => FormikProps.setFieldValue('dueDate', tarikh.toString())}
                         >
                             <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
@@ -192,10 +210,11 @@ const NewInvoiceScreen = (props) => {
                                     </View>
                                 </View>
                                 <View style={{ flex: 9, justifyContent: 'flex-start' }}>
-                                    {(modalContent === "type") ? <Picker selectedValue={type} style={{ flex: 1, height: 35 }} onValueChange={(itemValue, itemIndex) => FormikProps.setFieldValue('type', itemValue)}>
-                                        <Picker.Item label="Merchant" value="Merchant" />
-                                        <Picker.Item label="Customer" value="Customer" />
-                                    </Picker> : <DatePickerIOS date={tarikh} onDateChange={(newDate) => handleDateChange(newDate, modalContent)} />}
+                                    {(modalContent === "invoiceType") ?
+                                        <Picker selectedValue={invoiceType} style={{ flex: 1, height: 35 }} onValueChange={(itemValue, itemIndex) => FormikProps.setFieldValue('invoiceType', itemValue)}>
+                                            <Picker.Item label="Merchant" value="Merchant" />
+                                            <Picker.Item label="Customer" value="Customer" />
+                                        </Picker> : <DatePickerIOS date={tarikh} onDateChange={(newDate) => handleDateChange(newDate, modalContent)} />}
                                 </View>
                             </View>
                         </Modal>
@@ -216,24 +235,37 @@ const NewInvoiceScreen = (props) => {
                             <View style={{ flex: 9 }}>
                                 <ScrollView style={[styles.screenMargin]}>
                                     {ios ? <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
-                                        <Text style={[styles.titleBox], { marginTop: 20 }}>Type</Text>
-                                        <TouchableOpacity onPress={() => handleIosPicker('type')}>
-                                            <Text style={[styles.small, { color: '#0A6496' }]}>{type ? type : 'Select Type'}</Text>
+                                        <Text style={[styles.titleBox], { marginTop: 20 }}>Invoice Type</Text>
+                                        <TouchableOpacity onPress={() => handleIosPicker('invoiceType')}>
+                                            <Text style={[styles.small, { color: '#0A6496' }]}>{invoiceType ? invoiceType : 'Select invoiceType'}</Text>
                                         </TouchableOpacity>
                                     </View> : <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
-                                            <Text style={[styles.titleBox], { marginBottom: 10 }}>Type</Text>
+                                            <Text style={[styles.titleBox], { marginBottom: 10 }}>Invoice Type</Text>
                                             <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
-                                                <Picker selectedValue={type} style={{ flex: 1, height: 35 }} onValueChange={(itemValue, itemIndex) => FormikProps.setFieldValue('type', itemValue)}>
-                                                    <Picker.Item label="Merchant" value="Merchant" />
-                                                    <Picker.Item label="Customer" value="Customer" />
+                                                <Picker selectedValue={invoiceType} style={{ flex: 1, height: 35 }} onValueChange={(itemValue, itemIndex) => FormikProps.setFieldValue('invoiceType', itemValue)}>
+                                                    <Picker.Item label="To Customer" value={1} />
+                                                    <Picker.Item label="From Vendor" value={2} />
                                                 </Picker>
-                                                {typeTouched && typeError && <Text style={styles.error}>{typeError}</Text>}
+                                                {invoiceTypeTouched && invoiceTypeError && <Text style={styles.error}>{invoiceTypeError}</Text>}
                                             </View>
                                         </View>}
+
+                                    <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
+                                        <Text style={[styles.titleBox], { marginBottom: 10 }}>Entity</Text>
+                                        <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
+                                            {customerList && <Picker selectedValue={entityId} style={{ flex: 1, height: 35 }} onValueChange={(itemValue, itemIndex) => FormikProps.setFieldValue('entityId', itemValue)}>
+                                                {customerList && customerList.map(c => <Picker.Item label={c.email} value={c.id} key={c.id} />)}
+
+
+                                            </Picker>}
+                                            {entityIdTouched && invoiceTypeError && <Text style={styles.error}>{entityIdError}</Text>}
+                                        </View>
+                                    </View>
+
                                     <View style={[styles.formElement]}>
-                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Customer</Text>
-                                        <TextInput value={customer} onChangeText={FormikProps.handleChange('customer')} onBlur={FormikProps.handleBlur('customer')} style={{ borderWidth: 1, borderColor: customerTouched && customerError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={customerTouched && customerError ? '' : ''} placeholderTextColor={customerTouched && customerError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
-                                        {customerTouched && customerError && <Text style={styles.error}>{customerError}</Text>}
+                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Currency</Text>
+                                        <TextInput  editable={false}  value={currency} onChangeText={FormikProps.handleChange('currency')} onBlur={FormikProps.handleBlur('currency')} style={{ borderWidth: 1, borderColor: currencyTouched && currencyError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={currencyTouched && currencyError ? '' : ''} placeholderTextColor={currencyTouched && currencyError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        {currencyTouched && currencyError && <Text style={styles.error}>{currencyError}</Text>}
                                     </View>
                                     <View style={[styles.formElement]}>
                                         <Text style={[styles.titleBox, { marginBottom: 10 }]}>Issue Date</Text>
@@ -241,9 +273,9 @@ const NewInvoiceScreen = (props) => {
                                             <TouchableOpacity onPress={datePicker}>
                                                 <Image source={require('../assets/images/calendar.png')} style={{ width: 30, height: 30, marginRight: 10 }} resizeMode={'contain'} />
                                             </TouchableOpacity>
-                                            <TextInput style={{ flex: 1, borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }} value={issueDate} />
+                                            <TextInput style={{ flex: 1, borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }} value={invoiceDate} />
                                         </View>
-                                        {issueDateTouched && issueDateError && <Text style={styles.error}>{issueDateError}</Text>}
+                                        {invoiceDateTouched && invoiceDateError && <Text style={styles.error}>{invoiceDateError}</Text>}
                                     </View>
                                     <View style={[styles.formElement]}>
                                         <Text style={[styles.titleBox, { marginBottom: 10 }]}>Due Date</Text>
@@ -257,7 +289,7 @@ const NewInvoiceScreen = (props) => {
                                     </View>
                                     <View style={[styles.formElement]}>
                                         <Text style={[styles.titleBox, { marginBottom: 10 }]}>Invoice Number</Text>
-                                        <TextInput value={invoiceNumber} onChangeText={FormikProps.handleChange('invoiceNumber')} onBlur={FormikProps.handleBlur('invoiceNumber')} style={{ borderWidth: 1, borderColor: invoiceNumberTouched && invoiceNumberError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={invoiceNumberTouched && invoiceNumberError ? '' : ''} placeholderTextColor={invoiceNumberTouched && invoiceNumberError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
+                                        <TextInput value={invoiceNumber} onChangeText={FormikProps.handleChange('invoiceNumber')} onBlur={FormikProps.handleBlur('invoiceNumber')} style={{ borderWidth: 1, borderColor: invoiceNumberTouched && invoiceNumberError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={invoiceNumberTouched && invoiceNumberError ? '' : ''} placeholderTextColor={invoiceNumberTouched && invoiceNumberError ? 'rgba(255,0,0,0.3)' : 'lightgrey'}  />
                                         {invoiceNumberTouched && invoiceNumberError && <Text style={styles.error}>{invoiceNumberError}</Text>}
                                     </View>
                                     <View style={[styles.formElement]}>
@@ -265,30 +297,39 @@ const NewInvoiceScreen = (props) => {
                                         <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} onBlur={FormikProps.handleBlur('amount')} style={{ borderWidth: 1, borderColor: amountTouched && amountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={amountTouched && amountError ? '' : ''} placeholderTextColor={amountTouched && amountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
                                         {amountTouched && amountError && <Text style={styles.error}>{amountError}</Text>}
                                     </View>
-                                    <View style={[styles.formElement]}>
-                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Category</Text>
-                                        <TextInput value={category} onChangeText={FormikProps.handleChange('category')} onBlur={FormikProps.handleBlur('category')} style={{ borderWidth: 1, borderColor: categoryTouched && categoryError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={categoryTouched && categoryError ? '' : ''} placeholderTextColor={categoryTouched && categoryError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
-                                        {categoryTouched && categoryError && <Text style={styles.error}>{categoryError}</Text>}
+                                    
+                                    <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
+                                        <Text style={[styles.titleBox], { marginBottom: 10 }}>category</Text>
+                                        <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
+                                            <Picker selectedValue={category} style={{ flex: 1, height: 35 }} onValueChange={(itemValue, itemIndex) => FormikProps.setFieldValue('category', itemValue)}>
+                                                <Picker.Item label={'Deposit'} value={2} />
+                                                <Picker.Item label={'Sales'} value={3} />
+                                                <Picker.Item label={'Income'} value={4} />
+
+
+                                            </Picker>
+                                            {categoryTouched && categoryError && <Text style={styles.error}>{categoryError}</Text>}
+                                        </View>
                                     </View>
                                     <View style={[styles.formElement]}>
                                         <Text style={[styles.titleBox, { marginBottom: 10 }]}>Customer Name</Text>
-                                        <TextInput value={customerName} onChangeText={FormikProps.handleChange('customerName')} onBlur={FormikProps.handleBlur('customerName')} style={{ borderWidth: 1, borderColor: customerNameTouched && customerNameError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={customerNameTouched && customerNameError ? '' : ''} placeholderTextColor={customerNameTouched && customerNameError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
-                                        {customerNameTouched && customerNameError && <Text style={styles.error}>{customerNameError}</Text>}
+                                        <TextInput value={entityName} onChangeText={FormikProps.handleChange('entityName')} onBlur={FormikProps.handleBlur('entityName')} style={{ borderWidth: 1, borderColor: entityNameTouched && entityNameError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={entityNameTouched && entityNameError ? '' : ''} placeholderTextColor={entityNameTouched && entityNameError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        {entityNameTouched && entityNameError && <Text style={styles.error}>{entityNameError}</Text>}
                                     </View>
                                     <View style={[styles.formElement]}>
                                         <Text style={[styles.titleBox, { marginBottom: 10 }]}>Customer Email</Text>
-                                        <TextInput value={customerEmail} onChangeText={FormikProps.handleChange('customerEmail')} onBlur={FormikProps.handleBlur('customerEmail')} style={{ borderWidth: 1, borderColor: customerEmailTouched && customerEmailError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={customerEmailTouched && customerEmailError ? '' : ''} placeholderTextColor={customerEmailTouched && customerEmailError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
-                                        {customerEmailTouched && customerEmailError && <Text style={styles.error}>{customerEmailError}</Text>}
+                                        <TextInput value={entityEmail} onChangeText={FormikProps.handleChange('entityEmail')} onBlur={FormikProps.handleBlur('entityEmail')} style={{ borderWidth: 1, borderColor: entityEmailTouched && entityEmailError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={entityEmailTouched && entityEmailError ? '' : ''} placeholderTextColor={entityEmailTouched && entityEmailError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        {entityEmailTouched && entityEmailError && <Text style={styles.error}>{entityEmailError}</Text>}
                                     </View>
                                     <View style={[styles.formElement]}>
                                         <Text style={[styles.titleBox, { marginBottom: 10 }]}>Customer Phone</Text>
-                                        <TextInput value={customerPhone} onChangeText={FormikProps.handleChange('customerPhone')} onBlur={FormikProps.handleBlur('customerPhone')} style={{ borderWidth: 1, borderColor: customerPhoneTouched && customerPhoneError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={customerPhoneTouched && customerPhoneError ? '' : ''} placeholderTextColor={customerPhoneTouched && customerPhoneError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
-                                        {customerPhoneTouched && customerPhoneError && <Text style={styles.error}>{customerPhoneError}</Text>}
+                                        <TextInput value={entityPhone} onChangeText={FormikProps.handleChange('entityPhone')} onBlur={FormikProps.handleBlur('entityPhone')} style={{ borderWidth: 1, borderColor: entityPhoneTouched && entityPhoneError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={entityPhoneTouched && entityPhoneError ? '' : ''} placeholderTextColor={entityPhoneTouched && entityPhoneError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
+                                        {entityPhoneTouched && entityPhoneError && <Text style={styles.error}>{entityPhoneError}</Text>}
                                     </View>
                                     <View style={[styles.formElement]}>
                                         <Text style={[styles.titleBox, { marginBottom: 10 }]}>Customer Address</Text>
-                                        <TextInput value={customerAddress} onChangeText={FormikProps.handleChange('customerAddress')} onBlur={FormikProps.handleBlur('customerAddress')} style={{ borderWidth: 1, borderColor: customerAddressTouched && customerAddressError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={customerAddressTouched && customerAddressError ? '' : ''} placeholderTextColor={customerAddressTouched && customerAddressError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
-                                        {customerAddressTouched && customerAddressError && <Text style={styles.error}>{customerAddressError}</Text>}
+                                        <TextInput value={entityAddress} onChangeText={FormikProps.handleChange('entityAddress')} onBlur={FormikProps.handleBlur('entityAddress')} style={{ borderWidth: 1, borderColor: entityAddressTouched && entityAddressError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={entityAddressTouched && entityAddressError ? '' : ''} placeholderTextColor={entityAddressTouched && entityAddressError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        {entityAddressTouched && entityAddressError && <Text style={styles.error}>{entityAddressError}</Text>}
                                     </View>
                                 </ScrollView>
                             </View>
@@ -298,9 +339,9 @@ const NewInvoiceScreen = (props) => {
                                         <Text style={[styles.butang, { color: '#000000' }]}>Back</Text>
                                     </LinearGradient>
                                 </TouchableOpacity>
-                                <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ flex: 1 }}>
+                                <TouchableOpacity onPress={FormikProps.handleSubmit} style={{ flex: 1 }}>
                                     <LinearGradient colors={FormikProps.isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                                        {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> : <Text style={[styles.butang, { color: '#fff' }]}>Submit</Text>}
+                                        {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> : <Text style={[styles.butang, { color: '#fff' }]}>Next</Text>}
                                     </LinearGradient>
                                 </TouchableOpacity>
                             </View>

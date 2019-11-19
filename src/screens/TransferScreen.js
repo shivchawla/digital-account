@@ -10,19 +10,17 @@ import styles from '../styles/styles'
 
 const validationSchema = Yup.object().shape({
 
-    account: Yup
-        .string()
-        .required(),
+    
 
     amount: Yup
         .string()
         .required(),
 
-    transferTo: Yup
+    recipient: Yup
         .string()
         .required(),
 
-    reference: Yup
+    references_no: Yup
         .string()
         .required(),
 
@@ -33,31 +31,32 @@ const TransferScreen = (props) => {
     const dispatch = useDispatch()
     const setExpenseData = (val) => dispatch({ type: 'SET_NEW_EXPENSE', payload: { ...val } });
     const expenseData = useSelector(state => state.expenseReducer, shallowEqual)
+    const accountInfo=useSelector(state => state.myAccountReducer.account_no, shallowEqual)
 
     return (
 
         <Formik onSubmit={async values => {
+            dispatch(actionCreator.submitNewExpense(values))
             props.navigation.navigate("TransferSuccess")
-            dispatch(actionCreator.submitNewExpense())
+          
             console.log(JSON.stringify(values))
         }}
+        initialValues={{wallet:accountInfo}}
             validationSchema={validationSchema}
         >
             {FormikProps => {
 
-                const { account, amount, transferTo, reference } = FormikProps.values
+                const {amount, recipient, references_no,wallet } = FormikProps.values
 
-                const accountError = FormikProps.errors.account
-                const accountTouched = FormikProps.touched.account
 
                 const amountError = FormikProps.errors.amount
                 const amountTouched = FormikProps.touched.amount
 
-                const transferToError = FormikProps.errors.transferTo
-                const transferToTouched = FormikProps.touched.transferTo
+                const recipientError = FormikProps.errors.recipient
+                const recipientTouched = FormikProps.touched.recipient
 
-                const referenceError = FormikProps.errors.reference
-                const referenceTouched = FormikProps.touched.reference
+                const references_noError = FormikProps.errors.references_no
+                const references_noTouched = FormikProps.touched.references_no
 
                 return (
 
@@ -76,11 +75,8 @@ const TransferScreen = (props) => {
                             </TouchableOpacity>
                         </View>
                         <View style={[styles.screenMargin, { flex: 9 }]}>
-                            <View style={[styles.formElement]}>
-                                <Text style={[styles.titleBox], { marginBottom: 10, marginTop: 20 }}>Account</Text>
-                                <TextInput value={account} onChangeText={FormikProps.handleChange('account')} onBlur={FormikProps.handleBlur('account')} style={{ borderWidth: 1, borderColor: accountTouched && accountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={accountTouched && accountError ? '' : '10908901'} placeholderTextColor={accountTouched && accountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
-                                {accountTouched && accountError && <Text style={styles.error}>{accountError}</Text>}
-                            </View>
+                            <Text>{accountInfo&&JSON.stringify(accountInfo)}</Text>
+                           
                             <View style={[styles.formElement]}>
                                 <Text style={[styles.titleBox, { marginBottom: 10 }]}>Amount</Text>
                                 <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} onBlur={FormikProps.handleBlur('amount')} style={{ borderWidth: 1, borderColor: amountTouched && amountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={amountTouched && amountError ? '' : 'RM 100.00'} placeholderTextColor={amountTouched && amountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
@@ -88,13 +84,13 @@ const TransferScreen = (props) => {
                             </View>
                             <View style={[styles.formElement]}>
                                 <Text style={[styles.titleBox, { marginBottom: 10 }]}>Transfer To</Text>
-                                <TextInput value={transferTo} onChangeText={FormikProps.handleChange('transferTo')} onBlur={FormikProps.handleBlur('transferTo')} style={{ borderWidth: 1, borderColor: transferToTouched && transferToError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={transferToTouched && transferToError ? '' : 'Iskandar Samad'} placeholderTextColor={transferToTouched && transferToError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
-                                {transferToTouched && transferToError && <Text style={styles.error}>{transferToError}</Text>}
+                                <TextInput value={recipient} onChangeText={FormikProps.handleChange('recipient')} onBlur={FormikProps.handleBlur('recipient')} style={{ borderWidth: 1, borderColor: recipientTouched && recipientError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={recipientTouched && recipientError ? '' : 'Iskandar Samad'} placeholderTextColor={recipientTouched && recipientError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                {recipientTouched && recipientError && <Text style={styles.error}>{recipientError}</Text>}
                             </View>
                             <View style={[styles.formElement, { marginBottom: 10 }]}>
-                                <Text style={[styles.titleBox]}>Reference</Text>
-                                <TextInput value={reference} onChangeText={FormikProps.handleChange('reference')} onBlur={FormikProps.handleBlur('reference')} style={{ borderWidth: 1, borderColor: referenceTouched && referenceError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={referenceTouched && referenceError ? '' : 'Pay salary'} placeholderTextColor={referenceTouched && referenceError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
-                                {referenceTouched && referenceError && <Text style={styles.error}>{referenceError}</Text>}
+                                <Text style={[styles.titleBox]}>reference No</Text>
+                                <TextInput value={references_no} onChangeText={FormikProps.handleChange('references_no')} onBlur={FormikProps.handleBlur('references_no')} style={{ borderWidth: 1, borderColor: references_noTouched && references_noError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={references_noTouched && references_noError ? '' : 'Pay salary'} placeholderTextColor={references_noTouched && references_noError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                {references_noTouched && references_noError && <Text style={styles.error}>{references_noError}</Text>}
                             </View>
                         </View>
                         <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>

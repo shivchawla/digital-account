@@ -8,7 +8,7 @@ import s3 from '../../do/DigitalOcean'
 import config from '../../do/config'
 
 import { requestToken, requestPersonalToken, urlToBlob, registerApi, companyInfoAPI, contactPersonAPI, submitDocApi, declarationApi } from './apiRegistration'
-import { retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, agingListApi, reportListApi, businessDirectoryListApi, invoiceApi, newExpenseApi, supportApi, customerDataApi, itemDataApi, submitLoanApplicationApi, addBankApi, bankListApi, deleteAllBankApi, notificationListApi, loanApplicationDataApi, submitInvoiceApi, submitSupportApi, withDrawApi, withdrawListApi, vendorListApi, withdrawDataApi, vendorDataApi, vendorDataRetrieveApi, customerListApi, customerDataRetrieveApi, itemListApi, itemDataRetrieveApi } from './apiDashboard'
+import { retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, agingListApi, reportListApi, businessDirectoryListApi, invoiceApi, newExpenseApi, supportApi, customerDataApi, itemDataApi, submitLoanApplicationApi, addBankApi, bankListApi, deleteAllBankApi, notificationListApi, loanApplicationDataApi, submitInvoiceApi, submitSupportApi, withDrawApi, withdrawListApi, vendorListApi, withdrawDataApi, vendorDataApi, vendorDataRetrieveApi, customerListApi, customerDataRetrieveApi, itemListApi, itemDataRetrieveApi, retrieveAccountInfoApi } from './apiDashboard'
 //import {pusherListen} from './pusher'
 import moment from 'moment'
 
@@ -106,9 +106,9 @@ export const submitNewInvoice = () => {
     }
 }
 
-export const submitNewExpense = () => {
+export const submitNewExpense = (values) => {
     return (dispatch, getState) => {
-        dispatch(newExpenseApi())
+        dispatch(newExpenseApi(values))
     }
 }
 
@@ -241,6 +241,13 @@ export const retrieveMerchantInfo = () => {
     return (dispatch, getState) => {
         console.log('Dekat retrieve merchant info action')
         dispatch(retrieveMerchantInfoApi())
+    }
+}
+
+export const retrieveAccountInfo = () => {
+    return (dispatch, getState) => {
+        console.log('Dekat retrieve merchant info action')
+        dispatch(retrieveAccountInfoApi())
     }
 }
 
