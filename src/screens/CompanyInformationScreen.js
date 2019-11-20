@@ -12,11 +12,13 @@ const validationSchema = Yup.object().shape({
     cddCompanyName: Yup
         .string()
         .required()
+        .min(5)
         .label('Company Name'),
 
     cddRegistrationNumber: Yup
         .string()
         .required()
+        .min(5)
         .label('Registration No')
 
 });
@@ -33,7 +35,6 @@ const CompanyInformationScreen = (props) => {
 
         <Formik onSubmit={values => companyInfo(values)}
             validationSchema={validationSchema}
-
         >
 
             {FormikProps => {

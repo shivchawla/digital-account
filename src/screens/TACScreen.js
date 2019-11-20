@@ -27,7 +27,7 @@ const TACScreen = (props) => {
                 </View>
             </View>
             <View style={{ justifyContent: 'space-between', flex: 9 }}>
-                <View style={[styles.screenMargin, { flex: 8 }]}>
+                <View style={[styles.screenMargin, { flex: 5 }]}>
                     <Text style={[styles.titleBox, { marginTop: 25, justifyContent: 'center', flexDirection: 'row' }]}>We have sent TAC to your new number.</Text>
                     <View style={[styles.formElement, { justifyContent: 'center' }]}>
                         <OTPInputView style={{ width: '80%', height: 100 }} pinCount={4} code={code} autoFocusOnLoad codeInputFieldStyle={styles.borderStyleBase} codeInputHighlightStyle={styles.borderStyleHighLighted}
@@ -43,17 +43,17 @@ const TACScreen = (props) => {
                             }}
                         />
                     </View>
-                    <View style={[styles.formElement, { flexDirection: 'row' }]}>
+                    <View style={[styles.formElement, { flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }]}>
                         <Text style={[styles.text]}>Didn't get TAC number?</Text>
                         <TouchableOpacity onPress={() => props.navigation.navigate('ChangeNumber')}>
                             <Text style={[styles.text, { color: '#04A2BD' }]}>Re-send TAC.</Text>
                         </TouchableOpacity>
                     </View>
-                </View>
-                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
-                    <TouchableOpacity onPress={() => props.navigation.navigate('NumberSuccess')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }}>
-                        <Text style={[styles.textDefault, { color: 'white' }]}>Submit</Text>
-                    </TouchableOpacity>
+                    <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                        <TouchableOpacity onPress={() => props.navigation.navigate('NumberSuccess')} style={{ paddingTop: 5, paddingBottom: 5, paddingLeft: 20, paddingRight: 20, backgroundColor: '#055E7C', borderRadius: 15 }}>
+                            <Text style={[styles.textDefault, { color: 'white' }]}>Submit</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
         </View>

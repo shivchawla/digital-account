@@ -12,21 +12,25 @@ const validationSchema = Yup.object().shape({
     comp_addr: Yup
         .string()
         .required()
+        .min(5)
         .label('Address Line 1'),
 
     comp_city: Yup
         .string()
         .required()
+        .min(5)
         .label('City'),
 
     comp_state: Yup
         .string()
         .required()
+        .min(5)
         .label('State'),
 
     cddPostcode: Yup
-        .string()
+        .number()
         .required()
+        .min(11111)
         .label('Postcode'),
 
 });

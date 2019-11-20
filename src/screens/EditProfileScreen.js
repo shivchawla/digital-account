@@ -9,19 +9,28 @@ import styles from '../styles/styles'
 const validationSchema = Yup.object().shape({
 
     companyName: Yup
-        .string(),
+        .string()
+        .min(5)
+        .label('Company Name'),
 
     registrationNumber: Yup
-        .string(),
+        .string()
+        .min(5)
+        .label('Registration Number'),
 
     companyAddress: Yup
-        .string(),
+        .string()
+        .min(5)
+        .label('Company Address'),
 
     companyPostcode: Yup
-        .string(),
+        .number()
+        .min(11111)
+        .label('Company Postcode'),
 
     companyRegisteredDate: Yup
-        .string(),
+        .string()
+        .label('Company Regestiration Date'),
 
 });
 
@@ -46,7 +55,7 @@ const EditProfileScreen = (props) => {
                                 </TouchableOpacity>
                             </View>
                             <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                                <Text style={[styles.title]}>Edit Profile</Text>
+                                <Text style={[styles.title]}>EDIT PROFILE</Text>
                             </View>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
                                 <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
@@ -59,19 +68,19 @@ const EditProfileScreen = (props) => {
                                 </View>
                                 <View style={[styles.formElement]}>
                                     <Text style={[styles.titleBox, { marginBottom: 10 }]}>Company Name</Text>
-                                    <TextInput value={companyName} onChangeText={FormikProps.handleChange('companyName')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                    <TextInput value={companyName} onChangeText={FormikProps.handleChange('companyName')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={'Syarikat Maju Budi Sdn Bhd'} />
                                 </View>
                                 <View style={[styles.formElement]}>
                                     <Text style={[styles.titleBox, { marginBottom: 10 }]}>Registration Number</Text>
-                                    <TextInput value={companyRegNum} onChangeText={FormikProps.handleChange('companyRegNum')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                    <TextInput value={companyRegNum} onChangeText={FormikProps.handleChange('companyRegNum')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={'543-A123'} />
                                 </View>
                                 <View style={[styles.formElement]}>
                                     <Text style={[styles.titleBox, { marginBottom: 10 }]}>Company Addresss</Text>
-                                    <TextInput value={companyAddress} onChangeText={FormikProps.handleChange('companyAddress')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                    <TextInput value={companyAddress} onChangeText={FormikProps.handleChange('companyAddress')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={'86, Jalan Budiman, Kuala Langat, Selangor'} />
                                 </View>
                                 <View style={[styles.formElement]}>
                                     <Text style={[styles.titleBox, { marginBottom: 10 }]}>Postcode</Text>
-                                    <TextInput value={companyPostcode} onChangeText={FormikProps.handleChange('companyPostcode')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} keyboardType={'phone-pad'} />
+                                    <TextInput value={companyPostcode} onChangeText={FormikProps.handleChange('companyPostcode')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={'75600'} keyboardType={'phone-pad'} />
                                 </View>
                                 <View style={[styles.formElement]}>
                                     <Text style={[styles.titleBox, { marginBottom: 10 }]}>Company Registered Date</Text>

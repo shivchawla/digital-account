@@ -11,28 +11,33 @@ import * as Yup from 'yup';
 const validationSchema = Yup.object().shape({
 
     bankAccountNo: Yup
-        .string()
+        .number()
         .required()
+        .min(1111111111)
         .label('Bank Account No'),
 
     bankAccountName: Yup
         .string()
         .required()
+        .min(5)
         .label('Bank Account Name'),
 
     bankAddress: Yup
         .string()
         .required()
+        .min(5)
         .label('Bank Address'),
 
     bankCountry: Yup
         .string()
         .required()
+        .min(5)
         .label('Bank Country'),
 
     bankLabel: Yup
         .string()
         .required()
+        .min(5)
         .label('bankLabel'),
 
 });
@@ -72,7 +77,6 @@ const AddBankScreen = (props) => {
                 const bankCountryError = FormikProps.errors.bankCountry
                 const bankCountryTouched = FormikProps.touched.bankCountry
 
-
                 const bankLabelError = FormikProps.errors.bankLabel
                 const bankLabelTouched = FormikProps.touched.bankLabel
 
@@ -96,7 +100,7 @@ const AddBankScreen = (props) => {
                                 <ScrollView style={[styles.screenMargin]}>
                                     <View style={[styles.formElement, { marginTop: 20 }]}>
                                         <Text style={[styles.titleBox, { marginBottom: 10 }]}>Bank Account Number</Text>
-                                        <TextInput value={bankAccountNo} onChangeText={FormikProps.handleChange('bankAccountNo')} onFocus={() => setBankAccountNoActive(!bankAccountNoActive)} onBlur={() => { setBankAccountNoActive(!bankAccountNoActive); FormikProps.handleBlur('bankAccountNo') }} style={{ borderWidth: bankAccountNoActive ? 2 : 1, borderColor: bankAccountNoTouched && bankAccountNoError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={bankAccountNoTouched && bankAccountNoError ? '' : 'Eg: 013-113-12345678'} placeholderTextColor={bankAccountNoTouched && bankAccountNoError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        <TextInput value={bankAccountNo} onChangeText={FormikProps.handleChange('bankAccountNo')} onFocus={() => setBankAccountNoActive(!bankAccountNoActive)} onBlur={() => { setBankAccountNoActive(!bankAccountNoActive); FormikProps.handleBlur('bankAccountNo') }} style={{ borderWidth: bankAccountNoActive ? 2 : 1, borderColor: bankAccountNoTouched && bankAccountNoError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={bankAccountNoTouched && bankAccountNoError ? '' : 'Eg: 2310134578'} placeholderTextColor={bankAccountNoTouched && bankAccountNoError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {bankAccountNoTouched && bankAccountNoError && <Text style={styles.error}>{bankAccountNoError}</Text>}
                                     </View>
                                     <View style={[styles.formElement]}>

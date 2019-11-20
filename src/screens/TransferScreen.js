@@ -10,18 +10,18 @@ import styles from '../styles/styles'
 
 const validationSchema = Yup.object().shape({
 
-    
-
     amount: Yup
         .string()
         .required(),
 
     recipient: Yup
         .string()
+        .min(5)
         .required(),
 
     references_no: Yup
         .string()
+        .min(4)
         .required(),
 
 });
@@ -31,30 +31,24 @@ const TransferScreen = (props) => {
     const dispatch = useDispatch()
     const setExpenseData = (val) => dispatch({ type: 'SET_NEW_EXPENSE', payload: { ...val } });
     const expenseData = useSelector(state => state.expenseReducer, shallowEqual)
-    const accountInfo=useSelector(state => state.myAccountReducer.account_no, shallowEqual)
+    const accountInfo = useSelector(state => state.myAccountReducer.account_no, shallowEqual)
 
     return (
 
         <Formik onSubmit={async values => {
             dispatch(actionCreator.submitNewExpense(values))
             props.navigation.navigate("TransferSuccess")
-          
             console.log(JSON.stringify(values))
         }}
-        initialValues={{wallet:accountInfo}}
+            initialValues={{ wallet: accountInfo }}
             validationSchema={validationSchema}
         >
             {FormikProps => {
-
-                const {amount, recipient, references_no,wallet } = FormikProps.values
-
-
+                const { amount, recipient, references_no, wallet } = FormikProps.values
                 const amountError = FormikProps.errors.amount
                 const amountTouched = FormikProps.touched.amount
-
                 const recipientError = FormikProps.errors.recipient
                 const recipientTouched = FormikProps.touched.recipient
-
                 const references_noError = FormikProps.errors.references_no
                 const references_noTouched = FormikProps.touched.references_no
 
@@ -75,10 +69,9 @@ const TransferScreen = (props) => {
                             </TouchableOpacity>
                         </View>
                         <View style={[styles.screenMargin, { flex: 9 }]}>
-                            <Text>{accountInfo&&JSON.stringify(accountInfo)}</Text>
-                           
+                            {/* <Text>{accountInfo&&JSON.stringify(accountInfo)}</Text> */}
                             <View style={[styles.formElement]}>
-                                <Text style={[styles.titleBox, { marginBottom: 10 }]}>Amount</Text>
+                                <Text style={[styles.titleBox, { marginBottom: 10, marginTop: 10 }]}>Amount</Text>
                                 <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} onBlur={FormikProps.handleBlur('amount')} style={{ borderWidth: 1, borderColor: amountTouched && amountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={amountTouched && amountError ? '' : 'RM 100.00'} placeholderTextColor={amountTouched && amountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
                                 {amountTouched && amountError && <Text style={styles.error}>{amountError}</Text>}
                             </View>

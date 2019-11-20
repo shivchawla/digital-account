@@ -12,6 +12,7 @@ const validationSchema = Yup.object().shape({
     name: Yup
         .string()
         .required()
+        .min(5)
         .label('Name'),
 
     email: Yup

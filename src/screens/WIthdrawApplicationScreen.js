@@ -40,6 +40,7 @@ const validationSchema = Yup.object().shape({
     remark: Yup
         .string()
         .required()
+        .min(5)
         .label('Remark'),
 
 });

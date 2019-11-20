@@ -1,27 +1,10 @@
-import React, { useEffect, useRef } from 'react';
-
-import {
-
-    Image,
-    Text,
-    TouchableOpacity,
-    View,
-    TextInput,
-    KeyboardAvoidingView,
-    ActivityIndicator
-
-} from 'react-native';
-
+import React from 'react';
+import {    Image,    Text,    TouchableOpacity,    View,    TextInput,    KeyboardAvoidingView,    ActivityIndicator} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'
-
 import { Formik } from 'formik';
-
 import * as Yup from 'yup';
-
 import styles from '../styles/styles'
-
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
-
 import * as actionCreator from '../store/actions/action'
 
 const validationSchema = Yup.object().shape({
@@ -33,8 +16,9 @@ const validationSchema = Yup.object().shape({
         .label('Email'),
 
     cddTelephone: Yup
-        .string()
+        .number()
         .required()
+        .min(1111111111)
         .label('Telephone'),
 
 });

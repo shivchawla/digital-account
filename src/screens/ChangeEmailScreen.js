@@ -8,10 +8,12 @@ import styles from '../styles/styles'
 
 const validationSchema = Yup.object().shape({
     newEmail: Yup
-        .string(),
+        .string()
+        .email(),
 
     password: Yup
         .string()
+        .min(6),
 });
 
 const ChangeEmailScreen = (props) => {
