@@ -33,6 +33,7 @@ const FilterBarReport = (props) => {
                         <Text style={[styles.h3, { marginBottom: 5 }]}>Currency</Text>
                         <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
                             <Picker style={{ height: 35 }} selectedValue={currency} onValueChange={(val) => setCurrency(val)} >
+                                <Picker.Item label={'Please Select'} value={undefined} />
                                 <Picker.Item label={'MYR'} value={'MYR'} />
                                 <Picker.Item label={'IDR'} value={'IDR'} />
                             </Picker>

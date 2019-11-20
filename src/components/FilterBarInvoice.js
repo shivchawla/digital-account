@@ -31,6 +31,7 @@ const FilterBarInvoice = (props) => {
                         <Text style={[styles.h3, { marginBottom: 5 }]}>Currency</Text>
                         <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
                             <Picker style={{ height: 35 }} selectedValue={currency_code} onValueChange={(val) => setCurrencyCode(val)} >
+                                <Picker.Item label={'Please Select'} value={undefined} />
                                 <Picker.Item label={'MYR'} value={'myr'} />
                             </Picker>
                         </View>
@@ -39,6 +40,7 @@ const FilterBarInvoice = (props) => {
                         <Text style={[styles.h3, { marginBottom: 5 }]}>Name</Text>
                         <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
                             <Picker style={{ height: 35 }} selectedValue={customer_name} onValueChange={(val) => setCustomerName(val)} >
+                                <Picker.Item label={'Please Select'} value={undefined} />
                                 <Picker.Item label={'Adiyaaa Aloyaa'} value={'aa'} />
                             </Picker>
                         </View>

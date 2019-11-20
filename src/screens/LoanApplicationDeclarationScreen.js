@@ -144,7 +144,6 @@ const LoanApplicationDeclarationScreen = (props) => {
                                     <View style={{ marginBottom: 10 }}>
                                         <Text style={[styles.titleBox, { marginBottom: 10 }]}>Name</Text>
                                         <TextInput value={declareName} onChangeText={FormikProps.handleChange('declareName')} onBlur={FormikProps.handleBlur('declareName')} style={{ borderWidth: 1, borderColor: declareNameTouched && declareNameError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={declareNameTouched && declareNameError ? '' : ''} placeholderTextColor={declareNameTouched && declareNameError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
-
                                         {declareNameTouched && declareNameError && <Text style={styles.error}>{declareNameError}</Text>}
                                     </View>
                                     <View style={{ marginBottom: 10 }}>

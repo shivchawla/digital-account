@@ -700,6 +700,6 @@ export const filterBusinessList = (values) => {
         const filterParam = (industry && address) ? { industry, address } : industry ? { industry } : address ? { address } : null
         const newBusinessList = _.filter(businessDirectoryList, _.matches(filterParam));
         console.log(`new business List : ${JSON.stringify(newBusinessList)}`)
-        dispatch({ type: 'SET_BUSINESS_LIST', payload: { filterBusinessList: newBusinessList, filterEnabled: true } })
+        dispatch({ type: 'SET_BUSINESS_DIRECTORY_LIST', payload: { filterBusinessList: newBusinessList, filterEnabled: true } })
     }
 }

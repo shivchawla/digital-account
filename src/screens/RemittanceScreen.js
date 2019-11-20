@@ -29,11 +29,13 @@ const validationSchema = Yup.object().shape({
     recipientName: Yup
         .string()
         .required()
+        .min(5)
         .label('Name'),
 
     recipientPhoneNumber: Yup
         .number()
         .required()
+        .min(1111111111)
         .label('Phone Number'),
 
     recipientEmail: Yup

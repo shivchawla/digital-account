@@ -11,6 +11,7 @@ const validationSchema = Yup.object().shape({
     personName: Yup
         .string()
         .required()
+        .min(5)
         .label('Name'),
 
     bankName: Yup
@@ -20,6 +21,7 @@ const validationSchema = Yup.object().shape({
     accountNumber: Yup
         .string()
         .required()
+        .min(5)
         .label('Account Number'),
 
     amount: Yup

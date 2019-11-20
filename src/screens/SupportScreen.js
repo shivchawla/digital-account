@@ -13,6 +13,7 @@ const validationSchema = Yup.object().shape({
     subject: Yup
         .string()
         .required()
+        .min(5)
         .label('Subject'),
 
     type: Yup
@@ -23,6 +24,7 @@ const validationSchema = Yup.object().shape({
     description: Yup
         .string()
         .required()
+        .min(5)
         .label('description'),
 
 });
@@ -33,10 +35,6 @@ const SupportScreen = (props) => {
     const setSupportData = (val) => dispatch({ type: 'SET_SUBMIT_SUPPORT', payload: { ...val } });
     const supportData = useSelector(state => state.supportReducer, shallowEqual)
 
-    // useEffect(() => {
-    //     dispatch(actionCreator.getWithdrawList())
-    // }, [])
-
     const [tag, setTag] = useState((Math.floor(100000000 + Math.random() * 900000000)).toString())
 
     return (
@@ -44,7 +42,6 @@ const SupportScreen = (props) => {
         <Formik onSubmit={async values => {
             props.navigation.navigate("SupportSuccess")
             dispatch(actionCreator.submitNewSupport({ ...values, tag }))
-            //console.log(JSON.stringify(values))
         }}
             validationSchema={validationSchema}
         >

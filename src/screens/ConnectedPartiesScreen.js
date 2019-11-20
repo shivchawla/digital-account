@@ -19,21 +19,25 @@ const validationSchema = Yup.object().shape({
     name: Yup
         .string()
         .required()
+        .min(5)
         .label('Name'),
 
     myKad: Yup
         .string()
         .required()
+        .min(12)
         .label('My Kad'),
 
     relationship: Yup
         .string()
         .required()
+        .min(5)
         .label('Relationship'),
 
     personnelName: Yup
         .string()
         .required()
+        .min(5)
         .label('Name'),
 
     email: Yup
