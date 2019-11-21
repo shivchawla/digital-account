@@ -11,33 +11,33 @@ import * as Yup from 'yup';
 const validationSchema = Yup.object().shape({
 
     bankAccountNo: Yup
-        .number()
+        .string()
         .required()
-        .min(1111111111)
+        .min(10)
         .label('Bank Account No'),
 
     bankAccountName: Yup
         .string()
         .required()
-        .min(5)
+        .min(3)
         .label('Bank Account Name'),
 
     bankAddress: Yup
         .string()
         .required()
-        .min(5)
+        .min(3)
         .label('Bank Address'),
 
     bankCountry: Yup
         .string()
         .required()
-        .min(5)
+        .min(3)
         .label('Bank Country'),
 
     bankLabel: Yup
         .string()
         .required()
-        .min(5)
+        .min(3)
         .label('bankLabel'),
 
 });

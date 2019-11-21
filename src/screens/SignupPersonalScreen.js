@@ -12,7 +12,7 @@ const validationSchema = Yup.object().shape({
     name: Yup
         .string()
         .required()
-        .min(5)
+        .min(3)
         .label('Name'),
 
     email: Yup
@@ -98,6 +98,7 @@ const SignupPersonalScreen = (props) => {
                                     <Text style={[styles.titleBox, { marginBottom: 10, borderBottomColor: emailTouched && emailError ? '#d94498' : '#5a83c2' }]}>Email</Text>
                                     <TextInput value={email} onBlur={FormikProps.handleBlur('email')} onChangeText={FormikProps.handleChange('email')} placeholder={emailTouched && emailError ? '' : 'Eg: abc@email.com'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} keyboardType={'email-address'} />
                                     {emailTouched && emailError && <Text style={styles.error}>{emailError}</Text>}
+                                    {message && <Text style={styles.error}>{message.email[0]}</Text>}
                                 </View>
                                 <View style={[styles.formElement]}>
                                     <Text style={[styles.titleBox, { marginBottom: 10, borderBottomColor: passwordTouched && passwordError ? '#d94498' : '#5a83c2' }]}>Password</Text>

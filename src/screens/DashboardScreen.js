@@ -32,6 +32,9 @@ const DashboardScreen = (props) => {
   const isDeclaration_one = useSelector(state => state.merchantInfoReducer.isDeclaration_one, shallowEqual)
   const isDocument1 = useSelector(state => state.merchantInfoReducer.isDocument1, shallowEqual)
   const full_name = useSelector(state => state.merchantInfoReducer.full_name, shallowEqual)
+
+  const {balance,currency} = useSelector(state => state.myAccountReducer, shallowEqual)
+
   const dashboardDisplay = (link == 'Dashboard') ? true : false
 
   const logout = () => {
@@ -112,7 +115,7 @@ const DashboardScreen = (props) => {
         </View>
         <View style={{ flexDirection: 'column', justifyContent: 'center' }}>
           <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-            <Text style={styles.title}>MYR 18,839.00</Text>
+            <Text style={styles.title}>{currency&&currency} {balance&&balance}</Text>
           </View>
         </View>
         <TouchableOpacity onPress={() => props.navigation.navigate('Profile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
@@ -120,7 +123,7 @@ const DashboardScreen = (props) => {
         </TouchableOpacity>
       </View>
       <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: 25 }}>
-        <TouchableOpacity>
+        <TouchableOpacity  onPress={() => props.navigation.navigate('Transfer')}>
           <Text style={[styles.text]}>Send Money</Text>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -193,7 +196,7 @@ const DashboardScreen = (props) => {
               <Text style={styles.text}>Withdrawal</Text>
             </View>
             <View style={{ flex: 1 }}>
-              <Text style={[styles.text, { color: '#A20F0F' }]}>- RM50.00</Text>
+              <Text numberOfLines={1} ellipsizeMode={'tail'}  style={[styles.text, { color: '#A20F0F' }]}>- RM50.00</Text>
             </View>
           </View>
           <View style={{ flexDirection: 'row', marginTop: 5 }}>
@@ -202,7 +205,7 @@ const DashboardScreen = (props) => {
               <Text style={styles.text}>Transfer</Text>
             </View>
             <View style={{ flex: 1 }}>
-              <Text style={[styles.text, { color: '#7ED321' }]}>+ RM80.00</Text>
+              <Text numberOfLines={1} ellipsizeMode={'tail'} style={[styles.text, { color: '#7ED321' }]}>+ RM80.00</Text>
             </View>
           </View>
           <View style={{ flexDirection: 'row', marginTop: 5 }}>
@@ -211,7 +214,7 @@ const DashboardScreen = (props) => {
               <Text style={[styles.text]}>Disbursement</Text>
             </View>
             <View style={{ flex: 1 }}>
-              <Text style={[styles.text, { color: '#7ED321' }]}>+ RM50.00</Text>
+              <Text numberOfLines={1} ellipsizeMode={'tail'}  style={[styles.text, { color: '#7ED321' }]}>+ RM50.00</Text>
             </View>
           </View>
         </View>

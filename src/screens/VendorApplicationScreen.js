@@ -13,7 +13,7 @@ const validationSchema = Yup.object().shape({
     vendorName: Yup
         .string()
         .required()
-        .min(5)
+        .min(3)
         .label('Vendor Name'),
 
     vendorEmail: Yup
@@ -30,7 +30,7 @@ const validationSchema = Yup.object().shape({
     address: Yup
         .string()
         .required()
-        .min(5)
+        .min(3)
         .label('Vendor Address'),
 
 });

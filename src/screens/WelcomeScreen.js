@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Text, TouchableOpacity, View, TextInput, KeyboardAvoidingView, ActivityIndicator } from 'react-native';
+import { Text, TouchableOpacity, View, TextInput, KeyboardAvoidingView, ActivityIndicator, } from 'react-native';
+import * as WebBrowser from 'expo-web-browser'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
@@ -82,6 +83,10 @@ const WelcomeScreen = (props) => {
                                                 </TouchableOpacity>
                                             </View>
                                             {passwordTouched && passwordError && <Text style={styles.error}>{passwordError}</Text>}
+
+                                            {all && <Text style={[styles.error, { marginTop: 10 }]}>{all}</Text>}
+
+
                                         </View>
                                         <View style={{ flexDirection: 'row', marginBottom: 10 }}>
                                             <Text style={[styles.textDefault, { margin: 5, color: 'darkgrey' }]}>Forgot password?</Text>

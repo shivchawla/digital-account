@@ -16,7 +16,7 @@ const validationSchema = Yup.object().shape({
 
     recipient: Yup
         .string()
-        .min(5)
+        .min(3)
         .required(),
 
     references_no: Yup
@@ -81,7 +81,7 @@ const TransferScreen = (props) => {
                                 {recipientTouched && recipientError && <Text style={styles.error}>{recipientError}</Text>}
                             </View>
                             <View style={[styles.formElement, { marginBottom: 10 }]}>
-                                <Text style={[styles.titleBox]}>reference No</Text>
+                                <Text style={[styles.titleBox]}>Reference No</Text>
                                 <TextInput value={references_no} onChangeText={FormikProps.handleChange('references_no')} onBlur={FormikProps.handleBlur('references_no')} style={{ borderWidth: 1, borderColor: references_noTouched && references_noError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={references_noTouched && references_noError ? '' : 'Pay salary'} placeholderTextColor={references_noTouched && references_noError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                 {references_noTouched && references_noError && <Text style={styles.error}>{references_noError}</Text>}
                             </View>

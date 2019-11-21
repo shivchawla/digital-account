@@ -10,22 +10,22 @@ const validationSchema = Yup.object().shape({
 
     companyName: Yup
         .string()
-        .min(5)
+        .min(3)
         .label('Company Name'),
 
     registrationNumber: Yup
         .string()
-        .min(5)
+        .min(3)
         .label('Registration Number'),
 
     companyAddress: Yup
         .string()
-        .min(5)
+        .min(3)
         .label('Company Address'),
 
     companyPostcode: Yup
-        .number()
-        .min(11111)
+         .string()
+        .min(5)
         .label('Company Postcode'),
 
     companyRegisteredDate: Yup

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Text, TouchableOpacity, View, TextInput, KeyboardAvoidingView, ActivityIndicator } from 'react-native';
+import { Image, Text, TouchableOpacity, View, TextInput, KeyboardAvoidingView, ActivityIndicator,ScrollView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -12,25 +12,25 @@ const validationSchema = Yup.object().shape({
     comp_addr: Yup
         .string()
         .required()
-        .min(5)
+         .min(3)
         .label('Address Line 1'),
 
     comp_city: Yup
         .string()
         .required()
-        .min(5)
+         .min(3)
         .label('City'),
 
     comp_state: Yup
         .string()
         .required()
-        .min(5)
+         .min(3)
         .label('State'),
 
     cddPostcode: Yup
-        .number()
+        .string()
         .required()
-        .min(11111)
+        .min(5)
         .label('Postcode'),
 
 });
@@ -84,7 +84,8 @@ const CompanyContactAddressInformationScreen = (props) => {
                             </View>
                         </View>
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
-                            <View style={[styles.screenMargin, { flex: 9 }]}>
+                            <View style={[{ flex: 9 }]}>
+                            <ScrollView style={[styles.screenMargin]}>
                                 <View style={[styles.formElement]}>
                                     <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: comp_addrTouched && comp_addrError ? '#d94498' : '#5a83c2' }]}>Address Line 1</Text>
                                     <TextInput value={comp_addr} onBlur={FormikProps.handleBlur('comp_addr')} onChangeText={FormikProps.handleChange('comp_addr')} placeholder={comp_addrTouched && comp_addrError ? '' : 'Eg: 89, Jalan Bestari'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
@@ -110,6 +111,7 @@ const CompanyContactAddressInformationScreen = (props) => {
                                     <TextInput value={cddPostcode} onBlur={FormikProps.handleBlur('cddPostcode')} onChangeText={FormikProps.handleChange('cddPostcode')} placeholder={cddPostcodeTouched && cddPostcodeError ? '' : 'Eg: 60901'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} keyboardType={'phone-pad'} />
                                     {cddPostcodeTouched && cddPostcodeError && <Text style={styles.error}>{cddPostcodeError}</Text>}
                                 </View>
+                                </ScrollView>
                             </View>
                             <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 }}>

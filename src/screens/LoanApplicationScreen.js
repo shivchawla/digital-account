@@ -12,7 +12,7 @@ import Layout from '../constants/Layout';
 const validationSchema = Yup.object().shape({
 
     amount: Yup
-        .number()
+         .number()
         .positive()
         .required()
         .label('Amount'),
@@ -20,7 +20,7 @@ const validationSchema = Yup.object().shape({
     purpose: Yup
         .string()
         .required()
-        .min(5)
+        .min(3)
         .label('Purpose'),
 
 });

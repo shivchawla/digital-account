@@ -13,39 +13,39 @@ const validationSchema = Yup.object().shape({
     name: Yup
         .string()
         .required()
-        .min(5)
+        .min(3)
         .label('Item Name'),
 
     sku: Yup
         .string()
         .required()
-        .min(5)
+        .min(3)
         .label('SKU'),
 
     description: Yup
         .string()
         .required()
-        .min(5)
+        .min(3)
         .label('Description'),
 
     purchase_price: Yup
-        .number()
+         .string()
         .required()
         .label('Purchase Price'),
 
     sale_price: Yup
-        .number()
+         .string()
         .required()
         .label('Sale Price'),
 
     brand: Yup
         .string()
         .required()
-        .min(5)
+        .min(3)
         .label('Brand'),
 
     quantity: Yup
-        .number()
+         .string()
         .required()
         .label('Quantity'),
 

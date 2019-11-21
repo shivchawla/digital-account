@@ -20,7 +20,9 @@ const RegistrationDeclarationScreen = (props) => {
     const dispatch = useDispatch()
 
     return (
-        <Formik onSubmit={values => { dispatch(actionCreator.declaration(values)); props.navigation.navigate('Dashboard') }}
+        <Formik onSubmit={values => { 
+            dispatch(actionCreator.declaration(values)); 
+            props.navigation.navigate('Dashboard') }}
             validationSchema={validationSchema}
             initialValues={{ isDeclaration_one: 0, isDeclaration_two: 0 }}
         >

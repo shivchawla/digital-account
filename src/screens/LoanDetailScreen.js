@@ -20,6 +20,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 const validationSchema = Yup.object().shape({
     amount: Yup
+   
         .number()
         .positive()
         .required()

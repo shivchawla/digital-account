@@ -135,6 +135,7 @@ export const withdrawListApi = () => {
     }).then((response) => response.json())
       .then(async (responseJson) => {
         const withdrawList = responseJson.data
+        withdrawList.reverse()
         console.log('Success withdraw list' + JSON.stringify(responseJson))
         dispatch({ type: 'SET_WITHDRAWAL_LIST', payload: { withdrawList } })
 
