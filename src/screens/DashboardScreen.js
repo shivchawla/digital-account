@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, TouchableOpacity, Text, Image, Modal } from 'react-native';
+import { View, TouchableOpacity, Text, Image, Modal,ActivityIndicator } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
 import Layout from '../constants/Layout'
@@ -115,7 +115,7 @@ const DashboardScreen = (props) => {
         </View>
         <View style={{ flexDirection: 'column', justifyContent: 'center' }}>
           <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-            <Text style={styles.title}>{currency&&currency} {balance&&balance.toFixed(2)}</Text>
+           {balance?<Text style={styles.title}>{currency&&currency} {balance&&balance.toFixed(2)}</Text>:<ActivityIndicator />} 
           </View>
         </View>
         <TouchableOpacity onPress={() => props.navigation.navigate('Profile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>

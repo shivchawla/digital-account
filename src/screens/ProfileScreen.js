@@ -13,8 +13,6 @@ const ProfileScreen = (props) => {
     const dispatch = useDispatch()
     const retrieveMerchantInfo = () => { dispatch(actionCreator.retrieveMerchantInfo()) }
     const {business_name,business_reg_no,contact_no,support_email,business_address,business_postcode,status} = useSelector(state => state.merchantInfoReducer, shallowEqual)
-
-
     const {balance,currency,account_no,type} = useSelector(state => state.myAccountReducer, shallowEqual)
 
     return (

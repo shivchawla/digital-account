@@ -1,10 +1,13 @@
 import React from 'react';
 import { View, TouchableOpacity, Text, Image, ScrollView, } from 'react-native';
+import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles/styles'
 
-const AccountScreen = (props) => {
 
+const AccountScreen = (props) => {
+    const { business_name, business_reg_no, contact_no, support_email, business_address, business_postcode, status } = useSelector(state => state.merchantInfoReducer, shallowEqual)
+    const { balance, currency, account_no, type } = useSelector(state => state.myAccountReducer, shallowEqual)
     return (
 
         <View style={{ flex: 1 }}>
@@ -15,7 +18,7 @@ const AccountScreen = (props) => {
                     </TouchableOpacity>
                 </View>
                 <View style={{ flex: 5, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={[styles.title]}>ACCOUNT: 19927483</Text>
+                    <Text style={[styles.title]}>ACCOUNT: {account_no}</Text>
                 </View>
                 <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
                     <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
@@ -34,7 +37,7 @@ const AccountScreen = (props) => {
                             <Text style={[styles.text, { marginLeft: 10 }]}>Account Number</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center' }} >
-                            <Text style={[styles.boldText, { color: 'black', marginLeft: 15 }]}>123456789</Text>
+                            <Text style={[styles.boldText, { color: 'black', marginLeft: 15 }]}>{account_no}</Text>
                         </View>
                     </View>
                     <View style={{ flexDirection: 'row', marginBottom: 5, marginTop: 5 }}>
@@ -45,7 +48,7 @@ const AccountScreen = (props) => {
                             <Text style={[styles.text, { marginLeft: 10 }]}>Account Type</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center' }} >
-                            <Text style={[styles.boldText, { color: 'black', marginLeft: 45 }]}>Business</Text>
+                            <Text style={[styles.boldText, { color: 'black', marginLeft: 45 }]}>{type}</Text>
                         </View>
                     </View>
                     <View style={{ flexDirection: 'row', marginBottom: 5, marginTop: 5 }}>
@@ -56,7 +59,7 @@ const AccountScreen = (props) => {
                             <Text style={[styles.text, { marginLeft: 10 }]}>Balance Report</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center' }} >
-                            <Text style={[styles.boldText, { color: 'black', marginLeft: 30 }]}>RM 18,839.00</Text>
+                            <Text style={[styles.boldText, { color: 'black', marginLeft: 30 }]}>{currency} {balance}</Text>
                         </View>
                     </View>
                     <View style={{ flexDirection: 'row', marginBottom: 5, marginTop: 5 }}>
@@ -67,7 +70,7 @@ const AccountScreen = (props) => {
                             <Text style={[styles.text, { marginLeft: 10 }]}>Account Status</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center' }} >
-                            <Text style={[styles.boldText, { color: 'green', marginLeft: 30 }]}>Active</Text>
+                            {status == 'activated' ? <Text style={[styles.text, { color: '#00FD04', marginLeft: 30 }]}>Active</Text> : <Text style={[styles.text, { color: 'lightgrey', marginLeft: 30 }]}>Inactive</Text>}
                         </View>
                     </View>
                 </ScrollView>
