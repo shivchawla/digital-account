@@ -13,7 +13,7 @@ const validationSchema = Yup.object().shape({
 
     password: Yup
         .string()
-        .min(6),
+        .min(6, 'Too Short'),
 });
 
 const ChangeEmailScreen = (props) => {
@@ -47,11 +47,11 @@ const ChangeEmailScreen = (props) => {
                             <View style={[styles.screenMargin, { flex: 3 }]}>
                                 <View style={[styles.formElement]}>
                                     <Text style={[styles.titleBox, { marginBottom: 10, marginTop: 20 }]}>New Email Address</Text>
-                                    <TextInput value={newEmail} onChangeText={FormikProps.handleChange('newEmail')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                    <TextInput value={newEmail} onChangeText={FormikProps.handleChange('newEmail')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={'pertanyaan@syarikatmurni.my'} />
                                 </View>
                                 <View style={[styles.formElement]}>
                                     <Text style={[styles.titleBox, { marginBottom: 10 }]}>Password</Text>
-                                    <TextInput value={password} onChangeText={FormikProps.handleChange('password')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                    <TextInput value={password} onChangeText={FormikProps.handleChange('password')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={'******'} />
                                 </View>
                             </View>
                         </View>

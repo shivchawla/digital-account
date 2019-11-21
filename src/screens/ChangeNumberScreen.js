@@ -10,7 +10,7 @@ const validationSchema = Yup.object().shape({
 
     mobileNumber: Yup
         .number()
-        .min(1111111111)
+        .min(111111111, 'Phone Number Not Valid')
         .required(),
 
     password: Yup
@@ -55,11 +55,11 @@ const ChangeNumberScreen = (props) => {
                             <View style={[styles.screenMargin, { flex: 3, marginTop: 25 }]}>
                                 <View style={[styles.formElement]}>
                                     <Text style={[styles.titleBox, { marginBottom: 5 }]}>New Phone Number</Text>
-                                    <TextInput value={mobileNumber} onChangeText={FormikProps.handleChange('mobileNumber')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} keyboardType={'phone-pad'} />
+                                    <TextInput value={mobileNumber} onChangeText={FormikProps.handleChange('mobileNumber')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} keyboardType={'phone-pad'} placeholder={'0198907819'} />
                                 </View>
                                 <View style={[styles.formElement]}>
                                     <Text style={[styles.titleBox, { marginBottom: 5 }]}>Password</Text>
-                                    <TextInput value={password} onChangeText={FormikProps.handleChange('password')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                    <TextInput value={password} onChangeText={FormikProps.handleChange('password')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={'******'} />/>
                                 </View>
                             </View>
                         </View>
