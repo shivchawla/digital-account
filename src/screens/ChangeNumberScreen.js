@@ -9,13 +9,8 @@ import styles from '../styles/styles'
 const validationSchema = Yup.object().shape({
 
     mobileNumber: Yup
-<<<<<<< HEAD
-        .number()
-        .min(111111111, 'Phone Number Not Valid')
-=======
          .string()
          .min(10)
->>>>>>> origin/noTemplateSyahMergeAniq
         .required(),
 
     password: Yup

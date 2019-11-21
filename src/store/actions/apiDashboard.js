@@ -66,6 +66,7 @@ export const loanListApi = () => {
     }).then((response) => response.json())
       .then(async (responseJson) => {
         const loanList = responseJson.data
+        loanList.reverse()
         console.log('Success loan list' + JSON.stringify(responseJson))
         dispatch({ type: 'SET_LOAN_LIST', payload: { loanList } })
 
@@ -164,6 +165,7 @@ export const vendorListApi = () => {
     }).then((response) => response.json())
       .then(async (responseJson) => {
         const vendorList = responseJson.data
+        vendorList.reverse()
         console.log('Success vendor list' + JSON.stringify(responseJson))
         dispatch({ type: 'SET_VENDOR_LIST', payload: { vendorList } })
 
@@ -284,6 +286,7 @@ export const customerListApi = () => {
     }).then((response) => response.json())
       .then(async (responseJson) => {
         const customerList = responseJson.data
+        customerList.reverse()
         console.log('Success customer list' + JSON.stringify(responseJson))
         dispatch({ type: 'SET_CUSTOMER_LIST', payload: { customerList } })
 
@@ -340,6 +343,7 @@ export const itemListApi = () => {
     }).then((response) => response.json())
       .then(async (responseJson) => {
         const itemList = responseJson.data
+        itemList.reverse()
         console.log('Success item list' + JSON.stringify(responseJson))
         dispatch({ type: 'SET_ITEM_LIST', payload: { itemList } })
 
@@ -397,6 +401,7 @@ export const invoiceListApi = () => {
     }).then((response) => response.json())
       .then(async (responseJson) => {
         const invoiceList = responseJson.data
+        invoiceList.reverse()
         console.log('Success invoice list' + JSON.stringify(responseJson))
         dispatch({ type: 'SET_INVOICE_LIST', payload: { invoiceList } })
 
@@ -432,6 +437,7 @@ export const reportListApi = () => {
       .then(async (responseJson) => {
         const { data } = responseJson.data
         const reportList = data
+        reportList.reverse()
         console.log('Success report list' + JSON.stringify(responseJson))
         dispatch({ type: 'SET_REPORT_LIST', payload: { reportList } })
 
@@ -468,6 +474,7 @@ export const businessDirectoryListApi = () => {
     }).then((response) => response.json())
       .then(async (responseJson) => {
         const businessDirectoryList = responseJson.data
+        businessDirectoryList.reverse()
         console.log('Success' + JSON.stringify(responseJson))
         dispatch({ type: 'SET_BUSINESS_DIRECTORY_LIST', payload: { businessDirectoryList } })
 
@@ -704,7 +711,7 @@ export const bankListApi = () => {
     console.log(`bank list masuk api`)
     //const personalToken = await AsyncStorage.getItem('personalToken');
     const personalToken = await SecureStore.getItemAsync('personalToken')
-
+    bankList.reverse()
     const bankListStored = await AsyncStorage.getItem('bankListStored');
     const bankList = bankListStored && JSON.parse(bankListStored)
     //bankListStored && bankList.push(JSON.parse(bankListStored))
@@ -1006,7 +1013,7 @@ export const submitInvoiceApi = () => {
     }
 
     var strItems = []
-        items.map((c, i) => {
+    items.map((c, i) => {
       strItems += `&invoice_item[${i}]=${c.invoice_item}`
       strItems += `&item[${i}]=${c.item}`
       strItems += `&quantity[${i}]=${c.quantity}`
@@ -1014,7 +1021,7 @@ export const submitInvoiceApi = () => {
       strItems += `&priceItem[${i}]=${c.priceItem}`
     })
 
-    const strTest = "access_credential=api&"+strNewInvoice + "&" + strItems
+    const strTest = "access_credential=api&" + strNewInvoice + "&" + strItems
     //const strTest = 'dueDate=2020-4-11&invoiceNumber=Ddfg&amount=123&category=3&invoiceType=1&invoiceDate=2020-4-11&entityName=Sy&entityEmail=syahrizan.ali@gmail.com&entityPhone=123456789&entityAddress=Ssd&access_credential=api&entityId=14&currency=MYR&invoice_item[0]=Dd&item[0]=88&quantity[0]=13&currencyItem[0]=MYR&priceItem[0]=12'
 
     // const strNewInvoiceAndItems = strNewInvoice + strItems + ', "access_credential":"api"}'

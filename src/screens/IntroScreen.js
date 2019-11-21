@@ -41,8 +41,8 @@ const IntroScreen = (props) => {
         <View style={{ flex: 1 }}>
             <View style={{ justifyContent: 'space-between', flex: 9 }}>
                 <View style={{ flex: 9, margin: 10 }}>
-                    <ImageSlider style={{ flex: 10, alignSelf: 'stretch', backgroundColor: 'transparent' }} loopBothSides autoPlayWithInterval={3000} images={images} customSlide={({ index, item, style }) => (item &&
-                        <View key={index} style={[style, { backgroundColor: 'transparent' }]}>
+                    <ImageSlider style={{ flex: 10, alignSelf: 'stretch', backgroundColor: 'transparent' }} loopBothSides autoPlayWithInterval={3000} images={images} customSlide={({ index, item, style, width }) => (item &&
+                        <View key={index} style={[style, styles.customSlide]}>
                             <Image source={item.screenshotUri} resizeMode={'contain'} style={{ height: undefined, width: undefined, flex: 1, }} />
                             <Text style={[styles.text, { alignSelf: 'center', textAlign: 'center', marginLeft: 15, marginRight: 15, marginBottom: 10, marginTop: 10, padding: 10 }]}>
                                 {item.title}
@@ -52,8 +52,10 @@ const IntroScreen = (props) => {
                         customButtons={(position, move) => (
                             <View style={[styles.buttons, { paddingTop: 50 }]}>
                                 {images.map((image, index) => (
-                                    <TouchableHighlight key={index} underlayColor="#ccc" onPress={() => this._move(index)} style={[styles.button, position === index && styles.buttonSelected,]} >
-                                        <View />
+                                    <TouchableHighlight key={index} underlayColor="#ccc" onPress={() => move(index)} style={[styles.button]} >
+                                        <Text style={position === index && styles.buttonSelected}>
+                                            {index + 1}
+                                        </Text>
                                     </TouchableHighlight>
                                 ))}
                             </View>
