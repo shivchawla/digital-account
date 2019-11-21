@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, TouchableOpacity, Text, Image, Modal } from 'react-native';
+import { View, TouchableOpacity, Text, Image, Modal,ActivityIndicator } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
 import Layout from '../constants/Layout'
@@ -109,13 +109,13 @@ const DashboardScreen = (props) => {
       </Modal>
       <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row' }]}>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
-          <TouchableOpacity onPress={props.navigation.openDrawer} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
+          <TouchableOpacity onPress={props.navigation.openDrawer} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }} style={{paddingRight:50}}>
             <Ionicons name="md-more" color={'#3EC2D9'} style={{ fontSize: 30 }} />
           </TouchableOpacity>
         </View>
         <View style={{ flexDirection: 'column', justifyContent: 'center' }}>
           <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-            <Text style={styles.title}>{currency&&currency} {balance&&balance}</Text>
+           {balance?<Text style={styles.title}>{currency&&currency} {balance&&balance.toFixed(2)}</Text>:<ActivityIndicator />} 
           </View>
         </View>
         <TouchableOpacity onPress={() => props.navigation.navigate('Profile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
@@ -134,6 +134,7 @@ const DashboardScreen = (props) => {
         </TouchableOpacity>
       </View>
       <View style={[styles.screenMargin, { flex: 9 }]}>
+        
         <View style={{ marginBottom: 15 }}>
           <LinearGradient colors={['#055E7C', '#055E7C']} style={{ paddingTop: 5, paddingBottom: 5, alignItems: 'center', borderRadius: 10, height: Layout.window.height / 3 }}>
             <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>

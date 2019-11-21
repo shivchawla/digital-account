@@ -13,7 +13,7 @@ const validationSchema = Yup.object().shape({
     bankAccountNo: Yup
         .string()
         .required()
-        .min(10)
+        .min(10, 'Too short')
         .label('Bank Account No'),
 
     bankAccountName: Yup

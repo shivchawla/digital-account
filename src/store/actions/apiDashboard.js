@@ -711,9 +711,9 @@ export const bankListApi = () => {
     console.log(`bank list masuk api`)
     //const personalToken = await AsyncStorage.getItem('personalToken');
     const personalToken = await SecureStore.getItemAsync('personalToken')
-    bankList.reverse()
     const bankListStored = await AsyncStorage.getItem('bankListStored');
     const bankList = bankListStored && JSON.parse(bankListStored)
+    bankList.reverse()
     //bankListStored && bankList.push(JSON.parse(bankListStored))
     //bankList.push(values)
     dispatch({ type: 'SET_BANK_LIST', payload: { bankList } })

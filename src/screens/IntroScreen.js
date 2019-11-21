@@ -5,6 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient'
 import ImageSlider from 'react-native-image-slider';
 import { useDispatch } from 'react-redux'
 import styles from '../styles/styles'
+import { Ionicons } from '@expo/vector-icons';
 
 //import * as actionCreator from '../store/actions/action'
 
@@ -41,8 +42,8 @@ const IntroScreen = (props) => {
         <View style={{ flex: 1 }}>
             <View style={{ justifyContent: 'space-between', flex: 9 }}>
                 <View style={{ flex: 9, margin: 10 }}>
-                    <ImageSlider style={{ flex: 10, alignSelf: 'stretch', backgroundColor: 'transparent' }} loopBothSides autoPlayWithInterval={3000} images={images} customSlide={({ index, item, style, width }) => (item &&
-                        <View key={index} style={[style, styles.customSlide]}>
+                    <ImageSlider style={{ flex: 10, alignSelf: 'stretch', backgroundColor: 'transparent' }} loop autoPlayWithInterval={3000} images={images} customSlide={({ index, item, style }) => (item &&
+                        <View key={index} style={[style, { backgroundColor: 'transparent' }]}>
                             <Image source={item.screenshotUri} resizeMode={'contain'} style={{ height: undefined, width: undefined, flex: 1, }} />
                             <Text style={[styles.text, { alignSelf: 'center', textAlign: 'center', marginLeft: 15, marginRight: 15, marginBottom: 10, marginTop: 10, padding: 10 }]}>
                                 {item.title}
@@ -50,12 +51,12 @@ const IntroScreen = (props) => {
                         </View>
                     )}
                         customButtons={(position, move) => (
-                            <View style={[styles.buttons, { paddingTop: 50 }]}>
+                            <View style={[styles.buttons, { paddingTop: 10, flexDirection: 'row', justifyContent: 'center' }]}>
                                 {images.map((image, index) => (
-                                    <TouchableHighlight key={index} underlayColor="#ccc" onPress={() => move(index)} style={[styles.button]} >
-                                        <Text style={position === index && styles.buttonSelected}>
-                                            {index + 1}
-                                        </Text>
+                                    <TouchableHighlight key={index} underlayColor="#ccc" onPress={() => move(index)} style={[styles.button, position === index && styles.buttonSelected, { margin: 5 }]} >
+                                     
+                                        {position === index ? <Ionicons name={'ios-radio-button-on'} size={15} color={'#055e7c'} style={{}} /> :
+                                            <Ionicons name={'ios-radio-button-off'} size={15} color={'lightgrey'} style={{}} /> }
                                     </TouchableHighlight>
                                 ))}
                             </View>
