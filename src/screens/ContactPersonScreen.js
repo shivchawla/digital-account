@@ -11,22 +11,22 @@ const validationSchema = Yup.object().shape({
 
     cddContactPersonName: Yup
         .string()
-        .min(5)
+        .min(3)
         .required(),
 
     cddContactPersonIc: Yup
-        .number()
-        .min(111111111111)
-        .required(),
+        .string()
+    .min(12)
+    .required(),
 
     cddContactPersonNumber: Yup
-        .number()
-        .min(1111111111)
-        .required(),
+        .string()
+         .min(10)
+    .required(),
 
     cddContactPersonPosition: Yup
         .string()
-        .min(5)
+        .min(3)
         .required(),
 
 });

@@ -9,17 +9,17 @@ import * as Yup from 'yup';
 const validationSchema = Yup.object().shape({
 
     loanAmount: Yup
-        .number()
+         .string()
         .required()
         .label('Loan Amount'),
 
     interestRate: Yup
-        .number()
+         .string()
         .required()
         .label('Interest Rate'),
 
     loanTerm: Yup
-        .number()
+         .string()
         .required()
         .label('Loan Term'),
 

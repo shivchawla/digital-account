@@ -16,9 +16,9 @@ const validationSchema = Yup.object().shape({
         .label('Email'),
 
     cddTelephone: Yup
-        .number()
+         .string()
         .required()
-        .min(1111111111)
+         .min(10)
         .label('Telephone'),
 
 });

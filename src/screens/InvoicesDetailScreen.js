@@ -29,7 +29,7 @@ import * as Yup from 'yup';
 const validationSchema = Yup.object().shape({
 
     amount: Yup
-        .number()
+         .number()
         .positive()
         .required()
         .label('Amount'),

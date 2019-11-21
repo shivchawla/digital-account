@@ -274,7 +274,7 @@ export const checkContact = () => {
 
 export const setScreen = () => {
     return (dispatch, getState) => {
-        console.log('Dekat checkContact action')
+        console.log('Dekat setScreen action')
         dispatch(checkCDDApi())
     }
 

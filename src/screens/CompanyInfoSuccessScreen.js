@@ -23,7 +23,7 @@ const CompanyInfoSuccessScreen = (props) => {
                                 <Text style={[styles.textDefault]}>Skip</Text>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => props.navigation.navigate('ContactPerson')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }}>
-                                <Text style={[styles.textDefault, { color: 'white' }]}>Declaration</Text>
+                                <Text style={[styles.textDefault, { color: 'white' }]}>Contact Info</Text>
                             </TouchableOpacity>
                         </View>
                     </View>

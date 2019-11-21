@@ -12,13 +12,13 @@ const validationSchema = Yup.object().shape({
     cddCompanyName: Yup
         .string()
         .required()
-        .min(5)
+        .min(3)
         .label('Company Name'),
 
     cddRegistrationNumber: Yup
         .string()
         .required()
-        .min(5)
+        .min(3)
         .label('Registration No')
 
 });

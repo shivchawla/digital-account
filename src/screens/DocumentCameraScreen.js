@@ -57,11 +57,11 @@ const DocumentCameraScreen = (props) => {
                     this.camera = ref;
                 }}
             >
-                <View style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 }}>
-                    <View style={{ flex: 1, alignSelf: 'stretch', backgroundColor: '#000000', justifyContent: 'center', alignItems: 'center' }}>
+                <View style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 ,justifyContent:'space-between'}}>
+                    <View style={{ alignSelf: 'stretch', backgroundColor: '#000000', justifyContent: 'center', alignItems: 'center' ,padding:10}}>
                         <Text style={[styles.textDefault, { color: '#ffffff' }]}>Position your document inside the box</Text>
                     </View>
-                    <View style={{ backgroundColor: '#000000', flexDirection: 'row', flex: 1, padding: 5 }}>
+                    <View style={{ backgroundColor: '#000000', flexDirection: 'row',  padding: 5 }}>
                         <View style={{ flex: 1, alignSelf: 'center', justifyContent: 'center' }}>
                             <TouchableOpacity style={{ alignSelf: 'center' }} onPress={() => props.navigation.goBack()}>
                                 <Ionicons name={'ios-arrow-back'} size={48} color={'#ffffff'} />

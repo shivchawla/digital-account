@@ -13,7 +13,7 @@ const validationSchema = Yup.object().shape({
     subject: Yup
         .string()
         .required()
-        .min(5)
+        .min(3)
         .label('Subject'),
 
     type: Yup
@@ -24,7 +24,7 @@ const validationSchema = Yup.object().shape({
     description: Yup
         .string()
         .required()
-        .min(5)
+        .min(3)
         .label('description'),
 
 });

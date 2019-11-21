@@ -29,7 +29,7 @@ const validationSchema = Yup.object().shape({
         .label('Bank Country'),
 
     amount: Yup
-        .number()
+         .number()
         .positive()
         .required()
         .label('Amount'),

@@ -24,7 +24,7 @@ const validationSchema = Yup.object().shape({
     payerName: Yup
         .string()
         .required()
-        .min(5)
+        .min(3)
         .label('Name'),
 
     payerEmail: Yup
@@ -34,9 +34,9 @@ const validationSchema = Yup.object().shape({
         .label('Email Address'),
 
     payerPhoneNumber: Yup
-        .number()
+         .string()
         .required()
-        .min(1111111111)
+         .min(10)
         .label('Phone Number'),
 
 });

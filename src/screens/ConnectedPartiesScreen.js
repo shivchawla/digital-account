@@ -11,15 +11,15 @@ import Layout from '../constants/Layout';
 const validationSchema = Yup.object().shape({
 
     capacity: Yup
-        .number()
-        .positive()
+         .string()
+      
         .required()
         .label('Capacity'),
 
     name: Yup
         .string()
         .required()
-        .min(5)
+        .min(3)
         .label('Name'),
 
     myKad: Yup
@@ -31,13 +31,13 @@ const validationSchema = Yup.object().shape({
     relationship: Yup
         .string()
         .required()
-        .min(5)
+        .min(3)
         .label('Relationship'),
 
     personnelName: Yup
         .string()
         .required()
-        .min(5)
+        .min(3)
         .label('Name'),
 
     email: Yup

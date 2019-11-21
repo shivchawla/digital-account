@@ -9,8 +9,8 @@ import styles from '../styles/styles'
 const validationSchema = Yup.object().shape({
 
     mobileNumber: Yup
-        .number()
-        .min(1111111111)
+         .string()
+         .min(10)
         .required(),
 
     password: Yup
