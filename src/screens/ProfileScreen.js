@@ -12,12 +12,10 @@ const ProfileScreen = (props) => {
 
     const dispatch = useDispatch()
     const retrieveMerchantInfo = () => { dispatch(actionCreator.retrieveMerchantInfo()) }
-    const business_name = useSelector(state => state.merchantInfoReducer.business_name, shallowEqual)
-    const business_reg_no = useSelector(state => state.merchantInfoReducer.business_reg_no, shallowEqual)
-    const contact_no = useSelector(state => state.merchantInfoReducer.contact_no, shallowEqual)
-    const support_email = useSelector(state => state.merchantInfoReducer.support_email, shallowEqual)
-    const business_address = useSelector(state => state.merchantInfoReducer.business_address, shallowEqual)
-    const business_postcode = useSelector(state => state.merchantInfoReducer.business_postcode, shallowEqual)
+    const {business_name,business_reg_no,contact_no,support_email,business_address,business_postcode,status} = useSelector(state => state.merchantInfoReducer, shallowEqual)
+
+
+    const {balance,currency,account_no,type} = useSelector(state => state.myAccountReducer, shallowEqual)
 
     return (
         <View style={{ flex: 1, }}>
@@ -52,7 +50,7 @@ const ProfileScreen = (props) => {
                             <Text style={[styles.boldText]}>Account Number</Text>
                         </View>
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, { color: '#055E7C' }]}>123456789</Text>
+                            <Text style={[styles.text, { color: '#055E7C' }]}>{account_no}</Text>
                         </View>
                     </View>
                     <View style={{ flexDirection: 'row', marginTop: 10 }}>
@@ -60,7 +58,7 @@ const ProfileScreen = (props) => {
                             <Text style={[styles.boldText]}>Account Type</Text>
                         </View>
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, { color: '#055E7C' }]}>Business</Text>
+                            <Text style={[styles.text, { color: '#055E7C' }]}>{type}</Text>
                         </View>
                     </View>
                     <View style={{ flexDirection: 'row', marginTop: 10 }}>
@@ -68,7 +66,7 @@ const ProfileScreen = (props) => {
                             <Text style={[styles.boldText]}>Balance</Text>
                         </View>
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, { color: '#055E7C' }]}>RM18,839.00</Text>
+                            <Text style={[styles.text, { color: '#055E7C' }]}>{currency} {balance.toFixed(2)}</Text>
                         </View>
                     </View>
                     <View style={{ flexDirection: 'row', marginTop: 10 }}>
@@ -76,7 +74,7 @@ const ProfileScreen = (props) => {
                             <Text style={[styles.boldText]}>Status</Text>
                         </View>
                         <View style={{ flex: 1 }}>
-                            <Text style={[styles.text, { color: '#00FD04' }]}>Active</Text>
+                        {status=='activated'?<Text style={[styles.text, { color: '#00FD04' }]}>Active</Text>:<Text style={[styles.text, { color: 'lightgrey' }]}>Inactive</Text>}
                         </View>
                     </View>
                 </View>
