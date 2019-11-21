@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, Text, Image, ActivityIndicator, KeyboardAvoidingView, TextInput, ScrollView, DatePickerAndroid, Picker, DatePickerIOS, Modal, Platform } from 'react-native';
-import * as actionCreator from '../store/actions/action'
+import React, { useState } from 'react';
+import { View, TouchableOpacity, Text, Image, KeyboardAvoidingView, TextInput, ScrollView, Modal } from 'react-native';
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import styles from '../styles/styles'
-import Constants from 'expo-constants';
 
 const validationSchema = Yup.object().shape({
     invoice_item: Yup
@@ -42,7 +40,6 @@ const NewInvoiceItemsScreen = (props) => {
     };
     const { newInvoice, items } = useSelector(state => state.invoiceReducer, shallowEqual)
 
-
     return (
 
         <Formik onSubmit={(values, actions) => {
@@ -52,8 +49,6 @@ const NewInvoiceItemsScreen = (props) => {
             setInvoiceData(existingItems)
             setItemVisible(!addItemVisible)
             actions.resetForm({ currencyItem: 'MYR', quantity: '1' })
-
-
         }}
             initialValues={{ currencyItem: 'MYR', quantity: '1' }}
             validationSchema={validationSchema}
@@ -61,6 +56,7 @@ const NewInvoiceItemsScreen = (props) => {
             {FormikProps => {
 
                 const { invoice_item, item, quantity, currencyItem, priceItem } = FormikProps.values
+                
                 const invoice_itemError = FormikProps.errors.invoice_item
                 const invoice_itemTouched = FormikProps.touched.invoice_item
 
@@ -98,7 +94,6 @@ const NewInvoiceItemsScreen = (props) => {
                                             <TextInput value={quantity} onChangeText={FormikProps.handleChange('quantity')} onBlur={FormikProps.handleBlur('quantity')} style={{ borderWidth: 1, borderColor: quantityTouched && quantityError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={quantityTouched && quantityError ? '' : ''} placeholderTextColor={quantityTouched && quantityError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
                                             {quantityTouched && quantityError && <Text style={styles.error}>{quantityError}</Text>}
                                         </View>
-
                                         <View style={[styles.formElement]}>
                                             <Text style={[styles.titleBox, { marginBottom: 10 }]}>Price</Text>
                                             <View style={{ flexDirection: 'row', alignSelf: 'stretch', }}>
@@ -110,7 +105,6 @@ const NewInvoiceItemsScreen = (props) => {
                                         </View>
                                     </View>
                                 </View>
-
                                 <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', backgroundColor: '#fff' }}>
                                     <TouchableOpacity onPress={() => setItemVisible(!addItemVisible)} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 }}>
                                         <LinearGradient colors={['#FFF', '#FFF']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
@@ -141,20 +135,14 @@ const NewInvoiceItemsScreen = (props) => {
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
                             <View style={{ flex: 9 }}>
                                 <ScrollView style={[styles.screenMargin]}>
-                                    {/* <View>
-                                      <Text>{JSON.stringify(invoiceData)}</Text>
-                                  </View> */}
-
                                     <View style={[styles.formElement]}>
                                         <View style={{ margin: 5 }} />
                                         <View style={{ flex: 1, flexDirection: 'row', borderTopWidth: 1, borderBottomWidth: 1, marginBottom: 5, marginTop: 5, padding: 5, borderColor: 'lightgrey' }}>
-                                            {/* <View style={{ flex: 1 }}><Text>item</Text></View> */}
                                             <View style={{ flex: 3 }}><Text>Item</Text></View>
                                             <View style={{ flex: 1 }}><Text>Qty</Text></View>
                                             <View style={{ flex: 1 }}><Text>Price</Text></View>
                                         </View>
                                         {items && items.map((i, n) => <View style={{ flex: 1, flexDirection: 'row', marginBottom: 5, padding: 5 }} key={n}>
-                                            {/* <View style={{ flex: 1 }}><Text>{n + 1}</Text></View> */}
                                             <View style={{ flex: 3 }}><Text>{i.invoice_item}</Text></View>
                                             <View style={{ flex: 1 }}><Text>{i.quantity}</Text></View>
                                             <View style={{ flex: 1 }}><Text>MYR {i.priceItem}</Text></View>
@@ -166,7 +154,6 @@ const NewInvoiceItemsScreen = (props) => {
                                                 </TouchableOpacity></View>
                                             <View style={{ flex: 1 }}><Text>Total : </Text></View>
                                             <View style={{ flex: 1 }}>{newInvoice && <Text>MYR {newInvoice.amount}</Text>}</View>
-                                            {/* <View style={{ flex: 1 }}>{items ? <Text>MYR {items && items.reduce((total, i) => total + (i.quantity * i.priceItem), 0)}</Text> : <Text>MYR 0</Text>}</View> */}
                                         </View>
                                     </View>
                                 </ScrollView>

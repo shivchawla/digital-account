@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, Text, Image, ActivityIndicator, KeyboardAvoidingView, TextInput, ScrollView, DatePickerAndroid, Picker, DatePickerIOS, Modal, Platform } from 'react-native';
+import React from 'react';
+import { View, TouchableOpacity, Text, Image, KeyboardAvoidingView, ScrollView } from 'react-native';
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
-import { Formik } from 'formik';
-import * as Yup from 'yup';
 import styles from '../styles/styles'
-import Constants from 'expo-constants';
 import moment from 'moment'
 
 const NewInvoiceReviewScreen = (props) => {
@@ -22,16 +19,12 @@ const NewInvoiceReviewScreen = (props) => {
     const invoiceNumber = `INV${moment().format('YYMMDDhhmmssSS')}`
     const { newInvoice, items } = useSelector(state => state.invoiceReducer, shallowEqual)
 
-    const invoiceTypeDesc=newInvoice.invoiceType==1?'To Customer':'From Vendor'
-    const categoryDesc=newInvoice.category==2?'Deposit':newInvoice.category==3?'Sales':'Others'
-
-
+    const invoiceTypeDesc = newInvoice.invoiceType == 1 ? 'To Customer' : 'From Vendor'
+    const categoryDesc = newInvoice.category == 2 ? 'Deposit' : newInvoice.category == 3 ? 'Sales' : 'Others'
 
     return (
 
-
         <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }}>
-
             <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
                     <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
@@ -69,7 +62,6 @@ const NewInvoiceReviewScreen = (props) => {
                             <Text style={[styles.titleBox, { marginBottom: 10 }]}> Due Date</Text>
                             <Text style={[styles.text, { marginBottom: 10 }]}> {newInvoice.dueDate}</Text>
                         </View>
-
                         <View style={[styles.formElement]}>
                             <Text style={[styles.titleBox, { marginBottom: 10 }]}> Name</Text>
                             <Text style={[styles.text, { marginBottom: 10 }]}> {newInvoice.entityName}</Text>
@@ -77,7 +69,6 @@ const NewInvoiceReviewScreen = (props) => {
                         <View style={[styles.formElement]}>
                             <Text style={[styles.titleBox, { marginBottom: 10 }]}>Email</Text>
                             <Text style={[styles.text, { marginBottom: 10 }]}> {newInvoice.entityEmail}</Text>
-
                         </View>
                         <View style={[styles.formElement]}>
                             <Text style={[styles.titleBox, { marginBottom: 10 }]}> Phone</Text>
@@ -90,13 +81,11 @@ const NewInvoiceReviewScreen = (props) => {
                         <View style={[styles.formElement]}>
                             <View style={{ margin: 5 }} />
                             <View style={{ flex: 1, flexDirection: 'row', borderTopWidth: 1, borderBottomWidth: 1, marginBottom: 5, marginTop: 5, padding: 5, borderColor: 'lightgrey' }}>
-                                {/* <View style={{ flex: 1 }}><Text>item</Text></View> */}
                                 <View style={{ flex: 3 }}><Text>Item</Text></View>
                                 <View style={{ flex: 1 }}><Text>Qty</Text></View>
                                 <View style={{ flex: 1 }}><Text>Price</Text></View>
                             </View>
                             {items && items.map((i, n) => <View style={{ flex: 1, flexDirection: 'row', marginBottom: 5, padding: 5 }} key={n}>
-                                {/* <View style={{ flex: 1 }}><Text>{n + 1}</Text></View> */}
                                 <View style={{ flex: 3 }}><Text>{i.invoice_item}</Text></View>
                                 <View style={{ flex: 1 }}><Text>{i.quantity}</Text></View>
                                 <View style={{ flex: 1 }}><Text>MYR {i.priceItem}</Text></View>
@@ -106,7 +95,6 @@ const NewInvoiceReviewScreen = (props) => {
                                 </View>
                                 <View style={{ flex: 1 }}><Text>Total : </Text></View>
                                 <View style={{ flex: 1 }}>{newInvoice && <Text>MYR {newInvoice.amount}</Text>}</View>
-                                {/* <View style={{ flex: 1 }}>{items ? <Text>MYR {items && items.reduce((total, i) => total + (i.quantity * i.priceItem), 0)}</Text> : <Text>MYR 0</Text>}</View> */}
                             </View>
                         </View>
 
@@ -127,9 +115,6 @@ const NewInvoiceReviewScreen = (props) => {
             </View>
         </KeyboardAvoidingView>)
 }
-
-
-
 
 NewInvoiceReviewScreen.navigationOptions = {
     header: null,

@@ -107,9 +107,8 @@ const InvoiceScreen = (props) => {
     );
 }
 
-InvoiceScreen.navigationOptions =
-    {
-        header: null,
-    };
+InvoiceScreen.navigationOptions = {
+    header: null,
+};
 
 export default InvoiceScreen;

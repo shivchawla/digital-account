@@ -20,7 +20,7 @@ const InvoiceSuccessScreen = (props) => {
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                             <TouchableOpacity onPress={() => props.navigation.navigate('Dashboard')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, borderColor: 'black', borderWidth: 1 }}>
-                                <Text style={[styles.textDefault]}>Skip</Text>
+                                <Text style={[styles.textDefault]}>Dashboard</Text>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => props.navigation.navigate('Invoice')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }}>
                                 <Text style={[styles.textDefault, { color: 'white' }]}>Invoice</Text>
