@@ -66,27 +66,16 @@ const validationSchema = Yup.object().shape({
 const NewInvoiceScreen = (props) => {
 
     const [iosPickerVisible, setIosPickerVisible] = useState(false)
-
     const [modalContent, setModalContent] = useState('')
-
     const ios = Platform.OS === "ios" ? true : false
-
     const [tarikh, setTarikh] = useState(new Date())
-
     const dispatch = useDispatch()
-
     const setInvoiceData = (val) => dispatch({ type: 'SET_INVOICE_APPLICATION', payload: { newInvoice: val } });
-
     const invoiceData = useSelector(state => state.invoiceReducer, shallowEqual)
-
     const { customerList } = useSelector(state => state.customerReducer, shallowEqual)
-
     const { vendorList } = useSelector(state => state.vendorReducer, shallowEqual)
-
     const [entityPicker, setEntityPicker] = useState(null)
-
     const [invoice, setInvoice] = useState(null)
-
     const invoiceNumber = `INV${moment().format('YYMMDDhhmmssSS')}`
 
     useEffect(() => {

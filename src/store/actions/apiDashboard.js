@@ -1067,6 +1067,9 @@ export const submitInvoiceApi = () => {
     xhr.addEventListener("readystatechange", function () {
       if (this.readyState === 4) {
         console.log(this.responseText);
+        const { status } = JSON.parse(this.responseText) 
+         dispatch({ type: 'SET_INVOICE_APPLICATION', payload: { status, proceedMain: true } })
+        
       }
     });
 

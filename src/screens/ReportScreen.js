@@ -49,7 +49,7 @@ const ReportScreen = (props) => {
                             <TouchableWithoutFeedback onPress={() => dispatch(actionCreator.setMarkerReportList(index))} style={{ flexDirection: 'row', marginTop: 5 }}>
                                 <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
                                     <Text style={[styles.boldText], { flex: 1 }}>{item.transaction_no}</Text>
-                                    <Text style={[styles.boldText], { flex: 1 }}>{moment(item.updated_at).format('MMMM Do YYYY, h:mm:ss a')}</Text>
+                                    <Text style={[styles.boldText], { flex: 1 }} numberOfLines={1} ellipsizeMode={'tail'}>{moment(item.updated_at).format('DD/MM/YY h:mm:ss')}</Text>
                                     <Ionicons name={item.marker ? "md-arrow-dropdown" : "md-arrow-dropright"} color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
                                 </View>
                             </TouchableWithoutFeedback>
@@ -60,16 +60,33 @@ const ReportScreen = (props) => {
                                     <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                                         <Text style={[styles.boldText]}>{item.type}</Text>
                                     </View>
+                                 
+                                </View>
+                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                        <Text style={[styles.text]}>{item.credit_debit}</Text>
+                                    </View>
                                     <View style={{ flex: 1 }}>
                                         <Text style={[styles.text, { color: '#055E7C' }]}>{item.credit_debit=='DEBIT'?'to':'from'} {item.from_to}</Text>
+                                    </View>
+                              
+                                </View>
+                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                        <Text style={[styles.text]}>Amount</Text>
+                                    </View>
+                                
+                                    <View style={{ flex: 1 }}>
+                                        <Text style={[styles.text, { color: '#055E7C' }]}>{currency} {item.amount.toFixed(2)}</Text>
                                     </View>
                                 </View>
                                 <View style={{ flexDirection: 'row', marginTop: 5 }}>
                                     <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                        <Text style={[styles.boldText]}>{item.credit_debit}</Text>
+                                        <Text style={[styles.text]}>Status</Text>
                                     </View>
+                                
                                     <View style={{ flex: 1 }}>
-                                        <Text style={[styles.text, { color: '#055E7C' }]}>{currency} {item.amount.toFixed(2)}</Text>
+                                        <Text style={[styles.text, { color: '#055E7C' }]}>{item.status}</Text>
                                     </View>
                                 </View>
                             </View>
