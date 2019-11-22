@@ -259,7 +259,7 @@ export const withDrawApi = (values) => {
     }).then((response) => response.json())
       .then(async (responseJson) => {
         const { status } = await responseJson
-        //await dispatch({ type: 'SET_LOAN_APPLICATION', payload: { status, proceedMain: true } })
+        await dispatch({ type: 'SET_LOAN_APPLICATION', payload: { status, proceedMain: true } })
         await console.log(`withdrawal api  ${JSON.stringify(responseJson)}`)
       })
       .catch((error) => {
