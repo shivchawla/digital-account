@@ -43,7 +43,7 @@ const EditProfileScreen = (props) => {
 
     const dispatch = useDispatch()
     const retrieveMerchantInfo = () => { dispatch(actionCreator.retrieveMerchantInfo()) }
-    const { business_name, business_reg_no, business_address, business_postcode } = useSelector(state => state.merchantInfoReducer, shallowEqual)
+    const { business_name, business_reg_no, business_address, business_postcode, support_email, contact_no } = useSelector(state => state.merchantInfoReducer, shallowEqual)
 
     return (
 
