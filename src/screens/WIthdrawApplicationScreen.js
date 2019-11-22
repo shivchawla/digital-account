@@ -9,41 +9,7 @@ import styles from '../styles/styles'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
-const validationSchema = Yup.object().shape({
 
-    bankLabel: Yup
-        .string()
-        .required()
-        .label('Bank Account No'),
-
-    // bankAccountName: Yup
-    //     .string()
-    //     .required()
-    //     .label('Bank Account Name'),
-
-    // bankAddress: Yup
-    //     .string()
-    //     .required()
-    //     .label('Bank Address'),
-
-    // bankCountry: Yup
-    //     .string()
-    //     .required()
-    //     .label('Bank Country'),
-
-    amount: Yup
-         .number()
-        .positive()
-        .required()
-        .label('Amount'),
-
-    remark: Yup
-        .string()
-        .required()
-        .min(3)
-        .label('Remark'),
-
-});
 
 const WIthdrawApplicationScreen = (props) => {
 
@@ -53,8 +19,8 @@ const WIthdrawApplicationScreen = (props) => {
     const ios = Platform.OS === "ios" ? true : false
 
     const withDraw = (values) => {
-        const newValues={...values,...values.bankDetail}
-        const {bankDetail,...cleanValue}=newValues
+        const newValues = { ...values, ...values.bankDetail }
+        const { bankDetail, ...cleanValue } = newValues
 
         console.log(`values ialah : ${JSON.stringify(cleanValue)}`)
         dispatch(actionCreator.withDraw(cleanValue))
@@ -67,13 +33,41 @@ const WIthdrawApplicationScreen = (props) => {
         dispatch(actionCreator.bankList())
     }, [bankList])
 
+    const { balance, currency } = useSelector(state => state.myAccountReducer, shallowEqual)
+
     const { bankList } = useSelector(state => state.bankListReducer, shallowEqual)
     const [selectedBank, setSelectedBank] = useState(null)
     const bankExists = bankList ? true : false
     const selectedBankDetail = selectedBank ? bankList.find(b => b.bankLabel === selectedBank) : null
 
+    const validationSchema = Yup.object().shape({
+
+        bankLabel: Yup
+            .string()
+            .required()
+            .label('Bank Account No'),
+
+
+        amount: Yup
+            .number()
+            .min(10)
+            .max(balance)
+            .required()
+            .label('Amount'),
+
+        remark: Yup
+            .string()
+            .required()
+            .min(3)
+            .label('Remark'),
+
+    });
+
     return (
-        <Formik onSubmit={values => withDraw(values)}
+        <Formik onSubmit={(values, actions) => {
+            withDraw(values)
+            actions.resetForm({})
+        }}
             validationSchema={validationSchema}
         >
 
@@ -90,10 +84,10 @@ const WIthdrawApplicationScreen = (props) => {
                 const remarkError = FormikProps.errors.remark
                 const remarkTouched = FormikProps.touched.remark
 
-                const populateBankInfo = (itemValue)=>{
+                const populateBankInfo = (itemValue) => {
                     setSelectedBank(itemValue)
-                    const bankDetail=bankList.find(b => b.bankLabel === itemValue)
-                    FormikProps.setFieldValue('bankDetail',bankDetail)
+                    const bankDetail = bankList.find(b => b.bankLabel === itemValue)
+                    FormikProps.setFieldValue('bankDetail', bankDetail)
                 }
 
                 return (
@@ -199,8 +193,8 @@ const WIthdrawApplicationScreen = (props) => {
                                      
                                     }  */}
                                     <View style={[styles.formElement]}>
-                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Amount</Text>
-                                        <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} onBlur={FormikProps.handleBlur('amount')} style={{ borderWidth: 1, borderColor: amountTouched && amountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={amountTouched && amountError ? '' : 'Eg: RM890.00'} placeholderTextColor={amountTouched && amountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
+                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Amount ({currency})</Text>
+                                        <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} onBlur={FormikProps.handleBlur('amount')} style={{ borderWidth: 1, borderColor: amountTouched && amountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={amountTouched && amountError ? '' : 'Eg: 890.00'} placeholderTextColor={amountTouched && amountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
                                         {amountTouched && amountError && <Text style={styles.error}>{amountError}</Text>}
                                     </View>
                                     <View style={[styles.formElement]}>

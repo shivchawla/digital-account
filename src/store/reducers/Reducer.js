@@ -528,11 +528,7 @@ const transferOutScreenReducer = (state = [], action) => {
         case 'SET_RECIPIENT_LIST':
             return { ...state, ...action.payload }
 
-        case 'SET_RECIPIENT':
-            return { ...state, ...action.payload }
 
-        case 'RESET_RECIPIENT':
-            return { memberFilter: true }
 
         default:
             return state

@@ -3,6 +3,7 @@ import { View, TouchableOpacity, Text, Image, FlatList, ScrollView, TouchableWit
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons';
+import moment from 'moment'
 import styles from '../styles/styles'
 
 const ReportScreen = (props) => {
@@ -13,7 +14,7 @@ const ReportScreen = (props) => {
 
     const dispatch = useDispatch()
     const { reportList, filterReportList, filterEnabled } = useSelector(state => state.reportReducer, shallowEqual)
-
+    const {currency} = useSelector(state => state.myAccountReducer, shallowEqual)
     return (
 
         <View style={{ flex: 1 }}>
@@ -48,7 +49,7 @@ const ReportScreen = (props) => {
                             <TouchableWithoutFeedback onPress={() => dispatch(actionCreator.setMarkerReportList(index))} style={{ flexDirection: 'row', marginTop: 5 }}>
                                 <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
                                     <Text style={[styles.boldText], { flex: 1 }}>{item.transaction_no}</Text>
-                                    <Text style={[styles.boldText], { flex: 1 }}>{item.type}</Text>
+                                    <Text style={[styles.boldText], { flex: 1 }}>{moment(item.updated_at).format('MMMM Do YYYY, h:mm:ss a')}</Text>
                                     <Ionicons name={item.marker ? "md-arrow-dropdown" : "md-arrow-dropright"} color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
                                 </View>
                             </TouchableWithoutFeedback>
@@ -57,18 +58,18 @@ const ReportScreen = (props) => {
                             {item.marker && <View style={{ flex: 1 }}>
                                 <View style={{ flexDirection: 'row', marginTop: 5 }}>
                                     <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                        <Text style={[styles.boldText]}>Type</Text>
+                                        <Text style={[styles.boldText]}>{item.type}</Text>
                                     </View>
                                     <View style={{ flex: 1 }}>
-                                        <Text style={[styles.text, { color: '#055E7C' }]}>{item.credit_debit}</Text>
+                                        <Text style={[styles.text, { color: '#055E7C' }]}>{item.credit_debit=='DEBIT'?'to':'from'} {item.from_to}</Text>
                                     </View>
                                 </View>
                                 <View style={{ flexDirection: 'row', marginTop: 5 }}>
                                     <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                        <Text style={[styles.boldText]}>Amount</Text>
+                                        <Text style={[styles.boldText]}>{item.credit_debit}</Text>
                                     </View>
                                     <View style={{ flex: 1 }}>
-                                        <Text style={[styles.text, { color: '#055E7C' }]}>{item.amount}</Text>
+                                        <Text style={[styles.text, { color: '#055E7C' }]}>{currency} {item.amount.toFixed(2)}</Text>
                                     </View>
                                 </View>
                             </View>

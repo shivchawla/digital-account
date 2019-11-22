@@ -384,6 +384,36 @@ export const itemDataRetrieveApi = (id) => {
 }
 
 
+export const getAllUsersApi = () => {
+  return async (dispatch, getState) => {
+
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    fetch(`${apiUrl}api/developer/merchants/account/all`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const userList = responseJson
+        //withdrawList.reverse()
+        console.log('Success all users list' + JSON.stringify(userList))
+        dispatch({ type: 'SET_RECIPIENT_LIST', payload: { userList } })
+
+      })
+      .catch((error) => {
+        console.log('Error initiating user list info : ' + error);
+      });
+
+  }
+}
+
+
 export const invoiceListApi = () => {
   return async (dispatch, getState) => {
 

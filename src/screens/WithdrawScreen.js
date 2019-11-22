@@ -13,7 +13,7 @@ const WithdrawScreen = (props) => {
     }, [withdrawList])
     const dispatch = useDispatch()
     const { withdrawList, filteredWithdrawList, filterEnabled } = useSelector(state => state.withdrawReducer, shallowEqual)
-
+    const {  currency } = useSelector(state => state.myAccountReducer, shallowEqual)
     return (
 
         <View style={{ flex: 1, }}>
@@ -61,16 +61,18 @@ const WithdrawScreen = (props) => {
                                     <View style={{ flex: 1 }}>
                                         <Text style={styles.text}>{item.type}</Text>
                                     </View>
-                                </View>
-                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                    <View style={{ flex: 1 }}>
-                                        <Text style={styles.small}>Status</Text>
-                                    </View>
-                                </View>
-                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
                                     <View style={{ flex: 1 }}>
                                         <Text style={[styles.text, { color: item.status === 'New' ? '#000000' : item.status === 'Rejected' ? '#FF0000' : item.status === 'Approved' ? '#54A400' : '#FA6400' }]}>{item.status}</Text>
                                     </View>
+                                </View>
+                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                    <View style={{ flex: 1 }}>
+                                        <Text style={styles.small}>Amount</Text>
+                                    </View>
+
+                                </View>
+                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                <Text style={styles.text}>{currency} {item.amount}</Text>
                                 </View>
                             </TouchableOpacity>
                         } />}

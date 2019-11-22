@@ -8,7 +8,7 @@ import s3 from '../../do/DigitalOcean'
 import config from '../../do/config'
 
 import { requestToken, requestPersonalToken, urlToBlob, registerApi, companyInfoAPI, contactPersonAPI, submitDocApi, declarationApi } from './apiRegistration'
-import { retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, agingListApi, reportListApi, businessDirectoryListApi, invoiceApi, newExpenseApi, supportApi, customerDataApi, itemDataApi, submitLoanApplicationApi, addBankApi, bankListApi, deleteAllBankApi, notificationListApi, loanApplicationDataApi, submitInvoiceApi, submitSupportApi, withDrawApi, withdrawListApi, vendorListApi, withdrawDataApi, vendorDataApi, vendorDataRetrieveApi, customerListApi, customerDataRetrieveApi, itemListApi, itemDataRetrieveApi, retrieveAccountInfoApi } from './apiDashboard'
+import { retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, agingListApi, reportListApi, businessDirectoryListApi, invoiceApi, newExpenseApi, supportApi, customerDataApi, itemDataApi, submitLoanApplicationApi, addBankApi, bankListApi, deleteAllBankApi, notificationListApi, loanApplicationDataApi, submitInvoiceApi, submitSupportApi, withDrawApi, withdrawListApi, vendorListApi, withdrawDataApi, vendorDataApi, vendorDataRetrieveApi, customerListApi, customerDataRetrieveApi, itemListApi, itemDataRetrieveApi, retrieveAccountInfoApi, getAllUsersApi } from './apiDashboard'
 //import {pusherListen} from './pusher'
 import moment from 'moment'
 
@@ -91,6 +91,7 @@ export const submitDoc1 = (values) => {
 export const submitLoanApplication = () => {
     return (dispatch, getState) => {
         dispatch(submitLoanApplicationApi())
+        dispatch(loanListApi())
     }
 }
 
@@ -103,12 +104,24 @@ export const submitNewSupport = (values) => {
 export const submitNewInvoice = () => {
     return (dispatch, getState) => {
         dispatch(submitInvoiceApi())
+        dispatch(invoiceListApi())
+
     }
 }
 
 export const submitNewExpense = (values) => {
     return (dispatch, getState) => {
         dispatch(newExpenseApi(values))
+        dispatch(retrieveAccountInfoApi())
+        dispatch(reportListApi())
+
+    }
+}
+
+
+export const getAllUsers = () => {
+    return (dispatch, getState) => {
+        dispatch(getAllUsersApi())
     }
 }
 
@@ -123,6 +136,8 @@ export const submitNewExpense = (values) => {
 export const withDraw = (values) => {
     return (dispatch, getState) => {
         dispatch(withDrawApi(values))
+        dispatch(retrieveAccountInfoApi())
+        dispatch(withdrawListApi())
     }
 }
 
@@ -230,6 +245,7 @@ export const getItemData = (id) => {
 
     }
 }
+
 
 export const declaration = (values) => {
     return (dispatch, getState) => {
