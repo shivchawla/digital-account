@@ -358,6 +358,8 @@ const withdrawReducer = (state = [], action) => {
             return { ...state, ...action.payload }
         case 'SET_WITHDRAWAL_DATA':
             return { ...state, ...action.payload }
+        case 'SET_NEW_WITHDRAWAL':
+            return { ...state, ...action.payload }
         default:
             return state
     }

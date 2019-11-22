@@ -165,6 +165,7 @@ export const vendorListApi = () => {
     }).then((response) => response.json())
       .then(async (responseJson) => {
         const vendorList = responseJson.data
+        vendorList.reverse()
         console.log('Success vendor list' + JSON.stringify(responseJson))
         dispatch({ type: 'SET_VENDOR_LIST', payload: { vendorList } })
 
@@ -258,7 +259,7 @@ export const withDrawApi = (values) => {
     }).then((response) => response.json())
       .then(async (responseJson) => {
         const { status } = await responseJson
-        //await dispatch({ type: 'SET_LOAN_APPLICATION', payload: { status, proceedMain: true } })
+        await dispatch({ type: 'SET_NEW_WITHDRAWAL', payload: { status, proceedMain: true } })
         await console.log(`withdrawal api  ${JSON.stringify(responseJson)}`)
       })
       .catch((error) => {
@@ -285,6 +286,7 @@ export const customerListApi = () => {
     }).then((response) => response.json())
       .then(async (responseJson) => {
         const customerList = responseJson.data
+        customerList.reverse()
         console.log('Success customer list' + JSON.stringify(responseJson))
         dispatch({ type: 'SET_CUSTOMER_LIST', payload: { customerList } })
 
@@ -341,6 +343,7 @@ export const itemListApi = () => {
     }).then((response) => response.json())
       .then(async (responseJson) => {
         const itemList = responseJson.data
+        itemList.reverse()
         console.log('Success item list' + JSON.stringify(responseJson))
         dispatch({ type: 'SET_ITEM_LIST', payload: { itemList } })
 
@@ -464,6 +467,7 @@ export const reportListApi = () => {
       .then(async (responseJson) => {
         const { data } = responseJson.data
         const reportList = data
+        reportList.reverse()
         console.log('Success report list' + JSON.stringify(responseJson))
         dispatch({ type: 'SET_REPORT_LIST', payload: { reportList } })
 
@@ -500,6 +504,7 @@ export const businessDirectoryListApi = () => {
     }).then((response) => response.json())
       .then(async (responseJson) => {
         const businessDirectoryList = responseJson.data
+        businessDirectoryList.reverse()
         console.log('Success' + JSON.stringify(responseJson))
         dispatch({ type: 'SET_BUSINESS_DIRECTORY_LIST', payload: { businessDirectoryList } })
 
@@ -736,9 +741,9 @@ export const bankListApi = () => {
     console.log(`bank list masuk api`)
     //const personalToken = await AsyncStorage.getItem('personalToken');
     const personalToken = await SecureStore.getItemAsync('personalToken')
-
     const bankListStored = await AsyncStorage.getItem('bankListStored');
     const bankList = bankListStored && JSON.parse(bankListStored)
+    bankList.reverse()
     //bankListStored && bankList.push(JSON.parse(bankListStored))
     //bankList.push(values)
     dispatch({ type: 'SET_BANK_LIST', payload: { bankList } })
