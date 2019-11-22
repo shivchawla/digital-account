@@ -66,6 +66,7 @@ export const loanListApi = () => {
     }).then((response) => response.json())
       .then(async (responseJson) => {
         const loanList = responseJson.data
+        loanList.reverse()
         console.log('Success loan list' + JSON.stringify(responseJson))
         dispatch({ type: 'SET_LOAN_LIST', payload: { loanList } })
 
@@ -380,6 +381,36 @@ export const itemDataRetrieveApi = (id) => {
 }
 
 
+export const getAllUsersApi = () => {
+  return async (dispatch, getState) => {
+
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    fetch(`${apiUrl}api/developer/merchants/account/all`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const userList = responseJson
+        //withdrawList.reverse()
+        console.log('Success all users list' + JSON.stringify(userList))
+        dispatch({ type: 'SET_RECIPIENT_LIST', payload: { userList } })
+
+      })
+      .catch((error) => {
+        console.log('Error initiating user list info : ' + error);
+      });
+
+  }
+}
+
+
 export const invoiceListApi = () => {
   return async (dispatch, getState) => {
 
@@ -397,6 +428,7 @@ export const invoiceListApi = () => {
     }).then((response) => response.json())
       .then(async (responseJson) => {
         const invoiceList = responseJson.data
+        invoiceList.reverse()
         console.log('Success invoice list' + JSON.stringify(responseJson))
         dispatch({ type: 'SET_INVOICE_LIST', payload: { invoiceList } })
 
@@ -1006,7 +1038,7 @@ export const submitInvoiceApi = () => {
     }
 
     var strItems = []
-        items.map((c, i) => {
+    items.map((c, i) => {
       strItems += `&invoice_item[${i}]=${c.invoice_item}`
       strItems += `&item[${i}]=${c.item}`
       strItems += `&quantity[${i}]=${c.quantity}`
@@ -1014,7 +1046,7 @@ export const submitInvoiceApi = () => {
       strItems += `&priceItem[${i}]=${c.priceItem}`
     })
 
-    const strTest = "access_credential=api&"+strNewInvoice + "&" + strItems
+    const strTest = "access_credential=api&" + strNewInvoice + "&" + strItems
     //const strTest = 'dueDate=2020-4-11&invoiceNumber=Ddfg&amount=123&category=3&invoiceType=1&invoiceDate=2020-4-11&entityName=Sy&entityEmail=syahrizan.ali@gmail.com&entityPhone=123456789&entityAddress=Ssd&access_credential=api&entityId=14&currency=MYR&invoice_item[0]=Dd&item[0]=88&quantity[0]=13&currencyItem[0]=MYR&priceItem[0]=12'
 
     // const strNewInvoiceAndItems = strNewInvoice + strItems + ', "access_credential":"api"}'

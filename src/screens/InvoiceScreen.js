@@ -3,6 +3,7 @@ import { View, TouchableOpacity, TouchableWithoutFeedback, Text, Image, FlatList
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons';
+import moment from 'moment'
 import styles from '../styles/styles'
 
 const InvoiceScreen = (props) => {
@@ -54,12 +55,12 @@ const InvoiceScreen = (props) => {
                             <View style={styles.box}>
                                 <TouchableWithoutFeedback onPress={() => dispatch(actionCreator.setMarker(index))} style={{ flexDirection: 'row', marginTop: 5 }}>
                                     <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
-                                        <Text style={styles.small}>Invoice No</Text>
+                                        <Text style={styles.small}>{moment(item.invoice_date).format('MMMM Do YYYY')}</Text>
                                         <Ionicons name={item.marker ? "md-arrow-dropdown" : "md-arrow-dropright"} color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
                                     </View>
                                 </TouchableWithoutFeedback>
                                 <View style={{ flexDirection: 'row', marginTop: 5, borderBottomWidth: item.marker ? 1 : 0, borderBottomColor: 'lightgrey', }}>
-                                    <View style={{ flex: 1 }}>
+                                    <View style={{ flex: 1,paddingBottom:5 }}>
                                         <Text style={styles.text}>{item.invoice_number}</Text>
                                     </View>
                                 </View>
@@ -69,10 +70,7 @@ const InvoiceScreen = (props) => {
                                             <Text style={styles.small}>Name</Text>
                                             <Text style={styles.text}>{item.customer_name}</Text>
                                         </View>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={styles.small}>Date</Text>
-                                            <Text style={styles.text}>{item.invoice_date}</Text>
-                                        </View>
+                                  
                                     </View>
                                     <View style={{ flexDirection: 'row', marginTop: 20 }}>
                                         <View style={{ flex: 1 }}>
