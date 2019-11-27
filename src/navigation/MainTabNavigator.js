@@ -261,6 +261,9 @@ const DashboardStackWithModal = createStackNavigator(
     },
     EmailSuccess: {
       screen: ChangeEmailSuccessScreen,
+    },
+    Logout: {
+      screen: LogOutScreen,
     }
 
   },

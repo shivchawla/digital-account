@@ -19,9 +19,9 @@ const SettingsScreen = (props) => {
     const { test_notification } = useSelector(state => state.notificationScreenReducer, shallowEqual)
 
     const dispatch = useDispatch()
-    const logout = () => {
-        dispatch(actionCreator.logout())
-        props.navigation.navigate('Welcome')
+    const logout = async () => {
+       //await dispatch(actionCreator.logout())
+       //await props.navigation.navigate('Logout')
     }
 
     return (

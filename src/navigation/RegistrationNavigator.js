@@ -14,6 +14,7 @@ import DocumentCameraScreen from '../screens/DocumentCameraScreen';
 import DocumentUploadScreen from '../screens/DocumentUploadScreen';
 import CompanyDocumentSuccessScreen from '../screens/CompanyDocumentSuccessScreen';
 import RegistrationDeclarationScreen from '../screens/RegistrationDeclarationScreen';
+import AdminApprovalScreen from '../screens/AdminApprovalScreen';
 
 const Registration = createStackNavigator({
   Intro: IntroScreen,
@@ -27,7 +28,8 @@ const Registration = createStackNavigator({
   ContactPersonSuccess: ContactPersonSuccessScreen,
   CompanyDocument: CompanyDocumentScreen,
   CompanyDocumentSuccess: CompanyDocumentSuccessScreen,
-  RegistrationDeclaration: RegistrationDeclarationScreen
+  RegistrationDeclaration: RegistrationDeclarationScreen,
+  AdminApproval:AdminApprovalScreen
 });
 
 const RegistrationStack = createStackNavigator(

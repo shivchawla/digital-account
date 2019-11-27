@@ -7,7 +7,7 @@ Amplify.configure(aws_exports);///
 import s3 from '../../do/DigitalOcean'
 import config from '../../do/config'
 
-import { requestToken, requestPersonalToken, urlToBlob, registerApi, companyInfoAPI, contactPersonAPI, submitDocApi, declarationApi } from './apiRegistration'
+import { requestToken, requestPersonalToken, urlToBlob, registerApi, companyInfoAPI, contactPersonAPI, submitDocApi, declarationApi,cddApi } from './apiRegistration'
 import { retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, agingListApi, reportListApi, businessDirectoryListApi, invoiceApi, newExpenseApi, supportApi, customerDataApi, itemDataApi, submitLoanApplicationApi, addBankApi, bankListApi, deleteAllBankApi, notificationListApi, loanApplicationDataApi, submitInvoiceApi, submitSupportApi, withDrawApi, withdrawListApi, vendorListApi, withdrawDataApi, vendorDataApi, vendorDataRetrieveApi, customerListApi, customerDataRetrieveApi, itemListApi, itemDataRetrieveApi, retrieveAccountInfoApi, getAllUsersApi } from './apiDashboard'
 //import {pusherListen} from './pusher'
 import moment from 'moment'
@@ -248,8 +248,9 @@ export const getItemData = (id) => {
 
 
 export const declaration = (values) => {
-    return (dispatch, getState) => {
-        dispatch(declarationApi(values))
+    return async (dispatch, getState) => {
+        await dispatch(declarationApi(values))
+        await dispatch(cddApi())
     }
 }
 
@@ -303,17 +304,17 @@ export const logout = () => {
         //await AsyncStorage.removeItem('personalToken')
         console.log(`nak delete`)
         await SecureStore.deleteItemAsync('personalToken').then(console.log(`delete berjaya`)).catch(error => console.log(`tak berjaya : ${error}`))
-        await SecureStore.deleteItemAsync('lmsPersonalToken').then(console.log(`delete berjaya`)).catch(error => console.log(`tak berjaya : ${error}`))
+        //await SecureStore.deleteItemAsync('lmsPersonalToken').then(console.log(`delete berjaya`)).catch(error => console.log(`tak berjaya : ${error}`))
 
-        dispatch({ type: 'REGISTRATION_RESET' })
-        dispatch({ type: 'LOGIN_RESET' })
-        dispatch({ type: 'COMPANY_INFO_RESET' })
-        dispatch({ type: 'USER_PROFILE_RESET' })
-        dispatch({ type: 'BIZ_INFO_RESET' })
-        dispatch({ type: 'MERCHANT_RESET' })
+        await dispatch({ type: 'REGISTRATION_RESET' })
+        await dispatch({ type: 'LOGIN_RESET' })
+        await dispatch({ type: 'COMPANY_INFO_RESET' })
+        await dispatch({ type: 'USER_PROFILE_RESET' })
+        await dispatch({ type: 'BIZ_INFO_RESET' })
+        await dispatch({ type: 'MERCHANT_RESET' })
 
         //dispatch({ type: 'ROOT_LOG_OUT' })
-        //dispatch({ type: 'SET_LOGIN', payload: { proceed: false } })
+        dispatch({ type: 'SET_LOGIN', payload: { proceed: false } })
     }
 }
 

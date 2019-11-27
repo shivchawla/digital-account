@@ -35,11 +35,11 @@ const App = (props) => {
       //const personalToken = await AsyncStorage.getItem('personalToken');
       const personalToken = await SecureStore.getItemAsync('personalToken')
       if (personalToken !== null && !personalToken.includes('error')) {
-        //console.log(`personal token ialah : ${personalToken}`)
+        console.log(`personal token ialah : ${personalToken}`)
         setTokenExists(true)
       }
     } catch (error) {
-      //console.log(`personalToken error ${error}`)
+      console.log(`personalToken yang aneh error ${JSON.stringify(error)}`)
       return 'takde'
     }
   }
