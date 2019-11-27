@@ -59,7 +59,7 @@ const ChangeNumberScreen = (props) => {
                                 </View>
                                 <View style={[styles.formElement]}>
                                     <Text style={[styles.titleBox, { marginBottom: 5 }]}>Password</Text>
-                                    <TextInput value={password} onChangeText={FormikProps.handleChange('password')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={'******'} />/>
+                                    <TextInput value={password} onChangeText={FormikProps.handleChange('password')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={'******'} />
                                 </View>
                             </View>
                         </View>

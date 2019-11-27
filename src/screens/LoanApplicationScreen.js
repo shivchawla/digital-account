@@ -108,7 +108,6 @@ const LoanApplicationScreen = (props) => {
                                     <View style={{ marginBottom: 10 }}>
                                         <Text style={[styles.text, { marginBottom: 5 }]}>Is company connected with SME Bank?</Text>
                                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-
                                             {(Platform.OS == 'ios') ?
                                                 <CheckBox2 onClick={() => handleCheckBox()} isChecked={smeConnected} style={{ paddingRight: 10 }} />
                                                 :

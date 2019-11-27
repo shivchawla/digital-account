@@ -77,6 +77,7 @@ import ChangeEmailSuccessScreen from '../screens/ChangeEmailSuccessScreen';
 import NewInvoiceItemsScreen from '../screens/NewInvoiceItemsScreen';
 import CustomerDrawer from './CustomerDrawer';
 import NewInvoiceReviewScreen from '../screens/NewInvoiceReviewScreen';
+import RepaymentInfo from '../screens/RepaymentInfo';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -262,10 +263,24 @@ const DashboardStackWithModal = createStackNavigator(
     EmailSuccess: {
       screen: ChangeEmailSuccessScreen,
     },
-    Logout: {
-      screen: LogOutScreen,
-    }
-
+    ChangePassword: {
+      screen: ChangePasswordScreen,
+    },
+    ChangeEmail: {
+      screen: ChangeEmailScreen,
+    },
+    ChangeNumber: {
+      screen: ChangeNumberScreen,
+    },
+    NotiScreen: {
+      screen: NotiSettingScreen,
+    },
+    Support: {
+      screen: SupportScreen,
+    },
+    RepayInfo: {
+      screen: RepaymentInfo,
+    },
   },
   {
     mode: 'modal',
@@ -345,21 +360,21 @@ const SettingsStackWithModal = createStackNavigator(
     Settings: {
       screen: SettingsStacks,
     },
-    ChangePassword: {
-      screen: ChangePasswordScreen,
-    },
-    ChangeEmail: {
-      screen: ChangeEmailScreen,
-    },
-    ChangeNumber: {
-      screen: ChangeNumberScreen,
-    },
-    NotiScreen: {
-      screen: NotiSettingScreen,
-    },
-    Support: {
-      screen: SupportScreen,
-    },
+    // ChangePassword: {
+    //   screen: ChangePasswordScreen,
+    // },
+    // ChangeEmail: {
+    //   screen: ChangeEmailScreen,
+    // },
+    // ChangeNumber: {
+    //   screen: ChangeNumberScreen,
+    // },
+    // NotiScreen: {
+    //   screen: NotiSettingScreen,
+    // },
+    // Support: {
+    //   screen: SupportScreen,
+    // },
   },
   {
     mode: 'modal',

@@ -13,9 +13,9 @@ const LoanMiniDetailScreen = (props) => {
 
     useEffect(() => {
         const id = props.navigation.getParam('id', 'NO-ID')
-
         dispatch(actionCreator.getLoanData(id))
     }, [loanData])
+
     const dispatch = useDispatch()
 
     const { loanData } = useSelector(state => state.loanApplicationReducer, shallowEqual)
@@ -30,7 +30,7 @@ const LoanMiniDetailScreen = (props) => {
                     </TouchableOpacity>
                 </View>
                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={styles.title}>Loan Detail</Text>
+                    <Text style={styles.title}>LOAN DETAIL</Text>
                 </View>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
                     <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
@@ -42,15 +42,15 @@ const LoanMiniDetailScreen = (props) => {
                         {loanData && <View style={[styles.box, { marginTop: 20 }]}>
                             <View style={{ marginTop: 5, borderBottomWidth: 1, borderBottomColor: 'lightgrey', paddingBottom: 20 }}>
                                 <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
-                                    <Text style={styles.boldText}>Customer Id</Text>
+                                    <Text style={styles.boldText}>Application ID</Text>
                                     <Ionicons name="md-arrow-dropdown" color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
                                 </View>
-                                <Text style={styles.text}>{loanData.merchant_id}</Text>
+                                <Text style={styles.text}>{loanData.application_id}</Text>
                             </View>
                             <View style={{ flexDirection: 'row', marginTop: 20 }}>
                                 <View style={{ flex: 1 }}>
                                     <Text style={styles.boldText}>Status</Text>
-                                    <Text style={styles.text}>{loanData.status}</Text>
+                                    <Text style={[styles.text, { color: loanData.status === 'New' ? '#000000' : loanData.status === 'Rejected' ? '#FF0000' : loanData.status === 'Approved' ? '#54A400' : '#FA6400' }]}>{loanData.status}</Text>
                                 </View>
                                 <View style={{ flex: 1 }}>
                                     <Text style={styles.boldText}>Amount</Text>
@@ -73,7 +73,7 @@ const LoanMiniDetailScreen = (props) => {
                                         <TouchableOpacity onPress={() => props.navigation.navigate('LoanDetail')} style={{ marginTop: 10, paddingLeft: 20, paddingRight: 20, paddingTop: 5, paddingBottom: 5, borderRadius: 20, borderWidth: 1 }}>
                                             <Text style={styles.small}>See application</Text>
                                         </TouchableOpacity>
-                                        <TouchableOpacity style={{ marginTop: 10, paddingLeft: 20, paddingRight: 20, paddingTop: 5, paddingBottom: 5, borderRadius: 20, borderWidth: 1 }}>
+                                        <TouchableOpacity onPress={() => props.navigation.navigate('RepayInfo')}style={{ marginTop: 10, paddingLeft: 20, paddingRight: 20, paddingTop: 5, paddingBottom: 5, borderRadius: 20, borderWidth: 1 }}>
                                             <Text style={styles.small}>Repayment info</Text>
                                         </TouchableOpacity>
                                         <TouchableOpacity style={{ marginTop: 10, paddingLeft: 20, paddingRight: 20, paddingTop: 5, paddingBottom: 5, borderRadius: 20, backgroundColor: '#34C2DB' }}>

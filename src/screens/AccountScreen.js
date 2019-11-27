@@ -4,10 +4,12 @@ import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles/styles'
 
-
 const AccountScreen = (props) => {
+
     const { business_name, business_reg_no, contact_no, support_email, business_address, business_postcode, status } = useSelector(state => state.merchantInfoReducer, shallowEqual)
+
     const { balance, currency, account_no, type } = useSelector(state => state.myAccountReducer, shallowEqual)
+
     return (
 
         <View style={{ flex: 1 }}>
@@ -76,7 +78,9 @@ const AccountScreen = (props) => {
                 </ScrollView>
             </View>
         </View >
+
     );
+
 }
 
 AccountScreen.navigationOptions = {
