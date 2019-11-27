@@ -23,7 +23,7 @@ const CompanyDocumentScreen = (props) => {
         <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }}>
             <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4', }]}>
                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center', alignItems: 'flex-start', padding: 10 }}>
-                    <Text numberOfLines={1} style={styles.title} ellipsizeMode='tail'>Company Documents</Text>
+                    <Text numberOfLines={1} style={styles.title} ellipsizeMode='tail'>COMPANY DOCUMENT</Text>
                 </View>
                 <View style={{ flex: 1, justifyContent: 'center', marginRight: 3, alignItems: 'flex-end' }}>
                     <Image source={require('../assets/images/logosmall.png')} style={{ width: 50, height: 50, borderRadius: 15 }} />

@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Image, Text, TouchableOpacity, View, } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Image, Text, TouchableOpacity, View, Switch } from 'react-native';
 import Constants from 'expo-constants'
 import Layout from '../constants/Layout'
 import styles from '../styles/styles'
@@ -15,6 +15,22 @@ const SignupPersonalSuccessScreen = (props) => {
 
     const { emailVerified } = useSelector(state => state.notificationScreenReducer, shallowEqual)
 
+    const [emailInitial, setEmailInitial] = useState(emailVerified)
+
+    // const toggleEmail = () => {
+    //     //onValueChange of the switch this function will be called
+    //     // console.log(JSON.stringify(emailVerified))
+    //     // setEmailInitial(emailVerified)
+    //     //state changes according to switch
+    //     //which will result in re-render the text
+    //     dispatch({ type: 'RESET_EMAIL_VERIFIED', payload: { emailVerified: null } })
+    // }
+
+    const clearEmail = () => {
+        dispatch({ type: 'RESET_EMAIL_VERIFIED', payload: { emailVerified: null } })
+        console.log(`emailVerified : ${emailVerified}`)
+        props.navigation.navigate('CompanyInformation')
+    };
     return (
 
         <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
@@ -33,7 +49,7 @@ const SignupPersonalSuccessScreen = (props) => {
                                 <TouchableOpacity onPress={() => props.navigation.navigate('Dashboard')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, borderColor: 'black', borderWidth: 1 }}>
                                     <Text style={[styles.textDefault]}>Skip</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={() => props.navigation.navigate('CompanyInformation')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }}>
+                                <TouchableOpacity onPress={() => clearEmail()} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }}>
                                     <Text style={[styles.textDefault, { color: 'white' }]}>Merchant</Text>
                                 </TouchableOpacity>
                             </View>
@@ -47,7 +63,7 @@ const SignupPersonalSuccessScreen = (props) => {
                                     <TouchableOpacity onPress={() => props.navigation.navigate('Dashboard')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, borderColor: 'black', borderWidth: 1 }}>
                                         <Text style={[styles.textDefault]}>Skip</Text>
                                     </TouchableOpacity>
-                                    <TouchableOpacity disabled={!emailVerified} onPress={() => props.navigation.navigate('CompanyInformation')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: emailVerified ? '#09A4BF' : 'rgba(9,164,191,0.5)' }}>
+                                    <TouchableOpacity disabled={!emailVerified} onPress={() => clearEmail()} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: emailVerified ? '#09A4BF' : 'rgba(9,164,191,0.5)' }}>
                                         <Text style={[styles.textDefault, { color: 'white' }]}>Merchant</Text>
                                     </TouchableOpacity>
                                 </View>
@@ -55,10 +71,17 @@ const SignupPersonalSuccessScreen = (props) => {
                     </View>
                 </View>
             </View>
+            {/* <View style={{ flexDirection: 'row', marginTop: 30 }}>
+                <Text style={[styles.text], { padding: 5 }}>Email Verified</Text>
+            </View>
+            <Text>{JSON.stringify(emailVerified)}</Text>
+            <TouchableOpacity onPress={() => toggleEmail()}><Text>Tekan</Text></TouchableOpacity> */}
         </View>
     )
 }
 
-SignupPersonalSuccessScreen.navigationOptions = { header: null, };
+SignupPersonalSuccessScreen.navigationOptions = {
+    header: null,
+};
 
 export default SignupPersonalSuccessScreen

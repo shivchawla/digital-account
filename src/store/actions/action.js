@@ -647,8 +647,8 @@ export const filterInvoicesList = (values) => {
         console.log(`filter invoice list action`)
         console.log(`filter invoice list action : ${JSON.stringify(values)}`)
         const { invoiceList } = getState().invoiceReducer
-        const { currency_code, customer_name } = values
-        const filterParam = (currency_code && customer_name) ? { currency_code, customer_name } : currency_code ? { currency_code } : customer_name ? { customer_name } : null
+        const { currency_code, status } = values
+        const filterParam = (currency_code && status) ? { currency_code, status } : currency_code ? { currency_code } : status ? { status } : null
         const newInvoicesList = _.filter(invoiceList, _.matches(filterParam));
         console.log(`new invoice List : ${JSON.stringify(newInvoicesList)}`)
         dispatch({ type: 'SET_INVOICE_LIST', payload: { filterInvoicesList: newInvoicesList, filterEnabled: true } })
@@ -661,7 +661,7 @@ export const filterReportList = (values) => {
         console.log(`filter report list action : ${JSON.stringify(values)}`)
         const { reportList } = getState().reportReducer
         const { currency, type, credit_debit } = values
-        const filterParam = (currency && type && credit_debit) ? { currency, type, credit_debit } : currency ? { currency } : type ? { type } : credit_debit ? { credit_debit } : null
+        const filterParam = (type && credit_debit) ? { type, credit_debit } : type ? { type } : credit_debit ? { credit_debit } : null
         const newReportList = _.filter(reportList, _.matches(filterParam));
         console.log(`new report List : ${JSON.stringify(newReportList)}`)
         dispatch({ type: 'SET_REPORT_LIST', payload: { filterReportList: newReportList, filterEnabled: true } })

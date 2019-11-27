@@ -13,11 +13,11 @@ const FilterBarInvoice = (props) => {
     }
 
     const [currency_code, setCurrencyCode] = useState(null)
-    const [customer_name, setCustomerName] = useState(null)
+    const [status, setStatus] = useState(null)
 
     const filterInvoicesList = async () => {
-        console.log(`currency_code : ${currency_code} and customer_name : ${customer_name}`)
-        const values = { currency_code, customer_name }
+        console.log(`currency_code : ${currency_code} and status : ${status}`)
+        const values = { currency_code, status }
         await dispatch(actionCreator.filterInvoicesList(values))
     }
 
@@ -32,16 +32,18 @@ const FilterBarInvoice = (props) => {
                         <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
                             <Picker style={{ height: 35 }} selectedValue={currency_code} onValueChange={(val) => setCurrencyCode(val)} >
                                 <Picker.Item label={'Please Select'} value={undefined} />
-                                <Picker.Item label={'MYR'} value={'myr'} />
+                                <Picker.Item label={'MYR'} value={'MYR'} />
                             </Picker>
                         </View>
                     </View>
                     <View style={{ marginBottom: 10 }}>
-                        <Text style={[styles.h3, { marginBottom: 5 }]}>Name</Text>
+                        <Text style={[styles.h3, { marginBottom: 5 }]}>Status</Text>
                         <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
-                            <Picker style={{ height: 35 }} selectedValue={customer_name} onValueChange={(val) => setCustomerName(val)} >
+                            <Picker style={{ height: 35 }} selectedValue={status} onValueChange={(val) => setStatus(val)} >
                                 <Picker.Item label={'Please Select'} value={undefined} />
-                                <Picker.Item label={'Adiyaaa Aloyaa'} value={'aa'} />
+                                <Picker.Item label={'Draft'} value={'Draft'} />
+                                <Picker.Item label={'Paid'} value={'Paid'} />
+                                <Picker.Item label={'Sent'} value={'sent'} />
                             </Picker>
                         </View>
                     </View>

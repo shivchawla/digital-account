@@ -17,7 +17,7 @@ const FilterBarCustomer = (props) => {
 
     const filterCustomerList = async () => {
         console.log(`currency : ${currency}and email : ${email}`)
-        const values = { currency }
+        const values = { currency, email }
         //await  dispatch(actionCreator.getLoanList())
         await dispatch(actionCreator.filterCustomerList(values))
     }

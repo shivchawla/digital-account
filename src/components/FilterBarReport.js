@@ -30,22 +30,12 @@ const FilterBarReport = (props) => {
             <View style={{ padding: 10, flex: 1, justifyContent: 'space-evenly' }}>
                 <View style={{ flex: 9, margin: 10 }}>
                     <View style={{ alignSelf: 'stretch', marginBottom: 10 }}>
-                        <Text style={[styles.h3, { marginBottom: 5 }]}>Currency</Text>
-                        <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
-                            <Picker style={{ height: 35 }} selectedValue={currency} onValueChange={(val) => setCurrency(val)} >
-                                <Picker.Item label={'Please Select'} value={undefined} />
-                                <Picker.Item label={'MYR'} value={'MYR'} />
-                                <Picker.Item label={'IDR'} value={'IDR'} />
-                            </Picker>
-                        </View>
-                    </View>
-                    <View style={{ alignSelf: 'stretch', marginBottom: 10 }}>
                         <Text style={[styles.h3, { marginBottom: 5 }]}>Transaction Type</Text>
                         <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
                             <Picker style={{ height: 35 }} selectedValue={type} onValueChange={(val) => setType(val)} >
                                 <Picker.Item label={'Please Select'} value={undefined} />
-                                <Picker.Item label={'Loan Payment'} value={'Loan Payment'} />
-                                <Picker.Item label={'Disbursement Transfer'} value={'Disbursement Transfer'} />
+                                <Picker.Item label={'Account Transfer'} value={'Account Transfer'} />
+                                <Picker.Item label={'Fee Account Transfer'} value={'Fee Account Transfer'} />
                             </Picker>
                         </View>
                     </View>

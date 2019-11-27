@@ -369,7 +369,8 @@ const vendorReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_VENDOR_LIST':
             return { ...state, ...action.payload }
-
+        case 'SET_VENDOR_SUBMIT':
+            return { ...state, ...action.payload }
         default:
             return state
     }
@@ -476,7 +477,8 @@ const notificationScreenReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_NOTIFICATION_LIST':
             return { ...state, ...action.payload }
-
+        case 'RESET_EMAIL_VERIFIED':
+            return { ...state, ...action.payload }
         default:
             return state
     }

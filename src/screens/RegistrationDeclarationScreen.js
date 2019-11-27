@@ -44,7 +44,7 @@ const RegistrationDeclarationScreen = (props) => {
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }}>
                         <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4', marginBottom: 25 }]}>
                             <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center', alignItems: 'flex-start', padding: 10 }}>
-                                <Text numberOfLines={1} style={styles.title} ellipsizeMode='tail'>Declaration</Text>
+                                <Text numberOfLines={1} style={styles.title} ellipsizeMode='tail'>DECLARATION</Text>
                             </View>
                             <View style={{ flex: 1, justifyContent: 'center', marginRight: 3, alignItems: 'flex-end' }}>
                                 <Image source={require('../assets/images/logosmall.png')} style={{ width: 50, height: 50, borderRadius: 15 }} />
