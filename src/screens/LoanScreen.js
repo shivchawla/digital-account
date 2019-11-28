@@ -5,14 +5,16 @@ import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons';
 import moment from 'moment'
 import styles from '../styles/styles'
-
+import _ from  'lodash'
 const LoanScreen = (props) => {
     useEffect(() => {
         dispatch(actionCreator.getLoanList())
-    }, [loanList])
+        dispatch(actionCreator.getRepaymentList())
+    }, [loanList, repaymentList])
     const dispatch = useDispatch()
-    const { loanList, filteredLoanList, filterEnabled } = useSelector(state => state.loanReducer, shallowEqual)
-
+     const { repaymentList, loanList, filteredLoanList, filterEnabled } = useSelector(state => state.loanReducer, shallowEqual)
+    // const mergedLoanList = (loanList && repaymentList) ? _.merge(loanList, repaymentList) : 'none'
+    // mergedLoanList && console.log(`inilah merged : ${JSON.stringify(mergedLoanList)}`)
     return (
 
         <View style={{ flex: 1, }}>

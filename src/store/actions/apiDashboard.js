@@ -78,6 +78,64 @@ export const loanListApi = () => {
   }
 }
 
+export const repaymentListApi = () => {
+  return async (dispatch, getState) => {
+
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    fetch(`${apiUrl}api/repaymentinfo/list`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const repaymentList = responseJson.data
+        repaymentList.reverse()
+        console.log('Success repayment list' + JSON.stringify(responseJson))
+        dispatch({ type: 'SET_LOAN_LIST', payload: { repaymentList } })
+
+      })
+      .catch((error) => {
+        console.log('Error initiating loan list info : ' + error);
+      });
+
+  }
+}
+
+
+export const repaymentDetailApi = (id) => {
+  return async (dispatch, getState) => {
+
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+    //repaymentinfo/details/?id=24
+    fetch(`${apiUrl}api/repaymentinfo/details?id=${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const repaymentDetail = responseJson.data
+        console.log('Success withdraw data' + JSON.stringify(responseJson))
+        dispatch({ type: 'SET_LOAN_LIST', payload: { repaymentDetail } })
+
+      })
+      .catch((error) => {
+        console.log('Error initiating withdraw data info : ' + error);
+      });
+
+  }
+}
+
 export const agingListApi = () => {
   return async (dispatch, getState) => {
     const agingList = [{ ref: 112009, date: '12/3/2019', type: 'Item', currency: 'IDR' },
