@@ -7,13 +7,12 @@ import styles from '../styles/styles'
 
 const DataSettingScreen = (props) => {
     const dispatch = useDispatch()
-    const logout = () => {
-        dispatch(actionCreator.logout())
-        props.navigation.navigate('Welcome')
+    const logout = async () => {
+        await dispatch(actionCreator.logout())
+        await props.navigation.navigate('Welcome')
     }
 
     return (
-
         <View style={{ flex: 1 }}>
             <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>

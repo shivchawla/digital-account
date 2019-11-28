@@ -11,6 +11,7 @@ const NewInvoiceReviewScreen = (props) => {
 
     const submitInvoice = () => {
         dispatch(actionCreator.submitNewInvoice())
+     
         props.navigation.navigate('InvoiceSuccess')
     }
 

@@ -56,7 +56,7 @@ const NewInvoiceItemsScreen = (props) => {
             {FormikProps => {
 
                 const { invoice_item, item, quantity, currencyItem, priceItem } = FormikProps.values
-                
+
                 const invoice_itemError = FormikProps.errors.invoice_item
                 const invoice_itemTouched = FormikProps.touched.invoice_item
 
@@ -164,8 +164,8 @@ const NewInvoiceItemsScreen = (props) => {
                                         <Text style={[styles.butang, { color: '#000000', padding: 10 }]}>Back</Text>
                                     </LinearGradient>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={() => props.navigation.navigate('NewInvoiceReview')} style={{ flex: 1 }}>
-                                    <LinearGradient colors={newInvoice ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
+                                <TouchableOpacity disabled={!items} onPress={() => props.navigation.navigate('NewInvoiceReview')} style={{ flex: 1 }}>
+                                    <LinearGradient colors={items ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                         <Text style={[styles.butang, { color: '#fff', padding: 10 }]}>Review</Text>
                                     </LinearGradient>
                                 </TouchableOpacity>

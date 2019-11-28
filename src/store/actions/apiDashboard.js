@@ -78,6 +78,64 @@ export const loanListApi = () => {
   }
 }
 
+export const repaymentListApi = () => {
+  return async (dispatch, getState) => {
+
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    fetch(`${apiUrl}api/repaymentinfo/list`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const repaymentList = responseJson.data
+        repaymentList.reverse()
+        console.log('Success repayment list' + JSON.stringify(responseJson))
+        dispatch({ type: 'SET_LOAN_LIST', payload: { repaymentList } })
+
+      })
+      .catch((error) => {
+        console.log('Error initiating loan list info : ' + error);
+      });
+
+  }
+}
+
+
+export const repaymentDetailApi = (id) => {
+  return async (dispatch, getState) => {
+
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+    //repaymentinfo/details/?id=24
+    fetch(`${apiUrl}api/repaymentinfo/details?id=${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const repaymentDetail = responseJson.data
+        console.log('Success withdraw data' + JSON.stringify(responseJson))
+        dispatch({ type: 'SET_LOAN_LIST', payload: { repaymentDetail } })
+
+      })
+      .catch((error) => {
+        console.log('Error initiating withdraw data info : ' + error);
+      });
+
+  }
+}
+
 export const agingListApi = () => {
   return async (dispatch, getState) => {
     const agingList = [{ ref: 112009, date: '12/3/2019', type: 'Item', currency: 'IDR' },
@@ -524,58 +582,67 @@ export const businessDirectoryListApi = () => {
 export const retrieveMerchantInfoApi = () => {
   return async (dispatch, getState) => {
 
-    //const personalToken = await AsyncStorage.getItem('personalToken');
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
+    try {
+      //const personalToken = await AsyncStorage.getItem('personalToken');
+      const personalToken = await SecureStore.getItemAsync('personalToken')
+      const { token_type, access_token } = JSON.parse(personalToken)
 
-    fetch(`${apiUrl}api/setup/merchant`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token_type + ' ' + access_token
+      fetch(`${apiUrl}api/setup/merchant`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': token_type + ' ' + access_token
 
-      }
+        }
 
-    }).then((response) => response.json())
-      .then(async (responseJson) => {
-        const merchantInfo = responseJson.data
-        console.log('Success' + JSON.stringify(responseJson))
-        dispatch({ type: 'SET_MERCHANT', payload: { ...merchantInfo } })
+      }).then((response) => response.json())
+        .then(async (responseJson) => {
+          const merchantInfo = responseJson.data
+          console.log('Success' + JSON.stringify(responseJson))
+          dispatch({ type: 'SET_MERCHANT', payload: { ...merchantInfo } })
 
-      })
-      .catch((error) => {
-        console.log('Error initiating merchant info : ' + error);
-      });
+        })
+        .catch((error) => {
+          console.log('Error initiating merchant info : ' + error);
+        });
+
+    } catch (err) {
+      console.log(` masalah teragung merchant : ${JSON.stringify(err)}`)
+    }
   }
 }
 
 export const retrieveAccountInfoApi = () => {
   return async (dispatch, getState) => {
+    try {
+      //const personalToken = await AsyncStorage.getItem('personalToken');
+      const personalToken = await SecureStore.getItemAsync('personalToken')
+      const { token_type, access_token } = JSON.parse(personalToken)
 
-    //const personalToken = await AsyncStorage.getItem('personalToken');
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
+      fetch(`${apiUrl}api/account/info`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': token_type + ' ' + access_token
 
-    fetch(`${apiUrl}api/account/info`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token_type + ' ' + access_token
+        }
 
-      }
+      }).then((response) => response.json())
+        .then(async (responseJson) => {
+          const accountInfo = responseJson.data
+          console.log('account info ialah' + JSON.stringify(accountInfo[0]))
+          dispatch({ type: 'SET_USER_PROFILE', payload: { ...accountInfo[0] } })
 
-    }).then((response) => response.json())
-      .then(async (responseJson) => {
-        const accountInfo = responseJson.data
-        console.log('account info ialah' + JSON.stringify(accountInfo[0]))
-        dispatch({ type: 'SET_USER_PROFILE', payload: { ...accountInfo[0] } })
+        })
+        .catch((error) => {
+          console.log('Error initiating account info : ' + error);
+        });
 
-      })
-      .catch((error) => {
-        console.log('Error initiating account info : ' + error);
-      });
+    } catch (err) {
+      console.log(` masalah teragung acc info : ${JSON.stringify(err)}`)
+    }
   }
 }
 
@@ -666,11 +733,11 @@ export const checkContactApi = () => {
     }).then((response) => response.json())
       .then(async (responseJson) => {
         const test = responseJson.data
-
+        console.log(`inilah contact test : ${JSON.stringify(test)}`)
         const lastTest = test.slice(-1).pop()
-        const full_name = lastTest.full_name
-        console.log(`full_name paling last ialah ${full_name}`)
-        dispatch({ type: 'SET_MERCHANT', payload: { full_name } })
+        const { id } = lastTest
+        console.log(`full_name paling last ialah ${id}`)
+        dispatch({ type: 'SET_MERCHANT', payload: { id } })
 
       })
       .catch((error) => {
@@ -698,21 +765,27 @@ export const checkCDDApi = () => {
     }).then((response) => response.json())
       .then(async (responseJson) => {
         const test = responseJson.data
-
-        const { business_name, full_name, isDocument1, isDeclaration_one } = await getState().merchantInfoReducer
-        await console.log('Dekat setScreen action ', business_name, full_name, isDocument1, isDeclaration_one)
-        if (business_name && full_name && (isDocument1 != 'http://test') && isDeclaration_one) {
+        console.log(`cdd result ialah ${JSON.stringify(test)}`)
+        const { business_name, id, isDocument1, isDeclaration_one, status } = await getState().merchantInfoReducer
+        await console.log('Dekat setScreen action ', business_name, id, isDocument1, isDeclaration_one)
+        if (business_name && id && (isDocument1 != 'http://test') && isDeclaration_one && (status == 'activated')) {
           // setLink('Dashboard')
           // setDashboardDisplay(true)
           const link = 'Dashboard'
           dispatch({ type: 'SET_MERCHANT', payload: { link } })
           console.log('dashboard')
-        } else if (business_name && full_name && (isDocument1 != 'http://test')) {
+        } else if (business_name && id && (isDocument1 != 'http://test') && isDeclaration_one) {
+          // setLink('Dashboard')
+          // setDashboardDisplay(true)
+          const link = 'AdminApproval'
+          dispatch({ type: 'SET_MERCHANT', payload: { link } })
+          console.log('dashboard')
+        } else if (business_name && id && (isDocument1 != 'http://test')) {
           //setLink('RegistrationDeclaration')
           const link = 'RegistrationDeclaration'
           dispatch({ type: 'SET_MERCHANT', payload: { link } })
           console.log('go declaration')
-        } else if (business_name && full_name) {
+        } else if (business_name && id) {
           //setLink('CompanyDocument')
           const link = 'CompanyDocument'
           dispatch({ type: 'SET_MERCHANT', payload: { link } })
@@ -826,31 +899,37 @@ export const getUrl = (pic) => {
 
 export const userInfo = () => {
   return async (dispatch, getState) => {
-    //const personalToken = await AsyncStorage.getItem('personalToken');    
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
+    //const personalToken = await AsyncStorage.getItem('personalToken');
+    try {
+      const personalToken = await SecureStore.getItemAsync('personalToken')
+      const { token_type, access_token } = JSON.parse(personalToken)
 
-    fetch(`${apiUrl}api/userInfo`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token_type + ' ' + access_token
-      }
-    }).then((response) => response.json())
-      .then(async (responseJson) => {
-        const selfieKey = await responseJson.data.filename_2
-        var selfieUri = ''
+      fetch(`${apiUrl}api/userInfo`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': token_type + ' ' + access_token
+        }
+      }).then((response) => response.json())
+        .then(async (responseJson) => {
+          const selfieKey = await responseJson.data.filename_2
+          var selfieUri = ''
 
-        await Storage.get(selfieKey)
-          .then(async result => {
-            await dispatch({ type: 'SET_DASHBOARD', payload: { userInfo: { ...responseJson.data, ...{ selfieUri: result } } } })
-          })
-          .catch(err => console.log('error : ' + err))
-      })
-      .catch((error) => {
-        console.log('Error initiating dashboard : ' + error);
-      });
+          await Storage.get(selfieKey)
+            .then(async result => {
+              await dispatch({ type: 'SET_DASHBOARD', payload: { userInfo: { ...responseJson.data, ...{ selfieUri: result } } } })
+            })
+            .catch(err => console.log('error : ' + err))
+        })
+        .catch((error) => {
+          console.log('Error initiating dashboard : ' + error);
+        });
+    }
+    catch (err) {
+      console.log(` masalah teragung : ${JSON.stringify(err)}`)
+    }
+
   }
 }
 
@@ -867,15 +946,11 @@ export const notificationApi = () => {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Authorization': token_type + ' ' + access_token
-
       }
-
     }).then((response) => response.json())
       .then(async (responseJson) => {
         const notificationByDate = [...responseJson.data.promotion, ...responseJson.data.annoucement, ...responseJson.data.advertisement]
-
         dispatch({ type: 'SET_NOTIFICATION', payload: { notificationList: notificationByDate } })
-
       })
       .catch((error) => {
         console.log('Error initiating notification : ' + error);
@@ -1066,6 +1141,9 @@ export const submitInvoiceApi = () => {
     xhr.addEventListener("readystatechange", function () {
       if (this.readyState === 4) {
         console.log(this.responseText);
+        const { status } = JSON.parse(this.responseText)
+        dispatch({ type: 'SET_INVOICE_APPLICATION', payload: { status, proceedMain: true } })
+
       }
     });
 

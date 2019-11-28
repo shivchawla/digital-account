@@ -19,6 +19,14 @@ const LoanMiniDetailScreen = (props) => {
     const dispatch = useDispatch()
 
     const { loanData } = useSelector(state => state.loanApplicationReducer, shallowEqual)
+    const { repaymentList } = useSelector(state => state.loanReducer, shallowEqual)
+    repaymentList && console.log(`repayment list : ${JSON.stringify(repaymentList)}`)
+
+    const repayInfo = () => {
+        const repayItem = repaymentList.find(x => x.application_id == loanData.id)
+        const repayItemId = repayItem.id
+        props.navigation.navigate('RepayInfo', { repayItemId })
+    }
 
     return (
 
@@ -52,19 +60,20 @@ const LoanMiniDetailScreen = (props) => {
                                     <Text style={styles.boldText}>Status</Text>
                                     <Text style={[styles.text, { color: loanData.status === 'New' ? '#000000' : loanData.status === 'Rejected' ? '#FF0000' : loanData.status === 'Approved' ? '#54A400' : '#FA6400' }]}>{loanData.status}</Text>
                                 </View>
-                                <View style={{ flex: 1 }}>
+                                <View style={{ flex: 1, alignItems: 'flex-start' }}>
                                     <Text style={styles.boldText}>Amount</Text>
                                     <Text style={styles.text}>{loanData.total_request}</Text>
                                 </View>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={styles.boldText}>Reason</Text>
-                                    <Text style={styles.text}>{loanData.reason_request}</Text>
-                                </View>
+
                             </View>
                             <View style={{ flexDirection: 'row', marginTop: 20 }}>
                                 <View style={{ flex: 1 }}>
                                     <Text style={styles.boldText}>Type</Text>
                                     <Text style={styles.text}>{loanData.type}</Text>
+                                </View>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={styles.boldText}>Reason</Text>
+                                    <Text style={styles.text}>{loanData.reason_request}</Text>
                                 </View>
                             </View>
                             <View style={{ marginTop: 20 }}>
@@ -73,12 +82,12 @@ const LoanMiniDetailScreen = (props) => {
                                         <TouchableOpacity onPress={() => props.navigation.navigate('LoanDetail')} style={{ marginTop: 10, paddingLeft: 20, paddingRight: 20, paddingTop: 5, paddingBottom: 5, borderRadius: 20, borderWidth: 1 }}>
                                             <Text style={styles.small}>See application</Text>
                                         </TouchableOpacity>
-                                        <TouchableOpacity onPress={() => props.navigation.navigate('RepayInfo')}style={{ marginTop: 10, paddingLeft: 20, paddingRight: 20, paddingTop: 5, paddingBottom: 5, borderRadius: 20, borderWidth: 1 }}>
-                                            <Text style={styles.small}>Repayment info</Text>
-                                        </TouchableOpacity>
-                                        <TouchableOpacity style={{ marginTop: 10, paddingLeft: 20, paddingRight: 20, paddingTop: 5, paddingBottom: 5, borderRadius: 20, backgroundColor: '#34C2DB' }}>
+                                        {repaymentList && repaymentList.find(x => x.application_id == loanData.id) && <TouchableOpacity onPress={() => repayInfo()} style={{ marginTop: 10, paddingLeft: 20, paddingRight: 20, paddingTop: 5, paddingBottom: 5, borderRadius: 20, borderWidth: 1 }}>
+                                            <Text style={styles.small}>Repayment info </Text>
+                                        </TouchableOpacity>}
+                                        {repaymentList && repaymentList.find(x => x.application_id == loanData.id) && <TouchableOpacity style={{ marginTop: 10, paddingLeft: 20, paddingRight: 20, paddingTop: 5, paddingBottom: 5, borderRadius: 20, backgroundColor: '#34C2DB' }}>
                                             <Text style={[styles.small, { color: '#fff' }]}>Pay Now!</Text>
-                                        </TouchableOpacity>
+                                        </TouchableOpacity>}
                                     </View>
                                 </View>
                             </View>

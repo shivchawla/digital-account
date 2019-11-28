@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { View, TouchableOpacity, Text, Image, Modal,ActivityIndicator } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, TouchableOpacity, Text, Image, Modal, ActivityIndicator } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
 import Layout from '../constants/Layout'
@@ -12,83 +12,89 @@ const DashboardScreen = (props) => {
 
   const dispatch = useDispatch()
 
- 
-  const checkDeclare = async () => {
-    await dispatch(actionCreator.checkDeclare());
-  }
-  const checkDocument = async () => {
-    await dispatch(actionCreator.checkDocument());
-  }
-  const checkContact = async () => {
-    await dispatch(actionCreator.checkContact());
-  }
-  const setScreen = async () => {
-    await dispatch(actionCreator.setScreen());
-  }
 
-  const link = useSelector(state => state.merchantInfoReducer.link, shallowEqual)
-  const status = useSelector(state => state.merchantInfoReducer.status, shallowEqual)
-  const business_name = useSelector(state => state.merchantInfoReducer.business_name, shallowEqual)
-  const isDeclaration_one = useSelector(state => state.merchantInfoReducer.isDeclaration_one, shallowEqual)
-  const isDocument1 = useSelector(state => state.merchantInfoReducer.isDocument1, shallowEqual)
-  const full_name = useSelector(state => state.merchantInfoReducer.full_name, shallowEqual)
+  const { link, status, business_name, isDeclaration_one, isDocument1, full_name, id } = useSelector(state => state.merchantInfoReducer, shallowEqual)
+  const { balance, currency } = useSelector(state => state.myAccountReducer, shallowEqual)
 
-  const {balance,currency} = useSelector(state => state.myAccountReducer, shallowEqual)
+  //const dashboardDisplay = (link == 'Dashboard') ? true : false
 
-  const dashboardDisplay = (link == 'Dashboard') ? true : false
+  const [dashboardDisplay, setDashboardDisplay] = useState(true)
 
-  const logout = () => {
-    dispatch(actionCreator.logout())
-    props.navigation.navigate('Welcome')
+  //if(status===)
+
+  const logout = async () => {
+    await dispatch(actionCreator.logout())
+    await props.navigation.navigate('Welcome')
   }
 
   const runCheckStatus = async () => {
     await dispatch(actionCreator.retrieveMerchantInfo())
     await dispatch(actionCreator.retrieveAccountInfo())
-    await checkContact()
-    await checkDocument()
-    await checkDeclare()
-    await setScreen()
-  }
+    if (status == 'new') {
 
+      await dispatch(actionCreator.checkContact());
+      await dispatch(actionCreator.checkDocument());
+      await dispatch(actionCreator.checkDeclare());
+      await dispatch(actionCreator.setScreen());
+      console.log(`off dashboard`)
+      setDashboardDisplay(false)
+    } else {
+      console.log(`on dashboard`)
+      setDashboardDisplay(true)
+    }
+    //await setDashboardDisplay(link != 'Dashboard' ? false : true)
+  }
+  //setDashboardDisplay(link != 'Dashboard' ? false : true)
   useEffect(() => {
+
     runCheckStatus();
-    setScreen()
-  }, [])
+
+  }, [status])
 
   return (
 
     <View style={{ flex: 1, }}>
       {/* visible={!dashboardDisplay} */}
-      <Modal animationType="fade" transparent={true} visible={false} onRequestClose={() => {
-        Alert.alert('Modal has been closed.');
+      <Modal animationType="fade" transparent={true} visible={!dashboardDisplay} onRequestClose={() => {
+        console.log('do nothing');
       }}>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.7)' }}>
           <View style={{ flexDirection: 'row', alignSelf: 'stretch', paddingLeft: 20, paddingRight: 20 }}>
             <View style={{ height: Layout.window.height / 2, backgroundColor: '#fff', flex: 1, borderRadius: 10, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-              <View style={{ alignSelf: 'stretch', margin: 5 }}>
-                <Text style={[styles.h3, { flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start', margin: 5 }]}>REGISTRATION INCOMPLETE</Text>
-                <Text style={[styles.text, { margin: 5, }]}>Please complete items below to access dashboard</Text>
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
-                  <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Basic Info</Text>
-                  <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />
-                </View>
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
-                  <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Merchant Info</Text>
-                  {business_name && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
-                </View>
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
-                  <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Contact Info</Text>
-                  {full_name && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
-                </View>
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
-                  <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Document Submission</Text>
-                  {(isDocument1 != 'http://test') && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
-                </View>
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
-                  <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Declaration</Text>
-                </View>
-              </View>
+              {(business_name && id && (isDocument1 != 'http://test') && isDeclaration_one) ?
+                <View style={{ alignSelf: 'stretch', margin: 5 }}>
+                  <Text style={[styles.h3, { flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start', margin: 5 }]}>REGISTRATION INCOMPLETE</Text>
+                  <Text style={[styles.text, { margin: 5, }]}>Account Under Review</Text>
+                  {/* <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
+              <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Basic Info</Text>
+              <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />
+            </View> */}
+
+                </View> :
+                <View style={{ alignSelf: 'stretch', margin: 5 }}>
+                  <Text style={[styles.h3, { flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start', margin: 5 }]}>REGISTRATION INCOMPLETE</Text>
+                  <Text style={[styles.text, { margin: 5, }]}>Please complete items below for approval</Text>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
+                    <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Basic Info</Text>
+                    <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />
+                  </View>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
+                    <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Merchant Info</Text>
+                    {business_name && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
+                  </View>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
+                    <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Contact Info</Text>
+                    {id && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
+                  </View>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
+                    <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Document Submission</Text>
+                    {(isDocument1 != 'http://test') && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
+                  </View>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
+                    <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Declaration</Text>
+                    {(isDeclaration_one == 1) && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
+                  </View>
+                </View>}
               <View style={{ flexDirection: 'row', alignSelf: 'stretch', marginTop: 15 }}>
                 <TouchableOpacity style={{ flex: 1, }} onPress={() => props.navigation.navigate(link)}>
                   <LinearGradient colors={['#0A6496', '#055E7C']} style={{ flex: 1, padding: 20, justifyContent: 'center', alignItems: 'center' }}>
@@ -109,13 +115,13 @@ const DashboardScreen = (props) => {
       </Modal>
       <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row' }]}>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
-          <TouchableOpacity onPress={props.navigation.openDrawer} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }} style={{paddingRight:50}}>
+          <TouchableOpacity onPress={props.navigation.openDrawer} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }} style={{ paddingRight: 50 }}>
             <Ionicons name="md-more" color={'#3EC2D9'} style={{ fontSize: 30 }} />
           </TouchableOpacity>
         </View>
         <View style={{ flexDirection: 'column', justifyContent: 'center' }}>
           <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-           {balance?<Text style={styles.title}>{currency&&currency} {balance&&balance.toFixed(2)}</Text>:<ActivityIndicator />} 
+            {balance ? <Text style={styles.title}>{currency && currency} {balance && balance.toFixed(2)}</Text> : <Text style={styles.title}>0</Text>}
           </View>
         </View>
         <TouchableOpacity onPress={() => props.navigation.navigate('Profile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
@@ -123,7 +129,7 @@ const DashboardScreen = (props) => {
         </TouchableOpacity>
       </View>
       <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: 25 }}>
-        <TouchableOpacity  onPress={() => props.navigation.navigate('Transfer')}>
+        <TouchableOpacity onPress={() => props.navigation.navigate('Transfer')}>
           <Text style={[styles.text]}>Send Money</Text>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -134,7 +140,7 @@ const DashboardScreen = (props) => {
         </TouchableOpacity>
       </View>
       <View style={[styles.screenMargin, { flex: 9 }]}>
-        
+
         <View style={{ marginBottom: 15 }}>
           <LinearGradient colors={['#055E7C', '#055E7C']} style={{ paddingTop: 5, paddingBottom: 5, alignItems: 'center', borderRadius: 10, height: Layout.window.height / 3 }}>
             <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
@@ -197,7 +203,7 @@ const DashboardScreen = (props) => {
               <Text style={styles.text}>Withdrawal</Text>
             </View>
             <View style={{ flex: 1 }}>
-              <Text numberOfLines={1} ellipsizeMode={'tail'}  style={[styles.text, { color: '#A20F0F' }]}>- RM50.00</Text>
+              <Text numberOfLines={1} ellipsizeMode={'tail'} style={[styles.text, { color: '#A20F0F' }]}>- RM50.00</Text>
             </View>
           </View>
           <View style={{ flexDirection: 'row', marginTop: 5 }}>
@@ -215,7 +221,7 @@ const DashboardScreen = (props) => {
               <Text style={[styles.text]}>Disbursement</Text>
             </View>
             <View style={{ flex: 1 }}>
-              <Text numberOfLines={1} ellipsizeMode={'tail'}  style={[styles.text, { color: '#7ED321' }]}>+ RM50.00</Text>
+              <Text numberOfLines={1} ellipsizeMode={'tail'} style={[styles.text, { color: '#7ED321' }]}>+ RM50.00</Text>
             </View>
           </View>
         </View>

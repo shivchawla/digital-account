@@ -1,13 +1,19 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { Image, Text, TouchableOpacity, View, } from 'react-native';
 import Constants from 'expo-constants'
 import Layout from '../constants/Layout'
 import styles from '../styles/styles'
-import { shallowEqual, useSelector } from 'react-redux'
+
+import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 
 const InvoiceSuccessScreen = (props) => {
 
+    const dispatch = useDispatch()
     const { status } = useSelector(state => state.invoiceReducer, shallowEqual)
+
+    useEffect(() => {
+        dispatch({ type: 'SET_INVOICE_APPLICATION', payload: { items: null } })
+    }, [])
 
     return (
         <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>

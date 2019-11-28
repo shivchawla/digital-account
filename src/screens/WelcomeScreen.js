@@ -40,10 +40,11 @@ const WelcomeScreen = (props) => {
     return (
 
         <Formik initialValues={{ email: '', password: '' }} onSubmit={(values, actions) => {
-            setTimeout(() => {
-                login(values);
-                actions.setSubmitting(false);
-            }, 1000);
+            const prev=props.navigation.getParam('test','takde param')
+            console.log(`jalankan login : ${prev}`)
+            login(values);
+            actions.setSubmitting(false);
+            actions.resetForm({})
 
         }}
             validationSchema={validationSchema}
