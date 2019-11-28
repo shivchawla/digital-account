@@ -33,9 +33,9 @@ const validationSchema = Yup.object().shape({
         .label('Name'),
 
     recipientPhoneNumber: Yup
-         .string()
+        .string()
         .required()
-         .min(10)
+        .min(10)
         .label('Phone Number'),
 
     recipientEmail: Yup
@@ -103,6 +103,7 @@ const RemittanceScreen = (props) => {
                                         <Text style={[styles.titleBox], { marginBottom: 10 }}>From</Text>
                                         <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', marginBottom: 10 }}>
                                             <Picker style={{ flex: 1, height: 35, borderColor: '#055E7C', borderWidth: 1 }} selectedValue={senderCurrency} onValueChange={(itemValue, itemIndex) => FormikProps.setFieldValue('senderCurrency', itemValue)}>
+                                                <Picker.Item label={'Please Select'} value={undefined} />
                                                 <Picker.Item label="Malaysian Ringgit (MYR)" value="myr" />
                                                 <Picker.Item label="Indonesian Rupiah (IDR)" value="idr" />
                                             </Picker>
@@ -115,6 +116,7 @@ const RemittanceScreen = (props) => {
                                         <Text style={[styles.titleBox], { marginBottom: 10 }}>To</Text>
                                         <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', marginBottom: 10 }}>
                                             <Picker style={{ flex: 1, height: 35, borderColor: '#055E7C', borderWidth: 1 }} selectedValue={recipientCurrency} onValueChange={(itemValue, itemIndex) => FormikProps.setFieldValue('recipientCurrency', itemValue)}>
+                                                <Picker.Item label={'Please Select'} value={undefined} />
                                                 <Picker.Item label="Malaysian Ringgit (MYR)" value="myr" />
                                                 <Picker.Item label="Indonesian Rupiah (IDR)" value="idr" />
                                             </Picker>

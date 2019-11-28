@@ -743,7 +743,6 @@ export const bankListApi = () => {
     const personalToken = await SecureStore.getItemAsync('personalToken')
     const bankListStored = await AsyncStorage.getItem('bankListStored');
     const bankList = bankListStored && JSON.parse(bankListStored)
-    bankList.reverse()
     //bankListStored && bankList.push(JSON.parse(bankListStored))
     //bankList.push(values)
     dispatch({ type: 'SET_BANK_LIST', payload: { bankList } })

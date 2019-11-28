@@ -35,7 +35,7 @@ const validationSchema = Yup.object().shape({
         .label('Total Deduction'),
 
     allowanceAmount: Yup
-         .string()
+        .string()
         .required()
         .label('Allowance Amount'),
 
@@ -100,6 +100,7 @@ const PayrollScreen = (props) => {
                                         <Text style={[styles.titleBox, { marginBottom: 10 }]}>Bank</Text>
                                         <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
                                             <Picker style={{ flex: 1, height: 35 }} selectedValue={bankName} onValueChange={(itemValue, itemIndex) => FormikProps.setFieldValue('bankName', itemValue)}>
+                                                <Picker.Item label={'Please Select'} value={undefined} />
                                                 <Picker.Item label="Bank Islam" value="bankIslam" />
                                                 <Picker.Item label="Maybank" value="maybank" />
                                             </Picker>
