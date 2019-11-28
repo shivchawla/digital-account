@@ -89,6 +89,7 @@ const SupportScreen = (props) => {
                                         <Text style={[styles.titleBox], { marginBottom: 10 }}>Type</Text>
                                         <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
                                             <Picker style={{ flex: 1, height: 35 }} selectedValue={type} onValueChange={(itemValue, itemIndex) => FormikProps.setFieldValue('type', itemValue)}>
+                                                <Picker.Item label={'Please Select'} value={undefined} />
                                                 <Picker.Item label="Question" value="Question" />
                                                 <Picker.Item label="Incident" value="Incident" />
                                                 <Picker.Item label="Problem" value="Problem" />
@@ -102,6 +103,7 @@ const SupportScreen = (props) => {
                                         <Text style={[styles.titleBox], { marginBottom: 10 }}>Priority</Text>
                                         <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
                                             <Picker style={{ flex: 1, height: 35 }} selectedValue={priority} onValueChange={(itemValue, itemIndex) => FormikProps.setFieldValue('priority', itemValue)}>
+                                                <Picker.Item label={'Please Select'} value={undefined} />
                                                 <Picker.Item value="1" label="Low" />
                                                 <Picker.Item value="2" label="Medium" />
                                                 <Picker.Item value="3" label="High" />

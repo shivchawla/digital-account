@@ -34,9 +34,9 @@ const validationSchema = Yup.object().shape({
         .label('Email Address'),
 
     payerPhoneNumber: Yup
-         .string()
+        .string()
         .required()
-         .min(10)
+        .min(10)
         .label('Phone Number'),
 
 });
@@ -94,6 +94,7 @@ const ZakatScreen = (props) => {
                                         <Text style={[styles.titleBox, { marginBottom: 10 }]}>Type of Zakat</Text>
                                         <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
                                             <Picker style={{ flex: 1, height: 35 }} selectedValue={typeZakat} onValueChange={(itemValue, itemIndex) => FormikProps.setFieldValue('typeZakat', itemValue)}>
+                                                <Picker.Item label={'Please Select'} value={undefined} />
                                                 <Picker.Item label="Zakat Pendapatan" value="zakatPendapatan" />
                                                 <Picker.Item label="Zakat Perniagaan" value="zakatPerniagaan" />
                                                 <Picker.Item label="Zakat Simpanan" value="zakatSimpanan" />
@@ -106,6 +107,7 @@ const ZakatScreen = (props) => {
                                         <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
                                             <Picker style={{ flex: 1, height: 35 }} selectedValue={payZakatTo} onValueChange={(itemValue, itemIndex) =>
                                                 FormikProps.setFieldValue('payZakatTo', itemValue)}>
+                                                <Picker.Item label={'Please Select'} value={undefined} />
                                                 <Picker.Item label="Zakat Selangor" value="zakatSelangor" />
                                                 <Picker.Item label="Zakat Perak" value="zakatPerak" />
                                                 <Picker.Item label="Zakat Terengganu" value="zakatTerengganu" />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Text, TouchableOpacity, View, TextInput, KeyboardAvoidingView, ActivityIndicator } from 'react-native';
+import { Image, Text, TouchableOpacity, View, TextInput, KeyboardAvoidingView, ActivityIndicator, DatePickerAndroid } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -19,7 +19,11 @@ const validationSchema = Yup.object().shape({
         .string()
         .required()
         .min(3)
-        .label('Registration No')
+        .label('Registration No'),
+
+    cddRegisteredDate: Yup
+        .string()
+        .required()
 
 });
 
@@ -33,19 +37,40 @@ const CompanyInformationScreen = (props) => {
 
     return (
 
-        <Formik onSubmit={values => companyInfo(values)}
+        <Formik onSubmit={values => {
+            companyInfo(values)
+            console.log(` ini formik ${JSON.stringify(values)}`)
+        }}
+
             validationSchema={validationSchema}
         >
-
             {FormikProps => {
+                const datePicker = async () => {
+                    try {
+                        const { action, year, month, day } = await DatePickerAndroid.open({
+                            // Use `new Date()` for current date.
+                            // May 25 2020. Month 0 is January.
+                            date: new Date(2020, 4, 25),
+                        });
+                        if (action !== DatePickerAndroid.dismissedAction) {
+                            // Selected year, month (0-11), day
+                            FormikProps.setFieldValue('cddRegisteredDate', `${year}-${month}-${day}`)
+                        }
+                    } catch ({ code, message }) {
+                        console.warn('Cannot open date picker', message);
+                    }
+                }
 
-                const { cddCompanyName, cddRegistrationNumber } = FormikProps.values
+                const { cddCompanyName, cddRegistrationNumber, cddRegisteredDate } = FormikProps.values
 
                 const cddCompanyNameError = FormikProps.errors.cddCompanyName
                 const cddCompanyNameTouched = FormikProps.touched.cddCompanyName
 
                 const cddRegistrationNumberError = FormikProps.errors.cddRegistrationNumber
                 const cddRegistrationNumberTouched = FormikProps.touched.cddRegistrationNumber
+
+                const cddRegisteredDateError = FormikProps.errors.cddRegisteredDate
+                const cddRegisteredDateTouched = FormikProps.touched.cddRegisteredDate
 
                 return (
 
@@ -69,6 +94,16 @@ const CompanyInformationScreen = (props) => {
                                     <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: cddRegistrationNumberTouched && cddRegistrationNumberError ? '#d94498' : '#5a83c2' }]}>Registration Number</Text>
                                     <TextInput value={cddRegistrationNumber} onBlur={FormikProps.handleBlur('cddRegistrationNumber')} onChangeText={FormikProps.handleChange('cddRegistrationNumber')} placeholder={cddRegistrationNumberTouched && cddRegistrationNumberError ? '' : 'Eg: 105015-A'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
                                     {cddRegistrationNumberTouched && cddRegistrationNumberError && <Text style={styles.error}>{cddRegistrationNumberError}</Text>}
+                                </View>
+                                <View style={[styles.formElement]}>
+                                    <Text style={[styles.titleBox]}>Due Date</Text>
+                                    <View style={{ flexDirection: 'row' }}>
+                                        <TouchableOpacity onPress={datePicker}>
+                                            <Image source={require('../assets/images/calendar.png')} style={{ width: 30, height: 30, marginRight: 10 }} resizeMode={'contain'} />
+                                        </TouchableOpacity>
+                                        <TextInput editable={false} style={{ flex: 1, alignSelf: 'center' }} value={cddRegisteredDate} style={{ flex: 1, borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                    </View>
+                                    {cddRegisteredDateTouched && cddRegisteredDateError && <Text style={styles.error}>{cddRegisteredDateError}</Text>}
                                 </View>
                             </View>
                             <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>

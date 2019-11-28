@@ -175,6 +175,9 @@ const loadResourcesAsync = async () => {
       require('./src/assets/images/passwordsuccess.png'),
       require('./src/assets/images/emailsuccess.png'),
       require('./src/assets/images/phonesuccess.png'),
+      require('./src/assets/images/withdrawal.png'),
+      require('./src/assets/images/transfer.png'),
+      require('./src/assets/images/disbursement.png'),
 
       require('./src/assets/images/bottomTabs/home.png'),
       require('./src/assets/images/bottomTabs/history.png'),
