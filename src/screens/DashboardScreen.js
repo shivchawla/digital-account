@@ -13,8 +13,12 @@ const DashboardScreen = (props) => {
   const dispatch = useDispatch()
 
 
-  const { link, status, business_name, isDeclaration_one, isDocument1, full_name, id } = useSelector(state => state.merchantInfoReducer, shallowEqual)
+  const { link, status, business_name, isDeclaration_one, isDocument1, full_name,contactId } = useSelector(state => state.merchantInfoReducer, shallowEqual)
   const { balance, currency } = useSelector(state => state.myAccountReducer, shallowEqual)
+  //const contactId =   useSelector(state => state.merchantInfoReducer.id, shallowEqual)
+
+  const all =   useSelector(state => state.merchantInfoReducer, shallowEqual)
+  all&&console.log(`all ialah : ${JSON.stringify(all)}`)
 
   //const dashboardDisplay = (link == 'Dashboard') ? true : false
 
@@ -30,7 +34,7 @@ const DashboardScreen = (props) => {
   const runCheckStatus = async () => {
     await dispatch(actionCreator.retrieveMerchantInfo())
     await dispatch(actionCreator.retrieveAccountInfo())
-    if (status == 'new') {
+    if (status != 'activated') {
 
       await dispatch(actionCreator.checkContact());
       await dispatch(actionCreator.checkDocument());
@@ -61,7 +65,7 @@ const DashboardScreen = (props) => {
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.7)' }}>
           <View style={{ flexDirection: 'row', alignSelf: 'stretch', paddingLeft: 20, paddingRight: 20 }}>
             <View style={{ height: Layout.window.height / 2, backgroundColor: '#fff', flex: 1, borderRadius: 10, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-              {(business_name && id && (isDocument1 != 'http://test') && isDeclaration_one) ?
+              {(business_name && contactId && (isDocument1 != 'http://test') && isDeclaration_one) ?
                 <View style={{ alignSelf: 'stretch', margin: 5 }}>
                   <Text style={[styles.h3, { flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start', margin: 5 }]}>REGISTRATION INCOMPLETE</Text>
                   <Text style={[styles.text, { margin: 5, }]}>Account Under Review</Text>
@@ -81,22 +85,23 @@ const DashboardScreen = (props) => {
                   <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
                     <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Merchant Info</Text>
                     {business_name && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
+
                   </View>
                   <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
                     <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Contact Info</Text>
-                    {id && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
+                    {(contactId &&contactId!=13) && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
                   </View>
                   <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
                     <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Document Submission</Text>
-                    {(isDocument1 != 'http://test') && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
+                    {(isDocument1 != null) && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
                   </View>
                   <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
                     <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Declaration</Text>
-                    {(isDeclaration_one == 1) && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
+                    {(isDeclaration_one != null) && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
                   </View>
                 </View>}
               <View style={{ flexDirection: 'row', alignSelf: 'stretch', marginTop: 15 }}>
-                <TouchableOpacity style={{ flex: 1, }} onPress={() => props.navigation.navigate(link)}>
+                <TouchableOpacity style={{ flex: 1, }} onPress={() => props.navigation.navigate(link,{prevScreen:'Dashboard'})}>
                   <LinearGradient colors={['#0A6496', '#055E7C']} style={{ flex: 1, padding: 20, justifyContent: 'center', alignItems: 'center' }}>
                     <Text style={[styles.textDefault, { color: '#fff' }]}>CONTINUE</Text>
                   </LinearGradient>

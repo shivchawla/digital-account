@@ -65,12 +65,12 @@ const RepaymentInfo = (props) => {
                             </ScrollView>
                         </View>
                         <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', backgroundColor: '#fff' }}>
-                            <TouchableOpacity onPress={() => setItemVisible(!addItemVisible)} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 }}>
+                            <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 }}>
                                 <LinearGradient colors={['#FFF', '#FFF']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                     <Text style={[styles.butang, { color: '#000000' }]}>Back</Text>
                                 </LinearGradient>
                             </TouchableOpacity>
-                            <TouchableOpacity style={{ flex: 1 }}>
+                            <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} style={{ flex: 1 }}>
                                 <LinearGradient colors={['#0A6496', '#055E7C']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                     <Text style={[styles.butang, { color: '#fff' }]}>Confirm</Text>
                                 </LinearGradient>
@@ -93,38 +93,129 @@ const RepaymentInfo = (props) => {
                         </View>
                         <View style={{ flex: 9, justifyContent: 'flex-end' }}>
                             <ScrollView style={[styles.screenMargin]}>
-                                <View style={[styles.formElement]}>
-                                    <View style={{ margin: 5 }} />
-                                    <View style={{ flex: 1, flexDirection: 'row', borderTopWidth: 1, borderBottomWidth: 1, marginBottom: 5, marginTop: 5, padding: 5, borderColor: 'lightgrey' }}>
-                                        <View style={{ flex: 1 }}><Text>Ref</Text></View>
-                                        <View style={{ flex: 1 }}><Text>Date</Text></View>
-                                        <View style={{ flex: 1 }}><Text>Type</Text></View>
-                                        <View style={{ flex: 1 }}><Text>Amount</Text></View>
-                                        <View style={{ flex: 1 }}><Text>Balance</Text></View>
-                                    </View>
-                                    <View style={{ flex: 1, flexDirection: 'row', marginBottom: 5, marginTop: 5, padding: 5, borderColor: 'lightgrey' }}>
-                                        <View style={{ flex: 1 }}><Text>RP0001</Text></View>
-                                        <View style={{ flex: 1 }}><Text>20/01/19</Text></View>
-                                        <View style={{ flex: 1 }}><Text>Auto</Text></View>
-                                        <View style={{ flex: 1 }}><Text>122.60</Text></View>
-                                        <View style={{ flex: 1 }}><Text>80000</Text></View>
-                                    </View>
-                                    <View style={{ flex: 1, flexDirection: 'row', marginBottom: 5, marginTop: 5, padding: 5, borderColor: 'lightgrey' }}>
-                                        <View style={{ flex: 1 }}><Text>RP0002</Text></View>
-                                        <View style={{ flex: 1 }}><Text>20/02/19</Text></View>
-                                        <View style={{ flex: 1 }}><Text>Auto</Text></View>
-                                        <View style={{ flex: 1 }}><Text>122.60</Text></View>
-                                        <View style={{ flex: 1 }}><Text>7880.40</Text></View>
-                                    </View>
-                                    <View style={{ flex: 1, flexDirection: 'row', marginBottom: 5, marginTop: 5, padding: 5, borderColor: 'lightgrey' }}>
-                                        <View style={{ flex: 1 }}><Text>RP0002</Text></View>
-                                        <View style={{ flex: 1 }}><Text>20/03/19</Text></View>
-                                        <View style={{ flex: 1 }}><Text>Manual</Text></View>
-                                        <View style={{ flex: 1 }}><Text>122.60</Text></View>
-                                        <View style={{ flex: 1 }}><Text>7600.40</Text></View>
-                                    </View>
+                                
 
-                                </View>
+                                <TouchableOpacity onPress={() => console.log('wow')} style={styles.box}>
+                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                        <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
+                                            <Text style={styles.small}>RP0002</Text>
+                                            <Ionicons name="md-arrow-dropright" color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
+                                        </View>
+                                    </View>
+                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={styles.small}>Date</Text>
+                                        </View>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={styles.small}>20/03/19</Text>
+                                        </View>
+                                    </View>
+                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={styles.small}>Type</Text>
+                                        </View>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={styles.small}>Auto</Text>
+                                        </View>
+                                    </View>
+                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={styles.small}>Amount</Text>
+                                        </View>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={styles.small}>122.60</Text>
+                                        </View>
+                                    </View>
+                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={styles.small}>Balance</Text>
+                                        </View>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={styles.small}>8000</Text>
+                                        </View>
+                                    </View>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => console.log('wow')} style={styles.box}>
+                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                        <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
+                                            <Text style={styles.small}>RP0002</Text>
+                                            <Ionicons name="md-arrow-dropright" color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
+                                        </View>
+                                    </View>
+                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={styles.small}>Date</Text>
+                                        </View>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={styles.small}>20/03/19</Text>
+                                        </View>
+                                    </View>
+                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={styles.small}>Type</Text>
+                                        </View>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={styles.small}>Auto</Text>
+                                        </View>
+                                    </View>
+                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={styles.small}>Amount</Text>
+                                        </View>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={styles.small}>122.60</Text>
+                                        </View>
+                                    </View>
+                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={styles.small}>Balance</Text>
+                                        </View>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={styles.small}>8000</Text>
+                                        </View>
+                                    </View>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => console.log('wow')} style={styles.box}>
+                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                        <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
+                                            <Text style={styles.small}>RP0002</Text>
+                                            <Ionicons name="md-arrow-dropright" color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
+                                        </View>
+                                    </View>
+                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={styles.small}>Date</Text>
+                                        </View>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={styles.small}>20/03/19</Text>
+                                        </View>
+                                    </View>
+                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={styles.small}>Type</Text>
+                                        </View>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={styles.small}>Auto</Text>
+                                        </View>
+                                    </View>
+                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={styles.small}>Amount</Text>
+                                        </View>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={styles.small}>122.60</Text>
+                                        </View>
+                                    </View>
+                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={styles.small}>Balance</Text>
+                                        </View>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={styles.small}>8000</Text>
+                                        </View>
+                                    </View>
+                                </TouchableOpacity>
+
                             </ScrollView>
                         </View>
 

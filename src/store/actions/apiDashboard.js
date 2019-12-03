@@ -666,7 +666,7 @@ export const checkDeclareApi = () => {
       .then(async (responseJson) => {
         const test = responseJson.data
         const lastTest = test.slice(-1).pop()
-        const isDeclaration_one = lastTest.isDeclaration_one
+        const isDeclaration_one = lastTest.business_id
         console.log(`declaration paling last ialah ${isDeclaration_one}`)
 
         // const {isDeclaration_one} = responseJson.data[0]
@@ -676,7 +676,7 @@ export const checkDeclareApi = () => {
       })
       .catch((error) => {
         console.log('Error initiating merchant info : ' + error);
-        dispatch({ type: 'SET_MERCHANT', payload: { isDeclaration_one: 0 } })
+        dispatch({ type: 'SET_MERCHANT', payload: { isDeclaration_one: null } })
       });
   }
 }
@@ -702,14 +702,14 @@ export const checkDocumentApi = () => {
         const test = responseJson.data
         console.log(`nak tengok document ade ke tak? : ${JSON.stringify(responseJson)}`)
         const lastTest = test.slice(-1).pop()
-        const isDocument1 = lastTest.isDocument1
-        console.log(`document paling last ialah ${isDocument1}`)
+        const isDocument1 = lastTest.business_id
+        console.log(`document paling last ialah ${JSON.stringify(isDocument1)}`)
         dispatch({ type: 'SET_MERCHANT', payload: { isDocument1 } })
 
       })
       .catch((error) => {
         console.log('Error initiating document info : ' + error);
-        dispatch({ type: 'SET_MERCHANT', payload: { isDocument1: 'http://test' } })
+        dispatch({ type: 'SET_MERCHANT', payload: { isDocument1: null } })
       });
   }
 }
@@ -737,7 +737,7 @@ export const checkContactApi = () => {
         const lastTest = test.slice(-1).pop()
         const { id } = lastTest
         console.log(`full_name paling last ialah ${id}`)
-        dispatch({ type: 'SET_MERCHANT', payload: { id } })
+        dispatch({ type: 'SET_MERCHANT', payload: { contactId:id } })
 
       })
       .catch((error) => {
@@ -766,26 +766,27 @@ export const checkCDDApi = () => {
       .then(async (responseJson) => {
         const test = responseJson.data
         console.log(`cdd result ialah ${JSON.stringify(test)}`)
-        const { business_name, id, isDocument1, isDeclaration_one, status } = await getState().merchantInfoReducer
-        await console.log('Dekat setScreen action ', business_name, id, isDocument1, isDeclaration_one)
-        if (business_name && id && (isDocument1 != 'http://test') && isDeclaration_one && (status == 'activated')) {
+        const { business_name,  isDocument1, isDeclaration_one, status,contactId } = await getState().merchantInfoReducer
+        //const contactId = await getState().merchantInfoReducer.id
+        await console.log('Dekat setScreen action ', business_name, contactId, isDocument1, isDeclaration_one)
+        if (business_name && contactId && (isDocument1 != 'http://test') && isDeclaration_one && (status == 'activated')) {
           // setLink('Dashboard')
           // setDashboardDisplay(true)
           const link = 'Dashboard'
           dispatch({ type: 'SET_MERCHANT', payload: { link } })
           console.log('dashboard')
-        } else if (business_name && id && (isDocument1 != 'http://test') && isDeclaration_one) {
+        } else if (business_name && contactId && (isDocument1 != 'http://test') && isDeclaration_one) {
           // setLink('Dashboard')
           // setDashboardDisplay(true)
           const link = 'AdminApproval'
           dispatch({ type: 'SET_MERCHANT', payload: { link } })
           console.log('dashboard')
-        } else if (business_name && id && (isDocument1 != 'http://test')) {
+        } else if (business_name && contactId && (isDocument1 != null)) {
           //setLink('RegistrationDeclaration')
           const link = 'RegistrationDeclaration'
           dispatch({ type: 'SET_MERCHANT', payload: { link } })
           console.log('go declaration')
-        } else if (business_name && id) {
+        } else if (business_name && contactId) {
           //setLink('CompanyDocument')
           const link = 'CompanyDocument'
           dispatch({ type: 'SET_MERCHANT', payload: { link } })
@@ -797,7 +798,7 @@ export const checkCDDApi = () => {
           console.log('go contact person')
         } else {
           //setLink('CompanyInformation')
-          const link = 'CompanyInformation'
+          const link = 'SignUpPersonalSuccess'
           dispatch({ type: 'SET_MERCHANT', payload: { link } })
           console.log('go company info')
         }

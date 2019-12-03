@@ -7,8 +7,8 @@ Amplify.configure(aws_exports);///
 import s3 from '../../do/DigitalOcean'
 import config from '../../do/config'
 
-import { requestToken, requestPersonalToken, urlToBlob, registerApi, companyInfoAPI, contactPersonAPI, submitDocApi, declarationApi,cddApi } from './apiRegistration'
-import { retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, agingListApi, reportListApi, businessDirectoryListApi, invoiceApi, newExpenseApi, supportApi, customerDataApi, itemDataApi, submitLoanApplicationApi, addBankApi, bankListApi, deleteAllBankApi, notificationListApi, loanApplicationDataApi, submitInvoiceApi, submitSupportApi, withDrawApi, withdrawListApi, vendorListApi, withdrawDataApi, vendorDataApi, vendorDataRetrieveApi, customerListApi, customerDataRetrieveApi, itemListApi, itemDataRetrieveApi, retrieveAccountInfoApi, getAllUsersApi, repaymentListApi,repaymentDetailApi } from './apiDashboard'
+import { requestToken, requestPersonalToken, urlToBlob, registerApi, companyInfoAPI, contactPersonAPI, submitDocApi, declarationApi, cddApi, resendVerificationApi } from './apiRegistration'
+import { retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, agingListApi, reportListApi, businessDirectoryListApi, invoiceApi, newExpenseApi, supportApi, customerDataApi, itemDataApi, submitLoanApplicationApi, addBankApi, bankListApi, deleteAllBankApi, notificationListApi, loanApplicationDataApi, submitInvoiceApi, submitSupportApi, withDrawApi, withdrawListApi, vendorListApi, withdrawDataApi, vendorDataApi, vendorDataRetrieveApi, customerListApi, customerDataRetrieveApi, itemListApi, itemDataRetrieveApi, retrieveAccountInfoApi, getAllUsersApi, repaymentListApi, repaymentDetailApi } from './apiDashboard'
 //import {pusherListen} from './pusher'
 import moment from 'moment'
 
@@ -84,6 +84,17 @@ export const submitDoc1 = (values) => {
         await dispatch(uploadPic(isDocument1, 'mykad'))
         await dispatch(uploadPic(isDocument2, 'company'))
         await dispatch(uploadPic(isDocument3, 'business'))
+        //await dispatch(submitDocApi())
+    }
+}
+
+export const submitDoc2 = () => {
+
+    return async (dispatch, getState) => {
+        //const { isDocument1, isDocument2, isDocument3 } = values
+        // await dispatch(uploadPic(isDocument1, 'mykad'))
+        // await dispatch(uploadPic(isDocument2, 'company'))
+        // await dispatch(uploadPic(isDocument3, 'business'))
         await dispatch(submitDocApi())
     }
 }
@@ -297,6 +308,14 @@ export const setScreen = () => {
 
 }
 
+export const resendVerification = () => {
+    return (dispatch, getState) => {
+        console.log(' resend verification action')
+        dispatch(resendVerificationApi())
+    }
+
+}
+
 export const logout = () => {
     return async (dispatch, getState) => {
         //await dispatch({type:'SET_PERSONAL_INFO',payload:{status:'none'}})
@@ -322,8 +341,8 @@ export const logout = () => {
 export const saveDocPic = (result, doc) => {
     console.log(`result yang mengasyikkan ${JSON.stringify(result)}`)
     const { uri } = result
-    return async (dispatch, getState) => {
-        const blob = await urlToBlob(uri)
+    return (dispatch, getState) => {
+        const blob = urlToBlob(uri)
         const { data } = blob
 
         const fileName = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
@@ -391,24 +410,26 @@ export const uploadPic = (uri, doc) => {
                 request.httpRequest.headers['Content-Length'] = data.size;
                 request.httpRequest.headers['Content-Type'] = data.type;
                 request.httpRequest.headers['x-amz-acl'] = 'public-read';
+
             })
-            .send((err) => {
+            .send((err, data) => {
                 if (err) console.log(err);
                 else {
                     // If there is no error updating the editor with the imageUrl
+                    console.log(`data ialah ${JSON.stringify(data)}`)
                     const imageUrl = `${config.digitalOceanSpaces}/` + fileName
                     console.log(imageUrl);
                     //dispatch({ type: 'SET_USER_PROFILE', payload: { profile_pic: imageUrl } })
 
                     switch (doc) {
                         case 'mykad':
-                            dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument1: imageUrl } });
+                            dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument1file: imageUrl } });
                             break;
                         case 'company':
-                            dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument2: imageUrl } });
+                            dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument2file: imageUrl } });
                             break;
                         case 'business':
-                            dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument3: imageUrl } });
+                            dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument3file: imageUrl } });
                             break;
 
                     }

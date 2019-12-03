@@ -10,13 +10,21 @@ const CompanyDocumentScreen = (props) => {
 
     const dispatch = useDispatch()
     const docPicker = useSelector(state => state.companyInformationReducer.docPicker, shallowEqual)
-    const isDocument1 = useSelector(state => state.companyInformationReducer.isDocument1, shallowEqual)
-    const isDocument2 = useSelector(state => state.companyInformationReducer.isDocument2, shallowEqual)
-    const isDocument3 = useSelector(state => state.companyInformationReducer.isDocument3, shallowEqual)
-    const submitDoc = (val) => {
-        dispatch(actionCreator.submitDoc1(val))
+    const {isDocument1, isDocument2, isDocument3, isDocument1file, isDocument2file, isDocument3file } = useSelector(state => state.companyInformationReducer, shallowEqual)
+
+    
+
+    const submitDoc2 = () => {
+        dispatch(actionCreator.submitDoc2())
         props.navigation.navigate('CompanyDocumentSuccess')
     }
+
+    const submitDoc = (val) => {
+        dispatch(actionCreator.submitDoc1(val))
+        //props.navigation.navigate('CompanyDocumentSuccess')
+    }
+
+    isDocument3file && submitDoc2()
 
     return (
 
