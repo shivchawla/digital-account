@@ -168,7 +168,7 @@ export const submitDocApi = () => {
     //console.log(`Submit doc api : ${JSON.stringify(values)}`)
     const { isDocument1file, isDocument2file, isDocument3file } = getState().companyInformationReducer
     console.log(`dah process document itu lettew`)
-   // const comp_regdate=moment(companyInfo.comp_regdate).format("YYYY-MM-DD HH:mm:ss")
+    // const comp_regdate=moment(companyInfo.comp_regdate).format("YYYY-MM-DD HH:mm:ss")
     fetch(`${apiUrl}api/setup/business_document`, {
       method: 'POST',
       headers: {
@@ -176,7 +176,7 @@ export const submitDocApi = () => {
         'Accept': 'application/json',
         'Authorization': token_type + ' ' + access_token
       },
-      body: JSON.stringify({ isDocument1:isDocument1file, isDocument2:isDocument2file, isDocument3:isDocument3file }),
+      body: JSON.stringify({ isDocument1: isDocument1file, isDocument2: isDocument2file, isDocument3: isDocument3file }),
     }).then((response) => response.json())
       .then(async (responseJson) => {
         const { status } = await responseJson

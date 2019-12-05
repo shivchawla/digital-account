@@ -12,8 +12,6 @@ const CompanyDocumentScreen = (props) => {
     const docPicker = useSelector(state => state.companyInformationReducer.docPicker, shallowEqual)
     const {isDocument1, isDocument2, isDocument3, isDocument1file, isDocument2file, isDocument3file } = useSelector(state => state.companyInformationReducer, shallowEqual)
 
-    
-
     const submitDoc2 = () => {
         dispatch(actionCreator.submitDoc2())
         props.navigation.navigate('CompanyDocumentSuccess')

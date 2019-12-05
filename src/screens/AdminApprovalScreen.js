@@ -1,10 +1,39 @@
-import React from 'react';
-import { Image, Text, TouchableOpacity, View, } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Image, Text, TouchableOpacity, View, Alert, BackHandler } from 'react-native';
 import Constants from 'expo-constants'
 import Layout from '../constants/Layout'
 import styles from '../styles/styles'
 
+// modules
+import {
+    handleAndroidBackButton,
+    removeAndroidBackButtonHandler
+} from '../components/androidBackButton';
+
 const AdminApprovalScreen = (props) => {
+
+    const exitAlert = () => {
+        // Works on both Android and iOS
+        Alert.alert(
+            'Exit App',
+            'Exit App and Come Back Later ',
+            [
+                { text: 'Ask me later', onPress: () => console.log('Ask me later pressed') },
+                {
+                    text: 'Cancel',
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'cancel',
+                },
+                { text: 'OK', onPress: () => { console.log('OK Pressed'); BackHandler.exitApp() } },
+            ],
+            { cancelable: false },
+        );
+    };
+
+    useEffect(() => {
+        console.log("componentDidMount");
+        handleAndroidBackButton(exitAlert)
+    }, []); // empty-array means don't watch for any updates
 
     return (
         <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
