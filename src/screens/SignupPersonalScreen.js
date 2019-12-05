@@ -52,8 +52,11 @@ const SignupPersonalScreen = (props) => {
     const dispatch = useDispatch()
     if (message === "Unauthenticated") {
         props.navigation.navigate('SignUpPersonalSuccess');
+        
     } else {
+
         return (
+
             <Formik onSubmit={(values, actions) => {
                 register(values)
                 actions.setSubmitting(false)

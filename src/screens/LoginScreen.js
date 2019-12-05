@@ -42,6 +42,7 @@ const LoginScreen = (props) => {
     forgotPassword = async () => {
         let result = await WebBrowser.openBrowserAsync('https://tuah.niyo.my/password/reset');
     };
+
     return (
 
         <Formik initialValues={{ email: '', password: '' }} onSubmit={(values, actions) => {
@@ -99,8 +100,7 @@ const LoginScreen = (props) => {
                                     </TouchableOpacity>
                                     <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ flex: 1, borderColor: FormikProps.isValid ? '#0A6496' : 'rgba(10,100,150,0.5)', borderWidth: 1 }}>
                                         <LinearGradient colors={FormikProps.isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                                            {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> :
-                                                <Text style={[styles.butang, { color: '#fff' }]}>Submit</Text>}
+                                            {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> : <Text style={[styles.butang, { color: '#fff' }]}>Submit</Text>}
                                         </LinearGradient>
                                     </TouchableOpacity>
                                 </View>
@@ -109,7 +109,6 @@ const LoginScreen = (props) => {
                     </KeyboardAvoidingView>)
             }}
         </Formik>
-
     )
 }
 

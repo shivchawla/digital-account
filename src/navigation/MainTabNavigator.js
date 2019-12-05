@@ -78,6 +78,7 @@ import NewInvoiceItemsScreen from '../screens/NewInvoiceItemsScreen';
 import CustomerDrawer from './CustomerDrawer';
 import NewInvoiceReviewScreen from '../screens/NewInvoiceReviewScreen';
 import RepaymentInfo from '../screens/RepaymentInfo';
+import LoanPaymentSuccessScreen from '../screens/LoanPaymentSuccessScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -280,6 +281,9 @@ const DashboardStackWithModal = createStackNavigator(
     },
     RepayInfo: {
       screen: RepaymentInfo,
+    },
+    LoanPaymentSuccess: {
+      screen: LoanPaymentSuccessScreen,
     },
   },
   {
