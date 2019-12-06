@@ -8,6 +8,7 @@ import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import Charts from '../components/Charts'
 import VictoryCharts from '../components/VictoryCharts'
+import ChartKit from '../components/ChartKit'
 
 const DashboardScreen = (props) => {
 
@@ -155,7 +156,9 @@ const DashboardScreen = (props) => {
               <Ionicons name="ios-arrow-forward" color={'#fff'} style={{ fontSize: 23, paddingRight: 30 }} />
             </View>
             <View style={{ flex: 1, height: Layout.window.height / 5, alignSelf: 'stretch', flexDirection: 'row', justifyContent: 'space-around' }}>
-              <VictoryCharts />
+              {/* <VictoryCharts /> */}
+              {/* <ChartKit /> */}
+              <Charts />
             </View>
           </LinearGradient>
         </View>
