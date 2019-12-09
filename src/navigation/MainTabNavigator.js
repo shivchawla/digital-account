@@ -79,6 +79,8 @@ import CustomerDrawer from './CustomerDrawer';
 import NewInvoiceReviewScreen from '../screens/NewInvoiceReviewScreen';
 import RepaymentInfo from '../screens/RepaymentInfo';
 import LoanPaymentSuccessScreen from '../screens/LoanPaymentSuccessScreen';
+import TransferFingerprintScreen from '../screens/TransferFingerprintScreen';
+import WithdrawalFingerprintScreen from '../screens/WithdrawalFingerprintScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -266,6 +268,12 @@ const DashboardStackWithModal = createStackNavigator(
     },
     ChangePassword: {
       screen: ChangePasswordScreen,
+    },
+    TransferFingerprint: {
+      screen: TransferFingerprintScreen,
+    },
+    WithdrawalFingerprint: {
+      screen: WithdrawalFingerprintScreen,
     },
     ChangeEmail: {
       screen: ChangeEmailScreen,

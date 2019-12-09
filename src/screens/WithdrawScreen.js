@@ -69,7 +69,6 @@ const WithdrawScreen = (props) => {
                                     <View style={{ flex: 1 }}>
                                         <Text style={styles.small}>Amount</Text>
                                     </View>
-
                                 </View>
                                 <View style={{ flexDirection: 'row', marginTop: 5 }}>
                                 <Text style={styles.text}>{currency} {item.amount}</Text>

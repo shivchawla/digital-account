@@ -24,7 +24,7 @@ const WIthdrawApplicationScreen = (props) => {
 
         console.log(`values ialah : ${JSON.stringify(cleanValue)}`)
         dispatch(actionCreator.withDraw(cleanValue))
-        props.navigation.navigate('WithdrawSuccess')
+        props.navigation.navigate('WithdrawalFingerprint')
     }
 
     const dispatch = useDispatch()

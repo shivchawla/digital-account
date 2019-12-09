@@ -9,14 +9,9 @@ import * as Yup from 'yup';
 import styles from '../styles/styles'
 import moment from 'moment'
 
-
-
-
 const TransferScreen = (props) => {
 
     const transferRefNo = `TR-${moment().format('YYMMDDhhmmssSS')}`
-
-
     const dispatch = useDispatch()
     const { account_no } = useSelector(state => state.myAccountReducer, shallowEqual)
     const { userList } = useSelector(state => state.transferOutScreenReducer, shallowEqual)
@@ -52,7 +47,7 @@ const TransferScreen = (props) => {
         <Formik onSubmit={(values, actions) => {
             dispatch(actionCreator.submitNewExpense(values))
             actions.resetForm({ wallet: account_no, references_no: transferRefNo })
-            props.navigation.navigate("TransferSuccess")
+            props.navigation.navigate("TransferFingerprint")
             console.log(JSON.stringify(values))
         }}
             initialValues={{ wallet: account_no, references_no: transferRefNo }}
@@ -74,10 +69,7 @@ const TransferScreen = (props) => {
 
                 return (
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }}>
-                        <Modal animationType={'slide'}
-                            visible={userListView} onRequestClose={() => setuserListView(!userListView)}
-                            transparent={false}>
-
+                        <Modal animationType={'slide'} visible={userListView} onRequestClose={() => setuserListView(!userListView)} transparent={false}>
                             <View style={{ flex: 1, }}>
                                 <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
                                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
@@ -94,7 +86,6 @@ const TransferScreen = (props) => {
                                 </View>
                                 <View style={{ justifyContent: 'space-between', flex: 9 }}>
                                     <ScrollView style={[styles.screenMargin]}>
-
                                         <View style={{ marginTop: 20 }}>
                                             <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 10 }}>
                                                 <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 10, flex: 1, borderWidth: 1, borderColor: 'lightgrey', padding: 10, borderRadius: 10 }}>
@@ -109,7 +100,6 @@ const TransferScreen = (props) => {
                                             </View>
                                             {userList && <FlatList data={userList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
                                                 <TouchableOpacity onPress={() => setUser(item.account_no)} style={styles.box}>
-
                                                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
                                                         <View style={{ flex: 1 }}>
                                                             <Text style={styles.text}>{item.account_no}</Text>
@@ -120,7 +110,6 @@ const TransferScreen = (props) => {
                                                             <Text style={styles.small}>{item.business_name}</Text>
                                                         </View>
                                                     </View>
-
                                                 </TouchableOpacity>
                                             } />}
                                         </View>
@@ -161,7 +150,6 @@ const TransferScreen = (props) => {
                                 {references_noTouched && references_noError && <Text style={styles.error}>{references_noError}</Text>}
                             </View>
                         </View>
-
                         <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
                             <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 }}>
                                 <LinearGradient colors={['#FFF', '#FFF']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
