@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, Modal, TouchableHighlight, Button, Image, Platform } from 'react-native';
+import { Text, View, StyleSheet, Modal, TouchableHighlight, Button, Image, Platform, TouchableOpacity } from 'react-native';
 import Constants from 'expo-constants';
+import Layout from '../constants/Layout'
 import * as LocalAuthentication from 'expo-local-authentication';
 
 const WithdrawalFingerprintScreen = (props) => {
@@ -35,8 +36,9 @@ const WithdrawalFingerprintScreen = (props) => {
     };
 
     return (
-        <View style={[styles.container, modalVisible ? { backgroundColor: '#b7b7b7' } : { backgroundColor: 'white' }]}>
-            <Button title={authenticate ? 'Reset and begin Authentication again' : 'Verify Yourself!'}
+        <View style={[styles.container, modalVisible ? { flex: 1, backgroundColor: '#b7b7b7' } : { flex: 1, backgroundColor: 'white' }]}>
+
+            <Button title={authenticate ? 'Reset and begin Authentication again' : 'Push Me To Verify!'}
                 onPress={() => {
                     clearState();
                     if (Platform.OS === 'android') {
@@ -46,7 +48,11 @@ const WithdrawalFingerprintScreen = (props) => {
                     }
                 }}
             />
-           {authenticate && (<Button title={'Next'} onPress={() => props.navigation.navigate('WithdrawalSuccess')} />)}
+            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                {authenticate && (<TouchableOpacity onPress={() => props.navigation.navigate('WithdrawalSuccess')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, borderColor: 'black', borderWidth: 1 }}>
+                    <Text style={[styles.textDefault]}>Next</Text>
+                </TouchableOpacity>)}
+            </View>
             <Modal animationType="slide" transparent={true} visible={modalVisible} onShow={scanFingerPrint}>
                 <View style={styles.modal}>
                     <View style={styles.innerContainer}>

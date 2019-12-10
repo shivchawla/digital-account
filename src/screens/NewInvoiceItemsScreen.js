@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { View, TouchableOpacity, Text, Image, KeyboardAvoidingView, TextInput, ScrollView, Modal } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, TouchableOpacity, Text, Image, KeyboardAvoidingView, TextInput, ScrollView, Modal, Picker } from 'react-native';
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
+import * as actionCreator from '../store/actions/action'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
 import { Formik } from 'formik';
@@ -40,6 +41,12 @@ const NewInvoiceItemsScreen = (props) => {
     };
     const { newInvoice, items } = useSelector(state => state.invoiceReducer, shallowEqual)
 
+    useEffect(() => {
+        dispatch(actionCreator.getItemList())
+    }, [itemList])
+    //const dispatch = useDispatch()
+    const { itemList, } = useSelector(state => state.itemReducer, shallowEqual)
+
     return (
 
         <Formik onSubmit={(values, actions) => {
@@ -50,12 +57,12 @@ const NewInvoiceItemsScreen = (props) => {
             setItemVisible(!addItemVisible)
             actions.resetForm({ currencyItem: 'MYR', quantity: '1' })
         }}
-            initialValues={{ currencyItem: 'MYR', quantity: '1' }}
+            initialValues={{ currencyItem: 'MYR', quantity: '1', itemId: null }}
             validationSchema={validationSchema}
         >
             {FormikProps => {
 
-                const { invoice_item, item, quantity, currencyItem, priceItem } = FormikProps.values
+                const { invoice_item, item, quantity, currencyItem, priceItem, itemId } = FormikProps.values
 
                 const invoice_itemError = FormikProps.errors.invoice_item
                 const invoice_itemTouched = FormikProps.touched.invoice_item
@@ -63,11 +70,30 @@ const NewInvoiceItemsScreen = (props) => {
                 const itemError = FormikProps.errors.item
                 const itemTouched = FormikProps.touched.item
 
+                const itemIdError = FormikProps.errors.itemId
+                const itemIdTouched = FormikProps.touched.itemId
+
                 const quantityError = FormikProps.errors.quantity
                 const quantityTouched = FormikProps.touched.quantity
 
                 const priceItemError = FormikProps.errors.priceItem
                 const priceItemTouched = FormikProps.touched.priceItem
+
+                const changeItemDetail = (itemValue, itemIndex) => {
+                    if (itemValue != null) {
+                        const { name,sale_price } = itemList.find(c => c.id === itemValue)
+                        FormikProps.setFieldValue('itemId', itemValue)
+                        FormikProps.setFieldValue('invoice_item', name)
+                        FormikProps.setFieldValue('priceItem', (sale_price * quantity).toFixed(2).toString())
+
+                    }
+                }
+
+                const changePrice=()=>{
+                    const { sale_price} = itemList.find(c => c.id === itemId)
+                    quantity<1? FormikProps.setFieldValue('quantity', '1'):null
+                    FormikProps.setFieldValue('priceItem',(sale_price * quantity).toFixed(2).toString())
+                }
 
                 return (
 
@@ -79,6 +105,21 @@ const NewInvoiceItemsScreen = (props) => {
                                 <View style={{ flex: 10, justifyContent: 'flex-end' }}>
                                     <View style={[styles.screenMargin, { backgroundColor: '#fff', borderTopWidth: 1, borderColor: 'lightgrey' }]}>
                                         <View style={{ margin: 5 }} />
+
+
+                                        <View style={[styles.formElement]}>
+                                            <Text style={[styles.titleBox, { marginBottom: 10 }]}>Invoice Item</Text>
+                                            {itemList && <Picker selectedValue={itemId} onValueChange={(itemValue, itemIndex) => changeItemDetail(itemValue, itemIndex)}>
+                                                <Picker.Item label={'Please select'} value={null} />
+                                                {itemList && itemList.map(c => <Picker.Item label={c.name} value={c.id} key={c.id} />)}
+                                            </Picker>}
+                                            {/* {itemIdTouched && itemIdError && <Text style={styles.error}>{itemIdError}</Text>} */}
+
+                                        </View>
+
+
+
+
                                         <View style={[styles.formElement]}>
                                             <Text style={[styles.titleBox, { marginBottom: 10 }]}>Invoice Item</Text>
                                             <TextInput value={invoice_item} onChangeText={FormikProps.handleChange('invoice_item')} onBlur={FormikProps.handleBlur('invoice_item')} style={{ borderWidth: 1, borderColor: invoice_itemTouched && invoice_itemError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={invoice_itemTouched && invoice_itemError ? '' : ''} placeholderTextColor={invoice_itemTouched && invoice_itemError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
@@ -91,7 +132,7 @@ const NewInvoiceItemsScreen = (props) => {
                                         </View>
                                         <View style={[styles.formElement]}>
                                             <Text style={[styles.titleBox, { marginBottom: 10 }]}>Quantity</Text>
-                                            <TextInput value={quantity} onChangeText={FormikProps.handleChange('quantity')} onBlur={FormikProps.handleBlur('quantity')} style={{ borderWidth: 1, borderColor: quantityTouched && quantityError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={quantityTouched && quantityError ? '' : ''} placeholderTextColor={quantityTouched && quantityError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
+                                            <TextInput value={quantity} onChangeText={FormikProps.handleChange('quantity')} onBlur={()=>changePrice()} style={{ borderWidth: 1, borderColor: quantityTouched && quantityError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={quantityTouched && quantityError ? '' : ''} placeholderTextColor={quantityTouched && quantityError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
                                             {quantityTouched && quantityError && <Text style={styles.error}>{quantityError}</Text>}
                                         </View>
                                         <View style={[styles.formElement]}>

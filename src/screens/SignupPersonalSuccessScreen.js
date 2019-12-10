@@ -8,23 +8,19 @@ import * as actionCreator from '../store/actions/action'
 
 const SignupPersonalSuccessScreen = (props) => {
     useEffect(() => {
-        getPersonalToken()
+        const prevScreen = props.navigation.getParam('prevScreen', 'NA')
+        prevScreen != 'Dashboard' && dispatch(actionCreator.getPersonalToken())
     }, []);
     const dispatch = useDispatch()
-    const getPersonalToken = () => dispatch(actionCreator.getPersonalToken())
+    //const getPersonalToken = () => dispatch(actionCreator.getPersonalToken())
 
     const { emailVerified } = useSelector(state => state.notificationScreenReducer, shallowEqual)
 
     const [emailInitial, setEmailInitial] = useState(emailVerified)
 
-    // const toggleEmail = () => {
-    //     //onValueChange of the switch this function will be called
-    //     // console.log(JSON.stringify(emailVerified))
-    //     // setEmailInitial(emailVerified)
-    //     //state changes according to switch
-    //     //which will result in re-render the text
-    //     dispatch({ type: 'RESET_EMAIL_VERIFIED', payload: { emailVerified: null } })
-    // }
+    const prevScreen = props.navigation.getParam('prevScreen', 'NA')
+    console.log(`prevScreen ialah : ${prevScreen}`)
+    //prevScreen != 'Dashboard' && getPersonalToken()
 
     const clearEmail = () => {
         dispatch({ type: 'RESET_EMAIL_VERIFIED', payload: { emailVerified: null } })
@@ -41,6 +37,7 @@ const SignupPersonalSuccessScreen = (props) => {
                         <Image source={require('../assets/images/signupsuccess.png')} style={{ height: Layout.window.height * 0.3, width: Layout.window.width * 0.7 }} resizeMode={'contain'} />
                         {emailVerified ? <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                             <Text style={[styles.h3, { margin: 5, fontWeight: 'bold' }]}>Credential Created</Text>
+
                             <View style={{ alignSelf: 'stretch', flexDirection: 'column', margin: 5, alignItems: 'center' }}>
                                 <Text style={[styles.text, { margin: 5, color: 'darkturquoise' }]}>Congratulation!</Text>
                                 <Text style={[styles.text, { margin: 5, marginBottom: 20, textAlign: 'center' }]}>Please proceed to merchant registration or skip to dashboard.</Text>
@@ -57,6 +54,9 @@ const SignupPersonalSuccessScreen = (props) => {
                                 <Text style={[styles.h3, { margin: 5, fontWeight: 'bold' }]}>Credential Created</Text>
                                 <View style={{ alignSelf: 'stretch', flexDirection: 'column', margin: 5, alignItems: 'center' }}>
                                     <Text style={[styles.text, { margin: 5, color: 'darkturquoise' }]}>Email Verification</Text>
+                                    {prevScreen == 'Dashboard' && <TouchableOpacity onPress={() => dispatch(actionCreator.resendVerification())} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }}>
+                                        <Text style={[styles.textDefault, { color: 'white' }]}>Resend E-mail Verification</Text>
+                                    </TouchableOpacity>}
                                     <Text style={[styles.text, { margin: 5, marginBottom: 20, textAlign: 'center' }]}>Please check your email inbox and follow the instruction for verification.</Text>
                                 </View>
                                 <View style={{ flexDirection: 'row', justifyContent: 'center' }}>

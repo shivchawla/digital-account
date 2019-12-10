@@ -168,25 +168,24 @@ export const submitDocApi = () => {
     //console.log(`Submit doc api : ${JSON.stringify(values)}`)
     const { isDocument1file, isDocument2file, isDocument3file } = getState().companyInformationReducer
     console.log(`dah process document itu lettew`)
-    //const comp_regdate=moment(companyInfo.comp_regdate).format("YYYY-MM-DD HH:mm:ss")
-    // fetch(`${apiUrl}api/setup/business_document`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'Accept': 'application/json',
-    //     'Authorization': token_type + ' ' + access_token
-    //   },
-    //   body: JSON.stringify({ isDocument1:isDocument1file, isDocument2:isDocument2file, isDocument3:isDocument3file }),
-    // }).then((response) => response.json())
-    //   .then(async (responseJson) => {
-    //     const { status } = await responseJson
-    //     await dispatch({ type: 'SET_COMPANY_INFO', payload: { status, proceedMain: true } })
-    //     await console.log(`submit doc response  ${JSON.stringify(responseJson)}`)
-    //   })
-    //   .catch((error) => {
-    //     console.error('Error : ' + error);
-    //   });
-
+    // const comp_regdate=moment(companyInfo.comp_regdate).format("YYYY-MM-DD HH:mm:ss")
+    fetch(`${apiUrl}api/setup/business_document`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      },
+      body: JSON.stringify({ isDocument1: isDocument1file, isDocument2: isDocument2file, isDocument3: isDocument3file }),
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const { status } = await responseJson
+        await dispatch({ type: 'SET_COMPANY_INFO', payload: { status, proceedMain: true } })
+        await console.log(`submit doc response  ${JSON.stringify(responseJson)}`)
+      })
+      .catch((error) => {
+        console.error('Error : ' + error);
+      });
   }
 }
 
@@ -249,6 +248,39 @@ export const cddApi = () => {
 
   }
 }
+
+export const resendVerificationApi = () => {
+  return async (dispatch, getState) => {
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    console.log(`resend api : `)
+
+    fetch(`${apiUrl}api/activation`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      },
+      body: JSON.stringify({ access_credential: 'api' }),
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const { status } = await responseJson
+        //await dispatch({ type: 'SET_COMPANY_INFO', payload: { status, proceedMain: true } })
+        await console.log(`resend verification api  ${JSON.stringify(responseJson)}`)
+      })
+      .catch((error) => {
+        console.log('Error : ' + error);
+      });
+
+  }
+}
+
+
+
+
+
 
 /////////////////////////////////////////////////////////
 

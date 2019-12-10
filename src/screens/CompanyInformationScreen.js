@@ -96,7 +96,7 @@ const CompanyInformationScreen = (props) => {
                                     {cddRegistrationNumberTouched && cddRegistrationNumberError && <Text style={styles.error}>{cddRegistrationNumberError}</Text>}
                                 </View>
                                 <View style={[styles.formElement]}>
-                                    <Text style={[styles.titleBox]}>Due Date</Text>
+                                    <Text style={[styles.titleBox]}>Registration Date</Text>
                                     <View style={{ flexDirection: 'row' }}>
                                         <TouchableOpacity onPress={datePicker}>
                                             <Image source={require('../assets/images/calendar.png')} style={{ width: 30, height: 30, marginRight: 10 }} resizeMode={'contain'} />

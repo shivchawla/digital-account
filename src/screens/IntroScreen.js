@@ -27,7 +27,7 @@ const IntroScreen = (props) => {
         console.log(`expo token ialah ${token}`)
         dispatch({ type: 'SET_REGISTER', payload: { expo_token: token } })
         console.log(JSON.stringify({
-            token: { value: token, }, user: { username: 'Brent', },
+            token: { value: token, }, user: { username: 'Username', },
         }))
     }
 

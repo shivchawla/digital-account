@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, TouchableOpacity, Text, Image, FlatList, ScrollView, TextInput } from 'react-native';
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
@@ -11,6 +11,26 @@ const BusinessDirectoryScreen = (props) => {
     }, [businessDirectoryList])
     const dispatch = useDispatch()
     const { businessDirectoryList, filterBusinessList, filterEnabled } = useSelector(state => state.businessDirectoryReducer, shallowEqual)
+    const [onScreenFilter, setOnScreenFilter] = useState(false)
+    const [onScreenFilteredList, setOnScreenFilteredList] = useState([])
+
+    const searchList = (val) => {
+        console.log(`keyword  ialah : ${val}`)
+        if (val) {
+            setOnScreenFilter(true)
+            const newList = []
+            businessDirectoryList.map(b => {
+                b.company_name.includes(val) ? newList.push(b) : b.phone_number.includes(val) ? newList.push(b) : b.industry.includes(val) ? newList.push(b) : b.address.includes(val) ? newList.push(b) : false
+
+            })
+            console.log(`new list length ialah : ${newList.length}`)
+            setOnScreenFilteredList(newList)
+
+        } else { 
+            setOnScreenFilteredList([])
+            setOnScreenFilter(false) }
+
+    }
 
     return (
 
@@ -35,13 +55,13 @@ const BusinessDirectoryScreen = (props) => {
                             <View>
                                 <Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
                             </View>
-                            <TextInput placeholder='Please Enter Keyword' style={{ flex: 4 }} />
+                            <TextInput placeholder='Please Enter Keyword' style={{ flex: 4 }} onChangeText={(val) => searchList(val)} />
                             <TouchableOpacity onPress={props.navigation.openDrawer} >
                                 <Ionicons name="ios-options" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
                             </TouchableOpacity>
                         </View>
                     </View>
-                    {businessDirectoryList && <FlatList data={filterEnabled ? filterBusinessList : businessDirectoryList} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
+                    {businessDirectoryList && <FlatList data={filterEnabled ? filterBusinessList :onScreenFilter?onScreenFilteredList: businessDirectoryList} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
                         <View style={[styles.box, styles.shadow, { marginBottom: 15, borderRadius: 15 }]}>
                             <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'flex-start', alignItems: 'center', alignSelf: 'stretch' }}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1.2 }}>
