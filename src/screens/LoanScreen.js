@@ -1,20 +1,41 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, TouchableOpacity, Text, Image, FlatList, TextInput, ScrollView } from 'react-native';
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons';
 import moment from 'moment'
 import styles from '../styles/styles'
-import _ from  'lodash'
+import _ from 'lodash'
+
 const LoanScreen = (props) => {
     useEffect(() => {
         dispatch(actionCreator.getLoanList())
         dispatch(actionCreator.getRepaymentList())
     }, [loanList, repaymentList])
     const dispatch = useDispatch()
-     const { repaymentList, loanList, filteredLoanList, filterEnabled } = useSelector(state => state.loanReducer, shallowEqual)
+    const { repaymentList, loanList, filteredLoanList, filterEnabled } = useSelector(state => state.loanReducer, shallowEqual)
+    const [onScreenFilter, setOnScreenFilter] = useState(false)
+    const [onScreenFilteredList, setOnScreenFilteredList] = useState([])
     // const mergedLoanList = (loanList && repaymentList) ? _.merge(loanList, repaymentList) : 'none'
     // mergedLoanList && console.log(`inilah merged : ${JSON.stringify(mergedLoanList)}`)
+    const searchList = (val) => {
+        console.log(`keyword  ialah : ${val}`)
+        if (val) {
+            setOnScreenFilter(true)
+            const newList = []
+            loanList.map(b => {
+                b.type.includes(val) ? newList.push(b) : b.status.includes(val) ? newList.push(b) : false
+            })
+            console.log(`new list length ialah : ${newList.length}`)
+            setOnScreenFilteredList(newList)
+
+        } else {
+            setOnScreenFilteredList([])
+            setOnScreenFilter(false)
+        }
+
+    }
+
     return (
 
         <View style={{ flex: 1, }}>
@@ -47,13 +68,13 @@ const LoanScreen = (props) => {
                                 <View>
                                     <Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
                                 </View>
-                                <TextInput placeholder='Please Enter Keyword' style={{ flex: 4 }} />
+                                <TextInput placeholder='Please Enter Keyword' style={{ flex: 4 }} onChangeText={(val) => searchList(val)} />
                                 <TouchableOpacity onPress={props.navigation.openDrawer} >
                                     <Ionicons name="ios-options" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
                                 </TouchableOpacity>
                             </View>
                         </View>
-                        {loanList && <FlatList data={filterEnabled ? filteredLoanList : loanList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
+                        {loanList && <FlatList data={filterEnabled ? filteredLoanList : onScreenFilter ? onScreenFilteredList : loanList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
                             <TouchableOpacity onPress={() => props.navigation.navigate('LoanMiniDetail', { id: item.id })} style={styles.box}>
                                 <View style={{ flexDirection: 'row', marginTop: 5 }}>
                                     <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>

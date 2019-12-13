@@ -113,12 +113,12 @@ const DashboardStackWithModal = createStackNavigator(
     // NewInvoice: {
     //   screen: NewInvoiceScreen,
     // },
-    // NewInvoiceItems: {
-    //   screen: NewInvoiceItemsScreen,
-    // },
-    // NewInvoiceReview: {
-    //   screen: NewInvoiceReviewScreen,
-    // },
+    NewInvoiceItems: {
+      screen: NewInvoiceItemsScreen,
+    },
+    NewInvoiceReview: {
+      screen: NewInvoiceReviewScreen,
+    },
     // Transfer: {
     //   screen: TransferScreen,
     // },
@@ -272,9 +272,9 @@ const DashboardStackWithModal = createStackNavigator(
     // TransferFingerprint: {
     //   screen: TransferFingerprintScreen,
     // },
-    WithdrawalFingerprint: {
-      screen: WithdrawalFingerprintScreen,
-    },
+    // WithdrawalFingerprint: {
+    //   screen: WithdrawalFingerprintScreen,
+    // },
     // ChangeEmail: {
     //   screen: ChangeEmailScreen,
     // },

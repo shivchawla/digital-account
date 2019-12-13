@@ -195,6 +195,16 @@ export const setMarker = (index) => {
     }
 }
 
+export const setMarkerInvoiceItem = (index) => {
+    return (dispatch, getState) => {
+
+        const { itemList } = getState().invoiceReducer
+        const newArr = []
+        itemList.map((i, n) => (n === index) ? newArr.push({ ...i, marker: true }) : newArr.push({ ...i, marker: false }))
+        dispatch({ type: 'SET_INVOICE_APPLICATION', payload: { itemList: newArr } })
+    }
+}
+
 export const setMarkerBankList = (index) => {
     return (dispatch, getState) => {
 
@@ -698,7 +708,7 @@ export const filterReportList = (values) => {
         console.log(`filter report list action`)
         console.log(`filter report list action : ${JSON.stringify(values)}`)
         const { reportList } = getState().reportReducer
-        const { currency, type, credit_debit } = values
+        const { type, credit_debit } = values
         const filterParam = (type && credit_debit) ? { type, credit_debit } : type ? { type } : credit_debit ? { credit_debit } : null
         const newReportList = _.filter(reportList, _.matches(filterParam));
         console.log(`new report List : ${JSON.stringify(newReportList)}`)

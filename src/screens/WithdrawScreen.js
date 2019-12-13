@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, TouchableOpacity, Text, Image, FlatList, TextInput, ScrollView } from 'react-native';
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
@@ -13,7 +13,28 @@ const WithdrawScreen = (props) => {
     }, [withdrawList])
     const dispatch = useDispatch()
     const { withdrawList, filteredWithdrawList, filterEnabled } = useSelector(state => state.withdrawReducer, shallowEqual)
-    const {  currency } = useSelector(state => state.myAccountReducer, shallowEqual)
+    const { currency } = useSelector(state => state.myAccountReducer, shallowEqual)
+    const [onScreenFilter, setOnScreenFilter] = useState(false)
+    const [onScreenFilteredList, setOnScreenFilteredList] = useState([])
+
+    const searchList = (val) => {
+        console.log(`keyword  ialah : ${val}`)
+        if (val) {
+            setOnScreenFilter(true)
+            const newList = []
+            withdrawList.map(b => {
+                b.type.includes(val) ? newList.push(b) : b.status.includes(val) ? newList.push(b) : b.amount.toFixed(2).includes(val) ? newList.push(b) : false
+            })
+            console.log(`new list length ialah : ${newList.length}`)
+            setOnScreenFilteredList(newList)
+
+        } else {
+            setOnScreenFilteredList([])
+            setOnScreenFilter(false)
+        }
+
+    }
+
     return (
 
         <View style={{ flex: 1, }}>
@@ -43,13 +64,13 @@ const WithdrawScreen = (props) => {
                                 <View>
                                     <Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
                                 </View>
-                                <TextInput placeholder='Please Enter Keyword' style={{ flex: 4 }} />
+                                <TextInput placeholder='Please Enter Keyword' style={{ flex: 4 }} onChangeText={(val) => searchList(val)} />
                                 <TouchableOpacity onPress={props.navigation.openDrawer} >
                                     <Ionicons name="ios-options" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
                                 </TouchableOpacity>
                             </View>
                         </View>
-                        {withdrawList && <FlatList data={filterEnabled ? filteredWithdrawList : withdrawList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
+                        {withdrawList && <FlatList data={filterEnabled ? filteredWithdrawList : onScreenFilter ? onScreenFilteredList : withdrawList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
                             <TouchableOpacity onPress={() => props.navigation.navigate('WithdrawalDetail', { id: item.id })} style={styles.box}>
                                 <View style={{ flexDirection: 'row', marginTop: 5 }}>
                                     <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
@@ -71,7 +92,7 @@ const WithdrawScreen = (props) => {
                                     </View>
                                 </View>
                                 <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                <Text style={styles.text}>{currency} {item.amount}</Text>
+                                    <Text style={styles.text}>{currency} {item.amount}</Text>
                                 </View>
                             </TouchableOpacity>
                         } />}
