@@ -737,7 +737,7 @@ export const checkContactApi = () => {
         const lastTest = test.slice(-1).pop()
         const { id } = lastTest
         console.log(`full_name paling last ialah ${id}`)
-        dispatch({ type: 'SET_MERCHANT', payload: { contactId:id } })
+        dispatch({ type: 'SET_MERCHANT', payload: { contactId: id } })
 
       })
       .catch((error) => {
@@ -766,7 +766,7 @@ export const checkCDDApi = () => {
       .then(async (responseJson) => {
         const test = responseJson.data
         console.log(`cdd result ialah ${JSON.stringify(test)}`)
-        const { business_name,  isDocument1, isDeclaration_one, status,contactId } = await getState().merchantInfoReducer
+        const { business_name, isDocument1, isDeclaration_one, status, contactId } = await getState().merchantInfoReducer
         //const contactId = await getState().merchantInfoReducer.id
         await console.log('Dekat setScreen action ', business_name, contactId, isDocument1, isDeclaration_one)
         if (business_name && contactId && (isDocument1 != 'http://test') && isDeclaration_one && (status == 'activated')) {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Modal, TouchableHighlight, Button, Image, Platform, TouchableOpacity } from 'react-native';
 import Constants from 'expo-constants';
 import Layout from '../constants/Layout'
@@ -6,13 +6,24 @@ import * as LocalAuthentication from 'expo-local-authentication';
 
 const WithdrawalFingerprintScreen = (props) => {
 
+    useEffect(() => {checkAuthentication()}, [something])
+
     const [authenticate, setAuthenticate] = useState(false)
     const [modalVisible, setModalVisible] = useState(false)
     const [failedCount, setFailedCount] = useState(0)
+    const [something, setSomething] = useState(null)
 
     // setModalVisible(visible) {
     //   this.setState({ modalVisible: visible });
     // }
+
+    const checkAuthentication = async () => {
+        console.log(`JSON.stringify(test)`)
+        const test = await LocalAuthentication.supportedAuthenticationTypesAsync()
+        await LocalAuthentication.supportedAuthenticationTypesAsync().then(test=>console.log(`test ${JSON.stringify(test)}`))
+        setSomething(JSON.stringify(test))
+        console.log(JSON.stringify(test))
+    }
 
     const clearState = () => {
         // this.setState({ authenticated: false, failedCount: 0 });
@@ -37,7 +48,10 @@ const WithdrawalFingerprintScreen = (props) => {
 
     return (
         <View style={[styles.container, modalVisible ? { flex: 1, backgroundColor: '#b7b7b7' } : { flex: 1, backgroundColor: 'white' }]}>
-
+{something&&<Text>{something}</Text>}
+<TouchableOpacity onPress={()=>checkAuthentication()}>
+    <Text>Test</Text>
+</TouchableOpacity>
             <Button title={authenticate ? 'Reset and begin Authentication again' : 'Push Me To Verify!'}
                 onPress={() => {
                     clearState();

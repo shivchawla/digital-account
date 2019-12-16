@@ -47,7 +47,7 @@ const TransferScreen = (props) => {
         <Formik onSubmit={(values, actions) => {
             dispatch(actionCreator.submitNewExpense(values))
             actions.resetForm({ wallet: account_no, references_no: transferRefNo })
-            props.navigation.navigate("TransferFingerprint")
+            props.navigation.navigate("TransferSuccess")
             console.log(JSON.stringify(values))
         }}
             initialValues={{ wallet: account_no, references_no: transferRefNo }}

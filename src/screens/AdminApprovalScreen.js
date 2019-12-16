@@ -18,7 +18,7 @@ const AdminApprovalScreen = (props) => {
             'Exit App',
             'Exit App and Come Back Later ',
             [
-                { text: 'Ask me later', onPress: () => console.log('Ask me later pressed') },
+
                 {
                     text: 'Cancel',
                     onPress: () => console.log('Cancel Pressed'),

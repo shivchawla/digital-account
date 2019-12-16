@@ -1,16 +1,50 @@
 import React, { useEffect, useState } from 'react';
-import { Image, Text, TouchableOpacity, View, Switch } from 'react-native';
+import { Image, Text, TouchableOpacity, View, Switch, Alert, BackHandler } from 'react-native';
 import Constants from 'expo-constants'
 import Layout from '../constants/Layout'
 import styles from '../styles/styles'
+
+// modules
+import {
+    handleAndroidBackButton,
+    removeAndroidBackButtonHandler
+} from '../components/androidBackButton';
+
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import * as actionCreator from '../store/actions/action'
 
 const SignupPersonalSuccessScreen = (props) => {
+
+    const exitAlert = () => {
+        // Works on both Android and iOS
+        Alert.alert(
+            'Skip',
+            'Go to Dashboard or Exit App',
+            [
+
+                {
+                    text: 'Cancel',
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'cancel',
+                },
+                { text: 'Dashboard', onPress: () => { console.log('OK Pressed'); props.navigation.navigate('Dashboard') } },
+                { text: 'Exit', onPress: () => { console.log('OK Pressed'); BackHandler.exitApp() } },
+            ],
+            { cancelable: false },
+        );
+    };
+
     useEffect(() => {
         const prevScreen = props.navigation.getParam('prevScreen', 'NA')
         prevScreen != 'Dashboard' && dispatch(actionCreator.getPersonalToken())
     }, []);
+
+    useEffect(() => {
+        console.log("componentDidMount");
+        handleAndroidBackButton(exitAlert)
+        // return removeAndroidBackButtonHandler()
+    }, []); // empty-array means don't watch for any updates
+
     const dispatch = useDispatch()
     //const getPersonalToken = () => dispatch(actionCreator.getPersonalToken())
 
@@ -55,7 +89,7 @@ const SignupPersonalSuccessScreen = (props) => {
                                 <View style={{ alignSelf: 'stretch', flexDirection: 'column', margin: 5, alignItems: 'center' }}>
                                     <Text style={[styles.text, { margin: 5, color: 'darkturquoise' }]}>Email Verification</Text>
                                     {prevScreen == 'Dashboard' && <TouchableOpacity onPress={() => dispatch(actionCreator.resendVerification())} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }}>
-                                        <Text style={[styles.textDefault, { color: 'white' }]}>Resend E-mail Verification</Text>
+                                        <Text style={[styles.textDefault, { color: 'white' }]}>Resend</Text>
                                     </TouchableOpacity>}
                                     <Text style={[styles.text, { margin: 5, marginBottom: 20, textAlign: 'center' }]}>Please check your email inbox and follow the instruction for verification.</Text>
                                 </View>

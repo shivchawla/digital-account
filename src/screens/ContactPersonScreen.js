@@ -1,12 +1,16 @@
-import React from 'react';
-import { Image, Text, TouchableOpacity, View, TextInput, KeyboardAvoidingView, ActivityIndicator } from 'react-native';
+import React,{useEffect,useState} from 'react';
+import { Image, Text, TouchableOpacity, View, TextInput, KeyboardAvoidingView, ActivityIndicator,Alert,BackHandler } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import styles from '../styles/styles'
 import { useDispatch } from 'react-redux'
 import * as actionCreator from '../store/actions/action'
-
+// modules
+import {
+    handleAndroidBackButton,
+    removeAndroidBackButtonHandler
+} from '../components/androidBackButton';
 const validationSchema = Yup.object().shape({
 
     cddContactPersonName: Yup
@@ -17,15 +21,15 @@ const validationSchema = Yup.object().shape({
 
     cddContactPersonIc: Yup
         .string()
-    .min(12)
-    .required()
-    .label('IC'),
+        .min(12)
+        .required()
+        .label('IC'),
 
     cddContactPersonNumber: Yup
         .string()
-         .min(10)
-    .required()
-    .label('Phone Number'),
+        .min(10)
+        .required()
+        .label('Phone Number'),
 
     cddContactPersonPosition: Yup
         .string()
@@ -37,6 +41,29 @@ const validationSchema = Yup.object().shape({
 
 const ContactPersonScreen = (props) => {
 
+    const exitAlert = () => {
+        // Works on both Android and iOS
+        Alert.alert(
+            'Skip',
+            'Go to Dashboard or Exit App',
+            [
+
+                {
+                    text: 'Cancel',
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'cancel',
+                },
+                { text: 'Dashboard', onPress: () => { console.log('OK Pressed'); props.navigation.navigate('Dashboard') } },
+                { text: 'Exit', onPress: () => { console.log('OK Pressed'); BackHandler.exitApp() } },
+            ],
+            { cancelable: false },
+        );
+    };
+    useEffect(() => {
+        console.log("componentDidMount");
+        handleAndroidBackButton(exitAlert)
+        // return removeAndroidBackButtonHandler()
+    }, []); // empty-array means don't watch for any updates
     const dispatch = useDispatch()
     const contactPerson = (values) => {
         dispatch(actionCreator.contactPerson(values))
