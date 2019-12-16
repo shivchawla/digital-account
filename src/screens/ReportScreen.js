@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, TouchableOpacity, Text, Image, FlatList, ScrollView, TouchableWithoutFeedback, TextInput } from 'react-native';
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
@@ -7,14 +7,32 @@ import moment from 'moment'
 import styles from '../styles/styles'
 
 const ReportScreen = (props) => {
-
     useEffect(() => {
         dispatch(actionCreator.getReportList())
     }, [reportList])
-
     const dispatch = useDispatch()
     const { reportList, filterReportList, filterEnabled } = useSelector(state => state.reportReducer, shallowEqual)
-    const {currency} = useSelector(state => state.myAccountReducer, shallowEqual)
+    const [onScreenFilter, setOnScreenFilter] = useState(false)
+    const [onScreenFilteredList, setOnScreenFilteredList] = useState([])
+
+    const searchList = (val) => {
+        console.log(`keyword  ialah : ${val}`)
+        if (val) {
+            setOnScreenFilter(true)
+            const newList = []
+            reportList.map(b => {
+                b.type.includes(val) ? newList.push(b) : b.credit_debit.includes(val) ? newList.push(b) : b.from_to.includes(val) ? newList.push(b) : b.amount.toFixed(2).includes(val) ? newList.push(b) : b.status.includes(val) ? newList.push(b) : false
+            })
+            console.log(`new list length ialah : ${newList.length}`)
+            setOnScreenFilteredList(newList)
+
+        } else {
+            setOnScreenFilteredList([])
+            setOnScreenFilter(false)
+        }
+
+    }
+
     return (
 
         <View style={{ flex: 1 }}>
@@ -38,13 +56,13 @@ const ReportScreen = (props) => {
                             <View>
                                 <Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
                             </View>
-                            <TextInput placeholder='Please Enter Keyword' style={{ flex: 4 }} />
+                            <TextInput placeholder='Please Enter Keyword' style={{ flex: 4 }} onChangeText={(val) => searchList(val)} />
                             <TouchableOpacity onPress={props.navigation.openDrawer} >
                                 <Ionicons name="ios-options" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
                             </TouchableOpacity>
                         </View>
                     </View>
-                    {reportList && <FlatList data={filterEnabled ? filterReportList : reportList} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
+                    {reportList && <FlatList data={filterEnabled ? filterReportList : onScreenFilter ? onScreenFilteredList : reportList} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
                         <View style={styles.box}>
                             <TouchableWithoutFeedback onPress={() => dispatch(actionCreator.setMarkerReportList(index))} style={{ flexDirection: 'row', marginTop: 5 }}>
                                 <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
@@ -60,31 +78,27 @@ const ReportScreen = (props) => {
                                     <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                                         <Text style={[styles.boldText]}>{item.type}</Text>
                                     </View>
-                                 
                                 </View>
                                 <View style={{ flexDirection: 'row', marginTop: 5 }}>
                                     <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                                         <Text style={[styles.text]}>{item.credit_debit}</Text>
                                     </View>
                                     <View style={{ flex: 1 }}>
-                                        <Text style={[styles.text, { color: '#055E7C' }]}>{item.credit_debit=='DEBIT'?'to':'from'} {item.from_to}</Text>
+                                        <Text style={[styles.text, { color: '#055E7C' }]}>{item.credit_debit == 'DEBIT' ? 'to' : 'from'} {item.from_to}</Text>
                                     </View>
-                              
                                 </View>
                                 <View style={{ flexDirection: 'row', marginTop: 5 }}>
                                     <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                                         <Text style={[styles.text]}>Amount</Text>
                                     </View>
-                                
                                     <View style={{ flex: 1 }}>
-                                        <Text style={[styles.text, { color: '#055E7C' }]}>{currency} {item.amount.toFixed(2)}</Text>
+                                        <Text style={[styles.text, { color: '#055E7C' }]}>{item.amount.toFixed(2)}</Text>
                                     </View>
                                 </View>
                                 <View style={{ flexDirection: 'row', marginTop: 5 }}>
                                     <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                                         <Text style={[styles.text]}>Status</Text>
                                     </View>
-                                
                                     <View style={{ flex: 1 }}>
                                         <Text style={[styles.text, { color: '#055E7C' }]}>{item.status}</Text>
                                     </View>

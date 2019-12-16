@@ -57,48 +57,51 @@ const RepaymentInfo = (props) => {
                                 <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
                             </View>
                         </View>
-                        <ScrollView style={[styles.screenMargin]}>
-                            <Formik onSubmit={async values => {
-                                console.log(JSON.stringify(values))
-                                setModalVisible(!modalVisible)
-                                props.navigation.navigate("LoanPaymentSuccess")
-                            }}
-                                validationSchema={validationSchema}>
-                                {
-                                    FormikProps => {
-                                        const { amount } = FormikProps.values
+                        <Formik onSubmit={async values => {
+                            console.log(JSON.stringify(values))
+                            setModalVisible(!modalVisible)
+                            props.navigation.navigate("LoanPaymentSuccess")
+                        }}
+                            validationSchema={validationSchema}>
+                            {
+                                FormikProps => {
+                                    const { amount } = FormikProps.values
 
-                                        const amountError = FormikProps.errors.amount
-                                        const amountTouched = FormikProps.touched.amount
+                                    const amountError = FormikProps.errors.amount
+                                    const amountTouched = FormikProps.touched.amount
 
-                                        return (
-                                            <View>
-                                                <View style={[styles.formElement]}>
-                                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Account No</Text>
-                                                    <TextInput editable={false} value={repaymentDetail.account_loan_no} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholderTextColor={'lightgrey'} />
-                                                </View>
-                                                <View style={[styles.formElement]}>
-                                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Amount</Text>
-                                                    <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} onBlur={FormikProps.handleBlur('amount')} style={{ borderWidth: 1, borderColor: amountTouched && amountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={amountTouched && amountError ? '' : 'Eg: 100.00'} placeholderTextColor={amountTouched && amountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'phone-pad'} />
-                                                    {amountError && amountTouched && <Text style={styles.error}>{amountError}</Text>}
-                                                </View>
-                                                <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
-                                                    <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 }}>
-                                                        <LinearGradient colors={['#FFF', '#FFF']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                                                            <Text style={[styles.butang, { color: '#000000' }]}>Back</Text>
-                                                        </LinearGradient>
-                                                    </TouchableOpacity>
-                                                    <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ flex: 1 }}>
-                                                        <LinearGradient colors={FormikProps.isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                                                            {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> : <Text style={[styles.butang, { color: '#fff' }]}>Submit</Text>}
-                                                        </LinearGradient>
-                                                    </TouchableOpacity>
-                                                </View>
+                                    return (
+
+                                        <View style={{ justifyContent: 'space-between', flex: 9 }}>
+                                            <View style={[styles.screenMargin, { flex: 9 }]}>
+                                                <ScrollView >
+                                                    <View style={[styles.formElement]}>
+                                                        <Text style={[styles.titleBox, { marginBottom: 10, marginTop: 10 }]}>Account No</Text>
+                                                        <TextInput editable={false} value={repaymentDetail.account_loan_no} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholderTextColor={'lightgrey'} />
+                                                    </View>
+                                                    <View style={[styles.formElement]}>
+                                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Amount</Text>
+                                                        <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} onBlur={FormikProps.handleBlur('amount')} style={{ borderWidth: 1, borderColor: amountTouched && amountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={amountTouched && amountError ? '' : 'Eg: 100.00'} placeholderTextColor={amountTouched && amountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'phone-pad'} />
+                                                        {amountError && amountTouched && <Text style={styles.error}>{amountError}</Text>}
+                                                    </View>
+                                                </ScrollView>
                                             </View>
-                                        )
-                                    }}
-                            </Formik>
-                        </ScrollView>
+                                            <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
+                                                <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 }}>
+                                                    <LinearGradient colors={['#FFF', '#FFF']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
+                                                        <Text style={[styles.butang, { color: '#000000' }]}>Back</Text>
+                                                    </LinearGradient>
+                                                </TouchableOpacity>
+                                                <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ flex: 1 }}>
+                                                    <LinearGradient colors={FormikProps.isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
+                                                        {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> : <Text style={[styles.butang, { color: '#fff' }]}>Submit</Text>}
+                                                    </LinearGradient>
+                                                </TouchableOpacity>
+                                            </View>
+                                        </View>
+                                    )
+                                }}
+                        </Formik>
                     </View> : <View style={{ flex: 1, justifyContent: 'flex-end', }}>
                         <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
@@ -115,8 +118,6 @@ const RepaymentInfo = (props) => {
                         </View>
                         <View style={{ flex: 9, justifyContent: 'flex-end' }}>
                             <ScrollView style={[styles.screenMargin]}>
-                                
-
                                 <TouchableOpacity onPress={() => console.log('wow')} style={styles.box}>
                                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
                                         <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
@@ -262,35 +263,35 @@ const RepaymentInfo = (props) => {
                     {repaymentDetail && <ScrollView style={[styles.screenMargin]}>
                         <View style={{ margin: 10 }} />
                         <View style={{ marginBottom: 10 }}>
-                            <Text style={[styles.titleBox, { marginBottom: 5 }]}>Account No</Text>
+                            <Text style={[styles.titleBox, { marginBottom: 5, fontWeight: 'bold' }]}>Account No</Text>
                             <Text style={[styles.text, { marginBottom: 5 }]}>{repaymentDetail.account_loan_no}</Text>
                         </View>
                         <View style={{ marginBottom: 10 }}>
-                            <Text style={[styles.titleBox, { marginBottom: 5 }]}>Total Financing (MYR)</Text>
+                            <Text style={[styles.titleBox, { marginBottom: 5, fontWeight: 'bold' }]}>Total Financing (MYR)</Text>
                             <Text style={[styles.text, { marginBottom: 5 }]}>{repaymentDetail.total_request}</Text>
                         </View>
                         <View style={{ marginBottom: 10 }}>
-                            <Text style={[styles.titleBox, { marginBottom: 5 }]}>Total Financing with Interest (MYR)</Text>
+                            <Text style={[styles.titleBox, { marginBottom: 5, fontWeight: 'bold' }]}>Total Financing with Interest (MYR)</Text>
                             <Text style={[styles.text, { marginBottom: 5 }]}>{repaymentDetail.total_request_w_interest}</Text>
                         </View>
                         <View style={{ marginBottom: 10 }}>
-                            <Text style={[styles.titleBox, { marginBottom: 5 }]}>Loan Year Term (Year)</Text>
+                            <Text style={[styles.titleBox, { marginBottom: 5, fontWeight: 'bold' }]}>Loan Year Term (Year)</Text>
                             <Text style={[styles.text, { marginBottom: 5 }]}>{repaymentDetail.loan_year_term}</Text>
                         </View>
                         <View style={{ marginBottom: 10 }}>
-                            <Text style={[styles.titleBox, { marginBottom: 5 }]}>Interest Rate (%)</Text>
+                            <Text style={[styles.titleBox, { marginBottom: 5, fontWeight: 'bold' }]}>Interest Rate (%)</Text>
                             <Text style={[styles.text, { marginBottom: 5 }]}>{repaymentDetail.interest_rate}</Text>
                         </View>
                         <View style={{ marginBottom: 10 }}>
-                            <Text style={[styles.titleBox, { marginBottom: 5 }]}>Monthly Payment (MYR)</Text>
+                            <Text style={[styles.titleBox, { marginBottom: 5, fontWeight: 'bold' }]}>Monthly Payment (MYR)</Text>
                             <Text style={[styles.text, { marginBottom: 5 }]}>{repaymentDetail.monthly_pay}</Text>
                         </View>
                         <View style={{ marginBottom: 10 }}>
-                            <Text style={[styles.titleBox, { marginBottom: 5 }]}>Start Month Payment</Text>
+                            <Text style={[styles.titleBox, { marginBottom: 5, fontWeight: 'bold' }]}>Start Month Payment</Text>
                             <Text style={[styles.text, { marginBottom: 5 }]}>12</Text>
                         </View>
                         <View style={{ marginBottom: 10 }}>
-                            <Text style={[styles.titleBox, { marginBottom: 5 }]}>Payment Method</Text>
+                            <Text style={[styles.titleBox, { marginBottom: 5, fontWeight: 'bold' }]}>Payment Method</Text>
                             <Text style={[styles.text, { marginBottom: 5 }]}>{repaymentDetail.payment_method}</Text>
                         </View>
                         < View style={{ flexDirection: 'row', margin: 5, justifyContent: 'center' }}>
@@ -298,7 +299,7 @@ const RepaymentInfo = (props) => {
                                 <Text style={[styles.textDefault, { color: 'black' }]}>History</Text>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => openModal('pay')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }} >
-                                <Text style={[styles.textDefault, { color: '#fff' }]}>Pay!</Text>
+                                <Text style={[styles.textDefault, { color: '#fff' }]}>Pay</Text>
                             </TouchableOpacity>
                         </View>
                     </ScrollView>}

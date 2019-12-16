@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, TouchableOpacity, TouchableWithoutFeedback, Text, Image, FlatList, TextInput, ScrollView, KeyboardAvoidingView } from 'react-native';
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
@@ -12,6 +12,26 @@ const InvoiceScreen = (props) => {
     }, [invoiceList])
     const dispatch = useDispatch()
     const { invoiceList, filterInvoicesList, filterEnabled } = useSelector(state => state.invoiceReducer, shallowEqual)
+    const [onScreenFilter, setOnScreenFilter] = useState(false)
+    const [onScreenFilteredList, setOnScreenFilteredList] = useState([])
+
+    const searchList = (val) => {
+        console.log(`keyword  ialah : ${val}`)
+        if (val) {
+            setOnScreenFilter(true)
+            const newList = []
+            invoiceList.map(b => {
+                b.invoice_number.includes(val) ? newList.push(b) : b.customer_name.includes(val) ? newList.push(b) : b.currency_code.includes(val) ? newList.push(b) : b.amount.toFixed(2).includes(val) ? newList.push(b) : b.customer_phone.includes(val) ? newList.push(b) : b.customer_email.includes(val) ? newList.push(b) : false
+            })
+            console.log(`new list length ialah : ${newList.length}`)
+            setOnScreenFilteredList(newList)
+
+        } else {
+            setOnScreenFilteredList([])
+            setOnScreenFilter(false)
+        }
+
+    }
 
     return (
 
@@ -45,13 +65,13 @@ const InvoiceScreen = (props) => {
                                 <View>
                                     <Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
                                 </View>
-                                <TextInput placeholder='Please Enter Keyword' style={{ flex: 4 }} />
+                                <TextInput placeholder='Please Enter Keyword' style={{ flex: 4 }} onChangeText={(val) => searchList(val)} />
                                 <TouchableOpacity onPress={props.navigation.openDrawer} >
                                     <Ionicons name="ios-options" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
                                 </TouchableOpacity>
                             </View>
                         </View>
-                        {invoiceList && <FlatList data={filterEnabled ? filterInvoicesList : invoiceList} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
+                        {invoiceList && <FlatList data={filterEnabled ? filterInvoicesList : onScreenFilter ? onScreenFilteredList : invoiceList} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
                             <View style={styles.box}>
                                 <TouchableWithoutFeedback onPress={() => dispatch(actionCreator.setMarker(index))} style={{ flexDirection: 'row', marginTop: 5 }}>
                                     <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
@@ -60,7 +80,7 @@ const InvoiceScreen = (props) => {
                                     </View>
                                 </TouchableWithoutFeedback>
                                 <View style={{ flexDirection: 'row', marginTop: 5, borderBottomWidth: item.marker ? 1 : 0, borderBottomColor: 'lightgrey', }}>
-                                    <View style={{ flex: 1,paddingBottom:5 }}>
+                                    <View style={{ flex: 1, paddingBottom: 5 }}>
                                         <Text style={styles.text}>{item.invoice_number}</Text>
                                     </View>
                                 </View>
@@ -70,7 +90,6 @@ const InvoiceScreen = (props) => {
                                             <Text style={styles.small}>Name</Text>
                                             <Text style={styles.text}>{item.customer_name}</Text>
                                         </View>
-                                  
                                     </View>
                                     <View style={{ flexDirection: 'row', marginTop: 20 }}>
                                         <View style={{ flex: 1 }}>
@@ -94,8 +113,7 @@ const InvoiceScreen = (props) => {
                                             <Text style={styles.text}>{item.customer_email}</Text>
                                         </View>
                                     </View>
-                                </View>
-                                }
+                                </View>}
                             </View>
                         } />}
                     </View>

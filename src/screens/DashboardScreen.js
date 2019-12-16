@@ -15,12 +15,12 @@ const DashboardScreen = (props) => {
   const dispatch = useDispatch()
 
 
-  const { link, status, business_name, isDeclaration_one, isDocument1, full_name,contactId } = useSelector(state => state.merchantInfoReducer, shallowEqual)
+  const { link, status, business_name, isDeclaration_one, isDocument1, full_name, contactId } = useSelector(state => state.merchantInfoReducer, shallowEqual)
   const { balance, currency } = useSelector(state => state.myAccountReducer, shallowEqual)
   //const contactId =   useSelector(state => state.merchantInfoReducer.id, shallowEqual)
 
-  const all =   useSelector(state => state.merchantInfoReducer, shallowEqual)
-  all&&console.log(`all ialah : ${JSON.stringify(all)}`)
+  const all = useSelector(state => state.merchantInfoReducer, shallowEqual)
+  all && console.log(`all ialah : ${JSON.stringify(all)}`)
 
   //const dashboardDisplay = (link == 'Dashboard') ? true : false
 
@@ -91,7 +91,7 @@ const DashboardScreen = (props) => {
                   </View>
                   <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
                     <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Contact Info</Text>
-                    {(contactId &&contactId!=13) && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
+                    {(contactId && contactId != 13) && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
                   </View>
                   <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
                     <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Document Submission</Text>
@@ -103,7 +103,7 @@ const DashboardScreen = (props) => {
                   </View>
                 </View>}
               <View style={{ flexDirection: 'row', alignSelf: 'stretch', marginTop: 15 }}>
-                <TouchableOpacity style={{ flex: 1, }} onPress={() => props.navigation.navigate(link,{prevScreen:'Dashboard'})}>
+                <TouchableOpacity style={{ flex: 1, }} onPress={() => props.navigation.navigate(link, { prevScreen: 'Dashboard' })}>
                   <LinearGradient colors={['#0A6496', '#055E7C']} style={{ flex: 1, padding: 20, justifyContent: 'center', alignItems: 'center' }}>
                     <Text style={[styles.textDefault, { color: '#fff' }]}>CONTINUE</Text>
                   </LinearGradient>
@@ -155,10 +155,10 @@ const DashboardScreen = (props) => {
               <Text style={[styles.text, { color: '#fff' }]}>THIS MONTH</Text>
               <Ionicons name="ios-arrow-forward" color={'#fff'} style={{ fontSize: 23, paddingRight: 30 }} />
             </View>
-            <View style={{ flex: 1, height: Layout.window.height / 5, alignSelf: 'stretch', flexDirection: 'row', justifyContent: 'space-around' }}>
+            <View style={{ flex: 1, height: Layout.window.height / 3, alignSelf: 'stretch', flexDirection: 'row', justifyContent: 'space-around', borderRadius: 10 }}>
               {/* <VictoryCharts /> */}
-              {/* <ChartKit /> */}
-              <Charts />
+              <ChartKit />
+              {/* <Charts /> */}
             </View>
           </LinearGradient>
         </View>
