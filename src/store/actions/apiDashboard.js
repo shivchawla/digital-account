@@ -523,9 +523,9 @@ export const reportListApi = () => {
 
     }).then((response) => response.json())
       .then(async (responseJson) => {
-        const { data } = responseJson.data
-        const reportList = data
-        reportList.reverse()
+        const { data } =  responseJson
+        const reportList =  data
+        // reportList.reverse()
         console.log('Success report list' + JSON.stringify(responseJson))
         dispatch({ type: 'SET_REPORT_LIST', payload: { reportList } })
 
