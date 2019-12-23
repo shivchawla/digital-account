@@ -68,21 +68,38 @@ const DashboardScreen = (props) => {
     //await setDashboardDisplay(link != 'Dashboard' ? false : true)
   }
   //setDashboardDisplay(link != 'Dashboard' ? false : true)
+  // useEffect(() => {
+
+  //   runCheckStatus();
+  //   console.log(`runcheckstatus`)
+  // }, [status1, status])
+
+  // useEffect(() => {
+  //   (status != 'activated') && dispatch(actionCreator.getReportList())
+  //   console.log(`getReportList`)
+  // }, [status])
+
+  const runCheckStatus2 = async () => {
+    await dispatch(actionCreator.setScreen2())
+  }
   useEffect(() => {
+    runCheckStatus2()
 
-    runCheckStatus();
-    console.log(`runcheckstatus`)
-  }, [status1, status])
-
+  }, [])
   useEffect(() => {
-    (status != 'activated') && dispatch(actionCreator.getReportList())
-    console.log(`getReportList`)
-  }, [status])
+    console.log(`status1 ialah ${status1}`)
+    if (status1 == 'NA') {
+      runCheckStatus();
+    } else if (status1 == 'Approved')  {
+       dispatch(actionCreator.retrieveMerchantInfo())
+       dispatch(actionCreator.retrieveAccountInfo())
+       dispatch(actionCreator.getReportList())
+    }
 
+  }, [status1])
 
 
   const getData = () => {
-
     const listBaru = []
     reportList.map(rl => {
       const { type, credit_debit, amount, status, updated_at } = rl

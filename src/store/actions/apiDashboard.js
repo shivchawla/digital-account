@@ -526,7 +526,7 @@ export const reportListApi = () => {
         const { data } = responseJson
         const reportList = data
         // reportList.reverse()
-       // console.log('Success report list' + JSON.stringify(responseJson))
+        // console.log('Success report list' + JSON.stringify(responseJson))
         dispatch({ type: 'SET_REPORT_LIST', payload: { reportList } })
 
       })
@@ -764,9 +764,9 @@ export const checkCDDApi = () => {
 
     }).then((response) => response.json())
       .then(async (responseJson) => {
-        const test = responseJson.data
-        //console.log(`cdd result ialah ${JSON.stringify(test)}`)
-        const status1 = test[0].status
+        const test = responseJson
+        console.log(`cdd result ialah ${JSON.stringify(test)}`)
+        const status1 = test.status
         console.log(`status kejayaan : ${status1}`)
         if (status1 != 'Approved') {
           const { business_name, isDocument1, isDeclaration_one, status, contactId } = await getState().merchantInfoReducer
@@ -807,13 +807,50 @@ export const checkCDDApi = () => {
           }
         } else {
           const link = 'Dashboard'
-          dispatch({ type: 'SET_MERCHANT', payload: { link,status1 } })
+          dispatch({ type: 'SET_MERCHANT', payload: { link, status1 } })
         }
 
 
       })
       .catch((error) => {
         console.log('Error initiating check contact : ' + error);
+      });
+  }
+}
+
+
+export const checkCDDApi2 = () => {
+  return async (dispatch, getState) => {
+
+    //const personalToken = await AsyncStorage.getItem('personalToken');
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    fetch(`${apiUrl}api/setup/cdd_verification`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const test = responseJson.data
+        console.log(`cdd result ialah ${JSON.stringify(test)}`)
+        const status1 = test.status
+        console.log(`status kejayaan : ${status1}`)
+
+        const link = 'Dashboard'
+        dispatch({ type: 'SET_MERCHANT', payload: { link, status1 } })
+
+
+
+      })
+      .catch((error) => {
+        console.log('Error initiating check contact : ' + error);
+        dispatch({ type: 'SET_MERCHANT', payload: {  status1:'NA' } })
       });
   }
 }
