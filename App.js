@@ -35,7 +35,7 @@ const App = (props) => {
       //const personalToken = await AsyncStorage.getItem('personalToken');
       const personalToken = await SecureStore.getItemAsync('personalToken')
       if (personalToken !== null && !personalToken.includes('error')) {
-        console.log(`personal token ialah : ${personalToken}`)
+        //console.log(`personal token ialah : ${personalToken}`)
         setTokenExists(true)
       }
     } catch (error) {
@@ -57,11 +57,11 @@ const App = (props) => {
       return;
     }
     let token = await Notifications.getExpoPushTokenAsync();
-    console.log(`expo token ialah ${token}`)
+    //console.log(`expo token ialah ${token}`)
     store.dispatch({ type: 'SET_REGISTER', payload: { expo_token: token } })
-    console.log(JSON.stringify({
-      token: { value: token, }, user: { username: 'Username', },
-    }))
+    // console.log(JSON.stringify({
+    //   token: { value: token, }, user: { username: 'Username', },
+    // }))
   }
 
   _handleNotification = (notification) => {
