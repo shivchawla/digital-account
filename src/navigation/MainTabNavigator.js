@@ -81,6 +81,7 @@ import RepaymentInfo from '../screens/RepaymentInfo';
 import LoanPaymentSuccessScreen from '../screens/LoanPaymentSuccessScreen';
 import TransferFingerprintScreen from '../screens/TransferFingerprintScreen';
 import WithdrawalFingerprintScreen from '../screens/WithdrawalFingerprintScreen';
+import AuthOptionScreen from '../screens/AuthOptionScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -95,204 +96,207 @@ const DashboardStack = createStackNavigator(
 
 const DashboardStackWithModal = createStackNavigator(
   {
-    // Dashboard: {
-    //   screen: DashboardStack,
-    // },
-    // Account: {
-    //   screen: AccountScreen,
-    // },
-    // Profile: {
-    //   screen: ProfileScreen,
-    // },
-    // EditProfile: {
-    //   screen: EditProfileScreen,
-    // },
-    // Invoice: {
-    //   screen: InvoicesDrawer,
-    // },
-    // NewInvoice: {
-    //   screen: NewInvoiceScreen,
-    // },
+    Dashboard: {
+      screen: DashboardStack,
+    },
+    Account: {
+      screen: AccountScreen,
+    },
+    Profile: {
+      screen: ProfileScreen,
+    },
+    EditProfile: {
+      screen: EditProfileScreen,
+    },
+    Invoice: {
+      screen: InvoicesDrawer,
+    },
+    NewInvoice: {
+      screen: NewInvoiceScreen,
+    },
     NewInvoiceItems: {
       screen: NewInvoiceItemsScreen,
     },
     NewInvoiceReview: {
       screen: NewInvoiceReviewScreen,
     },
-    // Transfer: {
-    //   screen: TransferScreen,
-    // },
-    // Support: {
-    //   screen: SupportScreen,
-    // },
-    // Report: {
-    //   screen: ReportDrawer,
-    // },
-    // Item: {
-    //   screen: ItemDrawer,
-    // },
-    // Withdraw: {
-    //   screen: WithdrawalDrawer,
-    // },
-    // Customer: {
-    //   screen: CustomerDrawer,
-    // },
-    // BusinessHub: {
-    //   screen: BusinessHubScreen,
-    // },
-    // BankList: {
-    //   screen: BankListScreen
-    // },
-    // AddBank: {
-    //   screen: AddBankScreen
-    // },
-    // Loan: {
-    //   screen: LoanDrawer,
-    // },
-    // LoanDetail: {
-    //   screen: LoanDetailScreen,
-    // },
-    // LoanMiniDetail: {
-    //   screen: LoanMiniDetailScreen,
-    // },
-    // LoanApplication: {
-    //   screen: LoanApplicationScreen,
-    // },
-    // WithdrawalApplication: {
-    //   screen: WIthdrawApplicationScreen,
-    // },
-    // WithdrawalDetail: {
-    //   screen: WithdrawalDetailScreen,
-    // },
-    // LoanApplicationDeclaration: {
-    //   screen: LoanApplicationDeclarationScreen,
-    // },
-    // ConnectedParties: {
-    //   screen: ConnectedPartiesScreen,
-    // },
-    // DataSetting: {
-    //   screen: DataSettingScreen,
-    // },
-    // Vendor: {
-    //   screen: VendorScreen,
-    // },
-    // VendorApplication: {
-    //   screen: VendorApplicationScreen,
-    // },
-    // VendorDetail: {
-    //   screen: VendorDetailScreen,
-    // },
-    // CustomerAdd: {
-    //   screen: CustomerAddScreen,
-    // },
-    // CustomerDetail: {
-    //   screen: CustomerDetailScreen,
-    // },
-    // CustomerAddSuccess: {
-    //   screen: CustomerAddSuccessScreen,
-    // },
-    // ItemDetail: {
-    //   screen: ItemDetailScreen,
-    // },
-    // ItemAdd: {
-    //   screen: ItemAddScreen,
-    // },
-    // ItemAddSuccess: {
-    //   screen: ItemAddSuccessScreen,
-    // },
-    // Support: {
-    //   screen: SupportScreen,
-    // },
-    // LoanSuccess: {
-    //   screen: LoanSuccessScreen,
-    // },
-    // WithdrawSuccess: {
-    //   screen: WithdrawSuccessScreen,
-    // },
-    // InvoicesDetail: {
-    //   screen: InvoicesDetailScreen,
-    // },
-    // ReportDetail: {
-    //   screen: ReportDetailScreen,
-    // },
-    // InvoiceSuccess: {
-    //   screen: InvoiceSuccessScreen,
-    // },
-    // VendorAddSuccess: {
-    //   screen: VendorAddSuccessScreen,
-    // },
-    // Zakat: {
-    //   screen: ZakatScreen,
-    // },
-    // Payroll: {
-    //   screen: PayrollScreen,
-    // },
-    // Remittance: {
-    //   screen: RemittanceScreen,
-    // },
-    // BusinessDirectory: {
-    //   screen: BusinessDrawer,
-    // },
-    // TransferSuccess: {
-    //   screen: TransferSuccessScreen,
-    // },
-    // SupportSuccess: {
-    //   screen: SupportSuccessScreen,
-    // },
-    // Calculator: {
-    //   screen: LoanCalculatorScreen,
-    // },
-    // TAC: {
-    //   screen: TACScreen,
-    // },
-    // Aging: {
-    //   screen: AgingReportScreen,
-    // },
-    // ZakatSuccess: {
-    //   screen: ZakatSuccessScreen,
-    // },
-    // PayrollSuccess: {
-    //   screen: PayrollSuccessScreen,
-    // },
-    // RemittanceSuccess: {
-    //   screen: RemittanceSuccessScreen,
-    // },
-    // NumberSuccess: {
-    //   screen: ChangePhoneSuccessScreen,
-    // },
-    // PasswordSuccess: {
-    //   screen: ChangePasswordSuccessScreen,
-    // },
-    // EmailSuccess: {
-    //   screen: ChangeEmailSuccessScreen,
-    // },
-    // ChangePassword: {
-    //   screen: ChangePasswordScreen,
-    // },
-    // TransferFingerprint: {
-    //   screen: TransferFingerprintScreen,
-    // },
-    // WithdrawalFingerprint: {
-    //   screen: WithdrawalFingerprintScreen,
-    // },
-    // ChangeEmail: {
-    //   screen: ChangeEmailScreen,
-    // },
-    // ChangeNumber: {
-    //   screen: ChangeNumberScreen,
-    // },
-    // NotiScreen: {
-    //   screen: NotiSettingScreen,
-    // },
-    // Support: {
-    //   screen: SupportScreen,
-    // },
-    // RepayInfo: {
-    //   screen: RepaymentInfo,
-    // },
-    // LoanPaymentSuccess: {
-    //   screen: LoanPaymentSuccessScreen,
-    // },
+    Transfer: {
+      screen: TransferScreen,
+    },
+    Support: {
+      screen: SupportScreen,
+    },
+    Report: {
+      screen: ReportDrawer,
+    },
+    Item: {
+      screen: ItemDrawer,
+    },
+    Withdraw: {
+      screen: WithdrawalDrawer,
+    },
+    Customer: {
+      screen: CustomerDrawer,
+    },
+    BusinessHub: {
+      screen: BusinessHubScreen,
+    },
+    BankList: {
+      screen: BankListScreen
+    },
+    AddBank: {
+      screen: AddBankScreen
+    },
+    Loan: {
+      screen: LoanDrawer,
+    },
+    LoanDetail: {
+      screen: LoanDetailScreen,
+    },
+    LoanMiniDetail: {
+      screen: LoanMiniDetailScreen,
+    },
+    LoanApplication: {
+      screen: LoanApplicationScreen,
+    },
+    WithdrawalApplication: {
+      screen: WIthdrawApplicationScreen,
+    },
+    WithdrawalDetail: {
+      screen: WithdrawalDetailScreen,
+    },
+    LoanApplicationDeclaration: {
+      screen: LoanApplicationDeclarationScreen,
+    },
+    ConnectedParties: {
+      screen: ConnectedPartiesScreen,
+    },
+    DataSetting: {
+      screen: DataSettingScreen,
+    },
+    Vendor: {
+      screen: VendorScreen,
+    },
+    VendorApplication: {
+      screen: VendorApplicationScreen,
+    },
+    VendorDetail: {
+      screen: VendorDetailScreen,
+    },
+    CustomerAdd: {
+      screen: CustomerAddScreen,
+    },
+    CustomerDetail: {
+      screen: CustomerDetailScreen,
+    },
+    CustomerAddSuccess: {
+      screen: CustomerAddSuccessScreen,
+    },
+    ItemDetail: {
+      screen: ItemDetailScreen,
+    },
+    ItemAdd: {
+      screen: ItemAddScreen,
+    },
+    ItemAddSuccess: {
+      screen: ItemAddSuccessScreen,
+    },
+    Support: {
+      screen: SupportScreen,
+    },
+    LoanSuccess: {
+      screen: LoanSuccessScreen,
+    },
+    WithdrawSuccess: {
+      screen: WithdrawSuccessScreen,
+    },
+    InvoicesDetail: {
+      screen: InvoicesDetailScreen,
+    },
+    ReportDetail: {
+      screen: ReportDetailScreen,
+    },
+    InvoiceSuccess: {
+      screen: InvoiceSuccessScreen,
+    },
+    VendorAddSuccess: {
+      screen: VendorAddSuccessScreen,
+    },
+    Zakat: {
+      screen: ZakatScreen,
+    },
+    Payroll: {
+      screen: PayrollScreen,
+    },
+    Remittance: {
+      screen: RemittanceScreen,
+    },
+    BusinessDirectory: {
+      screen: BusinessDrawer,
+    },
+    TransferSuccess: {
+      screen: TransferSuccessScreen,
+    },
+    SupportSuccess: {
+      screen: SupportSuccessScreen,
+    },
+    Calculator: {
+      screen: LoanCalculatorScreen,
+    },
+    TAC: {
+      screen: TACScreen,
+    },
+    Aging: {
+      screen: AgingReportScreen,
+    },
+    ZakatSuccess: {
+      screen: ZakatSuccessScreen,
+    },
+    PayrollSuccess: {
+      screen: PayrollSuccessScreen,
+    },
+    RemittanceSuccess: {
+      screen: RemittanceSuccessScreen,
+    },
+    NumberSuccess: {
+      screen: ChangePhoneSuccessScreen,
+    },
+    PasswordSuccess: {
+      screen: ChangePasswordSuccessScreen,
+    },
+    EmailSuccess: {
+      screen: ChangeEmailSuccessScreen,
+    },
+    ChangePassword: {
+      screen: ChangePasswordScreen,
+    },
+    TransferFingerprint: {
+      screen: TransferFingerprintScreen,
+    },
+    WithdrawalFingerprint: {
+      screen: WithdrawalFingerprintScreen,
+    },
+    ChangeEmail: {
+      screen: ChangeEmailScreen,
+    },
+    ChangeNumber: {
+      screen: ChangeNumberScreen,
+    },
+    NotiScreen: {
+      screen: NotiSettingScreen,
+    },
+    Support: {
+      screen: SupportScreen,
+    },
+    RepayInfo: {
+      screen: RepaymentInfo,
+    },
+    LoanPaymentSuccess: {
+      screen: LoanPaymentSuccessScreen,
+    },
+    AuthOption: {
+      screen: AuthOptionScreen,
+    },
   },
   {
     mode: 'modal',

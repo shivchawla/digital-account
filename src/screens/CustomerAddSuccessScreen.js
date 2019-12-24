@@ -36,7 +36,7 @@ const CustomerAddSuccessScreen = (props) => {
                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                         <View style={{ width: Layout.window.width * 0.85, justifyContent: 'center', alignItems: 'center' }}>
                             <Image source={require('../assets/images/logo.png')} style={{ height: Layout.window.height * 0.2, width: Layout.window.width * 0.5 }} resizeMode={'contain'} />
-                            <Image source={require('../assets/images/customersuccess.png')} style={{ height: Layout.window.height * 0.3, width: Layout.window.width * 0.7 }} resizeMode={'contain'} />
+                            <Image source={require('../assets/images/contactfailed.png')} style={{ height: Layout.window.height * 0.3, width: Layout.window.width * 0.7 }} resizeMode={'contain'} />
                             <Text style={[styles.h3, { margin: 5, fontWeight: 'bold' }]}>Add Customer Failed!</Text>
                             <View style={{ alignSelf: 'stretch', flexDirection: 'column', margin: 5, alignItems: 'center' }}>
                                 <Text style={[styles.text, { margin: 5, color: 'darkturquoise' }]}>Failed!</Text>

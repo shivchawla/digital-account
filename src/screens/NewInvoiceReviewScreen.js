@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableOpacity, Text, Image, KeyboardAvoidingView, ScrollView } from 'react-native';
+import { View, TouchableOpacity, Text, Image, KeyboardAvoidingView, ScrollView, TouchableWithoutFeedback, FlatList } from 'react-native';
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { LinearGradient } from 'expo-linear-gradient'
@@ -11,15 +11,12 @@ const NewInvoiceReviewScreen = (props) => {
 
     const submitInvoice = () => {
         dispatch(actionCreator.submitNewInvoice())
-     
         props.navigation.navigate('InvoiceSuccess')
     }
 
     const dispatch = useDispatch()
-
     const invoiceNumber = `INV${moment().format('YYMMDDhhmmssSS')}`
     const { newInvoice, items } = useSelector(state => state.invoiceReducer, shallowEqual)
-
     const invoiceTypeDesc = newInvoice.invoiceType == 1 ? 'To Customer' : 'From Vendor'
     const categoryDesc = newInvoice.category == 2 ? 'Deposit' : newInvoice.category == 3 ? 'Sales' : 'Others'
 
@@ -81,7 +78,7 @@ const NewInvoiceReviewScreen = (props) => {
                         </View>
                         <View style={[styles.formElement]}>
                             <View style={{ margin: 5 }} />
-                            <View style={{ flex: 1, flexDirection: 'row', borderTopWidth: 1, borderBottomWidth: 1, marginBottom: 5, marginTop: 5, padding: 5, borderColor: 'lightgrey' }}>
+                            {/* <View style={{ flex: 1, flexDirection: 'row', borderTopWidth: 1, borderBottomWidth: 1, marginBottom: 5, marginTop: 5, padding: 5, borderColor: 'lightgrey' }}>
                                 <View style={{ flex: 3 }}><Text>Item</Text></View>
                                 <View style={{ flex: 1 }}><Text>Qty</Text></View>
                                 <View style={{ flex: 1 }}><Text>Price</Text></View>
@@ -90,7 +87,40 @@ const NewInvoiceReviewScreen = (props) => {
                                 <View style={{ flex: 3 }}><Text>{i.invoice_item}</Text></View>
                                 <View style={{ flex: 1 }}><Text>{i.quantity}</Text></View>
                                 <View style={{ flex: 1 }}><Text>MYR {i.priceItem}</Text></View>
-                            </View>)}
+                            </View>)} */}
+                            {items && <FlatList data={items} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
+                                <View style={[styles.box]}>
+                                    <TouchableWithoutFeedback onPress={() => dispatch(actionCreator.setMarkerInvoiceReview(index))} style={{ flexDirection: 'row', marginTop: 5 }}>
+                                        <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
+                                            <Text style={styles.small}>Item Name</Text>
+                                            <Text style={styles.text}>{item.invoice_item}</Text>
+                                            <Ionicons name={item.marker ? "md-arrow-dropdown" : "md-arrow-dropright"} color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
+                                        </View>
+                                    </TouchableWithoutFeedback>
+                                    <View style={{ flexDirection: 'row', marginTop: 5, borderBottomWidth: items.marker ? 1 : 0, borderBottomColor: 'lightgrey', }}>
+                                    </View>
+                                    {item.marker && <View style={{ flex: 1 }}>
+                                        <View style={{ flexDirection: 'row', marginTop: 20 }}>
+                                            <View style={{ flex: 1 }}>
+                                                <Text style={styles.small}>Quantity</Text>
+                                                <Text style={styles.text}>{item.quantity}</Text>
+                                            </View>
+                                        </View>
+                                        <View style={{ flexDirection: 'row', marginTop: 20 }}>
+                                            <View style={{ flex: 1 }}>
+                                                <Text style={styles.small}>Price</Text>
+                                                <Text style={styles.text}>MYR {item.priceItem}</Text>
+                                            </View>
+                                        </View>
+                                        <View style={{ flexDirection: 'row', marginTop: 20 }}>
+                                            <View style={{ flex: 1 }}>
+                                                <Text style={styles.small}>Reference Number</Text>
+                                                <Text style={styles.text}> {item.item}</Text>
+                                            </View>
+                                        </View>
+                                    </View>}
+                                </View>
+                            } />}
                             <View style={{ flex: 1, flexDirection: 'row', marginBottom: 5, padding: 5 }}>
                                 <View style={{ flex: 3 }}>
                                 </View>
@@ -98,7 +128,6 @@ const NewInvoiceReviewScreen = (props) => {
                                 <View style={{ flex: 1 }}>{newInvoice && <Text>MYR {newInvoice.amount}</Text>}</View>
                             </View>
                         </View>
-
                     </ScrollView>
                 </View>
                 <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>

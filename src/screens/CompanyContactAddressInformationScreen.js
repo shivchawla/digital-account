@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 import styles from '../styles/styles'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import * as actionCreator from '../store/actions/action'
+import malaysiaData from 'malaysia-city-postcode'
 
 const validationSchema = Yup.object().shape({
 
@@ -39,10 +40,14 @@ const CompanyContactAddressInformationScreen = (props) => {
 
     const dispatch = useDispatch()
     const proceed = useSelector(state => state.companyInformationReducer.proceed, shallowEqual)
+    const newAddress = malaysiaData;
     const save = async (values) => {
         await dispatch(actionCreator.companyInfo(values))
         await props.navigation.goBack()
     }
+
+    // const found = newAddress.find(n => n.Postcode === '73400')
+    // console.log(`Ini Hasil Pertama  ${found.State}`)
 
     return (
 
@@ -72,6 +77,29 @@ const CompanyContactAddressInformationScreen = (props) => {
                 const cddPostcodeError = FormikProps.errors.cddPostcode
                 const cddPostcodeTouched = FormikProps.touched.cddPostcode
 
+                const newAddress = malaysiaData;
+
+                const checkPostcode = (cddPostcode, itemIndex) => {
+
+                    if (cddPostcode.length > 4) {
+                        const checkRequirement = newAddress.find(c => c.Postcode === cddPostcode)
+                        if (checkRequirement) {
+                            const { City, State } = checkRequirement
+                            FormikProps.setFieldValue('comp_city', City)
+                            FormikProps.setFieldValue('comp_state', State)
+                            console.log('Ni jalan yang benar')
+                        }
+                        // const { City, State } = newAddress.find(c => c.Postcode === cddPostcode)
+                    }
+                    else {
+                        console.log('Ni jalan yang salah')
+                    }
+                    // const { City, State } = malaysiaData.find(c => c.Postcode === cddPostcode)
+                    // FormikProps.setFieldValue('comp_city', City)
+                    // FormikProps.setFieldValue('comp_state', State)
+
+                }
+
                 return (
 
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }}>
@@ -97,11 +125,21 @@ const CompanyContactAddressInformationScreen = (props) => {
                                         {comp_addr2Touched && comp_addr2Error && <Text style={styles.error}>{comp_addr2Error}</Text>}
                                     </View>
                                     <View style={[styles.formElement]}>
-                                        <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: comp_cityTouched && comp_cityError ? '#d94498' : '#5a83c2' }]}>City</Text>
-                                        <TextInput value={comp_city} onBlur={FormikProps.handleBlur('comp_city')} onChangeText={FormikProps.handleChange('comp_city')} placeholder={comp_cityTouched && comp_cityError ? '' : 'Eg: Bandar Cheras Utama'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                        <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: cddPostcodeTouched && cddPostcodeError ? '#d94498' : '#5a83c2' }]}>Postcode</Text>
+                                        <TextInput value={cddPostcode} onBlur={FormikProps.handleBlur('cddPostcode')} onChangeText={(val) => checkPostcode(val)} placeholder={cddPostcodeTouched && cddPostcodeError ? '' : 'Eg: 60901'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} keyboardType={'phone-pad'} />
+                                        {cddPostcodeTouched && cddPostcodeError && <Text style={styles.error}>{cddPostcodeError}</Text>}
+                                    </View>
+                                    <View style={[styles.formElement]}>
+                                        <Text style={[styles.titleBox, { marginBottom: 5 }]}>City</Text>
+                                        <TextInput editable={false} value={comp_city} onChangeText={FormikProps.handleChange('comp_city')} onBlur={FormikProps.handleBlur('comp_city')} style={{ borderWidth: 1, borderColor: comp_cityTouched && comp_cityError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={comp_cityTouched && comp_cityError ? '' : ''} placeholderTextColor={comp_cityTouched && comp_cityError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {comp_cityTouched && comp_cityError && <Text style={styles.error}>{comp_cityError}</Text>}
                                     </View>
-                                    <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
+                                    <View style={[styles.formElement]}>
+                                        <Text style={[styles.titleBox, { marginBottom: 5 }]}>State</Text>
+                                        <TextInput editable={false} value={comp_state} onChangeText={FormikProps.handleChange('comp_state')} onBlur={FormikProps.handleBlur('comp_state')} style={{ borderWidth: 1, borderColor: comp_stateTouched && comp_stateError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={comp_stateTouched && comp_stateError ? '' : ''} placeholderTextColor={comp_stateTouched && comp_stateError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        {comp_stateTouched && comp_stateError && <Text style={styles.error}>{comp_stateError}</Text>}
+                                    </View>
+                                    {/* <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
                                         <Text style={[styles.titleBox, { marginBottom: 10 }]}>State</Text>
                                         <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
                                             <Picker style={{ flex: 1, height: 35 }} selectedValue={comp_state} onValueChange={(itemValue, itemIndex) =>
@@ -123,12 +161,7 @@ const CompanyContactAddressInformationScreen = (props) => {
                                             </Picker>
                                             {comp_stateTouched && comp_stateError && <Text style={styles.error}>{comp_stateError}</Text>}
                                         </View>
-                                    </View>
-                                    <View style={[styles.formElement]}>
-                                        <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: cddPostcodeTouched && cddPostcodeError ? '#d94498' : '#5a83c2' }]}>Postcode</Text>
-                                        <TextInput value={cddPostcode} onBlur={FormikProps.handleBlur('cddPostcode')} onChangeText={FormikProps.handleChange('cddPostcode')} placeholder={cddPostcodeTouched && cddPostcodeError ? '' : 'Eg: 60901'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} keyboardType={'phone-pad'} />
-                                        {cddPostcodeTouched && cddPostcodeError && <Text style={styles.error}>{cddPostcodeError}</Text>}
-                                    </View>
+                                    </View> */}
                                 </ScrollView>
                             </View>
                             <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>

@@ -21,6 +21,16 @@ export const notificationListApi = () => {
   }
 }
 
+export const paymentHistoryListApi = () => {
+  return async (dispatch, getState) => {
+    const paymentHistoryList = [{ ID: 'RP0002', Date: '20/03/19', Type: 'Auto', Amount: '122.60', Balance: '8000' },
+    { ID: 'RP0003', Date: '20/03/19', Type: 'Manual', Amount: '1122.60', Balance: '9000' },
+    { ID: 'RP0004', Date: '20/04/19', Type: 'Auto', Amount: '1022.60', Balance: '8009' }]
+
+    dispatch({ type: 'SET_PAYMENT_HISTORY_LIST', payload: { paymentHistoryList } })
+  }
+}
+
 export const loanApplicationDataApi = (id) => {
   return async (dispatch, getState) => {
 
@@ -523,9 +533,11 @@ export const reportListApi = () => {
 
     }).then((response) => response.json())
       .then(async (responseJson) => {
-        const { data } = responseJson.data
+
+        // const data = responseJson.data
+        const { data } = responseJson
         const reportList = data
-        reportList.reverse()
+        // reportList.reverse()
         console.log('Success report list' + JSON.stringify(responseJson))
         dispatch({ type: 'SET_REPORT_LIST', payload: { reportList } })
 
@@ -737,7 +749,7 @@ export const checkContactApi = () => {
         const lastTest = test.slice(-1).pop()
         const { id } = lastTest
         console.log(`full_name paling last ialah ${id}`)
-        dispatch({ type: 'SET_MERCHANT', payload: { contactId:id } })
+        dispatch({ type: 'SET_MERCHANT', payload: { contactId: id } })
 
       })
       .catch((error) => {
@@ -766,7 +778,7 @@ export const checkCDDApi = () => {
       .then(async (responseJson) => {
         const test = responseJson.data
         console.log(`cdd result ialah ${JSON.stringify(test)}`)
-        const { business_name,  isDocument1, isDeclaration_one, status,contactId } = await getState().merchantInfoReducer
+        const { business_name, isDocument1, isDeclaration_one, status, contactId } = await getState().merchantInfoReducer
         //const contactId = await getState().merchantInfoReducer.id
         await console.log('Dekat setScreen action ', business_name, contactId, isDocument1, isDeclaration_one)
         if (business_name && contactId && (isDocument1 != 'http://test') && isDeclaration_one && (status == 'activated')) {

@@ -37,7 +37,6 @@ const SignupPersonalSuccessScreen = (props) => {
                         <Image source={require('../assets/images/signupsuccess.png')} style={{ height: Layout.window.height * 0.3, width: Layout.window.width * 0.7 }} resizeMode={'contain'} />
                         {emailVerified ? <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                             <Text style={[styles.h3, { margin: 5, fontWeight: 'bold' }]}>Credential Created</Text>
-
                             <View style={{ alignSelf: 'stretch', flexDirection: 'column', margin: 5, alignItems: 'center' }}>
                                 <Text style={[styles.text, { margin: 5, color: 'darkturquoise' }]}>Congratulation!</Text>
                                 <Text style={[styles.text, { margin: 5, marginBottom: 20, textAlign: 'center' }]}>Please proceed to merchant registration or skip to dashboard.</Text>

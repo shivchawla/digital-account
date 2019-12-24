@@ -36,7 +36,7 @@ const SupportSuccessScreen = (props) => {
                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                         <View style={{ width: Layout.window.width * 0.85, justifyContent: 'center', alignItems: 'center' }}>
                             <Image source={require('../assets/images/logo.png')} style={{ height: Layout.window.height * 0.2, width: Layout.window.width * 0.5 }} resizeMode={'contain'} />
-                            <Image source={require('../assets/images/supportsuccess.png')} style={{ height: Layout.window.height * 0.3, width: Layout.window.width * 0.7 }} resizeMode={'contain'} />
+                            <Image source={require('../assets/images/supportfailed.png')} style={{ height: Layout.window.height * 0.3, width: Layout.window.width * 0.7 }} resizeMode={'contain'} />
                             <Text style={[styles.h3, { margin: 5, fontWeight: 'bold' }]}>Complain/Enquiry Submitted</Text>
                             <View style={{ alignSelf: 'stretch', flexDirection: 'column', margin: 5, alignItems: 'center' }}>
                                 <Text style={[styles.text, { margin: 5, color: 'darkturquoise' }]}>Congratulation!</Text>

@@ -29,7 +29,7 @@ const Registration = createStackNavigator({
   CompanyDocument: CompanyDocumentScreen,
   CompanyDocumentSuccess: CompanyDocumentSuccessScreen,
   RegistrationDeclaration: RegistrationDeclarationScreen,
-  AdminApproval:AdminApprovalScreen
+  AdminApproval: AdminApprovalScreen
 });
 
 const RegistrationStack = createStackNavigator(
