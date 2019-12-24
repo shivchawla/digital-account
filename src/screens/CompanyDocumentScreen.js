@@ -1,13 +1,40 @@
-import React from 'react';
-import { Image, Text, TouchableOpacity, View, KeyboardAvoidingView, } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Image, Text, TouchableOpacity, View, KeyboardAvoidingView, Alert, BackHandler } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'
 import styles from '../styles/styles'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import * as actionCreator from '../store/actions/action'
 import Layout from '../constants/Layout';
-
+// modules
+import {
+    handleAndroidBackButton,
+    removeAndroidBackButtonHandler
+} from '../components/androidBackButton';
 const CompanyDocumentScreen = (props) => {
+    const exitAlert = () => {
+        // Works on both Android and iOS
+        Alert.alert(
+            'Skip',
+            'Go to Dashboard or Exit App',
+            [
 
+                {
+                    text: 'Cancel',
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'cancel',
+                },
+                { text: 'Dashboard', onPress: () => { console.log('OK Pressed'); props.navigation.navigate('Dashboard') } },
+                { text: 'Exit', onPress: () => { console.log('OK Pressed'); BackHandler.exitApp() } },
+            ],
+            { cancelable: false },
+        );
+    };
+
+    useEffect(() => {
+        console.log("componentDidMount");
+        handleAndroidBackButton(exitAlert)
+        // return removeAndroidBackButtonHandler()
+    }, []); // empty-array means don't watch for any updates
     const dispatch = useDispatch()
     const docPicker = useSelector(state => state.companyInformationReducer.docPicker, shallowEqual)
     const {isDocument1, isDocument2, isDocument3, isDocument1file, isDocument2file, isDocument3file } = useSelector(state => state.companyInformationReducer, shallowEqual)

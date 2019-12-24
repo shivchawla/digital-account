@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, TouchableOpacity, Text, Image, ActivityIndicator, KeyboardAvoidingView } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, TouchableOpacity, Text, Image, ActivityIndicator, KeyboardAvoidingView,Alert, BackHandler } from 'react-native';
 import { useDispatch } from 'react-redux'
 import * as actionCreator from '../store/actions/action'
 import CheckBox from 'react-native-check-box'
@@ -7,6 +7,10 @@ import { LinearGradient } from 'expo-linear-gradient'
 import styles from '../styles/styles'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import {
+    handleAndroidBackButton,
+    removeAndroidBackButtonHandler
+} from '../components/androidBackButton';
 
 const validationSchema = Yup.object().shape({
     isDeclaration_one: Yup
@@ -17,6 +21,30 @@ const validationSchema = Yup.object().shape({
 });
 
 const RegistrationDeclarationScreen = (props) => {
+    const exitAlert = () => {
+        // Works on both Android and iOS
+        Alert.alert(
+            'Skip',
+            'Go to Dashboard or Exit App',
+            [
+
+                {
+                    text: 'Cancel',
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'cancel',
+                },
+                { text: 'Dashboard', onPress: () => { console.log('OK Pressed'); props.navigation.navigate('Dashboard') } },
+                { text: 'Exit', onPress: () => { console.log('OK Pressed'); BackHandler.exitApp() } },
+            ],
+            { cancelable: false },
+        );
+    };
+
+    useEffect(() => {
+        console.log("componentDidMount");
+        handleAndroidBackButton(exitAlert)
+        // return removeAndroidBackButtonHandler()
+    }, []); // empty-array means don't watch for any updates
     const dispatch = useDispatch()
 
     return (

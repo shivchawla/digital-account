@@ -776,48 +776,93 @@ export const checkCDDApi = () => {
 
     }).then((response) => response.json())
       .then(async (responseJson) => {
-        const test = responseJson.data
+        const test = responseJson
         console.log(`cdd result ialah ${JSON.stringify(test)}`)
-        const { business_name, isDocument1, isDeclaration_one, status, contactId } = await getState().merchantInfoReducer
-        //const contactId = await getState().merchantInfoReducer.id
-        await console.log('Dekat setScreen action ', business_name, contactId, isDocument1, isDeclaration_one)
-        if (business_name && contactId && (isDocument1 != 'http://test') && isDeclaration_one && (status == 'activated')) {
-          // setLink('Dashboard')
-          // setDashboardDisplay(true)
-          const link = 'Dashboard'
-          dispatch({ type: 'SET_MERCHANT', payload: { link } })
-          console.log('dashboard')
-        } else if (business_name && contactId && (isDocument1 != 'http://test') && isDeclaration_one) {
-          // setLink('Dashboard')
-          // setDashboardDisplay(true)
-          const link = 'AdminApproval'
-          dispatch({ type: 'SET_MERCHANT', payload: { link } })
-          console.log('dashboard')
-        } else if (business_name && contactId && (isDocument1 != null)) {
-          //setLink('RegistrationDeclaration')
-          const link = 'RegistrationDeclaration'
-          dispatch({ type: 'SET_MERCHANT', payload: { link } })
-          console.log('go declaration')
-        } else if (business_name && contactId) {
-          //setLink('CompanyDocument')
-          const link = 'CompanyDocument'
-          dispatch({ type: 'SET_MERCHANT', payload: { link } })
-          console.log('go company document')
-        } else if (business_name) {
-          //setLink('ContactPerson')
-          const link = 'ContactPerson'
-          dispatch({ type: 'SET_MERCHANT', payload: { link } })
-          console.log('go contact person')
+        const status1 = test.status
+        console.log(`status kejayaan : ${status1}`)
+        if (status1 != 'Approved') {
+          const { business_name, isDocument1, isDeclaration_one, status, contactId } = await getState().merchantInfoReducer
+          //const contactId = await getState().merchantInfoReducer.id
+          await console.log('Dekat setScreen action ', business_name, contactId, isDocument1, isDeclaration_one)
+          if (business_name && contactId && (isDocument1 != 'http://test') && isDeclaration_one && (status == 'activated')) {
+            // setLink('Dashboard')
+            // setDashboardDisplay(true)
+            const link = 'Dashboard'
+            dispatch({ type: 'SET_MERCHANT', payload: { link } })
+            console.log('dashboard')
+          } else if (business_name && contactId && (isDocument1 != 'http://test') && isDeclaration_one) {
+            // setLink('Dashboard')
+            // setDashboardDisplay(true)
+            const link = 'AdminApproval'
+            dispatch({ type: 'SET_MERCHANT', payload: { link } })
+            console.log('dashboard')
+          } else if (business_name && contactId && (isDocument1 != null)) {
+            //setLink('RegistrationDeclaration')
+            const link = 'RegistrationDeclaration'
+            dispatch({ type: 'SET_MERCHANT', payload: { link } })
+            console.log('go declaration')
+          } else if (business_name && contactId) {
+            //setLink('CompanyDocument')
+            const link = 'CompanyDocument'
+            dispatch({ type: 'SET_MERCHANT', payload: { link } })
+            console.log('go company document')
+          } else if (business_name) {
+            //setLink('ContactPerson')
+            const link = 'ContactPerson'
+            dispatch({ type: 'SET_MERCHANT', payload: { link } })
+            console.log('go contact person')
+          } else {
+            //setLink('CompanyInformation')
+            const link = 'SignUpPersonalSuccess'
+            dispatch({ type: 'SET_MERCHANT', payload: { link } })
+            console.log('go company info')
+          }
         } else {
-          //setLink('CompanyInformation')
-          const link = 'SignUpPersonalSuccess'
-          dispatch({ type: 'SET_MERCHANT', payload: { link } })
-          console.log('go company info')
+          const link = 'Dashboard'
+          dispatch({ type: 'SET_MERCHANT', payload: { link, status1 } })
         }
+
 
       })
       .catch((error) => {
         console.log('Error initiating check contact : ' + error);
+      });
+  }
+}
+
+
+export const checkCDDApi2 = () => {
+  return async (dispatch, getState) => {
+
+    //const personalToken = await AsyncStorage.getItem('personalToken');
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    fetch(`${apiUrl}api/setup/cdd_verification`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const test = responseJson.data
+        console.log(`cdd result ialah ${JSON.stringify(test)}`)
+        const status1 = test.status
+        console.log(`status kejayaan : ${status1}`)
+
+        const link = 'Dashboard'
+        dispatch({ type: 'SET_MERCHANT', payload: { link, status1 } })
+
+
+
+      })
+      .catch((error) => {
+        console.log('Error initiating check contact : ' + error);
+        dispatch({ type: 'SET_MERCHANT', payload: {  status1:'NA' } })
       });
   }
 }
