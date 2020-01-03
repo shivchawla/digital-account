@@ -224,20 +224,20 @@ const DashboardScreen = (props) => {
 
   // console.log(`Ini ialah result ${JSON.stringify(malaysiaData)}`)
 
-  const newAddress = malaysiaData;
+  // const newAddress = malaysiaData;
 
   // const found = newAddress.find(n => n.Postcode === '26150')
   // console.log(`Ini Hasil Pertama  ${found.City}`)
 
-  const found = newAddress.filter(n => n.State === 'Perlis')
-  console.log(`Ini Hasil Kedua  ${JSON.stringify(found)}`)
+  // const found = newAddress.filter(n => n.State === 'Perlis')
+  // console.log(`Ini Hasil Kedua  ${JSON.stringify(found)}`)
 
   // const found = newAddress.find(n => n.City === 'Beaufort')
   // console.log(`Ini Hasil Ketiga  ${JSON.stringify(found)}`)
 
-  const latestAddress = []
-  found.map(f => latestAddress.push(f.City))
-  console.log(`Ini Hasil Keempat  ${JSON.stringify(latestAddress)}`)
+  // const latestAddress = []
+  // found.map(f => latestAddress.push(f.City))
+  // console.log(`Ini Hasil Keempat  ${JSON.stringify(latestAddress)}`)
 
   return (
 
