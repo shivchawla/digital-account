@@ -417,9 +417,9 @@ SettingsStackWithModal.path = '';
 
 const tabNavigator = createBottomTabNavigator({
   DashboardStackWithModal,
-  TransactionHistoryStack,
-  NotificationStack,
-  SettingsStackWithModal,
+  // TransactionHistoryStack,
+  // NotificationStack,
+  // SettingsStackWithModal,
 });
 
 tabNavigator.path = '';
