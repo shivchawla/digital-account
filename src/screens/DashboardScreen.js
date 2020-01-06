@@ -222,6 +222,23 @@ const DashboardScreen = (props) => {
     { announcement: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam elit dui, consequat et gravida sed, luctus id neque. Phasellus non metus aliquet, suscipit risus finibus, suscipit ligula.', date: '10/10/19' },
   ]
 
+  // console.log(`Ini ialah result ${JSON.stringify(malaysiaData)}`)
+
+  // const newAddress = malaysiaData;
+
+  // const found = newAddress.find(n => n.Postcode === '26150')
+  // console.log(`Ini Hasil Pertama  ${found.City}`)
+
+  // const found = newAddress.filter(n => n.State === 'Perlis')
+  // console.log(`Ini Hasil Kedua  ${JSON.stringify(found)}`)
+
+  // const found = newAddress.find(n => n.City === 'Beaufort')
+  // console.log(`Ini Hasil Ketiga  ${JSON.stringify(found)}`)
+
+  // const latestAddress = []
+  // found.map(f => latestAddress.push(f.City))
+  // console.log(`Ini Hasil Keempat  ${JSON.stringify(latestAddress)}`)
+
   return (
 
     <View style={{ flex: 1, }}>
@@ -240,9 +257,7 @@ const DashboardScreen = (props) => {
               <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Basic Info</Text>
               <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />
             </View> */}
-
-                </View> :
-                <View style={{ alignSelf: 'stretch', margin: 5 }}>
+                </View> : <View style={{ alignSelf: 'stretch', margin: 5 }}>
                   <Text style={[styles.h3, { flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start', margin: 5 }]}>REGISTRATION INCOMPLETE</Text>
                   <Text style={[styles.text, { margin: 5, }]}>Please complete items below for approval</Text>
                   <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
@@ -252,7 +267,6 @@ const DashboardScreen = (props) => {
                   <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
                     <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Merchant Info</Text>
                     {business_name && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
-
                   </View>
                   <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
                     <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Contact Info</Text>
@@ -312,7 +326,6 @@ const DashboardScreen = (props) => {
         </TouchableOpacity>
       </View>
       <View style={[styles.screenMargin, { flex: 9 }]}>
-
         <View style={{ marginBottom: 15 }}>
           <LinearGradient colors={['#055E7C', '#055E7C']} style={{ paddingTop: 5, paddingBottom: 5, alignItems: 'center', borderRadius: 10, height: Layout.window.height / 3 }}>
             <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>

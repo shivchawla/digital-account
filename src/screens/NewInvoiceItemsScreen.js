@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, Text, Image, KeyboardAvoidingView, TextInput, ScrollView, Modal, Picker } from 'react-native';
+import { View, TouchableOpacity, TouchableWithoutFeedback, Text, Image, KeyboardAvoidingView, TextInput, ScrollView, Modal, Picker, FlatList } from 'react-native';
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import * as actionCreator from '../store/actions/action'
 import { LinearGradient } from 'expo-linear-gradient'
@@ -81,7 +81,7 @@ const NewInvoiceItemsScreen = (props) => {
 
                 const changeItemDetail = (itemValue, itemIndex) => {
                     if (itemValue != null) {
-                        const { name,sale_price } = itemList.find(c => c.id === itemValue)
+                        const { name, sale_price } = itemList.find(c => c.id === itemValue)
                         FormikProps.setFieldValue('itemId', itemValue)
                         FormikProps.setFieldValue('invoice_item', name)
                         FormikProps.setFieldValue('priceItem', (sale_price * quantity).toFixed(2).toString())
@@ -89,24 +89,20 @@ const NewInvoiceItemsScreen = (props) => {
                     }
                 }
 
-                const changePrice=()=>{
-                    const { sale_price} = itemList.find(c => c.id === itemId)
-                    quantity<1? FormikProps.setFieldValue('quantity', '1'):null
-                    FormikProps.setFieldValue('priceItem',(sale_price * quantity).toFixed(2).toString())
+                const changePrice = () => {
+                    const { sale_price } = itemList.find(c => c.id === itemId)
+                    quantity < 1 ? FormikProps.setFieldValue('quantity', '1') : null
+                    FormikProps.setFieldValue('priceItem', (sale_price * quantity).toFixed(2).toString())
                 }
 
                 return (
 
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }}>
-                        <Modal animationType={'slide'}
-                            visible={addItemVisible} onRequestClose={() => setItemVisible(!addItemVisible)}
-                            transparent={true}>
+                        <Modal animationType={'slide'} visible={addItemVisible} onRequestClose={() => setItemVisible(!addItemVisible)} transparent={true}>
                             <View style={{ flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(1,1,1,0.5)' }}>
                                 <View style={{ flex: 10, justifyContent: 'flex-end' }}>
                                     <View style={[styles.screenMargin, { backgroundColor: '#fff', borderTopWidth: 1, borderColor: 'lightgrey' }]}>
                                         <View style={{ margin: 5 }} />
-
-
                                         <View style={[styles.formElement]}>
                                             <Text style={[styles.titleBox, { marginBottom: 10 }]}>Invoice Item</Text>
                                             {itemList && <Picker selectedValue={itemId} onValueChange={(itemValue, itemIndex) => changeItemDetail(itemValue, itemIndex)}>
@@ -114,12 +110,7 @@ const NewInvoiceItemsScreen = (props) => {
                                                 {itemList && itemList.map(c => <Picker.Item label={c.name} value={c.id} key={c.id} />)}
                                             </Picker>}
                                             {/* {itemIdTouched && itemIdError && <Text style={styles.error}>{itemIdError}</Text>} */}
-
                                         </View>
-
-
-
-
                                         <View style={[styles.formElement]}>
                                             <Text style={[styles.titleBox, { marginBottom: 10 }]}>Invoice Item</Text>
                                             <TextInput value={invoice_item} onChangeText={FormikProps.handleChange('invoice_item')} onBlur={FormikProps.handleBlur('invoice_item')} style={{ borderWidth: 1, borderColor: invoice_itemTouched && invoice_itemError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={invoice_itemTouched && invoice_itemError ? '' : ''} placeholderTextColor={invoice_itemTouched && invoice_itemError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
@@ -132,7 +123,7 @@ const NewInvoiceItemsScreen = (props) => {
                                         </View>
                                         <View style={[styles.formElement]}>
                                             <Text style={[styles.titleBox, { marginBottom: 10 }]}>Quantity</Text>
-                                            <TextInput value={quantity} onChangeText={FormikProps.handleChange('quantity')} onBlur={()=>changePrice()} style={{ borderWidth: 1, borderColor: quantityTouched && quantityError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={quantityTouched && quantityError ? '' : ''} placeholderTextColor={quantityTouched && quantityError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
+                                            <TextInput value={quantity} onChangeText={FormikProps.handleChange('quantity')} onBlur={() => changePrice()} style={{ borderWidth: 1, borderColor: quantityTouched && quantityError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={quantityTouched && quantityError ? '' : ''} placeholderTextColor={quantityTouched && quantityError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
                                             {quantityTouched && quantityError && <Text style={styles.error}>{quantityError}</Text>}
                                         </View>
                                         <View style={[styles.formElement]}>
@@ -140,7 +131,6 @@ const NewInvoiceItemsScreen = (props) => {
                                             <View style={{ flexDirection: 'row', alignSelf: 'stretch', }}>
                                                 <Text style={{ flex: 1 }}>{currencyItem}</Text>
                                                 <TextInput value={priceItem} onChangeText={FormikProps.handleChange('priceItem')} onBlur={FormikProps.handleBlur('priceItem')} style={{ alignSelf: 'stretch', flex: 8, borderWidth: 1, borderColor: priceItemTouched && priceItemError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={priceItemTouched && priceItemError ? '' : ''} placeholderTextColor={priceItemTouched && priceItemError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
-
                                             </View>
                                             {priceItemTouched && priceItemError && <Text style={styles.error}>{priceItemError}</Text>}
                                         </View>
@@ -175,29 +165,65 @@ const NewInvoiceItemsScreen = (props) => {
                         </View>
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
                             <View style={{ flex: 9 }}>
-                                <ScrollView style={[styles.screenMargin]}>
-                                    <View style={[styles.formElement]}>
-                                        <View style={{ margin: 5 }} />
-                                        <View style={{ flex: 1, flexDirection: 'row', borderTopWidth: 1, borderBottomWidth: 1, marginBottom: 5, marginTop: 5, padding: 5, borderColor: 'lightgrey' }}>
-                                            <View style={{ flex: 3 }}><Text>Item</Text></View>
-                                            <View style={{ flex: 1 }}><Text>Qty</Text></View>
-                                            <View style={{ flex: 1 }}><Text>Price</Text></View>
+                                <View style={{ flex: 9 }}>
+                                    <ScrollView style={[styles.screenMargin]}>
+                                        <View style={[styles.formElement]}>
+                                            <View style={{ margin: 5 }} />
+                                            {/* <View style={{ flex: 1, flexDirection: 'row', borderTopWidth: 1, borderBottomWidth: 1, marginBottom: 5, marginTop: 5, padding: 5, borderColor: 'lightgrey' }}>
+                                                <View style={{ flex: 3 }}><Text>Item</Text></View>
+                                                <View style={{ flex: 1 }}><Text>Qty</Text></View>
+                                                <View style={{ flex: 1 }}><Text>Price</Text></View>
+                                            </View>
+                                            {items && items.map((i, n) => <View style={{ flex: 1, flexDirection: 'row', marginBottom: 5, padding: 5 }} key={n}>
+                                                <View style={{ flex: 3 }}><Text>{i.invoice_item}</Text></View>
+                                                <View style={{ flex: 1 }}><Text>{i.quantity}</Text></View>
+                                                <View style={{ flex: 1 }}><Text>MYR {i.priceItem}</Text></View>
+                                            </View>)} */}
+
+                                            {items && <FlatList data={items} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
+                                                <View style={[styles.box]}>
+                                                    <TouchableWithoutFeedback onPress={() => dispatch(actionCreator.setMarkerInvoiceItem(index))} style={{ flexDirection: 'row', marginTop: 5 }}>
+                                                        <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
+                                                            <Text style={styles.small}>Item Name</Text>
+                                                            <Text style={styles.text}>{item.invoice_item}</Text>
+                                                            <Ionicons name={item.marker ? "md-arrow-dropdown" : "md-arrow-dropright"} color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
+                                                        </View>
+                                                    </TouchableWithoutFeedback>
+                                                    <View style={{ flexDirection: 'row', marginTop: 5, borderBottomWidth: items.marker ? 1 : 0, borderBottomColor: 'lightgrey', }}>
+                                                    </View>
+                                                    {item.marker && <View style={{ flex: 1 }}>
+                                                        <View style={{ flexDirection: 'row', marginTop: 20 }}>
+                                                            <View style={{ flex: 1 }}>
+                                                                <Text style={styles.small}>Quantity</Text>
+                                                                <Text style={styles.text}>{item.quantity}</Text>
+                                                            </View>
+                                                        </View>
+                                                        <View style={{ flexDirection: 'row', marginTop: 20 }}>
+                                                            <View style={{ flex: 1 }}>
+                                                                <Text style={styles.small}>Price</Text>
+                                                                <Text style={styles.text}>MYR {item.priceItem}</Text>
+                                                            </View>
+                                                        </View>
+                                                        <View style={{ flexDirection: 'row', marginTop: 20 }}>
+                                                            <View style={{ flex: 1 }}>
+                                                                <Text style={styles.small}>Reference Number</Text>
+                                                                <Text style={styles.text}> {item.item}</Text>
+                                                            </View>
+                                                        </View>
+                                                    </View>}
+                                                </View>
+                                            } />}
+                                            <View style={{ flex: 1, flexDirection: 'row', marginBottom: 5, padding: 5 }}>
+                                                <View style={{ flex: 3 }}>
+                                                    <TouchableOpacity onPress={() => setItemVisible(!addItemVisible)} style={{ width: 20, height: 20, backgroundColor: '#34C2DB', borderRadius: 10, justifyContent: 'center', alignItems: 'center' }}>
+                                                        <Text style={[styles.text, { color: '#fff' }]}>+</Text>
+                                                    </TouchableOpacity></View>
+                                                <View style={{ flex: 1 }}><Text>Total : </Text></View>
+                                                <View style={{ flex: 1 }}>{newInvoice && <Text>MYR {newInvoice.amount}</Text>}</View>
+                                            </View>
                                         </View>
-                                        {items && items.map((i, n) => <View style={{ flex: 1, flexDirection: 'row', marginBottom: 5, padding: 5 }} key={n}>
-                                            <View style={{ flex: 3 }}><Text>{i.invoice_item}</Text></View>
-                                            <View style={{ flex: 1 }}><Text>{i.quantity}</Text></View>
-                                            <View style={{ flex: 1 }}><Text>MYR {i.priceItem}</Text></View>
-                                        </View>)}
-                                        <View style={{ flex: 1, flexDirection: 'row', marginBottom: 5, padding: 5 }}>
-                                            <View style={{ flex: 3 }}>
-                                                <TouchableOpacity onPress={() => setItemVisible(!addItemVisible)} style={{ width: 20, height: 20, backgroundColor: '#34C2DB', borderRadius: 10, justifyContent: 'center', alignItems: 'center' }}>
-                                                    <Text style={[styles.text, { color: '#fff' }]}>+</Text>
-                                                </TouchableOpacity></View>
-                                            <View style={{ flex: 1 }}><Text>Total : </Text></View>
-                                            <View style={{ flex: 1 }}>{newInvoice && <Text>MYR {newInvoice.amount}</Text>}</View>
-                                        </View>
-                                    </View>
-                                </ScrollView>
+                                    </ScrollView>
+                                </View>
                             </View>
                             <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 }}>

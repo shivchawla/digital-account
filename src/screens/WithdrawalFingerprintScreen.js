@@ -6,7 +6,7 @@ import * as LocalAuthentication from 'expo-local-authentication';
 
 const WithdrawalFingerprintScreen = (props) => {
 
-    useEffect(() => {checkAuthentication()}, [something])
+    useEffect(() => { checkAuthentication() }, [something])
 
     const [authenticate, setAuthenticate] = useState(false)
     const [modalVisible, setModalVisible] = useState(false)
@@ -20,7 +20,7 @@ const WithdrawalFingerprintScreen = (props) => {
     const checkAuthentication = async () => {
         console.log(`JSON.stringify(test)`)
         const test = await LocalAuthentication.supportedAuthenticationTypesAsync()
-        await LocalAuthentication.supportedAuthenticationTypesAsync().then(test=>console.log(`test ${JSON.stringify(test)}`))
+        await LocalAuthentication.supportedAuthenticationTypesAsync().then(test => console.log(`test ${JSON.stringify(test)}`))
         setSomething(JSON.stringify(test))
         console.log(JSON.stringify(test))
     }
@@ -48,10 +48,10 @@ const WithdrawalFingerprintScreen = (props) => {
 
     return (
         <View style={[styles.container, modalVisible ? { flex: 1, backgroundColor: '#b7b7b7' } : { flex: 1, backgroundColor: 'white' }]}>
-{something&&<Text>{something}</Text>}
-<TouchableOpacity onPress={()=>checkAuthentication()}>
-    <Text>Test</Text>
-</TouchableOpacity>
+            {something && <Text>{something}</Text>}
+            <TouchableOpacity onPress={() => checkAuthentication()}>
+                <Text>Test</Text>
+            </TouchableOpacity>
             <Button title={authenticate ? 'Reset and begin Authentication again' : 'Push Me To Verify!'}
                 onPress={() => {
                     clearState();

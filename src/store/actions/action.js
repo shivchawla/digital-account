@@ -8,7 +8,7 @@ import s3 from '../../do/DigitalOcean'
 import config from '../../do/config'
 
 import { requestToken, requestPersonalToken, urlToBlob, registerApi, companyInfoAPI, contactPersonAPI, submitDocApi, declarationApi, cddApi, resendVerificationApi } from './apiRegistration'
-import { retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, agingListApi, reportListApi, businessDirectoryListApi, invoiceApi, newExpenseApi, supportApi, customerDataApi, itemDataApi, submitLoanApplicationApi, addBankApi, bankListApi, deleteAllBankApi, notificationListApi, loanApplicationDataApi, submitInvoiceApi, submitSupportApi, withDrawApi, withdrawListApi, vendorListApi, withdrawDataApi, vendorDataApi, vendorDataRetrieveApi, customerListApi, customerDataRetrieveApi, itemListApi, itemDataRetrieveApi, retrieveAccountInfoApi, getAllUsersApi, repaymentListApi, repaymentDetailApi, checkCDDApi2 } from './apiDashboard'
+import { paymentHistoryListApi, retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, agingListApi, reportListApi, businessDirectoryListApi, invoiceApi, newExpenseApi, supportApi, customerDataApi, itemDataApi, submitLoanApplicationApi, addBankApi, bankListApi, deleteAllBankApi, notificationListApi, loanApplicationDataApi, submitInvoiceApi, submitSupportApi, withDrawApi, withdrawListApi, vendorListApi, withdrawDataApi, vendorDataApi, vendorDataRetrieveApi, customerListApi, customerDataRetrieveApi, itemListApi, itemDataRetrieveApi, retrieveAccountInfoApi, getAllUsersApi, repaymentListApi, repaymentDetailApi, checkCDDApi2 } from './apiDashboard'
 //import {pusherListen} from './pusher'
 import moment from 'moment'
 
@@ -165,6 +165,19 @@ export const setMarkers = (index) => {
     }
 }
 
+export const setMarkerPaymentHistory = (index) => {
+    return (dispatch, getState) => {
+
+        const { paymentHistoryList } = getState().paymentHistoryReducer
+        console.log(`payment history list ialah : ${JSON.stringify(paymentHistoryList)}`)
+        const newArr = []
+        paymentHistoryList.map((i, n) => (n === index) ? newArr.push({ ...i, marker: true }) : newArr.push({ ...i, marker: false }))
+        console.log(`new notification list ialah : ${JSON.stringify(newArr)}`)
+        dispatch({ type: 'SET_PAYMENT_HISTORY_LIST', payload: { paymentHistoryList: newArr } })
+
+    }
+}
+
 export const setMarkerReportList = (index) => {
     return (dispatch, getState) => {
 
@@ -198,10 +211,20 @@ export const setMarker = (index) => {
 export const setMarkerInvoiceItem = (index) => {
     return (dispatch, getState) => {
 
-        const { itemList } = getState().invoiceReducer
+        const { items } = getState().invoiceReducer
         const newArr = []
-        itemList.map((i, n) => (n === index) ? newArr.push({ ...i, marker: true }) : newArr.push({ ...i, marker: false }))
-        dispatch({ type: 'SET_INVOICE_APPLICATION', payload: { itemList: newArr } })
+        items.map((i, n) => (n === index) ? newArr.push({ ...i, marker: true }) : newArr.push({ ...i, marker: false }))
+        dispatch({ type: 'SET_INVOICE_APPLICATION', payload: { items: newArr } })
+    }
+}
+
+export const setMarkerInvoiceReview = (index) => {
+    return (dispatch, getState) => {
+
+        const { items } = getState().invoiceReducer
+        const newArr = []
+        items.map((i, n) => (n === index) ? newArr.push({ ...i, marker: true }) : newArr.push({ ...i, marker: false }))
+        dispatch({ type: 'SET_INVOICE_APPLICATION', payload: { items: newArr } })
     }
 }
 
@@ -545,6 +568,14 @@ export const getNotificationList = () => {
 
     return (dispatch, getState) => {
         dispatch(notificationListApi())
+
+    }
+}
+
+export const getPaymentRecordList = () => {
+
+    return (dispatch, getState) => {
+        dispatch(paymentHistoryListApi())
 
     }
 }

@@ -81,6 +81,7 @@ import RepaymentInfo from '../screens/RepaymentInfo';
 import LoanPaymentSuccessScreen from '../screens/LoanPaymentSuccessScreen';
 import TransferFingerprintScreen from '../screens/TransferFingerprintScreen';
 import WithdrawalFingerprintScreen from '../screens/WithdrawalFingerprintScreen';
+import AuthOptionScreen from '../screens/AuthOptionScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -292,6 +293,9 @@ const DashboardStackWithModal = createStackNavigator(
     },
     LoanPaymentSuccess: {
       screen: LoanPaymentSuccessScreen,
+    },
+    AuthOption: {
+      screen: AuthOptionScreen,
     },
   },
   {

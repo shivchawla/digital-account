@@ -21,6 +21,16 @@ export const notificationListApi = () => {
   }
 }
 
+export const paymentHistoryListApi = () => {
+  return async (dispatch, getState) => {
+    const paymentHistoryList = [{ ID: 'RP0002', Date: '20/03/19', Type: 'Auto', Amount: '122.60', Balance: '8000' },
+    { ID: 'RP0003', Date: '20/03/19', Type: 'Manual', Amount: '1122.60', Balance: '9000' },
+    { ID: 'RP0004', Date: '20/04/19', Type: 'Auto', Amount: '1022.60', Balance: '8009' }]
+
+    dispatch({ type: 'SET_PAYMENT_HISTORY_LIST', payload: { paymentHistoryList } })
+  }
+}
+
 export const loanApplicationDataApi = (id) => {
   return async (dispatch, getState) => {
 
@@ -523,10 +533,12 @@ export const reportListApi = () => {
 
     }).then((response) => response.json())
       .then(async (responseJson) => {
+
+        // const data = responseJson.data
         const { data } = responseJson
         const reportList = data
         // reportList.reverse()
-        // console.log('Success report list' + JSON.stringify(responseJson))
+        console.log('Success report list' + JSON.stringify(responseJson))
         dispatch({ type: 'SET_REPORT_LIST', payload: { reportList } })
 
       })
