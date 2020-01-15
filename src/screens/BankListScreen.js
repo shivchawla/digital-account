@@ -29,7 +29,9 @@ const BankListScreen = (props) => {
                     <Text style={[styles.title, { color: '#055E7C' }]}>BANK</Text>
                 </View>
                 <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
-                    <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
+                    <View style={{ backgroundColor:'rgba(62,194,217,0.5)',borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
+            <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
+          </View>
                 </TouchableOpacity>
             </View>
             <View style={[styles.screenMargin, { flex: 9, paddingLeft: 0, paddingRight: 0 }]}>

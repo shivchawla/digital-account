@@ -3,11 +3,24 @@ import { Image, Text, TouchableOpacity, View, } from 'react-native';
 import Constants from 'expo-constants'
 import Layout from '../constants/Layout'
 import styles from '../styles/styles'
-import { shallowEqual, useSelector } from 'react-redux'
+import * as actionCreator from '../store/actions/action'
+import { shallowEqual, useSelector,useDispatch } from 'react-redux'
 
 const TransferSuccessScreen = (props) => {
 
     const { status } = useSelector(state => state.expenseReducer, shallowEqual)
+
+    const dispatch = useDispatch()
+    const goDashboard = async () => {
+        await dispatch(actionCreator.retrieveMerchantInfo())
+        await dispatch(actionCreator.retrieveAccountInfo())
+        props.navigation.navigate('Dashboard')
+    }
+    const goTransfer = async () => {
+        await dispatch(actionCreator.retrieveMerchantInfo())
+        await dispatch(actionCreator.retrieveAccountInfo())
+        props.navigation.navigate('Transfer')
+    }
 
     return (
 
@@ -43,10 +56,10 @@ const TransferSuccessScreen = (props) => {
                                 <Text style={[styles.text, { margin: 5, marginBottom: 20 }]}>Please try again later.</Text>
                             </View>
                             <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                                <TouchableOpacity onPress={() => props.navigation.navigate('Dashboard')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, borderColor: 'black', borderWidth: 1 }}>
+                                <TouchableOpacity onPress={() => goDashboard()} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, borderColor: 'black', borderWidth: 1 }}>
                                     <Text style={[styles.textDefault]}>Dashboard</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={() => props.navigation.navigate('Transfer')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }}>
+                                <TouchableOpacity onPress={() => goTransfer()} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }}>
                                     <Text style={[styles.textDefault, { color: 'white' }]}>Transfer</Text>
                                 </TouchableOpacity>
                             </View>

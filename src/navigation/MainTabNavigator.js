@@ -82,6 +82,11 @@ import LoanPaymentSuccessScreen from '../screens/LoanPaymentSuccessScreen';
 import TransferFingerprintScreen from '../screens/TransferFingerprintScreen';
 import WithdrawalFingerprintScreen from '../screens/WithdrawalFingerprintScreen';
 import AuthOptionScreen from '../screens/AuthOptionScreen';
+import LoanBillListScreen from '../screens/LoanBillListScreen';
+import LoanBillDetailScreen from '../screens/LoanBillDetailScreen';
+import AuthOptionTypeScreen from '../screens/AuthOptionTypeScreen';
+import SetPasscodeScreen from '../screens/SetPasscodeScreen';
+import TransferConfirmScreen from '../screens/TransferConfirmScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -155,6 +160,12 @@ const DashboardStackWithModal = createStackNavigator(
     },
     LoanMiniDetail: {
       screen: LoanMiniDetailScreen,
+    },
+    LoanBillList: {
+      screen: LoanBillListScreen,
+    },
+    LoanBillDetail: {
+      screen: LoanBillDetailScreen,
     },
     LoanApplication: {
       screen: LoanApplicationScreen,
@@ -297,6 +308,11 @@ const DashboardStackWithModal = createStackNavigator(
     AuthOption: {
       screen: AuthOptionScreen,
     },
+    AuthOptionType: {
+      screen: AuthOptionTypeScreen
+    },
+    SetPasscode: { screen: SetPasscodeScreen },
+    TransferConfirm: { screen: TransferConfirmScreen }
   },
   {
     mode: 'modal',

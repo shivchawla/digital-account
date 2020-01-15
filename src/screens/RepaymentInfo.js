@@ -55,7 +55,9 @@ const RepaymentInfo = (props) => {
                             <Text style={styles.title}>MANUAL PAYMENT</Text>
                         </View>
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
-                            <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
+                            <View style={{ backgroundColor:'rgba(62,194,217,0.5)',borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
+            <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
+          </View>
                         </View>
                     </View>
                     <Formik onSubmit={async values => {
@@ -115,7 +117,9 @@ const RepaymentInfo = (props) => {
                                 <Text style={styles.title}>PAYMENT RECORD</Text>
                             </View>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
-                                <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
+                                <View style={{ backgroundColor:'rgba(62,194,217,0.5)',borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
+            <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
+          </View>
                             </View>
                         </View>
                         <View style={[styles.screenMargin, { flex: 9, marginTop: 25 }]}>
@@ -295,7 +299,9 @@ const RepaymentInfo = (props) => {
                     <Text style={styles.title}>REPAYMENT INFO</Text>
                 </View>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
-                    <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
+                    <View style={{ backgroundColor:'rgba(62,194,217,0.5)',borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
+            <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
+          </View>
                 </View>
             </View>
             <View style={{ justifyContent: 'space-between', flex: 9 }}>
@@ -339,7 +345,7 @@ const RepaymentInfo = (props) => {
                                 <Text style={[styles.textDefault, { color: 'black' }]}>History</Text>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => openModal('pay')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }} >
-                                <Text style={[styles.textDefault, { color: '#fff' }]}>Pay</Text>
+                                <Text style={[styles.textDefault, { color: '#fff' }]}>Pay Any Amount</Text>
                             </TouchableOpacity>
                         </View>
                     </ScrollView>}

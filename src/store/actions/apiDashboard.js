@@ -146,6 +146,63 @@ export const repaymentDetailApi = (id) => {
   }
 }
 
+export const loanBillListApi = (loanNo) => {
+  return async (dispatch, getState) => {
+
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+    //https://tuah.niyo.my/api/repaymentinfo/bills/list?loanNo=199916920
+    fetch(`${apiUrl}api/repaymentinfo/bills/list?loanNo=${loanNo}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const loanBillList = responseJson.data
+        //loanList.reverse()
+        console.log('Loan Bill List' + JSON.stringify(responseJson))
+        dispatch({ type: 'SET_LOAN_BILL_LIST', payload: { loanBillList } })
+
+      })
+      .catch((error) => {
+        console.log('Error initiating loan bill list info : ' + error);
+      });
+
+  }
+}
+
+export const billDetailApi = (id) => {
+  return async (dispatch, getState) => {
+
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    fetch(`${apiUrl}api/repaymentinfo/bills/details?id=${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const billDetail = responseJson.data
+        console.log('Success bill detail' + JSON.stringify(responseJson))
+        dispatch({ type: 'SET_LOAN_BILL_LIST', payload: { billDetail } })
+
+      })
+      .catch((error) => {
+        console.log('Error initiating loan data info : ' + error);
+      });
+
+  }
+}
+
 export const agingListApi = () => {
   return async (dispatch, getState) => {
     const agingList = [{ ref: 112009, date: '12/3/2019', type: 'Item', currency: 'IDR' },
@@ -862,7 +919,7 @@ export const checkCDDApi2 = () => {
       })
       .catch((error) => {
         console.log('Error initiating check contact : ' + error);
-        dispatch({ type: 'SET_MERCHANT', payload: {  status1:'NA' } })
+        dispatch({ type: 'SET_MERCHANT', payload: { status1: 'NA' } })
       });
   }
 }
@@ -1365,6 +1422,31 @@ export const newExpenseApi = (values) => {
       .catch((error) => {
         console.error('Error : ' + error);
       });
+  }
+}
+
+
+export const checkAuthApi = () => {
+  return async (dispatch, getState) => {
+    console.log(`lalu kat apidashboard checkauthapi`)
+    const pinStringified = await SecureStore.getItemAsync('twoFa')
+    console.log(`ada pin ${pinStringified}`)
+    if (pinStringified) {
+      console.log(`ada pin ${pinStringified}`)
+      const pin = JSON.parse(pinStringified)
+      dispatch({ type: 'SET_AUTH', payload: { ...pin } })
+    }
+  }
+}
+
+export const savePinApi = () => {
+  return async (dispatch, getState) => {
+
+    pinStringified = await JSON.stringify(getState().authReducer)
+    console.log(JSON.stringify(getState().authReducer))
+    await SecureStore.setItemAsync('twoFa', pinStringified);
+
+
 
   }
 }

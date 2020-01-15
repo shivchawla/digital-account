@@ -26,7 +26,9 @@ const LoanDetailScreen = (props) => {
                     <Text style={styles.title}>LOAN DETAILS</Text>
                 </View>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
-                    <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
+                    <View style={{ backgroundColor:'rgba(62,194,217,0.5)',borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
+            <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
+          </View>
                 </View>
             </View>
             <View style={{ justifyContent: 'space-between', flex: 9 }}>

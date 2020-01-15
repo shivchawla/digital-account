@@ -3,37 +3,44 @@ import { View, TouchableOpacity, Text, Image, Switch } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles/styles'
 import * as LocalAuthentication from 'expo-local-authentication';
+import * as actionCreator from '../store/actions/action'
+import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 
-const AuthOptionScreen = (props) => {
+const AuthOptionTypeScreen = (props) => {
+
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        checkDeviceForHardware();
-    });
+        dispatch(actionCreator.checkAuth())
+    }, [])
 
-    const [compatible, setCompatible] = useState(false)
+    // const disableAuth = () => {
+    //     dispatch(actionCreator.setAuth({ authType: 'passcode' }))
+    //     props.navigation.navigate('SetPasscode')
+    // }
 
-    const [switchValue1, setSwitchValue1] = useState(false)
-    const [switchValue2, setSwitchValue2] = useState(false)
+    const { authEnabled, authType } = useSelector(state => state.authReducer, shallowEqual)
+    const allAuth = useSelector(state => state.authReducer, shallowEqual)
 
-    const checkDeviceForHardware = async () => {
-        let compatible = await LocalAuthentication.hasHardwareAsync();
-        setCompatible(compatible)
-        if (!compatible) {
-            showIncompatibleAlert();
-            console.log(`takde biometric : ${compatible}`)
+
+    const [notificationEnable, setNotificationEnable] = useState(authEnabled)
+
+    const notificationToggle = () => {
+
+        console.log(JSON.stringify())
+
+        if (authEnabled) {
+            dispatch(actionCreator.setAuth({ authEnabled: false }))
+        } else {
+            dispatch(actionCreator.setAuth({ authEnabled: !notificationEnable }))
+            props.navigation.navigate('AuthOptionType')
+            //setNotificationEnable(value)
         }
-        else { console.log(`ada biometric : ${compatible}`) }
-    };
 
-    const toggleSwitch1 = (value) => {
-        console.log(JSON.stringify(value))
-        setSwitchValue1(value)
+
     }
 
-    const toggleSwitch2 = (value) => {
-        console.log(JSON.stringify(value))
-        setSwitchValue2(value)
-    }
+
 
     return (
 
@@ -48,32 +55,31 @@ const AuthOptionScreen = (props) => {
                     <Text numberOfLines={1} style={styles.title} ellipsizeMode='tail'>AUTHENTICATION SETTING</Text>
                 </View>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
-                    <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
+                    <View style={{ backgroundColor: 'rgba(62,194,217,0.5)', borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
+                        <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
+                    </View>
                 </View>
             </View>
             <View style={[styles.screenMargin, { flex: 9 }]}>
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                    {compatible ? <View style={{ flexDirection: 'row', marginTop: 30 }}>
-                        {/*Text to show the text according to switch condition*/}
-                        <Text style={[styles.text], { padding: 5 }}>Fingerprint Authentication</Text>
-                        {/*Switch with value set in constructor*/}
-                        {/*onValueChange will be triggered after switch condition changes*/}
-                        {/* <Text style={[styles.text, { color: 'black', marginLeft: 50 }]}>Email Notification</Text> */}
-                        <Switch style={{ marginLeft: 35, marginRight: 15 }} onValueChange={value => toggleSwitch1(value)} value={switchValue1} />
-                        <Text style={[styles.text, { color: '#055E7C', marginLeft: 15 }]}>{switchValue1 ? 'ON' : 'OFF'}</Text>
-                    </View> : <View style={{ flexDirection: 'row', marginTop: 30 }}>
-                            <Text style={[styles.text], { padding: 5 }}>Passcode</Text>
-                            <Switch style={{ marginLeft: 15, marginRight: 15 }} onValueChange={value => toggleSwitch2(value)} value={switchValue2} />
-                            <Text style={[styles.text, { color: '#055E7C', marginLeft: 15 }]}>{switchValue2 ? 'ON' : 'OFF'}</Text>
+
+                    <View>
+                        <View style={{ flexDirection: 'row', marginTop: 30 }}>
+                            <Text style={[styles.text], { padding: 5 }}>Enable Authentication</Text>
+                            <Switch style={{ marginLeft: 35, marginRight: 15 }} onValueChange={value => notificationToggle(value)} value={authEnabled} />
+                        </View>
+                        {authEnabled && <View style={{ flexDirection: 'row', marginTop: 30 }}>
+                            <Text style={[styles.text], { padding: 5 }}>Authentication Type : {authType}</Text>
                         </View>}
+                    </View>
                 </View>
             </View >
         </View >
     );
 }
 
-AuthOptionScreen.navigationOptions = {
+AuthOptionTypeScreen.navigationOptions = {
     header: null,
 };
 
-export default AuthOptionScreen
+export default AuthOptionTypeScreen

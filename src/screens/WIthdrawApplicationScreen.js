@@ -8,13 +8,39 @@ import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles/styles'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import CodePin from 'react-native-pin-code'
+import Layout from '../constants/Layout';
 
+import ScanFinger from '../components/ScanFinger'
 
 
 const WIthdrawApplicationScreen = (props) => {
 
+    const unlock = () => {
+        setLock(false)
+        setAuthRequestVisible(false)
+    }
+
+    const checkCode = (code) => {
+        console.log(`periksa code`)
+        return code === '1234'
+    }
+
+
     const [bankLabelActive, setbankLabelActive] = useState(false)
     const [iosPickerVisible, setIosPickerVisible] = useState(false)
+
+    const [locked, setLock] = useState(true)
+
+    const [code, updateCode] = useState("")
+
+    const [authRequestVisible, setAuthRequestVisible] = useState(false)
+
+    const { authEnabled, authType } = useSelector(state => state.authReducer, shallowEqual)
+
+    useEffect(() => {
+        dispatch(actionCreator.checkAuth())
+    }, [])
 
     const ios = Platform.OS === "ios" ? true : false
 
@@ -68,6 +94,16 @@ const WIthdrawApplicationScreen = (props) => {
             withDraw(values)
             actions.resetForm({})
         }}
+        onSubmit={(values, actions) => {
+            if (authEnabled && locked) {
+                setAuthRequestVisible(true)
+         
+            } else {
+                withDraw(values)
+                actions.resetForm({})
+            }
+
+        }}
             validationSchema={validationSchema}
         >
 
@@ -92,6 +128,24 @@ const WIthdrawApplicationScreen = (props) => {
 
                 return (
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }}>
+                        <Modal transparent={true} animationType={'slide'} visible={authRequestVisible} onRequestClose={() => setAuthRequestVisible(!authRequestVisible)} >
+                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(1,1,1,0.5)' }}>
+                                <View style={{ flex: 3 }} />
+                                <View style={{ flex: 1, backgroundColor: '#fff', justifyContent: 'center', alignItems: 'center' }}>
+                                    {(authType === 'passcode') ? <CodePin
+                                        //code="2018" // code.length is used if you not pass number prop
+                                        checkPinCode={(code, check) => check(checkCode(code))}
+                                        success={() => unlock()} // If user fill '2018', success is called
+                                        text="Please Enter PIN" // My title
+                                        error="Try again" // If user fail (fill '2017' for instance)
+                                        autoFocusFirst={true} // disabling auto-focus
+                                        keyboardType={'numeric'}
+                                        containerStyle={{ width: Layout.window.width, height: Layout.window.height / 4 }}
+                                    /> : <ScanFinger unlock={unlock} />}
+
+                                </View>
+                            </View>
+                        </Modal>
                         <Modal animationType={'slide'} visible={iosPickerVisible} presentationStyle={'pageSheet'} onRequestClose={() => console.log('modal closed')}                      >
                             <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
                                 <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4', marginBottom: 25 }]}>
@@ -127,7 +181,9 @@ const WIthdrawApplicationScreen = (props) => {
                                 <Text style={[styles.title, { color: '#055E7C' }]}>WITHDRAWAL</Text>
                             </View>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
-                                <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
+                                <View style={{ backgroundColor: 'rgba(62,194,217,0.5)', borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
+                                    <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
+                                </View>
                             </View>
                         </View>
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
@@ -211,9 +267,9 @@ const WIthdrawApplicationScreen = (props) => {
                                     </LinearGradient>
                                 </TouchableOpacity>
                                 <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ flex: 1 }}>
-                                    <LinearGradient colors={FormikProps.isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                                        {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> :
-                                            <Text style={[styles.butang, { color: '#fff' }]}>Submit</Text>}
+                                    <LinearGradient colors={FormikProps.isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
+                                        <Text style={[styles.butang, { color: '#fff' }]}>Submit</Text>
+                                        {authEnabled ? locked ? <Ionicons name='ios-lock' color={'#fff'} style={{ fontSize: 30, paddingLeft: 20 }} /> : <Ionicons name='ios-unlock' color={'#fff'} style={{ fontSize: 30, paddingLeft: 20 }} /> : <View />}
                                     </LinearGradient>
                                 </TouchableOpacity>
                             </View>

@@ -24,11 +24,13 @@ const DataSettingScreen = (props) => {
                     <Text style={[styles.title]}>SETTING</Text>
                 </View>
                 <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
-                    <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
+                    <View style={{ backgroundColor: 'rgba(62,194,217,0.5)', borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
+                        <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
+                    </View>
                 </TouchableOpacity>
             </View>
-            <View style={[styles.screenMargin, { flex: 9 }]}>
-                <ScrollView>
+            <View style={[{ flex: 9 }]}>
+                <ScrollView contentContainerStyle={styles.screenMargin}>
                     <View style={{ marginBottom: 10 }}>
                         <Text style={[styles.h2, { color: '#04A2BD', marginTop: 20 }]}>MERCHANT SETTING</Text>
                     </View>
@@ -99,6 +101,7 @@ const DataSettingScreen = (props) => {
                                 <Text style={[styles.text, { marginLeft: 25 }]}>Authentication</Text>
                             </TouchableOpacity>
                         </View>
+                        <View style={{ marginTop: 40 }} />
                     </View>
                 </ScrollView>
             </View>

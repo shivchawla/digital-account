@@ -8,7 +8,7 @@ import s3 from '../../do/DigitalOcean'
 import config from '../../do/config'
 
 import { requestToken, requestPersonalToken, urlToBlob, registerApi, companyInfoAPI, contactPersonAPI, submitDocApi, declarationApi, cddApi, resendVerificationApi } from './apiRegistration'
-import { paymentHistoryListApi, retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, agingListApi, reportListApi, businessDirectoryListApi, invoiceApi, newExpenseApi, supportApi, customerDataApi, itemDataApi, submitLoanApplicationApi, addBankApi, bankListApi, deleteAllBankApi, notificationListApi, loanApplicationDataApi, submitInvoiceApi, submitSupportApi, withDrawApi, withdrawListApi, vendorListApi, withdrawDataApi, vendorDataApi, vendorDataRetrieveApi, customerListApi, customerDataRetrieveApi, itemListApi, itemDataRetrieveApi, retrieveAccountInfoApi, getAllUsersApi, repaymentListApi, repaymentDetailApi, checkCDDApi2 } from './apiDashboard'
+import { paymentHistoryListApi, retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, agingListApi, reportListApi, businessDirectoryListApi, invoiceApi, newExpenseApi, supportApi, customerDataApi, itemDataApi, submitLoanApplicationApi, addBankApi, bankListApi, deleteAllBankApi, notificationListApi, loanApplicationDataApi, submitInvoiceApi, submitSupportApi, withDrawApi, withdrawListApi, vendorListApi, withdrawDataApi, vendorDataApi, vendorDataRetrieveApi, customerListApi, customerDataRetrieveApi, itemListApi, itemDataRetrieveApi, retrieveAccountInfoApi, getAllUsersApi, repaymentListApi, repaymentDetailApi, checkCDDApi2, loanBillListApi, billDetailApi, checkAuthApi, savePinApi } from './apiDashboard'
 //import {pusherListen} from './pusher'
 import moment from 'moment'
 
@@ -612,6 +612,23 @@ export const getRepaymentDetail = (values) => {
     }
 }
 
+
+export const getLoanBillList = (loanNo) => {
+
+    return (dispatch, getState) => {
+        dispatch(loanBillListApi(loanNo))
+
+    }
+}
+
+export const getBillDetail = (id) => {
+
+    return (dispatch, getState) => {
+        dispatch(billDetailApi(id))
+
+    }
+}
+
 export const getWithdrawData = (id) => {
 
     return (dispatch, getState) => {
@@ -804,5 +821,27 @@ export const filterBusinessList = (values) => {
         const newBusinessList = _.filter(businessDirectoryList, _.matches(filterParam));
         console.log(`new business List : ${JSON.stringify(newBusinessList)}`)
         dispatch({ type: 'SET_BUSINESS_DIRECTORY_LIST', payload: { filterBusinessList: newBusinessList, filterEnabled: true } })
+    }
+}
+
+
+export const checkAuth = () => {
+    return async (dispatch, getState) => {
+        console.log(`lalu kat action checkauth`)
+        dispatch(checkAuthApi())
+    }
+}
+
+export const setAuth = (val) => {
+    return async (dispatch, getState) => {
+        dispatch({ type: 'SET_AUTH', payload: { ...val } })
+        dispatch(savePinApi())
+    }
+}
+
+export const savePin = (val) => {
+    return async (dispatch, getState) => {
+        await dispatch({ type: 'SET_AUTH', payload: { ...val } })
+        dispatch(savePinApi())
     }
 }

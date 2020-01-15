@@ -28,7 +28,7 @@ const WelcomeScreen = (props) => {
     const proceed = useSelector(state => state.loginScreenReducer.proceed, shallowEqual)
     const all = useSelector(state => state.loginScreenReducer.message, shallowEqual)
     useEffect(() => {
-        // proceed && props.navigation.navigate('Main')
+         proceed && props.navigation.navigate('Main')
     }, [proceed]);
     const dispatch = useDispatch()
     const login = (values) => {
@@ -90,8 +90,6 @@ const WelcomeScreen = (props) => {
                                             {passwordTouched && passwordError && <Text style={styles.error}>{passwordError}</Text>}
 
                                             {all && <Text style={[styles.error, { marginTop: 10 }]}>{all}</Text>}
-
-
                                         </View>
                                         <View style={{ flexDirection: 'row', marginBottom: 10 }}>
                                             <Text style={[styles.textDefault, { margin: 5, color: 'darkgrey' }]}>Forgot password?</Text>

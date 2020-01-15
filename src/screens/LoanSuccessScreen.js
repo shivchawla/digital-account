@@ -3,13 +3,21 @@ import { Image, Text, TouchableOpacity, View, } from 'react-native';
 import Constants from 'expo-constants'
 import Layout from '../constants/Layout'
 import styles from '../styles/styles'
-import { shallowEqual, useSelector } from 'react-redux'
+import * as actionCreator from '../store/actions/action'
+import { shallowEqual, useSelector,useDispatch } from 'react-redux'
 
 const LoanSuccessScreen = (props) => {
 
 
     const { status } = useSelector(state => state.loanApplicationReducer, shallowEqual)
 
+    const dispatch = useDispatch()
+    const goDashboard = async () => {
+        await dispatch(actionCreator.retrieveMerchantInfo())
+        await dispatch(actionCreator.retrieveAccountInfo())
+        props.navigation.navigate('Dashboard')
+    }
+  
     return (
 
         <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
@@ -24,7 +32,7 @@ const LoanSuccessScreen = (props) => {
                             <Text style={[styles.text, { margin: 5, marginBottom: 20 }]}>Your application has been submitted. The result will be notified to you in three days time.</Text>
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                            <TouchableOpacity onPress={() => props.navigation.navigate('Dashboard')} style={{ width: Layout.window.width * 0.4, paddingTop: 5, paddingBottom: 5, borderWidth: 1, borderColor: '#4A90E2', borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10 }}>
+                            <TouchableOpacity onPress={() => goDashboard()} style={{ width: Layout.window.width * 0.4, paddingTop: 5, paddingBottom: 5, borderWidth: 1, borderColor: '#4A90E2', borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10 }}>
                                 <Text style={[styles.textDefault]}>Dashboard</Text>
                             </TouchableOpacity>
                         </View>
@@ -41,7 +49,7 @@ const LoanSuccessScreen = (props) => {
                                 <Text style={[styles.text, { margin: 5, marginBottom: 20 }]}>Please try again later.</Text>
                             </View>
                             <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                                <TouchableOpacity onPress={() => props.navigation.navigate('Dashboard')} style={{ width: Layout.window.width * 0.4, paddingTop: 5, paddingBottom: 5, borderWidth: 1, borderColor: '#4A90E2', borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10 }}>
+                                <TouchableOpacity onPress={() => goDashboard()} style={{ width: Layout.window.width * 0.4, paddingTop: 5, paddingBottom: 5, borderWidth: 1, borderColor: '#4A90E2', borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10 }}>
                                     <Text style={[styles.textDefault]}>Dashboard</Text>
                                 </TouchableOpacity>
                             </View>

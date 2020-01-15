@@ -11,9 +11,26 @@ import VictoryCharts from '../components/VictoryCharts'
 import ChartKit from '../components/ChartKit'
 import _ from 'lodash'
 import moment from 'moment'
+import NumberFormat from 'react-number-format';
+//import { Number, Currency } from "react-intl-number-format"
 //import { FlatList } from 'react-native-gesture-handler';
 
 const DashboardScreen = (props) => {
+
+  // const formatter = new Intl.NumberFormat('en-US', {
+  //   style: 'currency',
+  //   currency: 'USD',
+  //   minimumFractionDigits: 2
+  // })
+
+
+  const dataPointClicked = (val) => {
+    console.log(`klik ni ${JSON.stringify(val)}`)
+  }
+
+  const changeChartDay = () => {
+    if (chartDay === 7) { setChartDay(30) } else { setChartDay(7) }
+  }
 
   const dispatch = useDispatch()
   //const [chartData, setChartData] = useState([])
@@ -26,10 +43,11 @@ const DashboardScreen = (props) => {
   all && console.log(`all ialah : ${JSON.stringify(all)}`)
 
   //const dashboardDisplay = (link == 'Dashboard') ? true : false
-
   const [dashboardDisplay, setDashboardDisplay] = useState(true)
 
   const [five, setFive] = useState(null)
+
+  const [chartDay, setChartDay] = useState(7)
 
   //if(status===)
 
@@ -84,16 +102,15 @@ const DashboardScreen = (props) => {
   }
   useEffect(() => {
     runCheckStatus2()
-
   }, [])
   useEffect(() => {
     console.log(`status1 ialah ${status1}`)
     if (status1 == 'NA') {
       runCheckStatus();
-    } else if (status1 == 'Approved')  {
-       dispatch(actionCreator.retrieveMerchantInfo())
-       dispatch(actionCreator.retrieveAccountInfo())
-       dispatch(actionCreator.getReportList())
+    } else if (status1 == 'Approved') {
+      dispatch(actionCreator.retrieveMerchantInfo())
+      dispatch(actionCreator.retrieveAccountInfo())
+      dispatch(actionCreator.getReportList())
     }
 
   }, [status1])
@@ -130,16 +147,16 @@ const DashboardScreen = (props) => {
 
     })
 
-    //console.log(`listbaru original 3 : ${JSON.stringify(listBaru3)}`)
+    console.log(`gabungan ke-3 yang mengasyikkan ${JSON.stringify(listBaru3)}`)
 
     listBaru3.map(lb3 => {
       const { updated_at, balance } = lb3
       listBaru4.push({ updated_at, balance })
     })
-    //console.log(`list baru original 4 : ${JSON.stringify(listBaru4)}`)
+    console.log(`gabungan ke-4 yang mengasyikkan ${JSON.stringify(listBaru4)}`)
 
     const listBaru6 = _.values(_.groupBy(listBaru4, (dt) => moment(dt.updated_at).dayOfYear()))
-    //console.log(`list baru original 6 : ${JSON.stringify(listBaru6)}`)
+    console.log(`gabungan ke-6 yang mengasyikkan ${JSON.stringify(listBaru6)}`)
     const listBaru7 = []
     const listBaru8 = []
 
@@ -148,14 +165,14 @@ const DashboardScreen = (props) => {
       //listBaru8.push({ ...l[0] })  ///// kalau nak include duit first masuk awal awal hari tu
       listBaru8.push({ ...l[l.length - 1] })
     })
-    //console.log(`list baru group 7 konon : ${JSON.stringify(listBaru7)}`)
-    //console.log(`list baru group 8 konon : ${JSON.stringify(listBaru8)}`)
+    console.log(`gabungan ke-7 yang mengasyikkan ${JSON.stringify(listBaru7)}`)
+    console.log(`gabungan ke-8 yang mengasyikkan ${JSON.stringify(listBaru8)}`)
     //listBaru7&&setChartData(listBaru7)
 
 
     /////////TESTING DATE
-    var days = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
-    var goBackDays = 7;
+    var days = ['MO', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
+    var goBackDays = chartDay;
 
 
     var today = new Date();
@@ -183,11 +200,11 @@ const DashboardScreen = (props) => {
     if (last.ada == 'takde') {
       //const start = listBaru8.indexOf(n => n.updated_at == last.updated_at)
       //const start = listBaru8.map(n => n.updated_at).indexOf(last.update)
-      const start = listBaru8.find(n => moment(n.updated_at) > moment(last.update)) || listBaru6.find(n => moment(n.updated_at) > moment(last.update))
-      //console.log(`start ialah : ${JSON.stringify(start)}`)
+      const start = listBaru8.find(n => moment(n.updated_at) < moment(last.update)) || listBaru6.find(n => moment(n.updated_at) < moment(last.update))
+      console.log(`start ialah : ${JSON.stringify(start)}`)
       listBaru9[listBaru9.length - 1].balance = _.isArray(start) ? start[start.length - 1].balance : start.balance
     }
-    //console.log(` apa gunanya gabung lagi ${JSON.stringify(listBaru9)}`);
+    console.log(` gabungan ke-9 yang mengasyikkan ${JSON.stringify(listBaru9)}`);
     const listBaru10 = []
     listBaru9.reverse()
     listBaru9.map((lb9, i) => {
@@ -202,7 +219,18 @@ const DashboardScreen = (props) => {
       }
     })
 
-    //console.log(` gabungan ke-10 yang mengasyikkan ${JSON.stringify(listBaru10)}`);
+    console.log(` gabungan ke-10 yang mengasyikkan ${JSON.stringify(listBaru10)}`);
+    const listBaru11 = []
+    //const i = goBackDays
+    //ni kalau bahagi 30
+    if (chartDay === 30) {
+      for (i = goBackDays; i > 0; i--) {
+        !((i + 1) % 3 === 0) && listBaru10.splice(i, 1);
+        console.log(JSON.stringify((i + 1) % 3 === 0))
+      }
+      console.log(` gabungan ke-11 yang mengasyikkan ${JSON.stringify(listBaru10)}`);
+      return listBaru10
+    }
 
     return listBaru10
 
@@ -217,9 +245,9 @@ const DashboardScreen = (props) => {
   //setFive(reportList.filter(rl=>!rl.type.includes('Fee')).slice(0,5))
 
   const noti = [
-    { announcement: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam elit dui, consequat et gravida sed, luctus id neque. Phasellus non metus aliquet, suscipit risus finibus, suscipit ligula.', date: '10/10/19' },
-    { announcement: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam elit dui, consequat et gravida sed, luctus id neque. Phasellus non metus aliquet, suscipit risus finibus, suscipit ligula.', date: '10/10/19' },
-    { announcement: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam elit dui, consequat et gravida sed, luctus id neque. Phasellus non metus aliquet, suscipit risus finibus, suscipit ligula.', date: '10/10/19' },
+    { announcement: 'Happy New Year! Have a pleasant day. We are standing by should you need any assistance', date: '1/1/20' },
+    { announcement: 'Welcome to mobile version of  the Digital Account. All features are accessible by clicking the menu button at the top left corner of your screen', date: '5/10/19' },
+    { announcement: 'Thank you for your registration. We look forward to serving you and fulfilling your expectation', date: '5/5/19' },
   ]
 
   // console.log(`Ini ialah result ${JSON.stringify(malaysiaData)}`)
@@ -307,11 +335,15 @@ const DashboardScreen = (props) => {
         </View>
         <View style={{ flexDirection: 'column', justifyContent: 'center' }}>
           <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-            {balance ? <Text style={styles.title}>{currency && currency} {balance && balance.toFixed(2)}</Text> : <Text style={styles.title}>0</Text>}
+   
+          {balance ?<NumberFormat value={balance.toFixed(2)} displayType={'text'} thousandSeparator={true} prefix={''} renderText={value => <Text style={styles.title}>{currency} {value}</Text>} /> : <Text style={styles.title}>MYR 0</Text>}
+        
           </View>
         </View>
         <TouchableOpacity onPress={() => props.navigation.navigate('Profile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
-          <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
+          <View style={{ backgroundColor: 'rgba(62,194,217,0.5)', borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
+            <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
+          </View>
         </TouchableOpacity>
       </View>
       <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: 25 }}>
@@ -329,13 +361,19 @@ const DashboardScreen = (props) => {
         <View style={{ marginBottom: 15 }}>
           <LinearGradient colors={['#055E7C', '#055E7C']} style={{ paddingTop: 5, paddingBottom: 5, alignItems: 'center', borderRadius: 10, height: Layout.window.height / 3 }}>
             <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
-              <Ionicons name="ios-arrow-back" color={'#fff'} style={{ fontSize: 23, paddingLeft: 30 }} />
-              <Text style={[styles.text, { color: '#fff' }]}>PAST 7 DAYS</Text>
-              <Ionicons name="ios-arrow-forward" color={'#fff'} style={{ fontSize: 23, paddingRight: 30 }} />
+              <TouchableOpacity onPress={() => changeChartDay()}>
+                <Ionicons name="ios-arrow-back" color={'#fff'} style={{ fontSize: 23, paddingLeft: 30 }} />
+              </TouchableOpacity>
+
+              <Text style={[styles.text, { color: '#fff' }]}>{chartDay === 7 ? 'PAST 7 DAYS' : 'PAST 30 DAYS'}</Text>
+              <TouchableOpacity onPress={() => changeChartDay()}>
+                <Ionicons name="ios-arrow-forward" color={'#fff'} style={{ fontSize: 23, paddingRight: 30 }} />
+              </TouchableOpacity>
+
             </View>
             <View style={{ flex: 1, height: Layout.window.height / 3, alignSelf: 'stretch', flexDirection: 'row', justifyContent: 'space-around', borderRadius: 10 }}>
               {/* <VictoryCharts /> */}
-              {reportList && <ChartKit data={getData()} />}
+              {reportList && <ChartKit data={getData()} dataPointClicked={dataPointClicked} />}
               {/* <Charts /> */}
             </View>
           </LinearGradient>
@@ -382,6 +420,7 @@ const DashboardScreen = (props) => {
           } />}
         </View>
       </View>
+
     </View>
   );
 }
