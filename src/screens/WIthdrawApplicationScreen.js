@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, TouchableWithoutFeedback, Text, Image, ActivityIndicator, TextInput, KeyboardAvoidingView, ScrollView, Picker, Modal, Platform } from 'react-native';
+import { View, TouchableOpacity, TouchableWithoutFeedback, Text,  TextInput, KeyboardAvoidingView, ScrollView, Picker, Modal, Platform } from 'react-native';
 import Constants from 'expo-constants';
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
@@ -12,6 +12,7 @@ import CodePin from 'react-native-pin-code'
 import Layout from '../constants/Layout';
 
 import ScanFinger from '../components/ScanFinger'
+import { checkCodeApi } from '../store/actions/common';
 
 
 const WIthdrawApplicationScreen = (props) => {
@@ -21,21 +22,21 @@ const WIthdrawApplicationScreen = (props) => {
         setAuthRequestVisible(false)
     }
 
-    const checkCode = (code) => {
-        console.log(`periksa code`)
+    const checkCode = async (code) => {
+        // console.log(`periksa code`);
+        // const result=await checkCodeApi(code);
+        // console.log(`result ialah ${JSON.stringify(result)}`);
+        // return result;
+        //dispatch(actionCreator.checkPIN(code))
+        //
         return code === '1234'
     }
 
-
     const [bankLabelActive, setbankLabelActive] = useState(false)
     const [iosPickerVisible, setIosPickerVisible] = useState(false)
-
     const [locked, setLock] = useState(true)
-
     const [code, updateCode] = useState("")
-
     const [authRequestVisible, setAuthRequestVisible] = useState(false)
-
     const { authEnabled, authType } = useSelector(state => state.authReducer, shallowEqual)
 
     useEffect(() => {
@@ -47,7 +48,6 @@ const WIthdrawApplicationScreen = (props) => {
     const withDraw = (values) => {
         const newValues = { ...values, ...values.bankDetail }
         const { bankDetail, ...cleanValue } = newValues
-
         console.log(`values ialah : ${JSON.stringify(cleanValue)}`)
         dispatch(actionCreator.withDraw(cleanValue))
         props.navigation.navigate('WithdrawSuccess')
@@ -94,29 +94,22 @@ const WIthdrawApplicationScreen = (props) => {
             withDraw(values)
             actions.resetForm({})
         }}
-        onSubmit={(values, actions) => {
-            if (authEnabled && locked) {
-                setAuthRequestVisible(true)
-         
-            } else {
-                withDraw(values)
-                actions.resetForm({})
-            }
-
-        }}
+            onSubmit={(values, actions) => {
+                if (authEnabled && locked) {
+                    setAuthRequestVisible(true)
+                } else {
+                    withDraw(values)
+                    actions.resetForm({})
+                }
+            }}
             validationSchema={validationSchema}
         >
-
             {FormikProps => {
-
                 const { bankLabel, amount, remark, bankDetail } = FormikProps.values
-
                 const bankLabelError = FormikProps.errors.bankLabel
                 const bankLabelTouched = FormikProps.touched.bankLabel
-
                 const amountError = FormikProps.errors.amount
                 const amountTouched = FormikProps.touched.amount
-
                 const remarkError = FormikProps.errors.remark
                 const remarkTouched = FormikProps.touched.remark
 
@@ -142,7 +135,6 @@ const WIthdrawApplicationScreen = (props) => {
                                         keyboardType={'numeric'}
                                         containerStyle={{ width: Layout.window.width, height: Layout.window.height / 4 }}
                                     /> : <ScanFinger unlock={unlock} />}
-
                                 </View>
                             </View>
                         </Modal>
@@ -162,7 +154,6 @@ const WIthdrawApplicationScreen = (props) => {
                                     <Picker style={{ flex: 1, height: 35 }} selectedValue={bankLabel} onValueChange={(itemValue, itemIndex) => {
                                         FormikProps.setFieldValue('bankLabel', itemValue);
                                         setSelectedBank(itemValue)
-
                                     }
                                     }>
                                         <Picker.Item label={'Please Select'} value={undefined} />

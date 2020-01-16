@@ -220,8 +220,8 @@ const NewInvoiceItemsScreen = (props) => {
                                                     <TouchableOpacity onPress={() => setItemVisible(!addItemVisible)} style={{ width: 20, height: 20, backgroundColor: '#34C2DB', borderRadius: 10, justifyContent: 'center', alignItems: 'center' }}>
                                                         <Text style={[styles.text, { color: '#fff' }]}>+</Text>
                                                     </TouchableOpacity></View>
-                                                <View style={{ flex: 1 }}><Text>Total : </Text></View>
-                                                <View style={{ flex: 1 }}>{newInvoice && <Text>MYR {newInvoice.amount}</Text>}</View>
+                                                <View style={{ flex: 1 }}><Text style={styles.h2}>Total : </Text></View>
+                                                <View style={{ flex: 1 }}>{newInvoice && <Text style={styles.h2}>MYR {newInvoice.amount.toFixed(2)}</Text>}</View>
                                             </View>
                                         </View>
                                     </ScrollView>
