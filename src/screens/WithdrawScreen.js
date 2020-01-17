@@ -1,10 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { View, TouchableOpacity, Text, Image, FlatList, TextInput, ScrollView } from 'react-native';
+import React, { useEffect, useState, useCallback } from 'react';
+import { View, TouchableOpacity, Text, Image, FlatList, TextInput, RefreshControl } from 'react-native';
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons';
 import moment from 'moment'
 import styles from '../styles/styles'
+
+function wait(timeout) {
+    return new Promise(resolve => {
+        setTimeout(resolve, timeout);
+    });
+}
+
 
 const WithdrawScreen = (props) => {
 
@@ -16,6 +23,14 @@ const WithdrawScreen = (props) => {
     const { currency } = useSelector(state => state.myAccountReducer, shallowEqual)
     const [onScreenFilter, setOnScreenFilter] = useState(false)
     const [onScreenFilteredList, setOnScreenFilteredList] = useState([])
+
+    const [refreshing, setRefreshing] = useState(false);
+
+    const onRefresh = useCallback(() => {
+        console.log(`tengah refresh kettew`)
+        setRefreshing(true);
+        wait(2000).then(() => setRefreshing(false));
+    }, [refreshing]);
 
     const searchList = (val) => {
         console.log(`keyword  ialah : ${val}`)
@@ -48,13 +63,13 @@ const WithdrawScreen = (props) => {
                     <Text style={[styles.title]}>WITHDRAWALS</Text>
                 </View>
                 <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
-                    <View style={{ backgroundColor:'rgba(62,194,217,0.5)',borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
-            <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
-          </View>
+                    <View style={{ backgroundColor: 'rgba(62,194,217,0.5)', borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
+                        <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
+                    </View>
                 </TouchableOpacity>
             </View>
             <View style={{ justifyContent: 'space-between', flex: 9 }}>
-                <ScrollView style={[styles.screenMargin]}>
+                <View style={[styles.screenMargin]}>
                     <View style={{ marginTop: 25, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end', paddingRight: 10 }}>
                         <TouchableOpacity onPress={() => props.navigation.navigate('WithdrawalApplication')} style={{ paddingTop: 5, paddingBottom: 5, paddingLeft: 20, paddingRight: 20, backgroundColor: '#055E7C', borderRadius: 15 }}>
                             <Text style={[styles.text, { color: '#fff' }]}>New Withdrawal</Text>
@@ -72,34 +87,36 @@ const WithdrawScreen = (props) => {
                                 </TouchableOpacity>
                             </View>
                         </View>
-                        {withdrawList && <FlatList data={filterEnabled ? filteredWithdrawList : onScreenFilter ? onScreenFilteredList : withdrawList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
-                            <TouchableOpacity onPress={() => props.navigation.navigate('WithdrawalDetail', { id: item.id })} style={styles.box}>
-                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                    <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
-                                        <Text style={styles.small}>{moment(item.created_at).format("MMMM Do YYYY, h:mm:ss a")}</Text>
-                                        <Ionicons name="md-arrow-dropright" color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
+                        {withdrawList && <FlatList
+                            refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+                            data={filterEnabled ? filteredWithdrawList : onScreenFilter ? onScreenFilteredList : withdrawList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
+                                <TouchableOpacity onPress={() => props.navigation.navigate('WithdrawalDetail', { id: item.id })} style={styles.box}>
+                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                        <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
+                                            <Text style={styles.small}>{moment(item.created_at).format("MMMM Do YYYY, h:mm:ss a")}</Text>
+                                            <Ionicons name="md-arrow-dropright" color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
+                                        </View>
                                     </View>
-                                </View>
-                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                    <View style={{ flex: 1 }}>
-                                        <Text style={styles.text}>{item.type}</Text>
+                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={styles.text}>{item.type}</Text>
+                                        </View>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={[styles.text, { color: item.status === 'New' ? '#000000' : item.status === 'Rejected' ? '#FF0000' : item.status === 'Approved' ? '#54A400' : '#FA6400' }]}>{item.status}</Text>
+                                        </View>
                                     </View>
-                                    <View style={{ flex: 1 }}>
-                                        <Text style={[styles.text, { color: item.status === 'New' ? '#000000' : item.status === 'Rejected' ? '#FF0000' : item.status === 'Approved' ? '#54A400' : '#FA6400' }]}>{item.status}</Text>
+                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={styles.small}>Amount</Text>
+                                        </View>
                                     </View>
-                                </View>
-                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                    <View style={{ flex: 1 }}>
-                                        <Text style={styles.small}>Amount</Text>
+                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                        <Text style={styles.text}>{currency} {item.amount}</Text>
                                     </View>
-                                </View>
-                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                    <Text style={styles.text}>{currency} {item.amount}</Text>
-                                </View>
-                            </TouchableOpacity>
-                        } />}
+                                </TouchableOpacity>
+                            } />}
                     </View>
-                </ScrollView>
+                </View>
             </View >
         </View >
 
