@@ -54,9 +54,9 @@ const AuthOptionScreen = (props) => {
 
     const passcodeToggle = (value) => {
         console.log(JSON.stringify(value))
-        if (compatible && enrolled){ setBiometricEnable(!value)}
-               setPasscodeEnable(value)
-               value&&props.navigation.navigate('SetPasscode')
+        if (compatible && enrolled) { setBiometricEnable(!value) }
+        setPasscodeEnable(value)
+        value && props.navigation.navigate('SetPasscode')
     }
 
     const setAuth = () => {
@@ -91,37 +91,32 @@ const AuthOptionScreen = (props) => {
                 <View style={{ flex: 9 }}>
                     <View style={styles.screenMargin}>
                         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                            {true ?
+                            <View>
+                                <View style={{ flexDirection: 'row', marginTop: 30 }}>
+                                    <Text style={[styles.text, { color: (!compatible || !enrolled) ? null : 'lightgrey' }]}>Local Authentication</Text>
+                                    <Switch style={{ marginLeft: 35, marginRight: 15 }} onValueChange={value => biometricToggle(value)} value={biometricEnable} disabled={(!compatible || !enrolled) ? true : false} />
+                                </View>
+                                {/* {!authType?!enrolled?<Text style={styles.small}>Please enroll your authentication data to enable</Text>:  <Text style={styles.small}>Your device does not support Local Authentication</Text>} */}
+                                {compatible ? enrolled ? <View /> : <Text>Please enrolled</Text> : <Text style={styles.small}>Your device does not support Local Authentication</Text>}
+
                                 <View>
-                                    <View style={{ flexDirection: 'row', marginTop: 30 }}>
-                                        <Text style={[styles.text, { color: (!compatible || !enrolled) ? null : 'lightgrey' }], { padding: 5 }}>Local Authentication</Text>
-                                        <Switch style={{ marginLeft: 35, marginRight: 15 }} onValueChange={value => biometricToggle(value)} value={biometricEnable} disabled={(!compatible || !enrolled) ? true : false} />
-                                    </View>
-                                    {/* {!authType?!enrolled?<Text style={styles.small}>Please enroll your authentication data to enable</Text>:  <Text style={styles.small}>Your device does not support Local Authentication</Text>} */}
-                                    {compatible ? enrolled ? <View /> : <Text>Please enrolled</Text> : <Text style={styles.small}>Your device does not support Local Authentication</Text>}
-
-                                    <View>
-                                        {biometricEnable && <View>
-                                            <Text>Authentication Type : {JSON.stringify(authType1)}</Text>
-                                            <Text>Enrolled? : {JSON.stringify(enrolled)}</Text>
-                                        </View>}
-                                    </View>
-                                    <View style={{ flexDirection: 'row', marginTop: 30 }}>
-                                        <Text style={[styles.text], { padding: 5 }}>Passcode</Text>
-                                        <Switch style={{ marginLeft: 15, marginRight: 15 }} onValueChange={value => passcodeToggle(value)} value={passcodeEnable} />
-                                        <Text style={[styles.text, { color: '#055E7C', marginLeft: 15 }]}>{passcodeEnable ? 'ON' : 'OFF'}</Text>
-                                    </View>
-                                    {passcodeEnable && <View>
-                                        <TouchableOpacity onPress={() => setPasscode()}>
-                                            <Text>Set passcode | Edit passcode</Text>
-                                        </TouchableOpacity>
-
+                                    {biometricEnable && <View>
+                                        <Text>Authentication Type : {JSON.stringify(authType1)}</Text>
+                                        <Text>Enrolled? : {JSON.stringify(enrolled)}</Text>
                                     </View>}
-                                </View> : <View style={{ flexDirection: 'row', marginTop: 30 }}>
-                                    <Text style={[styles.text], { padding: 5 }}>Passcode</Text>
+                                </View>
+                                <View style={{ flexDirection: 'row', marginTop: 30 }}>
+                                    <Text style={[styles.text]}>Passcode</Text>
                                     <Switch style={{ marginLeft: 15, marginRight: 15 }} onValueChange={value => passcodeToggle(value)} value={passcodeEnable} />
-                                    <Text style={[styles.text, { color: '#055E7C', marginLeft: 15 }]}>{passcodeEnable ? 'ON' : 'OFF'}</Text>
+
+                                </View>
+                                {passcodeEnable && <View>
+                                    <TouchableOpacity onPress={() => setPasscode()}>
+                                        <Text>Set passcode</Text>
+                                    </TouchableOpacity>
+
                                 </View>}
+                            </View>
                         </View>
                     </View>
                 </View>

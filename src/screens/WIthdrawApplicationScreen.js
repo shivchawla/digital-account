@@ -260,7 +260,7 @@ const WIthdrawApplicationScreen = (props) => {
                                 <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ flex: 1 }}>
                                     <LinearGradient colors={FormikProps.isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
                                         <Text style={[styles.butang, { color: '#fff' }]}>Submit</Text>
-                                        {authEnabled ? locked ? <Ionicons name='ios-lock' color={'#fff'} style={{ fontSize: 30, paddingLeft: 20 }} /> : <Ionicons name='ios-unlock' color={'#fff'} style={{ fontSize: 30, paddingLeft: 20 }} /> : <View />}
+                                        {authEnabled ? locked ? <Ionicons name='ios-lock' color={'#fff'} style={{ fontSize: 30, paddingLeft: 20 }} /> : <View /> : <View />}
                                     </LinearGradient>
                                 </TouchableOpacity>
                             </View>

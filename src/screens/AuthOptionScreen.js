@@ -61,10 +61,7 @@ const AuthOptionTypeScreen = (props) => {
             props.navigation.navigate('AuthOptionType')
             //setNotificationEnable(value)
         }
-
     }
-
-
 
     return (
 
@@ -82,6 +79,8 @@ const AuthOptionTypeScreen = (props) => {
                             autoFocusFirst={true} // disabling auto-focus
                             keyboardType={'numeric'}
                             containerStyle={{ width: Layout.window.width, height: Layout.window.height / 4 }}
+                        //     containerPinStyle={{ width:40, height: 40, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', marginTop: 20 }
+                        // }
                         /> : <ScanFinger unlock={unlock} />}
 
                     </View>

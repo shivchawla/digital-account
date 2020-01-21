@@ -58,49 +58,49 @@ const LoanBillDetailScreen = (props) => {
                         {billDetail && <View style={[styles.box, { marginTop: 20 }]}>
                             <View style={{ marginTop: 5, borderBottomWidth: 1, borderBottomColor: 'lightgrey', paddingBottom: 20 }}>
                                 <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
-                                    <Text style={styles.boldText}>Bill ID</Text>
-                                    <Ionicons name="md-arrow-dropdown" color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
+                                    <Text style={styles.label}>Bill ID</Text>
+                                    {/* <Ionicons name="md-arrow-dropdown" color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} /> */}
                                 </View>
-                                <Text style={styles.text}>{billDetail.id}</Text>
+                                <Text style={styles.value}>{billDetail.id}</Text>
                             </View>
                            
                             <View style={{ flexDirection: 'row', marginTop: 20 }}>
                                 <View style={{ flex: 1 }}>
-                                    <Text style={styles.boldText}>Type</Text>
-                                    <Text style={styles.text}>{billDetail.type}</Text>
+                                    <Text style={styles.label}>Type</Text>
+                                    <Text style={styles.value}>{billDetail.type}</Text>
                                 </View>
                                 <View style={{ flex: 1 }}>
-                                    <Text style={styles.boldText}>Method</Text>
-                                    <Text style={styles.text}>{billDetail.payment_method}</Text>
-                                </View>
-                            </View>
-
-                            <View style={{ flexDirection: 'row', marginTop: 20 }}>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={styles.boldText}>Date</Text>
-                                    <Text style={styles.text}>{moment(billDetail.created_at).format('D/MM/YY')}</Text>
-                                </View>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={styles.boldText}>Reference</Text>
-                                    <Text style={styles.text}>{billDetail.payment_no}</Text>
+                                    <Text style={styles.label}>Method</Text>
+                                    <Text style={styles.value}>{billDetail.payment_method}</Text>
                                 </View>
                             </View>
 
                             <View style={{ flexDirection: 'row', marginTop: 20 }}>
                                 <View style={{ flex: 1 }}>
-                                    <Text style={styles.boldText}>To</Text>
-                                    <Text style={styles.text}>{billDetail.pay_to}</Text>
+                                    <Text style={styles.label}>Date</Text>
+                                    <Text style={styles.value}>{moment(billDetail.created_at).format('D/MM/YY')}</Text>
                                 </View>
                                 <View style={{ flex: 1 }}>
-                                    <Text style={styles.boldText}>Amount </Text>
-                                    <Text style={styles.text}>{billDetail.currency} {billDetail.amount}</Text>
+                                    <Text style={styles.label}>Reference</Text>
+                                    <Text style={styles.value}>{billDetail.payment_no}</Text>
                                 </View>
                             </View>
 
                             <View style={{ flexDirection: 'row', marginTop: 20 }}>
                                 <View style={{ flex: 1 }}>
-                                    <Text style={styles.boldText}>Status</Text>
-                                    <Text style={[styles.text, { color: billDetail.status === 'New' ? '#000000' : billDetail.status === 'Rejected' ? '#FF0000' : billDetail.status === 'Approved' ? '#54A400' : '#FA6400' }]}>{billDetail.status}</Text>
+                                    <Text style={styles.label}>To</Text>
+                                    <Text style={styles.value}>{billDetail.pay_to}</Text>
+                                </View>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={styles.label}>Amount </Text>
+                                    <Text style={styles.value}>{billDetail.currency} {billDetail.amount}</Text>
+                                </View>
+                            </View>
+
+                            <View style={{ flexDirection: 'row', marginTop: 20 }}>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={styles.label}>Status</Text>
+                                    <Text style={[styles.value, { color: billDetail.status === 'New' ? '#000000' : billDetail.status === 'Rejected' ? '#FF0000' : billDetail.status === 'Approved' ? '#54A400' : '#FA6400' }]}>{billDetail.status}</Text>
                                 </View>
                                 <View />
                                 {/* <View style={{ flex: 1, alignItems: 'flex-start' }}>

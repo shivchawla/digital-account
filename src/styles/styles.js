@@ -21,6 +21,18 @@ export default StyleSheet.create({
     color: '#000'
   },
 
+  label: {
+    fontSize,
+    fontFamily: 'Montserrat_medium',
+    color: 'grey'
+  },
+  value: {
+    fontSize:fontSize * 1.2,
+    fontFamily: 'Montserrat_medium',
+    color: '#000'
+  },
+
+
   title: {
     fontSize,
     fontFamily: 'Montserrat_medium',

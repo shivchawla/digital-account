@@ -191,7 +191,7 @@ const NewInvoiceItemsScreen = (props) => {
                                                             <Ionicons name={item.marker ? "md-arrow-dropdown" : "md-arrow-dropright"} color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
                                                         </View>
                                                     </TouchableWithoutFeedback>
-                                                    <View style={{ flexDirection: 'row', marginTop: 5, borderBottomWidth: items.marker ? 1 : 0, borderBottomColor: 'lightgrey', }}>
+                                                    <View style={{ flexDirection: 'row', marginTop: 5, borderBottomWidth: item.marker ? 1 : 0, borderBottomColor: 'lightgrey', }}>
                                                     </View>
                                                     {item.marker && <View style={{ flex: 1 }}>
                                                         <View style={{ flexDirection: 'row', marginTop: 20 }}>
@@ -216,12 +216,12 @@ const NewInvoiceItemsScreen = (props) => {
                                                 </View>
                                             } />}
                                             <View style={{ flex: 1, flexDirection: 'row', marginBottom: 5, padding: 5 }}>
-                                                <View style={{ flex: 3 }}>
+                                                <View style={{ flex: 2 }}>
                                                     <TouchableOpacity onPress={() => setItemVisible(!addItemVisible)} style={{ width: 20, height: 20, backgroundColor: '#34C2DB', borderRadius: 10, justifyContent: 'center', alignItems: 'center' }}>
                                                         <Text style={[styles.text, { color: '#fff' }]}>+</Text>
                                                     </TouchableOpacity></View>
                                                 <View style={{ flex: 1 }}><Text style={styles.h2}>Total : </Text></View>
-                                                <View style={{ flex: 1 }}>{newInvoice && <Text style={styles.h2}>MYR {newInvoice.amount.toFixed(2)}</Text>}</View>
+                                                <View style={{ flex: 2 }}>{newInvoice && <Text style={styles.h2}>MYR {newInvoice.amount&&newInvoice.amount.toFixed(2)}</Text>}</View>
                                             </View>
                                         </View>
                                     </ScrollView>

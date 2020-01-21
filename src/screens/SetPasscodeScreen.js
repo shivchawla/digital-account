@@ -7,19 +7,23 @@ import OTPInputView from '@twotalltotems/react-native-otp-input'
 import Layout from '../constants/Layout'
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
-
+import CodePin from 'react-native-pin-code'
 const SetPasscodeScreen = (props) => {
 
     const [code, updateCode] = useState("")
     const dispatch = useDispatch()
 
     const savePin = async () => {
-        await dispatch(actionCreator.savePin({ pin: code, authType: 'passcode' }))
+        await dispatch(actionCreator.savePin({ pin: code, authType: 'passcode',authEnabled:true }))
         props.navigation.navigate('AuthOption')
+    }
+    const checkCode = (code) => {
+        console.log(`periksa code`)
+        updateCode(code)
+        return code === '1234'
     }
 
     return (
-
         <View style={{ flex: 1 }}>
             <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
@@ -37,10 +41,9 @@ const SetPasscodeScreen = (props) => {
                 </View>
             </View>
             <View style={{ justifyContent: 'space-between', flex: 9 }}>
-                <View style={[styles.screenMargin, { flex: 5 }]}>
-                    <Text style={[styles.titleBox, { marginTop: 25, justifyContent: 'center', flexDirection: 'row' }]}>Enter PASSCODE below</Text>
-                    <View style={[styles.formElement, { justifyContent: 'center' }]}>
-                        <OTPInputView style={{ width: '80%', height: 100 }} pinCount={4} code={code} autoFocusOnLoad codeInputFieldStyle={styles.borderStyleBase} codeInputHighlightStyle={styles.borderStyleHighLighted}
+                <View style={[styles.screenMargin, { flex: 5, alignItems: 'center' }]}>
+                      <View style={[styles.formElement, { justifyContent: 'center', alignItems: 'center' }]}>
+                        {/* <OTPInputView style={{ width: '80%', height: 100 }} pinCount={4} code={code} autoFocusOnLoad codeInputFieldStyle={styles.borderStyleBase} codeInputHighlightStyle={styles.borderStyleHighLighted}
                             //codeInputFieldStyle={styles.underlineStyleBase}
                             //codeInputHighlightStyle={styles.underlineStyleHighLighted}
                             onCodeFilled={code => {
@@ -51,7 +54,22 @@ const SetPasscodeScreen = (props) => {
                                 updateCode(code);
                                 console.log(`Code is ${code} wei, you are good to go!`)
                             }}
-                        />
+                        /> */}
+                        <View style={{  backgroundColor: '#fff',  alignItems: 'center' }}>
+                            <CodePin
+                                //code="2018" // code.length is used if you not pass number prop
+                                checkPinCode={(code, check) => check(checkCode(code))}
+                                success={() => updateCode()} // If user fill '2018', success is called
+                                text="Please Enter Passcode Below" // My title
+                                error="Try again" // If user fail (fill '2017' for instance)
+                                autoFocusFirst={true} // disabling auto-focus
+                                keyboardType={'numeric'}
+                                containerStyle={{ width: Layout.window.width, height: Layout.window.height / 4 }}
+                                textStyle={styles.text}
+                            //     containerPinStyle={{ width:40, height: 40, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', marginTop: 20 }
+                            // }
+                            />
+                        </View>
                     </View>
                     {/* <View style={[styles.formElement, { flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }]}>
                         <Text style={[styles.text]}>Didn't get TAC number?</Text>

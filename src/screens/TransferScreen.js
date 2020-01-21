@@ -96,7 +96,7 @@ const TransferScreen = (props) => {
                 }
 
                 return (
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }}  >
+                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }} keyboardVerticalOffset={20}  >
                         <Modal transparent={true} animationType={'slide'} visible={authRequestVisible} onRequestClose={() => setAuthRequestVisible(!authRequestVisible)} >
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(1,1,1,0.5)' }}>
                                 <View style={{ flex: 3 }} />
@@ -181,7 +181,7 @@ const TransferScreen = (props) => {
                                     </View>
                                 </TouchableOpacity>
                             </View>
-                            <View style={[ { flex: 9, justifyContent: 'space-between' }]}>
+                            <View style={[{ flex: 9, justifyContent: 'space-between' }]}>
                                 {/* <Text>{account_no&&JSON.stringify(account_no)}</Text> */}
                                 <View style={styles.screenMargin}>
                                     <View style={[styles.formElement]}>
@@ -211,7 +211,7 @@ const TransferScreen = (props) => {
                                     <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ flex: 1 }}>
                                         <LinearGradient colors={FormikProps.isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
                                             <Text style={[styles.butang, { color: '#fff' }]}>Submit</Text>
-                                            {authEnabled ? locked ? <Ionicons name='ios-lock' color={'#fff'} style={{ fontSize: 30, paddingLeft: 20 }} /> : <Ionicons name='ios-unlock' color={'#fff'} style={{ fontSize: 30, paddingLeft: 20 }} /> : <View />}
+                                            {authEnabled ? locked ? <Ionicons name='ios-lock' color={'#fff'} style={{ fontSize: 30, paddingLeft: 20 }} /> : <View /> : <View />}
                                         </LinearGradient>
                                     </TouchableOpacity>
                                 </View>

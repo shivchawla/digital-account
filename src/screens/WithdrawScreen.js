@@ -89,6 +89,7 @@ const WithdrawScreen = (props) => {
                         </View>
                         {withdrawList && <FlatList
                             refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+                            onEndReached={val => console.log(`onEndReached ialah : ${JSON.stringify(val)}`)}
                             data={filterEnabled ? filteredWithdrawList : onScreenFilter ? onScreenFilteredList : withdrawList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
                                 <TouchableOpacity onPress={() => props.navigation.navigate('WithdrawalDetail', { id: item.id })} style={styles.box}>
                                     <View style={{ flexDirection: 'row', marginTop: 5 }}>

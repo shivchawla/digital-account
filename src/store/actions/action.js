@@ -171,7 +171,18 @@ export const setMarkerPaymentHistory = (index) => {
         const { paymentHistoryList } = getState().paymentHistoryReducer
         console.log(`payment history list ialah : ${JSON.stringify(paymentHistoryList)}`)
         const newArr = []
-        paymentHistoryList.map((i, n) => (n === index) ? newArr.push({ ...i, marker: true }) : newArr.push({ ...i, marker: false }))
+        //paymentHistoryList.map((i, n) => (n === index) ? newArr.push({ ...i, marker: true }) : newArr.push({ ...i, marker: false }))
+        paymentHistoryList.map((i, n) => {
+            if (n === index) {
+                i.marker ? newArr.push({ ...i, marker: false }) : newArr.push({ ...i, marker: true })
+            } else {
+                newArr.push({ ...i, marker: false })
+            }
+        }
+        )
+
+
+
         console.log(`new notification list ialah : ${JSON.stringify(newArr)}`)
         dispatch({ type: 'SET_PAYMENT_HISTORY_LIST', payload: { paymentHistoryList: newArr } })
 
@@ -213,7 +224,15 @@ export const setMarkerInvoiceItem = (index) => {
 
         const { items } = getState().invoiceReducer
         const newArr = []
-        items.map((i, n) => (n === index) ? newArr.push({ ...i, marker: true }) : newArr.push({ ...i, marker: false }))
+        //items.map((i, n) => (n === index) ? newArr.push({ ...i, marker: true }) : newArr.push({ ...i, marker: false }))
+        items.map((i, n) => {
+            if (n === index) {
+                i.marker ? newArr.push({ ...i, marker: false }) : newArr.push({ ...i, marker: true })
+            } else {
+                newArr.push({ ...i, marker: false })
+            }
+        }
+        )
         dispatch({ type: 'SET_INVOICE_APPLICATION', payload: { items: newArr } })
     }
 }

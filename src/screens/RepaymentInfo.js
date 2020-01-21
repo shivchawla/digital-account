@@ -55,9 +55,9 @@ const RepaymentInfo = (props) => {
                             <Text style={styles.title}>MANUAL PAYMENT</Text>
                         </View>
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
-                            <View style={{ backgroundColor:'rgba(62,194,217,0.5)',borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
-            <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
-          </View>
+                            <View style={{ backgroundColor: 'rgba(62,194,217,0.5)', borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
+                                <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
+                            </View>
                         </View>
                     </View>
                     <Formik onSubmit={async values => {
@@ -68,9 +68,7 @@ const RepaymentInfo = (props) => {
                         validationSchema={validationSchema}>
                         {
                             FormikProps => {
-
                                 const { amount } = FormikProps.values
-
                                 const amountError = FormikProps.errors.amount
                                 const amountTouched = FormikProps.touched.amount
 
@@ -117,9 +115,9 @@ const RepaymentInfo = (props) => {
                                 <Text style={styles.title}>PAYMENT RECORD</Text>
                             </View>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
-                                <View style={{ backgroundColor:'rgba(62,194,217,0.5)',borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
-            <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
-          </View>
+                                <View style={{ backgroundColor: 'rgba(62,194,217,0.5)', borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
+                                    <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
+                                </View>
                             </View>
                         </View>
                         <View style={[styles.screenMargin, { flex: 9, marginTop: 25 }]}>
@@ -299,9 +297,9 @@ const RepaymentInfo = (props) => {
                     <Text style={styles.title}>REPAYMENT INFO</Text>
                 </View>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
-                    <View style={{ backgroundColor:'rgba(62,194,217,0.5)',borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
-            <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
-          </View>
+                    <View style={{ backgroundColor: 'rgba(62,194,217,0.5)', borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
+                        <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
+                    </View>
                 </View>
             </View>
             <View style={{ justifyContent: 'space-between', flex: 9 }}>
@@ -309,43 +307,43 @@ const RepaymentInfo = (props) => {
                     {repaymentDetail && <ScrollView style={[styles.screenMargin]}>
                         <View style={{ margin: 10 }} />
                         <View style={{ marginBottom: 10 }}>
-                            <Text style={[styles.titleBox, { marginBottom: 5, fontWeight: 'bold' }]}>Account No</Text>
-                            <Text style={[styles.text, { marginBottom: 5 }]}>{repaymentDetail.account_loan_no}</Text>
+                            <Text style={[styles.label, { marginBottom: 5 }]}>Account No</Text>
+                            <Text style={[styles.value, { marginBottom: 5 }]}>{repaymentDetail.account_loan_no}</Text>
                         </View>
                         <View style={{ marginBottom: 10 }}>
-                            <Text style={[styles.titleBox, { marginBottom: 5, fontWeight: 'bold' }]}>Total Financing (MYR)</Text>
-                            <Text style={[styles.text, { marginBottom: 5 }]}>{repaymentDetail.total_request}</Text>
+                            <Text style={[styles.label, { marginBottom: 5 }]}>Total Financing (MYR)</Text>
+                            <Text style={[styles.value, { marginBottom: 5 }]}>{repaymentDetail.total_request}</Text>
                         </View>
                         <View style={{ marginBottom: 10 }}>
-                            <Text style={[styles.titleBox, { marginBottom: 5, fontWeight: 'bold' }]}>Total Financing with Interest (MYR)</Text>
-                            <Text style={[styles.text, { marginBottom: 5 }]}>{repaymentDetail.total_request_w_interest}</Text>
+                            <Text style={[styles.label, { marginBottom: 5 }]}>Total Financing with Interest (MYR)</Text>
+                            <Text style={[styles.value, { marginBottom: 5 }]}>{repaymentDetail.total_request_w_interest}</Text>
                         </View>
                         <View style={{ marginBottom: 10 }}>
-                            <Text style={[styles.titleBox, { marginBottom: 5, fontWeight: 'bold' }]}>Loan Year Term (Year)</Text>
-                            <Text style={[styles.text, { marginBottom: 5 }]}>{repaymentDetail.loan_year_term}</Text>
+                            <Text style={[styles.label, { marginBottom: 5 }]}>Loan Year Term (Year)</Text>
+                            <Text style={[styles.value, { marginBottom: 5 }]}>{repaymentDetail.loan_year_term}</Text>
                         </View>
                         <View style={{ marginBottom: 10 }}>
-                            <Text style={[styles.titleBox, { marginBottom: 5, fontWeight: 'bold' }]}>Interest Rate (%)</Text>
-                            <Text style={[styles.text, { marginBottom: 5 }]}>{repaymentDetail.interest_rate}</Text>
+                            <Text style={[styles.label, { marginBottom: 5 }]}>Interest Rate (%)</Text>
+                            <Text style={[styles.value, { marginBottom: 5 }]}>{repaymentDetail.interest_rate}</Text>
                         </View>
                         <View style={{ marginBottom: 10 }}>
-                            <Text style={[styles.titleBox, { marginBottom: 5, fontWeight: 'bold' }]}>Monthly Payment (MYR)</Text>
-                            <Text style={[styles.text, { marginBottom: 5 }]}>{repaymentDetail.monthly_pay}</Text>
+                            <Text style={[styles.label, { marginBottom: 5 }]}>Monthly Payment (MYR)</Text>
+                            <Text style={[styles.value, { marginBottom: 5 }]}>{repaymentDetail.monthly_pay}</Text>
                         </View>
                         <View style={{ marginBottom: 10 }}>
-                            <Text style={[styles.titleBox, { marginBottom: 5, fontWeight: 'bold' }]}>Start Month Payment</Text>
-                            <Text style={[styles.text, { marginBottom: 5 }]}>12</Text>
+                            <Text style={[styles.label, { marginBottom: 5 }]}>Start Month Payment</Text>
+                            <Text style={[styles.value, { marginBottom: 5 }]}>12</Text>
                         </View>
                         <View style={{ marginBottom: 10 }}>
-                            <Text style={[styles.titleBox, { marginBottom: 5, fontWeight: 'bold' }]}>Payment Method</Text>
-                            <Text style={[styles.text, { marginBottom: 5 }]}>{repaymentDetail.payment_method}</Text>
+                            <Text style={[styles.label, { marginBottom: 5 }]}>Payment Method</Text>
+                            <Text style={[styles.value, { marginBottom: 5 }]}>{repaymentDetail.payment_method}</Text>
                         </View>
                         < View style={{ flexDirection: 'row', margin: 5, justifyContent: 'center' }}>
                             <TouchableOpacity onPress={() => openModal('history')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, borderColor: 'black', borderWidth: 1 }}>
                                 <Text style={[styles.textDefault, { color: 'black' }]}>History</Text>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => openModal('pay')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }} >
-                                <Text style={[styles.textDefault, { color: '#fff' }]}>Pay Any Amount</Text>
+                                <Text style={[styles.textDefault, { color: '#fff' }]}>Pay</Text>
                             </TouchableOpacity>
                         </View>
                     </ScrollView>}
