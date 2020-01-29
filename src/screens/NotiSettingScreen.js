@@ -30,17 +30,17 @@ const NotiSettingScreen = (props) => {
     return (
 
         <View style={{ flex: 1, }}>
-            <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
+            <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: 'rgba(163, 0, 0, 0.5)' }}>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
                     <TouchableOpacity onPress={() => props.navigation.navigate("DataSetting")} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                        <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 20 }} />
+                        <Ionicons name="ios-arrow-back" color={'#DE4848'} style={{ fontSize: 30, paddingLeft: 20 }} />
                     </TouchableOpacity>
                 </View>
                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
                     <Text numberOfLines={1} style={styles.title} ellipsizeMode='tail'>NOTIFICATION SETTING</Text>
                 </View>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
-                    <View style={{ backgroundColor:'rgba(62,194,217,0.5)',borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
+                    <View style={{ backgroundColor:'rgba(163, 0, 0, 0.5)',borderColor: "#DE4848", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
             <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
           </View>
                 </View>
@@ -53,17 +53,17 @@ const NotiSettingScreen = (props) => {
                     {/*onValueChange will be triggered after switch condition changes*/}
                     {/* <Text style={[styles.text, { color: 'black', marginLeft: 50 }]}>Email Notification</Text> */}
                     <Switch style={{ marginLeft: 35, marginRight: 15 }} onValueChange={value => toggleSwitch1(value)} value={switchValue1} />
-                    <Text style={[styles.text, { color: '#055E7C', marginLeft: 15 }]}>{switchValue1 ? 'ON' : 'OFF'}</Text>
+                    <Text style={[styles.text, { color: '#A30000', marginLeft: 15 }]}>{switchValue1 ? 'ON' : 'OFF'}</Text>
                 </View>
                 <View style={{ flexDirection: 'row', marginTop: 30 }}>
                     <Text style={[styles.text], { padding: 5 }}>Message Notification</Text>
                     <Switch style={{ marginLeft: 15, marginRight: 15 }} onValueChange={value => toggleSwitch2(value)} value={switchValue2} />
-                    <Text style={[styles.text, { color: '#055E7C', marginLeft: 15 }]}>{switchValue2 ? 'ON' : 'OFF'}</Text>
+                    <Text style={[styles.text, { color: '#A30000', marginLeft: 15 }]}>{switchValue2 ? 'ON' : 'OFF'}</Text>
                 </View>
                 <View style={{ flexDirection: 'row', marginTop: 30 }}>
                     <Text style={[styles.text], { padding: 5 }}>App Notification</Text>
                     <Switch style={{ marginLeft: 50, marginRight: 15 }} onValueChange={value => toggleSwitch3(value)} value={switchValue3} />
-                    <Text style={[styles.text, { color: '#055E7C', marginLeft: 15 }]}>{switchValue3 ? 'ON' : 'OFF'}</Text>
+                    <Text style={[styles.text, { color: '#A30000', marginLeft: 15 }]}>{switchValue3 ? 'ON' : 'OFF'}</Text>
                 </View>
             </View>
         </View >

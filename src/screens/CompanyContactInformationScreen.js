@@ -50,7 +50,7 @@ const CompanyContactInformationScreen = (props) => {
                 const cddEmailTouched = FormikProps.touched.cddEmail
                 return (
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }}>
-                        <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4', marginBottom: 25 }]}>
+                        <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: 'rgba(163, 0, 0, 0.5)', marginBottom: 25 }]}>
                             <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center', alignItems: 'flex-start', paddingLeft: 10 }}>
                                 <Text style={styles.title} >COMPANY CONTACT</Text>
                             </View>
@@ -95,9 +95,9 @@ const CompanyContactInformationScreen = (props) => {
                                         <Text style={[styles.butang, { color: 'lightgrey' }]}>Back</Text>
                                     </LinearGradient>
                                 </TouchableOpacity>
-                                <TouchableOpacity disabled={!(FormikProps.isValid && comp_addr)} onPress={FormikProps.handleSubmit} style={{ flex: 1, borderColor: FormikProps.isValid ? '#0A6496' : 'rgba(10,100,150,0.5)', borderWidth: 1 }}>
+                                <TouchableOpacity disabled={!(FormikProps.isValid && comp_addr)} onPress={FormikProps.handleSubmit} style={{ flex: 1, borderColor: FormikProps.isValid ? 'rgba(163, 0, 0, 0.5)' : 'rgba(10,100,150,0.5)', borderWidth: 1 }}>
 
-                                    <LinearGradient colors={(FormikProps.isValid && comp_addr) ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
+                                    <LinearGradient colors={(FormikProps.isValid && comp_addr) ? ['rgba(163, 0, 0, 0.5)', '#A30000'] : ['rgba(163, 0, 0, 0.5)', 'rgba(163, 0, 0, 0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                         {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> : <Text style={[styles.butang, { color: '#fff' }]}>Next</Text>}
                                     </LinearGradient>
                                 </TouchableOpacity>

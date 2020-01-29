@@ -16,7 +16,7 @@ const AgreementScreen = (props) => {
 
     return (
         <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }}>
-            <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#055E7C', }}>
+            <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#A30000', }}>
                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'flex-start', paddingLeft: 20 }}>
                     <Text numberOfLines={1} style={[styles.title]} ellipsizeMode='head'>TERMS</Text>
                 </View>
@@ -53,7 +53,7 @@ FCGB is referred to as “we”, “us”, “our” or “ours”. Any person u
                         </LinearGradient>
                     </TouchableOpacity>
                     <TouchableOpacity disabled={!agreement} onPress={() => signUp()} style={{ flex: 1 }}>
-                        <LinearGradient colors={agreement ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
+                        <LinearGradient colors={agreement ? ['rgba(163, 0, 0, 0.5)', '#A30000'] : ['rgba(163, 0, 0, 0.5)', 'rgba(163, 0, 0, 0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                             <Text style={[styles.butang, { color: '#fff' }]}>Next</Text>
                         </LinearGradient>
                     </TouchableOpacity>

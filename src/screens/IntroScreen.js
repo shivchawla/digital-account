@@ -55,7 +55,7 @@ const IntroScreen = (props) => {
                                 {images.map((image, index) => (
                                     <TouchableHighlight key={index} underlayColor="#ccc" onPress={() => move(index)} style={[styles.button, position === index && styles.buttonSelected, { margin: 5 }]} >
                                      
-                                        {position === index ? <Ionicons name={'ios-radio-button-on'} size={15} color={'#055e7c'} style={{}} /> :
+                                        {position === index ? <Ionicons name={'ios-radio-button-on'} size={15} color={'#A30000'} style={{}} /> :
                                             <Ionicons name={'ios-radio-button-off'} size={15} color={'lightgrey'} style={{}} /> }
                                     </TouchableHighlight>
                                 ))}
@@ -70,7 +70,7 @@ const IntroScreen = (props) => {
                         </LinearGradient>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => props.navigation.navigate('Agreement')} style={{ flex: 1 }}>
-                        <LinearGradient colors={['#055e7c', '#055e7c']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
+                        <LinearGradient colors={['#A30000', '#A30000']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                             <Text style={[styles.butang, { color: '#fff' }]}>Next</Text>
                         </LinearGradient>
                     </TouchableOpacity>

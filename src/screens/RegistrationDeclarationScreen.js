@@ -70,7 +70,7 @@ const RegistrationDeclarationScreen = (props) => {
 
                 return (
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }}>
-                        <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4', marginBottom: 25 }]}>
+                        <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: 'rgba(163, 0, 0, 0.5)', marginBottom: 25 }]}>
                             <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center', alignItems: 'flex-start', padding: 10 }}>
                                 <Text numberOfLines={1} style={styles.title} ellipsizeMode='tail'>DECLARATION</Text>
                             </View>
@@ -101,7 +101,7 @@ const RegistrationDeclarationScreen = (props) => {
                                     </LinearGradient>
                                 </TouchableOpacity>
                                 <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ flex: 1 }}>
-                                    <LinearGradient colors={FormikProps.isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
+                                    <LinearGradient colors={FormikProps.isValid ? ['rgba(163, 0, 0, 0.5)', '#A30000'] : ['rgba(163, 0, 0, 0.5)', 'rgba(163, 0, 0, 0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                         {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> : <Text style={[styles.butang, { color: '#fff' }]}>Dashboard</Text>}
                                     </LinearGradient>
                                 </TouchableOpacity>

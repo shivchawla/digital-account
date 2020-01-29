@@ -41,13 +41,13 @@ export default StyleSheet.create({
   title: {
     fontSize,
     fontFamily: 'Montserrat_medium',
-    color: '#055E7C',
+    color: '#A30000',
     fontSize: fontSize * 1.4
   },
   subTitle: {
     fontSize,
     fontFamily: 'Montserrat_medium',
-    color: '#055E7C',
+    color: '#A30000',
     fontSize: fontSize * 1.2
   },
 
@@ -67,7 +67,7 @@ export default StyleSheet.create({
   h2: {
     fontSize,
     fontFamily: 'Montserrat_medium',
-    color: '#04A2BD',
+    color: '#DE4848',
     fontSize: fontSize * 1.3
   },
 

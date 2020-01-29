@@ -54,7 +54,7 @@ const CompanyDocumentScreen = (props) => {
     return (
 
         <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }}>
-            <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4', }]}>
+            <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: 'rgba(163, 0, 0, 0.5)', }]}>
                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center', alignItems: 'flex-start', padding: 10 }}>
                     <Text numberOfLines={1} style={styles.title} ellipsizeMode='tail'>COMPANY DOCUMENT</Text>
                 </View>
@@ -73,7 +73,7 @@ const CompanyDocumentScreen = (props) => {
                             <Text style={[styles.small, { color: '#fff' }]}>Replace</Text>
                         </TouchableOpacity>
                     </View> : <View style={{ flexDirection: 'row' }}>
-                            <TouchableOpacity onPress={() => props.navigation.navigate('DocumentCamera', { doc: 'mykad' })} style={{ padding: 10, borderRadius: 20, justifyContent: 'center', margin: 10, backgroundColor: '#055e7c' }}>
+                            <TouchableOpacity onPress={() => props.navigation.navigate('DocumentCamera', { doc: 'mykad' })} style={{ padding: 10, borderRadius: 20, justifyContent: 'center', margin: 10, backgroundColor: '#A30000' }}>
                                 <Text style={[styles.small, { color: '#fff' }]}>{isDocument1 ? 'Replace' : 'Upload documents'}</Text>
                             </TouchableOpacity>
                         </View>}
@@ -88,7 +88,7 @@ const CompanyDocumentScreen = (props) => {
                             <Text style={[styles.small, { color: '#fff' }]}>Replace</Text>
                         </TouchableOpacity>
                     </View> : <View style={{ flexDirection: 'row' }}>
-                            <TouchableOpacity onPress={() => props.navigation.navigate('DocumentCamera', { doc: 'company' })} style={{ padding: 10, borderRadius: 20, justifyContent: 'center', margin: 10, backgroundColor: '#055e7c' }}>
+                            <TouchableOpacity onPress={() => props.navigation.navigate('DocumentCamera', { doc: 'company' })} style={{ padding: 10, borderRadius: 20, justifyContent: 'center', margin: 10, backgroundColor: '#A30000' }}>
                                 <Text style={[styles.small, { color: '#fff' }]}>{isDocument2 ? 'Replace' : 'Upload documents'}</Text>
                             </TouchableOpacity>
                         </View>}
@@ -103,7 +103,7 @@ const CompanyDocumentScreen = (props) => {
                             <Text style={[styles.small, { color: '#fff' }]}>Replace</Text>
                         </TouchableOpacity>
                     </View> : <View style={{ flexDirection: 'row' }}>
-                            <TouchableOpacity onPress={() => props.navigation.navigate('DocumentCamera', { doc: 'business' })} style={{ padding: 10, borderRadius: 20, justifyContent: 'center', margin: 10, backgroundColor: '#055e7c' }}>
+                            <TouchableOpacity onPress={() => props.navigation.navigate('DocumentCamera', { doc: 'business' })} style={{ padding: 10, borderRadius: 20, justifyContent: 'center', margin: 10, backgroundColor: '#A30000' }}>
                                 <Text style={[styles.small, { color: '#fff' }]}>{isDocument3 ? 'Replace' : 'Upload documents'}</Text>
                             </TouchableOpacity>
                         </View>}
@@ -116,7 +116,7 @@ const CompanyDocumentScreen = (props) => {
                     </LinearGradient>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => submitDoc({ isDocument1, isDocument2, isDocument3 })} disabled={!(isDocument1 && isDocument2 && isDocument3)} style={{ flex: 1 }}>
-                    <LinearGradient colors={(isDocument1 && isDocument2 && isDocument3) ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
+                    <LinearGradient colors={(isDocument1 && isDocument2 && isDocument3) ? ['rgba(163, 0, 0, 0.5)', '#A30000'] : ['rgba(163, 0, 0, 0.5)', 'rgba(163, 0, 0, 0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={[styles.butang, { color: '#fff' }]}>Save</Text>
                     </LinearGradient>
                 </TouchableOpacity>

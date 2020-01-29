@@ -70,17 +70,17 @@ const LoanApplicationDeclarationScreen = (props) => {
 
                 return (
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }}>
-                        <View style={[{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
+                        <View style={[{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: 'rgba(163, 0, 0, 0.5)' }]}>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                                    <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 20 }} />
+                                    <Ionicons name="ios-arrow-back" color={'#DE4848'} style={{ fontSize: 30, paddingLeft: 20 }} />
                                 </TouchableOpacity>
                             </View>
                             <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
                                 <Text style={[styles.title]}>LOAN</Text>
                             </View>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
-                                <View style={{ backgroundColor:'rgba(62,194,217,0.5)',borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
+                                <View style={{ backgroundColor:'rgba(163, 0, 0, 0.5)',borderColor: "#DE4848", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
             <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
           </View>
                             </View>
@@ -112,7 +112,7 @@ const LoanApplicationDeclarationScreen = (props) => {
                                     </View>
                                     <View style={{ marginBottom: 10 }}>
                                         <View>
-                                            <Text style={[styles.text, { marginBottom: 20, color: '#055E7C' }]}>Please state if your company is one of the following</Text>
+                                            <Text style={[styles.text, { marginBottom: 20, color: '#A30000' }]}>Please state if your company is one of the following</Text>
                                         </View>
                                         <View style={{ flexDirection: 'row', marginBottom: 10 }}>
                                             <CheckBox onClick={() => handleCheckBox('control')} isChecked={control} checkBoxColor={'rgba(62,194,217,1)'} style={{ borderColor: 'rgba(0,0,0,0.3)' }} />
@@ -137,7 +137,7 @@ const LoanApplicationDeclarationScreen = (props) => {
                                         </View>
                                     </View>
                                     <View>
-                                        <Text style={[styles.text, { marginBottom: 10, color: '#055E7C' }]}>Application Declaration</Text>
+                                        <Text style={[styles.text, { marginBottom: 10, color: '#A30000' }]}>Application Declaration</Text>
                                     </View>
                                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                         <CheckBox onClick={() => handleCheckBox('truth')} isChecked={truth} checkBoxColor={'rgba(62,194,217,1)'} style={{ borderColor: 'rgba(0,0,0,0.3)' }} />
@@ -163,7 +163,7 @@ const LoanApplicationDeclarationScreen = (props) => {
                                     </LinearGradient>
                                 </TouchableOpacity>
                                 <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ flex: 1 }}>
-                                    <LinearGradient colors={FormikProps.isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                                    <LinearGradient colors={FormikProps.isValid ? ['rgba(163, 0, 0, 0.5)', '#A30000'] : ['rgba(163, 0, 0, 0.5)', 'rgba(163, 0, 0, 0.5)']} style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                                         {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> : <Text style={[styles.butang, { color: '#fff' }]}>Next</Text>}
                                     </LinearGradient>
                                 </TouchableOpacity>

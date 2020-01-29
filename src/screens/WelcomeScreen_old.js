@@ -86,9 +86,9 @@ class WelcomeScreen extends React.PureComponent {
                                     <TouchableOpacity onPress={() => this.props.navigation.navigate('Intro')} style={{ paddingTop: 5, paddingBottom: 5, borderWidth: 1, borderColor: 'lightgrey', justifyContent: 'center', alignItems: 'center', marginBottom: 20 }}>
                                         <Text style={[styles.butang, { color: '#000' }]}>Sign Up</Text>
                                     </TouchableOpacity>
-                                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')} style={{ borderWidth: 1, borderColor: '#055E7C', justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
+                                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')} style={{ borderWidth: 1, borderColor: '#A30000', justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
                                         <LinearGradient
-                                            colors={['#0A6496', '#055E7C']}
+                                            colors={['rgba(163, 0, 0, 0.5)', '#A30000']}
                                             style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                                             <Text style={[styles.butang, { color: '#fff', marginTop: 5, marginBottom: 5 }]}>Log In</Text>
                                         </LinearGradient>

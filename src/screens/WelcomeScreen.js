@@ -68,7 +68,7 @@ const WelcomeScreen = (props) => {
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }}>
                         <View style={{ justifyContent: 'space-between', flex: 9, }}>
                             <View style={{ flex: 9 }}>
-                                <View style={{ flex: 1, backgroundColor: '#055E7C' }}>
+                                <View style={{ flex: 1, backgroundColor: '#A30000' }}>
                                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', padding: 10 }}>
                                         <Text style={[styles.subTitle, { color: '#fff', fontSize: 28.5 }]}>Welcome to your</Text>
                                         <Text style={[styles.title, { color: '#fff', fontWeight: 'bold', fontSize: 30 }]}>Digital Account</Text>
@@ -76,12 +76,12 @@ const WelcomeScreen = (props) => {
                                     <View style={{ flex: 2, backgroundColor: '#fff', borderTopLeftRadius: 30, borderTopRightRadius: 30, padding: 20 }}>
                                         <View style={[styles.formElement]}>
                                             <View style={{ margin: 10 }} />
-                                            <TextInput autoCapitalize={'none'} autoCorrect={false} onSubmitEditing={() => this.passwordInput.focus()} returnKeyType={"next"} value={email} keyboardType={'email-address'} onBlur={FormikProps.handleBlur('email')} onChangeText={FormikProps.handleChange('email')} placeholder={emailTouched && emailError ? '' : 'Email'} style={{ borderBottomWidth: 1, borderColor: '#9ADAF4', padding: 5 }} />
+                                            <TextInput autoCapitalize={'none'} autoCorrect={false} onSubmitEditing={() => this.passwordInput.focus()} returnKeyType={"next"} value={email} keyboardType={'email-address'} onBlur={FormikProps.handleBlur('email')} onChangeText={FormikProps.handleChange('email')} placeholder={emailTouched && emailError ? '' : 'Email'} style={{ borderBottomWidth: 1, borderColor: 'rgba(163, 0, 0, 0.5)', padding: 5 }} />
                                             {emailTouched && emailError && <Text style={styles.error}>{emailError}</Text>}
                                         </View>
                                         <View style={[styles.formElement]}>
                                             <View style={{ margin: 10 }} />
-                                            <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between', borderBottomWidth: 1, borderColor: '#9ADAF4', padding: 5 }}>
+                                            <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between', borderBottomWidth: 1, borderColor: 'rgba(163, 0, 0, 0.5)', padding: 5 }}>
                                                 <TextInput ref={input => this.passwordInput = input} returnKeyType={'go'} secureTextEntry={secure} value={password} onBlur={FormikProps.handleBlur('password')} placeholder={passwordTouched && passwordError ? '' : 'Password'} onChangeText={FormikProps.handleChange('password')} style={{}} placeholderTextColor={passwordTouched && passwordError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                                 <TouchableOpacity onPress={() => secureItem(!secure)}>
                                                     <Ionicons name={secure ? 'ios-eye-off' : 'ios-eye'} style={{ fontSize: 25, color: secure ? 'lightgrey' : 'grey' }} />
@@ -94,7 +94,7 @@ const WelcomeScreen = (props) => {
                                         <View style={{ flexDirection: 'row', marginBottom: 10 }}>
                                             <Text style={[styles.textDefault, { margin: 5, color: 'darkgrey' }]}>Forgot password?</Text>
                                             <TouchableOpacity onPress={() => forgotPassword()}>
-                                                <Text style={[styles.textDefault, { margin: 5, color: '#055E7C' }]}>Click here</Text>
+                                                <Text style={[styles.textDefault, { margin: 5, color: '#A30000' }]}>Click here</Text>
                                             </TouchableOpacity>
                                         </View>
                                         <View style={{ flexDirection: 'row', margin: 5, justifyContent: 'center' }}>

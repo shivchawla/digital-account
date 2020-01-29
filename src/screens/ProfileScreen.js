@@ -17,17 +17,17 @@ const ProfileScreen = (props) => {
 
     return (
         <View style={{ flex: 1, }}>
-            <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
+            <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: 'rgba(163, 0, 0, 0.5)' }}>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
                     <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                        <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 20 }} />
+                        <Ionicons name="ios-arrow-back" color={'#DE4848'} style={{ fontSize: 30, paddingLeft: 20 }} />
                     </TouchableOpacity>
                 </View>
                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
                     <Text style={[styles.title]}>PROFILE</Text>
                 </View>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
-                    <View style={{ backgroundColor: 'rgba(62,194,217,0.5)', borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
+                    <View style={{ backgroundColor: 'rgba(163, 0, 0, 0.5)', borderColor: "#DE4848", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
                         <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
                     </View>
                 </View>
@@ -35,12 +35,12 @@ const ProfileScreen = (props) => {
             <View style={[{ flex: 9 }]}>
                 <ScrollView style={[styles.screenMargin]}>
                     <View style={{ marginTop: 10, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end' }}>
-                        <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ paddingTop: 5, paddingBottom: 5, paddingLeft: 20, paddingRight: 20, backgroundColor: '#055E7C', borderRadius: 15 }}>
+                        <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ paddingTop: 5, paddingBottom: 5, paddingLeft: 20, paddingRight: 20, backgroundColor: '#A30000', borderRadius: 15 }}>
                             <Text style={[styles.text, { color: '#fff' }]}>Edit</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'flex-start', marginBottom: 10 }}>
-                        <View style={{ backgroundColor: 'rgba(62,194,217,0.5)', borderColor: "#3EC2D9", borderWidth: 1, width: 90, height: 90, justifyContent: 'center', alignItems: 'center' }}>
+                        <View style={{ backgroundColor: 'rgba(163, 0, 0, 0.5)', borderColor: "#DE4848", borderWidth: 1, width: 90, height: 90, justifyContent: 'center', alignItems: 'center' }}>
                             <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 60 }} />
                         </View>
                     </View>
@@ -53,7 +53,7 @@ const ProfileScreen = (props) => {
                                 <Text style={[styles.boldText]}>Account Number</Text>
                             </View>
                             <View style={{ flex: 2 }}>
-                                <Text style={[styles.text, { color: '#055E7C' }]}>{account_no}</Text>
+                                <Text style={[styles.text, { color: '#A30000' }]}>{account_no}</Text>
                             </View>
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 10 }}>
@@ -61,7 +61,7 @@ const ProfileScreen = (props) => {
                                 <Text style={[styles.boldText]}>Account Type</Text>
                             </View>
                             <View style={{ flex: 2 }}>
-                                <Text style={[styles.text, { color: '#055E7C' }]}>{type}</Text>
+                                <Text style={[styles.text, { color: '#A30000' }]}>{type}</Text>
                             </View>
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 10 }}>
@@ -69,7 +69,7 @@ const ProfileScreen = (props) => {
                                 <Text style={[styles.boldText]}>Balance</Text>
                             </View>
                             <View style={{ flex: 2 }}>
-                                <Text style={[styles.text, { color: '#055E7C' }]}>{currency} {balance ? balance.toFixed(2) : '0'}</Text>
+                                <Text style={[styles.text, { color: '#A30000' }]}>{currency} {balance ? balance.toFixed(2) : '0'}</Text>
                             </View>
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 10 }}>
@@ -90,7 +90,7 @@ const ProfileScreen = (props) => {
                                 <Text style={[styles.boldText]}>Business Reg Number</Text>
                             </View>
                             <View style={{ flex: 2 }}>
-                                <Text style={[styles.text, { color: '#055E7C' }]}>{business_reg_no}</Text>
+                                <Text style={[styles.text, { color: '#A30000' }]}>{business_reg_no}</Text>
                             </View>
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 10 }}>
@@ -98,7 +98,7 @@ const ProfileScreen = (props) => {
                                 <Text style={[styles.boldText]}>Business Name</Text>
                             </View>
                             <View style={{ flex: 2 }}>
-                                <Text style={[styles.text, { color: '#055E7C' }]}>{business_name}</Text>
+                                <Text style={[styles.text, { color: '#A30000' }]}>{business_name}</Text>
                             </View>
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 10 }}>
@@ -106,7 +106,7 @@ const ProfileScreen = (props) => {
                                 <Text style={[styles.boldText]}>Contact Number</Text>
                             </View>
                             <View style={{ flex: 2 }}>
-                                <Text style={[styles.text, { color: '#055E7C' }]}>{contact_no}</Text>
+                                <Text style={[styles.text, { color: '#A30000' }]}>{contact_no}</Text>
                             </View>
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 10 }}>
@@ -114,7 +114,7 @@ const ProfileScreen = (props) => {
                                 <Text style={[styles.boldText]}>Email</Text>
                             </View>
                             <View style={{ flex: 2 }}>
-                                <Text style={[styles.text, { color: '#055E7C' }]}>{support_email}</Text>
+                                <Text style={[styles.text, { color: '#A30000' }]}>{support_email}</Text>
                             </View>
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 10 }}>
@@ -122,7 +122,7 @@ const ProfileScreen = (props) => {
                                 <Text style={[styles.boldText]}>Address</Text>
                             </View>
                             <View style={{ flex: 2 }}>
-                                <Text style={[styles.text, { color: '#055E7C' }]}>{business_address}</Text>
+                                <Text style={[styles.text, { color: '#A30000' }]}>{business_address}</Text>
                             </View>
                         </View>
                     </View>

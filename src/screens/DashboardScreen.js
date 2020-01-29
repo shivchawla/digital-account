@@ -267,7 +267,7 @@ const DashboardScreen = (props) => {
                 </View>}
               <View style={{ flexDirection: 'row', alignSelf: 'stretch', marginTop: 15 }}>
                 <TouchableOpacity style={{ flex: 1, }} onPress={() => props.navigation.navigate(link, { prevScreen: 'Dashboard' })}>
-                  <LinearGradient colors={['#0A6496', '#055E7C']} style={{ flex: 1, padding: 20, justifyContent: 'center', alignItems: 'center' }}>
+                  <LinearGradient colors={['rgba(163, 0, 0, 0.5)', '#A30000']} style={{ flex: 1, padding: 20, justifyContent: 'center', alignItems: 'center' }}>
                     <Text style={[styles.textDefault, { color: '#fff' }]}>CONTINUE</Text>
                   </LinearGradient>
                 </TouchableOpacity>
@@ -286,7 +286,7 @@ const DashboardScreen = (props) => {
       <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row' }]}>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
           <TouchableOpacity onPress={props.navigation.openDrawer} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }} style={{ paddingRight: 50 }}>
-            <Ionicons name="md-more" color={'#3EC2D9'} style={{ fontSize: 30 }} />
+            <Ionicons name="md-more" color={'#DE4848'} style={{ fontSize: 30 }} />
           </TouchableOpacity>
         </View>
         <View style={{ flexDirection: 'column', justifyContent: 'center' }}>
@@ -295,7 +295,7 @@ const DashboardScreen = (props) => {
           </View>
         </View>
         <TouchableOpacity onPress={() => props.navigation.navigate('Profile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
-          <View style={{ backgroundColor: 'rgba(62,194,217,0.5)', borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
+          <View style={{ backgroundColor: 'rgba(163, 0, 0, 0.5)', borderColor: "#DE4848", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
             <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
           </View>
         </TouchableOpacity>
@@ -305,7 +305,7 @@ const DashboardScreen = (props) => {
           <Text style={[styles.text]}>Send Money</Text>
         </TouchableOpacity>
         <TouchableOpacity>
-          <Text style={[styles.text, { paddingLeft: 5, paddingRight: 5, color: '#3EC2D9' }]}>|</Text>
+          <Text style={[styles.text, { paddingLeft: 5, paddingRight: 5, color: '#DE4848' }]}>|</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => props.navigation.navigate('Withdraw')}>
           <Text style={[styles.text]}>Withdrawal</Text>
@@ -313,15 +313,15 @@ const DashboardScreen = (props) => {
       </View>
       <View style={[styles.screenMargin, { flex: 9 }]}>
         <View style={{ marginBottom: 15 }}>
-          <LinearGradient colors={['#055E7C', '#055E7C']} style={{ paddingTop: 5, paddingBottom: 5, alignItems: 'center', borderRadius: 10, height: Layout.window.height / 3 }}>
+          <LinearGradient colors={['#A30000', '#A30000']} style={{ paddingTop: 5, paddingBottom: 5, alignItems: 'center', borderRadius: 10, height: Layout.window.height / 3 }}>
             <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
               <TouchableOpacity onPress={() => changeChartDay()}>
-                <Ionicons name="ios-arrow-back" color={'#fff'} style={{ fontSize: 23, paddingLeft: 30 }} />
+                <Ionicons name="ios-arrow-back" color={'#FFFF28'} style={{ fontSize: 23, paddingLeft: 30 }} />
               </TouchableOpacity>
 
-              <Text style={[styles.text, { color: '#fff' }]}>{chartDay === 7 ? 'PAST 7 DAYS' : 'PAST 30 DAYS'}</Text>
+              <Text style={[styles.text, { color: '#FFFF28' }]}>{chartDay === 7 ? 'PAST 7 DAYS' : 'PAST 30 DAYS'}</Text>
               <TouchableOpacity onPress={() => changeChartDay()}>
-                <Ionicons name="ios-arrow-forward" color={'#fff'} style={{ fontSize: 23, paddingRight: 30 }} />
+                <Ionicons name="ios-arrow-forward" color={'#FFFF28'} style={{ fontSize: 23, paddingRight: 30 }} />
               </TouchableOpacity>
 
             </View>
@@ -334,15 +334,15 @@ const DashboardScreen = (props) => {
         </View>
         <View style={{ marginTop: 10 }}>
           <TouchableOpacity onPress={() => props.navigation.navigate('Report')} style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-            <Text style={[styles.h2, { color: '#04A2BD' }]}>Latest Transaction</Text>
+            <Text style={[styles.h2, { color: '#DE4848' }]}>Latest Transaction</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Text style={[styles.small, { paddingRight: 5, color: '#04A2BD' }]}>More</Text>
-              <Ionicons name="ios-arrow-forward" color={'#04A2BD'} style={{ fontSize: 15, paddingRight: 5 }} />
+              <Text style={[styles.small, { paddingRight: 5, color: '#DE4848' }]}>More</Text>
+              <Ionicons name="ios-arrow-forward" color={'#DE4848'} style={{ fontSize: 15, paddingRight: 5 }} />
             </View>
           </TouchableOpacity>
 
 
-         
+
 
           {reportList && <FlatList data={reportList.filter(rl => !rl.type.includes('Fee')).slice(0, 3)} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
             <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'space-between' }}>
@@ -362,16 +362,16 @@ const DashboardScreen = (props) => {
         </View>
         <View style={{ marginTop: 20 }}>
           <TouchableOpacity onPress={() => props.navigation.navigate('Notification')} style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-            <Text style={[styles.h2, { color: '#04A2BD' }]}>Latest Notifications</Text>
+            <Text style={[styles.h2, { color: '#DE4848' }]}>Latest Notifications</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Text style={[styles.small, { paddingRight: 5, color: '#04A2BD' }]}>More</Text>
-              <Ionicons name="ios-arrow-forward" color={'#04A2BD'} style={{ fontSize: 15, paddingRight: 5 }} />
+              <Text style={[styles.small, { paddingRight: 5, color: '#DE4848' }]}>More</Text>
+              <Ionicons name="ios-arrow-forward" color={'#DE4848'} style={{ fontSize: 15, paddingRight: 5 }} />
             </View>
           </TouchableOpacity>
           {noti && <FlatList data={noti} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
             <View style={{ flexDirection: 'row', marginTop: 5, flex: 1 }}>
               <View style={{ flexDirection: 'row', flex: 3 }}>
-                <Ionicons name={"md-arrow-dropright"} color={'#04A2BD'} style={{ fontSize: 12, paddingRight: 20 }} />
+                <Ionicons name={"md-arrow-dropright"} color={'#DE4848'} style={{ fontSize: 12, paddingRight: 20 }} />
                 <Text numberOfLines={2} ellipsizeMode={'tail'} style={[styles.listItem]}>{item.announcement}</Text>
               </View>
               <View style={{ flex: 1, alignItems: 'flex-end' }}>

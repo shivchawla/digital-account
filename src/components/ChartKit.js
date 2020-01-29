@@ -40,9 +40,9 @@ const showPopup=props.showPopup
                 width={Layout.window.width - 40} height={215} yAxisLabel={""} yAxisSuffix={""} fromZero={false} onDataPointClick={val => props.dataPointClicked(val)}// from react-native 
                 chartConfig={{
                     fontSize: 5,
-                    backgroundColor: "#055E7C", backgroundGradientFrom: "#055E7C", backgroundGradientTo: "#055E7C", decimalPlaces: 0, color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`, labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,// optional, defaults to 2dp
+                    backgroundColor: "#A30000", backgroundGradientFrom: "#A30000", backgroundGradientTo: "#A30000", decimalPlaces: 0, color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`, labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,// optional, defaults to 2dp
                     style: { borderRadius: 10, },
-                    propsForDots: { r: "3", strokeWidth: "1", stroke: "#ffa726" }
+                    propsForDots: { r: "3", strokeWidth: "1", stroke: "#FFFF28" }
                 }}
                 bezier style={{
                     marginVertical: 0, borderRadius: 10

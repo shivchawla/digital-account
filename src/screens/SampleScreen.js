@@ -97,17 +97,17 @@ const SampleScreen = (props) => {
                 return (
                     <KeyboardAvoidingView behavior="padding"  enabled style={{ flex: 1 }}  >
                         <View style={{ flex: 1 }}>
-                            <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
+                            <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: 'rgba(163, 0, 0, 0.5)' }]}>
                                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
                                     <TouchableOpacity onPress={() => { }} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                                        <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30 }} />
+                                        <Ionicons name="ios-arrow-back" color={'#DE4848'} style={{ fontSize: 30 }} />
                                     </TouchableOpacity>
                                 </View>
                                 <View style={{ flex: 5, justifyContent: 'center', alignItems: 'center' }}>
                                     <Text style={[styles.title]}>TRANSFER</Text>
                                 </View>
                                 <TouchableOpacity onPress={() => { }} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
-                                    <View style={{ backgroundColor: 'rgba(62,194,217,0.5)', borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
+                                    <View style={{ backgroundColor: 'rgba(163, 0, 0, 0.5)', borderColor: "#DE4848", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
                                         <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
                                     </View>
                                 </TouchableOpacity>
@@ -140,7 +140,7 @@ const SampleScreen = (props) => {
                                         </LinearGradient>
                                     </TouchableOpacity>
                                     <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ flex: 1 }}>
-                                        <LinearGradient colors={FormikProps.isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
+                                        <LinearGradient colors={FormikProps.isValid ? ['rgba(163, 0, 0, 0.5)', '#A30000'] : ['rgba(163, 0, 0, 0.5)', 'rgba(163, 0, 0, 0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
                                             <Text style={[styles.butang, { color: '#fff' }]}>Submit</Text>
                                             {authEnabled ? locked ? <Ionicons name='ios-lock' color={'#fff'} style={{ fontSize: 30, paddingLeft: 20 }} /> : <Ionicons name='ios-unlock' color={'#fff'} style={{ fontSize: 30, paddingLeft: 20 }} /> : <View />}
                                         </LinearGradient>

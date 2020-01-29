@@ -198,14 +198,14 @@ const NewInvoiceScreen = (props) => {
                             visible={iosPickerVisible} onRequestClose={() => FormikProps.setFieldValue('dueDate', tarikh.toString())}
                         >
                             <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
-                                <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4', marginBottom: 25 }]}>
+                                <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: 'rgba(163, 0, 0, 0.5)', marginBottom: 25 }]}>
                                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
                                         <TouchableOpacity onPress={() => setIosPickerVisible(!iosPickerVisible)} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                                            <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 20 }} />
+                                            <Ionicons name="ios-arrow-back" color={'#DE4848'} style={{ fontSize: 30, paddingLeft: 20 }} />
                                         </TouchableOpacity>
                                     </View>
                                     <View style={{ flex: 4, justifyContent: 'center', alignItems: 'center' }}>
-                                        <Text style={[styles.title, { color: '#055E7C' }]}>Select</Text>
+                                        <Text style={[styles.title, { color: '#A30000' }]}>Select</Text>
                                     </View>
                                 </View>
                                 <View style={{ flex: 9, justifyContent: 'flex-start' }}>
@@ -217,17 +217,17 @@ const NewInvoiceScreen = (props) => {
                                 </View>
                             </View>
                         </Modal>
-                        <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
+                        <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: 'rgba(163, 0, 0, 0.5)' }]}>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                                    <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30 }} />
+                                    <Ionicons name="ios-arrow-back" color={'#DE4848'} style={{ fontSize: 30 }} />
                                 </TouchableOpacity>
                             </View>
                             <View style={{ flex: 5, justifyContent: 'center', alignItems: 'center' }}>
                                 <Text style={[styles.title]}>NEW INVOICE</Text>
                             </View>
                             <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
-                                <View style={{ backgroundColor:'rgba(62,194,217,0.5)',borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
+                                <View style={{ backgroundColor:'rgba(163, 0, 0, 0.5)',borderColor: "#DE4848", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
             <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
           </View>
                             </TouchableOpacity>
@@ -239,7 +239,7 @@ const NewInvoiceScreen = (props) => {
                                     {ios ? <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
                                         <Text style={[styles.titleBox], { marginTop: 20 }}>Invoice Type</Text>
                                         <TouchableOpacity onPress={() => handleIosPicker('invoiceType')}>
-                                            <Text style={[styles.small, { color: '#0A6496' }]}>{invoiceType ? invoiceType : 'Select invoiceType'}</Text>
+                                            <Text style={[styles.small, { color: 'rgba(163, 0, 0, 0.5)' }]}>{invoiceType ? invoiceType : 'Select invoiceType'}</Text>
                                         </TouchableOpacity>
                                     </View> : <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
                                             <Text style={[styles.titleBox], { marginBottom: 10 }}>Invoice Type</Text>
@@ -330,7 +330,7 @@ const NewInvoiceScreen = (props) => {
                                         
                                     </TouchableOpacity>
                                 <TouchableOpacity onPress={FormikProps.handleSubmit} style={{ flex: 1 }}>
-                                    <LinearGradient colors={FormikProps.isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
+                                    <LinearGradient colors={FormikProps.isValid ? ['rgba(163, 0, 0, 0.5)', '#A30000'] : ['rgba(163, 0, 0, 0.5)', 'rgba(163, 0, 0, 0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                         {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> : <Text style={[styles.butang, { color: '#fff' }]}>Next</Text>}
                                     </LinearGradient>
                                 </TouchableOpacity>
