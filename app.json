@@ -9,11 +9,26 @@
       "android",
       "web"
     ],
+    "android": {
+      "package": "com.fcgb.da",
+      "googleServicesFile": "./google-services.json",
+      "versionCode": 6,
+      "permissions": [
+        "CAMERA",
+        "RECORD_AUDIO",
+        "AUDIO_RECORDING",
+        "NOTIFICATIONS",
+        "CAMERA_ROLL",
+        "WRITE_EXTERNAL_STORAGE",
+        "READ_EXTERNAL_STORAGE",
+        "INTERNET"
+      ]
+    },
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./src/assets/images/icon.png",
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./src/assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
