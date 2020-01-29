@@ -17,12 +17,6 @@ import NumberFormat from 'react-number-format';
 
 const DashboardScreen = (props) => {
 
-  // const formatter = new Intl.NumberFormat('en-US', {
-  //   style: 'currency',
-  //   currency: 'USD',
-  //   minimumFractionDigits: 2
-  // })
-
 
   const dataPointClicked = (val) => {
     console.log(`klik ni ${JSON.stringify(val)}`)
@@ -85,17 +79,6 @@ const DashboardScreen = (props) => {
 
     //await setDashboardDisplay(link != 'Dashboard' ? false : true)
   }
-  //setDashboardDisplay(link != 'Dashboard' ? false : true)
-  // useEffect(() => {
-
-  //   runCheckStatus();
-  //   console.log(`runcheckstatus`)
-  // }, [status1, status])
-
-  // useEffect(() => {
-  //   (status != 'activated') && dispatch(actionCreator.getReportList())
-  //   console.log(`getReportList`)
-  // }, [status])
 
   const runCheckStatus2 = async () => {
     await dispatch(actionCreator.setScreen2())
@@ -174,7 +157,6 @@ const DashboardScreen = (props) => {
     var days = ['MO', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
     var goBackDays = chartDay;
 
-
     var today = new Date();
     var daysSorted = [];
 
@@ -183,8 +165,7 @@ const DashboardScreen = (props) => {
       daysSorted.push({ day: days[newDate.getDay()], date: newDate });
     }
     const listBaru9 = []
-    //console.log(` apa gunanya ${JSON.stringify(daysSorted)}`);
-    //console.log(moment('2010-10-19').isSame('2010-10-20', 'day'))
+
     /////////END TESTING DATE
     daysSorted.map(ds => {
       const adaEntry = listBaru8.find(lb8 => moment(lb8.updated_at).isSame(moment(new Date(ds.date)), 'day'))
@@ -193,16 +174,14 @@ const DashboardScreen = (props) => {
 
     })
 
-    //console.log(` apa gunanya gabung ${JSON.stringify(listBaru9)}`);
 
     const last = listBaru9[listBaru9.length - 1]
-    //console.log(`last ialah : ${JSON.stringify(last)}`)
+
     if (last.ada == 'takde') {
-      //const start = listBaru8.indexOf(n => n.updated_at == last.updated_at)
-      //const start = listBaru8.map(n => n.updated_at).indexOf(last.update)
+
       const start = listBaru8.find(n => moment(n.updated_at) < moment(last.update)) || listBaru6.find(n => moment(n.updated_at) < moment(last.update))
       console.log(`start ialah : ${JSON.stringify(start)}`)
-      listBaru9[listBaru9.length - 1].balance = _.isArray(start) ? start[start.length - 1].balance : start.balance
+      listBaru9[listBaru9.length - 1].balance = _.isArray(start) ? start[start.length - 1].balance : 0
     }
     console.log(` gabungan ke-9 yang mengasyikkan ${JSON.stringify(listBaru9)}`);
     const listBaru10 = []
@@ -237,12 +216,7 @@ const DashboardScreen = (props) => {
   }
 
 
-  //const fiveRecentReport=[]
 
-
-  // const fiveRecentReport = fiveRecentReport ? reportList.slice(0, 5) : null
-  // fiveRecentReport&&console.log(`five is : ${JSON.stringify(fiveRecentReport)}`)
-  //setFive(reportList.filter(rl=>!rl.type.includes('Fee')).slice(0,5))
 
   const noti = [
     { announcement: 'Happy New Year! Have a pleasant day. We are standing by should you need any assistance', date: '1/1/20' },
@@ -250,22 +224,7 @@ const DashboardScreen = (props) => {
     { announcement: 'Thank you for your registration. We look forward to serving you and fulfilling your expectation', date: '5/5/19' },
   ]
 
-  // console.log(`Ini ialah result ${JSON.stringify(malaysiaData)}`)
 
-  // const newAddress = malaysiaData;
-
-  // const found = newAddress.find(n => n.Postcode === '26150')
-  // console.log(`Ini Hasil Pertama  ${found.City}`)
-
-  // const found = newAddress.filter(n => n.State === 'Perlis')
-  // console.log(`Ini Hasil Kedua  ${JSON.stringify(found)}`)
-
-  // const found = newAddress.find(n => n.City === 'Beaufort')
-  // console.log(`Ini Hasil Ketiga  ${JSON.stringify(found)}`)
-
-  // const latestAddress = []
-  // found.map(f => latestAddress.push(f.City))
-  // console.log(`Ini Hasil Keempat  ${JSON.stringify(latestAddress)}`)
 
   return (
 
@@ -281,10 +240,7 @@ const DashboardScreen = (props) => {
                 <View style={{ alignSelf: 'stretch', margin: 5 }}>
                   <Text style={[styles.h3, { flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start', margin: 5 }]}>REGISTRATION INCOMPLETE</Text>
                   <Text style={[styles.text, { margin: 5, }]}>Account Under Review</Text>
-                  {/* <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
-              <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Basic Info</Text>
-              <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />
-            </View> */}
+
                 </View> : <View style={{ alignSelf: 'stretch', margin: 5 }}>
                   <Text style={[styles.h3, { flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start', margin: 5 }]}>REGISTRATION INCOMPLETE</Text>
                   <Text style={[styles.text, { margin: 5, }]}>Please complete items below for approval</Text>
@@ -335,9 +291,7 @@ const DashboardScreen = (props) => {
         </View>
         <View style={{ flexDirection: 'column', justifyContent: 'center' }}>
           <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-   
-          {balance ?<NumberFormat value={balance.toFixed(2)} displayType={'text'} thousandSeparator={true} prefix={''} renderText={value => <Text style={styles.title}>{currency} {value}</Text>} /> : <Text style={styles.title}>MYR 0</Text>}
-        
+            {balance ? <NumberFormat value={balance.toFixed(2)} displayType={'text'} thousandSeparator={true} prefix={''} renderText={value => <Text style={styles.title}>{currency} {value}</Text>} /> : <Text style={styles.title}>MYR 0</Text>}
           </View>
         </View>
         <TouchableOpacity onPress={() => props.navigation.navigate('Profile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
@@ -379,7 +333,7 @@ const DashboardScreen = (props) => {
           </LinearGradient>
         </View>
         <View style={{ marginTop: 10 }}>
-          <TouchableOpacity onPress={() => props.navigation.navigate('TransactionHistory')} style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          <TouchableOpacity onPress={() => props.navigation.navigate('Report')} style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
             <Text style={[styles.h2, { color: '#04A2BD' }]}>Latest Transaction</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <Text style={[styles.small, { paddingRight: 5, color: '#04A2BD' }]}>More</Text>
@@ -387,17 +341,24 @@ const DashboardScreen = (props) => {
             </View>
           </TouchableOpacity>
 
-          {reportList && <FlatList data={reportList.filter(rl => !rl.type.includes('Fee')).slice(0, 5)} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
+
+         
+
+          {reportList && <FlatList data={reportList.filter(rl => !rl.type.includes('Fee')).slice(0, 3)} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
             <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'space-between' }}>
               <View style={{ flexDirection: 'row', }}>
-                <Ionicons name={item.credit_debit == 'DEBIT' ? "md-remove-circle-outline" : "md-add-circle-outline"} color={item.credit_debit == 'DEBIT' ? '#A20F0F' : '#7ED321'} style={{ fontSize: 12, paddingRight: 20 }} />
-                <Text style={[styles.text, { fontSize: 12, color: 'darkgrey' }]}>{item.type} ({moment(item.updated_at).format('D/MM/YY')})</Text>
+                <Ionicons name={item.credit_debit == 'DEBIT' ? "md-remove-circle-outline" : "md-add-circle-outline"} color={item.credit_debit == 'DEBIT' ? '#A20F0F' : '#7ED321'} style={{ fontSize: 12, paddingRight: 20, paddingTop: 5 }} />
+                <View>
+                  <Text style={[styles.listItem]}>{item.type} ({item.transaction_no}) </Text>
+                  <Text style={[styles.listItem]}>{moment(item.updated_at).format('DD/MM/YY h:mm:ss')}</Text>
+                </View>
               </View>
               <View style={{}}>
-                <Text style={[styles.text, { color: item.credit_debit == 'DEBIT' ? '#A20F0F' : '#7ED321', fontSize: 12 }]}>{item.credit_debit == 'DEBIT' ? '-' : '+'} {item.currency ? item.currency : 'MYR'} {item.amount}</Text>
+                <Text style={[styles.listItem, { color: item.credit_debit == 'DEBIT' ? '#A20F0F' : '#7ED321' }]}>{item.credit_debit == 'DEBIT' ? '-' : '+'} {item.currency ? item.currency : 'MYR'} {item.amount}</Text>
               </View>
             </View>
           } />}
+
         </View>
         <View style={{ marginTop: 20 }}>
           <TouchableOpacity onPress={() => props.navigation.navigate('Notification')} style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -411,10 +372,10 @@ const DashboardScreen = (props) => {
             <View style={{ flexDirection: 'row', marginTop: 5, flex: 1 }}>
               <View style={{ flexDirection: 'row', flex: 3 }}>
                 <Ionicons name={"md-arrow-dropright"} color={'#04A2BD'} style={{ fontSize: 12, paddingRight: 20 }} />
-                <Text numberOfLines={2} ellipsizeMode={'tail'} style={[styles.text, { fontSize: 12, color: 'darkgrey' }]}>{item.announcement}</Text>
+                <Text numberOfLines={2} ellipsizeMode={'tail'} style={[styles.listItem]}>{item.announcement}</Text>
               </View>
               <View style={{ flex: 1, alignItems: 'flex-end' }}>
-                <Text style={[styles.text, { color: 'darkgrey', fontSize: 12 }]}>{item.date}</Text>
+                <Text style={[styles.listItem]}>{item.date}</Text>
               </View>
             </View>
           } />}

@@ -5,7 +5,6 @@ import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons';
 import moment from 'moment'
 import styles from '../styles/styles'
-import _ from 'lodash'
 
 const ReportScreen = (props) => {
     useEffect(() => {
@@ -15,26 +14,6 @@ const ReportScreen = (props) => {
     const { reportList, filterReportList, filterEnabled } = useSelector(state => state.reportReducer, shallowEqual)
     const [onScreenFilter, setOnScreenFilter] = useState(false)
     const [onScreenFilteredList, setOnScreenFilteredList] = useState([])
-
-    const transactionAndFee = _.values(_.groupBy(reportList, rl => rl.transaction_no)) || 0
-    const transactionAndFeeFinal = []
-    const nakTengok = []
-    transactionAndFee && transactionAndFee.map(taf => {
-        if (taf.length == 2) {
-            if (!taf[0].type.includes('Fee')) {
-                transactionAndFeeFinal.push({ ...taf[0], fee: taf[1].amount })
-            } else {
-                transactionAndFeeFinal.push({ ...taf[1], fee: taf[0].amount })
-            }
-        }
-    }
-
-    )
-    console.log(`dengan fee final ialah ${JSON.stringify(transactionAndFeeFinal)}`)
-    console.log(`nak tengok ialah ${JSON.stringify(nakTengok)}`)
-    // reportList&&reportList.map(rl=>{
-
-    // })
 
     const searchList = (val) => {
         console.log(`keyword  ialah : ${val}`)
@@ -85,89 +64,49 @@ const ReportScreen = (props) => {
                             </TouchableOpacity>
                         </View>
                     </View>
-
-                    {/* {reportList && <FlatList data={filterEnabled ? filterReportList : onScreenFilter ? onScreenFilteredList : reportList} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
-                   */}
-
-                    {transactionAndFeeFinal && <FlatList data={filterEnabled ? transactionAndFeeFinal : onScreenFilter ? transactionAndFeeFinal : transactionAndFeeFinal} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
+                    {reportList && <FlatList data={filterEnabled ? filterReportList : onScreenFilter ? onScreenFilteredList : reportList} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
                         <View style={styles.box}>
-                            <View style={{ flex: 1 }}>
-                                <TouchableWithoutFeedback onPress={() => dispatch(actionCreator.setMarkerReportList(index))} style={{ flexDirection: 'row', marginTop: 5 }}>
-                                    <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
-                                        <Text style={[styles.boldText], { flex: 1 }}>{item.transaction_no}</Text>
-                                        <Text style={[styles.boldText], { flex: 1 }} numberOfLines={1} ellipsizeMode={'tail'}>{moment(item.updated_at).format('DD/MM/YY h:mm:ss')}</Text>
-                                        <Ionicons name={item.marker ? "md-arrow-dropdown" : "md-arrow-dropright"} color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
-                                    </View>
-                                </TouchableWithoutFeedback>
-                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                        <Text style={[styles.h3]}>{item.type} ({item.credit_debit})</Text>
-                                    </View>
+                            <TouchableWithoutFeedback onPress={() => dispatch(actionCreator.setMarkerReportList(index))} style={{ flexDirection: 'row', marginTop: 5 }}>
+                                <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
+                                    <Text style={[styles.boldText], { flex: 1 }}>{item.transaction_no}</Text>
+                                    <Text style={[styles.boldText], { flex: 1 }} numberOfLines={1} ellipsizeMode={'tail'}>{moment(item.updated_at).format('DD/MM/YY h:mm:ss')}</Text>
+                                    <Ionicons name={item.marker ? "md-arrow-dropdown" : "md-arrow-dropright"} color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
                                 </View>
-                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                        <Text style={[styles.label]}>Transaction</Text>
-                                    </View>
-                                    <View style={{ flex: 1 }}>
-                                        <Text style={[styles.value]}>{item.transaction_no}</Text>
-                                    </View>
-                                </View>
-                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                        <Text style={[styles.label]}>Date</Text>
-                                    </View>
-                                    <View style={{ flex: 1 }}>
-                                        <Text style={[styles.value]}>{moment(item.updated_at).format('DD/MM/YY h:mm:ss')}</Text>
-                                    </View>
-                                </View>
-
-
-                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                        <Text style={[styles.label]}>{item.credit_debit == 'DEBIT' ? 'Origin' : 'Recipient'} </Text>
-                                    </View>
-                                    <View style={{ flex: 1 }}>
-                                        <Text style={[styles.value]}> {item.from_to}</Text>
-                                    </View>
-                                </View>
-
-                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                        <Text style={[styles.label]}>Amount</Text>
-                                    </View>
-                                    <View style={{ flex: 1 }}>
-                                        <Text style={[styles.value]}>{item.currency}{item.amount.toFixed(2)}</Text>
-                                    </View>
-                                </View>
-
-                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                        <Text style={[styles.label]}>Fee</Text>
-                                    </View>
-                                    <View style={{ flex: 1 }}>
-                                        <Text style={[styles.value]}>{item.currency}{item.fee}</Text>
-                                    </View>
-                                </View>
-                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                        <Text style={[styles.label]}>Total</Text>
-                                    </View>
-                                    <View style={{ flex: 1 }}>
-                                        <Text style={[styles.value]}>{item.currency}{item.fee + item.amount}</Text>
-                                    </View>
-                                </View>
-
-                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                        <Text style={[styles.label]}>Status</Text>
-                                    </View>
-                                    <View style={{ flex: 1 }}>
-                                        <Text style={[styles.value]}>{item.status}</Text>
-                                    </View>
-                                </View>
-
+                            </TouchableWithoutFeedback>
+                            <View style={{ flexDirection: 'row', marginTop: 5, borderBottomWidth: item.marker ? 1 : 0, borderBottomColor: 'lightgrey', }}>
                             </View>
-
+                            {item.marker && <View style={{ flex: 1 }}>
+                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                        <Text style={[styles.boldText]}>{item.type}</Text>
+                                    </View>
+                                </View>
+                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                        <Text style={[styles.text]}>{item.credit_debit}</Text>
+                                    </View>
+                                    <View style={{ flex: 1 }}>
+                                        <Text style={[styles.text, { color: '#055E7C' }]}>{item.credit_debit == 'DEBIT' ? 'to' : 'from'} {item.from_to}</Text>
+                                    </View>
+                                </View>
+                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                        <Text style={[styles.text]}>Amount</Text>
+                                    </View>
+                                    <View style={{ flex: 1 }}>
+                                        <Text style={[styles.text, { color: '#055E7C' }]}>{item.amount.toFixed(2)}</Text>
+                                    </View>
+                                </View>
+                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                        <Text style={[styles.text]}>Status</Text>
+                                    </View>
+                                    <View style={{ flex: 1 }}>
+                                        <Text style={[styles.text, { color: '#055E7C' }]}>{item.status}</Text>
+                                    </View>
+                                </View>
+                            </View>
+                            }
                         </View>
                     } />}
                 </ScrollView>

@@ -27,18 +27,17 @@ const TransferSuccessScreen = (props) => {
         <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
             {status ? <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, }}>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                    <View style={{ flex: 1 }}>
+                    <View style={{ flex: 1, justifyContent: 'flex-end' }}>
                         <Image source={require('../assets/images/logo.png')} style={{ height: Layout.window.height * 0.2, width: Layout.window.width * 0.5 }} resizeMode={'contain'} />
                     </View>
-                    <View style={{ flex: 2,alignSelf:'stretch' }}>
-                        <Image source={require('../assets/images/transfersuccess.png')} style={{ flex:1, height: undefined, width: undefined }} resizeMode={'contain'} />
-
+                    <View style={{ flex: 2, alignSelf: 'stretch' }}>
+                        <Image source={require('../assets/images/transfersuccess.png')} style={{ flex: 1, height: undefined, width: undefined }} resizeMode={'contain'} />
                     </View>
                     <View style={{ flex: 1, alignItems: 'center' }}>
                         <Text style={[styles.h3, { margin: 5, fontWeight: 'bold' }]}>Money Transferred</Text>
                         <View style={{ alignSelf: 'stretch', flexDirection: 'column', margin: 5, alignItems: 'center' }}>
                             <Text style={[styles.text, { margin: 5, color: 'darkturquoise' }]}>Congratulation!</Text>
-                            <Text style={[styles.text, { margin: 5, marginBottom: 20,textAlign:'center' }]}>Choose either to transfer money again or skip to the dashboard.</Text>
+                            <Text style={[styles.text, { margin: 5, marginBottom: 20, textAlign: 'center' }]}>Choose either to transfer money again or skip to the dashboard.</Text>
                         </View>
                     </View>
                     <View style={{ flex: 1 }}>
@@ -51,11 +50,10 @@ const TransferSuccessScreen = (props) => {
                             </TouchableOpacity>
                         </View>
                     </View>
-
                 </View>
             </View> : <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, }}>
                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                        <View style={{ width: Layout.window.width * 0.85, justifyContent: 'center', alignItems: 'center' }}>
+                        <View style={{ width: Layout.window.width * 0.85, justifyContent: 'center', alignItems: 'center', paddingLeft: 10, paddingRight: 10 }}>
                             <Image source={require('../assets/images/logo.png')} style={{ height: Layout.window.height * 0.2, width: Layout.window.width * 0.5 }} resizeMode={'contain'} />
                             <Image source={require('../assets/images/transferfailed.png')} style={{ height: Layout.window.height * 0.3, width: Layout.window.width * 0.7 }} resizeMode={'contain'} />
                             <Text style={[styles.h3, { margin: 5, fontWeight: 'bold' }]}>Transfer Failed!</Text>

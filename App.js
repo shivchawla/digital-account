@@ -59,13 +59,13 @@ const App = (props) => {
     let token = await Notifications.getExpoPushTokenAsync();
     //console.log(`expo token ialah ${token}`)
     store.dispatch({ type: 'SET_REGISTER', payload: { expo_token: token } })
-    // console.log(JSON.stringify({
-    //   token: { value: token, }, user: { username: 'Username', },
-    // }))
+    console.log(JSON.stringify({
+      token: { value: token, }, user: { username: 'Username', },
+    }))
   }
 
   _handleNotification = (notification) => {
-    //console.log(`notification received ${JSON.stringify(notification)}`)
+    console.log(`notification received ${JSON.stringify(notification)}`)
     const { data } = notification
     store.dispatch({ type: 'SET_NOTIFICATION_LIST', payload: { ...data } })
     //store.dispatch({ type: 'SET_NOTIFICATION', payload: { notification } })

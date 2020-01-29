@@ -10,7 +10,6 @@ import CodePin from 'react-native-pin-code'
 import Layout from '../constants/Layout';
 
 import ScanFinger from '../components/ScanFinger'
-
 const AuthOptionTypeScreen = (props) => {
 
 
@@ -24,12 +23,11 @@ const AuthOptionTypeScreen = (props) => {
     const checkCode = (code) => {
         console.log(`periksa code`)
         return code === '1234'
+       // return code === pin
     }
 
     const [locked, setLock] = useState(true)
-
     const [code, updateCode] = useState("")
-
     const [authRequestVisible, setAuthRequestVisible] = useState(false)
     const dispatch = useDispatch()
 
@@ -42,7 +40,7 @@ const AuthOptionTypeScreen = (props) => {
     //     props.navigation.navigate('SetPasscode')
     // }
 
-    const { authEnabled, authType } = useSelector(state => state.authReducer, shallowEqual)
+    const { authEnabled, authType,pin } = useSelector(state => state.authReducer, shallowEqual)
     const allAuth = useSelector(state => state.authReducer, shallowEqual)
 
 
@@ -78,7 +76,7 @@ const AuthOptionTypeScreen = (props) => {
                             error="Try again" // If user fail (fill '2017' for instance)
                             autoFocusFirst={true} // disabling auto-focus
                             keyboardType={'numeric'}
-                            containerStyle={{ width: Layout.window.width, height: Layout.window.height / 4 }}
+                            containerStyle={{ width: Layout.window.width, height: Layout.window.height / 4,justifyContent:'flex-start',alignItems:'center' }}
                         //     containerPinStyle={{ width:40, height: 40, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', marginTop: 20 }
                         // }
                         /> : <ScanFinger unlock={unlock} />}

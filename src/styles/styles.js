@@ -20,6 +20,11 @@ export default StyleSheet.create({
     fontFamily: 'Montserrat_medium',
     color: '#000'
   },
+  listItem: {
+    fontSize:fontSize*0.8,
+    fontFamily: 'Montserrat_medium',
+    color: 'darkgrey'
+  },
 
   label: {
     fontSize,
@@ -27,7 +32,7 @@ export default StyleSheet.create({
     color: 'grey'
   },
   value: {
-    fontSize:fontSize * 1.2,
+    fontSize:fontSize * 1.1,
     fontFamily: 'Montserrat_medium',
     color: '#000'
   },

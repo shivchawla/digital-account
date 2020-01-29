@@ -19,8 +19,8 @@ const SetPasscodeScreen = (props) => {
     }
     const checkCode = (code) => {
         console.log(`periksa code`)
-        updateCode(code)
-        return code === '1234'
+        return updateCode(code)
+        //return code === '1234'
     }
 
     return (
@@ -64,7 +64,7 @@ const SetPasscodeScreen = (props) => {
                                 error="Try again" // If user fail (fill '2017' for instance)
                                 autoFocusFirst={true} // disabling auto-focus
                                 keyboardType={'numeric'}
-                                containerStyle={{ width: Layout.window.width, height: Layout.window.height / 4 }}
+                                containerStyle={{ width: Layout.window.width, height: Layout.window.height / 4,justifyContent:'flex-start',alignItems:'center' }}
                                 textStyle={styles.text}
                             //     containerPinStyle={{ width:40, height: 40, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', marginTop: 20 }
                             // }

@@ -41,8 +41,8 @@ const ScanFinger = (props) => {
 
     return (
         <View style={{ width: Layout.window.width,justifyContent:'center',alignItems:'center' }}>
-            <Text>Place Your Finger To Verify</Text>
-            <Image style={{ width: 128, height: 128 }} source={require('../assets/images/fingerprint.png')} />
+            <Text style={{paddingBottom:10}}>Place Your Finger To Verify</Text>
+            <Image style={{ width: 110, height: 110 }} source={require('../assets/images/fingerprint.png')} />
             {failedCount > 0 && (<Text style={{ color: 'red', fontSize: 14 }}>Failed To Verify Yourself. Please Try Again!</Text>)}
         </View>
     );

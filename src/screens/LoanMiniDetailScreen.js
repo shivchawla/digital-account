@@ -56,29 +56,35 @@ const LoanMiniDetailScreen = (props) => {
                 <View style={{ flex: 9 }}>
                     <ScrollView style={[styles.screenMargin, { paddingLeft: 0, paddingRight: 0 }]}>
                         {loanData && <View style={[styles.box, { marginTop: 20 }]}>
-                            <View style={{ marginTop: 5, borderBottomWidth: 1, borderBottomColor: 'lightgrey', paddingBottom: 20 }}>
-                                <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
-                                    <Text style={styles.label}>Application ID</Text>
-                                    {/* <Ionicons name="md-arrow-dropdown" color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} /> */}
-                                </View>
-                                <Text style={styles.value}>{loanData.application_id}</Text>
-                            </View>
+                          
+
+
+
                             <View style={{ flexDirection: 'row', marginTop: 20 }}>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={styles.label}>Application ID</Text>
+                                    <Text style={styles.value}>{loanData.application_id}</Text>
+                                </View>
                                 <View style={{ flex: 1 }}>
                                     <Text style={styles.label}>Status</Text>
                                     <Text style={[styles.value, { color: loanData.status === 'New' ? '#000000' : loanData.status === 'Rejected' ? '#FF0000' : loanData.status === 'Approved' ? '#54A400' : '#FA6400' }]}>{loanData.status}</Text>
                                 </View>
+
+                            </View>
+                            <View style={{ flexDirection: 'row', marginTop: 20 }}>
+                             
                                 <View style={{ flex: 1, alignItems: 'flex-start' }}>
                                     <Text style={styles.label}>Amount</Text>
                                     <Text style={styles.value}>{loanData.total_request}</Text>
                                 </View>
-
-                            </View>
-                            <View style={{ flexDirection: 'row', marginTop: 20 }}>
                                 <View style={{ flex: 1 }}>
                                     <Text style={styles.label}>Type</Text>
                                     <Text style={styles.value}>{loanData.type}</Text>
                                 </View>
+
+                            </View>
+                            <View style={{ flexDirection: 'row', marginTop: 20 }}>
+                               
                                 <View style={{ flex: 1 }}>
                                     <Text style={styles.label}>Reason</Text>
                                     <Text style={styles.value}>{loanData.reason_request}</Text>

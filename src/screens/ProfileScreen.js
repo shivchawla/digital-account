@@ -27,9 +27,9 @@ const ProfileScreen = (props) => {
                     <Text style={[styles.title]}>PROFILE</Text>
                 </View>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
-                    <View style={{ backgroundColor:'rgba(62,194,217,0.5)',borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
-            <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
-          </View>
+                    <View style={{ backgroundColor: 'rgba(62,194,217,0.5)', borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
+                        <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
+                    </View>
                 </View>
             </View>
             <View style={[{ flex: 9 }]}>
@@ -40,7 +40,9 @@ const ProfileScreen = (props) => {
                         </TouchableOpacity>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'flex-start', marginBottom: 10 }}>
-                        <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 90, height: 90, borderWidth: 1, borderColor: '#055E7C' }} />
+                        <View style={{ backgroundColor: 'rgba(62,194,217,0.5)', borderColor: "#3EC2D9", borderWidth: 1, width: 90, height: 90, justifyContent: 'center', alignItems: 'center' }}>
+                            <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 60 }} />
+                        </View>
                     </View>
                     <View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 25 }}>
@@ -67,7 +69,7 @@ const ProfileScreen = (props) => {
                                 <Text style={[styles.boldText]}>Balance</Text>
                             </View>
                             <View style={{ flex: 2 }}>
-                                <Text style={[styles.text, { color: '#055E7C' }]}>{currency} {balance?balance.toFixed(2):'0'}</Text>
+                                <Text style={[styles.text, { color: '#055E7C' }]}>{currency} {balance ? balance.toFixed(2) : '0'}</Text>
                             </View>
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 10 }}>
