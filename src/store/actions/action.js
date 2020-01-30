@@ -8,7 +8,7 @@ import s3 from '../../do/DigitalOcean'
 import config from '../../do/config'
 
 import { requestToken, requestPersonalToken, urlToBlob, registerApi, companyInfoAPI, contactPersonAPI, submitDocApi, declarationApi, cddApi, resendVerificationApi } from './apiRegistration'
-import { paymentHistoryListApi, retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, agingListApi, reportListApi, businessDirectoryListApi, invoiceApi, newExpenseApi, supportApi, customerDataApi, itemDataApi, submitLoanApplicationApi, addBankApi, bankListApi, deleteAllBankApi, notificationListApi, loanApplicationDataApi, submitInvoiceApi, submitSupportApi, withDrawApi, withdrawListApi, vendorListApi, withdrawDataApi, vendorDataApi, vendorDataRetrieveApi, customerListApi, customerDataRetrieveApi, itemListApi, itemDataRetrieveApi, retrieveAccountInfoApi, getAllUsersApi, repaymentListApi, repaymentDetailApi, checkCDDApi2, loanBillListApi, billDetailApi, checkAuthApi, savePinApi, respondAgreementApi } from './apiDashboard'
+import { paymentHistoryListApi, retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, agingListApi, reportListApi, businessDirectoryListApi, invoiceApi, newExpenseApi, supportApi, customerDataApi, itemDataApi, submitLoanApplicationApi, addBankApi, bankListApi, deleteAllBankApi, notificationListApi, loanApplicationDataApi, submitInvoiceApi, submitSupportApi, withDrawApi, withdrawListApi, vendorListApi, withdrawDataApi, vendorDataApi, vendorDataRetrieveApi, customerListApi, customerDataRetrieveApi, itemListApi, itemDataRetrieveApi, retrieveAccountInfoApi, getAllUsersApi, repaymentListApi, repaymentDetailApi, checkCDDApi2, loanBillListApi, billDetailApi, checkAuthApi, savePinApi, respondAgreementApi,retrievePersonalInfoApi,updateExpoTokenApi } from './apiDashboard'
 //import {pusherListen} from './pusher'
 import moment from 'moment'
 
@@ -328,6 +328,13 @@ export const retrieveAccountInfo = () => {
     return (dispatch, getState) => {
         console.log('Dekat retrieve merchant info action')
         dispatch(retrieveAccountInfoApi())
+    }
+}
+
+export const retrievePersonalInfo = () => {
+    return (dispatch, getState) => {
+        console.log('Dekat retrieve personal info action')
+        dispatch(retrievePersonalInfoApi())
     }
 }
 
@@ -865,6 +872,13 @@ export const savePin = (val) => {
     return async (dispatch, getState) => {
         await dispatch({ type: 'SET_AUTH', payload: { ...val } })
         dispatch(savePinApi())
+    }
+}
+
+export const updateExpoToken = () => {
+    return async (dispatch, getState) => {
+       
+        dispatch(updateExpoTokenApi())
     }
 }
 

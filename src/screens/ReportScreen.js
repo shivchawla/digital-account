@@ -99,23 +99,21 @@ const ReportScreen = (props) => {
                             </TouchableOpacity>
                         </View>
                     </View>
-
                     {/* {reportList && <FlatList data={filterEnabled ? filterReportList : onScreenFilter ? onScreenFilteredList : reportList} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
                    */}
-
                     {transactionAndFeeFinal && <FlatList
                     refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
                     onEndReached={val => console.log(`onEndReached ialah : ${JSON.stringify(val)}`)}
                      data={filterEnabled ? transactionAndFeeFinal : onScreenFilter ? transactionAndFeeFinal : transactionAndFeeFinal} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
                         <View style={styles.box}>
                             <View style={{ flex: 1 }}>
-                                <TouchableWithoutFeedback onPress={() => dispatch(actionCreator.setMarkerReportList(index))} style={{ flexDirection: 'row', marginTop: 5 }}>
+                                {/* <TouchableWithoutFeedback onPress={() => dispatch(actionCreator.setMarkerReportList(index))} style={{ flexDirection: 'row', marginTop: 5 }}>
                                     <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
                                         <Text style={[styles.boldText], { flex: 1 }}>{item.transaction_no}</Text>
                                         <Text style={[styles.boldText], { flex: 1 }} numberOfLines={1} ellipsizeMode={'tail'}>{moment(item.updated_at).format('DD/MM/YY h:mm:ss')}</Text>
                                         <Ionicons name={item.marker ? "md-arrow-dropdown" : "md-arrow-dropright"} color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
                                     </View>
-                                </TouchableWithoutFeedback>
+                                </TouchableWithoutFeedback> */}
                                 <View style={{ flexDirection: 'row', marginTop: 5 }}>
                                     <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                                         <Text style={[styles.h3]}>{item.type} ({item.credit_debit})</Text>

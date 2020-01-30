@@ -715,6 +715,41 @@ export const retrieveAccountInfoApi = () => {
   }
 }
 
+export const retrievePersonalInfoApi = () => {
+  return async (dispatch, getState) => {
+    try {
+      //const personalToken = await AsyncStorage.getItem('personalToken');
+      const personalToken = await SecureStore.getItemAsync('personalToken')
+      const { token_type, access_token } = JSON.parse(personalToken)
+
+      fetch(`${apiUrl}api/personal/info`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': token_type + ' ' + access_token
+
+        }
+
+      }).then((response) => response.json())
+        .then(async (responseJson) => {
+          const accountInfo = responseJson.data
+          console.log('personal info ialah' + JSON.stringify(accountInfo))
+          //dispatch({ type: 'SET_USER_PROFILE', payload: { ...accountInfo[0] } })
+          const {email,expo_token}=accountInfo
+          dispatch({ type: 'SET_USER_PROFILE', payload: { email,server_expo_token:expo_token} })
+
+        })
+        .catch((error) => {
+          console.log('Error initiating personal info : ' + error);
+        });
+
+    } catch (err) {
+      console.log(` masalah teragung personal info : ${JSON.stringify(err)}`)
+    }
+  }
+}
+
 export const checkDeclareApi = () => {
   return async (dispatch, getState) => {
 
@@ -1476,6 +1511,36 @@ export const respondAgreementApi = (values) => {
         const { status } = await responseJson
         //await dispatch({ type: 'SET_VENDOR_SUBMIT', payload: { status, proceedMain: true } })
         await console.log(`respondAgreementApi ${JSON.stringify(responseJson)}`)
+      })
+      .catch((error) => {
+        console.error('Error : ' + error);
+      });
+
+  }
+}
+
+
+export const updateExpoTokenApi = () => {
+  return async (dispatch, getState) => {
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+    const {expo_token} = getState().registrationReducer
+    const access_credential = 'api'
+    console.log(`update expo token : ${JSON.stringify(expo_token)}`)
+
+    fetch(`${apiUrl}/api/personal/token/update`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      },
+      body: JSON.stringify({ expo_token, access_credential }),
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const { status } = await responseJson
+        //await dispatch({ type: 'SET_VENDOR_SUBMIT', payload: { status, proceedMain: true } })
+        await console.log(`expo token update ${JSON.stringify(responseJson)}`)
       })
       .catch((error) => {
         console.error('Error : ' + error);

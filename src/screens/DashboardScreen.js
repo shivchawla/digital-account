@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, Text, Image, Modal, ActivityIndicator, FlatList } from 'react-native';
+import { View, TouchableOpacity, Text, Image, Modal, ActivityIndicator, FlatList,ScrollView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
 import Layout from '../constants/Layout'
@@ -12,6 +12,7 @@ import ChartKit from '../components/ChartKit'
 import _ from 'lodash'
 import moment from 'moment'
 import NumberFormat from 'react-number-format';
+
 //import { Number, Currency } from "react-intl-number-format"
 //import { FlatList } from 'react-native-gesture-handler';
 
@@ -88,9 +89,10 @@ const DashboardScreen = (props) => {
   }, [])
   useEffect(() => {
     console.log(`status1 ialah ${status1}`)
-    if (status1 == 'NA') {
+    if (status1 == 'New') {
       runCheckStatus();
     } else if (status1 == 'Approved') {
+      dispatch(actionCreator.retrievePersonalInfo())
       dispatch(actionCreator.retrieveMerchantInfo())
       dispatch(actionCreator.retrieveAccountInfo())
       dispatch(actionCreator.getReportList())
@@ -152,7 +154,6 @@ const DashboardScreen = (props) => {
     console.log(`gabungan ke-8 yang mengasyikkan ${JSON.stringify(listBaru8)}`)
     //listBaru7&&setChartData(listBaru7)
 
-
     /////////TESTING DATE
     var days = ['MO', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
     var goBackDays = chartDay;
@@ -170,7 +171,6 @@ const DashboardScreen = (props) => {
     daysSorted.map(ds => {
       const adaEntry = listBaru8.find(lb8 => moment(lb8.updated_at).isSame(moment(new Date(ds.date)), 'day'))
       adaEntry ? listBaru9.push({ ...adaEntry, day: ds.day }) : listBaru9.push({ update: moment(new Date(ds.date)), ada: 'takde', day: ds.day })
-
 
     })
 
@@ -214,9 +214,6 @@ const DashboardScreen = (props) => {
     return listBaru10
 
   }
-
-
-
 
   const noti = [
     { announcement: 'Happy New Year! Have a pleasant day. We are standing by should you need any assistance', date: '1/1/20' },
@@ -332,7 +329,7 @@ const DashboardScreen = (props) => {
             </View>
           </LinearGradient>
         </View>
-        <View style={{ marginTop: 10 }}>
+        <ScrollView style={{ marginTop: 10 }}>
           <TouchableOpacity onPress={() => props.navigation.navigate('Report')} style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
             <Text style={[styles.h2, { color: '#04A2BD' }]}>Latest Transaction</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -340,27 +337,25 @@ const DashboardScreen = (props) => {
               <Ionicons name="ios-arrow-forward" color={'#04A2BD'} style={{ fontSize: 15, paddingRight: 5 }} />
             </View>
           </TouchableOpacity>
-
-
-         
-
-          {reportList && <FlatList data={reportList.filter(rl => !rl.type.includes('Fee')).slice(0, 3)} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
-            <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'space-between' }}>
+        
+          {reportList && <FlatList data={reportList.filter(rl => !rl.type.includes('Fee')).slice(0, 5)} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
+            <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'space-between',borderBottomWidth:1,borderColor:'rgba(62,194,217,0.2)',paddingBottom:5, }}>
               <View style={{ flexDirection: 'row', }}>
                 <Ionicons name={item.credit_debit == 'DEBIT' ? "md-remove-circle-outline" : "md-add-circle-outline"} color={item.credit_debit == 'DEBIT' ? '#A20F0F' : '#7ED321'} style={{ fontSize: 12, paddingRight: 20, paddingTop: 5 }} />
                 <View>
-                  <Text style={[styles.listItem]}>{item.type} ({item.transaction_no}) </Text>
+                  <Text style={[styles.listItem]}>{item.type}  </Text>
+                  <Text style={[styles.listItem]}> ({item.transaction_no}) </Text>
                   <Text style={[styles.listItem]}>{moment(item.updated_at).format('DD/MM/YY h:mm:ss')}</Text>
                 </View>
               </View>
               <View style={{}}>
-                <Text style={[styles.listItem, { color: item.credit_debit == 'DEBIT' ? '#A20F0F' : '#7ED321' }]}>{item.credit_debit == 'DEBIT' ? '-' : '+'} {item.currency ? item.currency : 'MYR'} {item.amount}</Text>
+                <Text style={[styles.listItem, { color: item.credit_debit == 'DEBIT' ? '#A20F0F' : '#7ED321' }]}>{item.credit_debit == 'DEBIT' ? '-' : '+'} {item.currency ? item.currency : 'MYR'} <NumberFormat value={item.amount.toFixed(2)} displayType={'text'} thousandSeparator={true} prefix={''} renderText={value => <Text>{item.amount.toFixed(2)}</Text>} /></Text>
               </View>
             </View>
           } />}
 
-        </View>
-        <View style={{ marginTop: 20 }}>
+        </ScrollView>
+        {/* <View style={{ marginTop: 20 }}>
           <TouchableOpacity onPress={() => props.navigation.navigate('Notification')} style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
             <Text style={[styles.h2, { color: '#04A2BD' }]}>Latest Notifications</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -379,7 +374,7 @@ const DashboardScreen = (props) => {
               </View>
             </View>
           } />}
-        </View>
+        </View> */}
       </View>
 
     </View>

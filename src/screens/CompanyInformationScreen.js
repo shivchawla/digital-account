@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Text, TouchableOpacity, View, TextInput, KeyboardAvoidingView, ActivityIndicator, DatePickerAndroid } from 'react-native';
+import { Image, Text, TouchableOpacity, View, TextInput, KeyboardAvoidingView, ActivityIndicator, DatePickerAndroid,DatePickerIOS } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
