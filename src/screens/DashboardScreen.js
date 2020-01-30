@@ -295,7 +295,7 @@ const DashboardScreen = (props) => {
           </View>
         </View>
         <TouchableOpacity onPress={() => props.navigation.navigate('Profile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
-          <View style={{ backgroundColor: 'rgba(163, 0, 0, 0.5)', borderColor: "#DE4848", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
+          <View style={{ backgroundColor: 'rgba(62,194,217,0.5)', borderColor: "#DE4848", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
             <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
           </View>
         </TouchableOpacity>
