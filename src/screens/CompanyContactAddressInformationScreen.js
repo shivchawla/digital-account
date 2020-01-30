@@ -87,6 +87,7 @@ const CompanyContactAddressInformationScreen = (props) => {
                             const { City, State } = checkRequirement
                             FormikProps.setFieldValue('comp_city', City)
                             FormikProps.setFieldValue('comp_state', State)
+                            FormikProps.setFieldValue('cddPostcode', cddPostcode)
                             console.log('Ni jalan yang benar')
                         }
                         // const { City, State } = newAddress.find(c => c.Postcode === cddPostcode)

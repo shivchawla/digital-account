@@ -1450,3 +1450,36 @@ export const savePinApi = () => {
 
   }
 }
+
+
+
+
+
+export const respondAgreementApi = (values) => {
+  return async (dispatch, getState) => {
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+    //const values = getState().invoiceReducer
+    const access_credential = 'api'
+    console.log(`Respond : ${JSON.stringify(values)}`)
+
+    fetch(`${apiUrl}/api/repaymentinfo/accept`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      },
+      body: JSON.stringify({ ...values, access_credential }),
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const { status } = await responseJson
+        //await dispatch({ type: 'SET_VENDOR_SUBMIT', payload: { status, proceedMain: true } })
+        await console.log(`respondAgreementApi ${JSON.stringify(responseJson)}`)
+      })
+      .catch((error) => {
+        console.error('Error : ' + error);
+      });
+
+  }
+}

@@ -1,11 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { View, TouchableOpacity, Text, Image, FlatList, ScrollView, TouchableWithoutFeedback, TextInput } from 'react-native';
+import React, { useEffect, useState,useCallback } from 'react';
+import { View, TouchableOpacity, Text, Image, FlatList, TouchableWithoutFeedback, TextInput,RefreshControl } from 'react-native';
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons';
 import moment from 'moment'
 import styles from '../styles/styles'
 import _ from 'lodash'
+
+const wait=(timeout)=> {
+    return new Promise(resolve => {
+        setTimeout(resolve, timeout);
+    });
+}
 
 const ReportScreen = (props) => {
     useEffect(() => {
@@ -15,6 +21,14 @@ const ReportScreen = (props) => {
     const { reportList, filterReportList, filterEnabled } = useSelector(state => state.reportReducer, shallowEqual)
     const [onScreenFilter, setOnScreenFilter] = useState(false)
     const [onScreenFilteredList, setOnScreenFilteredList] = useState([])
+
+    const [refreshing, setRefreshing] = useState(false);
+    const onRefresh = useCallback(() => {
+        console.log(`tengah refresh kettew`)
+        setRefreshing(true);
+        dispatch(actionCreator.getReportList())
+        wait(2000).then(() => setRefreshing(false));
+    }, [refreshing]);
 
     const transactionAndFee = _.values(_.groupBy(reportList, rl => rl.transaction_no)) || 0
     const transactionAndFeeFinal = []
@@ -73,7 +87,7 @@ const ReportScreen = (props) => {
                 </TouchableOpacity>
             </View>
             <View style={{ flex: 9 }}>
-                <ScrollView style={[styles.screenMargin]}>
+                <View style={[styles.screenMargin]}>
                     <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 10, marginTop: 20 }}>
                         <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 10, flex: 1, borderWidth: 1, borderColor: 'lightgrey', padding: 10, borderRadius: 10 }}>
                             <View>
@@ -89,7 +103,10 @@ const ReportScreen = (props) => {
                     {/* {reportList && <FlatList data={filterEnabled ? filterReportList : onScreenFilter ? onScreenFilteredList : reportList} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
                    */}
 
-                    {transactionAndFeeFinal && <FlatList data={filterEnabled ? transactionAndFeeFinal : onScreenFilter ? transactionAndFeeFinal : transactionAndFeeFinal} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
+                    {transactionAndFeeFinal && <FlatList
+                    refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+                    onEndReached={val => console.log(`onEndReached ialah : ${JSON.stringify(val)}`)}
+                     data={filterEnabled ? transactionAndFeeFinal : onScreenFilter ? transactionAndFeeFinal : transactionAndFeeFinal} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
                         <View style={styles.box}>
                             <View style={{ flex: 1 }}>
                                 <TouchableWithoutFeedback onPress={() => dispatch(actionCreator.setMarkerReportList(index))} style={{ flexDirection: 'row', marginTop: 5 }}>
@@ -170,7 +187,7 @@ const ReportScreen = (props) => {
 
                         </View>
                     } />}
-                </ScrollView>
+                </View>
             </View >
         </View >
     );

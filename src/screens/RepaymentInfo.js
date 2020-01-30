@@ -40,6 +40,12 @@ const RepaymentInfo = (props) => {
         setModalVisible(!modalVisible)
     }
 
+    const respondAgreement = (status) => {
+        const id = props.navigation.getParam('repayItemId', 'NA')
+        const value = { id, status }
+        dispatch(actionCreator.respondAgreement(value))
+        props.navigation.navigate('Loan')
+    }
     return (
 
         <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }}>
@@ -161,130 +167,6 @@ const RepaymentInfo = (props) => {
                                 </View>
                             } />}
                         </View>
-                        {/* <View style={{ flex: 9, justifyContent: 'flex-end' }}>
-                            <ScrollView style={[styles.screenMargin]}>
-                                <TouchableOpacity onPress={() => console.log('wow')} style={styles.box}>
-                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                        <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
-                                            <Text style={styles.small}>RP0002</Text>
-                                            <Ionicons name="md-arrow-dropright" color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
-                                        </View>
-                                    </View>
-                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={styles.small}>Date</Text>
-                                        </View>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={styles.small}>20/03/19</Text>
-                                        </View>
-                                    </View>
-                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={styles.small}>Type</Text>
-                                        </View>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={styles.small}>Auto</Text>
-                                        </View>
-                                    </View>
-                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={styles.small}>Amount</Text>
-                                        </View>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={styles.small}>122.60</Text>
-                                        </View>
-                                    </View>
-                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={styles.small}>Balance</Text>
-                                        </View>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={styles.small}>8000</Text>
-                                        </View>
-                                    </View>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={() => console.log('wow')} style={styles.box}>
-                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                        <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
-                                            <Text style={styles.small}>RP0002</Text>
-                                            <Ionicons name="md-arrow-dropright" color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
-                                        </View>
-                                    </View>
-                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={styles.small}>Date</Text>
-                                        </View>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={styles.small}>20/03/19</Text>
-                                        </View>
-                                    </View>
-                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={styles.small}>Type</Text>
-                                        </View>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={styles.small}>Auto</Text>
-                                        </View>
-                                    </View>
-                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={styles.small}>Amount</Text>
-                                        </View>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={styles.small}>122.60</Text>
-                                        </View>
-                                    </View>
-                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={styles.small}>Balance</Text>
-                                        </View>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={styles.small}>8000</Text>
-                                        </View>
-                                    </View>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={() => console.log('wow')} style={styles.box}>
-                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                        <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
-                                            <Text style={styles.small}>RP0002</Text>
-                                            <Ionicons name="md-arrow-dropright" color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
-                                        </View>
-                                    </View>
-                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={styles.small}>Date</Text>
-                                        </View>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={styles.small}>20/03/19</Text>
-                                        </View>
-                                    </View>
-                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={styles.small}>Type</Text>
-                                        </View>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={styles.small}>Auto</Text>
-                                        </View>
-                                    </View>
-                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={styles.small}>Amount</Text>
-                                        </View>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={styles.small}>122.60</Text>
-                                        </View>
-                                    </View>
-                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={styles.small}>Balance</Text>
-                                        </View>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={styles.small}>8000</Text>
-                                        </View>
-                                    </View>
-                                </TouchableOpacity>
-                            </ScrollView>
-                        </View> */}
                     </View>}
             </Modal>
             <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
@@ -338,14 +220,25 @@ const RepaymentInfo = (props) => {
                             <Text style={[styles.label, { marginBottom: 5 }]}>Payment Method</Text>
                             <Text style={[styles.value, { marginBottom: 5 }]}>{repaymentDetail.payment_method}</Text>
                         </View>
-                        < View style={{ flexDirection: 'row', margin: 5, justifyContent: 'center' }}>
-                            <TouchableOpacity onPress={() => openModal('history')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, borderColor: 'black', borderWidth: 1 }}>
-                                <Text style={[styles.textDefault, { color: 'black' }]}>History</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={() => openModal('pay')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }} >
-                                <Text style={[styles.textDefault, { color: '#fff' }]}>Pay</Text>
-                            </TouchableOpacity>
-                        </View>
+
+                        {repaymentDetail.status == 'Pending' ?
+                            < View style={{ flexDirection: 'row', margin: 5, justifyContent: 'center' }}>
+                                <TouchableOpacity onPress={() => respondAgreement('Accept')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, borderColor: 'black', borderWidth: 1 }}>
+                                    <Text style={[styles.textDefault, { color: 'black' }]}>Accept</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => respondAgreement('Reject')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, borderColor: 'black', borderWidth: 1 }}>
+                                    <Text style={[styles.textDefault, { color: 'black' }]}>Reject</Text>
+                                </TouchableOpacity>
+                            </View> :
+                            < View style={{ flexDirection: 'row', margin: 5, justifyContent: 'center' }}>
+                                <TouchableOpacity onPress={() => openModal('history')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, borderColor: 'black', borderWidth: 1 }}>
+                                    <Text style={[styles.textDefault, { color: 'black' }]}>History</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => openModal('pay')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }} >
+                                    <Text style={[styles.textDefault, { color: '#fff' }]}>Pay</Text>
+                                </TouchableOpacity>
+                            </View>}
+
                     </ScrollView>}
                 </View>
             </View>

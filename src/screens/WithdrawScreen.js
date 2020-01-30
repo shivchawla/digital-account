@@ -6,7 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import moment from 'moment'
 import styles from '../styles/styles'
 
-function wait(timeout) {
+const wait=(timeout)=> {
     return new Promise(resolve => {
         setTimeout(resolve, timeout);
     });
@@ -29,6 +29,7 @@ const WithdrawScreen = (props) => {
     const onRefresh = useCallback(() => {
         console.log(`tengah refresh kettew`)
         setRefreshing(true);
+        dispatch(actionCreator.getWithdrawList())
         wait(2000).then(() => setRefreshing(false));
     }, [refreshing]);
 

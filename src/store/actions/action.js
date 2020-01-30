@@ -8,7 +8,7 @@ import s3 from '../../do/DigitalOcean'
 import config from '../../do/config'
 
 import { requestToken, requestPersonalToken, urlToBlob, registerApi, companyInfoAPI, contactPersonAPI, submitDocApi, declarationApi, cddApi, resendVerificationApi } from './apiRegistration'
-import { paymentHistoryListApi, retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, agingListApi, reportListApi, businessDirectoryListApi, invoiceApi, newExpenseApi, supportApi, customerDataApi, itemDataApi, submitLoanApplicationApi, addBankApi, bankListApi, deleteAllBankApi, notificationListApi, loanApplicationDataApi, submitInvoiceApi, submitSupportApi, withDrawApi, withdrawListApi, vendorListApi, withdrawDataApi, vendorDataApi, vendorDataRetrieveApi, customerListApi, customerDataRetrieveApi, itemListApi, itemDataRetrieveApi, retrieveAccountInfoApi, getAllUsersApi, repaymentListApi, repaymentDetailApi, checkCDDApi2, loanBillListApi, billDetailApi, checkAuthApi, savePinApi } from './apiDashboard'
+import { paymentHistoryListApi, retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, agingListApi, reportListApi, businessDirectoryListApi, invoiceApi, newExpenseApi, supportApi, customerDataApi, itemDataApi, submitLoanApplicationApi, addBankApi, bankListApi, deleteAllBankApi, notificationListApi, loanApplicationDataApi, submitInvoiceApi, submitSupportApi, withDrawApi, withdrawListApi, vendorListApi, withdrawDataApi, vendorDataApi, vendorDataRetrieveApi, customerListApi, customerDataRetrieveApi, itemListApi, itemDataRetrieveApi, retrieveAccountInfoApi, getAllUsersApi, repaymentListApi, repaymentDetailApi, checkCDDApi2, loanBillListApi, billDetailApi, checkAuthApi, savePinApi, respondAgreementApi } from './apiDashboard'
 //import {pusherListen} from './pusher'
 import moment from 'moment'
 
@@ -611,6 +611,8 @@ export const getLoanList = () => {
 
     return (dispatch, getState) => {
         dispatch(loanListApi())
+        dispatch({ type: 'RESET_EMAIL_VERIFIED', payload: { loanApproved: null, loanDisbursed: null, email: null } })
+
 
     }
 }
@@ -668,6 +670,7 @@ export const getWithdrawList = () => {
 
     return (dispatch, getState) => {
         dispatch(withdrawListApi())
+        dispatch({ type: 'RESET_EMAIL_VERIFIED', payload: { withdrawalsDisbursed: null, withdrawalsApproved: null, email: null } })
 
     }
 }
@@ -862,5 +865,12 @@ export const savePin = (val) => {
     return async (dispatch, getState) => {
         await dispatch({ type: 'SET_AUTH', payload: { ...val } })
         dispatch(savePinApi())
+    }
+}
+
+export const respondAgreement = (answer) => {
+    return async (dispatch, getState) => {
+        console.log(`kat action respondagreement : ${JSON.stringify(answer)}`)
+        dispatch(respondAgreementApi(answer))
     }
 }

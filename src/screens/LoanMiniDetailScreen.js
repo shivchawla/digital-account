@@ -35,7 +35,6 @@ const LoanMiniDetailScreen = (props) => {
     }
 
     return (
-
         <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }}>
             <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
@@ -56,10 +55,6 @@ const LoanMiniDetailScreen = (props) => {
                 <View style={{ flex: 9 }}>
                     <ScrollView style={[styles.screenMargin, { paddingLeft: 0, paddingRight: 0 }]}>
                         {loanData && <View style={[styles.box, { marginTop: 20 }]}>
-                          
-
-
-
                             <View style={{ flexDirection: 'row', marginTop: 20 }}>
                                 <View style={{ flex: 1 }}>
                                     <Text style={styles.label}>Application ID</Text>
@@ -69,10 +64,8 @@ const LoanMiniDetailScreen = (props) => {
                                     <Text style={styles.label}>Status</Text>
                                     <Text style={[styles.value, { color: loanData.status === 'New' ? '#000000' : loanData.status === 'Rejected' ? '#FF0000' : loanData.status === 'Approved' ? '#54A400' : '#FA6400' }]}>{loanData.status}</Text>
                                 </View>
-
                             </View>
                             <View style={{ flexDirection: 'row', marginTop: 20 }}>
-                             
                                 <View style={{ flex: 1, alignItems: 'flex-start' }}>
                                     <Text style={styles.label}>Amount</Text>
                                     <Text style={styles.value}>{loanData.total_request}</Text>
@@ -81,27 +74,33 @@ const LoanMiniDetailScreen = (props) => {
                                     <Text style={styles.label}>Type</Text>
                                     <Text style={styles.value}>{loanData.type}</Text>
                                 </View>
-
                             </View>
                             <View style={{ flexDirection: 'row', marginTop: 20 }}>
-                               
                                 <View style={{ flex: 1 }}>
                                     <Text style={styles.label}>Reason</Text>
                                     <Text style={styles.value}>{loanData.reason_request}</Text>
                                 </View>
                             </View>
+                            {loanData.status === 'Approved' &&
+                                <View style={{ flexDirection: 'row', marginTop: 20 }}>
+                                    <View style={{ flex: 1 }}>
+                                        <Text style={styles.small}>Your account will be credited once you agree on the Repayment terms</Text>
+                                    </View>
+                                </View>}
+
                             <View style={{ marginTop: 20 }}>
                                 <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', justifyContent: 'flex-end' }}>
                                     <View style={{ alignItems: 'flex-end', marginTop: 20 }} >
                                         <TouchableOpacity onPress={() => props.navigation.navigate('LoanDetail')} style={{ marginTop: 10, paddingLeft: 20, paddingRight: 20, paddingTop: 5, paddingBottom: 5, borderRadius: 20, borderWidth: 1 }}>
                                             <Text style={styles.small}>See application</Text>
                                         </TouchableOpacity>
-                                        {repaymentList && repaymentList.find(x => x.application_id == loanData.id) && <TouchableOpacity onPress={() => repayInfo()} style={{ marginTop: 10, paddingLeft: 20, paddingRight: 20, paddingTop: 5, paddingBottom: 5, borderRadius: 20, borderWidth: 1 }}>
+                                        {loanData.status !== 'New' ?repaymentList && repaymentList.find(x => x.application_id == loanData.id) && <TouchableOpacity onPress={() => repayInfo()} style={{ marginTop: 10, paddingLeft: 20, paddingRight: 20, paddingTop: 5, paddingBottom: 5, borderRadius: 20, borderWidth: 1 }}>
                                             <Text style={styles.small}>Repayment info </Text>
-                                        </TouchableOpacity>}
-                                        {repaymentList && repaymentList.find(x => x.application_id == loanData.id) && <TouchableOpacity onPress={() => billList()} style={{ marginTop: 10, paddingLeft: 20, paddingRight: 20, paddingTop: 5, paddingBottom: 5, borderRadius: 20, backgroundColor: '#34C2DB' }}>
+                                        </TouchableOpacity>:<View />}
+                                        {loanData.status === 'Disbursed' ? repaymentList && repaymentList.find(x => x.application_id == loanData.id) && <TouchableOpacity onPress={() => billList()} style={{ marginTop: 10, paddingLeft: 20, paddingRight: 20, paddingTop: 5, paddingBottom: 5, borderRadius: 20, backgroundColor: '#34C2DB' }}>
                                             <Text style={[styles.small, { color: '#fff' }]}>Bill</Text>
-                                        </TouchableOpacity>}
+                                        </TouchableOpacity> : <View />}
+
                                     </View>
                                 </View>
                             </View>

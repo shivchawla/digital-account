@@ -10,7 +10,6 @@ import { ScrollView } from 'react-native-gesture-handler';
 const LoanDetailScreen = (props) => {
 
     const { loanData } = useSelector(state => state.loanApplicationReducer, shallowEqual)
-
     const { isDeclaration1, isDeclaration2, isDeclaration3, isDeclaration4, isDeclaration5, isDeclaration6 } = loanData
 
     return (

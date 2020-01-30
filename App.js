@@ -12,6 +12,9 @@ import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import rootReducer from './src/store/reducers/Reducer';
+
+//import * as actionCreator from '../store/actions/action'
+import * as actionCreator from './src/store/actions/action'
 const store = createStore(rootReducer, applyMiddleware(thunk))
 const App = (props) => {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
@@ -68,6 +71,15 @@ const App = (props) => {
     console.log(`notification received ${JSON.stringify(notification)}`)
     const { data } = notification
     store.dispatch({ type: 'SET_NOTIFICATION_LIST', payload: { ...data } })
+    const { withdrawalsApproved, withdrawalsDisbursed, loanApproved, loanDisbursed, email } = data
+    if (withdrawalsApproved || withdrawalsDisbursed) {
+      store.dispatch(actionCreator.getWithdrawList())
+    }
+
+    if (loanApproved || loanDisbursed) {
+      store.dispatch(actionCreator.getLoanList())
+    }
+
     //store.dispatch({ type: 'SET_NOTIFICATION', payload: { notification } })
   };
 
@@ -77,6 +89,7 @@ const App = (props) => {
     registerForPushNotificationsAsync();
     _notificationSubscription = Notifications.addListener(_handleNotification);
     checkLogin()
+
   }, [])
 
   if (!isLoadingComplete && !props.skipLoadingScreen) {

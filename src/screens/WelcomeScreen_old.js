@@ -13,9 +13,7 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'
 import Constants from 'expo-constants'
-
 import Layout from '../constants/Layout'
-
 import styles from '../styles/styles'
 
 class WelcomeScreen extends React.PureComponent {
