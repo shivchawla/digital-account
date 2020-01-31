@@ -308,14 +308,13 @@ const DashboardScreen = (props) => {
           <Text style={[styles.text]}>Withdrawal</Text>
         </TouchableOpacity>
       </View>
-      <View style={[styles.screenMargin, { flex: 9 }]}>
-        <View style={{ marginBottom: 15 }}>
+      <View style={[ { flex: 9 }]}>
+        <View style={[styles.screenMargin,{ marginBottom: 15 }]}>
           <LinearGradient colors={['#055E7C', '#055E7C']} style={{ paddingTop: 5, paddingBottom: 5, alignItems: 'center', borderRadius: 10, height: Layout.window.height / 3 }}>
             <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
               <TouchableOpacity onPress={() => changeChartDay()}>
                 <Ionicons name="ios-arrow-back" color={'#fff'} style={{ fontSize: 23, paddingLeft: 30 }} />
               </TouchableOpacity>
-
               <Text style={[styles.text, { color: '#fff' }]}>{chartDay === 7 ? 'PAST 7 DAYS' : 'PAST 30 DAYS'}</Text>
               <TouchableOpacity onPress={() => changeChartDay()}>
                 <Ionicons name="ios-arrow-forward" color={'#fff'} style={{ fontSize: 23, paddingRight: 30 }} />
@@ -330,7 +329,7 @@ const DashboardScreen = (props) => {
           </LinearGradient>
         </View>
         <ScrollView style={{ marginTop: 10 }}>
-          <TouchableOpacity onPress={() => props.navigation.navigate('Report')} style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          <TouchableOpacity onPress={() => props.navigation.navigate('Report')} style={[styles.screenMargin,{ flexDirection: 'row', justifyContent: 'space-between', }]}>
             <Text style={[styles.h2, { color: '#04A2BD' }]}>Latest Transaction</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <Text style={[styles.small, { paddingRight: 5, color: '#04A2BD' }]}>More</Text>
@@ -339,7 +338,7 @@ const DashboardScreen = (props) => {
           </TouchableOpacity>
         
           {reportList && <FlatList data={reportList.filter(rl => !rl.type.includes('Fee')).slice(0, 5)} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
-            <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'space-between',borderBottomWidth:1,borderColor:'rgba(62,194,217,0.2)',paddingBottom:5, }}>
+            <View style={[styles.screenMargin,{ flexDirection: 'row', marginTop: 5, justifyContent: 'space-between',borderBottomWidth:1,borderColor:'rgba(62,194,217,0.2)',paddingBottom:5, }]}>
               <View style={{ flexDirection: 'row', }}>
                 <Ionicons name={item.credit_debit == 'DEBIT' ? "md-remove-circle-outline" : "md-add-circle-outline"} color={item.credit_debit == 'DEBIT' ? '#A20F0F' : '#7ED321'} style={{ fontSize: 12, paddingRight: 20, paddingTop: 5 }} />
                 <View>
