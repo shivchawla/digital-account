@@ -101,11 +101,11 @@ const CompanyInformationScreen = (props) => {
                                         </TouchableOpacity>
                                     </View>
                                     <View style={{ flex: 4, justifyContent: 'center', alignItems: 'center' }}>
-                                        <Text style={[styles.title, { color: '#055E7C' }]}>Select</Text>
+                                        <Text style={[styles.title, { color: '#055E7C' }]}>Select Date</Text>
                                     </View>
                                 </View>
                                 <View style={{ flex: 9, justifyContent: 'flex-start' }}>
-                                    <Text>Test</Text>
+                                    
                                     <DatePickerIOS
                                         mode={'date'}
                                         date={chosenDate}

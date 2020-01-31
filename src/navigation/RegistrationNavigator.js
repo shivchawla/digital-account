@@ -17,10 +17,10 @@ import RegistrationDeclarationScreen from '../screens/RegistrationDeclarationScr
 import AdminApprovalScreen from '../screens/AdminApprovalScreen';
 
 const Registration = createStackNavigator({
-  // Intro: IntroScreen,
-  // Agreement: AgreementScreen,
-  // SignUpPersonal: SignupPersonalScreen,
-  // SignUpPersonalSuccess: SignupPersonalSuccessScreen,
+  Intro: IntroScreen,
+  Agreement: AgreementScreen,
+  SignUpPersonal: SignupPersonalScreen,
+  SignUpPersonalSuccess: SignupPersonalSuccessScreen,
   CompanyInformation: CompanyInformationScreen,
   CompanyContactInformation: CompanyContactInformationScreen,
   CompanyInfoSuccess: CompanyInfoSuccessScreen,
