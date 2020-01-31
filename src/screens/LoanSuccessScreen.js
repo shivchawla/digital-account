@@ -21,7 +21,7 @@ const LoanSuccessScreen = (props) => {
     return (
 
         <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
-            {true ? <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0 }}>
+            {status ? <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0 }}>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 <View style={{ flex: 1, justifyContent: 'flex-end' }}>
                             <Image source={require('../assets/images/logo.png')} style={{ height: Layout.window.height * 0.2, width: Layout.window.width * 0.5 }} resizeMode={'contain'} />
