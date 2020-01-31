@@ -120,7 +120,7 @@ const WIthdrawApplicationScreen = (props) => {
                 }
 
                 return (
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }}>
+                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }}keyboardVerticalOffset={20}>
                         <Modal transparent={true} animationType={'slide'} visible={authRequestVisible} onRequestClose={() => setAuthRequestVisible(!authRequestVisible)} >
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(1,1,1,0.5)' }}>
                                 <View style={{ flex: 3 }} />
@@ -138,6 +138,7 @@ const WIthdrawApplicationScreen = (props) => {
                                 </View>
                             </View>
                         </Modal>
+                        <View style = {{flex:1}}>
                         <Modal animationType={'slide'} visible={iosPickerVisible} presentationStyle={'pageSheet'} onRequestClose={() => console.log('modal closed')}                      >
                             <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
                                 <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4', marginBottom: 25 }]}>
@@ -252,7 +253,7 @@ const WIthdrawApplicationScreen = (props) => {
                                     </View>
                                 </ScrollView>
                             </View>
-                            <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
+                            <View style={{flexDirection: 'row', alignSelf: 'stretch' }}>
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1, paddingTop: 20, paddingBottom: 20, justifyContent: 'center', alignItems: 'center' }}>
                                     <Text style={[styles.butang, { color: '#000000' }]}>Back</Text>
                                 </TouchableOpacity>
@@ -262,6 +263,7 @@ const WIthdrawApplicationScreen = (props) => {
                                         {authEnabled ? locked ? <Ionicons name='ios-lock' color={'#fff'} style={{ fontSize: 30, paddingLeft: 20 }} /> : <View /> : <View />}
                                     </LinearGradient>
                                 </TouchableOpacity>
+                            </View>
                             </View>
                         </View>
                     </KeyboardAvoidingView>)
