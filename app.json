@@ -21,7 +21,8 @@
         "CAMERA_ROLL",
         "WRITE_EXTERNAL_STORAGE",
         "READ_EXTERNAL_STORAGE",
-        "INTERNET"
+        "INTERNET",
+        "USE_FINGERPRINT"
       ]
     },
     "version": "1.0.0",
