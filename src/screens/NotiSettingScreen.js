@@ -10,7 +10,7 @@ const NotiSettingScreen = (props) => {
     const dispatch = useDispatch()
     const { expo_token } = useSelector(state => state.registrationReducer, shallowEqual)
 
-    const { email, server_expo_token } = useSelector(state => state.myAccountReducer, shallowEqual)
+    const { email, server_expo_token } = useSelector(state => state.personalInformationScreenReducer, shallowEqual)
     const updateExpoToken = () => {
         dispatch(actionCreator.updateExpoToken())
         dispatch(actionCreator.retrievePersonalInfo())
