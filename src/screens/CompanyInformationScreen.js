@@ -1,11 +1,14 @@
-import React from 'react';
-import { Image, Text, TouchableOpacity, View, TextInput, KeyboardAvoidingView, ActivityIndicator, DatePickerAndroid,DatePickerIOS } from 'react-native';
+import React, { useState } from 'react';
+import { Image, Text, TouchableOpacity, View, TextInput, KeyboardAvoidingView, ActivityIndicator, DatePickerAndroid, DatePickerIOS, Platform, Modal } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import styles from '../styles/styles'
 import { useDispatch } from 'react-redux'
 import * as actionCreator from '../store/actions/action'
+import Constants from 'expo-constants';
+import { Ionicons } from '@expo/vector-icons';
+import moment from 'moment'
 
 const validationSchema = Yup.object().shape({
 
@@ -29,6 +32,9 @@ const validationSchema = Yup.object().shape({
 
 const CompanyInformationScreen = (props) => {
 
+    const [iosDatePickerShow, setIosDatePickerShow] = useState(false)
+    const [chosenDate, setChosenDate] = useState(new Date())
+
     const dispatch = useDispatch()
     const companyInfo = (values) => {
         dispatch(actionCreator.companyInfo(values))
@@ -46,19 +52,24 @@ const CompanyInformationScreen = (props) => {
         >
             {FormikProps => {
                 const datePicker = async () => {
-                    try {
-                        const { action, year, month, day } = await DatePickerAndroid.open({
-                            // Use `new Date()` for current date.
-                            // May 25 2020. Month 0 is January.
-                            date: new Date(2020, 4, 25),
-                        });
-                        if (action !== DatePickerAndroid.dismissedAction) {
-                            // Selected year, month (0-11), day
-                            FormikProps.setFieldValue('cddRegisteredDate', `${year}-${month}-${day}`)
+                    if (Platform.OS === 'android') {
+                        try {
+                            const { action, year, month, day } = await DatePickerAndroid.open({
+                                // Use `new Date()` for current date.
+                                // May 25 2020. Month 0 is January.
+                                date: new Date(2020, 4, 25),
+                            });
+                            if (action !== DatePickerAndroid.dismissedAction) {
+                                // Selected year, month (0-11), day
+                                FormikProps.setFieldValue('cddRegisteredDate', `${year}-${month}-${day}`)
+                            }
+                        } catch ({ code, message }) {
+                            console.warn('Cannot open date picker', message);
                         }
-                    } catch ({ code, message }) {
-                        console.warn('Cannot open date picker', message);
+                    } else {
+                        setIosDatePickerShow(true)
                     }
+
                 }
 
                 const { cddCompanyName, cddRegistrationNumber, cddRegisteredDate } = FormikProps.values
@@ -75,6 +86,35 @@ const CompanyInformationScreen = (props) => {
                 return (
 
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }}>
+                        <Modal
+                            animationType="slide"
+                            transparent={false}
+                            visible={iosDatePickerShow}
+                            onRequestClose={() => {
+                                console.log(`test`)
+                            }}>
+                            <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
+                                <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4', marginBottom: 25 }]}>
+                                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
+                                        <TouchableOpacity onPress={() => setIosDatePickerShow(!iosDatePickerShow)} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
+                                            <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 20 }} />
+                                        </TouchableOpacity>
+                                    </View>
+                                    <View style={{ flex: 4, justifyContent: 'center', alignItems: 'center' }}>
+                                        <Text style={[styles.title, { color: '#055E7C' }]}>Select</Text>
+                                    </View>
+                                </View>
+                                <View style={{ flex: 9, justifyContent: 'flex-start' }}>
+                                    <Text>Test</Text>
+                                    <DatePickerIOS
+                                        mode={'date'}
+                                        date={chosenDate}
+                                        //onDateChange={()FormikProps.setFieldValue('cddRegisteredDate', `${year}-${month}-${day}`)}
+                                        onDateChange={(val) => FormikProps.setFieldValue('cddRegisteredDate', moment(val).format(`Y-M-D`))}
+                                    />
+                                </View>
+                            </View>
+                        </Modal>
                         <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4', marginBottom: 25 }]}>
                             <View style={{ flex: 3, justifyContent: 'center', alignItems: 'flex-start', paddingLeft: 10 }}>
                                 <Text numberOfLines={1} style={[styles.title]} ellipsizeMode='tail'>COMPANY INFO</Text>
@@ -90,6 +130,7 @@ const CompanyInformationScreen = (props) => {
                                     <TextInput value={cddCompanyName} onBlur={FormikProps.handleBlur('cddCompanyName')} onChangeText={FormikProps.handleChange('cddCompanyName')} placeholder={cddCompanyNameTouched && cddCompanyNameError ? '' : 'Eg: Syarikat ABC Sdn Bhd'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
                                     {cddCompanyNameTouched && cddCompanyNameError && <Text style={styles.error}>{cddCompanyNameError}</Text>}
                                 </View>
+
                                 <View style={[styles.formElement]}>
                                     <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: cddRegistrationNumberTouched && cddRegistrationNumberError ? '#d94498' : '#5a83c2' }]}>Registration Number</Text>
                                     <TextInput value={cddRegistrationNumber} onBlur={FormikProps.handleBlur('cddRegistrationNumber')} onChangeText={FormikProps.handleChange('cddRegistrationNumber')} placeholder={cddRegistrationNumberTouched && cddRegistrationNumberError ? '' : 'Eg: 105015-A'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
