@@ -155,10 +155,11 @@ const DashboardScreen = (props) => {
     //listBaru7&&setChartData(listBaru7)
 
     /////////TESTING DATE
-    var days = ['MO', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
+    var days = ['SU','MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
     var goBackDays = chartDay;
 
-    var today = new Date();
+    var today = new Date(moment().add(1, 'days')); // temporary get date ahead one day, to remove later 
+    
     var daysSorted = [];
 
     for (var i = 0; i < goBackDays; i++) {
@@ -176,10 +177,12 @@ const DashboardScreen = (props) => {
 
 
     const last = listBaru9[listBaru9.length - 1]
+    console.log(`last ialah ${JSON.stringify(last)}`)
 
     if (last.ada == 'takde') {
 
       const start = listBaru8.find(n => moment(n.updated_at) < moment(last.update)) || listBaru6.find(n => moment(n.updated_at) < moment(last.update))
+      
       console.log(`start ialah : ${JSON.stringify(start)}`)
       listBaru9[listBaru9.length - 1].balance = _.isArray(start) ? start[start.length - 1].balance : 0
     }
