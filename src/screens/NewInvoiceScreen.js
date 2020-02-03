@@ -193,7 +193,7 @@ const NewInvoiceScreen = (props) => {
 
                 return (
 
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }}>
+                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }} keyboardVerticalOffset={20} >
                         <Modal animationType={'slide'}
                             visible={iosPickerVisible} onRequestClose={() => FormikProps.setFieldValue('dueDate', tarikh.toString())}
                         >
@@ -323,7 +323,7 @@ const NewInvoiceScreen = (props) => {
                                     </View>}
                                 </ScrollView>
                             </View>
-                            <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
+                            <View style={{  flexDirection: 'row', alignSelf: 'stretch' }}>
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1, paddingTop: 20, paddingBottom: 20, justifyContent: 'center', alignItems: 'center' }}>
                                         
                                             <Text style={[styles.butang, { color: '#000000' }]}>Back</Text>
