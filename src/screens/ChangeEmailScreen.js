@@ -49,7 +49,7 @@ const ChangeEmailScreen = (props) => {
                             <View style={[styles.screenMargin, { flex: 3 }]}>
                                 <View style={[styles.formElement]}>
                                     <Text style={[styles.titleBox, { marginBottom: 10, marginTop: 20 }]}>New Email Address</Text>
-                                    <TextInput value={newEmail} onChangeText={FormikProps.handleChange('newEmail')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={'pertanyaan@syarikatmurni.my'} />
+                                    <TextInput value={newEmail} onChangeText={FormikProps.handleChange('newEmail')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={'new@email.com'} />
                                 </View>
                                 <View style={[styles.formElement]}>
                                     <Text style={[styles.titleBox, { marginBottom: 10 }]}>Password</Text>
