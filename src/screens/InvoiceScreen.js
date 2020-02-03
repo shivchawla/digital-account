@@ -46,19 +46,16 @@ const InvoiceScreen = (props) => {
                     <Text style={[styles.title]}>INVOICE</Text>
                 </View>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
-                    <View style={{ backgroundColor:'rgba(62,194,217,0.5)',borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
-            <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
-          </View>
+                    <View style={{ backgroundColor: 'rgba(62,194,217,0.5)', borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
+                        <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
+                    </View>
                 </View>
             </View>
             <View style={{ flex: 9 }}>
                 <ScrollView style={[styles.screenMargin]}>
-                    <View style={{ marginTop: 25, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around' }}>
+                    <View style={{ marginTop: 25, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end' }}>
                         <TouchableOpacity onPress={() => props.navigation.navigate('NewInvoice')} style={{ paddingTop: 5, paddingBottom: 5, paddingLeft: 20, paddingRight: 20, backgroundColor: '#34C2DB', borderRadius: 20 }}>
                             <Text style={[styles.text, { color: '#fff' }]}>New Invoice</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => props.navigation.navigate('Aging')} style={{ paddingTop: 5, paddingBottom: 5, paddingLeft: 20, paddingRight: 20, backgroundColor: '#055E7C', borderRadius: 20 }}>
-                            <Text style={[styles.text, { color: '#fff' }]}>Aging Report</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={{ marginTop: 20 }}>
