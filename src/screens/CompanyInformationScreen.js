@@ -110,7 +110,8 @@ const CompanyInformationScreen = (props) => {
                                         mode={'date'}
                                         date={chosenDate}
                                         //onDateChange={()FormikProps.setFieldValue('cddRegisteredDate', `${year}-${month}-${day}`)}
-                                        onDateChange={(val) => FormikProps.setFieldValue('cddRegisteredDate', moment(val).format(`Y-M-D`))}
+                                        onDateChange={(val) => {FormikProps.setFieldValue('cddRegisteredDate', moment(val).format(`Y-M-D`))
+                                    setChosenDate(val)}}
                                     />
                                 </View>
                             </View>
