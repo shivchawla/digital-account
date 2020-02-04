@@ -249,7 +249,7 @@ const NewInvoiceScreen = (props) => {
                                     <View style={{ margin: 5 }} />
                                     {ios ? <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
                                         <Text style={[styles.titleBox], { marginTop: 20 }}>Invoice Type</Text>
-                                        <TouchableOpacity onPress={() => handleIosPicker('invoiceType')}>
+                                        <TouchableOpacity style={{paddingTop:10}} onPress={() => handleIosPicker('invoiceType')}>
                                             <Text style={[styles.small, { color: '#0A6496' }]}>{invoiceType == 1 ? 'To Customer' : invoiceType == 2 ? 'From Vendor' : 'Select invoiceType'}</Text>
                                         </TouchableOpacity>
                                     </View> : <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
@@ -268,7 +268,7 @@ const NewInvoiceScreen = (props) => {
                                         <View>
                                             {ios ? <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
                                                 <Text style={[styles.titleBox], { marginTop: 20 }}>Category</Text>
-                                                <TouchableOpacity onPress={() => handleIosPicker('category')}>
+                                                <TouchableOpacity style={{paddingTop:10}} onPress={() => handleIosPicker('category')}>
                                                     <Text style={[styles.small, { color: '#0A6496' }]}>{category===2 ?'Deposit':category===3 ?'Sales':category===2 ?'Others':'Select Category'}</Text>
                                                 </TouchableOpacity>
                                             </View> :
@@ -311,7 +311,7 @@ const NewInvoiceScreen = (props) => {
                                             {ios ? <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
                                                 <Text style={[styles.titleBox], { marginBottom: 10 }}>{invoice == 1 ? 'Customer' : 'Vendor'}</Text>
 
-                                                <TouchableOpacity onPress={() => handleIosPicker('entity')}>
+                                                <TouchableOpacity style={{paddingTop:10}} onPress={() => handleIosPicker('entity')}>
                                                     <Text style={[styles.small, { color: '#0A6496' }]}>{entityId ? `Change ${invoice == 1 ? 'Customer' : 'Vendor'}` : `Select ${invoice == 1 ? 'Customer' : 'Vendor'}`}</Text>
                                                 </TouchableOpacity>
                                             </View> :
