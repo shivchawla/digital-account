@@ -198,16 +198,17 @@ const NewInvoiceScreen = (props) => {
                             visible={iosPickerVisible} onRequestClose={() => FormikProps.setFieldValue('dueDate', tarikh.toString())}
                         >
                             <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
-                                <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4', marginBottom: 25 }]}>
-                                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
-                                        <TouchableOpacity onPress={() => setIosPickerVisible(!iosPickerVisible)} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                                            <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 10 }} />
-                                        </TouchableOpacity>
-                                    </View>
-                                    <View style={{ flex: 4, justifyContent: 'center', alignItems: 'center' }}>
-                                        <Text style={[styles.title, { color: '#055E7C' }]}>Select</Text>
-                                    </View>
-                                </View>
+                            <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
+                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
+                                <TouchableOpacity onPress={() => setIosPickerVisible(!iosPickerVisible)}  hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
+                                    <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30 }} />
+                                </TouchableOpacity>
+                            </View>
+                            <View style={{ flex: 5, justifyContent: 'center', alignItems: 'center' }}>
+                                <Text style={[styles.title]}>Select</Text>
+                            </View>
+                           <View style={{flex:1}} />
+                        </View>
                                 <View style={{ flex: 9, justifyContent: 'flex-start' }}>
                                     {(modalContent === "invoiceType") ?
                                         <Picker selectedValue={invoiceType} style={{ flex: 1, height: 35 }} onValueChange={(itemValue, itemIndex) => changeInvoiceType(itemValue, itemIndex)}>
