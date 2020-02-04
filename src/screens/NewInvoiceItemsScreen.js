@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, TouchableWithoutFeedback, Text, Image, KeyboardAvoidingView, TextInput, ScrollView, Modal, Picker, FlatList } from 'react-native';
+import { View, TouchableOpacity, TouchableWithoutFeedback, Text, Image, KeyboardAvoidingView, TextInput, ScrollView, Modal, Picker, FlatList, Platform } from 'react-native';
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import * as actionCreator from '../store/actions/action'
 import { LinearGradient } from 'expo-linear-gradient'
@@ -7,6 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import styles from '../styles/styles'
+import Constants from 'expo-constants';
 
 const validationSchema = Yup.object().shape({
     invoice_item: Yup
@@ -30,6 +31,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const NewInvoiceItemsScreen = (props) => {
+    const ios = Platform.OS === "ios" ? true : false
     const [addItemVisible, setItemVisible] = useState(false)
     const dispatch = useDispatch()
     const setInvoiceData = (val) => {
@@ -46,6 +48,7 @@ const NewInvoiceItemsScreen = (props) => {
     }, [itemList])
     //const dispatch = useDispatch()
     const { itemList, } = useSelector(state => state.itemReducer, shallowEqual)
+    const [iosItemPicker, setIosItemPicker] = useState(false)
 
     return (
 
@@ -99,44 +102,60 @@ const NewInvoiceItemsScreen = (props) => {
 
                     <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }}>
                         <Modal animationType={'slide'} visible={addItemVisible} onRequestClose={() => setItemVisible(!addItemVisible)} transparent={true}>
+
                             <View style={{ flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(1,1,1,0.5)' }}>
                                 <View style={{ flex: 10, justifyContent: 'flex-end' }}>
                                     <View style={[styles.screenMargin, { backgroundColor: '#fff', borderTopWidth: 1, borderColor: 'lightgrey' }]}>
                                         <View style={{ margin: 5 }} />
-                                        <View style={[styles.formElement]}>
+                                        {ios ? <View style={[styles.formElement]}>
                                             <Text style={[styles.titleBox, { marginBottom: 10 }]}>Invoice Item</Text>
-                                            {itemList && <Picker selectedValue={itemId} onValueChange={(itemValue, itemIndex) => changeItemDetail(itemValue, itemIndex)}>
-                                                <Picker.Item label={'Please select'} value={null} />
-                                                {itemList && itemList.map(c => <Picker.Item label={c.name} value={c.id} key={c.id} />)}
-                                            </Picker>}
-                                            {/* {itemIdTouched && itemIdError && <Text style={styles.error}>{itemIdError}</Text>} */}
-                                        </View>
-                                        <View style={[styles.formElement]}>
-                                            <Text style={[styles.titleBox, { marginBottom: 10 }]}>Invoice Item</Text>
-                                            <TextInput value={invoice_item} onChangeText={FormikProps.handleChange('invoice_item')} onBlur={FormikProps.handleBlur('invoice_item')} style={{ borderWidth: 1, borderColor: invoice_itemTouched && invoice_itemError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={invoice_itemTouched && invoice_itemError ? '' : ''} placeholderTextColor={invoice_itemTouched && invoice_itemError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
-                                            {invoice_itemTouched && invoice_itemError && <Text style={styles.error}>{invoice_itemError}</Text>}
-                                        </View>
-                                        <View style={[styles.formElement]}>
-                                            <Text style={[styles.titleBox, { marginBottom: 10 }]}>Ref No</Text>
-                                            <TextInput value={item} onChangeText={FormikProps.handleChange('item')} onBlur={FormikProps.handleBlur('item')} style={{ borderWidth: 1, borderColor: itemTouched && itemError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={itemTouched && itemError ? '' : ''} placeholderTextColor={itemTouched && itemError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
-                                            {itemTouched && itemError && <Text style={styles.error}>{itemError}</Text>}
-                                        </View>
-                                        <View style={[styles.formElement]}>
-                                            <Text style={[styles.titleBox, { marginBottom: 10 }]}>Quantity</Text>
-                                            <TextInput value={quantity} onChangeText={FormikProps.handleChange('quantity')} onBlur={() => changePrice()} style={{ borderWidth: 1, borderColor: quantityTouched && quantityError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={quantityTouched && quantityError ? '' : ''} placeholderTextColor={quantityTouched && quantityError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
-                                            {quantityTouched && quantityError && <Text style={styles.error}>{quantityError}</Text>}
-                                        </View>
-                                        <View style={[styles.formElement]}>
-                                            <Text style={[styles.titleBox, { marginBottom: 10 }]}>Price</Text>
-                                            <View style={{ flexDirection: 'row', alignSelf: 'stretch', }}>
-                                                <Text style={{ flex: 1 }}>{currencyItem}</Text>
-                                                <TextInput value={priceItem} onChangeText={FormikProps.handleChange('priceItem')} onBlur={FormikProps.handleBlur('priceItem')} style={{ alignSelf: 'stretch', flex: 8, borderWidth: 1, borderColor: priceItemTouched && priceItemError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={priceItemTouched && priceItemError ? '' : ''} placeholderTextColor={priceItemTouched && priceItemError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
+                                            <TouchableOpacity onPress={() => setIosItemPicker(!iosItemPicker)}><Text>Select Item</Text></TouchableOpacity>
+                                        </View> :
+                                            <View style={[styles.formElement]}>
+                                                <Text style={[styles.titleBox, { marginBottom: 10 }]}>Invoice Item</Text>
+                                                {itemList && <Picker selectedValue={itemId} onValueChange={(itemValue, itemIndex) => changeItemDetail(itemValue, itemIndex)}>
+                                                    <Picker.Item label={'Please select'} value={null} />
+                                                    {itemList && itemList.map(c => <Picker.Item label={c.name} value={c.id} key={c.id} />)}
+                                                </Picker>}
+
+                                            </View>}
+                                        {iosItemPicker ? <View>
+                                            <View style={[styles.formElement]}>
+                                                {itemList && <Picker selectedValue={itemId} onValueChange={(itemValue, itemIndex) => changeItemDetail(itemValue, itemIndex)}>
+                                                    <Picker.Item label={'Please select'} value={null} />
+                                                    {itemList && itemList.map(c => <Picker.Item label={c.name} value={c.id} key={c.id} />)}
+                                                </Picker>}
                                             </View>
-                                            {priceItemTouched && priceItemError && <Text style={styles.error}>{priceItemError}</Text>}
-                                        </View>
+
+                                        </View> : <View>
+                                                <View style={[styles.formElement]}>
+                                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Invoice Item</Text>
+                                                    <TextInput value={invoice_item} onChangeText={FormikProps.handleChange('invoice_item')} onBlur={FormikProps.handleBlur('invoice_item')} style={{ borderWidth: 1, borderColor: invoice_itemTouched && invoice_itemError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={invoice_itemTouched && invoice_itemError ? '' : ''} placeholderTextColor={invoice_itemTouched && invoice_itemError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                                    {invoice_itemTouched && invoice_itemError && <Text style={styles.error}>{invoice_itemError}</Text>}
+                                                </View>
+                                                <View style={[styles.formElement]}>
+                                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Ref No</Text>
+                                                    <TextInput value={item} onChangeText={FormikProps.handleChange('item')} onBlur={FormikProps.handleBlur('item')} style={{ borderWidth: 1, borderColor: itemTouched && itemError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={itemTouched && itemError ? '' : ''} placeholderTextColor={itemTouched && itemError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                                    {itemTouched && itemError && <Text style={styles.error}>{itemError}</Text>}
+                                                </View>
+                                                <View style={[styles.formElement]}>
+                                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Quantity</Text>
+                                                    <TextInput value={quantity} onChangeText={FormikProps.handleChange('quantity')} onBlur={() => changePrice()} style={{ borderWidth: 1, borderColor: quantityTouched && quantityError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={quantityTouched && quantityError ? '' : ''} placeholderTextColor={quantityTouched && quantityError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
+                                                    {quantityTouched && quantityError && <Text style={styles.error}>{quantityError}</Text>}
+                                                </View>
+                                                <View style={[styles.formElement]}>
+                                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Price</Text>
+                                                    <View style={{ flexDirection: 'row', alignSelf: 'stretch', }}>
+                                                        <Text style={{ flex: 1 }}>{currencyItem}</Text>
+                                                        <TextInput value={priceItem} onChangeText={FormikProps.handleChange('priceItem')} onBlur={FormikProps.handleBlur('priceItem')} style={{ alignSelf: 'stretch', flex: 8, borderWidth: 1, borderColor: priceItemTouched && priceItemError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={priceItemTouched && priceItemError ? '' : ''} placeholderTextColor={priceItemTouched && priceItemError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
+                                                    </View>
+                                                    {priceItemTouched && priceItemError && <Text style={styles.error}>{priceItemError}</Text>}
+                                                </View>
+                                            </View>}
+
                                     </View>
                                 </View>
-                                <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', backgroundColor: '#fff' }}>
+                                {!iosItemPicker && <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', backgroundColor: '#fff' }}>
                                     <TouchableOpacity onPress={() => setItemVisible(!addItemVisible)} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 }}>
                                         <LinearGradient colors={['#FFF', '#FFF']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                             <Text style={[styles.butang, { color: '#000000' }]}>Back</Text>
@@ -147,9 +166,10 @@ const NewInvoiceItemsScreen = (props) => {
                                             <Text style={[styles.butang, { color: '#fff' }]}>Save</Text>
                                         </LinearGradient>
                                     </TouchableOpacity>
-                                </View>
+                                </View>}
                             </View>
                         </Modal>
+
                         <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
@@ -160,9 +180,9 @@ const NewInvoiceItemsScreen = (props) => {
                                 <Text style={[styles.title]}>NEW INVOICE</Text>
                             </View>
                             <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
-                                <View style={{ backgroundColor:'rgba(62,194,217,0.5)',borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
-            <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
-          </View>
+                                <View style={{ backgroundColor: 'rgba(62,194,217,0.5)', borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
+                                    <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
+                                </View>
                             </TouchableOpacity>
                         </View>
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
@@ -171,16 +191,7 @@ const NewInvoiceItemsScreen = (props) => {
                                     <ScrollView style={[styles.screenMargin]}>
                                         <View style={[styles.formElement]}>
                                             <View style={{ margin: 5 }} />
-                                            {/* <View style={{ flex: 1, flexDirection: 'row', borderTopWidth: 1, borderBottomWidth: 1, marginBottom: 5, marginTop: 5, padding: 5, borderColor: 'lightgrey' }}>
-                                                <View style={{ flex: 3 }}><Text>Item</Text></View>
-                                                <View style={{ flex: 1 }}><Text>Qty</Text></View>
-                                                <View style={{ flex: 1 }}><Text>Price</Text></View>
-                                            </View>
-                                            {items && items.map((i, n) => <View style={{ flex: 1, flexDirection: 'row', marginBottom: 5, padding: 5 }} key={n}>
-                                                <View style={{ flex: 3 }}><Text>{i.invoice_item}</Text></View>
-                                                <View style={{ flex: 1 }}><Text>{i.quantity}</Text></View>
-                                                <View style={{ flex: 1 }}><Text>MYR {i.priceItem}</Text></View>
-                                            </View>)} */}
+
 
                                             {items && <FlatList data={items} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
                                                 <View style={[styles.box]}>
@@ -220,8 +231,8 @@ const NewInvoiceItemsScreen = (props) => {
                                                     <TouchableOpacity onPress={() => setItemVisible(!addItemVisible)} style={{ width: 20, height: 20, backgroundColor: '#34C2DB', borderRadius: 10, justifyContent: 'center', alignItems: 'center' }}>
                                                         <Text style={[styles.text, { color: '#fff' }]}>+</Text>
                                                     </TouchableOpacity></View>
-                                                <View style={{ flex: 1 }}><Text style={styles.h2}>Total : </Text></View>
-                                                <View style={{ flex: 2 }}>{newInvoice && <Text style={styles.h2}>MYR {newInvoice.amount&&newInvoice.amount.toFixed(2)}</Text>}</View>
+                                                <View style={{ flex: 1 }}><Text style={styles.h3}>Total : </Text></View>
+                                                <View style={{ flex: 2 }}>{newInvoice && <Text style={styles.h3}>MYR {newInvoice.amount && newInvoice.amount.toFixed(2)}</Text>}</View>
                                             </View>
                                         </View>
                                     </ScrollView>
