@@ -201,7 +201,7 @@ const NewInvoiceScreen = (props) => {
                                 <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4', marginBottom: 25 }]}>
                                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
                                         <TouchableOpacity onPress={() => setIosPickerVisible(!iosPickerVisible)} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                                            <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 20 }} />
+                                            <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 10 }} />
                                         </TouchableOpacity>
                                     </View>
                                     <View style={{ flex: 4, justifyContent: 'center', alignItems: 'center' }}>
@@ -268,7 +268,7 @@ const NewInvoiceScreen = (props) => {
                                             {ios ? <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
                                                 <Text style={[styles.titleBox], { marginTop: 20 }}>Category</Text>
                                                 <TouchableOpacity onPress={() => handleIosPicker('category')}>
-                                                    <Text style={[styles.small, { color: '#0A6496' }]}>{category ? category : 'Select Category'}</Text>
+                                                    <Text style={[styles.small, { color: '#0A6496' }]}>{category===2 ?'Deposit':category===3 ?'Sales':category===2 ?'Others':'Select Category'}</Text>
                                                 </TouchableOpacity>
                                             </View> :
                                                 <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
@@ -311,7 +311,7 @@ const NewInvoiceScreen = (props) => {
                                                 <Text style={[styles.titleBox], { marginBottom: 10 }}>{invoice == 1 ? 'Customer' : 'Vendor'}</Text>
 
                                                 <TouchableOpacity onPress={() => handleIosPicker('entity')}>
-                                                    <Text style={[styles.small, { color: '#0A6496' }]}>{entityId ? entityId : 'Select Customer'}</Text>
+                                                    <Text style={[styles.small, { color: '#0A6496' }]}>{entityId ? `Change ${invoice == 1 ? 'Customer' : 'Vendor'}` : `Select ${invoice == 1 ? 'Customer' : 'Vendor'}`}</Text>
                                                 </TouchableOpacity>
                                             </View> :
                                                 <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
