@@ -41,6 +41,15 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "web": {
+      "build": {
+        "babel": {
+          "include": [
+            "react-native-otp-input"
+          ]
+        }
+      }
     }
   }
 }
