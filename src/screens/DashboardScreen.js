@@ -314,7 +314,7 @@ const DashboardScreen = (props) => {
       </View>
       <View style={[{ flex: 9 }]}>
         <View style={[styles.screenMargin, { marginBottom: 15 }]}>
-          <LinearGradient colors={['#055E7C', '#055E7C']} style={{ paddingTop: 5, paddingBottom: 5, alignItems: 'center', borderRadius: 10, height: Layout.window.height / 3 }}>
+          <LinearGradient colors={['#055E7C', '#055E7C']} style={{ paddingTop: 5, paddingBottom: 5, alignItems: 'center', borderRadius: 10, height:Layout.window.height > 570 ?  Layout.window.height / 3 :  Layout.window.height / 2.8 }}>
             <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
               <TouchableOpacity onPress={() => changeChartDay()}>
                 <Ionicons name="ios-arrow-back" color={'#fff'} style={{ fontSize: 23, paddingLeft: 30 }} />
@@ -325,7 +325,7 @@ const DashboardScreen = (props) => {
               </TouchableOpacity>
 
             </View>
-            <View style={{ flex: 1, height: Layout.window.height / 3, alignSelf: 'stretch', flexDirection: 'row', justifyContent: 'space-around', borderRadius: 10 }}>
+            <View style={{ flex: 1, height:Layout.window.height > 570 ?  Layout.window.height / 3 :  Layout.window.height / 2.8, alignSelf: 'stretch', flexDirection: 'row', justifyContent: 'space-around', borderRadius: 10 }}>
               {/* <VictoryCharts /> */}
               {reportList && <ChartKit data={getData()} dataPointClicked={dataPointClicked} />}
               {/* <Charts /> */}
