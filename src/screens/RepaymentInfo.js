@@ -48,7 +48,8 @@ const RepaymentInfo = (props) => {
     }
     return (
 
-        <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }}>
+        <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }} keyboardVerticalOffset={20}>
+            <View style ={{flex:1}}>
             <Modal animationType={'slide'} visible={modalVisible} onRequestClose={() => setModalVisible(!modalVisible)}>
                 {content == 'pay' ? <View style={{ flex: 1, justifyContent: 'flex-end' }}>
                     <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
@@ -94,8 +95,8 @@ const RepaymentInfo = (props) => {
                                                 </View>
                                             </ScrollView>
                                         </View>
-                                        <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
-                                            <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 }}>
+                                        <View style={{  flexDirection: 'row', alignSelf: 'stretch' }}>
+                                            <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1,paddingTop: 20, paddingBottom: 20, justifyContent: 'center', alignItems: 'center'  }}>
                                                 <LinearGradient colors={['#FFF', '#FFF']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                                     <Text style={[styles.butang, { color: '#000000' }]}>Back</Text>
                                                 </LinearGradient>
@@ -107,6 +108,7 @@ const RepaymentInfo = (props) => {
                                             </TouchableOpacity>
                                         </View>
                                     </View>
+                                    
                                 )
                             }}
                     </Formik>
@@ -168,6 +170,7 @@ const RepaymentInfo = (props) => {
                             } />}
                         </View>
                     </View>}
+                    
             </Modal>
             <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
@@ -184,7 +187,7 @@ const RepaymentInfo = (props) => {
                     </View>
                 </View>
             </View>
-            <View style={{ justifyContent: 'space-between', flex: 9 }}>
+            <View style={{ flex:1,justifyContent: 'space-between', flex: 9 }}>
                 <View style={{ flex: 9 }}>
                     {repaymentDetail && <ScrollView style={[styles.screenMargin]}>
                         <View style={{ margin: 10 }} />
@@ -241,6 +244,7 @@ const RepaymentInfo = (props) => {
 
                     </ScrollView>}
                 </View>
+            </View>
             </View>
         </KeyboardAvoidingView >)
 }
