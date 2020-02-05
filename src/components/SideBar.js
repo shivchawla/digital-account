@@ -20,10 +20,10 @@ const SideBar = (props) => {
                     <Image source={require('../assets/images/account.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
                     <Text style={[styles.text, { color: '#fff', marginLeft: 15 }]}>Account</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => nav('Notification')} style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 25 }}>
+                {/* <TouchableOpacity onPress={() => nav('Notification')} style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 25 }}>
                     <Image source={require('../assets/images/notificationicon.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
                     <Text style={[styles.text, { color: '#fff', marginLeft: 15 }]}>Notification</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
                 <TouchableOpacity onPress={() => nav('TransactionHistory')} style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 25 }}>
                     <Image source={require('../assets/images/historywhiteicon.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
                     <Text style={[styles.text, { color: '#fff', marginLeft: 15 }]}>Transaction History</Text>
