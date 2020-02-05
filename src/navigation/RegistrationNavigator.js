@@ -1,4 +1,5 @@
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import { Platform, Image, View } from 'react-native';
 import IntroScreen from '../screens/IntroScreen';
 import SignupPersonalScreen from '../screens/SignupPersonalScreen';
 import CompanyInformationScreen from '../screens/CompanyInformationScreen';
@@ -15,6 +16,11 @@ import DocumentUploadScreen from '../screens/DocumentUploadScreen';
 import CompanyDocumentSuccessScreen from '../screens/CompanyDocumentSuccessScreen';
 import RegistrationDeclarationScreen from '../screens/RegistrationDeclarationScreen';
 import AdminApprovalScreen from '../screens/AdminApprovalScreen';
+
+const config = Platform.select({
+  web: { headerMode: 'screen' },
+  default: {},
+});
 
 const Registration = createStackNavigator({
   Intro: IntroScreen,
@@ -44,6 +50,9 @@ const RegistrationStack = createStackNavigator(
     mode: 'modal',
     headerMode: 'none',
   },
+  config
 );
+
+RegistrationStack.path = '';
 
 export default RegistrationStack

@@ -5,9 +5,9 @@ import * as Font from 'expo-font';
 import Constants from 'expo-constants'
 import * as SecureStore from 'expo-secure-store'
 import React, { useState, useEffect } from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import { Platform, StatusBar, StyleSheet, View, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { LoggedInContainer, AuthenticationContainer } from './src/navigation/AppNavigator';
+import AuthenticationContainer from './src/navigation/AppNavigatorWeb';
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
@@ -47,7 +47,7 @@ const App = (props) => {
     }
   }
 
-  registerForPushNotificationsAsync = async () => {
+  const registerForPushNotificationsAsync = async () => {
     const { status: existingStatus } = await Permissions.getAsync(
       Permissions.NOTIFICATIONS
     );
@@ -67,7 +67,7 @@ const App = (props) => {
     }))
   }
 
-  _handleNotification = (notification) => {
+  const _handleNotification = (notification) => {
     console.log(`notification received ${JSON.stringify(notification)}`)
     const { data } = notification
     store.dispatch({ type: 'SET_NOTIFICATION_LIST', payload: { ...data } })
@@ -86,8 +86,8 @@ const App = (props) => {
 
   useEffect(() => {
     //checkUpdate()
-    registerForPushNotificationsAsync();
-    _notificationSubscription = Notifications.addListener(_handleNotification);
+    //registerForPushNotificationsAsync();
+    const _notificationSubscription = Notifications.addListener(_handleNotification);
     checkLogin()
 
   }, [])
@@ -104,14 +104,15 @@ const App = (props) => {
     return (<Provider store={store}>
       <View style={styles.container}>
         <StatusBar barStyle="default" />
-
-        {tokenExists ? <LoggedInContainer /> : <AuthenticationContainer />}
-
+        <AuthenticationContainer />
       </View>
     </Provider>
     )
   }
+ 
+
 }
+
 
 const loadResourcesAsync = async () => {
   await Promise.all([

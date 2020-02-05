@@ -21,6 +21,7 @@ const Authentication = createSwitchNavigator({
   initialRouteName: 'Authentication'
 });
 
-export const LoggedInContainer = createAppContainer(LoggedIn);
+//export const LoggedInContainer = createAppContainer(LoggedIn);
 
-export const AuthenticationContainer = createAppContainer(Authentication);
+const AuthenticationContainer = createAppContainer(Authentication);
+export default AuthenticationContainer

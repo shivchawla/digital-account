@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, Text, Image, Modal, ActivityIndicator, FlatList, ScrollView } from 'react-native';
+import { View, TouchableOpacity, Text, Image, ActivityIndicator, FlatList, ScrollView,Platform } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
 import Layout from '../constants/Layout'
@@ -12,6 +12,14 @@ import ChartKit from '../components/ChartKit'
 import _ from 'lodash'
 import moment from 'moment'
 import NumberFormat from 'react-number-format';
+
+let Modal;
+
+if (Platform.OS !== 'web') {
+  Modal = require('react-native').Modal;
+} else {
+  Modal = require('../components/WebModal').default;
+}
 
 //import { Number, Currency } from "react-intl-number-format"
 //import { FlatList } from 'react-native-gesture-handler';

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, Text, KeyboardAvoidingView, TextInput, Modal, FlatList, ScrollView } from 'react-native';
+import { View, TouchableOpacity, Text, KeyboardAvoidingView, TextInput, FlatList, ScrollView,Platform } from 'react-native';
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { LinearGradient } from 'expo-linear-gradient'
@@ -10,6 +10,14 @@ import styles from '../styles/styles'
 import moment from 'moment'
 import CodePin from 'react-native-pin-code'
 import Layout from '../constants/Layout';
+
+let Modal;
+
+if (Platform.OS !== 'web') {
+  Modal = require('react-native').Modal;
+} else {
+  Modal = require('../components/WebModal').default;
+}
 
 import ScanFinger from '../components/ScanFinger'
 

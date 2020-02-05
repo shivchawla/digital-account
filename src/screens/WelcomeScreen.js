@@ -28,13 +28,13 @@ const WelcomeScreen = (props) => {
     const proceed = useSelector(state => state.loginScreenReducer.proceed, shallowEqual)
     const all = useSelector(state => state.loginScreenReducer.message, shallowEqual)
     useEffect(() => {
-         proceed && props.navigation.navigate('Main')
+        proceed && props.navigation.navigate('Main')
     }, [proceed]);
     const dispatch = useDispatch()
     const login = (values) => {
         dispatch(actionCreator.login1(values))
     }
-    forgotPassword = async () => {
+    const forgotPassword = async () => {
         let result = await WebBrowser.openBrowserAsync('https://tuah.niyo.my/password/reset');
     };
     const [secure, secureItem] = useState(true)
@@ -76,13 +76,13 @@ const WelcomeScreen = (props) => {
                                     <View style={{ flex: 2, backgroundColor: '#fff', borderTopLeftRadius: 30, borderTopRightRadius: 30, padding: 20 }}>
                                         <View style={[styles.formElement]}>
                                             <View style={{ margin: 10 }} />
-                                            <TextInput autoCapitalize={'none'} autoCorrect={false} onSubmitEditing={() => this.passwordInput.focus()} returnKeyType={"next"} value={email} keyboardType={'email-address'} onBlur={FormikProps.handleBlur('email')} onChangeText={FormikProps.handleChange('email')} placeholder={emailTouched && emailError ? '' : 'Email'} style={{ borderBottomWidth: 1, borderColor: '#9ADAF4', padding: 5 }} />
+                                            <TextInput autoCapitalize={'none'} autoCorrect={false} returnKeyType={"next"} value={email} keyboardType={'email-address'} onBlur={FormikProps.handleBlur('email')} onChangeText={FormikProps.handleChange('email')} placeholder={emailTouched && emailError ? '' : 'Email'} style={{ borderBottomWidth: 1, borderColor: '#9ADAF4', padding: 5 }} />
                                             {emailTouched && emailError && <Text style={styles.error}>{emailError}</Text>}
                                         </View>
                                         <View style={[styles.formElement]}>
                                             <View style={{ margin: 10 }} />
                                             <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between', borderBottomWidth: 1, borderColor: '#9ADAF4', padding: 5 }}>
-                                                <TextInput ref={input => this.passwordInput = input} returnKeyType={'go'} secureTextEntry={secure} value={password} onBlur={FormikProps.handleBlur('password')} placeholder={passwordTouched && passwordError ? '' : 'Password'} onChangeText={FormikProps.handleChange('password')} style={{}} placeholderTextColor={passwordTouched && passwordError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                                <TextInput  returnKeyType={'go'} secureTextEntry={secure} value={password} onBlur={FormikProps.handleBlur('password')} placeholder={passwordTouched && passwordError ? '' : 'Password'} onChangeText={FormikProps.handleChange('password')} style={{}} placeholderTextColor={passwordTouched && passwordError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                                 <TouchableOpacity onPress={() => secureItem(!secure)}>
                                                     <Ionicons name={secure ? 'ios-eye-off' : 'ios-eye'} style={{ fontSize: 25, color: secure ? 'lightgrey' : 'grey' }} />
                                                 </TouchableOpacity>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, TouchableWithoutFeedback, Text, TextInput, KeyboardAvoidingView, ScrollView, Picker, Modal, Platform } from 'react-native';
+import { View, TouchableOpacity, TouchableWithoutFeedback, Text, TextInput, KeyboardAvoidingView, ScrollView, Picker, Platform } from 'react-native';
 import Constants from 'expo-constants';
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
@@ -13,6 +13,14 @@ import Layout from '../constants/Layout';
 
 import ScanFinger from '../components/ScanFinger'
 import { checkCodeApi } from '../store/actions/common';
+
+let Modal;
+
+if (Platform.OS !== 'web') {
+  Modal = require('react-native').Modal;
+} else {
+  Modal = require('../components/WebModal').default;
+}
 
 
 const WIthdrawApplicationScreen = (props) => {
