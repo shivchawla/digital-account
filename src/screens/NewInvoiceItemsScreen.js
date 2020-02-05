@@ -117,7 +117,6 @@ const NewInvoiceItemsScreen = (props) => {
                                                     <Picker.Item label={'Please select'} value={null} />
                                                     {itemList && itemList.map(c => <Picker.Item label={c.name} value={c.id} key={c.id} />)}
                                                 </Picker>}
-
                                             </View>}
                                         {iosItemPicker ? <View>
                                             <View style={[styles.formElement]}>
