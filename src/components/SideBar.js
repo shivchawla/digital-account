@@ -56,6 +56,8 @@ const SideBar = (props) => {
                     <Image source={require('../assets/images/setting.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
                     <Text style={[styles.text, { color: '#fff', marginLeft: 15 }]}>Settings</Text>
                 </TouchableOpacity>
+                <View  style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 25 ,height:30}} />
+                   
             </View>
         </LinearGradient>
     );
