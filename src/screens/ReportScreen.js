@@ -1,5 +1,5 @@
-import React, { useEffect, useState,useCallback } from 'react';
-import { View, TouchableOpacity, Text, Image, FlatList, TouchableWithoutFeedback, TextInput,RefreshControl } from 'react-native';
+import React, { useEffect, useState, useCallback } from 'react';
+import { View, TouchableOpacity, Text, Image, FlatList, TouchableWithoutFeedback, TextInput, RefreshControl } from 'react-native';
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons';
@@ -7,7 +7,7 @@ import moment from 'moment'
 import styles from '../styles/styles'
 import _ from 'lodash'
 
-const wait=(timeout)=> {
+const wait = (timeout) => {
     return new Promise(resolve => {
         setTimeout(resolve, timeout);
     });
@@ -102,89 +102,97 @@ const ReportScreen = (props) => {
                     {/* {reportList && <FlatList data={filterEnabled ? filterReportList : onScreenFilter ? onScreenFilteredList : reportList} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
                    */}
                     {transactionAndFeeFinal && <FlatList
-                    refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
-                    onEndReached={val => console.log(`onEndReached ialah : ${JSON.stringify(val)}`)}
-                     data={filterEnabled ? transactionAndFeeFinal : onScreenFilter ? transactionAndFeeFinal : transactionAndFeeFinal} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
-                        <View style={styles.box}>
-                            <View style={{ flex: 1 }}>
-                                { <TouchableWithoutFeedback onPress={() => dispatch(actionCreator.setMarkerReportList(index))} style={{ flexDirection: 'row', marginTop: 5 }}>
+                        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+                        onEndReached={val => console.log(`onEndReached ialah : ${JSON.stringify(val)}`)}
+                        data={filterEnabled ? transactionAndFeeFinal : onScreenFilter ? transactionAndFeeFinal : transactionAndFeeFinal} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
+                            <View style={styles.box}>
+                                <TouchableWithoutFeedback onPress={() => dispatch(actionCreator.setMarkerReportList(item.id))} style={{ flexDirection: 'row', marginTop: 5 }}>
                                     <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
-                                        <Text style={[styles.boldText], { flex: 1 }}>{item.transaction_no}</Text>
-                                        <Text style={[styles.boldText], { flex: 1 }} numberOfLines={1} ellipsizeMode={'tail'}>{moment(item.updated_at).format('DD/MM/YY h:mm:ss')}</Text>
+                                        <Text style={styles.small}>{moment(item.updated_at).format('DD/MM/YY h:mm:ss')}</Text>
                                         <Ionicons name={item.marker ? "md-arrow-dropdown" : "md-arrow-dropright"} color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
                                     </View>
-                                </TouchableWithoutFeedback> }
-                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                </TouchableWithoutFeedback>
+                                <View style={{ flexDirection: 'row', marginTop: 5,borderBottomWidth: item.marker ? 1 : 0, borderBottomColor: 'lightgrey',paddingBottom:10 }}>
                                     <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                                         <Text style={[styles.h3]}>{item.type} ({item.credit_debit})</Text>
-                                    </View>
-                                </View>
-                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                        <Text style={[styles.label]}>Transaction</Text>
-                                    </View>
-                                    <View style={{ flex: 1 }}>
-                                        <Text style={[styles.value]}>{item.transaction_no}</Text>
-                                    </View>
-                                </View>
-                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                        <Text style={[styles.label]}>Date</Text>
-                                    </View>
-                                    <View style={{ flex: 1 }}>
-                                        <Text style={[styles.value]}>{moment(item.updated_at).format('DD/MM/YY h:mm:ss')}</Text>
-                                    </View>
-                                </View>
 
-
-                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                        <Text style={[styles.label]}>{item.credit_debit == 'DEBIT' ? 'Origin' : 'Recipient'} </Text>
-                                    </View>
-                                    <View style={{ flex: 1 }}>
-                                        <Text style={[styles.value]}> {item.from_to}</Text>
                                     </View>
                                 </View>
-
-                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                        <Text style={[styles.label]}>Amount</Text>
-                                    </View>
-                                    <View style={{ flex: 1 }}>
-                                        <Text style={[styles.value]}>{item.currency}{item.amount.toFixed(2)}</Text>
-                                    </View>
-                                </View>
-
-                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                        <Text style={[styles.label]}>Fee</Text>
-                                    </View>
-                                    <View style={{ flex: 1 }}>
-                                        <Text style={[styles.value]}>{item.currency}{item.fee}</Text>
-                                    </View>
-                                </View>
-                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                {!item.marker && <View style={{ flexDirection: 'row', marginTop: 5, }}> 
                                     <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                                         <Text style={[styles.label]}>Total</Text>
                                     </View>
                                     <View style={{ flex: 1 }}>
                                         <Text style={[styles.value]}>{item.currency}{item.fee + item.amount}</Text>
                                     </View>
-                                </View>
+                                </View>}
+                                {item.marker && <View style={{ flex: 1 }}>
+                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                            <Text style={[styles.label]}>Transaction</Text>
+                                        </View>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={[styles.value]}>{item.transaction_no}</Text>
+                                        </View>
+                                    </View>
+                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                            <Text style={[styles.label]}>Date</Text>
+                                        </View>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={[styles.value]}>{moment(item.updated_at).format('DD/MM/YY h:mm:ss')}</Text>
+                                        </View>
+                                    </View>
 
-                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                        <Text style={[styles.label]}>Status</Text>
+
+                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                            <Text style={[styles.label]}>{item.credit_debit == 'DEBIT' ? 'Origin' : 'Recipient'} </Text>
+                                        </View>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={[styles.value]}> {item.from_to}</Text>
+                                        </View>
                                     </View>
-                                    <View style={{ flex: 1 }}>
-                                        <Text style={[styles.value]}>{item.status}</Text>
+
+                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                            <Text style={[styles.label]}>Amount</Text>
+                                        </View>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={[styles.value]}>{item.currency}{item.amount.toFixed(2)}</Text>
+                                        </View>
                                     </View>
-                                </View>
+
+                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                            <Text style={[styles.label]}>Fee</Text>
+                                        </View>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={[styles.value]}>{item.currency}{item.fee}</Text>
+                                        </View>
+                                    </View>
+                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                            <Text style={[styles.label]}>Total</Text>
+                                        </View>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={[styles.value]}>{item.currency}{item.fee + item.amount}</Text>
+                                        </View>
+                                    </View>
+
+                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                            <Text style={[styles.label]}>Status</Text>
+                                        </View>
+                                        <View style={{ flex: 1 }}>
+                                            <Text style={[styles.value]}>{item.status}</Text>
+                                        </View>
+                                    </View>
+
+                                </View>}
 
                             </View>
-
-                        </View>
-                    } />}
+                        } />}
                 </View>
             </View >
         </View >
