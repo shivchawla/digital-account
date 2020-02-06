@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, Text, Image, ActivityIndicator, FlatList, ScrollView,Platform } from 'react-native';
+import { View, TouchableOpacity, Text, Image, ActivityIndicator, FlatList, ScrollView, Platform } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
 import Layout from '../constants/Layout'
@@ -92,21 +92,31 @@ const DashboardScreen = (props) => {
   const runCheckStatus2 = async () => {
     await dispatch(actionCreator.setScreen2())
   }
+
+  // useEffect(() => {
+  //   runCheckStatus2()
+  // }, [])
+
+  // useEffect(() => {
+  //   console.log(`status1 ialah ${status1}`)
+  //   if (status1 == 'New') {
+  //     runCheckStatus();
+  //   } else if (status1 == 'Approved') {
+  //     dispatch(actionCreator.retrievePersonalInfo())
+  //     dispatch(actionCreator.retrieveMerchantInfo())
+  //     dispatch(actionCreator.retrieveAccountInfo())
+  //     dispatch(actionCreator.getReportList())
+  //   }
+
+  // }, [status1])
+
   useEffect(() => {
-    runCheckStatus2()
-  }, [])
-  useEffect(() => {
-    console.log(`status1 ialah ${status1}`)
-    if (status1 == 'New') {
-      runCheckStatus();
-    } else if (status1 == 'Approved') {
+   
       dispatch(actionCreator.retrievePersonalInfo())
       dispatch(actionCreator.retrieveMerchantInfo())
       dispatch(actionCreator.retrieveAccountInfo())
-      dispatch(actionCreator.getReportList())
-    }
-
-  }, [status1])
+      dispatch(actionCreator.getReportList()) 
+  }, [])
 
 
   const getData = () => {
@@ -163,11 +173,11 @@ const DashboardScreen = (props) => {
     //listBaru7&&setChartData(listBaru7)
 
     /////////TESTING DATE
-    var days = ['SU','MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
+    var days = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
     var goBackDays = chartDay;
 
     var today = new Date(moment().add(1, 'days')); // temporary get date ahead one day, to remove later 
-    
+
     var daysSorted = [];
 
     for (var i = 0; i < goBackDays; i++) {
@@ -190,7 +200,7 @@ const DashboardScreen = (props) => {
     if (last.ada == 'takde') {
 
       const start = listBaru8.find(n => moment(n.updated_at) < moment(last.update)) || listBaru6.find(n => moment(n.updated_at) < moment(last.update))
-      
+
       console.log(`start ialah : ${JSON.stringify(start)}`)
       listBaru9[listBaru9.length - 1].balance = _.isArray(start) ? start[start.length - 1].balance : 0
     }
@@ -275,15 +285,15 @@ const DashboardScreen = (props) => {
                 </View>}
               <View style={{ flexDirection: 'row', alignSelf: 'stretch', marginTop: 15 }}>
                 <TouchableOpacity style={{ flex: 1, }} onPress={() => props.navigation.navigate(link, { prevScreen: 'Dashboard' })}>
-                  <View style={{  justifyContent: 'center', alignItems: 'center', backgroundColor: '#0A6496' }}>
-                  <Text style={[styles.butang, { color: '#fff',paddingTop:5,paddingBottom:5 }]}>CONTINUE</Text>
+                  <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: '#0A6496' }}>
+                    <Text style={[styles.butang, { color: '#fff', paddingTop: 5, paddingBottom: 5 }]}>CONTINUE</Text>
                   </View>
                 </TouchableOpacity>
               </View>
               <View style={{ flexDirection: 'row', alignSelf: 'stretch' }}>
-                <TouchableOpacity style={{ flex: 1, marginTop:5 }} onPress={() => logout()}>
-                  <View style={{  justifyContent: 'center', alignItems: 'center', backgroundColor: '#808080' }}>
-                  <Text style={[styles.butang, { color: '#fff',paddingTop:5,paddingBottom:5 }]}>LOG OUT</Text>
+                <TouchableOpacity style={{ flex: 1, marginTop: 5 }} onPress={() => logout()}>
+                  <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: '#808080' }}>
+                    <Text style={[styles.butang, { color: '#fff', paddingTop: 5, paddingBottom: 5 }]}>LOG OUT</Text>
                   </View>
                 </TouchableOpacity>
 
@@ -322,7 +332,7 @@ const DashboardScreen = (props) => {
       </View>
       <View style={[{ flex: 9 }]}>
         <View style={[styles.screenMargin, { marginBottom: 15 }]}>
-          <LinearGradient colors={['#055E7C', '#055E7C']} style={{ paddingTop: 5, paddingBottom: 5, alignItems: 'center', borderRadius: 10, height:Layout.window.height > 570 ?  Layout.window.height / 3 :  Layout.window.height / 2.8 }}>
+          <LinearGradient colors={['#055E7C', '#055E7C']} style={{ paddingTop: 5, paddingBottom: 5, alignItems: 'center', borderRadius: 10, height: Layout.window.height > 570 ? Layout.window.height / 3 : Layout.window.height / 2.8 }}>
             <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
               <TouchableOpacity onPress={() => changeChartDay()}>
                 <Ionicons name="ios-arrow-back" color={'#fff'} style={{ fontSize: 23, paddingLeft: 30 }} />
@@ -333,7 +343,7 @@ const DashboardScreen = (props) => {
               </TouchableOpacity>
 
             </View>
-            <View style={{ flex: 1, height:Layout.window.height > 570 ?  Layout.window.height / 3 :  Layout.window.height / 2.8, alignSelf: 'stretch', flexDirection: 'row', justifyContent: 'space-around', borderRadius: 10 }}>
+            <View style={{ flex: 1, height: Layout.window.height > 570 ? Layout.window.height / 3 : Layout.window.height / 2.8, alignSelf: 'stretch', flexDirection: 'row', justifyContent: 'space-around', borderRadius: 10 }}>
               {/* <VictoryCharts /> */}
               {reportList && <ChartKit data={getData()} dataPointClicked={dataPointClicked} />}
               {/* <Charts /> */}
