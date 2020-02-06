@@ -214,7 +214,6 @@ const TransferScreen = (props) => {
                                     </TouchableOpacity>
                                 </View>
                             </View>
-
                         </View>
                     </KeyboardAvoidingView>)
             }}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, Text, Image, Modal, ActivityIndicator, FlatList,ScrollView } from 'react-native';
+import { View, TouchableOpacity, Text, Image, Modal, ActivityIndicator, FlatList, ScrollView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
 import Layout from '../constants/Layout'
@@ -155,10 +155,11 @@ const DashboardScreen = (props) => {
     //listBaru7&&setChartData(listBaru7)
 
     /////////TESTING DATE
-    var days = ['MO', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
+    var days = ['SU','MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
     var goBackDays = chartDay;
 
-    var today = new Date();
+    var today = new Date(moment().add(1, 'days')); // temporary get date ahead one day, to remove later 
+    
     var daysSorted = [];
 
     for (var i = 0; i < goBackDays; i++) {
@@ -176,10 +177,12 @@ const DashboardScreen = (props) => {
 
 
     const last = listBaru9[listBaru9.length - 1]
+    console.log(`last ialah ${JSON.stringify(last)}`)
 
     if (last.ada == 'takde') {
 
       const start = listBaru8.find(n => moment(n.updated_at) < moment(last.update)) || listBaru6.find(n => moment(n.updated_at) < moment(last.update))
+      
       console.log(`start ialah : ${JSON.stringify(start)}`)
       listBaru9[listBaru9.length - 1].balance = _.isArray(start) ? start[start.length - 1].balance : 0
     }
@@ -264,17 +267,18 @@ const DashboardScreen = (props) => {
                 </View>}
               <View style={{ flexDirection: 'row', alignSelf: 'stretch', marginTop: 15 }}>
                 <TouchableOpacity style={{ flex: 1, }} onPress={() => props.navigation.navigate(link, { prevScreen: 'Dashboard' })}>
-                  <LinearGradient colors={['#0A6496', '#055E7C']} style={{ flex: 1, padding: 20, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={[styles.textDefault, { color: '#fff' }]}>CONTINUE</Text>
-                  </LinearGradient>
+                  <View style={{  justifyContent: 'center', alignItems: 'center', backgroundColor: '#0A6496' }}>
+                  <Text style={[styles.butang, { color: '#fff',paddingTop:5,paddingBottom:5 }]}>CONTINUE</Text>
+                  </View>
                 </TouchableOpacity>
               </View>
               <View style={{ flexDirection: 'row', alignSelf: 'stretch' }}>
-                <TouchableOpacity style={{ flex: 1, }} onPress={() => logout()}>
-                  <LinearGradient colors={['#808080', '#808080']} style={{ flex: 1, marginTop: 10, padding: 20, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={[styles.textDefault, { color: '#fff' }]}>LOG OUT</Text>
-                  </LinearGradient>
+                <TouchableOpacity style={{ flex: 1, marginTop:5 }} onPress={() => logout()}>
+                  <View style={{  justifyContent: 'center', alignItems: 'center', backgroundColor: '#808080' }}>
+                  <Text style={[styles.butang, { color: '#fff',paddingTop:5,paddingBottom:5 }]}>LOG OUT</Text>
+                  </View>
                 </TouchableOpacity>
+
               </View>
             </View>
           </View>
@@ -308,21 +312,20 @@ const DashboardScreen = (props) => {
           <Text style={[styles.text]}>Withdrawal</Text>
         </TouchableOpacity>
       </View>
-      <View style={[styles.screenMargin, { flex: 9 }]}>
-        <View style={{ marginBottom: 15 }}>
-          <LinearGradient colors={['#055E7C', '#055E7C']} style={{ paddingTop: 5, paddingBottom: 5, alignItems: 'center', borderRadius: 10, height: Layout.window.height / 3 }}>
+      <View style={[{ flex: 9 }]}>
+        <View style={[styles.screenMargin, { marginBottom: 15 }]}>
+          <LinearGradient colors={['#055E7C', '#055E7C']} style={{ paddingTop: 5, paddingBottom: 5, alignItems: 'center', borderRadius: 10, height:Layout.window.height > 570 ?  Layout.window.height / 3 :  Layout.window.height / 2.8 }}>
             <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
               <TouchableOpacity onPress={() => changeChartDay()}>
                 <Ionicons name="ios-arrow-back" color={'#fff'} style={{ fontSize: 23, paddingLeft: 30 }} />
               </TouchableOpacity>
-
               <Text style={[styles.text, { color: '#fff' }]}>{chartDay === 7 ? 'PAST 7 DAYS' : 'PAST 30 DAYS'}</Text>
               <TouchableOpacity onPress={() => changeChartDay()}>
                 <Ionicons name="ios-arrow-forward" color={'#fff'} style={{ fontSize: 23, paddingRight: 30 }} />
               </TouchableOpacity>
 
             </View>
-            <View style={{ flex: 1, height: Layout.window.height / 3, alignSelf: 'stretch', flexDirection: 'row', justifyContent: 'space-around', borderRadius: 10 }}>
+            <View style={{ flex: 1, height:Layout.window.height > 570 ?  Layout.window.height / 3 :  Layout.window.height / 2.8, alignSelf: 'stretch', flexDirection: 'row', justifyContent: 'space-around', borderRadius: 10 }}>
               {/* <VictoryCharts /> */}
               {reportList && <ChartKit data={getData()} dataPointClicked={dataPointClicked} />}
               {/* <Charts /> */}
@@ -330,16 +333,16 @@ const DashboardScreen = (props) => {
           </LinearGradient>
         </View>
         <ScrollView style={{ marginTop: 10 }}>
-          <TouchableOpacity onPress={() => props.navigation.navigate('Report')} style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          <TouchableOpacity onPress={() => props.navigation.navigate('Report')} style={[styles.screenMargin, { flexDirection: 'row', justifyContent: 'space-between', }]}>
             <Text style={[styles.h2, { color: '#04A2BD' }]}>Latest Transaction</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <Text style={[styles.small, { paddingRight: 5, color: '#04A2BD' }]}>More</Text>
               <Ionicons name="ios-arrow-forward" color={'#04A2BD'} style={{ fontSize: 15, paddingRight: 5 }} />
             </View>
           </TouchableOpacity>
-        
+
           {reportList && <FlatList data={reportList.filter(rl => !rl.type.includes('Fee')).slice(0, 5)} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
-            <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'space-between',borderBottomWidth:1,borderColor:'rgba(62,194,217,0.2)',paddingBottom:5, }}>
+            <View style={[styles.screenMargin, { flexDirection: 'row', marginTop: 5, justifyContent: 'space-between', borderBottomWidth: 1, borderColor: 'rgba(62,194,217,0.2)', paddingBottom: 5, }]}>
               <View style={{ flexDirection: 'row', }}>
                 <Ionicons name={item.credit_debit == 'DEBIT' ? "md-remove-circle-outline" : "md-add-circle-outline"} color={item.credit_debit == 'DEBIT' ? '#A20F0F' : '#7ED321'} style={{ fontSize: 12, paddingRight: 20, paddingTop: 5 }} />
                 <View>

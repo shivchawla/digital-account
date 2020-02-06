@@ -6,14 +6,15 @@ import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles/styles'
 
 const ProfileScreen = (props) => {
-    useEffect(() => {
-        retrieveMerchantInfo()
-    }, [])
+    // useEffect(() => {
+    //     retrieveMerchantInfo()
+    // }, [])
 
     const dispatch = useDispatch()
-    const retrieveMerchantInfo = () => { dispatch(actionCreator.retrieveMerchantInfo()) }
+    //const retrieveMerchantInfo = () => { dispatch(actionCreator.retrieveMerchantInfo()) }
     const { business_name, business_reg_no, contact_no, support_email, business_address, business_postcode, status } = useSelector(state => state.merchantInfoReducer, shallowEqual)
     const { balance, currency, account_no, type } = useSelector(state => state.myAccountReducer, shallowEqual)
+    const { first_name, last_name, email } = useSelector(state => state.personalInformationScreenReducer, shallowEqual)
 
     return (
         <View style={{ flex: 1, }}>
@@ -47,6 +48,22 @@ const ProfileScreen = (props) => {
                     <View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 25 }}>
                             <Text style={[styles.h2]}>Personal Information</Text>
+                        </View>
+                        <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <Text style={[styles.boldText]}>Name</Text>
+                            </View>
+                            <View style={{ flex: 2 }}>
+                                <Text style={[styles.text, { color: '#055E7C' }]}>{first_name} {last_name}</Text>
+                            </View>
+                        </View>
+                        <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                            <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <Text style={[styles.boldText]}>Email</Text>
+                            </View>
+                            <View style={{ flex: 2 }}>
+                                <Text style={[styles.text, { color: '#055E7C' }]}>{email}</Text>
+                            </View>
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 5 }}>
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
@@ -111,7 +128,7 @@ const ProfileScreen = (props) => {
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 10 }}>
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.boldText]}>Email</Text>
+                                <Text style={[styles.boldText]}>Support Email</Text>
                             </View>
                             <View style={{ flex: 2 }}>
                                 <Text style={[styles.text, { color: '#055E7C' }]}>{support_email}</Text>

@@ -30,7 +30,7 @@ const validationSchema = Yup.object().shape({
 
     cddPostcode: Yup
         .string()
-        .required()
+        .required('Valid postcode is required')
         .min(5)
         .label('Postcode'),
 

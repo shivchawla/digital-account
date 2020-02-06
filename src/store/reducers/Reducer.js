@@ -188,6 +188,18 @@ const myAccountReducer = (state = [], action) => {
     }
 }
 
+// const personalReducer = (state = [], action) => {
+//     switch (action.type) {
+//         case 'SET_PERSONAL_INFO':
+//             return { ...state, ...action.payload }
+//         case 'USER_PROFILE_RESET':
+//             return state = []
+//         default:
+//             return state
+//     }
+// }
+
+
 
 const trainingReducer = (state = [], action) => {
     switch (action.type) {

@@ -737,7 +737,7 @@ export const retrievePersonalInfoApi = () => {
           console.log('personal info ialah' + JSON.stringify(accountInfo))
           //dispatch({ type: 'SET_USER_PROFILE', payload: { ...accountInfo[0] } })
           const {email,expo_token}=accountInfo
-          dispatch({ type: 'SET_USER_PROFILE', payload: { email,server_expo_token:expo_token} })
+          dispatch({ type: 'SET_PERSONAL_INFO', payload: { ...accountInfo,server_expo_token:accountInfo.expo_token} })
 
         })
         .catch((error) => {

@@ -48,7 +48,7 @@ const AuthOptionTypeScreen = (props) => {
 
     const notificationToggle = () => {
 
-        console.log(JSON.stringify())
+    
 
         if (authEnabled) {
             //buka dulu authentication screen
@@ -62,7 +62,6 @@ const AuthOptionTypeScreen = (props) => {
     }
 
     return (
-
         <View style={{ flex: 1, }}>
             <Modal transparent={true} animationType={'slide'} visible={authRequestVisible} onRequestClose={() => setAuthRequestVisible(!authRequestVisible)} >
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(1,1,1,0.5)' }}>
