@@ -3,6 +3,8 @@ import { FileSystem, Notifications } from 'expo'
 import * as SecureStore from 'expo-secure-store'
 import moment from 'moment'
 
+const web = Platform.OS === 'web' ? true : false
+
 const apiUrl = 'https://tuah.niyo.my/'
 
 export const requestToken = () => {
@@ -80,8 +82,10 @@ export const requestPersonalToken = (screen, username, password) => {
         const { token_type, access_token } = responseJson
         //await AsyncStorage.setItem('personalToken',JSON.stringify(responseJson))  
         const stringifyJson = JSON.stringify(responseJson)
-        SecureStore.setItemAsync('personalToken', stringifyJson);
-        dispatch({ type: 'SET_REGISTER', payload: { access_token } });
+
+        //SecureStore.setItemAsync('personalToken', stringifyJson);
+        web ? localStorage.setItem('personalToken', stringifyJson) : SecureStore.setItemAsync('personalToken', stringifyJson)
+        dispatch({ type: 'SET_REGISTER', payload: { access_token, personalToken: responseJson } });
         (screen == 'login' && access_token) ? dispatch({ type: 'SET_LOGIN', payload: { proceed: true, indicator: false } }) : dispatch({ type: 'SET_LOGIN', payload: { proceed: false, indicator: false, ...responseJson } })
 
       })
