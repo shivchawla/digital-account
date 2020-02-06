@@ -21,19 +21,19 @@ const IntroScreen = (props) => {
 
     const dispatch = useDispatch()
 
-    getExpoToken = async () => {
+    // getExpoToken = async () => {
 
-        let token = await Notifications.getExpoPushTokenAsync();
-        console.log(`expo token ialah ${token}`)
-        dispatch({ type: 'SET_REGISTER', payload: { expo_token: token } })
-        console.log(JSON.stringify({
-            token: { value: token, }, user: { username: 'Username', },
-        }))
-    }
+    //     let token = await Notifications.getExpoPushTokenAsync();
+    //     console.log(`expo token ialah ${token}`)
+    //     dispatch({ type: 'SET_REGISTER', payload: { expo_token: token } })
+    //     console.log(JSON.stringify({
+    //         token: { value: token, }, user: { username: 'Username', },
+    //     }))
+    // }
 
     useEffect(() => {
         //checkUpdate()
-        getExpoToken();
+        //getExpoToken();
 
     }, [])
 

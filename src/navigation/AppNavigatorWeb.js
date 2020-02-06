@@ -13,12 +13,12 @@ import MainTabNavigator from './MainTabNavigator';
 // });
 
 const Authentication = createSwitchNavigator({
-  Authentication: AuthenticationNavigator,
-  // Registration: RegistrationNavigator,
-  // Main: MainTabNavigator,
+    Authentication: AuthenticationNavigator,
+    Registration: RegistrationNavigator,
+    Main: MainTabNavigator,
 
 }, {
-  initialRouteName: 'Authentication'
+    initialRouteName: 'Authentication'
 });
 
 //export const LoggedInContainer = createAppContainer(LoggedIn);

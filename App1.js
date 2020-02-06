@@ -7,13 +7,11 @@ import * as SecureStore from 'expo-secure-store'
 import React, { useState, useEffect } from 'react';
 import { Platform, StatusBar, StyleSheet, View, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { AuthenticationContainer, LoggedInContainer } from './src/navigation/AppNavigator';
+import AuthenticationContainer from './src/navigation/AppNavigatorWeb';
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import rootReducer from './src/store/reducers/Reducer';
-
-const web=Platform.OS==='web'?true:false
 
 //import * as actionCreator from '../store/actions/action'
 import * as actionCreator from './src/store/actions/action'
@@ -38,7 +36,7 @@ const App = (props) => {
   const checkLogin = async () => {
     try {
       //const personalToken = await AsyncStorage.getItem('personalToken');
-      const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
+      const personalToken = await SecureStore.getItemAsync('personalToken')
       if (personalToken !== null && !personalToken.includes('error')) {
         //console.log(`personal token ialah : ${personalToken}`)
         setTokenExists(true)
@@ -106,15 +104,12 @@ const App = (props) => {
     return (<Provider store={store}>
       <View style={styles.container}>
         <StatusBar barStyle="default" />
-
-        {tokenExists ? <LoggedInContainer /> : <AuthenticationContainer />}
-
+        <AuthenticationContainer />
       </View>
     </Provider>
-
     )
   }
-
+ 
 
 }
 
