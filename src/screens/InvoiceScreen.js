@@ -78,11 +78,21 @@ const InvoiceScreen = (props) => {
                                         <Ionicons name={item.marker ? "md-arrow-dropdown" : "md-arrow-dropright"} color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
                                     </View>
                                 </TouchableWithoutFeedback>
-                                <View style={{ flexDirection: 'row', marginTop: 5, borderBottomWidth: item.marker ? 1 : 0, borderBottomColor: 'lightgrey', }}>
+                                <View style={{ flexDirection: 'row', marginTop: 5, borderBottomWidth: item.marker ? 1 : 0, borderBottomColor: 'lightgrey',paddingBottom:10 }}>
                                     <View style={{ flex: 1, paddingBottom: 5 }}>
                                         <Text style={styles.text}>{item.invoice_number}</Text>
                                     </View>
                                 </View>
+                                {!item.marker && <View style={{ flexDirection: 'row', marginTop: 5, }}>
+                                    <View style={{ flex: 1 }}>
+                                        <Text style={styles.small}>Currency</Text>
+                                        <Text style={styles.text}>{item.currency_code}</Text>
+                                    </View>
+                                    <View style={{ flex: 1 }}>
+                                        <Text style={styles.small}>Amount</Text>
+                                        <Text style={styles.text}>{item.amount}</Text>
+                                    </View>
+                                </View>}
                                 {item.marker && <View style={{ flex: 1 }}>
                                     <View style={{ flexDirection: 'row', marginTop: 20 }}>
                                         <View style={{ flex: 1 }}>
