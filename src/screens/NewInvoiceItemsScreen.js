@@ -97,7 +97,7 @@ const NewInvoiceItemsScreen = (props) => {
 
                 return (
 
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }}>
+                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }} keyboardVerticalOffset={20}>
                         <Modal animationType={'slide'} visible={addItemVisible} onRequestClose={() => setItemVisible(!addItemVisible)} transparent={true}>
                             <View style={{ flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(1,1,1,0.5)' }}>
                                 <View style={{ flex: 10, justifyContent: 'flex-end' }}>
@@ -136,14 +136,14 @@ const NewInvoiceItemsScreen = (props) => {
                                         </View>
                                     </View>
                                 </View>
-                                <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', backgroundColor: '#fff' }}>
-                                    <TouchableOpacity onPress={() => setItemVisible(!addItemVisible)} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 }}>
+                                <View style={{ flexDirection: 'row', alignSelf: 'stretch', backgroundColor: '#fff' }}>
+                                    <TouchableOpacity onPress={() => setItemVisible(!addItemVisible)} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1, paddingTop: 20, paddingBottom: 20, justifyContent: 'center', alignItems: 'center' }}>
                                         <LinearGradient colors={['#FFF', '#FFF']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                             <Text style={[styles.butang, { color: '#000000' }]}>Back</Text>
                                         </LinearGradient>
                                     </TouchableOpacity>
                                     <TouchableOpacity onPress={FormikProps.handleSubmit} style={{ flex: 1 }}>
-                                        <LinearGradient colors={FormikProps.isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
+                                        <LinearGradient colors={FormikProps.isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center',flexDirection: 'row' }}>
                                             <Text style={[styles.butang, { color: '#fff' }]}>Save</Text>
                                         </LinearGradient>
                                     </TouchableOpacity>
