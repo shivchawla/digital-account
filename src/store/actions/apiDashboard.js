@@ -1,8 +1,11 @@
-import { AsyncStorage } from 'react-native'
+import { AsyncStorage, Platform } from 'react-native'
 import { Notifications } from 'expo'
 import * as SecureStore from 'expo-secure-store'
 
+
 import moment from 'moment'
+
+const web = Platform.OS === 'web' ? true : false
 
 const apiUrl = 'https://tuah.niyo.my/'
 
@@ -34,7 +37,7 @@ export const paymentHistoryListApi = () => {
 export const loanApplicationDataApi = (id) => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
 
     fetch(`${apiUrl}api/loan/details?id=${id}`, {
@@ -62,7 +65,7 @@ export const loanApplicationDataApi = (id) => {
 export const loanListApi = () => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
 
     fetch(`${apiUrl}api/loan/list`, {
@@ -91,7 +94,7 @@ export const loanListApi = () => {
 export const repaymentListApi = () => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
 
     fetch(`${apiUrl}api/repaymentinfo/list`, {
@@ -121,7 +124,7 @@ export const repaymentListApi = () => {
 export const repaymentDetailApi = (id) => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
     //repaymentinfo/details/?id=24
     fetch(`${apiUrl}api/repaymentinfo/details?id=${id}`, {
@@ -149,7 +152,7 @@ export const repaymentDetailApi = (id) => {
 export const loanBillListApi = (loanNo) => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
     //https://tuah.niyo.my/api/repaymentinfo/bills/list?loanNo=199916920
     fetch(`${apiUrl}api/repaymentinfo/bills/list?loanNo=${loanNo}`, {
@@ -178,7 +181,7 @@ export const loanBillListApi = (loanNo) => {
 export const billDetailApi = (id) => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
 
     fetch(`${apiUrl}api/repaymentinfo/bills/details?id=${id}`, {
@@ -219,7 +222,7 @@ export const agingListApi = () => {
 export const withdrawDataApi = (id) => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
 
     fetch(`${apiUrl}api/withdrawal/details?id=${id}`, {
@@ -247,7 +250,7 @@ export const withdrawDataApi = (id) => {
 export const withdrawListApi = () => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
 
     fetch(`${apiUrl}api/withdrawal/list`, {
@@ -276,7 +279,7 @@ export const withdrawListApi = () => {
 export const vendorListApi = () => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
 
     fetch(`${apiUrl}api/setting/vendor/list`, {
@@ -305,7 +308,7 @@ export const vendorListApi = () => {
 export const vendorDataRetrieveApi = (id) => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
 
     fetch(`${apiUrl}api/setting/vendor/details?id=${id}`, {
@@ -332,7 +335,7 @@ export const vendorDataRetrieveApi = (id) => {
 
 export const withDrawApi = (values) => {
   return async (dispatch, getState) => {
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
     //const values = getState().loanApplicationReducer
 
@@ -397,7 +400,7 @@ export const withDrawApi = (values) => {
 export const customerListApi = () => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
 
     fetch(`${apiUrl}api/setting/customer/list`, {
@@ -426,7 +429,7 @@ export const customerListApi = () => {
 export const customerDataRetrieveApi = (id) => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
 
     fetch(`${apiUrl}api/setting/customer/details?id=${id}`, {
@@ -454,7 +457,7 @@ export const customerDataRetrieveApi = (id) => {
 export const itemListApi = () => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
 
     fetch(`${apiUrl}api/setting/item/list`, {
@@ -483,7 +486,7 @@ export const itemListApi = () => {
 export const itemDataRetrieveApi = (id) => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
 
     fetch(`${apiUrl}api/setting/item/details?id=${id}`, {
@@ -512,7 +515,7 @@ export const itemDataRetrieveApi = (id) => {
 export const getAllUsersApi = () => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
 
     fetch(`${apiUrl}api/developer/merchants/account/all`, {
@@ -542,7 +545,7 @@ export const getAllUsersApi = () => {
 export const invoiceListApi = () => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
 
     fetch(`${apiUrl}api/invoices/list`, {
@@ -577,7 +580,7 @@ export const invoiceListApi = () => {
 export const reportListApi = () => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web?await localStorage.getItem('personalToken'):await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
 
     fetch(`${apiUrl}api/transactions`, {
@@ -616,7 +619,7 @@ export const businessDirectoryListApi = () => {
   return async (dispatch, getState) => {
 
     //const personalToken = await AsyncStorage.getItem('personalToken');
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
 
     fetch(`${apiUrl}api/business/list`, {
@@ -653,7 +656,7 @@ export const retrieveMerchantInfoApi = () => {
 
     try {
       //const personalToken = await AsyncStorage.getItem('personalToken');
-      const personalToken = await SecureStore.getItemAsync('personalToken')
+      const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
       const { token_type, access_token } = JSON.parse(personalToken)
 
       fetch(`${apiUrl}api/setup/merchant`, {
@@ -686,7 +689,7 @@ export const retrieveAccountInfoApi = () => {
   return async (dispatch, getState) => {
     try {
       //const personalToken = await AsyncStorage.getItem('personalToken');
-      const personalToken = await SecureStore.getItemAsync('personalToken')
+      const personalToken = web?await localStorage.getItem('personalToken'):await SecureStore.getItemAsync('personalToken')
       const { token_type, access_token } = JSON.parse(personalToken)
 
       fetch(`${apiUrl}api/account/info`, {
@@ -719,7 +722,7 @@ export const retrievePersonalInfoApi = () => {
   return async (dispatch, getState) => {
     try {
       //const personalToken = await AsyncStorage.getItem('personalToken');
-      const personalToken = await SecureStore.getItemAsync('personalToken')
+      const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
       const { token_type, access_token } = JSON.parse(personalToken)
 
       fetch(`${apiUrl}api/personal/info`, {
@@ -736,8 +739,8 @@ export const retrievePersonalInfoApi = () => {
           const accountInfo = responseJson.data
           console.log('personal info ialah' + JSON.stringify(accountInfo))
           //dispatch({ type: 'SET_USER_PROFILE', payload: { ...accountInfo[0] } })
-          const {email,expo_token}=accountInfo
-          dispatch({ type: 'SET_PERSONAL_INFO', payload: { ...accountInfo,server_expo_token:accountInfo.expo_token} })
+          const { email, expo_token } = accountInfo
+          dispatch({ type: 'SET_PERSONAL_INFO', payload: { ...accountInfo, server_expo_token: accountInfo.expo_token } })
 
         })
         .catch((error) => {
@@ -754,7 +757,7 @@ export const checkDeclareApi = () => {
   return async (dispatch, getState) => {
 
     //const personalToken = await AsyncStorage.getItem('personalToken');
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
 
     fetch(`${apiUrl}api/setup/business_declaration`, {
@@ -789,7 +792,7 @@ export const checkDocumentApi = () => {
   return async (dispatch, getState) => {
 
     //const personalToken = await AsyncStorage.getItem('personalToken');
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
 
     fetch(`${apiUrl}api/setup/business_document`, {
@@ -822,7 +825,7 @@ export const checkContactApi = () => {
   return async (dispatch, getState) => {
 
     //const personalToken = await AsyncStorage.getItem('personalToken');
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
 
     fetch(`${apiUrl}api/setup/business_contact`, {
@@ -854,7 +857,7 @@ export const checkCDDApi = () => {
   return async (dispatch, getState) => {
 
     //const personalToken = await AsyncStorage.getItem('personalToken');
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
 
     fetch(`${apiUrl}api/setup/cdd_verification`, {
@@ -927,7 +930,7 @@ export const checkCDDApi2 = () => {
   return async (dispatch, getState) => {
 
     //const personalToken = await AsyncStorage.getItem('personalToken');
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
 
     fetch(`${apiUrl}api/setup/cdd_verification`, {
@@ -963,7 +966,7 @@ export const bankListApi = () => {
   return async (dispatch, getState) => {
     console.log(`bank list masuk api`)
     //const personalToken = await AsyncStorage.getItem('personalToken');
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
     const bankListStored = await AsyncStorage.getItem('bankListStored');
     const bankList = bankListStored && JSON.parse(bankListStored)
     //bankListStored && bankList.push(JSON.parse(bankListStored))
@@ -979,7 +982,7 @@ export const addBankApi = (values) => {
   return async (dispatch, getState) => {
     console.log(`add bank masuk api`)
     //const personalToken = await AsyncStorage.getItem('personalToken');
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
 
     const bankListStored = await AsyncStorage.getItem('bankListStored');
     // bankListStored && bankList.push(JSON.parse(bankListStored))
@@ -1004,7 +1007,7 @@ export const deleteAllBankApi = (values) => {
   return async (dispatch, getState) => {
     console.log(`remove bank masuk api`)
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
 
     AsyncStorage.removeItem('bankListStored')
 
@@ -1051,7 +1054,7 @@ export const userInfo = () => {
   return async (dispatch, getState) => {
     //const personalToken = await AsyncStorage.getItem('personalToken');
     try {
-      const personalToken = await SecureStore.getItemAsync('personalToken')
+      const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
       const { token_type, access_token } = JSON.parse(personalToken)
 
       fetch(`${apiUrl}api/userInfo`, {
@@ -1087,7 +1090,7 @@ export const notificationApi = () => {
   return async (dispatch, getState) => {
 
     //const personalToken = await AsyncStorage.getItem('personalToken');
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
 
     fetch(`${apiUrl}api/Notification`, {
@@ -1164,7 +1167,7 @@ export const pushNotification = (expoToken) => {
 
 export const submitLoanApplicationApi = () => {
   return async (dispatch, getState) => {
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
     const values = getState().loanApplicationReducer
 
@@ -1253,7 +1256,7 @@ export const submitLoanApplicationApi = () => {
 
 export const submitInvoiceApi = () => {
   return async (dispatch, getState) => {
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
     const { newInvoice, items } = getState().invoiceReducer
 
@@ -1317,7 +1320,7 @@ export const submitInvoiceApi = () => {
 
 export const vendorDataApi = (values) => {
   return async (dispatch, getState) => {
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
     //const values = getState().invoiceReducer
     const access_credential = 'api'
@@ -1346,7 +1349,7 @@ export const vendorDataApi = (values) => {
 
 export const customerDataApi = (values) => {
   return async (dispatch, getState) => {
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
     //const values = getState().invoiceReducer
     const access_credential = 'api'
@@ -1376,7 +1379,7 @@ export const customerDataApi = (values) => {
 
 export const itemDataApi = (values) => {
   return async (dispatch, getState) => {
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
     //const values = getState().invoiceReducer
     const access_credential = 'api'
@@ -1405,7 +1408,7 @@ export const itemDataApi = (values) => {
 
 export const submitSupportApi = (values) => {
   return async (dispatch, getState) => {
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
     //const values = getState().supportReducer
     const access_credential = 'api'
@@ -1434,7 +1437,7 @@ export const submitSupportApi = (values) => {
 
 export const newExpenseApi = (values) => {
   return async (dispatch, getState) => {
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
     //const values = getState().expenseReducer
     const access_credential = 'api'
@@ -1492,7 +1495,7 @@ export const savePinApi = () => {
 
 export const respondAgreementApi = (values) => {
   return async (dispatch, getState) => {
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
     //const values = getState().invoiceReducer
     const access_credential = 'api'
@@ -1522,9 +1525,9 @@ export const respondAgreementApi = (values) => {
 
 export const updateExpoTokenApi = () => {
   return async (dispatch, getState) => {
-    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const personalToken = web ? await localStorage.getItem('personalToken') : await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
-    const {expo_token} = getState().registrationReducer
+    const { expo_token } = getState().registrationReducer
     const access_credential = 'api'
     console.log(`update expo token : ${JSON.stringify(expo_token)}`)
 
