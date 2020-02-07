@@ -194,7 +194,7 @@ export const setMarkerReportList = (index) => {
 
         const { reportList } = getState().reportReducer
         const newArr = []
-        reportList.map((i, n) => (n === index) ? newArr.push({ ...i, marker: true }) : newArr.push({ ...i, marker: false }))
+        reportList.map((i, n) =>  (i.id === index) ? newArr.push({ ...i, marker: !i.marker }) : newArr.push({ ...i, marker: false }))
         dispatch({ type: 'SET_REPORT_LIST', payload: { reportList: newArr } })
     }
 }
@@ -214,7 +214,7 @@ export const setMarker = (index) => {
 
         const { invoiceList } = getState().invoiceReducer
         const newArr = []
-        invoiceList.map((i, n) => (n === index) ? newArr.push({ ...i, marker: true }) : newArr.push({ ...i, marker: false }))
+        invoiceList.map((i, n) => (n === index) ? newArr.push({ ...i, marker: !i.marker }) : newArr.push({ ...i, marker: false }))
         dispatch({ type: 'SET_INVOICE_LIST', payload: { invoiceList: newArr } })
     }
 }

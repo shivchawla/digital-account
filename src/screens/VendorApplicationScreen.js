@@ -68,14 +68,14 @@ const VendorApplicationScreen = (props) => {
 
                 return (
 
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, justifyContent: 'center' }}>
+                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, justifyContent: 'center' }}keyboardVerticalOffset={20}>
                         <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
                                     <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30 }} />
                                 </TouchableOpacity>
                             </View>
-                            <View style={{ flex: 5, justifyContent: 'center', alignItems: 'center' }}>
+                            <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
                                 <Text style={[styles.title]}>VENDOR DETAILS</Text>
                             </View>
                             <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
@@ -85,7 +85,7 @@ const VendorApplicationScreen = (props) => {
                             </TouchableOpacity>
                         </View>
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
-                            <View style={[styles.screenMargin, { flex: 9 }]}>
+                            <View style={[styles.screenMargin, { flex: 3 }]}>
                                 <View style={[styles.formElement]}>
                                     <Text style={[styles.titleBox, { marginBottom: 5, marginTop: 25 }]}>Vendor Name</Text>
                                     <TextInput value={vendorName} onChangeText={FormikProps.handleChange('vendorName')} onBlur={FormikProps.handleBlur('vendorName')} style={{ borderWidth: 1, borderColor: vendorNameTouched && vendorNameError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={vendorNameTouched && vendorNameError ? '' : 'Siti binti Ali'} placeholderTextColor={vendorNameTouched && vendorNameError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
@@ -108,12 +108,12 @@ const VendorApplicationScreen = (props) => {
                                 </View>
                             </View>
                         </View>
-                        <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
+                        <View style={{  flexDirection: 'row', alignSelf: 'stretch' }}>
                             <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1, paddingTop: 20, paddingBottom: 20, justifyContent: 'center', alignItems: 'center' }}>
-
-                                <Text style={[styles.butang, { color: '#000000' }]}>Back</Text>
-
-                            </TouchableOpacity>
+                                        
+                                            <Text style={[styles.butang, { color: '#000000' }]}>Back</Text>
+                                        
+                                    </TouchableOpacity>
                             <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ flex: 1 }}>
                                 <LinearGradient colors={FormikProps.isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                     {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> : <Text style={[styles.butang, { color: '#fff' }]}>Submit</Text>}
