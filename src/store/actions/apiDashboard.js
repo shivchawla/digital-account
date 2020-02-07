@@ -528,7 +528,9 @@ export const getAllUsersApi = () => {
 
     }).then((response) => response.json())
       .then(async (responseJson) => {
-        const userList = responseJson
+        const { data } = responseJson
+        const userList = data
+
         //withdrawList.reverse()
         console.log('Success all users list' + JSON.stringify(userList))
         dispatch({ type: 'SET_RECIPIENT_LIST', payload: { userList } })
