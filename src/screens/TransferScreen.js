@@ -27,7 +27,7 @@ const TransferScreen = (props) => {
 
     const transferRefNo = `TR-${moment().format('YYMMDDhhmmssSS')}`
     const dispatch = useDispatch()
-    const { account_no } = useSelector(state => state.myAccountReducer, shallowEqual)
+    const { account_number } = useSelector(state => state.myAccountReducer, shallowEqual)
     const { userList } = useSelector(state => state.transferOutScreenReducer, shallowEqual)
     const { balance, currency } = useSelector(state => state.myAccountReducer, shallowEqual)
     const [userListView, setuserListView] = useState(false)
@@ -75,11 +75,11 @@ const TransferScreen = (props) => {
 
             } else {
                 dispatch(actionCreator.submitNewExpense(values))
-                actions.resetForm({ wallet: account_no, references_no: transferRefNo })
+                actions.resetForm({ wallet: account_number, references_no: transferRefNo })
                 props.navigation.navigate('TransferSuccess')
             }
         }}
-            initialValues={{ wallet: account_no, references_no: transferRefNo }}
+            initialValues={{ wallet: account_number, references_no: transferRefNo }}
             validationSchema={validationSchema}
         >
             {FormikProps => {
@@ -90,8 +90,8 @@ const TransferScreen = (props) => {
                 const recipientTouched = FormikProps.touched.recipient
                 const references_noError = FormikProps.errors.references_no
                 const references_noTouched = FormikProps.touched.references_no
-                const setUser = (account_no) => {
-                    FormikProps.setFieldValue("recipient", account_no.toString())
+                const setUser = (account_number) => {
+                    FormikProps.setFieldValue("recipient", account_number.toString())
                     setuserListView(!userListView)
                 }
 
@@ -147,10 +147,15 @@ const TransferScreen = (props) => {
                                                 </View>
                                             </View>
                                             {userList && <FlatList data={userList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
-                                                <TouchableOpacity onPress={() => setUser(item.account_no)} style={styles.box}>
+                                                <TouchableOpacity onPress={() => setUser(item.number)} style={styles.box}>
                                                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
                                                         <View style={{ flex: 1 }}>
-                                                            <Text style={styles.text}>{item.account_no}</Text>
+                                                            <Text style={styles.text}>{item.account_number}</Text>
+                                                        </View>
+                                                    </View>
+                                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                                        <View style={{ flex: 1 }}>
+                                                            <Text style={styles.small}>{item.owner_name}</Text>
                                                         </View>
                                                     </View>
                                                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
@@ -182,7 +187,7 @@ const TransferScreen = (props) => {
                                 </TouchableOpacity>
                             </View>
                             <View style={[{ flex: 9, justifyContent: 'space-between' }]}>
-                                {/* <Text>{account_no&&JSON.stringify(account_no)}</Text> */}
+                                {/* <Text>{account_number&&JSON.stringify(account_number)}</Text> */}
                                 <View style={styles.screenMargin}>
                                     <View style={[styles.formElement]}>
                                         <Text style={[styles.titleBox, { marginBottom: 10, marginTop: 10 }]}>Amount ({currency})</Text>
