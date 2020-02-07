@@ -111,11 +111,11 @@ const DashboardScreen = (props) => {
   // }, [status1])
 
   useEffect(() => {
-   
-      dispatch(actionCreator.retrievePersonalInfo())
-      dispatch(actionCreator.retrieveMerchantInfo())
-      dispatch(actionCreator.retrieveAccountInfo())
-      dispatch(actionCreator.getReportList()) 
+
+    dispatch(actionCreator.retrievePersonalInfo())
+    dispatch(actionCreator.retrieveMerchantInfo())
+    dispatch(actionCreator.retrieveAccountInfo())
+    dispatch(actionCreator.getReportList())
   }, [])
 
 

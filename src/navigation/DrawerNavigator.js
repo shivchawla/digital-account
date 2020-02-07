@@ -12,6 +12,7 @@ import BusinessHubScreen from '../screens/BusinessHubScreen';
 import TransferScreen from '../screens/TransferScreen';
 import DataSettingScreen from '../screens/DataSettingScreen';
 import Layout from '../constants/Layout';
+import InvoiceScreen from '../screens/InvoiceScreen';
 
 const DrawerContent = createDrawerNavigator(
     {
@@ -25,6 +26,7 @@ const DrawerContent = createDrawerNavigator(
         Support: SupportScreen,
         BusinessHub: BusinessHubScreen,
         Settings: SettingsScreen,
+        Invoice:InvoiceScreen
     },
     {
         // define customComponent here
