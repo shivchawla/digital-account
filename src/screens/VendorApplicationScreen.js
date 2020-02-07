@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableOpacity, Text, Image, KeyboardAvoidingView, TextInput, ActivityIndicator } from 'react-native';
+import { View, TouchableOpacity, Text, Image, KeyboardAvoidingView, TextInput, ActivityIndicator,ScrollView } from 'react-native';
 import * as actionCreator from '../store/actions/action'
 import { useDispatch } from 'react-redux'
 import { LinearGradient } from 'expo-linear-gradient'
@@ -85,7 +85,7 @@ const VendorApplicationScreen = (props) => {
                             </TouchableOpacity>
                         </View>
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
-                            <View style={[styles.screenMargin, { flex: 3 }]}>
+                            <ScrollView style={[styles.screenMargin, { flex: 3 }]}>
                                 <View style={[styles.formElement]}>
                                     <Text style={[styles.titleBox, { marginBottom: 5, marginTop: 25 }]}>Vendor Name</Text>
                                     <TextInput value={vendorName} onChangeText={FormikProps.handleChange('vendorName')} onBlur={FormikProps.handleBlur('vendorName')} style={{ borderWidth: 1, borderColor: vendorNameTouched && vendorNameError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={vendorNameTouched && vendorNameError ? '' : 'Siti binti Ali'} placeholderTextColor={vendorNameTouched && vendorNameError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
@@ -106,7 +106,7 @@ const VendorApplicationScreen = (props) => {
                                     <TextInput value={address} onChangeText={FormikProps.handleChange('address')} onBlur={FormikProps.handleBlur('address')} style={{ borderWidth: 1, borderColor: addressTouched && addressError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={addressTouched && addressError ? '' : '32, Jalan Hartamas, Bandar Baru Sendayan, Negeri Sembilan'} placeholderTextColor={addressTouched && addressError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                     {addressTouched && addressError && <Text style={styles.error}>{addressError}</Text>}
                                 </View>
-                            </View>
+                            </ScrollView>
                         </View>
                         <View style={{  flexDirection: 'row', alignSelf: 'stretch' }}>
                             <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1, paddingTop: 20, paddingBottom: 20, justifyContent: 'center', alignItems: 'center' }}>
