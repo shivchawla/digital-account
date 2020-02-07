@@ -37,7 +37,7 @@ const ChartKit = (props) => {
     return (
         <View style={{ flex: 1, padding: 0, }}>
             <LineChart data={data}
-                width={(web&&Layout.window.width>500)?Layout.window.width/3 - 40:Layout.window.width/3 - 40} height={Layout.window.height > 570 ? 215 : 170} yAxisLabel={""} yAxisSuffix={""} fromZero={false} onDataPointClick={val => props.dataPointClicked(val)}// from react-native 
+                width={(web&&Layout.window.width>500)?Layout.window.width/3 - 40:Layout.window.width - 40} height={Layout.window.height > 570 ? 215 : 170} yAxisLabel={""} yAxisSuffix={""} fromZero={false} onDataPointClick={val => props.dataPointClicked(val)}// from react-native 
                 chartConfig={{
                     fontSize: 5,
                     backgroundColor: "#055E7C", backgroundGradientFrom: "#055E7C", backgroundGradientTo: "#055E7C", decimalPlaces: 0, color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`, labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,// optional, defaults to 2dp
