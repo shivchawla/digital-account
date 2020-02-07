@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text,Platform } from 'react-native';
 import { LineChart, BarChart, PieChart, ProgressChart, ContributionGraph, StackedBarChart } from "react-native-chart-kit";
 //import { Text } from "react-native-svg"; // Supported builtin module
 import Layout from '../constants/Layout'
-
+const web = Platform.OS === 'web' ? true : false
 const ChartKit = (props) => {
     const showPopup = props.showPopup
     const propsData = props.data
