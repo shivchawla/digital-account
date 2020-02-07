@@ -49,7 +49,7 @@ const CompanyContactInformationScreen = (props) => {
                 const cddEmailError = FormikProps.errors.cddEmail
                 const cddEmailTouched = FormikProps.touched.cddEmail
                 return (
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }}>
+                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }} keyboardVerticalOffset={30}>
                         <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4', marginBottom: 25 }]}>
                             <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center', alignItems: 'flex-start', paddingLeft: 10 }}>
                                 <Text numberOfLines={1} style={[styles.title]} ellipsizeMode='tail'>COMPANY CONTACT</Text>
@@ -89,8 +89,8 @@ const CompanyContactInformationScreen = (props) => {
                                     </TouchableOpacity>
                                 </View>
                             </View>
-                            <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
-                                <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 }}>
+                            <View style={{ flexDirection: 'row', alignSelf: 'stretch' }}>
+                                <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 ,paddingTop: 20, paddingBottom: 20, justifyContent: 'center', alignItems: 'center'  }}>
                                     <LinearGradient colors={['#FFF', '#FFF']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                         <Text style={[styles.butang, { color: 'lightgrey' }]}>Back</Text>
                                     </LinearGradient>
