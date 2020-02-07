@@ -13,16 +13,6 @@ import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import rootReducer from './src/store/reducers/Reducer';
 
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-
-
-import WelcomeScreen from './src/screens/WelcomeScreen'
-import DashboardScreen from './src/screens/DashboardScreen'
-import SignUpPersonal from './src/screens/SignupPersonalScreen'
-
-const Stack = createStackNavigator();
-
 //import * as actionCreator from '../store/actions/action'
 import * as actionCreator from './src/store/actions/action'
 const store = createStore(rootReducer, applyMiddleware(thunk))
@@ -113,22 +103,13 @@ const App = (props) => {
   } else {
     return (<Provider store={store}>
       <View style={styles.container}>
-        <NavigationContainer>
-          <Stack.Navigator>
-
-            {tokenExists ?
-              <Stack.Screen name="Dashboard" component={DashboardScreen} options={{ headerShown: false }} /> :
-              <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} />
-            }
-
-            {/* <Stack.Screen name="Register" component={SignUpPersonal} options={{ headerShown: false }} /> */}
-          </Stack.Navigator>
-        </NavigationContainer>
+        <StatusBar barStyle="default" />
+        <AuthenticationContainer />
       </View>
     </Provider>
     )
   }
-
+ 
 
 }
 
