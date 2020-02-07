@@ -13,10 +13,11 @@ import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import rootReducer from './src/store/reducers/Reducer';
 
-const web=Platform.OS==='web'?true:false
+const web = Platform.OS === 'web' ? true : false
 
 //import * as actionCreator from '../store/actions/action'
 import * as actionCreator from './src/store/actions/action'
+import Layout from './src/constants/Layout';
 const store = createStore(rootReducer, applyMiddleware(thunk))
 const App = (props) => {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
@@ -104,11 +105,9 @@ const App = (props) => {
     );
   } else {
     return (<Provider store={store}>
-      <View style={styles.container}>
+      <View style={[styles.container,]}>
         <StatusBar barStyle="default" />
-
         {tokenExists ? <LoggedInContainer /> : <AuthenticationContainer />}
-
       </View>
     </Provider>
 
@@ -248,8 +247,10 @@ const handleFinishLoading = (setLoadingComplete) => {
 const styles = StyleSheet.create({
   container: {
     paddingTop: Constants.statusBarHeight,
+    paddingLeft: (web&&Layout.window.width>500)&&Layout.window.width / 3, 
+    paddingRight: (web&&Layout.window.width>500)&&Layout.window.width / 3,
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'grey',
   },
 });
 
