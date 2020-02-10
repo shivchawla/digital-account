@@ -13,11 +13,16 @@ import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import rootReducer from './src/store/reducers/Reducer';
 
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+const Stack = createStackNavigator();
 const web = Platform.OS === 'web' ? true : false
 
 //import * as actionCreator from '../store/actions/action'
 import * as actionCreator from './src/store/actions/action'
 import Layout from './src/constants/Layout';
+import WelcomeScreen from './src/screens/WelcomeScreen';
+import DashboardScreen from './src/screens/DashboardScreen';
 const store = createStore(rootReducer, applyMiddleware(thunk))
 const App = (props) => {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
@@ -108,6 +113,28 @@ const App = (props) => {
       <View style={[styles.container,]}>
         <StatusBar barStyle="default" />
         {tokenExists ? <LoggedInContainer /> : <AuthenticationContainer />}
+
+
+        <NavigationContainer>
+          <Stack.Navigator>
+            {tokenExists ? (
+              // No token found, user isn't signed in
+              <Stack.Screen
+                name="Welcome"
+                component={WelcomeScreen}
+                options={{
+                  title: 'Sign in',
+                  // When logging out, a pop animation feels intuitive
+                  //animationTypeForReplace: state.isSignout ? 'pop' : 'push',
+                }}
+              />
+            ) : (
+                // User is signed in
+                <Stack.Screen name="Dashboard" component={DashboardScreen} />
+              )}
+          </Stack.Navigator>
+        </NavigationContainer>
+
       </View>
     </Provider>
 
