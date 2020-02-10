@@ -7,7 +7,7 @@ import * as SecureStore from 'expo-secure-store'
 import React, { useState, useEffect } from 'react';
 import { Platform, StatusBar, StyleSheet, View, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { AuthenticationContainer, LoggedInContainer } from './src/navigation/AppNavigator';
+//import { AuthenticationContainer, LoggedInContainer } from './src/navigation/AppNavigator';
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
@@ -112,7 +112,7 @@ const App = (props) => {
     return (<Provider store={store}>
       <View style={[styles.container,]}>
         <StatusBar barStyle="default" />
-        {tokenExists ? <LoggedInContainer /> : <AuthenticationContainer />}
+        {/* {tokenExists ? <LoggedInContainer /> : <AuthenticationContainer />} */}
 
 
         <NavigationContainer>
@@ -121,16 +121,11 @@ const App = (props) => {
               // No token found, user isn't signed in
               <Stack.Screen
                 name="Welcome"
-                component={WelcomeScreen}
-                options={{
-                  title: 'Sign in',
-                  // When logging out, a pop animation feels intuitive
-                  //animationTypeForReplace: state.isSignout ? 'pop' : 'push',
-                }}
+                component={WelcomeScreen}            
               />
             ) : (
                 // User is signed in
-                <Stack.Screen name="Dashboard" component={DashboardScreen} />
+                <Stack.Screen name="Welcome" component={WelcomeScreen} />
               )}
           </Stack.Navigator>
         </NavigationContainer>
