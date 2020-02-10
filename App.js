@@ -247,8 +247,8 @@ const handleFinishLoading = (setLoadingComplete) => {
 const styles = StyleSheet.create({
   container: {
     paddingTop: Constants.statusBarHeight,
-    paddingLeft: (web&&Layout.window.width>500)&&Layout.window.width / 3, 
-    paddingRight: (web&&Layout.window.width>500)&&Layout.window.width / 3,
+    paddingLeft: (web && Layout.window.width > 500) ? Layout.window.width / 3 : null,
+    paddingRight: (web && Layout.window.width > 500) ? Layout.window.width / 3 : null,
     flex: 1,
     backgroundColor: 'grey',
   },

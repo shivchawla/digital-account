@@ -36,7 +36,7 @@
     "expo-document-picker": "^6.0.0",
     "expo-font": "~6.0.0",
     "expo-local-authentication": "~6.0.0",
-    "expo-secure-store": "^6.0.0",
+    "expo-secure-store": "~6.0.0",
     "expo-web-browser": "6.0.0",
     "formik": "^1.5.8",
     "lodash": "^4.17.15",
