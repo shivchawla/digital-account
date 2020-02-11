@@ -69,7 +69,7 @@ const LoanApplicationScreen = (props) => {
                             <View style={{ flex: 9, margin: 10 }}>
                                 <ScrollView style={[styles.screenMargin]}>
                                     <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'center', marginBottom: 5 }}>
-                                        <Text style={[styles.titleBox, { marginBottom: 10, marginTop: 10 }]}>Financing</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 10, marginTop: 10 , fontSize:16 }]}>Financing</Text>
                                     </View>
                                     <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'center', marginBottom: 20 }}>
                                         <View style={{ flexDirection: 'row', width: Layout.window.width / 2, justifyContent: 'space-between' }}>
@@ -79,13 +79,13 @@ const LoanApplicationScreen = (props) => {
                                                     <View style={{ flex: 1, backgroundColor: '#CDCDCD' }} />
                                                 </View>
                                             </View>
-                                            <View style={{ width: 30, height: 30, borderRadius: 15, backgroundColor: '#20B8D3', justifyContent: 'center', alignItems: 'center' }}>
+                                            <View style={{ width: 40, height: 40, borderRadius: 15, backgroundColor: '#20B8D3', justifyContent: 'center', alignItems: 'center' }}>
                                                 <Ionicons name="md-card" color={'#fff'} style={{ fontSize: 15, }} />
                                             </View>
-                                            <View style={{ width: 30, height: 30, borderRadius: 15, backgroundColor: '#CDCDCD', justifyContent: 'center', alignItems: 'center' }}>
+                                            <View style={{ width: 40, height: 40, borderRadius: 15, backgroundColor: '#CDCDCD', justifyContent: 'center', alignItems: 'center' }}>
                                                 <Ionicons name="md-person" color={'grey'} style={{ fontSize: 15, }} />
                                             </View>
-                                            <View style={{ width: 30, height: 30, borderRadius: 15, backgroundColor: '#CDCDCD', justifyContent: 'center', alignItems: 'center' }}>
+                                            <View style={{ width: 40, height: 40, borderRadius: 15, backgroundColor: '#CDCDCD', justifyContent: 'center', alignItems: 'center' }}>
                                                 <Ionicons name="md-clipboard" color={'grey'} style={{ fontSize: 15, }} />
                                             </View>
                                         </View>
@@ -94,12 +94,12 @@ const LoanApplicationScreen = (props) => {
                                         <Text style={styles.h2}>Application Form for Financing</Text>
                                     </View>
                                     <View style={{ marginBottom: 10 }}>
-                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Total Financing (MYR)</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 10,fontSize:16 }]}>Total Financing (MYR)</Text>
                                         <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} onBlur={FormikProps.handleBlur('amount')} style={{ borderWidth: 1, borderColor: amountTouched && amountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={amountTouched && amountError ? '' : 'Eg: RM 1000.00'} placeholderTextColor={amountTouched && amountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
                                         {amountTouched && amountError && <Text style={styles.error}>{amountError}</Text>}
                                     </View>
                                     <View style={{ marginBottom: 10 }}>
-                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Purpose</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 10,fontSize:16}]}>Purpose</Text>
                                         <TextInput value={purpose} onChangeText={FormikProps.handleChange('purpose')} onBlur={FormikProps.handleBlur('purpose')} style={{ borderWidth: 1, borderColor: purposeTouched && purposeError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={purposeTouched && purposeError ? '' : 'Eg: Pay salary'} placeholderTextColor={purposeTouched && purposeError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
 
                                         {purposeTouched && purposeError && <Text style={styles.error}>{purposeError}</Text>}
