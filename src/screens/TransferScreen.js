@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, Text, KeyboardAvoidingView, TextInput, Modal, FlatList, ScrollView } from 'react-native';
+import { View, TouchableOpacity, Text, KeyboardAvoidingView, TextInput, FlatList, ScrollView, Platform,Modal } from 'react-native';
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { LinearGradient } from 'expo-linear-gradient'
@@ -10,6 +10,14 @@ import styles from '../styles/styles'
 import moment from 'moment'
 import CodePin from 'react-native-pin-code'
 import Layout from '../constants/Layout';
+
+// let Modal;
+
+// if (Platform.OS !== 'web') {
+//     Modal = require('react-native').Modal;
+// } else {
+//     Modal = require('../components/WebModal').default;
+// }
 
 import ScanFinger from '../components/ScanFinger'
 
@@ -27,7 +35,7 @@ const TransferScreen = (props) => {
 
     const transferRefNo = `TR-${moment().format('YYMMDDhhmmssSS')}`
     const dispatch = useDispatch()
-    const { account_no } = useSelector(state => state.myAccountReducer, shallowEqual)
+    const  my_account_number  = useSelector(state => state.myAccountReducer.account_no, shallowEqual)
     const { userList } = useSelector(state => state.transferOutScreenReducer, shallowEqual)
     const { balance, currency } = useSelector(state => state.myAccountReducer, shallowEqual)
     const [userListView, setuserListView] = useState(false)
@@ -70,16 +78,17 @@ const TransferScreen = (props) => {
     return (
 
         <Formik onSubmit={(values, actions) => {
+            console.log(`values ialah ${JSON.stringify(values)}`)
             if (authEnabled && locked) {
                 setAuthRequestVisible(true)
 
             } else {
                 dispatch(actionCreator.submitNewExpense(values))
-                actions.resetForm({ wallet: account_no, references_no: transferRefNo })
+                actions.resetForm({ wallet: my_account_number, references_no: transferRefNo })
                 props.navigation.navigate('TransferSuccess')
             }
         }}
-            initialValues={{ wallet: account_no, references_no: transferRefNo }}
+            initialValues={{ wallet: my_account_number, references_no: transferRefNo }}
             validationSchema={validationSchema}
         >
             {FormikProps => {
@@ -90,8 +99,8 @@ const TransferScreen = (props) => {
                 const recipientTouched = FormikProps.touched.recipient
                 const references_noError = FormikProps.errors.references_no
                 const references_noTouched = FormikProps.touched.references_no
-                const setUser = (account_no) => {
-                    FormikProps.setFieldValue("recipient", account_no.toString())
+                const setUser = (account_number) => {
+                    FormikProps.setFieldValue("recipient", account_number.toString())
                     setuserListView(!userListView)
                 }
 
@@ -147,10 +156,15 @@ const TransferScreen = (props) => {
                                                 </View>
                                             </View>
                                             {userList && <FlatList data={userList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
-                                                <TouchableOpacity onPress={() => setUser(item.account_no)} style={styles.box}>
+                                                <TouchableOpacity onPress={() => setUser(item.account_number)} style={styles.box}>
                                                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
                                                         <View style={{ flex: 1 }}>
-                                                            <Text style={styles.text}>{item.account_no}</Text>
+                                                            <Text style={styles.text}>{item.account_number}</Text>
+                                                        </View>
+                                                    </View>
+                                                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                                        <View style={{ flex: 1 }}>
+                                                            <Text style={styles.small}>{item.owner_name}</Text>
                                                         </View>
                                                     </View>
                                                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
@@ -165,6 +179,7 @@ const TransferScreen = (props) => {
                                 </View >
                             </View >
                         </Modal>
+
                         <View style={{ flex: 1 }}>
                             <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
                                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
@@ -182,7 +197,7 @@ const TransferScreen = (props) => {
                                 </TouchableOpacity>
                             </View>
                             <View style={[{ flex: 9, justifyContent: 'space-between' }]}>
-                                {/* <Text>{account_no&&JSON.stringify(account_no)}</Text> */}
+                                {/* <Text>{account_number&&JSON.stringify(account_number)}</Text> */}
                                 <View style={styles.screenMargin}>
                                     <View style={[styles.formElement]}>
                                         <Text style={[styles.titleBox, { marginBottom: 10, marginTop: 10 }]}>Amount ({currency})</Text>
