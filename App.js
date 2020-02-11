@@ -7,24 +7,30 @@ import * as SecureStore from 'expo-secure-store'
 import React, { useState, useEffect } from 'react';
 import { Platform, StatusBar, StyleSheet, View, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import AuthenticationContainer from './src/navigation/AppNavigatorWeb';
+
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import rootReducer from './src/store/reducers/Reducer';
 
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+
+///// All Below for Navigation
+import { enableScreens } from 'react-native-screens';
 
 
-import WelcomeScreen from './src/screens/WelcomeScreen'
-import DashboardScreen from './src/screens/DashboardScreen'
-import SignUpPersonal from './src/screens/SignupPersonalScreen'
 
-const Stack = createStackNavigator();
+
+enableScreens();
+
+
+
+
+///////End For Navigation
 
 //import * as actionCreator from '../store/actions/action'
 import * as actionCreator from './src/store/actions/action'
+import Nav from './src/navigation/Nav';
+
 const store = createStore(rootReducer, applyMiddleware(thunk))
 const App = (props) => {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
@@ -94,13 +100,13 @@ const App = (props) => {
   };
 
 
-  useEffect(() => {
-    //checkUpdate()
-    //registerForPushNotificationsAsync();
-    const _notificationSubscription = Notifications.addListener(_handleNotification);
-    checkLogin()
+  // useEffect(() => {
+  //   //checkUpdate()
+  //   //registerForPushNotificationsAsync();
+  //   const _notificationSubscription = Notifications.addListener(_handleNotification);
+  //   checkLogin()
 
-  }, [])
+  // }, [])
 
   if (!isLoadingComplete && !props.skipLoadingScreen) {
     return (
@@ -113,24 +119,16 @@ const App = (props) => {
   } else {
     return (<Provider store={store}>
       <View style={styles.container}>
-        <NavigationContainer>
-          <Stack.Navigator>
-
-            {tokenExists ?
-              <Stack.Screen name="Dashboard" component={DashboardScreen} options={{ headerShown: false }} /> :
-              <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} />
-            }
-
-            {/* <Stack.Screen name="Register" component={SignUpPersonal} options={{ headerShown: false }} /> */}
-          </Stack.Navigator>
-        </NavigationContainer>
+        <Nav />
       </View>
     </Provider>
     )
   }
 
-
 }
+
+
+
 
 
 const loadResourcesAsync = async () => {
