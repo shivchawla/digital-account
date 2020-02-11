@@ -67,7 +67,7 @@ const BusinessDirectoryScreen = (props) => {
                         <View style={[styles.box, styles.shadow, { marginBottom: 15, borderRadius: 15 }]}>
                             <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'flex-start', alignItems: 'center', alignSelf: 'stretch' }}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1.2 }}>
-                                    <Image source={require('../assets/images/nameicon.png')} style={{ width: 20, height: 20 }} resizeMode={'contain'} />
+                                    <Image source={require('../assets/images/nameicon.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
                                     <Text style={[styles.small, { color: '#04A2BD', marginLeft: 15 }]}>Name</Text>
                                 </View>
                                 <View style={{ flex: 2 }}>
@@ -76,7 +76,7 @@ const BusinessDirectoryScreen = (props) => {
                             </View>
                             <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'flex-start', alignItems: 'center', alignSelf: 'stretch' }}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1.2 }}>
-                                    <Image source={require('../assets/images/phonenoicon.png')} style={{ width: 20, height: 20 }} resizeMode={'contain'} />
+                                    <Image source={require('../assets/images/phonenoicon.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
                                     <Text style={[styles.small, { color: '#04A2BD', marginLeft: 15 }]}>Phone No</Text>
                                 </View>
                                 <View style={{ flex: 2 }}>
@@ -85,7 +85,7 @@ const BusinessDirectoryScreen = (props) => {
                             </View>
                             <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'flex-start', alignItems: 'center', alignSelf: 'stretch' }}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1.2 }}>
-                                    <Image source={require('../assets/images/industryicon.png')} style={{ width: 20, height: 20 }} resizeMode={'contain'} />
+                                    <Image source={require('../assets/images/industryicon.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
                                     <Text style={[styles.small, { color: '#04A2BD', marginLeft: 15 }]}>Industry</Text>
                                 </View>
                                 <View style={{ flex: 2 }}>
@@ -94,7 +94,7 @@ const BusinessDirectoryScreen = (props) => {
                             </View>
                             <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'flex-start', alignItems: 'center', alignSelf: 'stretch' }}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1.2 }}>
-                                    <Image source={require('../assets/images/addressicon.png')} style={{ width: 20, height: 20 }} resizeMode={'contain'} />
+                                    <Image source={require('../assets/images/addressicon.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
                                     <Text style={[styles.small, { color: '#04A2BD', marginLeft: 15 }]}>Address</Text>
                                 </View>
                                 <View style={{ flex: 2 }}>
