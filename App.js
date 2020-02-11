@@ -119,13 +119,10 @@ const App = (props) => {
           <Stack.Navigator>
             {tokenExists ? (
               // No token found, user isn't signed in
-              <Stack.Screen
-                name="Welcome"
-                component={WelcomeScreen}            
-              />
+              <Stack.Screen name="Welcome" component={WelcomeScreen} headerMode="none"    />
             ) : (
                 // User is signed in
-                <Stack.Screen name="Welcome" component={WelcomeScreen} />
+                <Stack.Screen name="Welcome" component={WelcomeScreen} headerMode="none"    />
               )}
           </Stack.Navigator>
         </NavigationContainer>

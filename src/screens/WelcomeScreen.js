@@ -115,8 +115,8 @@ const WelcomeScreen = (props) => {
     )
 }
 
-WelcomeScreen.navigationOptions = {
-    header: null
-};
+// WelcomeScreen.navigationOptions = {
+//     header: null
+// };
 
 export default WelcomeScreen
