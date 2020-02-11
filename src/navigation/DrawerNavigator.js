@@ -26,7 +26,7 @@ const DrawerContent = createDrawerNavigator(
         Support: SupportScreen,
         BusinessHub: BusinessHubScreen,
         Settings: SettingsScreen,
-        Invoice:InvoiceScreen
+        Invoice: InvoiceScreen
     },
     {
         // define customComponent here

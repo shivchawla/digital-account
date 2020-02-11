@@ -35,7 +35,7 @@ const TransferScreen = (props) => {
 
     const transferRefNo = `TR-${moment().format('YYMMDDhhmmssSS')}`
     const dispatch = useDispatch()
-    const { account_number } = useSelector(state => state.myAccountReducer, shallowEqual)
+    const  my_account_number  = useSelector(state => state.myAccountReducer.account_no, shallowEqual)
     const { userList } = useSelector(state => state.transferOutScreenReducer, shallowEqual)
     const { balance, currency } = useSelector(state => state.myAccountReducer, shallowEqual)
     const [userListView, setuserListView] = useState(false)
@@ -78,16 +78,17 @@ const TransferScreen = (props) => {
     return (
 
         <Formik onSubmit={(values, actions) => {
+            console.log(`values ialah ${JSON.stringify(values)}`)
             if (authEnabled && locked) {
                 setAuthRequestVisible(true)
 
             } else {
                 dispatch(actionCreator.submitNewExpense(values))
-                actions.resetForm({ wallet: account_number, references_no: transferRefNo })
+                actions.resetForm({ wallet: my_account_number, references_no: transferRefNo })
                 props.navigation.navigate('TransferSuccess')
             }
         }}
-            initialValues={{ wallet: account_number, references_no: transferRefNo }}
+            initialValues={{ wallet: my_account_number, references_no: transferRefNo }}
             validationSchema={validationSchema}
         >
             {FormikProps => {

@@ -28,7 +28,7 @@ const WelcomeScreen = (props) => {
     const proceed = useSelector(state => state.loginScreenReducer.proceed, shallowEqual)
     const all = useSelector(state => state.loginScreenReducer.message, shallowEqual)
     useEffect(() => {
-        proceed && props.navigation.navigate('Main')
+        proceed && props.navigation.navigate('Dashboard')
     }, [proceed]);
     const dispatch = useDispatch()
     const login = (values) => {
@@ -42,8 +42,8 @@ const WelcomeScreen = (props) => {
     return (
 
         <Formik initialValues={{ email: '', password: '' }} onSubmit={async (values, actions) => {
-            const prev = props.navigation.getParam('test', 'takde param')
-            console.log(`jalankan login : ${prev}`)
+            //const prev = props.navigation.getParam('test', 'takde param')
+            //console.log(`jalankan login : ${prev}`)
             const cacing = await login(values)
             console.log(`proceed ialah ${JSON.stringify(proceed)}`);
             console.log(`wawa wi wah ${JSON.stringify(cacing)}`);
