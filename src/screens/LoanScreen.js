@@ -76,11 +76,11 @@ const LoanScreen = (props) => {
             <View style={[{ flex: 9 }]}>
                 <View style={[styles.screenMargin]}>
                     <View style={{ marginTop: 30, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-around' }}>
-                        <TouchableOpacity onPress={() => props.navigation.navigate('LoanApplication')} style={{ paddingTop: 5, paddingBottom: 5, paddingLeft: 20, paddingRight: 20, backgroundColor: '#34C2DB', borderRadius: 15 }}>
-                            <Text style={[styles.text, { color: '#fff' }]}>New Loan</Text>
+                        <TouchableOpacity onPress={() => props.navigation.navigate('LoanApplication')} style={{ paddingTop: 17, paddingBottom: 17, paddingLeft: 19, paddingRight: 19, backgroundColor: '#34C2DB', borderRadius: 15 }}>
+                            <Text style={[styles.text, { color: '#fff',fontSize:15 }]}>New Loan</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => props.navigation.navigate('Withdraw')} style={{ paddingTop: 5, paddingBottom: 5, paddingLeft: 20, paddingRight: 20, backgroundColor: '#055E7C', borderRadius: 15 }}>
-                            <Text style={[styles.text, { color: '#fff' }]}>New Withdrawal</Text>
+                        <TouchableOpacity onPress={() => props.navigation.navigate('Withdraw')} style={{ paddingTop: 17, paddingBottom: 17, paddingLeft: 19, paddingRight: 19, backgroundColor: '#055E7C', borderRadius: 15 }}>
+                            <Text style={[styles.text, { color: '#fff',fontSize:15 }]}>New Withdrawal</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={{ marginTop: 20 }}>
