@@ -72,8 +72,8 @@ const WithdrawScreen = (props) => {
             <View style={{ justifyContent: 'space-between', flex: 9 }}>
                 <View style={[styles.screenMargin]}>
                     <View style={{ marginTop: 25, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end', paddingRight: 10 }}>
-                        <TouchableOpacity onPress={() => props.navigation.navigate('WithdrawalApplication')} style={{ paddingTop: 5, paddingBottom: 5, paddingLeft: 20, paddingRight: 20, backgroundColor: '#055E7C', borderRadius: 15 }}>
-                            <Text style={[styles.text, { color: '#fff' }]}>New Withdrawal</Text>
+                        <TouchableOpacity onPress={() => props.navigation.navigate('WithdrawalApplication')} style={{ paddingTop: 16, paddingBottom: 16, paddingLeft: 18, paddingRight: 18, backgroundColor: '#055E7C', borderRadius: 15 }}>
+                            <Text style={[styles.text, { color: '#fff' , fontsize:15}]}>New Withdrawal</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={{ marginTop: 20 }}>
@@ -104,7 +104,7 @@ const WithdrawScreen = (props) => {
                                             <Text style={styles.text}>{item.type}</Text>
                                         </View>
                                         <View style={{ flex: 1 }}>
-                                            <Text style={[styles.text, { color: item.status === 'New' ? '#000000' : item.status === 'Rejected' ? '#FF0000' : item.status === 'Approved' ? '#54A400' : '#FA6400' }]}>{item.status}</Text>
+                                            <Text style={[styles.text, { color: item.status === 'New' ? '#34C2DB' : item.status === 'Rejected' ? '#FF0000' : item.status === 'Approved' ? '#54A400' : '#FA6400' }]}>{item.status}</Text>
                                         </View>
                                     </View>
                                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
