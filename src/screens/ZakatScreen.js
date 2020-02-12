@@ -138,9 +138,9 @@ const ZakatScreen = (props) => {
                                     <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
                                         <Text style={[styles.titleBox, { marginBottom: 10 }]}>Type of Zakat</Text>
                                         {ios ?
-                                            <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
-                                                <TouchableOpacity style={{ paddingTop: 10 }} onPress={() => handleIosPicker('typeZakat')}>
-                                                    <Text style={[styles.small, { color: '#0A6496' }]}>{typeZakat ? typeZakat : `Select Type`}</Text>
+                                            <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)',justifyContent:'center' }}>
+                                                <TouchableOpacity style={{ justifyContent:'center',margin:5 }} onPress={() => handleIosPicker('typeZakat')}>
+                                                    <Text style={[styles.titleBox]}>{typeZakat ? typeZakat : `Select Type`}</Text>
                                                 </TouchableOpacity>
                                                 {typeZakatTouched && typeZakatError && <Text style={styles.error}>{typeZakatError}</Text>}
                                             </View> : <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
@@ -157,8 +157,8 @@ const ZakatScreen = (props) => {
                                         <Text style={[styles.titleBox, { marginBottom: 10 }]}>Pay Zakat To</Text>
                                         {ios ?
                                             <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
-                                                <TouchableOpacity style={{ paddingTop: 10 }} onPress={() => handleIosPicker('payZakatTo')}>
-                                                    <Text style={[styles.small, { color: '#0A6496' }]}>{payZakatTo ? payZakatTo : `Zakat To`}</Text>
+                                                <TouchableOpacity style={{ justifyContent:'center',margin:5 }} onPress={() => handleIosPicker('payZakatTo')}>
+                                                    <Text style={[styles.titleBox]}>{payZakatTo ? payZakatTo : `Zakat To`}</Text>
                                                 </TouchableOpacity>
                                                 {payZakatToTouched && payZakatToError && <Text style={styles.error}>{payZakatToError}</Text>}
                                             </View> :<View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>

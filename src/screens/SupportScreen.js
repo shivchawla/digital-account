@@ -130,8 +130,8 @@ const SupportScreen = (props) => {
                                     <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
                                         <Text style={[styles.titleBox], { marginBottom: 10 }}>Type</Text>
                                         {ios ? <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
-                                            <TouchableOpacity style={{ paddingTop: 10 }} onPress={() => handleIosPicker('type')}>
-                                                <Text style={[styles.small, { color: '#0A6496' }]}>{type ? type : `Select Type`}</Text>
+                                        <TouchableOpacity style={{ justifyContent:'center',margin:5 }} onPress={() => handleIosPicker('type')}>
+                                                <Text style={[styles.titleBox]}>{type ? type : `Select Type`}</Text>
                                             </TouchableOpacity>
                                             {typeTouched && typeError && <Text style={styles.error}>{typeError}</Text>}
                                         </View> : <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
@@ -149,8 +149,8 @@ const SupportScreen = (props) => {
                                     <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
                                         <Text style={[styles.titleBox], { marginBottom: 10 }}>Priority</Text>
                                         {ios ? <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
-                                            <TouchableOpacity style={{ paddingTop: 10 }} onPress={() => handleIosPicker('priority')}>
-                                                <Text style={[styles.small, { color: '#0A6496' }]}>{priority ? priority : `Select Priority`}</Text>
+                                        <TouchableOpacity style={{ justifyContent:'center',margin:5 }}onPress={() => handleIosPicker('priority')}>
+                                                <Text style={[styles.titleBox]}>{priority ? priority : `Select Priority`}</Text>
                                             </TouchableOpacity>
                                             {priorityTouched && priorityError && <Text style={styles.error}>{priorityError}</Text>}
                                         </View> : <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
