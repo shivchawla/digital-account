@@ -11,6 +11,7 @@ import {
     handleAndroidBackButton,
     removeAndroidBackButtonHandler
 } from '../components/androidBackButton';
+import { ScrollView } from 'react-native-gesture-handler';
 const validationSchema = Yup.object().shape({
 
     cddContactPersonName: Yup
@@ -96,7 +97,7 @@ const ContactPersonScreen = (props) => {
 
                 return (
 
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }}>
+                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }} keyboardVerticalOffset={30} >
                         <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4', marginBottom: 25 }]}>
                             <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center', alignItems: 'flex-start', padding: 10 }}>
                                 <Text style={styles.title} >CONTACT</Text>
@@ -106,7 +107,7 @@ const ContactPersonScreen = (props) => {
                             </View>
                         </View>
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
-                            <View style={[styles.screenMargin, { flex: 9 }]}>
+                            <ScrollView style={[styles.screenMargin, { flex: 9 }]}>
                                 <View style={[styles.formElement]}>
                                     <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: cddContactPersonNameTouched && cddContactPersonNameError ? '#d94498' : '#5a83c2' }]}>Name</Text>
                                     <TextInput value={cddContactPersonName} onBlur={FormikProps.handleBlur('cddContactPersonName')} onChangeText={FormikProps.handleChange('cddContactPersonName')} placeholder={cddContactPersonNameTouched && cddContactPersonNameError ? '' : 'Eg: Siti binti Iskandar'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
@@ -127,9 +128,9 @@ const ContactPersonScreen = (props) => {
                                     <TextInput value={cddContactPersonPosition} onBlur={FormikProps.handleBlur('cddContactPersonPosition')} onChangeText={FormikProps.handleChange('cddContactPersonPosition')} placeholder={cddContactPersonPositionTouched && cddContactPersonPositionError ? '' : 'Eg: HR Officer'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
                                     {cddContactPersonPositionTouched && cddContactPersonPositionError && <Text style={styles.error}>{cddContactPersonPositionError}</Text>}
                                 </View>
-                            </View>
-                            <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
-                                <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 }}>
+                            </ScrollView>
+                            <View style={{  flexDirection: 'row', alignSelf: 'stretch' }}>
+                                <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 ,paddingTop: 20, paddingBottom: 20, justifyContent: 'center', alignItems: 'center'  }}>
                                     <LinearGradient colors={['#FFF', '#FFF']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                         <Text style={[styles.butang, { color: 'lightgrey' }]}>Back</Text>
                                     </LinearGradient>

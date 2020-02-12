@@ -85,7 +85,7 @@ const CompanyInformationScreen = (props) => {
 
                 return (
 
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }}>
+                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }} keyboardVerticalOffset={30} >
                         <Modal
                             animationType="slide"
                             transparent={false}
@@ -148,8 +148,8 @@ const CompanyInformationScreen = (props) => {
                                     {cddRegisteredDateTouched && cddRegisteredDateError && <Text style={styles.error}>{cddRegisteredDateError}</Text>}
                                 </View>
                             </View>
-                            <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
-                                <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 }}>
+                            <View style={{ flexDirection: 'row', alignSelf: 'stretch' }}>
+                                <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1,paddingTop: 20, paddingBottom: 20, justifyContent: 'center', alignItems: 'center' }}>
                                     <LinearGradient colors={['#FFF', '#FFF']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                         <Text style={[styles.butang, { color: 'lightgrey' }]}>Back</Text>
                                     </LinearGradient>

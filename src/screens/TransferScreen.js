@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, Text, KeyboardAvoidingView, TextInput, Modal, FlatList, ScrollView } from 'react-native';
+import { View, TouchableOpacity, Text, KeyboardAvoidingView, TextInput, FlatList, ScrollView, Platform,Modal } from 'react-native';
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { LinearGradient } from 'expo-linear-gradient'
@@ -10,6 +10,14 @@ import styles from '../styles/styles'
 import moment from 'moment'
 import CodePin from 'react-native-pin-code'
 import Layout from '../constants/Layout';
+
+// let Modal;
+
+// if (Platform.OS !== 'web') {
+//     Modal = require('react-native').Modal;
+// } else {
+//     Modal = require('../components/WebModal').default;
+// }
 
 import ScanFinger from '../components/ScanFinger'
 
@@ -27,7 +35,7 @@ const TransferScreen = (props) => {
 
     const transferRefNo = `TR-${moment().format('YYMMDDhhmmssSS')}`
     const dispatch = useDispatch()
-    const { account_number } = useSelector(state => state.myAccountReducer, shallowEqual)
+    const  my_account_number  = useSelector(state => state.myAccountReducer.account_no, shallowEqual)
     const { userList } = useSelector(state => state.transferOutScreenReducer, shallowEqual)
     const { balance, currency } = useSelector(state => state.myAccountReducer, shallowEqual)
     const [userListView, setuserListView] = useState(false)
@@ -70,16 +78,17 @@ const TransferScreen = (props) => {
     return (
 
         <Formik onSubmit={(values, actions) => {
+            console.log(`values ialah ${JSON.stringify(values)}`)
             if (authEnabled && locked) {
                 setAuthRequestVisible(true)
 
             } else {
                 dispatch(actionCreator.submitNewExpense(values))
-                actions.resetForm({ wallet: account_number, references_no: transferRefNo })
+                actions.resetForm({ wallet: my_account_number, references_no: transferRefNo })
                 props.navigation.navigate('TransferSuccess')
             }
         }}
-            initialValues={{ wallet: account_number, references_no: transferRefNo }}
+            initialValues={{ wallet: my_account_number, references_no: transferRefNo }}
             validationSchema={validationSchema}
         >
             {FormikProps => {
@@ -147,7 +156,7 @@ const TransferScreen = (props) => {
                                                 </View>
                                             </View>
                                             {userList && <FlatList data={userList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
-                                                <TouchableOpacity onPress={() => setUser(item.number)} style={styles.box}>
+                                                <TouchableOpacity onPress={() => setUser(item.account_number)} style={styles.box}>
                                                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
                                                         <View style={{ flex: 1 }}>
                                                             <Text style={styles.text}>{item.account_number}</Text>
@@ -170,6 +179,7 @@ const TransferScreen = (props) => {
                                 </View >
                             </View >
                         </Modal>
+
                         <View style={{ flex: 1 }}>
                             <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
                                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>

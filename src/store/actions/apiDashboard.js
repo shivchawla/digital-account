@@ -151,7 +151,7 @@ export const loanBillListApi = (loanNo) => {
 
     const personalToken = await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
-    //https://tuah.niyo.my/api/repaymentinfo/bills/list?loanNo=199916920
+    //https://uat.niyo.my/api/repaymentinfo/bills/list?loanNo=199916920
     fetch(`${apiUrl}api/repaymentinfo/bills/list?loanNo=${loanNo}`, {
       method: 'GET',
       headers: {
@@ -525,9 +525,15 @@ export const getAllUsersApi = () => {
 
     }).then((response) => response.json())
       .then(async (responseJson) => {
+<<<<<<< HEAD
         const { data } = responseJson
         const userList = data
         //const userList = responseJson
+=======
+        const {data} = responseJson
+        const userList = data
+
+>>>>>>> origin/mira
         //withdrawList.reverse()
         console.log('Success all users list' + JSON.stringify(userList))
         dispatch({ type: 'SET_RECIPIENT_LIST', payload: { userList } })
@@ -1299,14 +1305,14 @@ export const submitInvoiceApi = () => {
       }
     });
 
-    xhr.open("POST", "https://tuah.niyo.my/api/invoice/submit");
+    xhr.open("POST", "https://uat.niyo.my/api/invoice/submit");
     xhr.setRequestHeader("Authorization", token_type + ' ' + access_token);
     xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.setRequestHeader("Cache-Control", "no-cache");
 
-    xhr.setRequestHeader("Host", "tuah.niyo.my");
+    xhr.setRequestHeader("Host", "uat.niyo.my");
     xhr.setRequestHeader("Accept-Encoding", "gzip, deflate");
 
 

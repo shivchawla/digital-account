@@ -29,7 +29,7 @@ const ChangeEmailScreen = (props) => {
 
                 return (
 
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }}>
+                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }} keyboardVerticalOffset={20}>
                         <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
                                 <TouchableOpacity onPress={() => props.navigation.navigate('DataSetting')} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
@@ -57,7 +57,7 @@ const ChangeEmailScreen = (props) => {
                                 </View>
                             </View>
                         </View>
-                        <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
+                        <View style={{  flexDirection: 'row', alignSelf: 'stretch' }}>
                             <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1, paddingTop: 20, paddingBottom: 20, justifyContent: 'center', alignItems: 'center' }}>
                                         
                                             <Text style={[styles.butang, { color: '#000000' }]}>Back</Text>
