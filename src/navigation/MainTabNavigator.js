@@ -95,7 +95,7 @@ const config = Platform.select({
 
 const DashboardStack = createStackNavigator(
   {
-    Dashboard: LoanSuccessScreen,
+    Dashboard: DrawerNavigator,
   },
 );
 
