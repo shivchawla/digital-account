@@ -51,54 +51,54 @@ const ProfileScreen = (props) => {
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 5 }}>
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.boldText]}>Name</Text>
+                                <Text style={[styles.label]}>Name</Text>
                             </View>
                             <View style={{ flex: 2 }}>
-                                <Text style={[styles.text, { color: '#055E7C' }]}>{first_name} {last_name}</Text>
+                                <Text style={[styles.value, { color: '#055E7C' }]}>{first_name} {last_name}</Text>
                             </View>
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 5 }}>
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.boldText]}>Email</Text>
+                                <Text style={[styles.label]}>Email</Text>
                             </View>
                             <View style={{ flex: 2 }}>
-                                <Text style={[styles.text, { color: '#055E7C' }]}>{email}</Text>
+                                <Text style={[styles.value, { color: '#055E7C' }]}>{email}</Text>
                             </View>
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 5 }}>
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.boldText]}>Account Number</Text>
+                                <Text style={[styles.label]}>Account Number</Text>
                             </View>
                             <View style={{ flex: 2 }}>
-                                <Text style={[styles.text, { color: '#055E7C' }]}>{account_no}</Text>
+                                <Text style={[styles.value, { color: '#055E7C' }]}>{account_no}</Text>
                             </View>
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 10 }}>
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.boldText]}>Account Type</Text>
+                                <Text style={[styles.label]}>Account Type</Text>
                             </View>
                             <View style={{ flex: 2 }}>
-                                <Text style={[styles.text, { color: '#055E7C' }]}>{type}</Text>
+                                <Text style={[styles.value, { color: '#055E7C' }]}>{type}</Text>
                             </View>
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 10 }}>
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.boldText]}>Balance</Text>
+                                <Text style={[styles.label]}>Balance</Text>
                             </View>
                             <View style={{ flex: 2 }}>
-                                <Text style={[styles.text, { color: '#055E7C' }]}>{currency} {balance ? balance.toFixed(2) : '0'}</Text>
+                                <Text style={[styles.value, { color: '#055E7C' }]}>{currency} {balance ? balance.toFixed(2) : '0'}</Text>
                             </View>
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 10 }}>
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.boldText]}>Status</Text>
+                                <Text style={[styles.label]}>Status</Text>
                             </View>
                             <View style={{ flex: 2,marginTop: 10, flexDirection: 'row', alignSelf: 'stretch', }}>
                                 {status == 'activated' ? <View style={{paddingTop: 16, paddingBottom: 16, paddingLeft: 18, paddingRight: 18, borderRadius: 15, backgroundColor: '#00d800' }}>
-                                    <Text style={[styles.text,{ color: '#fff'}]}>Active</Text>
+                                    <Text style={[styles.value,{ color: '#fff'}]}>Active</Text>
                                 </View>
                                     : <View style={{paddingTop: 16, paddingBottom: 16, paddingLeft: 18, paddingRight: 18, borderRadius: 15,backgroundColor: 'lightgrey' }}>
-                                        <Text style={styles.text}>Inactive</Text>
+                                        <Text style={styles.value}>Inactive</Text>
                                     </View>}
                             </View>
                         </View>
@@ -109,42 +109,42 @@ const ProfileScreen = (props) => {
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 10 }}>
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.boldText]}>Business Reg Number</Text>
+                                <Text style={[styles.label]}>Business Reg Number</Text>
                             </View>
                             <View style={{ flex: 2 }}>
-                                <Text style={[styles.text, { color: '#055E7C' }]}>{business_reg_no}</Text>
+                                <Text style={[styles.value, { color: '#055E7C' }]}>{business_reg_no}</Text>
                             </View>
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 10 }}>
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.boldText]}>Business Name</Text>
+                                <Text style={[styles.label]}>Business Name</Text>
                             </View>
                             <View style={{ flex: 2 }}>
-                                <Text style={[styles.text, { color: '#055E7C' }]}>{business_name}</Text>
+                                <Text style={[styles.value, { color: '#055E7C' }]}>{business_name}</Text>
                             </View>
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 10 }}>
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.boldText]}>Contact Number</Text>
+                                <Text style={[styles.label]}>Contact Number</Text>
                             </View>
                             <View style={{ flex: 2 }}>
-                                <Text style={[styles.text, { color: '#055E7C' }]}>{contact_no}</Text>
+                                <Text style={[styles.value, { color: '#055E7C' }]}>{contact_no}</Text>
                             </View>
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 10 }}>
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.boldText]}>Support Email</Text>
+                                <Text style={[styles.label]}>Support Email</Text>
                             </View>
                             <View style={{ flex: 2 }}>
-                                <Text style={[styles.text, { color: '#055E7C' }]}>{support_email}</Text>
+                                <Text style={[styles.value, { color: '#055E7C' }]}>{support_email}</Text>
                             </View>
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 10 }}>
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={[styles.boldText]}>Address</Text>
+                                <Text style={[styles.label]}>Address</Text>
                             </View>
                             <View style={{ flex: 2 }}>
-                                <Text style={[styles.text, { color: '#055E7C' }]}>{business_address}</Text>
+                                <Text style={[styles.value, { color: '#055E7C' }]}>{business_address}</Text>
                             </View>
                         </View>
                     </View>
