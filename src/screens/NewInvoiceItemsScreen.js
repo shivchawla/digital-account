@@ -109,7 +109,9 @@ const NewInvoiceItemsScreen = (props) => {
                                         <View style={{ margin: 5 }} />
                                         {ios ? <View style={[styles.formElement]}>
                                             <Text style={[styles.titleBox, { marginBottom: 10 }]}>Invoice Item</Text>
-                                            <TouchableOpacity onPress={() => setIosItemPicker(!iosItemPicker)}><Text>Select Item</Text></TouchableOpacity>
+                                            <View style={{ marginTop: 10, alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', justifyContent: 'center' }}>
+                                                <TouchableOpacity style={{ justifyContent: 'center', margin: 5 }} onPress={() => setIosItemPicker(!iosItemPicker)}><Text>{iosItemPicker?`Confirm!`:`Select Item`}</Text></TouchableOpacity>
+                                            </View>
                                         </View> :
                                             <View style={[styles.formElement]}>
                                                 <Text style={[styles.titleBox, { marginBottom: 10 }]}>Invoice Item</Text>
@@ -154,14 +156,14 @@ const NewInvoiceItemsScreen = (props) => {
 
                                     </View>
                                 </View>
-                                {!iosItemPicker && <View style={{  flexDirection: 'row', alignSelf: 'stretch', backgroundColor: '#fff' }}>
-                                    <TouchableOpacity onPress={() => setItemVisible(!addItemVisible)} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 ,paddingTop: 20, paddingBottom: 20, justifyContent: 'center', alignItems: 'center' }}>
+                                {!iosItemPicker && <View style={{ flexDirection: 'row', alignSelf: 'stretch', backgroundColor: '#fff' }}>
+                                    <TouchableOpacity onPress={() => setItemVisible(!addItemVisible)} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1, paddingTop: 20, paddingBottom: 20, justifyContent: 'center', alignItems: 'center' }}>
                                         <LinearGradient colors={['#FFF', '#FFF']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
                                             <Text style={[styles.butang, { color: '#000000' }]}>Back</Text>
                                         </LinearGradient>
                                     </TouchableOpacity>
                                     <TouchableOpacity onPress={FormikProps.handleSubmit} style={{ flex: 1 }}>
-                                        <LinearGradient colors={FormikProps.isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center',flexDirection: 'row' }}>
+                                        <LinearGradient colors={FormikProps.isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
                                             <Text style={[styles.butang, { color: '#fff' }]}>Save</Text>
                                         </LinearGradient>
                                     </TouchableOpacity>
@@ -190,8 +192,6 @@ const NewInvoiceItemsScreen = (props) => {
                                     <ScrollView style={[styles.screenMargin]}>
                                         <View style={[styles.formElement]}>
                                             <View style={{ margin: 5 }} />
-
-
                                             {items && <FlatList data={items} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
                                                 <View style={[styles.box]}>
                                                     <TouchableWithoutFeedback onPress={() => dispatch(actionCreator.setMarkerInvoiceItem(index))} style={{ flexDirection: 'row', marginTop: 5 }}>
