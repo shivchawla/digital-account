@@ -136,7 +136,7 @@ const ZakatScreen = (props) => {
                             <View style={[styles.screenMargin, { flex: 9 }]}>
                                 <ScrollView >
                                     <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
-                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Type of Zakat</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 10,fontSize:15 }]}>Type of Zakat</Text>
                                         {ios ?
                                             <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
                                                 <TouchableOpacity style={{ paddingTop: 10 }} onPress={() => handleIosPicker('typeZakat')}>
@@ -154,7 +154,7 @@ const ZakatScreen = (props) => {
                                             </View>}
                                     </View>
                                     <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
-                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Pay Zakat To</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 10,fontSize:15 }]}>Pay Zakat To</Text>
                                         {ios ?
                                             <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
                                                 <TouchableOpacity style={{ paddingTop: 10 }} onPress={() => handleIosPicker('payZakatTo')}>
@@ -173,23 +173,23 @@ const ZakatScreen = (props) => {
                                         </View>}
                                     </View>
                                     <View style={[styles.formElement]}>
-                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Amount</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 10,fontSize:15 }]}>Amount</Text>
                                         <TextInput value={amountZakat} onChangeText={FormikProps.handleChange('amountZakat')} onBlur={FormikProps.handleBlur('amountZakat')} style={{ borderWidth: 1, borderColor: amountZakatTouched && amountZakatError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={amountZakatTouched && amountZakatError ? '' : 'RM 100.00'} placeholderTextColor={amountZakatTouched && amountZakatError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'phone-pad'} />
                                         {amountZakatTouched && amountZakatError && <Text style={styles.error}>{amountZakatError}</Text>}
                                     </View>
                                     <View style={[styles.formElement]}>
-                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Payer's Name</Text>
-                                        <TextInput value={payerName} onChangeText={FormikProps.handleChange('payerName')} onBlur={FormikProps.handleBlur('payerName')} style={{ textAlignVertical: 'top', borderWidth: 1, borderColor: payerNameTouched && payerNameError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={payerNameTouched && payerNameError ? '' : 'Che Abdul bin Rahim'} placeholderTextColor={payerNameTouched && payerNameError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        <Text style={[styles.titleBox, { marginBottom: 10,fontSize:15 }]}>Payer's Name</Text>
+                                        <TextInput value={payerName} onChangeText={FormikProps.handleChange('payerName')} onBlur={FormikProps.handleBlur('payerName')} style={{ textAlignVertical: 'center', borderWidth: 1, borderColor: payerNameTouched && payerNameError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={payerNameTouched && payerNameError ? '' : 'Che Abdul bin Rahim'} placeholderTextColor={payerNameTouched && payerNameError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {payerNameTouched && payerNameError && <Text style={styles.error}>{payerNameError}</Text>}
                                     </View>
                                     <View style={[styles.formElement]}>
-                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Payer's Email</Text>
-                                        <TextInput value={payerEmail} onChangeText={FormikProps.handleChange('payerEmail')} onBlur={FormikProps.handleBlur('payerEmail')} style={{ textAlignVertical: 'top', borderWidth: 1, borderColor: payerEmailTouched && payerEmailError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={payerEmailTouched && payerEmailError ? '' : 'address@email.com'} placeholderTextColor={payerEmailTouched && payerEmailError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        <Text style={[styles.titleBox, { marginBottom: 10,fontSize:15 }]}>Payer's Email</Text>
+                                        <TextInput value={payerEmail} onChangeText={FormikProps.handleChange('payerEmail')} onBlur={FormikProps.handleBlur('payerEmail')} style={{ textAlignVertical: 'center', borderWidth: 1, borderColor: payerEmailTouched && payerEmailError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={payerEmailTouched && payerEmailError ? '' : 'address@email.com'} placeholderTextColor={payerEmailTouched && payerEmailError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {payerEmailTouched && payerEmailError && <Text style={styles.error}>{payerEmailError}</Text>}
                                     </View>
                                     <View style={[styles.formElement]}>
-                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Payer's Phone Number</Text>
-                                        <TextInput value={payerPhoneNumber} onChangeText={FormikProps.handleChange('payerPhoneNumber')} onBlur={FormikProps.handleBlur('payerPhoneNumber')} style={{ textAlignVertical: 'top', borderWidth: 1, borderColor: payerPhoneNumberTouched && payerPhoneNumberError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={payerPhoneNumberTouched && payerPhoneNumberError ? '' : '0189076510'} placeholderTextColor={payerPhoneNumberTouched && payerPhoneNumberError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'phone-pad'} />
+                                        <Text style={[styles.titleBox, { marginBottom: 10,fontSize:15 }]}>Payer's Phone Number</Text>
+                                        <TextInput value={payerPhoneNumber} onChangeText={FormikProps.handleChange('payerPhoneNumber')} onBlur={FormikProps.handleBlur('payerPhoneNumber')} style={{ textAlignVertical: 'center', borderWidth: 1, borderColor: payerPhoneNumberTouched && payerPhoneNumberError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={payerPhoneNumberTouched && payerPhoneNumberError ? '' : '0189076510'} placeholderTextColor={payerPhoneNumberTouched && payerPhoneNumberError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'phone-pad'} />
                                         {payerPhoneNumberTouched && payerPhoneNumberError && <Text style={styles.error}>{payerPhoneNumberError}</Text>}
                                     </View>
                                 </ScrollView>
