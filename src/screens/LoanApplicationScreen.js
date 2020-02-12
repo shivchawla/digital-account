@@ -79,13 +79,13 @@ const LoanApplicationScreen = (props) => {
                                                     <View style={{ flex: 1, backgroundColor: '#CDCDCD' }} />
                                                 </View>
                                             </View>
-                                            <View style={{ width: 40, height: 40, borderRadius: 15, backgroundColor: '#20B8D3', justifyContent: 'center', alignItems: 'center' }}>
+                                            <View style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: '#20B8D3', justifyContent: 'center', alignItems: 'center' }}>
                                                 <Ionicons name="md-card" color={'#fff'} style={{ fontSize: 15, }} />
                                             </View>
-                                            <View style={{ width: 40, height: 40, borderRadius: 15, backgroundColor: '#CDCDCD', justifyContent: 'center', alignItems: 'center' }}>
+                                            <View style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: '#CDCDCD', justifyContent: 'center', alignItems: 'center' }}>
                                                 <Ionicons name="md-person" color={'grey'} style={{ fontSize: 15, }} />
                                             </View>
-                                            <View style={{ width: 40, height: 40, borderRadius: 15, backgroundColor: '#CDCDCD', justifyContent: 'center', alignItems: 'center' }}>
+                                            <View style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: '#CDCDCD', justifyContent: 'center', alignItems: 'center' }}>
                                                 <Ionicons name="md-clipboard" color={'grey'} style={{ fontSize: 15, }} />
                                             </View>
                                         </View>
