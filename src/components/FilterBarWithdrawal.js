@@ -59,7 +59,10 @@ const FilterBarWithdrawal = (props) => {
                     {ios ? <View style={{ margin: 10 }}>
                         <TouchableOpacity onPress={() => openIosModal('status')}>
                             <Text style={[styles.h3, { marginBottom: 5 }]}>Status</Text>
-                            <Text style={[styles.value, { marginBottom: 5 }]}>{status}</Text>
+                            <View style={{ flexDirection: 'row', alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5, justifyContent: 'space-between',alignItems:'center' }}>
+                                <Text style={[styles.value, { marginBottom: 5 }]}>{status||'Please Select'}</Text>
+                                <Ionicons name="ios-arrow-down" style={{ fontSize: 12,  }} />
+                            </View>
                         </TouchableOpacity>
                     </View> : <View style={{ alignSelf: 'stretch', marginBottom: 10 }}>
                             <Text style={[styles.h3, { marginBottom: 5 }]}>Status</Text>
@@ -77,8 +80,13 @@ const FilterBarWithdrawal = (props) => {
                         <View style={{ margin: 10 }}>
                             <TouchableOpacity onPress={() => openIosModal('type')}>
                                 <Text style={[styles.h3, { marginBottom: 5 }]}>Type</Text>
-                                <Text style={[styles.value, { marginBottom: 5 }]}>{type}</Text>
+                                <View style={{ flexDirection: 'row', alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5, justifyContent: 'space-between',alignItems:'center' }}>
+
+                                <Text style={[styles.value, { marginBottom: 5 }]}>{type||'Please Select'}</Text>
+                                <Ionicons name="ios-arrow-down" style={{ fontSize: 12,  }} />
+                            </View>
                             </TouchableOpacity>
+                            
                         </View> :
                         <View style={{ alignSelf: 'stretch', marginBottom: 10 }}>
                             <Text style={[styles.h3, { marginBottom: 5 }]}>Type</Text>
