@@ -21,7 +21,7 @@ const LoanSuccessScreen = (props) => {
     return (
 
         <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
-            {status ? <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0 }}>
+            {status? <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0 }}>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 <View style={{ flex: 1, justifyContent: 'flex-end' }}>
                             <Image source={require('../assets/images/logo.png')} style={{ height: Layout.window.height * 0.2, width: Layout.window.width * 0.5 }} resizeMode={'contain'} />
@@ -53,16 +53,16 @@ const LoanSuccessScreen = (props) => {
                             <Image source={require('../assets/images/loanfailed.png')} style={{ flex: 1, height: undefined, width: undefined }} resizeMode={'contain'} />
                         </View>
                         <View style={{ flex: 1, alignItems: 'center' }}>
-                            <Text style={[styles.h3, { margin: 5, fontWeight: 'bold' }]}>Loan Application Failed!</Text>
+                            <Text style={[styles.h3, { margin: 5, fontWeight: 'bold',fontSize:17 }]}>Loan Application Failed!</Text>
                             <View style={{ alignSelf: 'stretch', flexDirection: 'column', margin: 5, alignItems: 'center' }}>
                                 <Text style={[styles.text, { margin: 5, color: 'darkturquoise' }]}>Unfortunately!</Text>
-                                <Text style={[styles.text, { margin: 5, marginBottom: 20, textAlign: 'center' }]}>Please Try Again Later.</Text>
+                                <Text style={[styles.text, { margin: 5,marginTop:10, textAlign: 'center' }]}>Please Try Again Later.</Text>
                             </View>
                         </View>
                         <View style = {{flex:1}}>
                             <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                                <TouchableOpacity onPress={() => goDashboard()} style={{ width: Layout.window.width * 0.4, paddingTop: 5, paddingBottom: 5, borderWidth: 1, borderColor: '#4A90E2', borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10 }}>
-                                    <Text style={[styles.textDefault]}>Dashboard</Text>
+                                <TouchableOpacity onPress={() => goDashboard()} style={{ width: Layout.window.width * 0.4, paddingTop: 16, paddingBottom: 16, borderWidth: 1, borderColor: '#4A90E2', borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10 }}>
+                                    <Text style={[styles.textDefault,{fontSize:15}]}>Dashboard</Text>
                                 </TouchableOpacity>
                             </View>
                             </View>
