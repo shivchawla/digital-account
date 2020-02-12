@@ -54,7 +54,7 @@ const InvoiceScreen = (props) => {
             <View style={{ flex: 9 }}>
                 <ScrollView style={[styles.screenMargin]}>
                     <View style={{ marginTop: 25, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end' }}>
-                        <TouchableOpacity onPress={() => props.navigation.navigate('NewInvoice')} style={{ paddingTop: 5, paddingBottom: 5, paddingLeft: 20, paddingRight: 20, backgroundColor: '#34C2DB', borderRadius: 20 }}>
+                        <TouchableOpacity onPress={() => props.navigation.navigate('NewInvoice')} style={{ paddingTop: 17, paddingBottom: 17, paddingLeft: 19, paddingRight: 19, backgroundColor: '#34C2DB', borderRadius: 15 }}>
                             <Text style={[styles.text, { color: '#fff' }]}>New Invoice</Text>
                         </TouchableOpacity>
                     </View>

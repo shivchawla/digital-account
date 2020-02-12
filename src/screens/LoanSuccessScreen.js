@@ -30,7 +30,7 @@ const LoanSuccessScreen = (props) => {
                             <Image source={require('../assets/images/loanapplication.png')} style={{ flex: 1, height: undefined, width: undefined }} resizeMode={'contain'} />
                         </View>
                         <View style={{ flex: 1, alignItems: 'center' }}>
-                            <Text style={[styles.h3, { margin: 5, fontWeight: 'bold' }]}>Loan Application Submitted</Text>
+                            <Text style={[styles.h3, { margin: 5, fontWeight: 'bold',fontSize:17 }]}>Loan Application Submitted</Text>
                             <View style={{ alignSelf: 'stretch', flexDirection: 'column', margin: 5, alignItems: 'center' }}>
                                 <Text style={[styles.text, { margin: 5, color: 'darkturquoise' }]}>Congratulation!</Text>
                                 <Text style={[styles.text, { margin: 5, marginBottom: 20, textAlign: 'center' }]}>Your application has been submitted. The result will be notified to you in three days time.</Text>
@@ -38,8 +38,8 @@ const LoanSuccessScreen = (props) => {
                         </View>
                         <View style = {{flex:1}}>
                         <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                            <TouchableOpacity onPress={() => goDashboard()} style={{ width: Layout.window.width * 0.4, paddingTop: 5, paddingBottom: 5, borderWidth: 1, borderColor: '#4A90E2', borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10 }}>
-                                <Text style={[styles.textDefault]}>Dashboard</Text>
+                            <TouchableOpacity onPress={() => goDashboard()} style={{ width: Layout.window.width * 0.4, paddingTop: 16, paddingBottom: 16, borderWidth: 1, borderColor: '#4A90E2', borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10 }}>
+                                <Text style={[styles.textDefault, {fontSize:15} ]}>Dashboard</Text>
                             </TouchableOpacity>
                         </View>
                         </View>

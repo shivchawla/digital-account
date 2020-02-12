@@ -35,9 +35,9 @@ const ProfileScreen = (props) => {
             </View>
             <View style={[{ flex: 9 }]}>
                 <ScrollView style={[styles.screenMargin]}>
-                    <View style={{ marginTop: 10, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end' }}>
-                        <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ paddingTop: 5, paddingBottom: 5, paddingLeft: 20, paddingRight: 20, backgroundColor: '#055E7C', borderRadius: 15 }}>
-                            <Text style={[styles.text, { color: '#fff' }]}>Edit</Text>
+                    <View style={{ marginTop: 20, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end' }}>
+                        <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ paddingTop: 13, paddingBottom: 13, paddingLeft: 15, paddingRight:15, backgroundColor: '#055E7C', borderRadius: 15 }}>
+                            <Text style={[styles.text, { color: '#fff',fontsize:12 }]}>Edit</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'flex-start', marginBottom: 10 }}>
@@ -93,8 +93,13 @@ const ProfileScreen = (props) => {
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                                 <Text style={[styles.boldText]}>Status</Text>
                             </View>
-                            <View style={{ flex: 2 }}>
-                                {status == 'activated' ? <Text style={[styles.text, { color: '#00FD04' }]}>Active</Text> : <Text style={[styles.text, { color: 'lightgrey' }]}>Inactive</Text>}
+                            <View style={{ flex: 2,marginTop: 10, flexDirection: 'row', alignSelf: 'stretch', }}>
+                                {status == 'activated' ? <View style={{paddingTop: 16, paddingBottom: 16, paddingLeft: 18, paddingRight: 18, borderRadius: 15, backgroundColor: '#00d800' }}>
+                                    <Text style={[styles.text,{ color: '#fff'}]}>Active</Text>
+                                </View>
+                                    : <View style={{paddingTop: 16, paddingBottom: 16, paddingLeft: 18, paddingRight: 18, borderRadius: 15,backgroundColor: 'lightgrey' }}>
+                                        <Text style={styles.text}>Inactive</Text>
+                                    </View>}
                             </View>
                         </View>
                     </View>

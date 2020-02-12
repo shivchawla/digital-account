@@ -74,7 +74,11 @@ const AccountScreen = (props) => {
                             <Text style={[styles.text, { marginLeft: 10 }]}>Account Status</Text>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center' }} >
-                            {status == 'activated' ? <Text style={[styles.text, { color: '#00FD04', marginLeft: 30 }]}>Active</Text> : <Text style={[styles.text, { color: 'lightgrey', marginLeft: 30 }]}>Inactive</Text>}
+                            {status == 'activated' ? <View style={{paddingTop: 16, paddingBottom: 16, paddingLeft: 18, paddingRight: 18, borderRadius: 15, backgroundColor: '#00d800',marginLeft: 30 }}>
+                            <Text style={[styles.text, { color: 'white' }]}>Active</Text>
+                            </View> : <View style={{paddingTop: 16, paddingBottom: 16, paddingLeft: 18, paddingRight: 18, borderRadius: 15, backgroundColor: 'lightgrey',marginLeft: 30 }}>
+                            <Text style={[styles.text, { color: 'black' }]}>Inactive</Text>
+                            </View>}
                         </View>
                     </View>
                 </ScrollView>

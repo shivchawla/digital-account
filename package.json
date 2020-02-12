@@ -65,11 +65,11 @@
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
     "shortid": "^2.2.14",
-    "victory-native": "^33.0.1",
     "yup": "^0.27.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.3",
+    "@expo/webpack-config": "^0.10.12",
     "babel-jest": "^24.9.0",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "babel-preset-expo": "^6.0.0",

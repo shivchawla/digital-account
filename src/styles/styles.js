@@ -16,7 +16,7 @@ const elevationShadowStyle=(elevation)=> {
 
 export default StyleSheet.create({
   text: {
-    fontSize,
+    fontSize:fontSize*1.1,
     fontFamily: 'Montserrat_medium',
     color: '#000'
   },
@@ -82,21 +82,21 @@ export default StyleSheet.create({
     fontSize,
     fontFamily: 'Montserrat_medium',
     color: '#000',
-    fontSize: fontSize
+    fontSize: fontSize *1.1
   },
 
   small: {
     fontSize,
     fontFamily: 'Montserrat_regular',
     color: '#000',
-    fontSize: fontSize * 0.7
+    fontSize: fontSize * 0.9
   },
 
   titleBox: {
-    fontSize,
+    fontSize: fontSize * 0.87,
     fontFamily: 'Montserrat_medium',
     color: '#000',
-    fontSize: fontSize * 0.87
+    fontSize,
   },
 
   error: {
@@ -147,10 +147,9 @@ export default StyleSheet.create({
   box: {
     margin: 10,
     padding: 15,
-
     borderWidth: 1,
     borderRadius: 5,
-     borderColor: '#ddd',
+    borderColor: '#ddd',
   
   
   },
