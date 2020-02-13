@@ -72,17 +72,17 @@ const ChangePasswordScreen = (props) => {
                             <View style={[styles.screenMargin, { flex: 3 }]}>
                                 <View style={[styles.formElement]}>
                                     <Text style={[styles.titleBox, { marginBottom: 5, borderColor: oldPasswordTouched && oldPasswordError ? '#d94498' : '#5a83c2', marginTop: 25 }]}>Old Password</Text>
-                                    <TextInput secureTextEntry value={oldPassword} onBlur={FormikProps.handleBlur('oldPassword')} onChangeText={FormikProps.handleChange('oldPassword')} placeholder={oldPasswordError && oldPasswordTouched ? '' : '******'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                    <TextInput secureTextEntry value={oldPassword} onBlur={FormikProps.handleBlur('oldPassword')} onChangeText={FormikProps.handleChange('oldPassword')} placeholder={oldPasswordError && oldPasswordTouched ? '' : '******'} style={[styles.textInput,{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }]} />
                                     {oldPasswordError && oldPasswordTouched && <Text style={styles.error}>{oldPasswordError}</Text>}
                                 </View>
                                 <View style={[styles.formElement]}>
                                     <Text style={[styles.titleBox, { marginBottom: 5, borderColor: newPasswordTouched && newPasswordError ? '#d94498' : '#5a83c2' }]}>New Password</Text>
-                                    <TextInput secureTextEntry value={newPassword} onBlur={FormikProps.handleBlur('newPassword')} onChangeText={FormikProps.handleChange('newPassword')} placeholder={newPasswordError && newPasswordTouched ? '' : '******'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                    <TextInput secureTextEntry value={newPassword} onBlur={FormikProps.handleBlur('newPassword')} onChangeText={FormikProps.handleChange('newPassword')} placeholder={newPasswordError && newPasswordTouched ? '' : '******'} style={[styles.textInput,{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }]} />
                                     {newPasswordError && newPasswordTouched && <Text style={styles.error}>{newPasswordError}</Text>}
                                 </View>
                                 <View style={[styles.formElement]}>
                                     <Text style={[styles.titleBox, { marginBottom: 5, borderColor: confirmPasswordTouched && confirmPasswordError ? '#d94498' : '#5a83c2' }]}>Confirm Password</Text>
-                                    <TextInput secureTextEntry value={confirmPassword} onBlur={FormikProps.handleBlur('confirmPassword')} onChangeText={FormikProps.handleChange('confirmPassword')} placeholder={confirmPasswordError && confirmPasswordTouched ? '' : '******'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                    <TextInput secureTextEntry value={confirmPassword} onBlur={FormikProps.handleBlur('confirmPassword')} onChangeText={FormikProps.handleChange('confirmPassword')} placeholder={confirmPasswordError && confirmPasswordTouched ? '' : '******'} style={[styles.textInput,{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }]} />
                                     {confirmPasswordError && confirmPasswordTouched && <Text style={styles.error}>{confirmPasswordError}</Text>}
                                 </View>
                             </View>
