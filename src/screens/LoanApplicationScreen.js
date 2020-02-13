@@ -95,12 +95,12 @@ const LoanApplicationScreen = (props) => {
                                     </View>
                                     <View style={{ marginBottom: 10 }}>
                                         <Text style={[styles.titleBox, { marginBottom: 10,fontSize:16 }]}>Total Financing (MYR)</Text>
-                                        <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} onBlur={FormikProps.handleBlur('amount')} style={{ borderWidth: 1, borderColor: amountTouched && amountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={amountTouched && amountError ? '' : 'Eg: RM 1000.00'} placeholderTextColor={amountTouched && amountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
+                                        <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} onBlur={FormikProps.handleBlur('amount')} style={[styles.textInput,{ borderWidth: 1, borderColor: amountTouched && amountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={amountTouched && amountError ? '' : 'Eg: RM 1000.00'} placeholderTextColor={amountTouched && amountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
                                         {amountTouched && amountError && <Text style={styles.error}>{amountError}</Text>}
                                     </View>
                                     <View style={{ marginBottom: 10 }}>
                                         <Text style={[styles.titleBox, { marginBottom: 10,fontSize:16}]}>Purpose</Text>
-                                        <TextInput value={purpose} onChangeText={FormikProps.handleChange('purpose')} onBlur={FormikProps.handleBlur('purpose')} style={{ borderWidth: 1, borderColor: purposeTouched && purposeError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={purposeTouched && purposeError ? '' : 'Eg: Pay salary'} placeholderTextColor={purposeTouched && purposeError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        <TextInput value={purpose} onChangeText={FormikProps.handleChange('purpose')} onBlur={FormikProps.handleBlur('purpose')} style={[styles.textInput,{ borderWidth: 1, borderColor: purposeTouched && purposeError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={purposeTouched && purposeError ? '' : 'Eg: Pay salary'} placeholderTextColor={purposeTouched && purposeError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
 
                                         {purposeTouched && purposeError && <Text style={styles.error}>{purposeError}</Text>}
                                     </View>
