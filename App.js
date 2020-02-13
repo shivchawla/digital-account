@@ -47,27 +47,34 @@ const App = (props) => {
     }
   }
 
-  registerForPushNotificationsAsync = async () => {
+  const registerForPushNotificationsAsync = async () => {
+    console.log(`nak minta permission`)
     const { status: existingStatus } = await Permissions.getAsync(
       Permissions.NOTIFICATIONS
     );
+    const test =   await Permissions.getAsync(
+      Permissions.NOTIFICATIONS
+    );
+    console.log(`dari permission : ${JSON.stringify(test)}`)
     let finalStatus = existingStatus;
     if (existingStatus !== 'granted') {
       const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
       finalStatus = status;
+      console.log(`permission for notification granted`)
     }
     if (finalStatus !== 'granted') {
+      console.log(`permission for notification NOT granted`)
       return;
     }
     let token = await Notifications.getExpoPushTokenAsync();
-    //console.log(`expo token ialah ${token}`)
+    console.log(`expo token ialah ${token}`)
     store.dispatch({ type: 'SET_REGISTER', payload: { expo_token: token } })
     console.log(JSON.stringify({
       token: { value: token, }, user: { username: 'Username', },
     }))
   }
 
-  _handleNotification = (notification) => {
+  const _handleNotification = (notification) => {
     console.log(`notification received ${JSON.stringify(notification)}`)
     const { data } = notification
     store.dispatch({ type: 'SET_NOTIFICATION_LIST', payload: { ...data } })

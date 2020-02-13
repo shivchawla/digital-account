@@ -65,7 +65,7 @@ const LoanScreen = (props) => {
                     </TouchableOpacity>
                 </View>
                 <View style={{ flex: 5, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={[styles.title]}>LOAN APPLICATION</Text>
+                    <Text numberOfLines={1} ellipsizeMode={'tail'} style={[styles.title]}>LOAN APPLICATION</Text>
                 </View>
                 <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
                     <View style={{ backgroundColor: 'rgba(62,194,217,0.5)', borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>

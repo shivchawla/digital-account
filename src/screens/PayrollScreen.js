@@ -134,8 +134,8 @@ const PayrollScreen = (props) => {
                                         <Text style={[styles.titleBox, { marginBottom: 10,fontSize:15 }]}>Bank</Text>
                                         {ios ?
                                             <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
-                                                <TouchableOpacity style={{ paddingTop: 10 }} onPress={() => handleIosPicker('bankName')}>
-                                                    <Text style={[styles.small, { color: '#0A6496' }]}>{bankName ? bankName : `Select Bank`}</Text>
+                                                <TouchableOpacity style={{ justifyContent:'center',margin:5 }} onPress={() => handleIosPicker('bankName')}>
+                                                    <Text style={[styles.titleBox]}>{bankName ? bankName : `Select Bank`}</Text>
                                                 </TouchableOpacity>
                                                 {bankNameTouched && bankNameError && <Text style={styles.error}>{bankNameError}</Text>}
                                             </View> : <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>

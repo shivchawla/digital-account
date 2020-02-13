@@ -87,8 +87,8 @@ const ReportScreen = (props) => {
                 </TouchableOpacity>
             </View>
             <View style={{ flex: 9 }}>
-                <View style={[styles.screenMargin]}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 10, marginTop: 20 }}>
+                <View>
+                    <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 10, marginTop: 20,marginLeft:20,marginRight:20 }}>
                         <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 10, flex: 1, borderWidth: 1, borderColor: 'lightgrey', padding: 10, borderRadius: 10 }}>
                             <View>
                                 <Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
@@ -101,20 +101,22 @@ const ReportScreen = (props) => {
                     </View>
                     {/* {reportList && <FlatList data={filterEnabled ? filterReportList : onScreenFilter ? onScreenFilteredList : reportList} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
                    */}
-                    {transactionAndFeeFinal && <FlatList
+                    {transactionAndFeeFinal && <FlatList contentContainerStyle={{paddingLeft:20,paddingRight:20}}
                         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
                         onEndReached={val => console.log(`onEndReached ialah : ${JSON.stringify(val)}`)}
                         data={filterEnabled ? transactionAndFeeFinal : onScreenFilter ? transactionAndFeeFinal : transactionAndFeeFinal} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
                             <View style={styles.box}>
                                 <TouchableWithoutFeedback onPress={() => dispatch(actionCreator.setMarkerReportList(item.id))} style={{ flexDirection: 'row', marginTop: 5 }}>
                                     <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
+                                    
                                         <Text style={styles.small}>{moment(item.updated_at).format('DD/MM/YY h:mm:ss')}</Text>
                                         <Ionicons name={item.marker ? "md-arrow-dropdown" : "md-arrow-dropright"} color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
                                     </View>
                                 </TouchableWithoutFeedback>
                                 <View style={{ flexDirection: 'row', marginTop: 5,borderBottomWidth: item.marker ? 1 : 0, borderBottomColor: 'lightgrey',paddingBottom:10 }}>
                                     <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                        <Text style={[styles.h3]}>{item.type} ({item.credit_debit})</Text>
+                                    <Ionicons name={item.credit_debit == 'DEBIT' ? "md-remove-circle-outline" : "md-add-circle-outline"} color={item.credit_debit == 'DEBIT' ? '#A20F0F' : '#7ED321'} style={{ fontSize: 15, paddingRight: 20 }} />
+                                        <Text style={[styles.h3]}>{item.type}</Text>
 
                                     </View>
                                 </View>

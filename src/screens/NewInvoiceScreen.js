@@ -198,17 +198,17 @@ const NewInvoiceScreen = (props) => {
                             visible={iosPickerVisible} onRequestClose={() => FormikProps.setFieldValue('dueDate', tarikh.toString())}
                         >
                             <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
-                            <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
-                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
-                                <TouchableOpacity onPress={() => setIosPickerVisible(!iosPickerVisible)}  hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                                    <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30 }} />
-                                </TouchableOpacity>
-                            </View>
-                            <View style={{ flex: 5, justifyContent: 'center', alignItems: 'center' }}>
-                                <Text style={[styles.title]}>Select</Text>
-                            </View>
-                           <View style={{flex:1}} />
-                        </View>
+                                <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
+                                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
+                                        <TouchableOpacity onPress={() => setIosPickerVisible(!iosPickerVisible)} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
+                                            <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30 }} />
+                                        </TouchableOpacity>
+                                    </View>
+                                    <View style={{ flex: 5, justifyContent: 'center', alignItems: 'center' }}>
+                                        <Text style={[styles.title]}>Select</Text>
+                                    </View>
+                                    <View style={{ flex: 1 }} />
+                                </View>
                                 <View style={{ flex: 9, justifyContent: 'flex-start' }}>
                                     {(modalContent === "invoiceType") ?
                                         <Picker selectedValue={invoiceType} style={{ flex: 1, height: 35 }} onValueChange={(itemValue, itemIndex) => changeInvoiceType(itemValue, itemIndex)}>
@@ -249,9 +249,10 @@ const NewInvoiceScreen = (props) => {
                                     <View style={{ margin: 5 }} />
                                     {ios ? <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
                                         <Text style={[styles.titleBox], { marginTop: 20 }}>Invoice Type</Text>
-                                        <TouchableOpacity style={{paddingTop:10}} onPress={() => handleIosPicker('invoiceType')}>
-                                            <Text style={[styles.small, { color: '#0A6496' }]}>{invoiceType == 1 ? 'To Customer' : invoiceType == 2 ? 'From Vendor' : 'Select invoiceType'}</Text>
-                                        </TouchableOpacity>
+                                        <View style={{ marginTop:10,alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', justifyContent: 'center' }}>
+                                            <TouchableOpacity style={{ justifyContent: 'center', margin: 5 }} onPress={() => handleIosPicker('invoiceType')}>
+                                                <Text style={[styles.titleBox]}>{invoiceType == 1 ? 'To Customer' : invoiceType == 2 ? 'From Vendor' : 'Select invoiceType'}</Text>
+                                            </TouchableOpacity></View>
                                     </View> : <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
                                             <Text style={[styles.titleBox], { marginBottom: 10 }}>Invoice Type</Text>
                                             <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
@@ -268,13 +269,15 @@ const NewInvoiceScreen = (props) => {
                                         <View>
                                             {ios ? <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
                                                 <Text style={[styles.titleBox], { marginTop: 20 }}>Category</Text>
-                                                <TouchableOpacity style={{paddingTop:10}} onPress={() => handleIosPicker('category')}>
-                                                    <Text style={[styles.small, { color: '#0A6496' }]}>{category===2 ?'Deposit':category===3 ?'Sales':category===2 ?'Others':'Select Category'}</Text>
-                                                </TouchableOpacity>
+                                                <View style={{ marginTop: 10, alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', justifyContent: 'center' }}>
+                                                    <TouchableOpacity style={{ justifyContent: 'center', margin: 5 }} onPress={() => handleIosPicker('category')}>
+                                                        <Text style={[styles.titleBox]}>{category === 2 ? 'Deposit' : category === 3 ? 'Sales' : category === 2 ? 'Others' : 'Select Category'}</Text>
+                                                    </TouchableOpacity>
+                                                </View>
                                             </View> :
                                                 <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
                                                     <Text style={[styles.titleBox], { marginBottom: 10 }}>Category</Text>
-                                                    <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
+                                                    <View style={{ marginTop: 10, alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
                                                         {invoice == 1 && <Picker selectedValue={category} style={{ flex: 1, height: 35 }} onValueChange={(itemValue, itemIndex) => FormikProps.setFieldValue('category', itemValue)}>
                                                             <Picker.Item label={'Please Select Category'} value={null} />
                                                             <Picker.Item label={'Deposit'} value={2} />
@@ -311,9 +314,11 @@ const NewInvoiceScreen = (props) => {
                                             {ios ? <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
                                                 <Text style={[styles.titleBox], { marginBottom: 10 }}>{invoice == 1 ? 'Customer' : 'Vendor'}</Text>
 
-                                                <TouchableOpacity style={{paddingTop:10}} onPress={() => handleIosPicker('entity')}>
-                                                    <Text style={[styles.small, { color: '#0A6496' }]}>{entityId ? `Change ${invoice == 1 ? 'Customer' : 'Vendor'}` : `Select ${invoice == 1 ? 'Customer' : 'Vendor'}`}</Text>
-                                                </TouchableOpacity>
+                                                <View style={{ marginTop: 10, alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', justifyContent: 'center' }}>
+                                                    <TouchableOpacity style={{ justifyContent: 'center', margin: 5 }} onPress={() => handleIosPicker('entity')}>
+                                                        <Text style={[styles.titleBox]}>{entityId ? `Change ${invoice == 1 ? 'Customer' : 'Vendor'}` : `Select ${invoice == 1 ? 'Customer' : 'Vendor'}`}</Text>
+                                                    </TouchableOpacity>
+                                                </View>
                                             </View> :
                                                 <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
                                                     <Text style={[styles.titleBox], { marginBottom: 10 }}>{invoice == 1 ? 'Customer' : 'Vendor'}</Text>
@@ -348,7 +353,7 @@ const NewInvoiceScreen = (props) => {
                                         </View>}
                                 </ScrollView>
                             </View>
-                            <View style={{  flexDirection: 'row', alignSelf: 'stretch' }}>
+                            <View style={{ flexDirection: 'row', alignSelf: 'stretch' }}>
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1, paddingTop: 20, paddingBottom: 20, justifyContent: 'center', alignItems: 'center' }}>
 
                                     <Text style={[styles.butang, { color: '#000000' }]}>Back</Text>

@@ -2,6 +2,8 @@ import React from 'react';
 import { createDrawerNavigator, createAppContainer } from 'react-navigation';
 import InvoiceScreen from '../screens/InvoiceScreen';
 import FilterBarInvoice from '../components/FilterBarInvoice';
+import { Platform } from 'react-native'
+import Layout from '../constants/Layout'
 
 const InvoicesContent = createDrawerNavigator(
 
@@ -10,6 +12,7 @@ const InvoicesContent = createDrawerNavigator(
     },
 
     {
+        drawerWidth:Platform.OS === 'ios' ? Layout.window.width  : Layout.window.width/5*4,
         // define customComponent here
         contentComponent: props => {
             const close = () => { props.navigation.closeDrawer() }

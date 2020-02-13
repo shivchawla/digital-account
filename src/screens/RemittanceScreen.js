@@ -124,7 +124,7 @@ const RemittanceScreen = (props) => {
                                 </TouchableOpacity>
                             </View>
                             <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                                <Text style={[styles.title, { color: '#055E7C' }]}>Remittance Details</Text>
+                                <Text numberOfLines={1} ellipsizeMode={'tail'} style={[styles.title, { color: '#055E7C' }]}>Remittance Details</Text>
                             </View>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
                                 <View style={{ backgroundColor: 'rgba(62,194,217,0.5)', borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
@@ -138,9 +138,9 @@ const RemittanceScreen = (props) => {
                                     <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
                                         <Text style={[styles.titleBox], { marginBottom: 10 }}>From</Text>
                                         {ios ?
-                                            <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
-                                                <TouchableOpacity style={{ paddingTop: 10 }} onPress={() => handleIosPicker('senderCurrency')}>
-                                                    <Text style={[styles.small, { color: '#0A6496' }]}>{senderCurrency ? senderCurrency : `Sender Currency`}</Text>
+                                            <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)',marginBottom:5 }}>
+                                                 <TouchableOpacity style={{ justifyContent:'center',margin:5 }} onPress={() => handleIosPicker('senderCurrency')}>
+                                                    <Text style={[styles.titleBox]}>{senderCurrency ? senderCurrency : `Sender Currency`}</Text>
                                                 </TouchableOpacity>
                                                 {senderCurrencyError && senderCurrencyTouched && <Text style={styles.error}>{senderCurrencyTouched}</Text>}
                                             </View> : <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', marginBottom: 10 }}>
@@ -157,9 +157,9 @@ const RemittanceScreen = (props) => {
                                     <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
                                         <Text style={[styles.titleBox], { marginBottom: 10 }}>To</Text>
                                         {ios ?
-                                            <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
-                                                <TouchableOpacity style={{ paddingTop: 10 }} onPress={() => handleIosPicker('recipientCurrency')}>
-                                                    <Text style={[styles.small, { color: '#0A6496' }]}>{recipientCurrency ? recipientCurrency : `Recipient Currency`}</Text>
+                                            <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)',marginBottom:5 }}>
+                                                <TouchableOpacity style={{ justifyContent:'center',margin:5 }} onPress={() => handleIosPicker('recipientCurrency')}>
+                                                    <Text style={[styles.titleBox]}>{recipientCurrency ? recipientCurrency : `Recipient Currency`}</Text>
                                                 </TouchableOpacity>
                                                 {recipientCurrencyError && recipientCurrencyTouched && <Text style={styles.error}>{recipientCurrencyTouched}</Text>}
                                             </View> : <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', marginBottom: 10 }}>

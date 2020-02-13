@@ -87,6 +87,7 @@ const DashboardScreen = (props) => {
   useEffect(() => {
     runCheckStatus2()
   }, [])
+  
   useEffect(() => {
     console.log(`status1 ialah ${status1}`)
     if (status1 == 'New') {
