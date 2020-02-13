@@ -9,8 +9,7 @@ import * as Yup from 'yup';
 import styles from '../styles/styles'
 import Constants from 'expo-constants';
 
-const apiReady = false
-
+const apiReady = true
 const validationSchema = Yup.object().shape({
 
     subject: Yup
