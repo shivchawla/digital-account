@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Text, TouchableOpacity, View, } from 'react-native';
+import { Image, Text, TouchableOpacity, View,ActivityIndicator } from 'react-native';
 import Constants from 'expo-constants'
 import Layout from '../constants/Layout'
 import styles from '../styles/styles'
@@ -8,7 +8,7 @@ import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 
 const TransferSuccessScreen = (props) => {
 
-    const { status } = useSelector(state => state.expenseReducer, shallowEqual)
+    const { status,code } = useSelector(state => state.expenseReducer, shallowEqual)
 
     const dispatch = useDispatch()
     const goDashboard = async () => {
@@ -25,7 +25,7 @@ const TransferSuccessScreen = (props) => {
     return (
 
         <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
-            {status ? <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, }}>
+            {code===200?status ? <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, }}>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                     <View style={{ flex: 1, justifyContent: 'flex-end' }}>
                         <Image source={require('../assets/images/logo.png')} style={{ height: Layout.window.height * 0.2, width: Layout.window.width * 0.5 }} resizeMode={'contain'} />
@@ -77,7 +77,21 @@ const TransferSuccessScreen = (props) => {
                         </View>
                         </View>
                     </View>
-                </View>}
+                </View>:<View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, }}>
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                    <View style={{ flex: 1, justifyContent: 'flex-end' }}>
+                        <Image source={require('../assets/images/logo.png')} style={{ height: Layout.window.height * 0.2, width: Layout.window.width * 0.5 }} resizeMode={'contain'} />
+                    </View>
+                    <View style={{ flex: 2, alignSelf: 'stretch' }}>
+                        <ActivityIndicator />
+                    </View>
+                    <View style={{ flex: 1, alignItems: 'center' }} />
+
+                    <View style={{ flex: 1 }} />
+                    
+                </View>
+            </View>}
+    
         </View>
 
     )
