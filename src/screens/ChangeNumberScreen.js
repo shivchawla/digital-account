@@ -57,11 +57,11 @@ const ChangeNumberScreen = (props) => {
                             <View style={[styles.screenMargin, { flex: 3, marginTop: 25 }]}>
                                 <View style={[styles.formElement]}>
                                     <Text style={[styles.titleBox, { marginBottom: 5 }]}>New Phone Number</Text>
-                                    <TextInput value={mobileNumber} onChangeText={FormikProps.handleChange('mobileNumber')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} keyboardType={'phone-pad'} placeholder={'0198907819'} />
+                                    <TextInput value={mobileNumber} onChangeText={FormikProps.handleChange('mobileNumber')} style={[styles.textInput,{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }]} keyboardType={'phone-pad'} placeholder={'0198907819'} />
                                 </View>
                                 <View style={[styles.formElement]}>
                                     <Text style={[styles.titleBox, { marginBottom: 5 }]}>Password</Text>
-                                    <TextInput value={password} onChangeText={FormikProps.handleChange('password')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={'******'} />
+                                    <TextInput value={password} onChangeText={FormikProps.handleChange('password')} style={[styles.textInput,{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={'******'} />
                                 </View>
                             </View>
                         </View>
