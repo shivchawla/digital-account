@@ -73,7 +73,7 @@ const SignupPersonalSuccessScreen = (props) => {
                         <Image source={require('../assets/images/signupsuccess.png')} style={{ flex: 1, height: undefined, width: undefined }} resizeMode={'contain'} />
                     </View>
                     <View style={{ flex: 1, alignItems: 'center' }}>
-                        <Text style={[styles.h3, { margin: 5, fontWeight: 'bold' }]}>Credential Created</Text>
+                        <Text style={[styles.h3, { margin: 5, fontWeight: 'bold',fontSize:17}]}>Credential Created</Text>
                         <View style={{ alignSelf: 'stretch', flexDirection: 'column', margin: 5, alignItems: 'center' }}>
                             <Text style={[styles.text, { margin: 5, color: 'darkturquoise' }]}>Congratulation!</Text>
                             <Text style={[styles.text, { margin: 5, marginBottom: 20, textAlign: 'center' }]}>Please proceed to merchant registration or skip to dashboard.</Text>
@@ -81,10 +81,10 @@ const SignupPersonalSuccessScreen = (props) => {
                     </View>
                     <View style={{ flex: 1 }}>
                         <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                            <TouchableOpacity onPress={() => props.navigation.navigate('Dashboard')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, borderColor: 'black', borderWidth: 1 }}>
+                            <TouchableOpacity onPress={() => props.navigation.navigate('Dashboard')} style={{ width: Layout.window.width * 0.3, paddingTop: 16, paddingBottom: 16, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, borderColor: 'black', borderWidth: 1 }}>
                                 <Text style={[styles.textDefault]}>Skip</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => clearEmail()} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }}>
+                            <TouchableOpacity onPress={() => clearEmail()} style={{ width: Layout.window.width * 0.3, paddingTop: 16, paddingBottom: 16, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }}>
                                 <Text style={[styles.textDefault, { color: 'white' }]}>Merchant</Text>
                             </TouchableOpacity>
                         </View>
@@ -102,7 +102,7 @@ const SignupPersonalSuccessScreen = (props) => {
                             <Text style={[styles.h3, { margin: 5, fontWeight: 'bold' }]}>Credential Created</Text>
                             <View style={{ alignSelf: 'stretch', flexDirection: 'column', margin: 5, alignItems: 'center' }}>
                                 <Text style={[styles.text, { margin: 5, color: 'darkturquoise' }]}>Email Verification</Text>
-                                {prevScreen == 'Dashboard' && <TouchableOpacity onPress={() => dispatch(actionCreator.resendVerification())} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }}>
+                                {prevScreen == 'Dashboard' && <TouchableOpacity onPress={() => dispatch(actionCreator.resendVerification())} style={{ width: Layout.window.width * 0.3, paddingTop: 16, paddingBottom: 16, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }}>
                                     <Text style={[styles.textDefault, { color: 'white' }]}>Resend</Text>
                                 </TouchableOpacity>}
                                 <Text style={[styles.text, { margin: 5, marginBottom: 20, textAlign: 'center' }]}>Please check your email inbox and follow the instruction for verification.</Text>
@@ -110,10 +110,10 @@ const SignupPersonalSuccessScreen = (props) => {
                         </View>
                         <View style={{ flex: 1 }}>
                             <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                                <TouchableOpacity onPress={() => props.navigation.navigate('Dashboard')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, borderColor: 'black', borderWidth: 1 }}>
+                                <TouchableOpacity onPress={() => props.navigation.navigate('Dashboard')} style={{ width: Layout.window.width * 0.3, paddingTop: 16, paddingBottom: 16, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, borderColor: 'black', borderWidth: 1 }}>
                                     <Text style={[styles.textDefault]}>Skip</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity disabled={!emailVerified} onPress={() => clearEmail()} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: emailVerified ? '#09A4BF' : 'rgba(9,164,191,0.5)' }}>
+                                <TouchableOpacity disabled={!emailVerified} onPress={() => clearEmail()} style={{ width: Layout.window.width * 0.3, paddingTop: 16, paddingBottom: 16, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: emailVerified ? '#09A4BF' : 'rgba(9,164,191,0.5)' }}>
                                     <Text style={[styles.textDefault, { color: 'white' }]}>Merchant</Text>
                                 </TouchableOpacity>
                             </View>

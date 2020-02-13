@@ -28,7 +28,7 @@ const AgreementScreen = (props) => {
                 <View style={{ flex: 9, }}>
                     <ScrollView contentContainerStyle={styles.screenMargin}>
                         <View style={{ justifyContent: 'flex-start', alignItems: 'flex-start' }}>
-                            <Text style={[styles.h3, { margin: 10, flexDirection: 'row' }]}>Terms and Conditions</Text>
+                            <Text style={[styles.h3, { margin: 5, flexDirection: 'row' }]}>Terms and Conditions</Text>
                         </View>
                         <Text style={[styles.small, { alignSelf: 'flex-start', textAlign: 'left', margin: 5, }]}>Pursuant to the Personal Data Protection Act 2010 (“PDPA”), Niyo (“Niyo”) is mindful and committed to the protection of your personal information and your privacy.
         This Personal Data Protection Notice (“Notice”) describes how Niyo and its respective subsidiaries and associate companies ("FCGB") use your Personal Data.

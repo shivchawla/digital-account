@@ -127,18 +127,18 @@ const CompanyInformationScreen = (props) => {
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
                             <View style={[styles.screenMargin, { flex: 9 }]}>
                                 <View style={[styles.formElement]}>
-                                    <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: cddCompanyNameTouched && cddCompanyNameError ? '#d94498' : '#5a83c2' }]}>Company Name</Text>
+                                    <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: cddCompanyNameTouched && cddCompanyNameError ? '#d94498' : '#5a83c2',fontSize:15 }]}>Company Name</Text>
                                     <TextInput value={cddCompanyName} onBlur={FormikProps.handleBlur('cddCompanyName')} onChangeText={FormikProps.handleChange('cddCompanyName')} placeholder={cddCompanyNameTouched && cddCompanyNameError ? '' : 'Eg: Syarikat ABC Sdn Bhd'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
                                     {cddCompanyNameTouched && cddCompanyNameError && <Text style={styles.error}>{cddCompanyNameError}</Text>}
                                 </View>
 
                                 <View style={[styles.formElement]}>
-                                    <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: cddRegistrationNumberTouched && cddRegistrationNumberError ? '#d94498' : '#5a83c2' }]}>Registration Number</Text>
+                                    <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: cddRegistrationNumberTouched && cddRegistrationNumberError ? '#d94498' : '#5a83c2',fontSize:15}]}>Registration Number</Text>
                                     <TextInput value={cddRegistrationNumber} onBlur={FormikProps.handleBlur('cddRegistrationNumber')} onChangeText={FormikProps.handleChange('cddRegistrationNumber')} placeholder={cddRegistrationNumberTouched && cddRegistrationNumberError ? '' : 'Eg: 105015-A'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
                                     {cddRegistrationNumberTouched && cddRegistrationNumberError && <Text style={styles.error}>{cddRegistrationNumberError}</Text>}
                                 </View>
                                 <View style={[styles.formElement]}>
-                                    <Text style={[styles.titleBox]}>Registration Date</Text>
+                                    <Text style={[styles.titleBox],{fontSize:15}}>Registration Date</Text>
                                     <View style={{ flexDirection: 'row' }}>
                                         <TouchableOpacity onPress={datePicker}>
                                             <Image source={require('../assets/images/calendar.png')} style={{ width: 30, height: 30, marginRight: 10 }} resizeMode={'contain'} />
@@ -150,9 +150,9 @@ const CompanyInformationScreen = (props) => {
                             </View>
                             <View style={{ flexDirection: 'row', alignSelf: 'stretch' }}>
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1,paddingTop: 20, paddingBottom: 20, justifyContent: 'center', alignItems: 'center' }}>
-                                    <LinearGradient colors={['#FFF', '#FFF']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
+                                    
                                         <Text style={[styles.butang, { color: 'lightgrey' }]}>Back</Text>
-                                    </LinearGradient>
+                                   
                                 </TouchableOpacity>
                                 <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ flex: 1, borderColor: FormikProps.isValid ? '#0A6496' : 'rgba(10,100,150,0.5)', borderWidth: 1 }}>
                                     <LinearGradient colors={FormikProps.isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
