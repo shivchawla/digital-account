@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, Text, Image, ScrollView, KeyboardAvoidingView, TextInput, Picker, ActivityIndicator, Platform, Modal } from 'react-native';
+import { View, TouchableOpacity, Text, Image, ScrollView, KeyboardAvoidingView, TextInput, Picker, ActivityIndicator, Platform, Modal, WebView } from 'react-native';
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { LinearGradient } from 'expo-linear-gradient'
@@ -8,6 +8,9 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import styles from '../styles/styles'
 import Constants from 'expo-constants';
+
+const apiReady = false
+
 const validationSchema = Yup.object().shape({
 
     subject: Yup
@@ -31,7 +34,7 @@ const validationSchema = Yup.object().shape({
 
 const SupportScreen = (props) => {
     const [iosPickerVisible, setIosPickerVisible] = useState(false)
-    const [modalContent,setModalContent]=useState(null)
+    const [modalContent, setModalContent] = useState(null)
     const dispatch = useDispatch()
     const setSupportData = (val) => dispatch({ type: 'SET_SUBMIT_SUPPORT', payload: { ...val } });
     const supportData = useSelector(state => state.supportReducer, shallowEqual)
@@ -39,10 +42,38 @@ const SupportScreen = (props) => {
     const [tag, setTag] = useState((Math.floor(100000000 + Math.random() * 900000000)).toString())
     const ios = Platform.OS === "ios" ? true : false
 
-    const handleIosPicker=(modalContent)=>{
+    const handleIosPicker = (modalContent) => {
         setModalContent(modalContent)
         setIosPickerVisible(!iosPickerVisible)
     }
+    //kalau backend takde api
+    if (!apiReady) {
+        return (<KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }} keyboardVerticalOffset={20}>
+
+            <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
+                    <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
+                        <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30 }} />
+                    </TouchableOpacity>
+                </View>
+                <View style={{ flex: 5, justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={[styles.title]}>SUPPORT</Text>
+                </View>
+                <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
+                    <View style={{ backgroundColor: 'rgba(62,194,217,0.5)', borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
+                        <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
+                    </View>
+                </TouchableOpacity>
+            </View>
+            <View style={{ justifyContent: 'space-between', flex: 9 }}>
+                <View style={{ flex: 9 }}>
+                    <WebView source={{ uri: `https://niyo.freshdesk.com/support/home` }} />
+                </View>
+
+            </View>
+        </KeyboardAvoidingView>)
+    }
+    //kalau backend ADA api
     return (
 
         <Formik onSubmit={async values => {
@@ -86,21 +117,21 @@ const SupportScreen = (props) => {
                                     <View style={{ flex: 1 }} />
                                 </View>
                                 <View style={{ flex: 9, justifyContent: 'flex-start' }}>
-                                   {modalContent==='type'?<Picker style={{ flex: 1, height: 35 }} selectedValue={type} onValueChange={(itemValue, itemIndex) => FormikProps.setFieldValue('type', itemValue)}>
+                                    {modalContent === 'type' ? <Picker style={{ flex: 1, height: 35 }} selectedValue={type} onValueChange={(itemValue, itemIndex) => FormikProps.setFieldValue('type', itemValue)}>
                                         <Picker.Item label={'Please Select'} value={undefined} />
                                         <Picker.Item label="Question" value="Question" />
                                         <Picker.Item label="Incident" value="Incident" />
                                         <Picker.Item label="Problem" value="Problem" />
                                         <Picker.Item label="Feature Request" value="Feature Request" />
                                         <Picker.Item label="Refund" value="Refund" />
-                                    </Picker>:  <Picker style={{ flex: 1, height: 35 }} selectedValue={priority} onValueChange={(itemValue, itemIndex) => FormikProps.setFieldValue('priority', itemValue)}>
-                                                <Picker.Item label={'Please Select'} value={undefined} />
-                                                <Picker.Item value="1" label="Low" />
-                                                <Picker.Item value="2" label="Medium" />
-                                                <Picker.Item value="3" label="High" />
-                                                <Picker.Item value="4" label="Urgent" />
-                                            </Picker>
-                                } 
+                                    </Picker> : <Picker style={{ flex: 1, height: 35 }} selectedValue={priority} onValueChange={(itemValue, itemIndex) => FormikProps.setFieldValue('priority', itemValue)}>
+                                            <Picker.Item label={'Please Select'} value={undefined} />
+                                            <Picker.Item value="1" label="Low" />
+                                            <Picker.Item value="2" label="Medium" />
+                                            <Picker.Item value="3" label="High" />
+                                            <Picker.Item value="4" label="Urgent" />
+                                        </Picker>
+                                    }
                                 </View>
                             </View>
                         </Modal>
@@ -130,7 +161,7 @@ const SupportScreen = (props) => {
                                     <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
                                         <Text style={[styles.titleBox], { marginBottom: 10 }}>Type</Text>
                                         {ios ? <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
-                                        <TouchableOpacity style={{ justifyContent:'center',margin:5 }} onPress={() => handleIosPicker('type')}>
+                                            <TouchableOpacity style={{ justifyContent: 'center', margin: 5 }} onPress={() => handleIosPicker('type')}>
                                                 <Text style={[styles.titleBox]}>{type ? type : `Select Type`}</Text>
                                             </TouchableOpacity>
                                             {typeTouched && typeError && <Text style={styles.error}>{typeError}</Text>}
@@ -149,20 +180,20 @@ const SupportScreen = (props) => {
                                     <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
                                         <Text style={[styles.titleBox], { marginBottom: 10 }}>Priority</Text>
                                         {ios ? <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
-                                        <TouchableOpacity style={{ justifyContent:'center',margin:5 }}onPress={() => handleIosPicker('priority')}>
+                                            <TouchableOpacity style={{ justifyContent: 'center', margin: 5 }} onPress={() => handleIosPicker('priority')}>
                                                 <Text style={[styles.titleBox]}>{priority ? priority : `Select Priority`}</Text>
                                             </TouchableOpacity>
                                             {priorityTouched && priorityError && <Text style={styles.error}>{priorityError}</Text>}
                                         </View> : <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
-                                            <Picker style={{ flex: 1, height: 35 }} selectedValue={priority} onValueChange={(itemValue, itemIndex) => FormikProps.setFieldValue('priority', itemValue)}>
-                                                <Picker.Item label={'Please Select'} value={undefined} />
-                                                <Picker.Item value="1" label="Low" />
-                                                <Picker.Item value="2" label="Medium" />
-                                                <Picker.Item value="3" label="High" />
-                                                <Picker.Item value="4" label="Urgent" />
-                                            </Picker>
-                                            {priorityTouched && priorityError && <Text style={styles.error}>{priorityError}</Text>}
-                                        </View>}
+                                                <Picker style={{ flex: 1, height: 35 }} selectedValue={priority} onValueChange={(itemValue, itemIndex) => FormikProps.setFieldValue('priority', itemValue)}>
+                                                    <Picker.Item label={'Please Select'} value={undefined} />
+                                                    <Picker.Item value="1" label="Low" />
+                                                    <Picker.Item value="2" label="Medium" />
+                                                    <Picker.Item value="3" label="High" />
+                                                    <Picker.Item value="4" label="Urgent" />
+                                                </Picker>
+                                                {priorityTouched && priorityError && <Text style={styles.error}>{priorityError}</Text>}
+                                            </View>}
                                     </View>
                                     <View style={styles.formElement}>
                                         <Text style={[styles.titleBox], { marginBottom: 10 }}>Subject</Text>
