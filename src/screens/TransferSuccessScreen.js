@@ -25,6 +25,7 @@ const TransferSuccessScreen = (props) => {
     const resetCode = () => {
         dispatch({ type: 'SET_NEW_EXPENSE', payload: { status:false,code:false,proceedMain: false } })
     }
+    
     return (
 
         <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
