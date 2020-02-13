@@ -434,6 +434,8 @@ const expenseReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_NEW_EXPENSE':
             return { ...state, ...action.payload }
+        // case 'RESET_EXPENSE':
+        //     return { ...state, ...action.payload }
 
         default:
             return state
