@@ -86,11 +86,11 @@ const RepaymentInfo = (props) => {
                                             <ScrollView >
                                                 <View style={[styles.formElement]}>
                                                     <Text style={[styles.titleBox, { marginBottom: 10, marginTop: 10 }]}>Account No</Text>
-                                                    <TextInput editable={false} value={repaymentDetail.account_loan_no} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholderTextColor={'lightgrey'} />
+                                                    <TextInput editable={false} value={repaymentDetail.account_loan_no} style={[styles.textInput,{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }]} placeholderTextColor={'lightgrey'} />
                                                 </View>
                                                 <View style={[styles.formElement]}>
                                                     <Text style={[styles.titleBox, { marginBottom: 10 }]}>Amount</Text>
-                                                    <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} onBlur={FormikProps.handleBlur('amount')} style={{ borderWidth: 1, borderColor: amountTouched && amountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={amountTouched && amountError ? '' : 'Eg: 100.00'} placeholderTextColor={amountTouched && amountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'phone-pad'} />
+                                                    <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} onBlur={FormikProps.handleBlur('amount')} style={[styles.textInput,{ borderWidth: 1, borderColor: amountTouched && amountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={amountTouched && amountError ? '' : 'Eg: 100.00'} placeholderTextColor={amountTouched && amountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'phone-pad'} />
                                                     {amountError && amountTouched && <Text style={styles.error}>{amountError}</Text>}
                                                 </View>
                                             </ScrollView>
