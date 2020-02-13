@@ -383,8 +383,8 @@ export const withDrawApi = (values) => {
       body: JSON.stringify({ ...values2, access_credential }),
     }).then((response) => response.json())
       .then(async (responseJson) => {
-        const { status } = await responseJson
-        await dispatch({ type: 'SET_NEW_WITHDRAWAL', payload: { status, proceedMain: true } })
+        const { status,code } = await responseJson
+        await dispatch({ type: 'SET_NEW_WITHDRAWAL', payload: { status,code, proceedMain: true } })
         await console.log(`withdrawal api  ${JSON.stringify(responseJson)}`)
       })
       .catch((error) => {
@@ -1242,8 +1242,8 @@ export const submitLoanApplicationApi = () => {
       body: JSON.stringify({ ...values2, access_credential }),
     }).then((response) => response.json())
       .then(async (responseJson) => {
-        const { status } = await responseJson
-        await dispatch({ type: 'SET_LOAN_APPLICATION', payload: { status, proceedMain: true } })
+        const { status,code } = await responseJson
+        await dispatch({ type: 'SET_LOAN_APPLICATION', payload: { status,code, proceedMain: true } })
         await console.log(`loan api  ${JSON.stringify(responseJson)}`)
       })
       .catch((error) => {
@@ -1292,7 +1292,7 @@ export const submitInvoiceApi = () => {
 
     xhr.addEventListener("readystatechange", function () {
       if (this.readyState === 4) {
-        console.log(this.responseText);
+        console.log('hafizh power dan hensem',this.responseText);
         const { status } = JSON.parse(this.responseText)
         dispatch({ type: 'SET_INVOICE_APPLICATION', payload: { status, proceedMain: true } })
 
@@ -1335,8 +1335,8 @@ export const vendorDataApi = (values) => {
       body: JSON.stringify({ ...values, access_credential }),
     }).then((response) => response.json())
       .then(async (responseJson) => {
-        const { status } = await responseJson
-        await dispatch({ type: 'SET_VENDOR_SUBMIT', payload: { status, proceedMain: true } })
+        const { status,code } = await responseJson
+        await dispatch({ type: 'SET_VENDOR_SUBMIT', payload: { status,code, proceedMain: true } })
         await console.log(`vendor submit api  ${JSON.stringify(responseJson)}`)
       })
       .catch((error) => {
@@ -1364,8 +1364,8 @@ export const customerDataApi = (values) => {
       body: JSON.stringify({ ...values, access_credential }),
     }).then((response) => response.json())
       .then(async (responseJson) => {
-        const { status } = await responseJson
-        await dispatch({ type: 'SET_CUSTOMER_LIST', payload: { status, proceedMain: true } })
+        const { status,code } = await responseJson
+        await dispatch({ type: 'SET_CUSTOMER_LIST', payload: { status,code, proceedMain: true } })
         await console.log(`customer submit api  ${JSON.stringify(responseJson)}`)
       })
       .catch((error) => {
@@ -1394,8 +1394,8 @@ export const itemDataApi = (values) => {
       body: JSON.stringify({ ...values, access_credential }),
     }).then((response) => response.json())
       .then(async (responseJson) => {
-        const { status } = await responseJson
-        await dispatch({ type: 'SET_ITEM_LIST', payload: { status, proceedMain: true } })
+        const { status,code } = await responseJson
+        await dispatch({ type: 'SET_ITEM_LIST', payload: { status,code, proceedMain: true } })
         await console.log(`item submit api  ${JSON.stringify(responseJson)}`)
       })
       .catch((error) => {
@@ -1423,8 +1423,8 @@ export const submitSupportApi = (values) => {
       body: JSON.stringify({ ...values, access_credential }),
     }).then((response) => response.json())
       .then(async (responseJson) => {
-        const { status } = await responseJson
-        await dispatch({ type: 'SET_SUBMIT_SUPPORT', payload: { status, proceedMain: true } })
+        const { status,code } = await responseJson
+        await dispatch({ type: 'SET_SUBMIT_SUPPORT', payload: { status,code, proceedMain: true } })
         await console.log(`support api  ${JSON.stringify(responseJson)}`)
       })
       .catch((error) => {
