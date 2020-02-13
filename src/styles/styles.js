@@ -98,6 +98,11 @@ export default StyleSheet.create({
     color: '#000',
     fontSize,
   },
+  textInput: {
+    fontSize:fontSize*1.1,
+    fontFamily: 'Montserrat_medium',
+    color: '#000'
+  },
 
   error: {
     fontSize,
