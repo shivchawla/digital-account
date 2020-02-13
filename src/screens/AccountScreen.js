@@ -23,9 +23,9 @@ const AccountScreen = (props) => {
                     <Text style={[styles.title]}>ACCOUNT: {account_no}</Text>
                 </View>
                 <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
-                    <View style={{ backgroundColor:'rgba(62,194,217,0.5)',borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
-            <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
-          </View>
+                    <View style={{ backgroundColor: 'rgba(62,194,217,0.5)', borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
+                        <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
+                    </View>
                 </TouchableOpacity>
             </View>
             <View style={{ flex: 9 }}>
@@ -33,64 +33,51 @@ const AccountScreen = (props) => {
                     <View style={{ flexDirection: 'row' }}>
                         <Text style={[styles.h2, { marginBottom: 10, marginTop: 10 }]}>Account Information</Text>
                     </View>
-                    <View style={{ flexDirection: 'row', marginBottom: 5, marginTop: 5 }}>
-                        <View style={{ justifyContent: 'center', alignItems: 'center', marginRight: 15 }} >
+                    <View style={{ flexDirection: 'row', marginBottom: 5, marginTop: 5, flex: 1, alignItems: 'center' }}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginRight: 15, flex: 1 }} >
                             <Image source={require('../assets/images/accountNumber.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                            <Text style={[styles.label, { marginLeft: 5 }]}>Account</Text>
                         </View>
-                        <View style={{ justifyContent: 'center', alignItems: 'center' }} >
-                            <Text style={[styles.text, { marginLeft: 10 }]}>Account Number</Text>
-                        </View>
-                        <View style={{ justifyContent: 'center', alignItems: 'center' }} >
-                            <Text style={[styles.boldText, { color: 'black', marginLeft: 15 }]}>{account_no}</Text>
-                        </View>
+                        <Text style={[styles.value, { color: 'black', marginLeft: 10, flex: 2, }]}>{account_no}</Text>
                     </View>
-                    <View style={{ flexDirection: 'row', marginBottom: 5, marginTop: 5 }}>
-                        <View style={{ justifyContent: 'center', alignItems: 'center', marginRight: 15 }} >
+                    <View style={{ flexDirection: 'row', marginBottom: 5, marginTop: 5, flex: 1, alignItems: 'center' }}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginRight: 15,flex:1 }} >
                             <Image source={require('../assets/images/accountType.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                            <Text style={[styles.label, { marginLeft: 5 }]}>Type</Text>
                         </View>
-                        <View style={{ justifyContent: 'center', alignItems: 'center' }} >
-                            <Text style={[styles.text, { marginLeft: 10 }]}>Account Type</Text>
-                        </View>
-                        <View style={{ justifyContent: 'center', alignItems: 'center' }} >
-                            <Text style={[styles.boldText, { color: 'black', marginLeft: 45 }]}>{type}</Text>
-                        </View>
+                        <Text style={[styles.value, { color: 'black', marginLeft: 10, flex: 2, }]}>{type}</Text>
                     </View>
-                    <View style={{ flexDirection: 'row', marginBottom: 5, marginTop: 5 }}>
-                        <View style={{ justifyContent: 'center', alignItems: 'center', marginRight: 15 }} >
+                    <View style={{ flexDirection: 'row', marginBottom: 5, marginTop: 5, flex: 1, alignItems: 'center' }}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginRight: 15,flex:1 }} >
                             <Image source={require('../assets/images/balanceReport.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                            <Text style={[styles.label, { marginLeft: 5 }]}>Balance</Text>
+                            </View>
+                            <Text style={[styles.value, { color: 'black', marginLeft: 10, flex: 2, }]}>{currency} {balance}</Text>
+
                         </View>
-                        <View style={{ justifyContent: 'center', alignItems: 'center' }} >
-                            <Text style={[styles.text, { marginLeft: 10 }]}>Balance Report</Text>
+                        <View style={{ flexDirection: 'row', marginBottom: 5, marginTop: 5, flex: 1, alignItems: 'center' }}>
+                            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginRight: 15,flex:1 }} >
+                                <Image source={require('../assets/images/accountStatus.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                                <Text style={[styles.label, { marginLeft: 5 }]}>Status</Text>
+                            </View>
+                            <View style={{ justifyContent: 'flex-start', alignItems: 'flex-start',flex:2 }} >
+                                {status == 'activated' ? <View style={{ paddingTop: 16, paddingBottom: 16, paddingLeft: 18, paddingRight: 18, borderRadius: 15, backgroundColor: '#00d800',marginLeft:10 }}>
+                                    <Text style={[styles.text, { color: 'white' }]}>Active</Text>
+                                </View> : <View style={{ paddingTop: 16, paddingBottom: 16, paddingLeft: 18, paddingRight: 18, borderRadius: 15, backgroundColor: 'lightgrey', marginLeft: 10 }}>
+                                        <Text style={[styles.text, { color: 'black' }]}>Inactive</Text>
+                                    </View>}
+                            </View>
                         </View>
-                        <View style={{ justifyContent: 'center', alignItems: 'center' }} >
-                            <Text style={[styles.boldText, { color: 'black', marginLeft: 30 }]}>{currency} {balance}</Text>
-                        </View>
-                    </View>
-                    <View style={{ flexDirection: 'row', marginBottom: 5, marginTop: 5 }}>
-                        <View style={{ justifyContent: 'center', alignItems: 'center', marginRight: 15 }} >
-                            <Image source={require('../assets/images/accountStatus.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
-                        </View>
-                        <View style={{ justifyContent: 'center', alignItems: 'center' }} >
-                            <Text style={[styles.text, { marginLeft: 10 }]}>Account Status</Text>
-                        </View>
-                        <View style={{ justifyContent: 'center', alignItems: 'center' }} >
-                            {status == 'activated' ? <View style={{paddingTop: 16, paddingBottom: 16, paddingLeft: 18, paddingRight: 18, borderRadius: 15, backgroundColor: '#00d800',marginLeft: 30 }}>
-                            <Text style={[styles.text, { color: 'white' }]}>Active</Text>
-                            </View> : <View style={{paddingTop: 16, paddingBottom: 16, paddingLeft: 18, paddingRight: 18, borderRadius: 15, backgroundColor: 'lightgrey',marginLeft: 30 }}>
-                            <Text style={[styles.text, { color: 'black' }]}>Inactive</Text>
-                            </View>}
-                        </View>
-                    </View>
                 </ScrollView>
             </View>
-        </View >
+            </View >
 
-    );
-
-}
-
+            );
+        
+        }
+        
 AccountScreen.navigationOptions = {
-    header: null,
-};
-
+                header: null,
+        };
+        
 export default AccountScreen;

@@ -126,12 +126,12 @@ const PayrollScreen = (props) => {
                             <View style={{ flex: 9 }}>
                                 <ScrollView style={styles.screenMargin}>
                                     <View style={styles.formElement}>
-                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Name</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 10,fontSize:15 }]}>Name</Text>
                                         <TextInput value={personName} onChangeText={FormikProps.handleChange('personName')} onBlur={FormikProps.handleBlur('personName')} style={{ borderWidth: 1, borderColor: personNameTouched && personNameError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={personNameTouched && personNameError ? '' : 'Salman bin Abu Bakar'} placeholderTextColor={personNameTouched && personNameError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {personNameTouched && personNameError && <Text style={styles.error}>{personNameError}</Text>}
                                     </View>
                                     <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
-                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Bank</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 10,fontSize:15 }]}>Bank</Text>
                                         {ios ?
                                             <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
                                                 <TouchableOpacity style={{ justifyContent:'center',margin:5 }} onPress={() => handleIosPicker('bankName')}>
@@ -148,23 +148,23 @@ const PayrollScreen = (props) => {
                                             </View>}
                                     </View>
                                     <View style={styles.formElement}>
-                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Account Number</Text>
+                                        <Text style={[styles.titleBox, { marginBottom: 10,fontSize:15 }]}>Account Number</Text>
                                         <TextInput value={accountNumber} onChangeText={FormikProps.handleChange('accountNumber')} onBlur={FormikProps.handleBlur('accountNumber')} style={{ borderWidth: 1, borderColor: accountNumberTouched && accountNumberError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={accountNumberTouched && accountNumberError ? '' : '789083821235'} placeholderTextColor={accountNumberTouched && accountNumberError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'phone-pad'} />
                                         {accountNumberTouched && accountNumberError && <Text style={styles.error}>{accountNumberError}</Text>}
                                     </View>
                                     <View style={styles.formElement}>
-                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Amount</Text>
-                                        <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} onBlur={FormikProps.handleBlur('amount')} style={{ textAlignVertical: 'top', borderWidth: 1, borderColor: amountTouched && amountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={amountTouched && amountError ? '' : 'RM 78.00'} placeholderTextColor={amountTouched && amountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'phone-pad'} />
+                                        <Text style={[styles.titleBox, { marginBottom: 10,fontSize:15 }]}>Amount</Text>
+                                        <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} onBlur={FormikProps.handleBlur('amount')} style={{ textAlignVertical: 'center', borderWidth: 1, borderColor: amountTouched && amountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={amountTouched && amountError ? '' : 'RM 78.00'} placeholderTextColor={amountTouched && amountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'phone-pad'} />
                                         {amountTouched && amountError && <Text style={styles.error}>{amountError}</Text>}
                                     </View>
                                     <View style={styles.formElement}>
-                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Deduction Amount</Text>
-                                        <TextInput value={deductionAmount} onChangeText={FormikProps.handleChange('deductionAmount')} onBlur={FormikProps.handleBlur('deductionAmount')} style={{ textAlignVertical: 'top', borderWidth: 1, borderColor: deductionAmountTouched && deductionAmountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={deductionAmountTouched && deductionAmountError ? '' : 'address@email.com'} placeholderTextColor={deductionAmountTouched && deductionAmountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'phone-pad'} />
+                                        <Text style={[styles.titleBox, { marginBottom: 10,fontSize:15 }]}>Deduction Amount</Text>
+                                        <TextInput value={deductionAmount} onChangeText={FormikProps.handleChange('deductionAmount')} onBlur={FormikProps.handleBlur('deductionAmount')} style={{ textAlignVertical: 'center', borderWidth: 1, borderColor: deductionAmountTouched && deductionAmountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={deductionAmountTouched && deductionAmountError ? '' : 'address@email.com'} placeholderTextColor={deductionAmountTouched && deductionAmountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'phone-pad'} />
                                         {deductionAmountTouched && deductionAmountError && <Text style={styles.error}>{deductionAmountError}</Text>}
                                     </View>
                                     <View style={styles.formElement}>
-                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Allowance Amount</Text>
-                                        <TextInput value={allowanceAmount} onChangeText={FormikProps.handleChange('allowanceAmount')} onBlur={FormikProps.handleBlur('allowanceAmount')} style={{ textAlignVertical: 'top', borderWidth: 1, borderColor: allowanceAmountTouched && allowanceAmountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={allowanceAmountTouched && allowanceAmountError ? '' : 'RM 900.00'} placeholderTextColor={allowanceAmountTouched && allowanceAmountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'phone-pad'} />
+                                        <Text style={[styles.titleBox, { marginBottom: 10 ,fontSize:15}]}>Allowance Amount</Text>
+                                        <TextInput value={allowanceAmount} onChangeText={FormikProps.handleChange('allowanceAmount')} onBlur={FormikProps.handleBlur('allowanceAmount')} style={{ textAlignVertical: 'center', borderWidth: 1, borderColor: allowanceAmountTouched && allowanceAmountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={allowanceAmountTouched && allowanceAmountError ? '' : 'RM 900.00'} placeholderTextColor={allowanceAmountTouched && allowanceAmountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'phone-pad'} />
                                         {allowanceAmountTouched && allowanceAmountError && <Text style={styles.error}>{allowanceAmountError}</Text>}
                                     </View>
                                 </ScrollView>
