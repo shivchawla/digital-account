@@ -117,27 +117,27 @@ const CompanyContactAddressInformationScreen = (props) => {
                                 <ScrollView style={[styles.screenMargin]}>
                                     <View style={[styles.formElement]}>
                                         <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: comp_addrTouched && comp_addrError ? '#d94498' : '#5a83c2' }]}>Address Line 1</Text>
-                                        <TextInput value={comp_addr} onBlur={FormikProps.handleBlur('comp_addr')} onChangeText={FormikProps.handleChange('comp_addr')} placeholder={comp_addrTouched && comp_addrError ? '' : 'Eg: 89, Jalan Bestari'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                        <TextInput value={comp_addr} onBlur={FormikProps.handleBlur('comp_addr')} onChangeText={FormikProps.handleChange('comp_addr')} placeholder={comp_addrTouched && comp_addrError ? '' : 'Eg: 89, Jalan Bestari'} style={[styles.textInput,{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }]} />
                                         {comp_addrTouched && comp_addrError && <Text style={styles.error}>{comp_addrError}</Text>}
                                     </View>
                                     <View style={[styles.formElement]}>
                                         <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: comp_addr2Touched && comp_addr2Error ? '#d94498' : '#5a83c2' }]}>Line Address 2</Text>
-                                        <TextInput value={comp_addr2} onBlur={FormikProps.handleBlur('comp_addr2')} onChangeText={FormikProps.handleChange('comp_addr2')} placeholder={comp_addr2Touched && comp_addr2Error ? '' : 'Eg: Taman Enggang Utama'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                        <TextInput value={comp_addr2} onBlur={FormikProps.handleBlur('comp_addr2')} onChangeText={FormikProps.handleChange('comp_addr2')} placeholder={comp_addr2Touched && comp_addr2Error ? '' : 'Eg: Taman Enggang Utama'} style={[styles.textInput,{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }]} />
                                         {comp_addr2Touched && comp_addr2Error && <Text style={styles.error}>{comp_addr2Error}</Text>}
                                     </View>
                                     <View style={[styles.formElement]}>
                                         <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: cddPostcodeTouched && cddPostcodeError ? '#d94498' : '#5a83c2' }]}>Postcode</Text>
-                                        <TextInput value={cddPostcode} onBlur={FormikProps.handleBlur('cddPostcode')} onChangeText={(val) => checkPostcode(val)} placeholder={cddPostcodeTouched && cddPostcodeError ? '' : 'Eg: 60901'} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} keyboardType={'phone-pad'} />
+                                        <TextInput value={cddPostcode} onBlur={FormikProps.handleBlur('cddPostcode')} onChangeText={(val) => checkPostcode(val)} placeholder={cddPostcodeTouched && cddPostcodeError ? '' : 'Eg: 60901'} style={[styles.textInput,{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }]} keyboardType={'phone-pad'} />
                                         {cddPostcodeTouched && cddPostcodeError && <Text style={styles.error}>{cddPostcodeError}</Text>}
                                     </View>
                                     <View style={[styles.formElement]}>
                                         <Text style={[styles.titleBox, { marginBottom: 5 }]}>City</Text>
-                                        <TextInput editable={false} value={comp_city} onChangeText={FormikProps.handleChange('comp_city')} onBlur={FormikProps.handleBlur('comp_city')} style={{ borderWidth: 1, borderColor: comp_cityTouched && comp_cityError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={comp_cityTouched && comp_cityError ? '' : ''} placeholderTextColor={comp_cityTouched && comp_cityError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        <TextInput editable={false} value={comp_city} onChangeText={FormikProps.handleChange('comp_city')} onBlur={FormikProps.handleBlur('comp_city')} style={[styles.textInput,{ borderWidth: 1, borderColor: comp_cityTouched && comp_cityError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={comp_cityTouched && comp_cityError ? '' : ''} placeholderTextColor={comp_cityTouched && comp_cityError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {comp_cityTouched && comp_cityError && <Text style={styles.error}>{comp_cityError}</Text>}
                                     </View>
                                     <View style={[styles.formElement]}>
                                         <Text style={[styles.titleBox, { marginBottom: 5 }]}>State</Text>
-                                        <TextInput editable={false} value={comp_state} onChangeText={FormikProps.handleChange('comp_state')} onBlur={FormikProps.handleBlur('comp_state')} style={{ borderWidth: 1, borderColor: comp_stateTouched && comp_stateError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={comp_stateTouched && comp_stateError ? '' : ''} placeholderTextColor={comp_stateTouched && comp_stateError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        <TextInput editable={false} value={comp_state} onChangeText={FormikProps.handleChange('comp_state')} onBlur={FormikProps.handleBlur('comp_state')} style={[styles.textInput,{ borderWidth: 1, borderColor: comp_stateTouched && comp_stateError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={comp_stateTouched && comp_stateError ? '' : ''} placeholderTextColor={comp_stateTouched && comp_stateError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {comp_stateTouched && comp_stateError && <Text style={styles.error}>{comp_stateError}</Text>}
                                     </View>
                                     {/* <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
