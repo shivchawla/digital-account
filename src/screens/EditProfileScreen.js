@@ -84,31 +84,31 @@ const EditProfileScreen = (props) => {
                                         </View>
                                         <View style={[styles.formElement]}>
                                             <Text style={[styles.titleBox, { marginBottom: 10 }]}>Company Name</Text>
-                                            <TextInput value={companyName} onChangeText={FormikProps.handleChange('companyName')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={'Eg: Syarikat Maju Budi Sdn Bhd'} />
+                                            <TextInput value={companyName} onChangeText={FormikProps.handleChange('companyName')} style={[styles.textInput,{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={'Eg: Syarikat Maju Budi Sdn Bhd'} />
                                         </View>
                                         <View style={[styles.formElement]}>
                                             <Text style={[styles.titleBox, { marginBottom: 10 }]}>Registration Number</Text>
-                                            <TextInput value={companyRegNum} onChangeText={FormikProps.handleChange('companyRegNum')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={'Eg: 543-A123'} />
+                                            <TextInput value={companyRegNum} onChangeText={FormikProps.handleChange('companyRegNum')} style={[styles.textInput,{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={'Eg: 543-A123'} />
                                         </View>
                                         <View style={[styles.formElement]}>
                                             <Text style={[styles.titleBox, { marginBottom: 10 }]}>Company Addresss</Text>
-                                            <TextInput value={companyAddress} onChangeText={FormikProps.handleChange('companyAddress')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={'Eg: 86, Jalan Budiman, Kuala Langat, Selangor'} />
+                                            <TextInput value={companyAddress} onChangeText={FormikProps.handleChange('companyAddress')} style={[styles.textInput,{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5, }]} placeholder={'Eg: 86, Jalan Budiman, Kuala Langat, Selangor'} />
                                         </View>
                                         <View style={[styles.formElement]}>
                                             <Text style={[styles.titleBox, { marginBottom: 10 }]}>Postcode</Text>
-                                            <TextInput value={companyPostcode} onChangeText={FormikProps.handleChange('companyPostcode')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={'Eg: 75600'} keyboardType={'phone-pad'} />
+                                            <TextInput value={companyPostcode} onChangeText={FormikProps.handleChange('companyPostcode')} style={[styles.textInput,{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={'Eg: 75600'} keyboardType={'phone-pad'} />
                                         </View>
                                         <View style={[styles.formElement]}>
                                             <Text style={[styles.titleBox, { marginBottom: 10 }]}>Email</Text>
-                                            <TextInput editable={false} value={email} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                            <TextInput editable={false} value={email} style={[styles.textInput,{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }]} />
                                         </View>
                                         <View style={[styles.formElement]}>
                                             <Text style={[styles.titleBox, { marginBottom: 10 }]}>Contact Number</Text>
-                                            <TextInput editable={false} value={contactNo} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                            <TextInput editable={false} value={contactNo} style={[styles.textInput,{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }]} />
                                         </View>
                                         <View style={[styles.formElement]}>
                                             <Text style={[styles.titleBox, { marginBottom: 10 }]}>Company Registered Date</Text>
-                                            <TextInput value={companyRegisteredDate} onChangeText={FormikProps.handleChange('companyRegisteredDate')} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
+                                            <TextInput value={companyRegisteredDate} onChangeText={FormikProps.handleChange('companyRegisteredDate')} style={[styles.textInput,{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }]} />
                                         </View>
                                 </ScrollView>
                             </View>
