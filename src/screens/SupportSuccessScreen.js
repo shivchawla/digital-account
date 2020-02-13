@@ -7,12 +7,12 @@ import { shallowEqual, useSelector } from 'react-redux'
 
 const SupportSuccessScreen = (props) => {
 
-    const { status } = useSelector(state => state.supportReducer, shallowEqual)
+    const { status,code } = useSelector(state => state.supportReducer, shallowEqual)
 
     return (
 
         <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
-            {status ? <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, }}>
+            {code===200?status ? <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, }}>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 <View style={{ flex: 1, justifyContent: 'flex-end' }}>
                         <Image source={require('../assets/images/logo.png')} style={{ height: Layout.window.height * 0.2, width: Layout.window.width * 0.5 }} resizeMode={'contain'} />
@@ -64,7 +64,20 @@ const SupportSuccessScreen = (props) => {
                         </View>
                         </View>
                     </View>
-                </View>}
+                </View>:<View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, }}>
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                    <View style={{ flex: 1, justifyContent: 'flex-end' }}>
+                        <Image source={require('../assets/images/logo.png')} style={{ height: Layout.window.height * 0.2, width: Layout.window.width * 0.5 }} resizeMode={'contain'} />
+                    </View>
+                    <View style={{ flex: 2, alignSelf: 'stretch' }}>
+                        <ActivityIndicator />
+                    </View>
+                    <View style={{ flex: 1, alignItems: 'center' }} />
+
+                    <View style={{ flex: 1 }} />
+                    
+                </View>
+            </View>}
         </View>
 
     )
