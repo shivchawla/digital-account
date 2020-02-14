@@ -60,19 +60,19 @@ const NotiSettingScreen = (props) => {
             <View style={[styles.screenMargin, { flex: 9 }]}>
                 <View style={{ flexDirection: 'row', marginTop: 30, justifyContent: 'space-between' }}>
                     {/*Text to show the text according to switch condition*/}
-                    <Text style={[styles.text], { padding: 5 }}>E-mail Notification</Text>
+                    <Text style={[styles.text, { padding: 5 }]}>E-mail Notification</Text>
 
                     <Switch style={{ marginLeft: 35, marginRight: 15 }} onValueChange={value => toggleSwitch1(value)} value={switchValue1} />
 
                 </View>
                 <View style={{ flexDirection: 'row', marginTop: 30, justifyContent: 'space-between' }}>
-                    <Text style={[styles.text], { padding: 5 }}>Message Notification</Text>
+                    <Text style={[styles.text, { padding: 5 }]}>Message Notification</Text>
                     <Switch style={{ marginLeft: 15, marginRight: 15 }} onValueChange={value => toggleSwitch2(value)} value={switchValue2} />
 
                 </View>
                 <View style={{ flexDirection: 'row', marginTop: 30, justifyContent: 'space-between' }}>
                     <View>
-                        <Text style={[styles.text], { padding: 5 }}>App Notification</Text>
+                        <Text style={[styles.text, { padding: 5 }]}>App Notification</Text>
                         <Text style={[styles.small], { padding: 5 }}>{server_expo_token === expo_token ? `Receive Notification` : `No Notification`}</Text>
                     </View>
 
