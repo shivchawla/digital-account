@@ -1293,20 +1293,20 @@ export const submitInvoiceApi = () => {
     xhr.addEventListener("readystatechange", function () {
       if (this.readyState === 4) {
         console.log('hafizh power dan hensem',this.responseText);
-        const { status } = JSON.parse(this.responseText)
-        dispatch({ type: 'SET_INVOICE_APPLICATION', payload: { status, proceedMain: true } })
+        const { status,code } = JSON.parse(this.responseText)
+        dispatch({ type: 'SET_INVOICE_APPLICATION', payload: { status,code, proceedMain: true } })
 
       }
     });
 
-    xhr.open("POST", "https://uat.niyo.my/api/invoice/submit");
+    xhr.open("POST", "https://tuah.niyo.my/api/invoice/submit");
     xhr.setRequestHeader("Authorization", token_type + ' ' + access_token);
     xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.setRequestHeader("Cache-Control", "no-cache");
 
-    xhr.setRequestHeader("Host", "uat.niyo.my");
+    xhr.setRequestHeader("Host", "tuah.niyo.my");
     xhr.setRequestHeader("Accept-Encoding", "gzip, deflate");
 
 
@@ -1364,8 +1364,8 @@ export const customerDataApi = (values) => {
       body: JSON.stringify({ ...values, access_credential }),
     }).then((response) => response.json())
       .then(async (responseJson) => {
-        const { status,code } = await responseJson
-        await dispatch({ type: 'SET_CUSTOMER_LIST', payload: { status,code, proceedMain: true } })
+        const { status } = await responseJson
+        await dispatch({ type: 'SET_CUSTOMER_LIST', payload: { status,proceedMain: true } })
         await console.log(`customer submit api  ${JSON.stringify(responseJson)}`)
       })
       .catch((error) => {
