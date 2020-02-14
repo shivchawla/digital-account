@@ -80,16 +80,16 @@ const LoanApplicationDeclarationScreen = (props) => {
                                 <Text style={[styles.title]}>LOAN</Text>
                             </View>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
-                                <View style={{ backgroundColor:'rgba(62,194,217,0.5)',borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
-            <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
-          </View>
+                                <View style={{ backgroundColor: 'rgba(62,194,217,0.5)', borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
+                                    <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
+                                </View>
                             </View>
                         </View>
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
                             <View style={{ flex: 9 }}>
                                 <ScrollView style={[styles.screenMargin]}>
-                                    <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'center', marginBottom: 5,marginTop:5 }}>
-                                        <Text style={[styles.titleBox, { marginBottom: 5,fontSize:16 }]}>Financing</Text>
+                                    <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'center', marginBottom: 5, marginTop: 5 }}>
+                                        <Text style={[styles.titleBox, { marginBottom: 5, fontSize: 16 }]}>Financing</Text>
                                     </View>
                                     <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'center', marginBottom: 20 }}>
                                         <View style={{ flexDirection: 'row', width: Layout.window.width / 2, justifyContent: 'space-between' }}>
@@ -102,68 +102,68 @@ const LoanApplicationDeclarationScreen = (props) => {
                                             <View style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: '#20B8D3', justifyContent: 'center', alignItems: 'center' }}>
                                                 <Ionicons name="md-card" color={'#fff'} style={{ fontSize: 15 }} />
                                             </View>
-                                            <View style={{ width: 40, height: 40, borderRadius:20, backgroundColor: '#20B8D3', justifyContent: 'center', alignItems: 'center' }}>
+                                            <View style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: '#20B8D3', justifyContent: 'center', alignItems: 'center' }}>
                                                 <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 15 }} />
                                             </View>
-                                            <View style={{ width: 40, height: 40, borderRadius:20, backgroundColor: '#20B8D3', justifyContent: 'center', alignItems: 'center' }}>
+                                            <View style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: '#20B8D3', justifyContent: 'center', alignItems: 'center' }}>
                                                 <Ionicons name="md-clipboard" color={'#fff'} style={{ fontSize: 15 }} />
                                             </View>
                                         </View>
                                     </View>
                                     <View style={{ marginBottom: 10 }}>
                                         <View>
-                                            <Text style={[styles.text, { marginBottom: 20, color: '#055E7C',fontSize:17 }]}>Please state if your company is one of the following</Text>
+                                            <Text style={[styles.text, { marginBottom: 20, color: '#055E7C', fontSize: 17 }]}>Please state if your company is one of the following</Text>
                                         </View>
                                         <View style={{ flexDirection: 'row', marginBottom: 10 }}>
                                             <CheckBox onClick={() => handleCheckBox('control')} isChecked={control} checkBoxColor={'rgba(62,194,217,1)'} style={{ borderColor: 'rgba(0,0,0,0.3)' }} />
-                                            <Text style={{ flex: 1, flexWrap: 'wrap', paddingLeft: 20,fontSize:15 }}>Your company controls, or is controlled by Connected Parties (including their close relatives in the case of individuals)</Text>
+                                            <Text style={[styles.text, { flex: 1, flexWrap: 'wrap', paddingLeft: 20, fontSize: 15 }]}>Your company controls, or is controlled by Connected Parties (including their close relatives in the case of individuals)</Text>
                                         </View>
                                         <View style={{ flexDirection: 'row', marginBottom: 10 }}>
                                             <CheckBox onClick={() => handleCheckBox('influence')} isChecked={influence} checkBoxColor={'rgba(62,194,217,1)'} style={{ borderColor: 'rgba(0,0,0,0.3)' }} />
-                                            <Text style={{ flex: 1, flexWrap: 'wrap', paddingLeft: 20,fontSize:15 }}>Your company influences, or is influenced by Connected Parties (including their close relatives in the case of individuals)</Text>
+                                            <Text style={[styles.text, { flex: 1, flexWrap: 'wrap', paddingLeft: 20, fontSize: 15 }]}>Your company influences, or is influenced by Connected Parties (including their close relatives in the case of individuals)</Text>
                                         </View>
                                         <View style={{ flexDirection: 'row', marginBottom: 10 }}>
                                             <CheckBox onClick={() => handleCheckBox('internal')} isChecked={internal} checkBoxColor={'rgba(62,194,217,1)'} style={{ borderColor: 'rgba(0,0,0,0.3)' }} />
 
-                                            <Text style={{ flex: 1, flexWrap: 'wrap', paddingLeft: 20,fontSize:15 }}>Connected Parties (including their close relatives) is a director, partner, executive officer, agent or guarantor of your company, your subsidiaries and/or entities controlled by your company.</Text>
+                                            <Text style={[styles.text, { flex: 1, flexWrap: 'wrap', paddingLeft: 20, fontSize: 15 }]}>Connected Parties (including their close relatives) is a director, partner, executive officer, agent or guarantor of your company, your subsidiaries and/or entities controlled by your company.</Text>
                                         </View>
                                         <View style={{ flexDirection: 'row', marginBottom: 10 }}>
                                             <CheckBox onClick={() => handleCheckBox('subsidiary')} isChecked={subsidiary} checkBoxColor={'rgba(62,194,217,1)'} style={{ borderColor: 'rgba(0,0,0,0.3)' }} />
-                                            <Text style={{ flex: 1, flexWrap: 'wrap', paddingLeft: 20,fontSize:15 }}>Your company is a subsidiary of, or an entity that is controlled by, SME Bank and its Connected Parties (including their close relatives).</Text>
+                                            <Text style={[styles.text, { flex: 1, flexWrap: 'wrap', paddingLeft: 20, fontSize: 15 }]}>Your company is a subsidiary of, or an entity that is controlled by, SME Bank and its Connected Parties (including their close relatives).</Text>
                                         </View>
                                         <View style={{ flexDirection: 'row', marginBottom: 10 }}>
                                             <CheckBox onClick={() => handleCheckBox('guaranteed')} isChecked={guaranteed} checkBoxColor={'rgba(62,194,217,1)'} style={{ borderColor: 'rgba(0,0,0,0.3)' }} />
-                                            <Text style={{ flex: 1, flexWrap: 'wrap', paddingLeft: 20,fontSize:15 }}>Your company is guaranteed by SME Bank's Connected Parties (including their close relatives)</Text>
+                                            <Text style={[styles.text, { flex: 1, flexWrap: 'wrap', paddingLeft: 20, fontSize: 15 }]}>Your company is guaranteed by SME Bank's Connected Parties (including their close relatives)</Text>
                                         </View>
                                     </View>
                                     <View>
-                                        <Text style={[styles.text, { marginBottom: 10, color: '#055E7C',fontSize:17 }]}>Application Declaration</Text>
+                                        <Text style={[styles.text, { marginBottom: 10, color: '#055E7C', fontSize: 17 }]}>Application Declaration</Text>
                                     </View>
                                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                         <CheckBox onClick={() => handleCheckBox('truth')} isChecked={truth} checkBoxColor={'rgba(62,194,217,1)'} style={{ borderColor: 'rgba(0,0,0,0.3)' }} />
-                                        <Text style={{ flex: 1, flexWrap: 'wrap', paddingLeft: 20,fontSize:15 }}>It is now hereby declared that the information and particulars furnished above are true and correct to the best of my/our knowledge and belief and nothing had been concealed.</Text>
+                                        <Text style={[styles.text, { flex: 1, flexWrap: 'wrap', paddingLeft: 20, fontSize: 15 }]}>It is now hereby declared that the information and particulars furnished above are true and correct to the best of my/our knowledge and belief and nothing had been concealed.</Text>
                                     </View>
                                     <View style={{ marginBottom: 10 }}>
-                                        <Text style={[styles.titleBox, { marginBottom: 10,fontSize:16 }]}>Name</Text>
-                                        <TextInput value={declareName} onChangeText={FormikProps.handleChange('declareName')} onBlur={FormikProps.handleBlur('declareName')} style={[styles.textInput,{ borderWidth: 1, borderColor: declareNameTouched && declareNameError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={declareNameTouched && declareNameError ? '' : ''} placeholderTextColor={declareNameTouched && declareNameError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        <Text style={[styles.titleBox, { marginBottom: 10, fontSize: 16 }]}>Name</Text>
+                                        <TextInput value={declareName} onChangeText={FormikProps.handleChange('declareName')} onBlur={FormikProps.handleBlur('declareName')} style={[styles.textInput, { borderWidth: 1, borderColor: declareNameTouched && declareNameError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={declareNameTouched && declareNameError ? '' : ''} placeholderTextColor={declareNameTouched && declareNameError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {declareNameTouched && declareNameError && <Text style={styles.error}>{declareNameError}</Text>}
                                     </View>
                                     <View style={{ marginBottom: 10 }}>
-                                        <Text style={[styles.titleBox, { marginBottom: 10,fontSize:16 }]}>Position</Text>
-                                        <TextInput value={declarePosition} onChangeText={FormikProps.handleChange('declarePosition')} onBlur={FormikProps.handleBlur('declarePosition')} style={[styles.textInput,{ borderWidth: 1, borderColor: declarePositionTouched && declarePositionError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={declarePositionTouched && declarePositionError ? '' : ''} placeholderTextColor={declarePositionTouched && declarePositionError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        <Text style={[styles.titleBox, { marginBottom: 10, fontSize: 16 }]}>Position</Text>
+                                        <TextInput value={declarePosition} onChangeText={FormikProps.handleChange('declarePosition')} onBlur={FormikProps.handleBlur('declarePosition')} style={[styles.textInput, { borderWidth: 1, borderColor: declarePositionTouched && declarePositionError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={declarePositionTouched && declarePositionError ? '' : ''} placeholderTextColor={declarePositionTouched && declarePositionError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
 
                                         {declarePositionTouched && declarePositionError && <Text style={styles.error}>{declarePositionError}</Text>}
                                     </View>
                                 </ScrollView>
                             </View>
                             <View style={{ flexDirection: 'row', alignSelf: 'stretch' }}>
-                                <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 , paddingTop: 20, paddingBottom: 20, justifyContent: 'center', alignItems: 'center' }}>
-                                    <LinearGradient colors={['#FFF', '#FFF']} style={{ flex: 1,padding:10, justifyContent: 'center', alignItems: 'center' }}>
-                                        <Text style={[styles.butang, { color: '#000000' }]}>Back</Text>
-                                    </LinearGradient>
+                                <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1, paddingTop: 20, paddingBottom: 20, justifyContent: 'center', alignItems: 'center' }}>
+
+                                    <Text style={[styles.butang, { color: '#000000' }]}>Back</Text>
+
                                 </TouchableOpacity>
                                 <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ flex: 1 }}>
-                                    <LinearGradient colors={FormikProps.isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center', flexDirection: 'row'}}>
+                                    <LinearGradient colors={FormikProps.isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
                                         {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> : <Text style={[styles.butang, { color: '#fff' }]}>Next</Text>}
                                     </LinearGradient>
                                 </TouchableOpacity>
