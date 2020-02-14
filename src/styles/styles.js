@@ -106,11 +106,15 @@ export default StyleSheet.create({
 
   error: {
     fontSize,
-    fontFamily: 'Montserrat_thin',
+    fontFamily: 'Montserrat_medium',
     color: 'rgba(255,0,0,1)',
     fontSize: fontSize * 0.8
   },
-
+  textDefault:{
+    fontSize,
+    fontFamily:'Montserrat_medium',
+    color:'#000'
+  },
   screenMargin: {
     paddingLeft: 20,
     paddingRight: 20
