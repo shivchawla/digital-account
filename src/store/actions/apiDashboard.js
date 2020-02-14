@@ -229,7 +229,6 @@ export const withdrawDataApi = (id) => {
         'Accept': 'application/json',
         'Authorization': token_type + ' ' + access_token
       }
-
     }).then((response) => response.json())
       .then(async (responseJson) => {
         const withdrawData = responseJson.data

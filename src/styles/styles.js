@@ -107,8 +107,10 @@ export default StyleSheet.create({
   },
 
   screenMargin: {
+    paddingTop:10,
+    paddingBottom:30,
     paddingLeft: 20,
-    paddingRight: 20
+    paddingRight: 20,
   },
 
   formElement: {
