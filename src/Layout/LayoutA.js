@@ -17,7 +17,7 @@ const LayoutA = (props) => {
         <View style={{ flex: 1, }}>
             <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: !(props.screenType==='dashboard')?1:0, borderColor: '#9ADAF4' }]}>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
-                    <TouchableOpacity onPress={() => !(props.screenType==='dashboard')?props.navigation.navigate('Dashboard'):props.navigation.openDrawer()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
+                    <TouchableOpacity onPress={() => !(props.screenType==='dashboard')?props.navigation.navigate('Dashboard'):props.navigation.openDrawer} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
                         <Ionicons name={!(props.screenType==='dashboard')?"ios-arrow-back":"md-more"} color={'#3EC2D9'} style={{ fontSize: 30 }} />
                     </TouchableOpacity>
                 </View>
@@ -31,9 +31,7 @@ const LayoutA = (props) => {
                 </TouchableOpacity>
             </View>
             <View style={{ justifyContent: 'space-between', flex: 9 }}>
-                <View style={[styles.screenMargin]}>
-                    {props.children}
-                </View>
+            {!(props.screenType==='form')?<View style={[styles.screenMargin]}>{props.children}</View>:props.children}
             </View >
         </View >
 
