@@ -106,9 +106,9 @@ export default StyleSheet.create({
 
   error: {
     fontSize,
-    fontFamily: 'Montserrat_medium',
+    fontFamily: 'Montserrat_thin',
     color: 'rgba(255,0,0,1)',
-    fontSize: fontSize * 0.8
+    fontSize: fontSize * 0.9
   },
   textDefault:{
     fontSize,
