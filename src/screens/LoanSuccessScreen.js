@@ -38,7 +38,7 @@ const LoanSuccessScreen = (props) => {
                         </View>
                         <View style = {{flex:1}}>
                         <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                            <TouchableOpacity onPress={() => goDashboard()} style={{ width: Layout.window.width * 0.4, paddingTop: 16, paddingBottom: 16, borderWidth: 1, borderColor: '#4A90E2', borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10 }}>
+                            <TouchableOpacity onPress={() => goDashboard()} style={{ width: Layout.window.width * 0.4, paddingTop: 16, paddingBottom: 16, borderWidth: 1, borderColor: 'darkturquoise', borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10 }}>
                                 <Text style={[styles.textDefault, {fontSize:15} ]}>Dashboard</Text>
                             </TouchableOpacity>
                         </View>
@@ -61,7 +61,7 @@ const LoanSuccessScreen = (props) => {
                         </View>
                         <View style = {{flex:1}}>
                             <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                                <TouchableOpacity onPress={() => goDashboard()} style={{ width: Layout.window.width * 0.4, paddingTop: 16, paddingBottom: 16, borderWidth: 1, borderColor: '#4A90E2', borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10 }}>
+                                <TouchableOpacity onPress={() => goDashboard()} style={{ width: Layout.window.width * 0.4, paddingTop: 16, paddingBottom: 16, borderWidth: 1, borderColor: 'darkturquoise', borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10 }}>
                                     <Text style={[styles.textDefault,{fontSize:15}]}>Dashboard</Text>
                                 </TouchableOpacity>
                             </View>
