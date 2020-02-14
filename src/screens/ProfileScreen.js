@@ -93,13 +93,9 @@ const ProfileScreen = (props) => {
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                                 <Text style={[styles.label]}>Status</Text>
                             </View>
-                            <View style={{ flex: 2,marginTop: 10, flexDirection: 'row', alignSelf: 'stretch', }}>
-                                {status == 'activated' ? <View style={{paddingTop: 16, paddingBottom: 16, paddingLeft: 18, paddingRight: 18, borderRadius: 15, backgroundColor: '#00d800' }}>
-                                    <Text style={[styles.value,{ color: '#fff'}]}>Active</Text>
-                                </View>
-                                    : <View style={{paddingTop: 16, paddingBottom: 16, paddingLeft: 18, paddingRight: 18, borderRadius: 15,backgroundColor: 'lightgrey' }}>
-                                        <Text style={styles.value}>Inactive</Text>
-                                    </View>}
+                            <View style={{ flex: 2, flexDirection: 'row', alignSelf: 'stretch', }}>
+                                {status == 'activated' ?<Text style={[styles.value,{ color: 'limegreen'}]}>Active</Text>  
+                                 :<Text style={[styles.value,{color:'lightgrey'}]}>Inactive</Text>}
                             </View>
                         </View>
                     </View>
