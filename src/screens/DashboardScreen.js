@@ -6,19 +6,19 @@ import Layout from '../constants/Layout'
 import styles from '../styles/styles'
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
-import Charts from '../components/Charts'
+//import Charts from '../components/Charts'
 //import VictoryCharts from '../components/VictoryCharts'
 import ChartKit from '../components/ChartKit'
 import _ from 'lodash'
 import moment from 'moment'
 import NumberFormat from 'react-number-format';
+import LayoutA from '../Layout/LayoutA';
 
 //import { Number, Currency } from "react-intl-number-format"
 //import { FlatList } from 'react-native-gesture-handler';
 
 const DashboardScreen = (props) => {
-
-
+  const dispatch = useDispatch()
   const dataPointClicked = (val) => {
     console.log(`klik ni ${JSON.stringify(val)}`)
   }
@@ -27,10 +27,7 @@ const DashboardScreen = (props) => {
     if (chartDay === 7) { setChartDay(30) } else { setChartDay(7) }
   }
 
-  const dispatch = useDispatch()
-  //const [chartData, setChartData] = useState([])
 
-  const { link, status, status1, business_name, isDeclaration_one, isDocument1, full_name, contactId } = useSelector(state => state.merchantInfoReducer, shallowEqual)
   const { balance, currency } = useSelector(state => state.myAccountReducer, shallowEqual)
   //const contactId =   useSelector(state => state.merchantInfoReducer.id, shallowEqual)
   const { reportList } = useSelector(state => state.reportReducer, shallowEqual)
@@ -46,10 +43,7 @@ const DashboardScreen = (props) => {
 
   //if(status===)
 
-  const logout = async () => {
-    await dispatch(actionCreator.logout())
-    await props.navigation.navigate('Welcome')
-  }
+
 
   const runCheckStatus = async () => {
     await dispatch(actionCreator.setScreen())
@@ -81,13 +75,16 @@ const DashboardScreen = (props) => {
     //await setDashboardDisplay(link != 'Dashboard' ? false : true)
   }
 
+  const { status, status1 } = useSelector(state => state.merchantInfoReducer, shallowEqual)
+
+
   const runCheckStatus2 = async () => {
     await dispatch(actionCreator.setScreen2())
   }
   useEffect(() => {
     runCheckStatus2()
   }, [])
-  
+
   useEffect(() => {
     console.log(`status1 ialah ${status1}`)
     if (status1 == 'New') {
@@ -156,11 +153,11 @@ const DashboardScreen = (props) => {
     //listBaru7&&setChartData(listBaru7)
 
     /////////TESTING DATE
-    var days = ['SU','MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
+    var days = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
     var goBackDays = chartDay;
 
     var today = new Date(moment().add(1, 'days')); // temporary get date ahead one day, to remove later 
-    
+
     var daysSorted = [];
 
     for (var i = 0; i < goBackDays; i++) {
@@ -183,7 +180,7 @@ const DashboardScreen = (props) => {
     if (last.ada == 'takde') {
 
       const start = listBaru8.find(n => moment(n.updated_at) < moment(last.update)) || listBaru6.find(n => moment(n.updated_at) < moment(last.update))
-      
+
       console.log(`start ialah : ${JSON.stringify(start)}`)
       listBaru9[listBaru9.length - 1].balance = _.isArray(start) ? start[start.length - 1].balance : 0
     }
@@ -219,11 +216,11 @@ const DashboardScreen = (props) => {
 
   }
 
-  const noti = [
-    { announcement: 'Happy New Year! Have a pleasant day. We are standing by should you need any assistance', date: '1/1/20' },
-    { announcement: 'Welcome to mobile version of  the Digital Account. All features are accessible by clicking the menu button at the top left corner of your screen', date: '5/10/19' },
-    { announcement: 'Thank you for your registration. We look forward to serving you and fulfilling your expectation', date: '5/5/19' },
-  ]
+  // const noti = [
+  //   { announcement: 'Happy New Year! Have a pleasant day. We are standing by should you need any assistance', date: '1/1/20' },
+  //   { announcement: 'Welcome to mobile version of  the Digital Account. All features are accessible by clicking the menu button at the top left corner of your screen', date: '5/10/19' },
+  //   { announcement: 'Thank you for your registration. We look forward to serving you and fulfilling your expectation', date: '5/5/19' },
+  // ]
 
 
 
@@ -231,91 +228,28 @@ const DashboardScreen = (props) => {
 
     <View style={{ flex: 1, }}>
       {/* visible={!dashboardDisplay} */}
-      <Modal animationType="fade" transparent={true} visible={!dashboardDisplay} onRequestClose={() => {
-        console.log('do nothing');
-      }}>
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.7)' }}>
-          <View style={{ flexDirection: 'row', alignSelf: 'stretch', paddingLeft: 20, paddingRight: 20 }}>
-            <View style={{ height: Layout.window.height / 2, backgroundColor: '#fff', flex: 1, borderRadius: 10, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-              {(business_name && contactId && (isDocument1 != 'http://test') && isDeclaration_one) ?
-                <View style={{ alignSelf: 'stretch', margin: 5 }}>
-                  <Text style={[styles.h3, { flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start', margin: 5 }]}>REGISTRATION INCOMPLETE</Text>
-                  <Text style={[styles.text, { margin: 5, }]}>Account Under Review</Text>
+      <Popup
+        dashboardDisplay={dashboardDisplay}
 
-                </View> : <View style={{ alignSelf: 'stretch', margin: 5 }}>
-                  <Text style={[styles.h3, { flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start', margin: 5 }]}>REGISTRATION INCOMPLETE</Text>
-                  <Text style={[styles.text, { margin: 5, }]}>Please complete items below for approval</Text>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
-                    <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Basic Info</Text>
-                    <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />
-                  </View>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
-                    <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Merchant Info</Text>
-                    {business_name && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
-                  </View>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
-                    <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Contact Info</Text>
-                    {(contactId && contactId != 13) && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
-                  </View>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
-                    <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Document Submission</Text>
-                    {(isDocument1 != null) && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
-                  </View>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
-                    <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Declaration</Text>
-                    {(isDeclaration_one != null) && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
-                  </View>
-                </View>}
-              <View style={{ flexDirection: 'row', alignSelf: 'stretch', marginTop: 15 }}>
-                <TouchableOpacity style={{ flex: 1, }} onPress={() => props.navigation.navigate(link, { prevScreen: 'Dashboard' })}>
-                  <View style={{  justifyContent: 'center', alignItems: 'center', backgroundColor: '#0A6496' }}>
-                  <Text style={[styles.butang, { color: '#fff',paddingTop:5,paddingBottom:5 }]}>CONTINUE</Text>
-                  </View>
-                </TouchableOpacity>
-              </View>
-              <View style={{ flexDirection: 'row', alignSelf: 'stretch' }}>
-                <TouchableOpacity style={{ flex: 1, marginTop:5 }} onPress={() => logout()}>
-                  <View style={{  justifyContent: 'center', alignItems: 'center', backgroundColor: '#808080' }}>
-                  <Text style={[styles.butang, { color: '#fff',paddingTop:5,paddingBottom:5 }]}>LOG OUT</Text>
-                  </View>
-                </TouchableOpacity>
+      />
+      <LayoutA
+        screenType='dashboard'
+        navigation={props.navigation}
 
-              </View>
-            </View>
-          </View>
-        </View>
-      </Modal>
-      <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row' }]}>
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
-          <TouchableOpacity onPress={props.navigation.openDrawer} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }} style={{ paddingRight: 50 }}>
-            <Ionicons name="md-more" color={'#3EC2D9'} style={{ fontSize: 30 }} />
+        title={balance ? <NumberFormat value={balance.toFixed(2)} displayType={'text'} thousandSeparator={true} prefix={''} renderText={value => ` MYR ${value}`} /> : `MYR 0`}>
+        <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: 20 }}>
+          <TouchableOpacity onPress={() => props.navigation.navigate('Transfer')}>
+            <Text style={[styles.text]}>Send Money</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text style={[styles.text, { paddingLeft: 5, paddingRight: 5, color: '#3EC2D9' }]}>|</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => props.navigation.navigate('Withdraw')}>
+            <Text style={[styles.text]}>Withdrawal</Text>
           </TouchableOpacity>
         </View>
-        <View style={{ flexDirection: 'column', justifyContent: 'center' }}>
-          <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-            {balance ? <NumberFormat value={balance.toFixed(2)} displayType={'text'} thousandSeparator={true} prefix={''} renderText={value => <Text style={styles.title}>{currency} {value}</Text>} /> : <Text style={styles.title}>MYR 0</Text>}
-          </View>
-        </View>
-        <TouchableOpacity onPress={() => props.navigation.navigate('Profile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
-          <View style={{ backgroundColor: 'rgba(62,194,217,0.5)', borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
-            <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
-          </View>
-        </TouchableOpacity>
-      </View>
-      <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: 25 }}>
-        <TouchableOpacity onPress={() => props.navigation.navigate('Transfer')}>
-          <Text style={[styles.text]}>Send Money</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text style={[styles.text, { paddingLeft: 5, paddingRight: 5, color: '#3EC2D9' }]}>|</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => props.navigation.navigate('Withdraw')}>
-          <Text style={[styles.text]}>Withdrawal</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={[{ flex: 9 }]}>
-        <View style={[styles.screenMargin, { marginBottom: 15 }]}>
-          <LinearGradient colors={['#055E7C', '#055E7C']} style={{ paddingTop: 5, paddingBottom: 5, alignItems: 'center', borderRadius: 10, height:Layout.window.height > 570 ?  Layout.window.height / 3 :  Layout.window.height / 2.8 }}>
+        <View style={{ marginBottom: 15 }} >
+          <LinearGradient colors={['#055E7C', '#055E7C']} style={{ paddingTop: 5, paddingBottom: 5, alignItems: 'center', borderRadius: 10, height: Layout.window.height > 570 ? Layout.window.height / 3 : Layout.window.height / 2.8 }}>
             <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
               <TouchableOpacity onPress={() => changeChartDay()}>
                 <Ionicons name="ios-arrow-back" color={'#fff'} style={{ fontSize: 23, paddingLeft: 30 }} />
@@ -324,26 +258,24 @@ const DashboardScreen = (props) => {
               <TouchableOpacity onPress={() => changeChartDay()}>
                 <Ionicons name="ios-arrow-forward" color={'#fff'} style={{ fontSize: 23, paddingRight: 30 }} />
               </TouchableOpacity>
-
             </View>
-            <View style={{ flex: 1, height:Layout.window.height > 570 ?  Layout.window.height / 3 :  Layout.window.height / 2.8, alignSelf: 'stretch', flexDirection: 'row', justifyContent: 'space-around', borderRadius: 10 }}>
+            <View style={{ flex: 1, height: Layout.window.height > 570 ? Layout.window.height / 3 : Layout.window.height / 2.8, alignSelf: 'stretch', flexDirection: 'row', justifyContent: 'space-around', borderRadius: 10 }}>
               {/* <VictoryCharts /> */}
               {reportList && <ChartKit data={getData()} dataPointClicked={dataPointClicked} />}
               {/* <Charts /> */}
             </View>
           </LinearGradient>
         </View>
-        <ScrollView style={{ marginTop: 10 }}>
-          <TouchableOpacity onPress={() => props.navigation.navigate('Report')} style={[styles.screenMargin, { flexDirection: 'row', justifyContent: 'space-between', }]}>
-            <Text style={[styles.h2, { color: '#04A2BD' }]}>Latest Transaction</Text>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Text style={[styles.small, { paddingRight: 5, color: '#04A2BD' }]}>More</Text>
-              <Ionicons name="ios-arrow-forward" color={'#04A2BD'} style={{ fontSize: 15, paddingRight: 5 }} />
-            </View>
-          </TouchableOpacity>
-
+        <TouchableOpacity onPress={() => props.navigation.navigate('Report')} style={[{ flexDirection: 'row', justifyContent: 'space-between', }]}>
+          <Text style={[styles.h2, { color: '#04A2BD' }]}>Latest Transaction</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <Text style={[styles.small, { paddingRight: 5, color: '#04A2BD' }]}>More</Text>
+            <Ionicons name="ios-arrow-forward" color={'#04A2BD'} style={{ fontSize: 15, paddingRight: 5 }} />
+          </View>
+        </TouchableOpacity>
+        <ScrollView >
           {reportList && <FlatList data={reportList.filter(rl => !rl.type.includes('Fee')).slice(0, 5)} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
-            <View style={[styles.screenMargin, { flexDirection: 'row', marginTop: 5, justifyContent: 'space-between', borderBottomWidth: 1, borderColor: 'rgba(62,194,217,0.2)', paddingBottom: 5, }]}>
+            <View style={[, { flexDirection: 'row', marginTop: 5, justifyContent: 'space-between', borderBottomWidth: 1, borderColor: 'rgba(62,194,217,0.2)', paddingBottom: 5, }]}>
               <View style={{ flexDirection: 'row', }}>
                 <Ionicons name={item.credit_debit == 'DEBIT' ? "md-remove-circle-outline" : "md-add-circle-outline"} color={item.credit_debit == 'DEBIT' ? '#A20F0F' : '#7ED321'} style={{ fontSize: 12, paddingRight: 20, paddingTop: 5 }} />
                 <View>
@@ -357,36 +289,84 @@ const DashboardScreen = (props) => {
               </View>
             </View>
           } />}
-
         </ScrollView>
-        {/* <View style={{ marginTop: 20 }}>
-          <TouchableOpacity onPress={() => props.navigation.navigate('Notification')} style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-            <Text style={[styles.h2, { color: '#04A2BD' }]}>Latest Notifications</Text>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Text style={[styles.small, { paddingRight: 5, color: '#04A2BD' }]}>More</Text>
-              <Ionicons name="ios-arrow-forward" color={'#04A2BD'} style={{ fontSize: 15, paddingRight: 5 }} />
-            </View>
-          </TouchableOpacity>
-          {noti && <FlatList data={noti} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
-            <View style={{ flexDirection: 'row', marginTop: 5, flex: 1 }}>
-              <View style={{ flexDirection: 'row', flex: 3 }}>
-                <Ionicons name={"md-arrow-dropright"} color={'#04A2BD'} style={{ fontSize: 12, paddingRight: 20 }} />
-                <Text numberOfLines={2} ellipsizeMode={'tail'} style={[styles.listItem]}>{item.announcement}</Text>
-              </View>
-              <View style={{ flex: 1, alignItems: 'flex-end' }}>
-                <Text style={[styles.listItem]}>{item.date}</Text>
-              </View>
-            </View>
-          } />}
-        </View> */}
-      </View>
-
+        <View style={{margin:30}} />
+      </LayoutA>
     </View>
+
   );
 }
 
 DashboardScreen.navigationOptions = {
   header: null
 };
+
+
+const Popup = (props) => {
+  const dispatch = useDispatch()
+  //const [chartData, setChartData] = useState([])
+
+  const { link, business_name, isDeclaration_one, isDocument1, contactId } = useSelector(state => state.merchantInfoReducer, shallowEqual)
+  const logout = async () => {
+    await dispatch(actionCreator.logout())
+    await props.navigation.navigate('Welcome')
+  }
+  return (
+    <Modal animationType="fade" transparent={true} visible={!props.dashboardDisplay} onRequestClose={() => {
+      console.log('do nothing');
+    }}>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.7)' }}>
+        <View style={{ flexDirection: 'row', alignSelf: 'stretch', paddingLeft: 20, paddingRight: 20 }}>
+          <View style={{ height: Layout.window.height / 2, backgroundColor: '#fff', flex: 1, borderRadius: 10, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
+            {(business_name && contactId && (isDocument1 != 'http://test') && isDeclaration_one) ?
+              <View style={{ alignSelf: 'stretch', margin: 5 }}>
+                <Text style={[styles.h3, { flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start', margin: 5 }]}>REGISTRATION INCOMPLETE</Text>
+                <Text style={[styles.text, { margin: 5, }]}>Account Under Review</Text>
+
+              </View> : <View style={{ alignSelf: 'stretch', margin: 5 }}>
+                <Text style={[styles.h3, { flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start', margin: 5 }]}>REGISTRATION INCOMPLETE</Text>
+                <Text style={[styles.text, { margin: 5, }]}>Please complete items below for approval</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
+                  <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Basic Info</Text>
+                  <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />
+                </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
+                  <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Merchant Info</Text>
+                  {business_name && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
+                </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
+                  <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Contact Info</Text>
+                  {(contactId && contactId != 13) && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
+                </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
+                  <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Document Submission</Text>
+                  {(isDocument1 != null) && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
+                </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
+                  <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Declaration</Text>
+                  {(isDeclaration_one != null) && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
+                </View>
+              </View>}
+            <View style={{ flexDirection: 'row', alignSelf: 'stretch', marginTop: 15 }}>
+              <TouchableOpacity style={{ flex: 1, }} onPress={() => props.navigation.navigate(link, { prevScreen: 'Dashboard' })}>
+                <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: '#0A6496' }}>
+                  <Text style={[styles.butang, { color: '#fff', paddingTop: 5, paddingBottom: 5 }]}>CONTINUE</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+            <View style={{ flexDirection: 'row', alignSelf: 'stretch' }}>
+              <TouchableOpacity style={{ flex: 1, marginTop: 5 }} onPress={() => logout()}>
+                <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: '#808080' }}>
+                  <Text style={[styles.butang, { color: '#fff', paddingTop: 5, paddingBottom: 5 }]}>LOG OUT</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </View>
+    </Modal>
+  )
+
+}
 
 export default DashboardScreen;
