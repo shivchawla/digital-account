@@ -17,7 +17,7 @@ import RegistrationDeclarationScreen from '../screens/RegistrationDeclarationScr
 import AdminApprovalScreen from '../screens/AdminApprovalScreen';
 
 const Registration = createStackNavigator({
-  Intro:CompanyInfoSuccessScreen,
+  Intro:IntroScreen,
   Agreement: AgreementScreen,
   SignUpPersonal: SignupPersonalScreen,
   SignUpPersonalSuccess: SignupPersonalSuccessScreen,
