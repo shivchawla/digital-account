@@ -1453,7 +1453,7 @@ export const newExpenseApi = (values) => {
     }).then((response) => response.json())
       .then(async (responseJson) => {
         const { status,code } = await responseJson
-        await dispatch({ type: 'SET_NEW_EXPENSE', payload: { status,code, proceedMain: true } })
+        await dispatch({ type: 'SET_NEW_EXPENSE', payload: { status,code,proceedMain: true } })
         await console.log(`expense api  ${JSON.stringify(responseJson)}`)
       })
       .catch((error) => {
