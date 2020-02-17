@@ -16,6 +16,7 @@ const FilterBarBusiness = (props) => {
 
     const [industry, setIndustry] = useState(null)
     const [address, setAddress] = useState(null)
+    const [modalContent, setModalContent] = useState(null)
 
     const filterBusinessList = async () => {
         console.log(`industry : ${industry} and address : ${address} `)
@@ -68,7 +69,7 @@ const FilterBarBusiness = (props) => {
                         <TouchableOpacity onPress={() => openIosModal('industry')}>
                             <Text style={[styles.h3, { marginBottom: 5 }]}>Industry</Text>
                             <View style={{ flexDirection: 'row', alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5, justifyContent: 'space-between', alignItems: 'center' }}>
-                                <Text style={[styles.value, { marginBottom: 5 }]}>{status || 'Please Select'}</Text>
+                                <Text style={[styles.value, { marginBottom: 5 }]}>{industry || 'Please Select'}</Text>
                                 <Ionicons name="ios-arrow-down" style={{ fontSize: 12, }} />
                             </View>
                         </TouchableOpacity>
@@ -90,7 +91,7 @@ const FilterBarBusiness = (props) => {
                         <TouchableOpacity onPress={() => openIosModal('address')}>
                             <Text style={[styles.h3, { marginBottom: 5 }]}>Address</Text>
                             <View style={{ flexDirection: 'row', alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5, justifyContent: 'space-between', alignItems: 'center' }}>
-                                <Text style={[styles.value, { marginBottom: 5 }]}>{status || 'Please Select'}</Text>
+                                <Text style={[styles.value, { marginBottom: 5 }]}>{address || 'Please Select'}</Text>
                                 <Ionicons name="ios-arrow-down" style={{ fontSize: 12, }} />
                             </View>
                         </TouchableOpacity>
@@ -111,10 +112,10 @@ const FilterBarBusiness = (props) => {
                 </View>
             </View>
             <View style={{ flexDirection: 'row', margin: 5, justifyContent: 'center' }}>
-                <TouchableOpacity style={{ width: Layout.window.width * 0.2, paddingTop: 16, paddingBottom: 16, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, borderColor: 'black', borderWidth: 1 }}>
+                <TouchableOpacity onPress={()=>nav('BusinessDirectory') } style={{ width: Layout.window.width * 0.2, paddingTop: 16, paddingBottom: 16, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, borderColor: 'black', borderWidth: 1 }}>
                     <Text style={[styles.textDefault, { color: 'black' }]}>Reset</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => filterBusinessList()} style={{ width: Layout.window.width * 0.2, paddingTop: 16, paddingBottom: 16, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }} >
+                <TouchableOpacity onPress={() => {filterBusinessList(); nav('BusinessDirectory') }} style={{ width: Layout.window.width * 0.2, paddingTop: 16, paddingBottom: 16, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }} >
                     <Text style={[styles.textDefault, { color: '#fff' }]}>Filter</Text>
                 </TouchableOpacity>
             </View>
