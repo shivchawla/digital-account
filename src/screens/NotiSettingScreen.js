@@ -73,7 +73,7 @@ const NotiSettingScreen = (props) => {
                 <View style={{ flexDirection: 'row', marginTop: 30, justifyContent: 'space-between' }}>
                     <View>
                         <Text style={[styles.text, { padding: 5 }]}>App Notification</Text>
-                        <Text style={[styles.small], { padding: 5 }}>{server_expo_token === expo_token ? `Receive Notification` : `No Notification`}</Text>
+                        <Text style={[styles.small, { padding: 5,fontFamily:'Montserrat_italic' }]}>{server_expo_token === expo_token ? `Receive Notification` : `No Notification`}</Text>
                     </View>
 
                     <Switch disabled={server_expo_token === expo_token} style={{ marginLeft: 50, marginRight: 15 }} onValueChange={value => toggleSwitch3(value)} value={switchValue3} />

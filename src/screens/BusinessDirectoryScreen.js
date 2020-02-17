@@ -57,7 +57,7 @@ const BusinessDirectoryScreen = (props) => {
                             <View>
                                 <Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
                             </View>
-                            <TextInput placeholder='Please Enter Keyword' style={{ flex: 4 }} onChangeText={(val) => searchList(val)} />
+                             <TextInput placeholder='Please Enter Keyword' style={[styles.searchBar, { flex: 4 }]}  onChangeText={(val) => searchList(val)} />
                             <TouchableOpacity onPress={props.navigation.openDrawer} >
                                 <Ionicons name="ios-options" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
                             </TouchableOpacity>
