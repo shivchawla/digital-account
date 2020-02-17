@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Text, TouchableOpacity, View, } from 'react-native';
+import { Image, Text, TouchableOpacity, View,ActivityIndicator } from 'react-native';
 import Constants from 'expo-constants'
 import Layout from '../constants/Layout'
 import styles from '../styles/styles'
@@ -9,7 +9,7 @@ import { shallowEqual, useSelector,useDispatch } from 'react-redux'
 const LoanSuccessScreen = (props) => {
 
 
-    const { status } = useSelector(state => state.loanApplicationReducer, shallowEqual)
+    const { status,code } = useSelector(state => state.loanApplicationReducer, shallowEqual)
 
     const dispatch = useDispatch()
     const goDashboard = async () => {
@@ -21,7 +21,7 @@ const LoanSuccessScreen = (props) => {
     return (
 
         <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
-            {status? <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0 }}>
+            {code===200?status? <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0 }}>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 <View style={{ flex: 1, justifyContent: 'flex-end' }}>
                             <Image source={require('../assets/images/logo.png')} style={{ height: Layout.window.height * 0.2, width: Layout.window.width * 0.5 }} resizeMode={'contain'} />
@@ -38,7 +38,7 @@ const LoanSuccessScreen = (props) => {
                         </View>
                         <View style = {{flex:1}}>
                         <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                            <TouchableOpacity onPress={() => goDashboard()} style={{ width: Layout.window.width * 0.4, paddingTop: 16, paddingBottom: 16, borderWidth: 1, borderColor: '#4A90E2', borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10 }}>
+                            <TouchableOpacity onPress={() => goDashboard()} style={{ width: Layout.window.width * 0.4, paddingTop: 16, paddingBottom: 16, borderWidth: 1, borderColor: 'darkturquoise', borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10 }}>
                                 <Text style={[styles.textDefault, {fontSize:15} ]}>Dashboard</Text>
                             </TouchableOpacity>
                         </View>
@@ -61,13 +61,26 @@ const LoanSuccessScreen = (props) => {
                         </View>
                         <View style = {{flex:1}}>
                             <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                                <TouchableOpacity onPress={() => goDashboard()} style={{ width: Layout.window.width * 0.4, paddingTop: 16, paddingBottom: 16, borderWidth: 1, borderColor: '#4A90E2', borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10 }}>
+                                <TouchableOpacity onPress={() => goDashboard()} style={{ width: Layout.window.width * 0.4, paddingTop: 16, paddingBottom: 16, borderWidth: 1, borderColor: 'darkturquoise', borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10 }}>
                                     <Text style={[styles.textDefault,{fontSize:15}]}>Dashboard</Text>
                                 </TouchableOpacity>
                             </View>
                             </View>
                         </View>
-                </View>}
+                </View>:<View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, }}>
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                    <View style={{ flex: 1, justifyContent: 'flex-end' }}>
+                        <Image source={require('../assets/images/logo.png')} style={{ height: Layout.window.height * 0.2, width: Layout.window.width * 0.5 }} resizeMode={'contain'} />
+                    </View>
+                    <View style={{ flex: 2, alignSelf: 'stretch' }}>
+                        <ActivityIndicator />
+                    </View>
+                    <View style={{ flex: 1, alignItems: 'center' }} />
+
+                    <View style={{ flex: 1 }} />
+                    
+                </View>
+            </View>}
         </View>
 
     )

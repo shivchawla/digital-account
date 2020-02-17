@@ -20,7 +20,7 @@ const LoanPaymentSuccessScreen = (props) => {
                             <Text style={[styles.text, { margin: 5, marginBottom: 20 }]}>Choose either to go to Loan Application or skip to the dashboard.</Text>
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                            <TouchableOpacity onPress={() => props.navigation.navigate('Dashboard')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, borderColor: 'black', borderWidth: 1 }}>
+                            <TouchableOpacity onPress={() => props.navigation.navigate('Dashboard')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, borderColor: 'darkturquoise', borderWidth: 1 }}>
                                 <Text style={[styles.textDefault]}>Dashboard</Text>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => props.navigation.navigate('Loan')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }}>

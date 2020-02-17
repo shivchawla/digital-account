@@ -60,12 +60,9 @@ const AccountScreen = (props) => {
                                 <Image source={require('../assets/images/accountStatus.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
                                 <Text style={[styles.label, { marginLeft: 5 }]}>Status</Text>
                             </View>
-                            <View style={{ justifyContent: 'flex-start', alignItems: 'flex-start',flex:2 }} >
-                                {status == 'activated' ? <View style={{ paddingTop: 16, paddingBottom: 16, paddingLeft: 18, paddingRight: 18, borderRadius: 15, backgroundColor: '#00d800',marginLeft:10 }}>
-                                    <Text style={[styles.text, { color: 'white' }]}>Active</Text>
-                                </View> : <View style={{ paddingTop: 16, paddingBottom: 16, paddingLeft: 18, paddingRight: 18, borderRadius: 15, backgroundColor: 'lightgrey', marginLeft: 10 }}>
-                                        <Text style={[styles.text, { color: 'black' }]}>Inactive</Text>
-                                    </View>}
+                            <View style={{ justifyContent: 'flex-start', alignItems: 'flex-start',flex:2 ,marginLeft:10}} >
+                                {status == 'activated' ?  <Text style={[styles.value, { color: 'limegreen' }]}>Active</Text>
+                                   :  <Text style={[styles.value, { color: 'lightgrey' }]}>Inactive</Text>}   
                             </View>
                         </View>
                 </ScrollView>

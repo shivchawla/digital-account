@@ -74,12 +74,12 @@ const LoginScreen = (props) => {
                                         </View>
                                         <View style={{ flex: 3, backgroundColor: '#fff', borderTopLeftRadius: 20, borderTopRightRadius: 20, padding: 20 }}>
                                             <View style={[styles.formElement]}>
-                                                <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: emailTouched && emailError ? '#d94498' : '#5a83c2' }]}>Email</Text>
+                                                <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: emailTouched && emailError ? 'rgba(255,0,0,1)' : '#5a83c2' }]}>Email</Text>
                                                 <TextInput value={email} onFocus={setEmailActive(!emailActive)} onBlur={() => { setEmailActive(!emailActive); FormikProps.handleBlur('email') }} onChangeText={FormikProps.handleChange('email')} placeholder={emailTouched && emailError ? '' : 'Email'} style={{ borderWidth: emailActive ? 2 : 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} />
                                                 {emailTouched && emailError && <Text style={styles.error}>{emailError}</Text>}
                                             </View>
                                             <View style={[styles.formElement]}>
-                                                <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: passwordTouched && passwordError ? '#d94498' : '#5a83c2' }]}>Password</Text>
+                                                <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: passwordTouched && passwordError ? 'rgba(255,0,0,1)' : '#5a83c2' }]}>Password</Text>
                                                 <TextInput secureTextEntry value={password} onFocus={setPasswordActive(!passwordActive)} onBlur={() => { setPasswordActive(!passwordActive); FormikProps.handleBlur('password') }} placeholder={passwordTouched && passwordError ? '' : '******'} onChangeText={FormikProps.handleChange('password')} style={{ borderWidth: passwordActive ? 2 : 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholderTextColor={passwordTouched && passwordError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                                 {passwordTouched && passwordError && <Text style={styles.error}>{passwordError}</Text>}
                                             </View>

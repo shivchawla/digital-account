@@ -98,14 +98,23 @@ export default StyleSheet.create({
     color: '#000',
     fontSize,
   },
+  textInput: {
+    fontSize:fontSize*1.1,
+    fontFamily: 'Montserrat_medium',
+    color: '#000'
+  },
 
   error: {
     fontSize,
-    fontFamily: 'Montserrat_thin',
+    fontFamily: 'Montserrat_medium',
     color: 'rgba(255,0,0,1)',
-    fontSize: fontSize * 0.8
+    fontSize: fontSize * 0.7
   },
-
+  textDefault:{
+    fontSize,
+    fontFamily:'Montserrat_medium',
+    color:'#000'
+  },
   screenMargin: {
     paddingTop:10,
     paddingBottom:30,
