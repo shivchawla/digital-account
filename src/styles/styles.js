@@ -103,6 +103,11 @@ export default StyleSheet.create({
     fontFamily: 'Montserrat_medium',
     color: '#000'
   },
+  searchBar:{
+    fontSize:fontSize,
+    fontFamily: 'Montserrat_medium',
+    color: '#000'
+  },
 
   error: {
     fontSize,
