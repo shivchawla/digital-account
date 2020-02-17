@@ -248,7 +248,7 @@ const DashboardScreen = (props) => {
           </TouchableOpacity>
         </View>
         <View style={{ marginBottom: 15 }} >
-          <LinearGradient colors={['#055E7C', '#055E7C']} style={{ paddingTop: 5, paddingBottom: 5, alignItems: 'center', borderRadius: 10, height: Layout.window.height > 570 ? Layout.window.height / 3 : Layout.window.height / 2.8 }}>
+          <LinearGradient colors={['#055E7C', '#055E7C']} style={{ paddingTop: 5, paddingBottom: 5, alignItems: 'center', borderRadius: 10, height: Layout.window.height > 570 ? Layout.window.height / 3.3 : Layout.window.height / 2.8 }}>
             <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
               <TouchableOpacity onPress={() => changeChartDay()}>
                 <Ionicons name="ios-arrow-back" color={'#fff'} style={{ fontSize: 23, paddingLeft: 30 }} />
@@ -258,38 +258,40 @@ const DashboardScreen = (props) => {
                 <Ionicons name="ios-arrow-forward" color={'#fff'} style={{ fontSize: 23, paddingRight: 30 }} />
               </TouchableOpacity>
             </View>
-            <View style={{ flex: 1, height: Layout.window.height > 570 ? Layout.window.height / 3 : Layout.window.height / 2.8, alignSelf: 'stretch', flexDirection: 'row', justifyContent: 'space-around', borderRadius: 10 }}>
-              {/* <VictoryCharts /> */}
+            <View style={{ flex: 1, height: Layout.window.height > 570 ? Layout.window.height / 3.3 : Layout.window.height / 2.8, alignSelf: 'stretch', flexDirection: 'row', justifyContent: 'space-around', borderRadius: 10 }}>
+        
               {reportList && <ChartKit data={getData()} dataPointClicked={dataPointClicked} />}
-              {/* <Charts /> */}
+ 
             </View>
           </LinearGradient>
         </View>
-        <TouchableOpacity onPress={() => props.navigation.navigate('Report')} style={[{ flexDirection: 'row', justifyContent: 'space-between', }]}>
-          <Text style={[styles.h2, { color: '#04A2BD' }]}>Latest Transaction</Text>
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <Text style={[styles.small, { paddingRight: 5, color: '#04A2BD' }]}>More</Text>
-            <Ionicons name="ios-arrow-forward" color={'#04A2BD'} style={{ fontSize: 15, paddingRight: 5 }} />
-          </View>
-        </TouchableOpacity>
-        <ScrollView >
-          {reportList && <FlatList data={reportList.filter(rl => !rl.type.includes('Fee')).slice(0, 5)} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
-            <View style={[, { flexDirection: 'row', marginTop: 5, justifyContent: 'space-between', borderBottomWidth: 1, borderColor: 'rgba(62,194,217,0.2)', paddingBottom: 5, }]}>
-              <View style={{ flexDirection: 'row', }}>
-                <Ionicons name={item.credit_debit == 'DEBIT' ? "md-remove-circle-outline" : "md-add-circle-outline"} color={item.credit_debit == 'DEBIT' ? '#A20F0F' : '#7ED321'} style={{ fontSize: 12, paddingRight: 20, paddingTop: 5 }} />
-                <View>
-                  <Text style={[styles.listItem]}>{item.type}  </Text>
-                  <Text style={[styles.listItem]}> ({item.transaction_no}) </Text>
-                  <Text style={[styles.listItem]}>{moment(item.updated_at).format('DD/MM/YY h:mm:ss')}</Text>
+        <View style={{ marginBottom: 15 }} >
+          <TouchableOpacity onPress={() => props.navigation.navigate('Report')} style={[{ flexDirection: 'row', justifyContent: 'space-between', }]}>
+            <Text style={[styles.h2, { color: '#04A2BD' }]}>Latest Transaction</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <Text style={[styles.small, { paddingRight: 5, color: '#04A2BD' }]}>More</Text>
+              <Ionicons name="ios-arrow-forward" color={'#04A2BD'} style={{ fontSize: 15, paddingRight: 5 }} />
+            </View>
+          </TouchableOpacity>
+          <ScrollView >
+            {reportList && <FlatList data={reportList.filter(rl => !rl.type.includes('Fee')).slice(0, 5)} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
+              <View style={[, { flexDirection: 'row', marginTop: 5, justifyContent: 'space-between', borderBottomWidth: 1, borderColor: 'rgba(62,194,217,0.2)', paddingBottom: 5, }]}>
+                <View style={{ flexDirection: 'row', }}>
+                  <Ionicons name={item.credit_debit == 'DEBIT' ? "md-remove-circle-outline" : "md-add-circle-outline"} color={item.credit_debit == 'DEBIT' ? '#A20F0F' : '#7ED321'} style={{ fontSize: 12, paddingRight: 20, paddingTop: 5 }} />
+                  <View>
+                    <Text style={[styles.listItem]}>{item.type}  </Text>
+                    <Text style={[styles.listItem]}> ({item.transaction_no}) </Text>
+                    <Text style={[styles.listItem]}>{moment(item.updated_at).format('DD/MM/YY h:mm:ss')}</Text>
+                  </View>
+                </View>
+                <View style={{}}>
+                  <Text style={[styles.listItem, { color: item.credit_debit == 'DEBIT' ? '#A20F0F' : '#7ED321' }]}>{item.credit_debit == 'DEBIT' ? '-' : '+'} {item.currency ? item.currency : 'MYR'} <NumberFormat value={item.amount.toFixed(2)} displayType={'text'} thousandSeparator={true} prefix={''} renderText={value => <Text>{item.amount.toFixed(2)}</Text>} /></Text>
                 </View>
               </View>
-              <View style={{}}>
-                <Text style={[styles.listItem, { color: item.credit_debit == 'DEBIT' ? '#A20F0F' : '#7ED321' }]}>{item.credit_debit == 'DEBIT' ? '-' : '+'} {item.currency ? item.currency : 'MYR'} <NumberFormat value={item.amount.toFixed(2)} displayType={'text'} thousandSeparator={true} prefix={''} renderText={value => <Text>{item.amount.toFixed(2)}</Text>} /></Text>
-              </View>
-            </View>
-          } />}
-        </ScrollView>
-        <View style={{margin:30}} />
+            } />}
+          </ScrollView>
+        </View>
+      
       </LayoutA>
     </View>
 
