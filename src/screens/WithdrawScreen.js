@@ -55,13 +55,8 @@ const WithdrawScreen = (props) => {
 
     return (
         <LayoutA title={'WITHDRAWAL'} navigation={props.navigation}>
-<<<<<<< HEAD
             <View style={{ marginTop: 10, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end', paddingRight: 10 }}>
                 {/* <TouchableOpacity onPress={() => props.navigation.navigate('WithdrawalApplication')} style={{ paddingTop: 16, paddingBottom: 16, paddingLeft: 18, paddingRight: 18, backgroundColor: '#055E7C', borderRadius: 15 }}>
-=======
-            <View style={{ marginTop: 25, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end', paddingRight: 10 }}>
-                <TouchableOpacity onPress={() => props.navigation.navigate('WithdrawalApplication')} style={{ paddingTop: 17, paddingBottom: 17, paddingLeft: 19, paddingRight: 19, backgroundColor: '#055E7C', borderRadius: 15 }}>
->>>>>>> origin/mira
                     <Text style={[styles.text, { color: '#fff', fontSize: 15 }]}>New Withdrawal</Text>
                 </TouchableOpacity> */}
                 <CustomButton navigation={()=>props.navigation.navigate('WithdrawalApplication')} label={'New Withdrawal'}  />
