@@ -27,9 +27,9 @@ const CustomerScreen = (props) => {
                     <Text style={[styles.title]}>CUSTOMER LIST</Text>
                 </View>
                 <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
-                    <View style={{ backgroundColor:'rgba(62,194,217,0.5)',borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
-            <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
-          </View>
+                    <View style={{ backgroundColor: 'rgba(62,194,217,0.5)', borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
+                        <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
+                    </View>
                 </TouchableOpacity>
             </View>
             <View style={[{ flex: 9 }]}>
@@ -45,7 +45,7 @@ const CustomerScreen = (props) => {
                                 <View>
                                     <Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
                                 </View>
-                                 <TextInput placeholder='Please Enter Keyword' style={[styles.searchBar, { flex: 4 }]}  />
+                                <TextInput placeholder='Please Enter Keyword' style={[styles.searchBar, { flex: 4 }]} />
                                 <TouchableOpacity onPress={props.navigation.openDrawer} >
                                     <Ionicons name="ios-options" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
                                 </TouchableOpacity>
@@ -53,13 +53,14 @@ const CustomerScreen = (props) => {
                         </View>
                         <ScrollView>
                             {customerList && <FlatList data={filterEnabled ? filteredCustomerList : customerList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
-                                <TouchableOpacity onPress={() => props.navigation.navigate('CustomerDetail', { id: item.id })} style={styles.box}>
+                                <View  style={styles.box}>
                                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
                                         <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
                                             <Text style={styles.small}>{moment(item.created_at).format("MMMM Do YYYY, h:mm:ss a")}</Text>
                                             <Ionicons name="md-arrow-dropright" color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
                                         </View>
                                     </View>
+                                    <View><TouchableOpacity onPress={() => dispatch(actionCreator.deleteCustomer(item.id))}><Text>Delete</Text></TouchableOpacity></View>
                                     <View style={{ flexDirection: 'row', alignContent: 'stretch', marginTop: 20 }}>
                                         <View style={{ flex: 2.7 }}>
                                             <Text style={styles.small}>Name</Text>
@@ -74,7 +75,7 @@ const CustomerScreen = (props) => {
                                             <Text style={[styles.text]}>{item.currency}</Text>
                                         </View>
                                     </View>
-                                </TouchableOpacity>
+                                </View>
                             } />}
                         </ScrollView>
                     </View>

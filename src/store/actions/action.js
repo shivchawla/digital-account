@@ -8,7 +8,7 @@ import s3 from '../../do/DigitalOcean'
 import config from '../../do/config'
 
 import { requestToken, requestPersonalToken, urlToBlob, registerApi, companyInfoAPI, contactPersonAPI, submitDocApi, declarationApi, cddApi, resendVerificationApi } from './apiRegistration'
-import { paymentHistoryListApi, retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, agingListApi, reportListApi, businessDirectoryListApi, invoiceApi, newExpenseApi,  customerDataApi, itemDataApi, submitLoanApplicationApi, addBankApi, bankListApi, deleteAllBankApi, notificationListApi, loanApplicationDataApi, submitInvoiceApi, submitSupportApi, withDrawApi, withdrawListApi, vendorListApi, withdrawDataApi, vendorDataApi, vendorDataRetrieveApi, customerListApi, customerDataRetrieveApi, itemListApi, itemDataRetrieveApi, retrieveAccountInfoApi, getAllUsersApi, repaymentListApi, repaymentDetailApi, checkCDDApi2, loanBillListApi, billDetailApi, checkAuthApi, savePinApi, respondAgreementApi,retrievePersonalInfoApi,updateExpoTokenApi } from './apiDashboard'
+import { paymentHistoryListApi, retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, agingListApi, reportListApi, businessDirectoryListApi, invoiceApi, newExpenseApi,  customerDataApi, itemDataApi, submitLoanApplicationApi, addBankApi, bankListApi, deleteAllBankApi, notificationListApi, loanApplicationDataApi, submitInvoiceApi, submitSupportApi, withDrawApi, withdrawListApi, vendorListApi, withdrawDataApi, vendorDataApi, vendorDataRetrieveApi, customerListApi, customerDataRetrieveApi, itemListApi, itemDataRetrieveApi, retrieveAccountInfoApi, getAllUsersApi, repaymentListApi, repaymentDetailApi, checkCDDApi2, loanBillListApi, billDetailApi, checkAuthApi, savePinApi, respondAgreementApi,retrievePersonalInfoApi,updateExpoTokenApi,deleteCustomerApi } from './apiDashboard'
 //import {pusherListen} from './pusher'
 import moment from 'moment'
 
@@ -284,6 +284,16 @@ export const passCustomerData = (values) => {
         dispatch(customerDataApi(values))
     }
 }
+
+export const deleteCustomer = (id) => {
+    return (dispatch, getState) => {
+        console.log('Dekat customer info action')
+        dispatch(deleteCustomerApi(id))
+         dispatch(customerListApi(id))
+    }
+}
+
+
 
 export const passItemData = (values) => {
     return (dispatch, getState) => {

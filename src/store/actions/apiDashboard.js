@@ -450,6 +450,35 @@ export const customerDataRetrieveApi = (id) => {
   }
 }
 
+
+export const deleteCustomerApi = (id) => {
+  return async (dispatch, getState) => {
+
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    fetch(`${apiUrl}api/customer/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const customerData = responseJson.data
+        console.log('Success customer data' + JSON.stringify(responseJson))
+        dispatch({ type: 'SET_CUSTOMER_LIST', payload: { customerData } })
+
+      })
+      .catch((error) => {
+        console.log('Error initiating customer data info : ' + error);
+      });
+
+  }
+}
+
 export const itemListApi = () => {
   return async (dispatch, getState) => {
 
