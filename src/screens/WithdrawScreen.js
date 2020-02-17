@@ -6,6 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import moment from 'moment'
 import styles from '../styles/styles'
 import LayoutA from '../Layout/LayoutA';
+import { CustomButton } from '../components/Custom'
 
 const wait = (timeout) => {
     return new Promise(resolve => {
@@ -55,9 +56,10 @@ const WithdrawScreen = (props) => {
     return (
         <LayoutA title={'WITHDRAWAL'} navigation={props.navigation}>
             <View style={{ marginTop: 10, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end', paddingRight: 10 }}>
-                <TouchableOpacity onPress={() => props.navigation.navigate('WithdrawalApplication')} style={{ paddingTop: 16, paddingBottom: 16, paddingLeft: 18, paddingRight: 18, backgroundColor: '#055E7C', borderRadius: 15 }}>
+                {/* <TouchableOpacity onPress={() => props.navigation.navigate('WithdrawalApplication')} style={{ paddingTop: 16, paddingBottom: 16, paddingLeft: 18, paddingRight: 18, backgroundColor: '#055E7C', borderRadius: 15 }}>
                     <Text style={[styles.text, { color: '#fff', fontSize: 15 }]}>New Withdrawal</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
+                <CustomButton navigation={()=>props.navigation.navigate('WithdrawalApplication')} label={'New Withdrawal'}  />
             </View>
             <View style={{ marginTop: 20 }}>
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 10 }}>
