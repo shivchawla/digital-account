@@ -127,13 +127,13 @@ const CompanyInformationScreen = (props) => {
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
                             <View style={[styles.screenMargin, { flex: 9 }]}>
                                 <View style={[styles.formElement]}>
-                                    <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: cddCompanyNameTouched && cddCompanyNameError ? '#d94498' : '#5a83c2',fontSize:15 }]}>Company Name</Text>
+                                    <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: cddCompanyNameTouched && cddCompanyNameError ? 'rgba(255,0,0,1)' : '#5a83c2',fontSize:15 }]}>Company Name</Text>
                                     <TextInput value={cddCompanyName} onBlur={FormikProps.handleBlur('cddCompanyName')} onChangeText={FormikProps.handleChange('cddCompanyName')} placeholder={cddCompanyNameTouched && cddCompanyNameError ? '' : 'Eg: Syarikat ABC Sdn Bhd'} style={[styles.textInput,{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }]} />
                                     {cddCompanyNameTouched && cddCompanyNameError && <Text style={styles.error}>{cddCompanyNameError}</Text>}
                                 </View>
 
                                 <View style={[styles.formElement]}>
-                                    <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: cddRegistrationNumberTouched && cddRegistrationNumberError ? '#d94498' : '#5a83c2',fontSize:15}]}>Registration Number</Text>
+                                    <Text style={[styles.titleBox, { marginBottom: 5, borderBottomColor: cddRegistrationNumberTouched && cddRegistrationNumberError ? 'rgba(255,0,0,1)' : '#5a83c2',fontSize:15}]}>Registration Number</Text>
                                     <TextInput value={cddRegistrationNumber} onBlur={FormikProps.handleBlur('cddRegistrationNumber')} onChangeText={FormikProps.handleChange('cddRegistrationNumber')} placeholder={cddRegistrationNumberTouched && cddRegistrationNumberError ? '' : 'Eg: 105015-A'} style={[styles.textInput,{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }]} />
                                     {cddRegistrationNumberTouched && cddRegistrationNumberError && <Text style={styles.error}>{cddRegistrationNumberError}</Text>}
                                 </View>
