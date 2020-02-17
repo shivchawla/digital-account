@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, Text, KeyboardAvoidingView, TextInput, FlatList, ScrollView, Platform, Modal } from 'react-native';
+import { View, TouchableOpacity, Text, KeyboardAvoidingView, FlatList, ScrollView, Platform, Modal, TextInput } from 'react-native';
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
-import { LinearGradient } from 'expo-linear-gradient'
+
 import { Ionicons } from '@expo/vector-icons';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -10,6 +10,8 @@ import styles from '../styles/styles'
 import moment from 'moment'
 import CodePin from 'react-native-pin-code'
 import Layout from '../constants/Layout';
+
+import { CustomFormAction,CustomTextInput } from '../components/Custom'
 
 // let Modal;
 
@@ -118,25 +120,49 @@ const TransferScreen = (props) => {
                             navigation={props.navigation}
                         >
                             <View style={styles.screenMargin}>
-                                <View style={[styles.formElement]}>
-                                    <Text style={[styles.titleBox, { marginBottom: 10, marginTop: 10 }]}>Amount ({currency})</Text>
-                                    <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} onBlur={FormikProps.handleBlur('amount')} style={{ borderWidth: 1, borderColor: amountTouched && amountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={amountTouched && amountError ? '' : '100.00'} placeholderTextColor={amountTouched && amountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
-                                    {amountTouched && amountError && <Text style={styles.error}>{amountError}</Text>}
-                                </View>
-                                <View style={[styles.formElement, { marginBottom: 10 }]}>
-                                    <TouchableOpacity onPress={() => setuserListView(!userListView)}>
-                                        <Text style={[styles.titleBox, { marginBottom: 10 }]}>Recipient</Text>
-                                        <TextInput editable={false} value={recipient} style={{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={recipientTouched && recipientError ? '' : '123456789'} placeholderTextColor={recipientTouched && recipientError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
-                                    </TouchableOpacity>
-                                    {recipientTouched && recipientError && <Text style={styles.error}>{recipientError}</Text>}
-                                </View>
-                                <View style={[styles.formElement, { marginBottom: 10 }]}>
-                                    <Text style={[styles.titleBox, { marginTop: 10, marginBottom: 10 }]}>Reference No</Text>
-                                    <TextInput value={references_no} onChangeText={FormikProps.handleChange('references_no')} onBlur={FormikProps.handleBlur('references_no')} style={{ borderWidth: 1, borderColor: references_noTouched && references_noError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={references_noTouched && references_noError ? '' : 'Pay salary'} placeholderTextColor={references_noTouched && references_noError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
-                                    {references_noTouched && references_noError && <Text style={styles.error}>{references_noError}</Text>}
-                                </View>
+                                <CustomTextInput
+                                    label={`Amount(${currency})`}
+                                    value={amount}
+                                    handleChange={FormikProps.handleChange(`amount`)}
+                                    handleBlur={FormikProps.handleBlur('amount')}
+                                    touched={amountTouched}
+                                    error={amountError}
+                                    keyboardType={'decimal-pad'}
+                                    placeholder={'Enter Amount'}
+
+                                />
+
+                                <CustomTextInput
+                                    handleClick={() => setuserListView(!userListView)}
+                                    label={'Recipient'}
+                                    value={recipient}
+                                    // handleChange={FormikProps.handleChange(`references_no`)}
+                                    // handleBlur={FormikProps.handleBlur('references_no')}
+                                    touched={recipientTouched}
+                                    error={recipientError}
+                                    placeholder={'Select recipient'}
+
+                                />
+
+                                <CustomTextInput
+                                    label={'Reference No'}
+                                    value={references_no}
+                                    handleChange={FormikProps.handleChange(`references_no`)}
+                                    handleBlur={FormikProps.handleBlur('references_no')}
+                                    touched={references_noTouched}
+                                    error={references_noError}
+
+                                />
                             </View>
-                            <View style={{ flexDirection: 'row', alignSelf: 'stretch' }}>
+                            <CustomFormAction
+                             navigation={props.navigation} 
+                             isValid={FormikProps.isValid} 
+                             handleSubmit={FormikProps.handleSubmit} 
+                             authEnabled={authEnabled} 
+                             locked={locked}
+                            />
+
+                            {/* <View style={{ flexDirection: 'row', alignSelf: 'stretch' }}>
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1, paddingTop: 20, paddingBottom: 20, justifyContent: 'center', alignItems: 'center' }}>
                                     <Text style={[styles.butang, { color: '#000000' }]}>Back</Text>
                                 </TouchableOpacity>
@@ -146,7 +172,7 @@ const TransferScreen = (props) => {
                                         {authEnabled ? locked ? <Ionicons name='ios-lock' color={'#fff'} style={{ fontSize: 30, paddingLeft: 20 }} /> : <View /> : <View />}
                                     </LinearGradient>
                                 </TouchableOpacity>
-                            </View>
+                            </View> */}
                         </LayoutA>
                     </KeyboardAvoidingView>)
             }}
