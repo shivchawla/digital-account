@@ -1374,6 +1374,35 @@ export const vendorDataApi = (values) => {
   }
 }
 
+
+export const deleteVendorApi = (id) => {
+  return async (dispatch, getState) => {
+
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    fetch(`${apiUrl}api/vendor/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const vendorData = responseJson.data
+        console.log('Success vendor data' + JSON.stringify(responseJson))
+        dispatch({ type: 'SET_VENDOR_LIST', payload: { vendorData } })
+
+      })
+      .catch((error) => {
+        console.log('Error initiating customer data info : ' + error);
+      });
+
+  }
+}
+
 export const customerDataApi = (values) => {
   return async (dispatch, getState) => {
     const personalToken = await SecureStore.getItemAsync('personalToken')
