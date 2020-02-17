@@ -28,19 +28,19 @@ class ContactPersonMainScreen extends React.PureComponent {
         this.props.proceedMain && this.props.navigation.navigate('ContactPersonSuccess')
         const nameError = this.props.errorColor && this.props.errorColor.find(test => test == "Name")
         if (nameError == "Name") {
-            nameBorderColor = '#d94498'
+            nameBorderColor = 'rgba(255,0,0,1)'
         }
         const mykadError = this.props.error && this.props.errorColor.find(test => test == "MyKad")
         if (mykadError == "MyKad") {
-            mykadBorderColor = '#d94498'
+            mykadBorderColor = 'rgba(255,0,0,1)'
         }
         const positionError = this.props.error && this.props.errorColor.find(test => test == "Position")
         if (positionError == "Position") {
-            positionBorderColor = '#d94498'
+            positionBorderColor = 'rgba(255,0,0,1)'
         }
         const phoneError = this.props.errorColor && this.props.errorColor.find(test => test == "Phone")
         if (phoneError == "Phone") {
-            phoneBorderColor = '#d94498'
+            phoneBorderColor = 'rgba(255,0,0,1)'
         }
         var nameErrorHint = ''
         var mykadErrorHint = ''
