@@ -225,7 +225,6 @@ const TransferStack = () => {
         <Stack.Navigator initialRouteName="Transfer" screenOptions={{ headerShown: false }}>
             <Drawer.Screen name="Transfer" component={TransferScreen} />
             <Stack.Screen name="TransferSuccess" component={TransferSuccessScreen} />
-
         </Stack.Navigator>
     )
 }
