@@ -145,12 +145,12 @@ const LoanApplicationDeclarationScreen = (props) => {
                                     </View>
                                     <View style={{ marginBottom: 10 }}>
                                         <Text style={[styles.titleBox, { marginBottom: 10, fontSize: 16 }]}>Name</Text>
-                                        <TextInput value={declareName} onChangeText={FormikProps.handleChange('declareName')} onBlur={FormikProps.handleBlur('declareName')} style={[styles.textInput, { borderWidth: 1, borderColor: declareNameTouched && declareNameError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={declareNameTouched && declareNameError ? '' : ''} placeholderTextColor={declareNameTouched && declareNameError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        <TextInput value={declareName} onChangeText={FormikProps.handleChange('declareName')} onBlur={FormikProps.handleBlur('declareName')} style={[styles.textInput, { borderWidth: 1, borderColor: declareNameTouched && declareNameError ? 'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={declareNameTouched && declareNameError ? '' : ''} placeholderTextColor={declareNameTouched && declareNameError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {declareNameTouched && declareNameError && <Text style={styles.error}>{declareNameError}</Text>}
                                     </View>
                                     <View style={{ marginBottom: 10 }}>
                                         <Text style={[styles.titleBox, { marginBottom: 10, fontSize: 16 }]}>Position</Text>
-                                        <TextInput value={declarePosition} onChangeText={FormikProps.handleChange('declarePosition')} onBlur={FormikProps.handleBlur('declarePosition')} style={[styles.textInput, { borderWidth: 1, borderColor: declarePositionTouched && declarePositionError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={declarePositionTouched && declarePositionError ? '' : ''} placeholderTextColor={declarePositionTouched && declarePositionError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        <TextInput value={declarePosition} onChangeText={FormikProps.handleChange('declarePosition')} onBlur={FormikProps.handleBlur('declarePosition')} style={[styles.textInput, { borderWidth: 1, borderColor: declarePositionTouched && declarePositionError ? 'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={declarePositionTouched && declarePositionError ? '' : ''} placeholderTextColor={declarePositionTouched && declarePositionError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
 
                                         {declarePositionTouched && declarePositionError && <Text style={styles.error}>{declarePositionError}</Text>}
                                     </View>
