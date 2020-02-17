@@ -382,8 +382,8 @@ export const withDrawApi = (values) => {
       body: JSON.stringify({ ...values2, access_credential }),
     }).then((response) => response.json())
       .then(async (responseJson) => {
-        const { status,code } = await responseJson
-        await dispatch({ type: 'SET_NEW_WITHDRAWAL', payload: { status,code, proceedMain: true } })
+        const { status, code } = await responseJson
+        await dispatch({ type: 'SET_NEW_WITHDRAWAL', payload: { status, code, proceedMain: true } })
         await console.log(`withdrawal api  ${JSON.stringify(responseJson)}`)
       })
       .catch((error) => {
@@ -553,7 +553,7 @@ export const getAllUsersApi = () => {
 
     }).then((response) => response.json())
       .then(async (responseJson) => {
-        const {data} = responseJson
+        const { data } = responseJson
         const userList = data
 
         //withdrawList.reverse()
@@ -766,8 +766,8 @@ export const retrievePersonalInfoApi = () => {
           const accountInfo = responseJson.data
           console.log('personal info ialah' + JSON.stringify(accountInfo))
           //dispatch({ type: 'SET_USER_PROFILE', payload: { ...accountInfo[0] } })
-          const {email,expo_token}=accountInfo
-          dispatch({ type: 'SET_PERSONAL_INFO', payload: { ...accountInfo,server_expo_token:accountInfo.expo_token} })
+          const { email, expo_token } = accountInfo
+          dispatch({ type: 'SET_PERSONAL_INFO', payload: { ...accountInfo, server_expo_token: accountInfo.expo_token } })
 
         })
         .catch((error) => {
@@ -1270,8 +1270,8 @@ export const submitLoanApplicationApi = () => {
       body: JSON.stringify({ ...values2, access_credential }),
     }).then((response) => response.json())
       .then(async (responseJson) => {
-        const { status,code } = await responseJson
-        await dispatch({ type: 'SET_LOAN_APPLICATION', payload: { status,code, proceedMain: true } })
+        const { status, code } = await responseJson
+        await dispatch({ type: 'SET_LOAN_APPLICATION', payload: { status, code, proceedMain: true } })
         await console.log(`loan api  ${JSON.stringify(responseJson)}`)
       })
       .catch((error) => {
@@ -1320,9 +1320,9 @@ export const submitInvoiceApi = () => {
 
     xhr.addEventListener("readystatechange", function () {
       if (this.readyState === 4) {
-        console.log('hafizh power dan hensem',this.responseText);
-        const { status,code } = JSON.parse(this.responseText)
-        dispatch({ type: 'SET_INVOICE_APPLICATION', payload: { status,code, proceedMain: true } })
+        console.log('hafizh power dan hensem', this.responseText);
+        const { status, code } = JSON.parse(this.responseText)
+        dispatch({ type: 'SET_INVOICE_APPLICATION', payload: { status, code, proceedMain: true } })
 
       }
     });
@@ -1363,8 +1363,8 @@ export const vendorDataApi = (values) => {
       body: JSON.stringify({ ...values, access_credential }),
     }).then((response) => response.json())
       .then(async (responseJson) => {
-        const { status,code } = await responseJson
-        await dispatch({ type: 'SET_VENDOR_SUBMIT', payload: { status,code, proceedMain: true } })
+        const { status, code } = await responseJson
+        await dispatch({ type: 'SET_VENDOR_SUBMIT', payload: { status, code, proceedMain: true } })
         await console.log(`vendor submit api  ${JSON.stringify(responseJson)}`)
       })
       .catch((error) => {
@@ -1422,7 +1422,7 @@ export const customerDataApi = (values) => {
     }).then((response) => response.json())
       .then(async (responseJson) => {
         const { status } = await responseJson
-        await dispatch({ type: 'SET_CUSTOMER_LIST', payload: { status,proceedMain: true } })
+        await dispatch({ type: 'SET_CUSTOMER_LIST', payload: { status, proceedMain: true } })
         await console.log(`customer submit api  ${JSON.stringify(responseJson)}`)
       })
       .catch((error) => {
@@ -1451,8 +1451,8 @@ export const itemDataApi = (values) => {
       body: JSON.stringify({ ...values, access_credential }),
     }).then((response) => response.json())
       .then(async (responseJson) => {
-        const { status,code } = await responseJson
-        await dispatch({ type: 'SET_ITEM_LIST', payload: { status,code, proceedMain: true } })
+        const { status, code } = await responseJson
+        await dispatch({ type: 'SET_ITEM_LIST', payload: { status, code, proceedMain: true } })
         await console.log(`item submit api  ${JSON.stringify(responseJson)}`)
       })
       .catch((error) => {
@@ -1480,8 +1480,8 @@ export const submitSupportApi = (values) => {
       body: JSON.stringify({ ...values, access_credential }),
     }).then((response) => response.json())
       .then(async (responseJson) => {
-        const { status,code } = await responseJson
-        await dispatch({ type: 'SET_SUBMIT_SUPPORT', payload: { status,code, proceedMain: true } })
+        const { status, code } = await responseJson
+        await dispatch({ type: 'SET_SUBMIT_SUPPORT', payload: { status, code, proceedMain: true } })
         await console.log(`support api  ${JSON.stringify(responseJson)}`)
       })
       .catch((error) => {
@@ -1509,8 +1509,8 @@ export const newExpenseApi = (values) => {
       body: JSON.stringify({ ...values, access_credential }),
     }).then((response) => response.json())
       .then(async (responseJson) => {
-        const { status,code } = await responseJson
-        await dispatch({ type: 'SET_NEW_EXPENSE', payload: { status,code,proceedMain: true } })
+        const { status, code } = await responseJson
+        await dispatch({ type: 'SET_NEW_EXPENSE', payload: { status, code, proceedMain: true } })
         await console.log(`expense api  ${JSON.stringify(responseJson)}`)
       })
       .catch((error) => {
@@ -1583,7 +1583,7 @@ export const updateExpoTokenApi = () => {
   return async (dispatch, getState) => {
     const personalToken = await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
-    const {expo_token} = getState().registrationReducer
+    const { expo_token } = getState().registrationReducer
     const access_credential = 'api'
     console.log(`update expo token : ${JSON.stringify(expo_token)}`)
 
