@@ -126,17 +126,15 @@ const NewInvoiceReviewScreen = (props) => {
                             <View style={{ flex: 1, flexDirection: 'row', marginBottom: 5, padding: 5 }}>
                                 <View style={{ flex: 3 }}>
                                 </View>
-                                <View style={{ flex: 1 }}><Text>Total : </Text></View>
-                                <View style={{ flex: 1 }}>{newInvoice && <Text>MYR {newInvoice.amount}</Text>}</View>
+                                <View style={{ flex: 1 }}><Text style={styles.titleBox}>Total : </Text></View>
+                                <View style={{ flex: 1 }}>{newInvoice && <Text style={styles.text}>MYR {newInvoice.amount}</Text>}</View>
                             </View>
                         </View>
                     </ScrollView>
                 </View>
                 <View style={{ flexDirection: 'row', alignSelf: 'stretch' }}>
                     <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1,paddingTop: 20, paddingBottom: 20, justifyContent: 'center', alignItems: 'center' }}>
-                        <LinearGradient colors={['#FFF', '#FFF']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                            <Text style={[styles.butang, { color: '#000000' }]}>Back</Text>
-                        </LinearGradient>
+                            <Text style={[styles.butang, { color: '#000000' }]}>Back</Text> 
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => submitInvoice()} style={{ flex: 1 }}>
                         <LinearGradient colors={['#0A6496', '#055E7C']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center',flexDirection: 'row' }}>
