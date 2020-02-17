@@ -79,17 +79,17 @@ const LoanCalculatorScreen = (props) => {
                                 <View style={styles.box}>
                                     <View style={[styles.formElement]}>
                                         <Text style={[styles.titleBox]}>Loan Amount</Text>
-                                        <TextInput value={loanAmount} onChangeText={FormikProps.handleChange('loanAmount')} onBlur={FormikProps.handleBlur('loanAmount')} style={{ borderWidth: 1, borderColor: loanAmountTouched && loanAmountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={loanAmountTouched && loanAmountError ? '' : '5000.00'} placeholderTextColor={loanAmountTouched && loanAmountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
+                                        <TextInput value={loanAmount} onChangeText={FormikProps.handleChange('loanAmount')} onBlur={FormikProps.handleBlur('loanAmount')} style={{ borderWidth: 1, borderColor: loanAmountTouched && loanAmountError ? 'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={loanAmountTouched && loanAmountError ? '' : '5000.00'} placeholderTextColor={loanAmountTouched && loanAmountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
                                         {loanAmountTouched && loanAmountError && <Text style={styles.error}>{loanAmountError}</Text>}
                                     </View>
                                     <View style={[styles.formElement]}>
                                         <Text style={[styles.titleBox]}>Interest Rate</Text>
-                                        <TextInput value={interestRate} onChangeText={FormikProps.handleChange('interestRate')} onBlur={FormikProps.handleBlur('interestRate')} style={{ borderWidth: 1, borderColor: interestRateTouched && interestRateError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={interestRateTouched && interestRateError ? '' : '3'} placeholderTextColor={interestRateTouched && interestRateError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
+                                        <TextInput value={interestRate} onChangeText={FormikProps.handleChange('interestRate')} onBlur={FormikProps.handleBlur('interestRate')} style={{ borderWidth: 1, borderColor: interestRateTouched && interestRateError ? 'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={interestRateTouched && interestRateError ? '' : '3'} placeholderTextColor={interestRateTouched && interestRateError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
                                         {interestRateTouched && interestRateError && <Text style={styles.error}>{interestRateError}</Text>}
                                     </View>
                                     <View style={[styles.formElement]}>
                                         <Text style={[styles.titleBox]}>Loan Term (Month)</Text>
-                                        <TextInput value={loanTerm} onChangeText={FormikProps.handleChange('loanTerm')} onBlur={FormikProps.handleBlur('loanTerm')} style={{ borderWidth: 1, borderColor: loanTermTouched && loanTermError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={loanTermTouched && loanTermError ? '' : '3'} placeholderTextColor={loanTermTouched && loanTermError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
+                                        <TextInput value={loanTerm} onChangeText={FormikProps.handleChange('loanTerm')} onBlur={FormikProps.handleBlur('loanTerm')} style={{ borderWidth: 1, borderColor: loanTermTouched && loanTermError ? 'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={loanTermTouched && loanTermError ? '' : '3'} placeholderTextColor={loanTermTouched && loanTermError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
                                         {loanTermTouched && loanTermError && <Text style={styles.error}>{loanTermError}</Text>}
                                     </View>
                                     <View style={{ flexDirection: 'row', margin: 5 }}>
@@ -104,7 +104,7 @@ const LoanCalculatorScreen = (props) => {
                                 <View style={styles.box}>
                                     <View style={[styles.formElement]}>
                                         <Text style={[styles.text]}>Mothly Repayment</Text>
-                                        <TextInput value={monthly} style={{ borderWidth: 1, borderColor: loanAmountTouched && loanAmountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={loanAmountTouched && loanAmountError ? '' : '5000.00'} placeholderTextColor={loanAmountTouched && loanAmountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
+                                        <TextInput value={monthly} style={{ borderWidth: 1, borderColor: loanAmountTouched && loanAmountError ? 'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={loanAmountTouched && loanAmountError ? '' : '5000.00'} placeholderTextColor={loanAmountTouched && loanAmountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
 
                                     </View>
                                 </View>
