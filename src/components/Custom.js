@@ -10,13 +10,13 @@ export const CustomTextInput = (props) => {
         !handleClick ?
             <View style={[styles.formElement, { marginBottom: 10 }]}>
                 <Text style={[styles.titleBox, { marginTop: 10, marginBottom: 10 }]}>{label}</Text>
-                <TextInput keyboardType={keyboardType} value={value} onChangeText={handleChange} onBlur={handleBlur} style={{ borderWidth: 1, borderColor: touched && error ? 'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={touched && error ? '' : placeholder} placeholderTextColor={touched && error ? 'rgba(255,0,0,1)' : 'lightgrey'} />
+                <TextInput keyboardType={keyboardType} value={value} onChangeText={handleChange} onBlur={handleBlur} style={{ borderWidth: 1, borderColor: touched && error ? 'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5,fontSize:15,fontFamily:'Montserrat_medium' }} placeholder={touched && error ? '' : placeholder} placeholderTextColor={touched && error ? 'rgba(255,0,0,1)' : 'lightgrey'} />
                 {touched && error && <Text style={styles.error}>{error}</Text>}
             </View> :
             <View style={[styles.formElement, { marginBottom: 10 }]}>
                 <TouchableOpacity onPress={handleClick}>
                     <Text style={[styles.titleBox, { marginTop: 10, marginBottom: 10 }]}>{label}</Text>
-                    <TextInput editable={false} value={value} onChangeText={handleChange} onBlur={handleBlur} style={{ borderWidth: 1, borderColor: touched && error ? 'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={touched && error ? '' : placeholder} placeholderTextColor={touched && error ? 'rgba(255,0,0,1)' : 'lightgrey'} />
+                    <TextInput editable={false} value={value} onChangeText={handleChange} onBlur={handleBlur} style={{ borderWidth: 1, borderColor: touched && error ? 'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5,fontSize:15,fontFamily:'Montserrat_medium' }} placeholder={touched && error ? '' : placeholder} placeholderTextColor={touched && error ? 'rgba(255,0,0,1)' : 'lightgrey'} />
                 </TouchableOpacity>
                 {touched && error && <Text style={styles.error}>{error}</Text>}
             </View>
