@@ -94,23 +94,23 @@ const SignupPersonalScreen = (props) => {
                             <View style={{ justifyContent: 'space-between', flex: 9 }}>
                             <ScrollView style={[styles.screenMargin, { flex: 3 }]}>
                                 <View style={[styles.formElement]}>
-                                    <Text style={[styles.titleBox, { marginTop: 20, marginBottom: 10, borderBottomColor: nameTouched && nameError ? '#d94498' : '#5a83c2' }]}>Name</Text>
+                                    <Text style={[styles.titleBox, { marginTop: 20, marginBottom: 10, borderBottomColor: nameTouched && nameError ? 'rgba(255,0,0,1)' : '#5a83c2' }]}>Name</Text>
                                     <TextInput value={name} onBlur={FormikProps.handleBlur('name')} onChangeText={FormikProps.handleChange('name')} placeholder={nameTouched && nameError ? '' : 'Eg: Ahmad bin Ali'} style={[styles.textInput,{ borderWidth: 1, borderColor:nameTouched && nameError ? 'rgba(255,0,0,1)': 'rgba(0,0,0,0.3)', padding: 5 }]} />
                                     {nameTouched && nameError && <Text style={styles.error}>{nameError}</Text>}
                                 </View>
                                 <View style={[styles.formElement]}>
-                                    <Text style={[styles.titleBox, { marginBottom: 10, borderBottomColor: emailTouched && emailError ? '#d94498' : '#5a83c2' }]}>Email</Text>
+                                    <Text style={[styles.titleBox, { marginBottom: 10, borderBottomColor: emailTouched && emailError ? 'rgba(255,0,0,1)' : '#5a83c2' }]}>Email</Text>
                                     <TextInput value={email} onBlur={FormikProps.handleBlur('email')} onChangeText={FormikProps.handleChange('email')} placeholder={emailTouched && emailError ? '' : 'Eg: abc@email.com'} style={[styles.textInput,{ borderWidth: 1, borderColor:emailTouched && emailError ?'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5 }]} keyboardType={'email-address'} />
                                     {emailTouched && emailError && <Text style={styles.error}>{emailError}</Text>}
                                     {message && <Text style={styles.error}>{message.email[0]}</Text>}
                                 </View>
                                 <View style={[styles.formElement]}>
-                                    <Text style={[styles.titleBox, { marginBottom: 10, borderBottomColor: passwordTouched && passwordError ? '#d94498' : '#5a83c2' }]}>Password</Text>
+                                    <Text style={[styles.titleBox, { marginBottom: 10, borderBottomColor: passwordTouched && passwordError ? 'rgba(255,0,0,1)' : '#5a83c2' }]}>Password</Text>
                                     <TextInput secureTextEntry value={password} onBlur={FormikProps.handleBlur('password')} placeholder={passwordTouched && passwordError ? '' : '******'} onChangeText={FormikProps.handleChange('password')} style={[styles.textInput,{ borderWidth: 1, borderColor:passwordTouched && passwordError ? 'rgba(255,0,0,1)': 'rgba(0,0,0,0.3)', padding: 5 }]} placeholderTextColor={passwordTouched && passwordError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                     {passwordTouched && passwordError && <Text style={styles.error}>{passwordError}</Text>}
                                 </View>
                                 <View style={[styles.formElement]}>
-                                    <Text style={[styles.titleBox, { marginBottom: 10, borderBottomColor: password_confirmationTouched && password_confirmationError ? '#d94498' : '#5a83c2' }]}>Password Confirmation</Text>
+                                    <Text style={[styles.titleBox, { marginBottom: 10, borderBottomColor: password_confirmationTouched && password_confirmationError ? 'rgba(255,0,0,1)' : '#5a83c2' }]}>Password Confirmation</Text>
                                     <TextInput secureTextEntry value={password_confirmation} onBlur={FormikProps.handleBlur('password_confirmation')} placeholder={password_confirmationTouched && password_confirmationError ? '' : '******'} onChangeText={FormikProps.handleChange('password_confirmation')} style={[styles.textInput,{ borderWidth: 1, borderColor:password_confirmationTouched && password_confirmationError ? 'rgba(255,0,0,1)': 'rgba(0,0,0,0.3)', padding: 5 }]} placeholderTextColor={password_confirmationTouched && password_confirmationError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                     {password_confirmationTouched && password_confirmationError && <Text style={styles.error}>{password_confirmationError}</Text>}
                                 </View>
