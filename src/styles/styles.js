@@ -187,4 +187,8 @@ export default StyleSheet.create({
   underlineStyleHighLighted: {
     borderColor: "#03DAC6",
   },
+
+  busHub:{
+    flex: 1, justifyContent: 'center', alignItems: 'center', borderRadius: 10, margin:10,marginTop:5,marginBottom:5,borderWidth:1,padding:20,borderColor: 'lightgrey',
+  }
 })
