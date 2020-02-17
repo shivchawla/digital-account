@@ -28,7 +28,7 @@ const BusinessHubScreen = (props) => {
                     <View style={{ flexDirection: 'row', flex: 1 }}>
                         <TouchableHighlight underlayColor={'rgba(51,153,255,0.3)'} onPress={() => props.navigation.navigate('BusinessDirectory')} style={styles.busHub}>
                             <>
-                                <Image source={require('../assets/images/businessdirectory.png')} style={{ width: 40, height: 40 }} resizeMode={'contain'} />
+                                <Image source={require('../assets/images/businessdirectory.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
                                 <Text style={[styles.label, { textAlign: 'center' }]}>Business Directory</Text>
                             </>
                         </TouchableHighlight>
