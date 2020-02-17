@@ -78,7 +78,7 @@ const ChangePasswordScreen = (props) => {
                                 <View style={[styles.formElement]}>
                                     <Text style={[styles.titleBox, { marginBottom: 5, borderColor: newPasswordTouched && newPasswordError ? 'rgba(255,0,0,1)' : '#5a83c2' }]}>New Password</Text>
                                     <TextInput secureTextEntry value={newPassword} onBlur={FormikProps.handleBlur('newPassword')} onChangeText={FormikProps.handleChange('newPassword')} placeholder={newPasswordError && newPasswordTouched ? '' : 'Please insert your new password'} style={[styles.textInput,{ borderWidth: 1, borderColor:newPasswordError && newPasswordTouched ? 'rgba(255,0,0,1)': 'rgba(0,0,0,0.3)', padding: 5 }]} />
-                                    {newPasswordError && newPasswordTouched ?<Text style={styles.error}>{newPasswordError}</Text>:<Text style={{fontSize:10.5,fontFamily:'Montserrat_medium',color:'lightgrey'}}>Password must be atleast 6 characters long</Text>}
+                                    {newPasswordError && newPasswordTouched ?<Text style={styles.error}>{newPasswordError}</Text>:!newPasswordTouched?<Text style={{fontSize:10.5,fontFamily:'Montserrat_medium',color:'lightgrey'}}>Password must be atleast 6 characters long</Text>:<View />}
                                 </View>
                                 <View style={[styles.formElement]}>
                                     <Text style={[styles.titleBox, { marginBottom: 5, borderColor: confirmPasswordTouched && confirmPasswordError ? 'rgba(255,0,0,1)' : '#5a83c2' }]}>Confirm Password</Text>
