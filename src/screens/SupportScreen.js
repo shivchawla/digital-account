@@ -196,12 +196,12 @@ const SupportScreen = (props) => {
                                     </View>
                                     <View style={styles.formElement}>
                                         <Text style={[styles.titleBox], { marginBottom: 10,fontSize:17 }}>Subject</Text>
-                                        <TextInput value={subject} onChangeText={FormikProps.handleChange('subject')} onBlur={FormikProps.handleBlur('subject')} style={[styles.textInput,{ borderWidth: 1, borderColor: subjectTouched && subjectError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={subjectTouched && subjectError ? '' : 'Subject'} placeholderTextColor={subjectTouched && subjectError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        <TextInput value={subject} onChangeText={FormikProps.handleChange('subject')} onBlur={FormikProps.handleBlur('subject')} style={[styles.textInput,{ borderWidth: 1, borderColor: subjectTouched && subjectError ? 'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={subjectTouched && subjectError ? '' : 'Subject'} placeholderTextColor={subjectTouched && subjectError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {subjectTouched && subjectError && <Text style={styles.error}>{subjectError}</Text>}
                                     </View>
                                     <View style={styles.formElement}>
                                         <Text style={[styles.titleBox], { marginBottom: 10,fontSize:17 }}>Description</Text>
-                                        <TextInput value={description} onChangeText={FormikProps.handleChange('description')} onBlur={FormikProps.handleBlur('description')} style={[styles.textInput,{ textAlignVertical: 'top', borderWidth: 1, borderColor: descriptionTouched && descriptionError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={descriptionTouched && descriptionError ? '' : 'Assign To'} placeholderTextColor={descriptionTouched && descriptionError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} multiline numberOfLines={5} />
+                                        <TextInput value={description} onChangeText={FormikProps.handleChange('description')} onBlur={FormikProps.handleBlur('description')} style={[styles.textInput,{ textAlignVertical: 'top', borderWidth: 1, borderColor: descriptionTouched && descriptionError ? 'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={descriptionTouched && descriptionError ? '' : 'Assign To'} placeholderTextColor={descriptionTouched && descriptionError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} multiline numberOfLines={5} />
                                         {descriptionTouched && descriptionError && <Text style={styles.error}>{descriptionError}</Text>}
                                     </View>
                                 </ScrollView>
