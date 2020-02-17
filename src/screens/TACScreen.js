@@ -30,8 +30,8 @@ const TACScreen = (props) => {
             </View>
             <View style={{ justifyContent: 'space-between', flex: 9 }}>
                 <View style={[styles.screenMargin, { flex: 5 }]}>
-                    <Text style={[styles.titleBox, { marginTop: 25, justifyContent: 'center', flexDirection: 'row' }]}>We have sent TAC to your new number.</Text>
-                    <View style={[styles.formElement, { justifyContent: 'center' }]}>
+                    <Text style={[styles.text, { marginTop: 25, justifyContent: 'center', flexDirection: 'row' }]}>We have sent TAC to your new number.</Text>
+                    <View style={[styles.formElement, { justifyContent: 'center',alignItems:'center' }]}>
                         <OTPInputView style={{ width: '80%', height: 100 }} pinCount={4} code={code} autoFocusOnLoad codeInputFieldStyle={styles.borderStyleBase} codeInputHighlightStyle={styles.borderStyleHighLighted}
                             //codeInputFieldStyle={styles.underlineStyleBase}
                             //codeInputHighlightStyle={styles.underlineStyleHighLighted}
@@ -52,7 +52,7 @@ const TACScreen = (props) => {
                         </TouchableOpacity>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                        <TouchableOpacity onPress={() => props.navigation.navigate('NumberSuccess')} style={{ paddingTop: 5, paddingBottom: 5, paddingLeft: 20, paddingRight: 20, backgroundColor: '#055E7C', borderRadius: 15 }}>
+                        <TouchableOpacity onPress={() => props.navigation.navigate('NumberSuccess')} style={{ paddingTop: 16, paddingBottom: 16, paddingLeft: 18, paddingRight: 18, backgroundColor: '#055E7C', borderRadius: 15 }}>
                             <Text style={[styles.textDefault, { color: 'white' }]}>Submit</Text>
                         </TouchableOpacity>
                     </View>
