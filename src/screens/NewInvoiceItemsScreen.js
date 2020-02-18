@@ -146,8 +146,8 @@ const NewInvoiceItemsScreen = (props) => {
                                                 </View>
                                                 <View style={[styles.formElement]}>
                                                     <Text style={[styles.titleBox, { marginBottom: 10 }]}>Price</Text>
-                                                    <View style={{ flexDirection: 'row', alignSelf: 'stretch', }}>
-                                                        <Text style={{ flex: 1 }}>{currencyItem}</Text>
+                                                    <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent:'center',alignItems:'center' }}>
+                                                        <Text style={{ flex: 1,textAlignVertical:'center' }}>{currencyItem}</Text>
                                                         <TextInput value={priceItem} onChangeText={FormikProps.handleChange('priceItem')} onBlur={FormikProps.handleBlur('priceItem')} style={[styles.textInput,{ alignSelf: 'stretch', flex: 8, borderWidth: 1, borderColor: priceItemTouched && priceItemError ? 'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={priceItemTouched && priceItemError ? '' : ''} placeholderTextColor={priceItemTouched && priceItemError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
                                                     </View>
                                                     {priceItemTouched && priceItemError && <Text style={styles.error}>{priceItemError}</Text>}
