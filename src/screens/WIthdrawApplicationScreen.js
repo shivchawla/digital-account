@@ -10,7 +10,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import CodePin from 'react-native-pin-code'
 import Layout from '../constants/Layout';
-
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import ScanFinger from '../components/ScanFinger'
 import { checkCodeApi } from '../store/actions/common';
 
@@ -120,7 +120,7 @@ const WIthdrawApplicationScreen = (props) => {
                 }
 
                 return (
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }} keyboardVerticalOffset={20}>
+                    <KeyboardAvoidingView behavior={'padding'} enabled style={{ flex: 1, }} keyboardVerticalOffset={20}>
                         <Modal transparent={true} animationType={'slide'} visible={authRequestVisible} onRequestClose={() => setAuthRequestVisible(!authRequestVisible)} >
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(1,1,1,0.5)' }}>
                                 <View style={{ flex: 3 }} />

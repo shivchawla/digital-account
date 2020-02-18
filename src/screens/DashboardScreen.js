@@ -259,9 +259,9 @@ const DashboardScreen = (props) => {
               </TouchableOpacity>
             </View>
             <View style={{ flex: 1, height: Layout.window.height > 570 ? Layout.window.height / 3.3 : Layout.window.height / 2.8, alignSelf: 'stretch', flexDirection: 'row', justifyContent: 'space-around', borderRadius: 10 }}>
-        
+
               {reportList && <ChartKit data={getData()} dataPointClicked={dataPointClicked} />}
- 
+
             </View>
           </LinearGradient>
         </View>
@@ -273,7 +273,7 @@ const DashboardScreen = (props) => {
               <Ionicons name="ios-arrow-forward" color={'#04A2BD'} style={{ fontSize: 15, paddingRight: 5 }} />
             </View>
           </TouchableOpacity>
-          <ScrollView >
+          <View >
             {reportList && <FlatList data={reportList.filter(rl => !rl.type.includes('Fee')).slice(0, 5)} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
               <View style={[, { flexDirection: 'row', marginTop: 5, justifyContent: 'space-between', borderBottomWidth: 1, borderColor: 'rgba(62,194,217,0.2)', paddingBottom: 5, }]}>
                 <View style={{ flexDirection: 'row', }}>
@@ -289,9 +289,9 @@ const DashboardScreen = (props) => {
                 </View>
               </View>
             } />}
-          </ScrollView>
+          </View>
         </View>
-      
+
       </LayoutA>
     </View>
 

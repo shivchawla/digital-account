@@ -8,6 +8,7 @@ import styles from '../styles/styles'
 import LayoutA from '../Layout/LayoutA';
 import { CustomButton } from '../components/Custom'
 
+
 const wait = (timeout) => {
     return new Promise(resolve => {
         setTimeout(resolve, timeout);
@@ -101,7 +102,6 @@ const WithdrawScreen = (props) => {
                     } />}
             </View>
         </LayoutA>
-
     );
 }
 
