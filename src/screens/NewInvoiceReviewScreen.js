@@ -126,8 +126,8 @@ const NewInvoiceReviewScreen = (props) => {
                             <View style={{ flex: 1, flexDirection: 'row', marginBottom: 5, padding: 5 }}>
                                 <View style={{ flex: 3 }}>
                                 </View>
-                                <View style={{ flex: 1 }}><Text style={styles.titleBox}>Total : </Text></View>
-                                <View style={{ flex: 1 }}>{newInvoice && <Text style={styles.text}>MYR {newInvoice.amount}</Text>}</View>
+                                <View style={{ flex: 1,marginTop:4 }}><Text style={styles.titleBox}>Total : </Text></View>
+                                <View style={{ flex: 2 }}>{newInvoice && <Text style={[styles.text,{fontSize:20,color:'#399cbd',fontFamily: 'Montserrat_bold'}]}>MYR {newInvoice.amount}</Text>}</View>
                             </View>
                         </View>
                     </ScrollView>

@@ -89,19 +89,24 @@ const LoanMiniDetailScreen = (props) => {
                                 </View>}
 
                             <View style={{ marginTop: 20 }}>
-                                <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row', justifyContent: 'flex-end' }}>
-                                    <View style={{ alignItems: 'flex-end', marginTop: 20 }} >
-                                        <TouchableOpacity onPress={() => props.navigation.navigate('LoanDetail')} style={{ marginTop: 10, paddingLeft: 20, paddingRight: 20, paddingTop: 5, paddingBottom: 5, borderRadius: 20, borderWidth: 1 }}>
-                                            <Text style={styles.small}>See application</Text>
+                                <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row' }}>
+                                    <View style={{ flex: 3, justifyContent: 'center', alignItems: 'flex-start'}}>
+                                        <TouchableOpacity onPress={() => props.navigation.navigate('LoanDetail')} style={{ marginTop: 10, paddingLeft: 14, paddingRight: 14, paddingTop: 12, paddingBottom: 12, borderRadius: 20, borderWidth: 1 }}>
+                                            <Text style={[styles.small,{fontSize:10}]}>See application</Text>
                                         </TouchableOpacity>
-                                        {loanData.status !== 'New' ?repaymentList && repaymentList.find(x => x.application_id == loanData.id) && <TouchableOpacity onPress={() => repayInfo()} style={{ marginTop: 10, paddingLeft: 20, paddingRight: 20, paddingTop: 5, paddingBottom: 5, borderRadius: 20, borderWidth: 1 }}>
-                                            <Text style={styles.small}>Repayment info </Text>
-                                        </TouchableOpacity>:<View />}
-                                        {loanData.status === 'Disbursed' ? repaymentList && repaymentList.find(x => x.application_id == loanData.id) && <TouchableOpacity onPress={() => billList()} style={{ marginTop: 10, paddingLeft: 20, paddingRight: 20, paddingTop: 5, paddingBottom: 5, borderRadius: 20, backgroundColor: '#34C2DB' }}>
-                                            <Text style={[styles.small, { color: '#fff' }]}>Bill</Text>
-                                        </TouchableOpacity> : <View />}
-
                                     </View>
+                                    <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center', }}>
+                                        {loanData.status !== 'New' ? repaymentList && repaymentList.find(x => x.application_id == loanData.id) && <TouchableOpacity onPress={() => repayInfo()} style={{ marginTop: 10, paddingLeft: 14, paddingRight: 14, paddingTop: 12, paddingBottom: 12, borderRadius: 20, borderWidth: 1 }}>
+                                            <Text style={[styles.small,{fontSize:10}]}>Repayment info </Text>
+                                        </TouchableOpacity> : <View />}
+                                    </View>
+                                    <View style={{ flex: 2, justifyContent: 'center', alignItems: 'flex-end', marginLeft: 10 }}>
+                                        {loanData.status === 'Disbursed' ? repaymentList && repaymentList.find(x => x.application_id == loanData.id) && <TouchableOpacity onPress={() => billList()} style={{ marginTop: 10, paddingLeft: 15, paddingRight: 15, paddingTop:12, paddingBottom: 12, borderRadius: 20, backgroundColor: '#34C2DB' }}>
+                                            <Text style={[styles.small, { color: '#fff',fontSize:10 }]}>Bill</Text>
+                                        </TouchableOpacity> : <View />}
+                                    </View>
+
+
                                 </View>
                             </View>
                         </View>}
