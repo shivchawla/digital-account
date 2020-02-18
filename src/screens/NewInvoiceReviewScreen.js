@@ -126,8 +126,8 @@ const NewInvoiceReviewScreen = (props) => {
                             <View style={{ flex: 1, flexDirection: 'row', marginBottom: 5, padding: 5 }}>
                                 <View style={{ flex: 3 }}>
                                 </View>
-                                <View style={{ flex: 1 }}><Text>Total : </Text></View>
-                                <View style={{ flex: 1 }}>{newInvoice && <Text>MYR {newInvoice.amount}</Text>}</View>
+                                <View style={{ flex: 1 }}><Text style={styles.titleBox}>Total : </Text></View>
+                                <View style={{ flex: 1 }}>{newInvoice && <Text style={styles.text}>MYR {newInvoice.amount}</Text>}</View>
                             </View>
                         </View>
                     </ScrollView>
