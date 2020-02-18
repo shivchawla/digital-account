@@ -12,7 +12,7 @@ const VendorDetailScreen = (props) => {
     //const setvendorData = (val) => dispatch({ type: 'SET_WITHDRAW_DATA', payload: { ...val } });
 
     useEffect(() => {
-        const id = props.navigation.getParam('id', 'NO-ID')
+        const id = props.route.params?.id??'NA'
 
         dispatch(actionCreator.getVendorData(id))
     }, [vendorData])

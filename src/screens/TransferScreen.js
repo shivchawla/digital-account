@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, TouchableOpacity, Text, KeyboardAvoidingView, FlatList, ScrollView, Platform, Modal, TextInput } from 'react-native';
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
-
+import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -11,7 +11,7 @@ import moment from 'moment'
 import CodePin from 'react-native-pin-code'
 import Layout from '../constants/Layout';
 
-import { CustomFormAction,CustomTextInput } from '../components/Custom'
+import { CustomFormAction, CustomTextInput } from '../components/Custom'
 
 // let Modal;
 
@@ -119,6 +119,7 @@ const TransferScreen = (props) => {
                             title={'TRANSFER'}
                             screenType='form'
                             navigation={props.navigation}
+                            nopadding
                         >
                             <View style={styles.screenMargin}>
                                 <CustomTextInput
@@ -156,11 +157,11 @@ const TransferScreen = (props) => {
                                 />
                             </View>
                             <CustomFormAction
-                             navigation={props.navigation} 
-                             isValid={FormikProps.isValid} 
-                             handleSubmit={FormikProps.handleSubmit} 
-                             authEnabled={authEnabled} 
-                             locked={locked}
+                                navigation={props.navigation}
+                                isValid={FormikProps.isValid}
+                                handleSubmit={FormikProps.handleSubmit}
+                                authEnabled={authEnabled}
+                                locked={locked}
                             />
 
                             {/* <View style={{ flexDirection: 'row', alignSelf: 'stretch' }}>
@@ -203,7 +204,7 @@ const Popup = (props) => {
     const updateCode = props.updateCode
     const authRequestVisible = props.authRequestVisible
     const setAuthRequestVisible = props.setAuthRequestVisible
-    const setuserListView=props.setuserListView
+    const setuserListView = props.setuserListView
     return (<>
         <Modal transparent={true} animationType={'slide'} visible={authRequestVisible} onRequestClose={() => setAuthRequestVisible(!authRequestVisible)} >
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(1,1,1,0.5)' }}>

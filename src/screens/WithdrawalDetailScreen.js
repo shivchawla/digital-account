@@ -9,7 +9,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 const WithdrawalDetailScreen = (props) => {
 
     useEffect(() => {
-        const id = props.navigation.getParam('id', 'NO-ID')
+        const id = props.route.params?.id??'NA'
 
         dispatch(actionCreator.getWithdrawData(id))
     }, [withdrawData])
