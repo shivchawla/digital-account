@@ -9,7 +9,7 @@ import _ from 'lodash'
 
 const LoanBillListScreen = (props) => {
     useEffect(() => {
-        const loanNo = props.navigation.getParam('loanNo', 'NO-ID')
+        const loanNo = props.route.params?.loanNo??'NA'
         console.log(`ini loan no : ${loanNo}`)
         dispatch(actionCreator.getLoanBillList(loanNo))
         //dispatch(actionCreator.getRepaymentList())

@@ -13,7 +13,7 @@ const LoanBillDetailScreen = (props) => {
     const setbillDetail = (val) => dispatch({ type: 'SET_LOAN_DATA', payload: { ...val } });
 
     useEffect(() => {
-        const id = props.navigation.getParam('id', 'NO-ID')
+        const id = props.route.params?.id??'NA'
         dispatch(actionCreator.getBillDetail(id))
     }, [billDetail])
 

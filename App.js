@@ -5,16 +5,32 @@ import * as Font from 'expo-font';
 import Constants from 'expo-constants'
 import * as SecureStore from 'expo-secure-store'
 import React, { useState, useEffect } from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import { Platform, StatusBar, StyleSheet, View, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { LoggedInContainer, AuthenticationContainer } from './src/navigation/AppNavigator';
+
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import rootReducer from './src/store/reducers/Reducer';
 
+
+///// All Below for Navigation
+import { enableScreens } from 'react-native-screens';
+
+
+
+
+enableScreens();
+
+
+
+
+///////End For Navigation
+
 //import * as actionCreator from '../store/actions/action'
 import * as actionCreator from './src/store/actions/action'
+import Nav from './src/navigation/Nav';
+
 const store = createStore(rootReducer, applyMiddleware(thunk))
 const App = (props) => {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
@@ -48,26 +64,19 @@ const App = (props) => {
   }
 
   const registerForPushNotificationsAsync = async () => {
-    console.log(`nak minta permission`)
     const { status: existingStatus } = await Permissions.getAsync(
       Permissions.NOTIFICATIONS
     );
-    const test =   await Permissions.getAsync(
-      Permissions.NOTIFICATIONS
-    );
-    console.log(`dari permission : ${JSON.stringify(test)}`)
     let finalStatus = existingStatus;
     if (existingStatus !== 'granted') {
       const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
       finalStatus = status;
-      console.log(`permission for notification granted`)
     }
     if (finalStatus !== 'granted') {
-      console.log(`permission for notification NOT granted`)
       return;
     }
     let token = await Notifications.getExpoPushTokenAsync();
-    console.log(`expo token ialah ${token}`)
+    //console.log(`expo token ialah ${token}`)
     store.dispatch({ type: 'SET_REGISTER', payload: { expo_token: token } })
     console.log(JSON.stringify({
       token: { value: token, }, user: { username: 'Username', },
@@ -91,13 +100,13 @@ const App = (props) => {
   };
 
 
-  useEffect(() => {
-    //checkUpdate()
-    registerForPushNotificationsAsync();
-    _notificationSubscription = Notifications.addListener(_handleNotification);
-    checkLogin()
+  // useEffect(() => {
+  //   //checkUpdate()
+  //   //registerForPushNotificationsAsync();
+  //   const _notificationSubscription = Notifications.addListener(_handleNotification);
+  //   checkLogin()
 
-  }, [])
+  // }, [])
 
   if (!isLoadingComplete && !props.skipLoadingScreen) {
     return (
@@ -110,15 +119,17 @@ const App = (props) => {
   } else {
     return (<Provider store={store}>
       <View style={styles.container}>
-        <StatusBar barStyle="default" />
-
-        {tokenExists ? <LoggedInContainer /> : <AuthenticationContainer />}
-
+        <Nav />
       </View>
     </Provider>
     )
   }
+
 }
+
+
+
+
 
 const loadResourcesAsync = async () => {
   await Promise.all([
@@ -232,7 +243,6 @@ const loadResourcesAsync = async () => {
       'Montserrat_thin': require('./src/assets/fonts/Montserrat/Montserrat-Thin.ttf'),
       'Montserrat_bold': require('./src/assets/fonts/Montserrat/Montserrat-Bold.ttf'),
       'Roboto_medium': require('./src/assets/fonts/Roboto/Roboto-Regular.ttf'),
-      'Montserrat_italic': require('./src/assets/fonts/Montserrat/Montserrat-Italic.ttf'),
     }),
   ]);
 }

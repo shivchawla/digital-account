@@ -8,7 +8,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 const ItemDetailScreen = (props) => {
     useEffect(() => {
-        const id = props.navigation.getParam('id', 'NO-ID')
+        const id = props.route.params?.id??'NA'
 
         dispatch(actionCreator.getItemData(id))
     }, [itemData])

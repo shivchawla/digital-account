@@ -42,7 +42,7 @@ const WelcomeScreen = (props) => {
     return (
 
         <Formik initialValues={{ email: '', password: '' }} onSubmit={async (values, actions) => {
-            const prev = props.navigation.getParam('test', 'takde param')
+            const prev = props.route.params?.test??'NA'
             console.log(`jalankan login : ${prev}`)
             const cacing = await login(values)
             console.log(`proceed ialah ${JSON.stringify(proceed)}`);
