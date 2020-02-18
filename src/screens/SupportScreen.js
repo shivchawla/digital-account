@@ -153,12 +153,12 @@ const SupportScreen = (props) => {
                             <View style={{ flex: 9 }}>
                                 <ScrollView style={styles.screenMargin}>
                                     <View style={styles.formElement}>
-                                        <Text style={[styles.titleBox], { marginBottom: 10, marginTop: 20,fontSize:17 }}>Tag</Text>
-                                        <TextInput disable={true} value={tag} style={[styles.textInput,{ borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }]} />
+                                        <Text style={[styles.titleBox], { marginBottom: 10, marginTop: 20, fontSize: 17 }}>Tag</Text>
+                                        <TextInput disable={true} value={tag} style={[styles.textInput, { borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }]} />
                                         {/* {subjectTouched && subjectError && <Text style={styles.error}>{subjectError}</Text>} */}
                                     </View>
                                     <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
-                                        <Text style={[styles.titleBox], { marginBottom: 10,fontSize:17 }}>Type</Text>
+                                        <Text style={[styles.titleBox], { marginBottom: 10, fontSize: 17 }}>Type</Text>
                                         {ios ? <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
                                             <TouchableOpacity style={{ justifyContent: 'center', margin: 5 }} onPress={() => handleIosPicker('type')}>
                                                 <Text style={[styles.titleBox]}>{type ? type : `Select Type`}</Text>
@@ -177,7 +177,7 @@ const SupportScreen = (props) => {
                                             </View>}
                                     </View>
                                     <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
-                                        <Text style={[styles.titleBox], { marginBottom: 10,fontSize:17 }}>Priority</Text>
+                                        <Text style={[styles.titleBox], { marginBottom: 10, fontSize: 17 }}>Priority</Text>
                                         {ios ? <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
                                             <TouchableOpacity style={{ justifyContent: 'center', margin: 5 }} onPress={() => handleIosPicker('priority')}>
                                                 <Text style={[styles.titleBox]}>{priority ? priority : `Select Priority`}</Text>
@@ -195,13 +195,13 @@ const SupportScreen = (props) => {
                                             </View>}
                                     </View>
                                     <View style={styles.formElement}>
-                                        <Text style={[styles.titleBox], { marginBottom: 10,fontSize:17 }}>Subject</Text>
-                                        <TextInput value={subject} onChangeText={FormikProps.handleChange('subject')} onBlur={FormikProps.handleBlur('subject')} style={[styles.textInput,{ borderWidth: 1, borderColor: subjectTouched && subjectError ? 'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={subjectTouched && subjectError ? '' : 'Subject'} placeholderTextColor={subjectTouched && subjectError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        <Text style={[styles.titleBox], { marginBottom: 10, fontSize: 17 }}>Subject</Text>
+                                        <TextInput value={subject} onChangeText={FormikProps.handleChange('subject')} onBlur={FormikProps.handleBlur('subject')} style={[styles.textInput, { borderWidth: 1, borderColor: subjectTouched && subjectError ? 'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={subjectTouched && subjectError ? '' : 'Subject'} placeholderTextColor={subjectTouched && subjectError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {subjectTouched && subjectError && <Text style={styles.error}>{subjectError}</Text>}
                                     </View>
                                     <View style={styles.formElement}>
-                                        <Text style={[styles.titleBox], { marginBottom: 10,fontSize:17 }}>Description</Text>
-                                        <TextInput value={description} onChangeText={FormikProps.handleChange('description')} onBlur={FormikProps.handleBlur('description')} style={[styles.textInput,{ textAlignVertical: 'top', borderWidth: 1, borderColor: descriptionTouched && descriptionError ? 'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={descriptionTouched && descriptionError ? '' : 'Assign To'} placeholderTextColor={descriptionTouched && descriptionError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} multiline numberOfLines={5} />
+                                        <Text style={[styles.titleBox], { marginBottom: 10, fontSize: 17 }}>Description</Text>
+                                        <TextInput value={description} onChangeText={FormikProps.handleChange('description')} onBlur={FormikProps.handleBlur('description')} style={[styles.textInput, { textAlignVertical: 'top', borderWidth: 1, borderColor: descriptionTouched && descriptionError ? 'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={descriptionTouched && descriptionError ? '' : 'Assign To'} placeholderTextColor={descriptionTouched && descriptionError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} multiline numberOfLines={5} />
                                         {descriptionTouched && descriptionError && <Text style={styles.error}>{descriptionError}</Text>}
                                     </View>
                                 </ScrollView>

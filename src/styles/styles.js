@@ -126,6 +126,12 @@ export default StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20,
   },
+  noPadding:{
+    paddingTop:0,
+    paddingBottom:0,
+    paddingLeft: 0, 
+    paddingRight: 0 
+  },
 
   formElement: {
     marginBottom: 20

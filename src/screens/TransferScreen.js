@@ -105,6 +105,7 @@ const TransferScreen = (props) => {
                             setUser={setUser}
                             userList={userList}
                             userListView={userListView}
+                            setuserListView={setuserListView}
                             authEnabled={authEnabled}
                             authType={authType}
                             locked={locked}
@@ -202,6 +203,7 @@ const Popup = (props) => {
     const updateCode = props.updateCode
     const authRequestVisible = props.authRequestVisible
     const setAuthRequestVisible = props.setAuthRequestVisible
+    const setuserListView=props.setuserListView
     return (<>
         <Modal transparent={true} animationType={'slide'} visible={authRequestVisible} onRequestClose={() => setAuthRequestVisible(!authRequestVisible)} >
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(1,1,1,0.5)' }}>

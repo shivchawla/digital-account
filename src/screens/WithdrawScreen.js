@@ -54,15 +54,12 @@ const WithdrawScreen = (props) => {
     }
 
     return (
-        <LayoutA title={'WITHDRAWAL'} navigation={props.navigation}>
-            <View style={{ marginTop: 10, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end', paddingRight: 10 }}>
-                {/* <TouchableOpacity onPress={() => props.navigation.navigate('WithdrawalApplication')} style={{ paddingTop: 16, paddingBottom: 16, paddingLeft: 18, paddingRight: 18, backgroundColor: '#055E7C', borderRadius: 15 }}>
-                    <Text style={[styles.text, { color: '#fff', fontSize: 15 }]}>New Withdrawal</Text>
-                </TouchableOpacity> */}
-                <CustomButton navigation={()=>props.navigation.navigate('WithdrawalApplication')} label={'New Withdrawal'}  />
+        <LayoutA title={'WITHDRAWAL'} navigation={props.navigation} nopadding>
+            <View style={{ marginTop: 10, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end', paddingLeft: 20, paddingRight: 30 }}>
+                <CustomButton navigation={() => props.navigation.navigate('WithdrawalApplication')} label={'New Withdrawal'} />
             </View>
-            <View style={{ marginTop: 20 }}>
-                <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 10 }}>
+            <View style={{ marginTop: 20}}>
+                <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingLeft: 20, paddingRight: 30  }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 10, flex: 1, borderWidth: 1, borderColor: 'lightgrey', padding: 10, borderRadius: 10 }}>
                         <View>
                             <Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
@@ -73,11 +70,11 @@ const WithdrawScreen = (props) => {
                         </TouchableOpacity>
                     </View>
                 </View>
-                {withdrawList && <FlatList
+                {withdrawList && <FlatList contentContainerStyle={{ paddingLeft: 20, paddingRight: 20 }}
                     refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
                     onEndReached={val => console.log(`onEndReached ialah : ${JSON.stringify(val)}`)}
                     data={filterEnabled ? filteredWithdrawList : onScreenFilter ? onScreenFilteredList : withdrawList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
-                        <TouchableOpacity onPress={() => props.navigation.navigate('WithdrawalDetail', { id: item.id })} style={styles.box}>
+                        <TouchableOpacity onPress={() => props.navigation.navigate('WithdrawalDetail', { id: item.id })} style={[styles.box]}>
                             <View style={{ flexDirection: 'row', marginTop: 5 }}>
                                 <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
                                     <Text style={styles.small}>{moment(item.created_at).format("MMMM Do YYYY, h:mm:ss a")}</Text>

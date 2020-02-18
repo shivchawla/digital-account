@@ -5,6 +5,7 @@ import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons';
 import moment from 'moment'
 import styles from '../styles/styles'
+import LayoutA from '../Layout/LayoutA';
 
 const InvoiceScreen = (props) => {
     useEffect(() => {
@@ -35,100 +36,82 @@ const InvoiceScreen = (props) => {
 
     return (
 
-        <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }}>
-            <View style={[{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
-                    <TouchableOpacity onPress={() => props.navigation.navigate('Dashboard')} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                        <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 20 }} />
-                    </TouchableOpacity>
-                </View>
-                <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={[styles.title]}>INVOICE</Text>
-                </View>
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
-                    <View style={{ backgroundColor: 'rgba(62,194,217,0.5)', borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
-                        <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
-                    </View>
-                </View>
+        <LayoutA title={'INVOICE'} navigation={props.navigation}>
+            <View style={{ marginTop: 25, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end' }}>
+                <TouchableOpacity onPress={() => props.navigation.navigate('NewInvoice')} style={{ paddingTop: 17, paddingBottom: 17, paddingLeft: 19, paddingRight: 19, backgroundColor: '#34C2DB', borderRadius: 15 }}>
+                    <Text style={[styles.text, { color: '#fff' }]}>New Invoice</Text>
+                </TouchableOpacity>
             </View>
-            <View style={{ flex: 9 }}>
-                <ScrollView style={[styles.screenMargin]}>
-                    <View style={{ marginTop: 25, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end' }}>
-                        <TouchableOpacity onPress={() => props.navigation.navigate('NewInvoice')} style={{ paddingTop: 17, paddingBottom: 17, paddingLeft: 19, paddingRight: 19, backgroundColor: '#34C2DB', borderRadius: 15 }}>
-                            <Text style={[styles.text, { color: '#fff' }]}>New Invoice</Text>
+            <View style={{ marginTop: 20 }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 10 }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 10, flex: 1, borderWidth: 1, borderColor: 'lightgrey', padding: 10, borderRadius: 10 }}>
+                        <View>
+                            <Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
+                        </View>
+                        <TextInput placeholder='Please Enter Keyword' style={[styles.searchBar, { flex: 4 }]} onChangeText={(val) => searchList(val)} />
+                        <TouchableOpacity onPress={props.navigation.openDrawer} >
+                            <Ionicons name="ios-options" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
                         </TouchableOpacity>
                     </View>
-                    <View style={{ marginTop: 20 }}>
-                        <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 10 }}>
-                            <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 10, flex: 1, borderWidth: 1, borderColor: 'lightgrey', padding: 10, borderRadius: 10 }}>
-                                <View>
-                                    <Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
-                                </View>
-                                 <TextInput placeholder='Please Enter Keyword' style={[styles.searchBar, { flex: 4 }]}  onChangeText={(val) => searchList(val)} />
-                                <TouchableOpacity onPress={props.navigation.openDrawer} >
-                                    <Ionicons name="ios-options" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
-                                </TouchableOpacity>
+                </View>
+                {invoiceList && <FlatList data={filterEnabled ? filterInvoicesList : onScreenFilter ? onScreenFilteredList : invoiceList} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
+                    <View style={styles.box}>
+                        <TouchableWithoutFeedback onPress={() => dispatch(actionCreator.setMarker(index))} style={{ flexDirection: 'row', marginTop: 5 }}>
+                            <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
+                                <Text style={styles.small}>{moment(item.invoice_date).format('MMMM Do YYYY')}</Text>
+                                <Ionicons name={item.marker ? "md-arrow-dropdown" : "md-arrow-dropright"} color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
+                            </View>
+                        </TouchableWithoutFeedback>
+                        <View style={{ flexDirection: 'row', marginTop: 5, borderBottomWidth: item.marker ? 1 : 0, borderBottomColor: 'lightgrey', paddingBottom: 10 }}>
+                            <View style={{ flex: 1, paddingBottom: 5 }}>
+                                <Text style={styles.text}>{item.invoice_number}</Text>
                             </View>
                         </View>
-                        {invoiceList && <FlatList data={filterEnabled ? filterInvoicesList : onScreenFilter ? onScreenFilteredList : invoiceList} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
-                            <View style={styles.box}>
-                                <TouchableWithoutFeedback onPress={() => dispatch(actionCreator.setMarker(index))} style={{ flexDirection: 'row', marginTop: 5 }}>
-                                    <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
-                                        <Text style={styles.small}>{moment(item.invoice_date).format('MMMM Do YYYY')}</Text>
-                                        <Ionicons name={item.marker ? "md-arrow-dropdown" : "md-arrow-dropright"} color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
-                                    </View>
-                                </TouchableWithoutFeedback>
-                                <View style={{ flexDirection: 'row', marginTop: 5, borderBottomWidth: item.marker ? 1 : 0, borderBottomColor: 'lightgrey',paddingBottom:10 }}>
-                                    <View style={{ flex: 1, paddingBottom: 5 }}>
-                                        <Text style={styles.text}>{item.invoice_number}</Text>
-                                    </View>
-                                </View>
-                                {!item.marker && <View style={{ flexDirection: 'row', marginTop: 5, }}>
-                                    <View style={{ flex: 1 }}>
-                                        <Text style={styles.small}>Currency</Text>
-                                        <Text style={styles.text}>{item.currency_code}</Text>
-                                    </View>
-                                    <View style={{ flex: 1 }}>
-                                        <Text style={styles.small}>Amount</Text>
-                                        <Text style={styles.text}>{item.amount}</Text>
-                                    </View>
-                                </View>}
-                                {item.marker && <View style={{ flex: 1 }}>
-                                    <View style={{ flexDirection: 'row', marginTop: 20 }}>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={styles.small}>Name</Text>
-                                            <Text style={styles.text}>{item.customer_name}</Text>
-                                        </View>
-                                    </View>
-                                    <View style={{ flexDirection: 'row', marginTop: 20 }}>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={styles.small}>Currency</Text>
-                                            <Text style={styles.text}>{item.currency_code}</Text>
-                                        </View>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={styles.small}>Amount</Text>
-                                            <Text style={styles.text}>{item.amount}</Text>
-                                        </View>
-                                    </View>
-                                    <View style={{ flexDirection: 'row', marginTop: 20 }}>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={styles.small}>Phone Number</Text>
-                                            <Text style={styles.text}>{item.customer_phone}</Text>
-                                        </View>
-                                    </View>
-                                    <View style={{ flexDirection: 'row', marginTop: 20 }}>
-                                        <View style={{ flex: 1 }}>
-                                            <Text style={styles.small}>Email</Text>
-                                            <Text style={styles.text}>{item.customer_email}</Text>
-                                        </View>
-                                    </View>
-                                </View>}
+                        {!item.marker && <View style={{ flexDirection: 'row', marginTop: 5, }}>
+                            <View style={{ flex: 1 }}>
+                                <Text style={styles.small}>Currency</Text>
+                                <Text style={styles.text}>{item.currency_code}</Text>
                             </View>
-                        } />}
+                            <View style={{ flex: 1 }}>
+                                <Text style={styles.small}>Amount</Text>
+                                <Text style={styles.text}>{item.amount}</Text>
+                            </View>
+                        </View>}
+                        {item.marker && <View style={{ flex: 1 }}>
+                            <View style={{ flexDirection: 'row', marginTop: 20 }}>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={styles.small}>Name</Text>
+                                    <Text style={styles.text}>{item.customer_name}</Text>
+                                </View>
+                            </View>
+                            <View style={{ flexDirection: 'row', marginTop: 20 }}>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={styles.small}>Currency</Text>
+                                    <Text style={styles.text}>{item.currency_code}</Text>
+                                </View>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={styles.small}>Amount</Text>
+                                    <Text style={styles.text}>{item.amount}</Text>
+                                </View>
+                            </View>
+                            <View style={{ flexDirection: 'row', marginTop: 20 }}>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={styles.small}>Phone Number</Text>
+                                    <Text style={styles.text}>{item.customer_phone}</Text>
+                                </View>
+                            </View>
+                            <View style={{ flexDirection: 'row', marginTop: 20 }}>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={styles.small}>Email</Text>
+                                    <Text style={styles.text}>{item.customer_email}</Text>
+                                </View>
+                            </View>
+                        </View>}
                     </View>
-                </ScrollView>
-            </View >
-        </KeyboardAvoidingView>
+                } />}
+            </View>
+
+        </LayoutA >
     );
 }
 
