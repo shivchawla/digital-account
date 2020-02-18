@@ -59,6 +59,8 @@ const ItemScreen = (props) => {
                                         <Ionicons name="md-arrow-dropright" color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
                                     </View>
                                 </View>
+                                <View><TouchableOpacity onPress={() => dispatch(actionCreator.deleteItem(item.id))}><Text>Delete</Text></TouchableOpacity></View>
+
                                 <View style={{ flexDirection: 'row', alignContent: 'stretch', marginTop: 20 }}>
                                     <View style={{ flex: 2.7 }}>
                                         <Text style={styles.small}>Name</Text>

@@ -1403,6 +1403,35 @@ export const deleteVendorApi = (id) => {
   }
 }
 
+export const deleteItemApi = (id) => {
+  return async (dispatch, getState) => {
+
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    fetch(`${apiUrl}api/item/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const itemData = responseJson.data
+        console.log('Success vendor data' + JSON.stringify(responseJson))
+        dispatch({ type: 'SET_ITEM_LIST', payload: { itemData } })
+
+      })
+      .catch((error) => {
+        console.log('Error initiating customer data info : ' + error);
+      });
+
+  }
+}
+
+
 export const customerDataApi = (values) => {
   return async (dispatch, getState) => {
     const personalToken = await SecureStore.getItemAsync('personalToken')
