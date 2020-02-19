@@ -102,7 +102,7 @@ const SignupPersonalScreen = (props) => {
                                     <Text style={[styles.titleBox, { marginBottom: 10, borderBottomColor: emailTouched && emailError ? 'rgba(255,0,0,1)' : '#5a83c2' }]}>Email</Text>
                                     <TextInput value={email} onBlur={FormikProps.handleBlur('email')} onChangeText={FormikProps.handleChange('email')} placeholder={emailTouched && emailError ? '' : 'Eg: abc@email.com'} style={[styles.textInput,{ borderWidth: 1, borderColor:emailTouched && emailError ?'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5 }]} keyboardType={'email-address'} />
                                     {emailTouched && emailError && <Text style={styles.error}>{emailError}</Text>}
-                                    {message && <Text style={styles.error}>{message.email[0]}</Text>}
+                                    {message && <Text style={styles.error}>{message.email}</Text>}
                                 </View>
                                 <View style={[styles.formElement]}>
                                     <Text style={[styles.titleBox, { marginBottom: 10, borderBottomColor: passwordTouched && passwordError ? 'rgba(255,0,0,1)' : '#5a83c2' }]}>Password</Text>

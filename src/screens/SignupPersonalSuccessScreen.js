@@ -35,7 +35,7 @@ const SignupPersonalSuccessScreen = (props) => {
     };
 
     useEffect(() => {
-        const prevScreen = props.navigation.getParam('prevScreen', 'NA')
+        const prevScreen = props.route.params?.prevScreen??'NA'
         prevScreen != 'Dashboard' && dispatch(actionCreator.getPersonalToken())
     }, []);
 
@@ -52,7 +52,7 @@ const SignupPersonalSuccessScreen = (props) => {
 
     const [emailInitial, setEmailInitial] = useState(emailVerified)
 
-    const prevScreen = props.navigation.getParam('prevScreen', 'NA')
+    const prevScreen = props.route.params?.prevScreen??'NA'
     console.log(`prevScreen ialah : ${prevScreen}`)
     //prevScreen != 'Dashboard' && getPersonalToken()
 
