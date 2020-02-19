@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 //import { createStackNavigator } from '@react-navigation/stack';
@@ -24,17 +24,17 @@ const Stack = createStackNavigator();
 
 const Registration = () => {
     return (
-        <Stack.Navigator initialRouteName="Registration" screenOptions={{ headerShown: false }}>
+        <Stack.Navigator initialRouteName="Intro" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Intro" component={IntroScreen} />
             <Stack.Screen name="Agreement" component={AgreementScreen} />
-            <Stack.Screen name="SignupPersonalScreen" component={SignupPersonalScreen} />
-            <Stack.Screen name="SignUpPersonalSuccess" component={ SignupPersonalSuccessScreen}/>
+            <Stack.Screen name="SignUpPersonal" component={SignupPersonalScreen} />
+            <Stack.Screen name="SignUpPersonalSuccess" component={SignupPersonalSuccessScreen} />
             <Stack.Screen name="CompanyInformation" component={CompanyInformationScreen} />
             <Stack.Screen name="CompanyContactInformation" component={CompanyContactInformationScreen} />
-            <Stack.Screen name="CompanyInfoSuccess" component={ CompanyInfoSuccessScreen} />
+            <Stack.Screen name="CompanyInfoSuccess" component={CompanyInfoSuccessScreen} />
             <Stack.Screen name="ContactPerson" component={ContactPersonScreen} />
             <Stack.Screen name="ContactPersonSuccess" component={ContactPersonSuccessScreen} />
-            <Stack.Screen name="CompanyDocument" component={ CompanyDocumentScreen} />
+            <Stack.Screen name="CompanyDocument" component={CompanyDocumentScreen} />
             <Stack.Screen name="CompanyDocumentSuccess" component={CompanyDocumentSuccessScreen} />
             <Stack.Screen name="RegistrationDeclaration" component={RegistrationDeclarationScreen} />
             <Stack.Screen name="AdminApproval" component={AdminApprovalScreen} />
@@ -42,12 +42,12 @@ const Registration = () => {
     )
 }
 
-const RegistrationStack= () => {
+const RegistrationStack = () => {
     return (
         <Stack.Navigator initialRouteName="Intro" mode="modal" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Intro" component={Registration} />
-            <Stack.Screen name="DocumentCamera" component={ DocumentCamera} />
-            <Stack.Screen name="DocumentUpload" component={DocumentUploadScreen} />
+            {/*<Stack.Screen name="DocumentCamera" component={ DocumentCamera} />
+            <Stack.Screen name="DocumentUpload" component={DocumentUploadScreen} />*/}
             <Stack.Screen name="CompanyContactAddressInformation" component={CompanyContactAddressInformationScreen} />
         </Stack.Navigator>
     )
