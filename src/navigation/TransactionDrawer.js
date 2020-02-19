@@ -18,13 +18,9 @@ const TransactionDrawer = createDrawerNavigator(
     },
 );
 
-TransactionDrawer.navigationOptions = {
-    header: null,
-};
+
 
 const TransactionDrawer = createAppContainer(TransactionDrawer)
-TransactionDrawer.navigationOptions = {
-    header: null,
-};
+
 
 export default TransactionDrawer;

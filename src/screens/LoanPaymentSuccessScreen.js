@@ -35,8 +35,5 @@ const LoanPaymentSuccessScreen = (props) => {
     )
 }
 
-LoanPaymentSuccessScreen.navigationOptions = {
-    header: null,
-};
 
 export default LoanPaymentSuccessScreen

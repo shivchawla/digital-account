@@ -62,8 +62,6 @@ FCGB is referred to as “we”, “us”, “our” or “ours”. Any person u
         </KeyboardAvoidingView>)
 }
 
-AgreementScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default AgreementScreen

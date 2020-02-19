@@ -63,8 +63,6 @@ const AdminApprovalScreen = (props) => {
 
 }
 
-AdminApprovalScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default AdminApprovalScreen 

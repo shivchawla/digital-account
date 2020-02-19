@@ -58,8 +58,6 @@ const AccountScreen = (props) => {
 
 }
 
-AccountScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default AccountScreen;

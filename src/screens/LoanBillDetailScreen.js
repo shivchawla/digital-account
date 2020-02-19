@@ -127,8 +127,6 @@ const LoanBillDetailScreen = (props) => {
         </KeyboardAvoidingView>)
 }
 
-LoanBillDetailScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default LoanBillDetailScreen;

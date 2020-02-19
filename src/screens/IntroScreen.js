@@ -80,8 +80,6 @@ const IntroScreen = (props) => {
     );
 }
 
-IntroScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default IntroScreen;

@@ -185,8 +185,6 @@ const CompanyContactAddressInformationScreen = (props) => {
     );
 }
 
-CompanyContactAddressInformationScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default CompanyContactAddressInformationScreen

@@ -93,8 +93,6 @@ const DataSettingScreen = (props) => {
     );
 }
 
-DataSettingScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default DataSettingScreen

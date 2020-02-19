@@ -66,8 +66,6 @@ const CustomerDetailScreen = (props) => {
         </KeyboardAvoidingView>)
 }
 
-CustomerDetailScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default CustomerDetailScreen;

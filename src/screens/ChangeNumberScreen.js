@@ -83,8 +83,6 @@ const ChangeNumberScreen = (props) => {
     );
 }
 
-ChangeNumberScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default ChangeNumberScreen

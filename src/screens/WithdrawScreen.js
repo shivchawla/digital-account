@@ -105,8 +105,6 @@ const WithdrawScreen = (props) => {
     );
 }
 
-WithdrawScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default WithdrawScreen;

@@ -150,8 +150,6 @@ const ProfileScreen = (props) => {
     );
 }
 
-ProfileScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default ProfileScreen;

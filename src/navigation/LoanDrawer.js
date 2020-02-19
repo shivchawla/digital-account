@@ -22,13 +22,9 @@ const LoanContent = createDrawerNavigator(
     },
 );
 
-LoanContent.navigationOptions = {
-    header: null,
-};
+
 
 const LoanDrawer = createAppContainer(LoanContent)
-LoanDrawer.navigationOptions = {
-    header: null,
-};
+
 
 export default LoanDrawer;

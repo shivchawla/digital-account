@@ -188,8 +188,5 @@ const PayrollScreen = (props) => {
     );
 }
 
-PayrollScreen.navigationOptions = {
-    header: null,
-};
 
 export default PayrollScreen;

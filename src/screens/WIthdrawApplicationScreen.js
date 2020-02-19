@@ -289,8 +289,5 @@ const WIthdrawApplicationScreen = (props) => {
     );
 }
 
-WIthdrawApplicationScreen.navigationOptions = {
-    header: null,
-};
 
 export default WIthdrawApplicationScreen;

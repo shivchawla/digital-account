@@ -44,8 +44,6 @@ const DocumentUploadScreen = (props) => {
     )
 }
 
-DocumentUploadScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default DocumentUploadScreen

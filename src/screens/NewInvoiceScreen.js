@@ -372,8 +372,6 @@ const NewInvoiceScreen = (props) => {
     );
 }
 
-NewInvoiceScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default NewInvoiceScreen;

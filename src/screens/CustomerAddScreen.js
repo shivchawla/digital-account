@@ -112,8 +112,6 @@ const CustomerAddScreen = (props) => {
     );
 }
 
-CustomerAddScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default CustomerAddScreen

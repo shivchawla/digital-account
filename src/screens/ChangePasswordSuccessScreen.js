@@ -40,8 +40,6 @@ const ChangePasswordSuccessScreen = (props) => {
 
 }
 
-ChangePasswordSuccessScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default ChangePasswordSuccessScreen 

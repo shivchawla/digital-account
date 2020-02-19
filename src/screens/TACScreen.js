@@ -62,8 +62,6 @@ const TACScreen = (props) => {
     );
 }
 
-TACScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default TACScreen

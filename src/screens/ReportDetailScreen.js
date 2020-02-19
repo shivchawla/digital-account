@@ -177,8 +177,5 @@ const ReportDetailScreen = (props) => {
     );
 }
 
-ReportDetailScreen.navigationOptions = {
-    header: null,
-};
 
 export default ReportDetailScreen;

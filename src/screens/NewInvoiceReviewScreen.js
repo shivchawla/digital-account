@@ -146,8 +146,5 @@ const NewInvoiceReviewScreen = (props) => {
         </KeyboardAvoidingView>)
 }
 
-NewInvoiceReviewScreen.navigationOptions = {
-    header: null,
-};
 
 export default NewInvoiceReviewScreen;

@@ -40,6 +40,5 @@ const ZakatSuccessScreen = (props) => {
     )
 }
 
-ZakatSuccessScreen.navigationOptions = { header: null, };
 
 export default ZakatSuccessScreen

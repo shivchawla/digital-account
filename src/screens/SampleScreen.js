@@ -153,7 +153,5 @@ const SampleScreen = (props) => {
         </Formik >
     );
 }
-SampleScreen.navigationOptions = {
-    header: null,
-};
+
 export default SampleScreen;

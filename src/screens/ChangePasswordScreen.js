@@ -106,8 +106,6 @@ const ChangePasswordScreen = (props) => {
     );
 }
 
-ChangePasswordScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default ChangePasswordScreen

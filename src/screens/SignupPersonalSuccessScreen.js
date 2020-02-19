@@ -127,8 +127,6 @@ const SignupPersonalSuccessScreen = (props) => {
     )
 }
 
-SignupPersonalSuccessScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default SignupPersonalSuccessScreen

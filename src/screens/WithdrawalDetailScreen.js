@@ -95,8 +95,6 @@ const WithdrawalDetailScreen = (props) => {
         </KeyboardAvoidingView>)
 }
 
-WithdrawalDetailScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default WithdrawalDetailScreen;

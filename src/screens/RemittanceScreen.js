@@ -210,9 +210,6 @@ const RemittanceScreen = (props) => {
     );
 }
 
-RemittanceScreen.navigationOptions = {
-    header: null,
-};
 
 
 export default RemittanceScreen;

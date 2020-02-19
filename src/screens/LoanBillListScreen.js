@@ -103,8 +103,6 @@ const LoanBillListScreen = (props) => {
     );
 }
 
-LoanBillListScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default LoanBillListScreen;

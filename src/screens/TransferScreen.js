@@ -289,7 +289,5 @@ const Popup = (props) => {
     </>)
 }
 
-TransferScreen.navigationOptions = {
-    header: null,
-};
+
 export default TransferScreen;

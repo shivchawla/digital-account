@@ -116,8 +116,6 @@ const AuthOptionTypeScreen = (props) => {
     );
 }
 
-AuthOptionTypeScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default AuthOptionTypeScreen

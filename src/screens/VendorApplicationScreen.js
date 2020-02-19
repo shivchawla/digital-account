@@ -126,8 +126,6 @@ const VendorApplicationScreen = (props) => {
     );
 }
 
-VendorApplicationScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default VendorApplicationScreen

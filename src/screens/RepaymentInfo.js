@@ -249,8 +249,6 @@ const RepaymentInfo = (props) => {
         </KeyboardAvoidingView >)
 }
 
-RepaymentInfo.navigationOptions = {
-    header: null,
-};
+
 
 export default RepaymentInfo;

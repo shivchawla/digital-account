@@ -124,8 +124,6 @@ const CompanyDocumentScreen = (props) => {
     );
 }
 
-CompanyDocumentScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default CompanyDocumentScreen

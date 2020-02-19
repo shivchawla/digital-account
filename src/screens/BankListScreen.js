@@ -95,8 +95,6 @@ const BankListScreen = (props) => {
     );
 }
 
-BankListScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default BankListScreen;

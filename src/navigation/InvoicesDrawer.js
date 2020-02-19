@@ -22,13 +22,9 @@ const InvoicesContent = createDrawerNavigator(
     },
 );
 
-InvoicesContent.navigationOptions = {
-    header: null,
-};
+
 
 const InvoicesDrawer = createAppContainer(InvoicesContent)
-InvoicesDrawer.navigationOptions = {
-    header: null,
-};
+
 
 export default InvoicesDrawer;

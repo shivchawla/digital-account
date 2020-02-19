@@ -183,8 +183,6 @@ const ConnectedPartiesScreen = (props) => {
 
 }
 
-ConnectedPartiesScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default ConnectedPartiesScreen;

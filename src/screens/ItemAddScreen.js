@@ -167,8 +167,6 @@ const ItemAddScreen = (props) => {
     );
 }
 
-ItemAddScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default ItemAddScreen
