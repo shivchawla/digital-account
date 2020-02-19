@@ -35,7 +35,7 @@ const Registration = createStackNavigator({
 const RegistrationStack = createStackNavigator(
   {
     Main: { screen: Registration, },
-    DocumentCamera: { screen:  DocumentCameraScreen},
+    DocumentCamera: { screen:  DocumentCamera},
     DocumentUpload: { screen: DocumentUploadScreen },
     CompanyContactAddressInformation: { screen: CompanyContactAddressInformationScreen },
 
