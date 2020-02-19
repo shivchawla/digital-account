@@ -991,40 +991,70 @@ export const checkCDDApi2 = () => {
 
 export const bankListApi = () => {
   return async (dispatch, getState) => {
-    console.log(`bank list masuk api`)
-    //const personalToken = await AsyncStorage.getItem('personalToken');
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const bankListStored = await AsyncStorage.getItem('bankListStored');
-    const bankList = bankListStored && JSON.parse(bankListStored)
-    //bankListStored && bankList.push(JSON.parse(bankListStored))
-    //bankList.push(values)
-    dispatch({ type: 'SET_BANK_LIST', payload: { bankList } })
 
-    console.log(`bankList ialah : ${bankList}`)
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    const access_credential = 'api'
+
+
+    fetch(`${apiUrl}/api/banks`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      },
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const bankList = await responseJson.data
+        console.log(`bank list ${JSON.stringify(bankList)}`)
+        dispatch({ type: 'SET_BANK_LIST', payload: { bankList } })
+
+      })
+      .catch((error) => {
+        console.error('Error : ' + error);
+      });
 
   }
 }
 
 export const addBankApi = (values) => {
   return async (dispatch, getState) => {
-    console.log(`add bank masuk api`)
-    //const personalToken = await AsyncStorage.getItem('personalToken');
+ 
+
+    const { bankAccountNo, bankAccountName, bankAddress, bankCountry, bankLabel } = values
+    const account_no=bankAccountNo
+    const account_holder_name=bankLabel
+    const bank_name=bankAccountName
+    const bank_address=bankAddress
+    const bank_country=bankCountry
+
     const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+    //const values = getState().invoiceReducer
+    const access_credential = 'api'
+    console.log(`New add bank api : ${JSON.stringify(values)}`)
 
-    const bankListStored = await AsyncStorage.getItem('bankListStored');
-    // bankListStored && bankList.push(JSON.parse(bankListStored))
-    console.log(`bankListStored adalah : ${JSON.stringify(bankListStored)}`)
-    if (bankListStored) {
-      console.log(`local ada isi`)
-      const bankList = JSON.parse(bankListStored)
-      await AsyncStorage.setItem('bankListStored', JSON.stringify([...bankList, values]))
-    } else {
-      //console.log(`local kosong`)
-      console.log(`local kosong : ${JSON.stringify(values)}`)
-      AsyncStorage.setItem('bankListStored', JSON.stringify([values]))
-    }
+    fetch(`${apiUrl}/api/banks`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      },
+      body: JSON.stringify({ account_no,account_holder_name,bank_name,bank_address,bank_country, access_credential }),
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const { status, code } = await responseJson
+        // await dispatch({ type: 'SET_VENDOR_SUBMIT', payload: { status, code, proceedMain: true } })
+        // await console.log(`vendor submit api  ${JSON.stringify(responseJson)}`)
+      })
+      .catch((error) => {
+        console.error('Error : ' + error);
+      });
 
-    // const { token_type, access_token } = JSON.parse(personalToken)
 
 
   }
@@ -1039,6 +1069,38 @@ export const deleteAllBankApi = (values) => {
     AsyncStorage.removeItem('bankListStored')
 
     // const { token_type, access_token } = JSON.parse(personalToken)
+
+
+  }
+}
+
+export const deleteBankApi = (id) => {
+  return async (dispatch, getState) => {
+    console.log(`remove bank delete api : ${id}`)
+
+  
+
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+
+    fetch(`${apiUrl}api/banks/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      }
+
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        // const vendorData = responseJson.data
+        console.log('Success vendor data' + JSON.stringify(responseJson))
+        // dispatch({ type: 'SET_VENDOR_LIST', payload: { vendorData } })
+
+      })
+      .catch((error) => {
+        console.log('Error delete : ' + error);
+      });
 
 
   }
