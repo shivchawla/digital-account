@@ -10,7 +10,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import CodePin from 'react-native-pin-code'
 import Layout from '../constants/Layout';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+
 import ScanFinger from '../components/ScanFinger'
 import { checkCodeApi } from '../store/actions/common';
 
