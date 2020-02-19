@@ -241,7 +241,7 @@ const Popup = (props) => {
                     </View>
                 </View>
                 <View style={{ justifyContent: 'space-between', flex: 9 }}>
-                    <ScrollView style={[styles.screenMargin]}>
+                    <View style={[styles.screenMargin]}>
                         <View style={{ marginTop: 20 }}>
                             <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 10 }}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 10, flex: 1, borderWidth: 1, borderColor: 'lightgrey', padding: 10, borderRadius: 10 }}>
@@ -274,7 +274,7 @@ const Popup = (props) => {
                                 </TouchableOpacity>
                             } />}
                         </View>
-                    </ScrollView>
+                    </View>
                 </View >
             </View >
         </Modal>

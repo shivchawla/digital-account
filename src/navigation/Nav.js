@@ -68,6 +68,12 @@ import CompanyDocumentSuccessScreen from '../screens/CompanyDocumentSuccessScree
 import RegistrationDeclarationScreen from '../screens/RegistrationDeclarationScreen';
 import AdminApprovalScreen from '../screens/AdminApprovalScreen';
 
+import ItemScreen from '../screens/ItemScreen';
+import VendorScreen from '../screens/VendorScreen';
+import CustomerScreen from '../screens/CustomerScreen';
+
+
+
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -126,7 +132,7 @@ const MainDrawer = () => {
             <Drawer.Screen name="TransactionHistory" component={TransactionHistoryScreen} />
             <Drawer.Screen name="Loan" component={LoanStackWithModal} />
             {/* <Drawer.Screen name="Notification" component={NotificationScreen} /> */}
-            <Drawer.Screen name="DataSetting" component={DataSettingScreen} />
+            <Drawer.Screen name="DataSetting" component={DataSettingStack} />
             <Drawer.Screen name="Transfer" component={TransferStack} />
             <Drawer.Screen name="Support" component={SupportScreen} />
             <Drawer.Screen name="BusinessHub" component={BusinessHubScreen} />
@@ -175,10 +181,10 @@ const LoanStackWithModal = () => {
 
 const LoanStack = () => {
     return (
-        <Stack.Navigator initialRouteName="Loan">
-            <Stack.Screen name="Loan" component={LoanDrawer} options={{ headerShown: false }} />
-            <Stack.Screen name="LoanApplication" component={LoanApplicationStack} options={{ headerShown: false }} />
-            <Stack.Screen name="Withdraw" component={WithdrawalDrawer} options={{ headerShown: false }} />
+        <Stack.Navigator initialRouteName="Loan"  screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Loan" component={LoanDrawer} />
+            <Stack.Screen name="LoanApplication" component={LoanApplicationStack}  />
+            <Stack.Screen name="Withdraw" component={WithdrawalDrawer} />
         </Stack.Navigator>
     )
 }
@@ -248,10 +254,10 @@ const TransferStack = () => {
 
 const InvoiceStack = () => {
     return (
-        <Stack.Navigator initialRouteName="Invoice">
+        <Stack.Navigator initialRouteName="Invoice" screenOptions={{ headerShown: false }}>
 
-            <Stack.Screen name="Invoice" component={InvoiceScreen} options={{ headerShown: false }} />
-            <Stack.Screen name="NewInvoice" component={NewInvoiceScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="Invoice" component={InvoiceScreen} />
+            <Stack.Screen name="NewInvoice" component={NewInvoiceScreen}  />
 
         </Stack.Navigator>
     )
@@ -273,16 +279,17 @@ const InvoiceDrawer = () => {
 const NewInvoiceStack = () => {
     return (
 
-        <Stack.Navigator initialRouteName="NewInvoice">
-            <Stack.Screen name="NewInvoice" component={NewInvoiceScreen} options={{ headerShown: false }} />
-            <Stack.Screen name="NewInvoiceItems" component={NewInvoiceItemsScreen} options={{ headerShown: false }} />
-            <Stack.Screen name="NewInvoiceReview" component={NewInvoiceReviewScreen} options={{ headerShown: false }} />
-            <Stack.Screen name="InvoiceSuccess" component={InvoiceSuccessScreen} options={{ headerShown: false }} />
+        <Stack.Navigator initialRouteName="NewInvoice" screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="NewInvoice" component={NewInvoiceScreen}  />
+            <Stack.Screen name="NewInvoiceItems" component={NewInvoiceItemsScreen}  />
+            <Stack.Screen name="NewInvoiceReview" component={NewInvoiceReviewScreen}  />
+            <Stack.Screen name="InvoiceSuccess" component={InvoiceSuccessScreen}  />
         </Stack.Navigator>
 
     )
 }
 
+<<<<<<< HEAD
 const Registration = () => {
     return (
         <Stack.Navigator initialRouteName="Intro" screenOptions={{ headerShown: false }}>
@@ -310,6 +317,15 @@ const RegistrationStack = () => {
             {/*<Stack.Screen name="DocumentCamera" component={DocumentCameraScreen} />
             <Stack.Screen name="DocumentUpload" component={DocumentUploadScreen} />*/}
             <Stack.Screen name="CompanyContactAddressInformation" component={CompanyContactAddressInformationScreen} />
+=======
+const DataSettingStack = () => {
+    return (
+        <Stack.Navigator initialRouteName="DataSetting" screenOptions={{ headerShown: false }}>         
+            <Stack.Screen name="DataSetting" component={DataSettingScreen} />
+            <Stack.Screen name="Item" component={ItemScreen} />
+            <Stack.Screen name="Vendor" component={VendorScreen} />
+            <Stack.Screen name="Customer" component={CustomerScreen} />           
+>>>>>>> 75a5a2b7ad65a405e11520b263faab4066c6481d
         </Stack.Navigator>
     )
 }
