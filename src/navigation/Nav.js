@@ -107,9 +107,9 @@ const Nav = (props) => {
     return (
         <NavigationContainer>
             <Stack.Navigator>
-              {/*  {tokenExists ?
+                 {tokenExists ?
                     <Stack.Screen name="Dashboard" component={MainDrawer} options={{ headerShown: false }} /> :
-                    <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} />}*/}
+                    <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} />}
                 <Stack.Screen name="Registration" component={RegistrationStack} options={{ headerShown: false }} />
             </Stack.Navigator>
         </NavigationContainer>
@@ -181,9 +181,9 @@ const LoanStackWithModal = () => {
 
 const LoanStack = () => {
     return (
-        <Stack.Navigator initialRouteName="Loan"  screenOptions={{ headerShown: false }}>
+        <Stack.Navigator initialRouteName="Loan" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Loan" component={LoanDrawer} />
-            <Stack.Screen name="LoanApplication" component={LoanApplicationStack}  />
+            <Stack.Screen name="LoanApplication" component={LoanApplicationStack} />
             <Stack.Screen name="Withdraw" component={WithdrawalDrawer} />
         </Stack.Navigator>
     )
@@ -257,7 +257,7 @@ const InvoiceStack = () => {
         <Stack.Navigator initialRouteName="Invoice" screenOptions={{ headerShown: false }}>
 
             <Stack.Screen name="Invoice" component={InvoiceScreen} />
-            <Stack.Screen name="NewInvoice" component={NewInvoiceScreen}  />
+            <Stack.Screen name="NewInvoice" component={NewInvoiceScreen} />
 
         </Stack.Navigator>
     )
@@ -280,30 +280,29 @@ const NewInvoiceStack = () => {
     return (
 
         <Stack.Navigator initialRouteName="NewInvoice" screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="NewInvoice" component={NewInvoiceScreen}  />
-            <Stack.Screen name="NewInvoiceItems" component={NewInvoiceItemsScreen}  />
-            <Stack.Screen name="NewInvoiceReview" component={NewInvoiceReviewScreen}  />
-            <Stack.Screen name="InvoiceSuccess" component={InvoiceSuccessScreen}  />
+            <Stack.Screen name="NewInvoice" component={NewInvoiceScreen} />
+            <Stack.Screen name="NewInvoiceItems" component={NewInvoiceItemsScreen} />
+            <Stack.Screen name="NewInvoiceReview" component={NewInvoiceReviewScreen} />
+            <Stack.Screen name="InvoiceSuccess" component={InvoiceSuccessScreen} />
         </Stack.Navigator>
 
     )
 }
 
-<<<<<<< HEAD
 const Registration = () => {
     return (
         <Stack.Navigator initialRouteName="Intro" screenOptions={{ headerShown: false }}>
-            {/*<Stack.Screen name="Intro"component={IntroScreen} />
+            <Stack.Screen name="Intro" component={IntroScreen} />
             <Stack.Screen name="Agreement" component={AgreementScreen} />
             <Stack.Screen name="SignUpPersonal" component={SignupPersonalScreen} />
-    <Stack.Screen name="SignUpPersonalSuccess" component={SignupPersonalSuccessScreen} />
+            <Stack.Screen name="SignUpPersonalSuccess" component={SignupPersonalSuccessScreen} />
             <Stack.Screen name="CompanyInformation" component={CompanyInformationScreen} />
             <Stack.Screen name="CompanyContactInformation" component={CompanyContactInformationScreen} />
             <Stack.Screen name="CompanyInfoSuccess" component={CompanyInfoSuccessScreen} />
             <Stack.Screen name="ContactPerson" component={ContactPersonScreen} />
             <Stack.Screen name="ContactPersonSuccess" component={ContactPersonSuccessScreen} />
             <Stack.Screen name="CompanyDocument" component={CompanyDocumentScreen} />
-            <Stack.Screen name="CompanyDocumentSuccess" component={CompanyDocumentSuccessScreen} />*/}
+            <Stack.Screen name="CompanyDocumentSuccess" component={CompanyDocumentSuccessScreen} />
             <Stack.Screen name="RegistrationDeclaration" component={RegistrationDeclarationScreen} />
             <Stack.Screen name="AdminApproval" component={AdminApprovalScreen} />
         </Stack.Navigator>
@@ -317,15 +316,18 @@ const RegistrationStack = () => {
             {/*<Stack.Screen name="DocumentCamera" component={DocumentCameraScreen} />
             <Stack.Screen name="DocumentUpload" component={DocumentUploadScreen} />*/}
             <Stack.Screen name="CompanyContactAddressInformation" component={CompanyContactAddressInformationScreen} />
-=======
+        </Stack.Navigator>
+    )
+}
+
 const DataSettingStack = () => {
     return (
-        <Stack.Navigator initialRouteName="DataSetting" screenOptions={{ headerShown: false }}>         
+        <Stack.Navigator initialRouteName="DataSetting" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="DataSetting" component={DataSettingScreen} />
             <Stack.Screen name="Item" component={ItemScreen} />
             <Stack.Screen name="Vendor" component={VendorScreen} />
-            <Stack.Screen name="Customer" component={CustomerScreen} />           
->>>>>>> 75a5a2b7ad65a405e11520b263faab4066c6481d
+            <Stack.Screen name="Customer" component={CustomerScreen}/>
+            <Stack.Screen name="Welcome" component={WelcomeScreen}/>
         </Stack.Navigator>
     )
 }
