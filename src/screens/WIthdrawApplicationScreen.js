@@ -14,6 +14,8 @@ import Layout from '../constants/Layout';
 import ScanFinger from '../components/ScanFinger'
 import { checkCodeApi } from '../store/actions/common';
 
+import {keyboardBeingDisplay,keyboardBeingClose} from '../components/handleKeyboard'
+
 
 const WIthdrawApplicationScreen = (props) => {
 
@@ -38,10 +40,20 @@ const WIthdrawApplicationScreen = (props) => {
     const [code, updateCode] = useState("")
     const [authRequestVisible, setAuthRequestVisible] = useState(false)
     const { authEnabled, authType } = useSelector(state => state.authReducer, shallowEqual)
+    
+    useEffect(() => {
+        const open=()=>{console.log(`dibuka`);setOffSet(false)}
+        const off=()=>{console.log(`ditutup`);setOffSet(true)}
+        console.log("componentDidMount");
+        keyboardBeingDisplay(open)
+        keyboardBeingClose(off)
+    }, []); // empty-array means don't watch for any updates
 
     useEffect(() => {
         dispatch(actionCreator.checkAuth())
     }, [])
+
+    const [offSet,setOffSet]=useState(true)
 
     const ios = Platform.OS === "ios" ? true : false
 
@@ -120,7 +132,7 @@ const WIthdrawApplicationScreen = (props) => {
                 }
 
                 return (
-                    <KeyboardAvoidingView behavior={'padding'} enabled style={{ flex: 1, }} keyboardVerticalOffset={20}>
+                    <KeyboardAvoidingView behavior={'padding'} enabled style={{ flex: 1, }} keyboardVerticalOffset={offSet?30:0}>
                         <Modal transparent={true} animationType={'slide'} visible={authRequestVisible} onRequestClose={() => setAuthRequestVisible(!authRequestVisible)} >
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(1,1,1,0.5)' }}>
                                 <View style={{ flex: 3 }} />

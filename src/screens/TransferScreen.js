@@ -10,7 +10,7 @@ import styles from '../styles/styles'
 import moment from 'moment'
 import CodePin from 'react-native-pin-code'
 import Layout from '../constants/Layout';
-
+import {keyboardBeingDisplay,keyboardBeingClose} from '../components/handleKeyboard'
 import { CustomFormAction, CustomTextInput } from '../components/Custom'
 
 // let Modal;
@@ -40,6 +40,14 @@ const TransferScreen = (props) => {
     const [locked, setLock] = useState(true)
     const [code, updateCode] = useState("")
     const [authRequestVisible, setAuthRequestVisible] = useState(false)
+    const [offSet,setOffSet]=useState(true)
+    useEffect(() => {
+        const open=()=>{console.log(`dibuka`);setOffSet(false)}
+        const off=()=>{console.log(`ditutup`);setOffSet(true)}
+        console.log("componentDidMount");
+        keyboardBeingDisplay(open)
+        keyboardBeingClose(off)
+    }, []); // empty-array means don't watch for any updates
 
     useEffect(() => {
         dispatch(actionCreator.getAllUsers())
@@ -100,7 +108,7 @@ const TransferScreen = (props) => {
                 }
 
                 return (
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }} keyboardVerticalOffset={20} navigation={props.navigation} >
+                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }}  keyboardVerticalOffset={offSet?30:0} navigation={props.navigation} >
                         <Popup
                             setUser={setUser}
                             userList={userList}
