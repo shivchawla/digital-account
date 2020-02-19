@@ -28,7 +28,7 @@ const WelcomeScreen = (props) => {
     const proceed = useSelector(state => state.loginScreenReducer.proceed, shallowEqual)
     const all = useSelector(state => state.loginScreenReducer.message, shallowEqual)
     useEffect(() => {
-         proceed && props.navigation.navigate('Main')
+         proceed && props.navigation.navigate('Dashboard')
     }, [proceed]);
     const dispatch = useDispatch()
     const login = (values) => {

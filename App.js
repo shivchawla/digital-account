@@ -243,6 +243,7 @@ const loadResourcesAsync = async () => {
       'Montserrat_thin': require('./src/assets/fonts/Montserrat/Montserrat-Thin.ttf'),
       'Montserrat_bold': require('./src/assets/fonts/Montserrat/Montserrat-Bold.ttf'),
       'Roboto_medium': require('./src/assets/fonts/Roboto/Roboto-Regular.ttf'),
+      'Montserrat_italic': require('./src/assets/fonts/Montserrat/Montserrat-Italic.ttf'),
     }),
   ]);
 }
