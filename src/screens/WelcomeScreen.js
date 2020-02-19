@@ -98,7 +98,7 @@ const WelcomeScreen = (props) => {
                                             </TouchableOpacity>
                                         </View>
                                         <View style={{ flexDirection: 'row', margin: 5, justifyContent: 'center' }}>
-                                            <TouchableOpacity onPress={() => props.navigation.navigate('Intro')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, borderColor: 'black', borderWidth: 1 }}>
+                                            <TouchableOpacity onPress={() => props.navigation.navigate('Registration')} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, borderColor: 'black', borderWidth: 1 }}>
                                                 <Text style={[styles.textDefault, { color: 'black' }]}>Register</Text>
                                             </TouchableOpacity>
                                             <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ width: Layout.window.width * 0.3, paddingTop: 5, paddingBottom: 5, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: FormikProps.isValid ? '#09A4BF' : 'rgba(9,164,191,0.5)' }} >

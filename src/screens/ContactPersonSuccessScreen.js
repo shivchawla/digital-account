@@ -24,8 +24,8 @@ const ContactPersonSuccessScreen = (props) => {
                     </View>
                 </View>
                 <View style={{ flex: 1 }}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                        <TouchableOpacity onPress={() => props.navigation.navigate('Dashboard')} style={{ width: Layout.window.width * 0.3, paddingTop: 16, paddingBottom: 16, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, borderColor: 'black', borderWidth: 1 }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'center' , marginTop:30}}>
+                        <TouchableOpacity onPress={() => props.navigation.navigate('Dashboard')} style={{ width: Layout.window.width * 0.3, paddingTop: 16, paddingBottom: 16, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, borderColor: 'darkturquoise', borderWidth: 1 }}>
                             <Text style={[styles.textDefault]}>Skip</Text>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => props.navigation.navigate('CompanyDocument')} style={{ width: Layout.window.width * 0.3, paddingTop: 16, paddingBottom: 16, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }}>

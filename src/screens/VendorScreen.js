@@ -33,7 +33,7 @@ const VendorScreen = (props) => {
                 </TouchableOpacity>
             </View>
             <View style={[{ flex: 9 }]}>
-                <ScrollView style={[styles.screenMargin]}>
+                <View style={[styles.screenMargin]}>
                     <View style={{ marginTop: 10, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end', paddingRight: 10 }}>
                         <TouchableOpacity onPress={() => props.navigation.navigate('VendorApplication')} style={{ paddingTop: 17, paddingBottom: 17, paddingLeft: 19, paddingRight: 19, backgroundColor: '#34C2DB', borderRadius: 15 }}>
                             <Text style={[styles.text, { color: '#fff' }]}>Add Vendor</Text>
@@ -85,7 +85,7 @@ const VendorScreen = (props) => {
                             </View>
                         } />}
                     </View>
-                </ScrollView>
+                </View>
             </View >
         </View >
 
