@@ -44,8 +44,8 @@ const Registration = () => {
 
 const RegistrationStack= () => {
     return (
-        <Stack.Navigator initialRouteName="Main" mode="modal" screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="Main" component={Registration} />
+        <Stack.Navigator initialRouteName="Intro" mode="modal" screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Intro" component={Registration} />
             <Stack.Screen name="DocumentCamera" component={ DocumentCamera} />
             <Stack.Screen name="DocumentUpload" component={DocumentUploadScreen} />
             <Stack.Screen name="CompanyContactAddressInformation" component={CompanyContactAddressInformationScreen} />
