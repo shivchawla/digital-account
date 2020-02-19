@@ -13,16 +13,20 @@ const DocumentCameraScreen = (props) => {
     const dispatch = useDispatch()
     const saveDocPic = (val, doc) => dispatch(actionCreator.saveDocPic1(val, doc));
     const saveDocumentDO = (val, doc) => dispatch(actionCreator.saveDocumentDO1(val, doc));
+    
     const [hasCameraPermission, setCameraPermission] = useState(null)
+
+    const [cam,setCam]=useState(null)
+    
     const takePicture = async () => {
-        const doc = props.navigation.getParam('doc')
-        const document = await this.camera.takePictureAsync();
+        const doc = props.route.params?.doc ?? 'NA'
+        const document = await cam.takePictureAsync();
         await saveDocPic(document, doc)
         await props.navigation.goBack()
     }
 
     const pickDoc = () => {
-        const doc = props.navigation.getParam('doc')
+        const doc = props.route.params?.doc ?? 'NA'
         DocumentPicker.getDocumentAsync({ type: '*/*', copyToCacheDirectory: false })
             .then(result => {
                 console.log(JSON.stringify(result))
@@ -53,15 +57,13 @@ const DocumentCameraScreen = (props) => {
     return (
         <View style={{ flex: 1 }}>
             <Camera style={[StyleSheet.absoluteFill]} type={Camera.Constants.Type.back} ratio={'16:9'}
-                ref={ref => {
-                    this.camera = ref;
-                }}
+                ref={ref => setCam(ref)}
             >
-                <View style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 ,justifyContent:'space-between'}}>
-                    <View style={{ alignSelf: 'stretch', backgroundColor: '#000000', justifyContent: 'center', alignItems: 'center' ,padding:10}}>
+                <View style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, justifyContent: 'space-between' }}>
+                    <View style={{ alignSelf: 'stretch', backgroundColor: '#000000', justifyContent: 'center', alignItems: 'center', padding: 10 }}>
                         <Text style={[styles.textDefault, { color: '#ffffff' }]}>Position your document inside the box</Text>
                     </View>
-                    <View style={{ backgroundColor: '#000000', flexDirection: 'row',  padding: 5 }}>
+                    <View style={{ backgroundColor: '#000000', flexDirection: 'row', padding: 5 }}>
                         <View style={{ flex: 1, alignSelf: 'center', justifyContent: 'center' }}>
                             <TouchableOpacity style={{ alignSelf: 'center' }} onPress={() => props.navigation.goBack()}>
                                 <Ionicons name={'ios-arrow-back'} size={48} color={'#ffffff'} />
