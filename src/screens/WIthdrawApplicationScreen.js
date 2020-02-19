@@ -115,7 +115,7 @@ const WIthdrawApplicationScreen = (props) => {
 
                 const populateBankInfo = (itemValue) => {
                     setSelectedBank(itemValue)
-                    const bankDetail = bankList.find(b => b.bankLabel === itemValue)
+                    const bankDetail = bankList.find(b => b.account_holder_name === itemValue)
                     FormikProps.setFieldValue('bankDetail', bankDetail)
                 }
 
@@ -152,15 +152,15 @@ const WIthdrawApplicationScreen = (props) => {
                                     </View>
                                 </View>
                                 <View style={{ flex: 9, justifyContent: 'flex-start' }}>
-                                    <Picker style={{ flex: 1, height: 35 }} selectedValue={bankLabel} onValueChange={(itemValue, itemIndex) => {
+                                    {bankList && <Picker style={{ flex: 1, height: 35 }} selectedValue={bankLabel} onValueChange={(itemValue, itemIndex) => {
                                         FormikProps.setFieldValue('bankLabel', itemValue);
                                         setSelectedBank(itemValue)
                                         populateBankInfo(itemValue)
                                     }
                                     }>
                                         <Picker.Item label={'Please Select'} value={undefined} />
-                                        {bankList && bankList.map((b, i) => <Picker.Item key={i} label={b.bankLabel} value={b.bankLabel} />)}
-                                    </Picker>
+                                        {bankList && bankList.map((b, i) => <Picker.Item key={i} label={b.bank_name} value={b.bank_name} />)}
+                                    </Picker>}
                                 </View>
                             </View>
                         </Modal>
@@ -209,7 +209,7 @@ const WIthdrawApplicationScreen = (props) => {
                                                             }
                                                             }>
                                                                 <Picker.Item label={'Please Select'} value={undefined} />
-                                                                {bankList && bankList.map((b, i) => <Picker.Item key={i} label={b.bankLabel} value={b.bankLabel} />)}
+                                                                {bankList && bankList.map((b, i) => <Picker.Item key={i} label={b.account_holder_name} value={b.account_holder_name} />)}
                                                             </Picker>
                                                         </View>
                                                         <TouchableWithoutFeedback onPress={() => props.navigation.navigate(`BankList`)}>
