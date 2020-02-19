@@ -21,7 +21,7 @@ const IntroScreen = (props) => {
 
     const dispatch = useDispatch()
 
-    getExpoToken = async () => {
+    const getExpoToken = async () => {
 
         let token = await Notifications.getExpoPushTokenAsync();
         console.log(`expo token ialah ${token}`)
