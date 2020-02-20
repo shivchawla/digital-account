@@ -6,6 +6,23 @@ import moment from 'moment'
 
 const apiUrl = 'https://tuah.niyo.my/'
 
+const apiCall = async (uri, apiAccess) => {
+
+  const { token_type, access_token } = apiAccess
+
+  const method = 'GET'
+  const Accept = 'application/json'
+  const Authorization = token_type + ' ' + access_token
+
+  const headers = { 'Content-Type': 'application/json', Accept, Authorization }
+  let response = await fetch(`${apiUrl}${uri}`, { method, headers })
+  let responseJson = await response.json()
+
+  return responseJson
+
+
+}
+
 ////////////////////////////////////////////////////////////////////////////
 //////////INI YANG LAMA PUNYA//////////////////////////////////////////////
 
@@ -34,8 +51,8 @@ export const paymentHistoryListApi = () => {
 export const loanApplicationDataApi = (id) => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
+
+    const { token_type, access_token } = getState().apiReducer
 
     fetch(`${apiUrl}api/loan/details?id=${id}`, {
       method: 'GET',
@@ -62,57 +79,23 @@ export const loanApplicationDataApi = (id) => {
 export const loanListApi = () => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
-
-    fetch(`${apiUrl}api/loan/list`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token_type + ' ' + access_token
-      }
-
-    }).then((response) => response.json())
-      .then(async (responseJson) => {
-        const loanList = responseJson.data
-        loanList.reverse()
-        console.log('Success loan list' + JSON.stringify(responseJson))
-        dispatch({ type: 'SET_LOAN_LIST', payload: { loanList } })
-
-      })
-      .catch((error) => {
-        console.log('Error initiating loan list info : ' + error);
-      });
-
+    const uri = `api/loan/list`
+    const apiAccess = getState().apiReducer
+    const responseJson = await apiCall(uri, apiAccess)
+    const loanList = await responseJson.data
+    loanList && loanList.reverse()
+    dispatch({ type: 'SET_LOAN_LIST', payload: { loanList } })
   }
 }
 
 export const repaymentListApi = () => {
   return async (dispatch, getState) => {
-
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
-
-    fetch(`${apiUrl}api/repaymentinfo/list`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token_type + ' ' + access_token
-      }
-
-    }).then((response) => response.json())
-      .then(async (responseJson) => {
-        const repaymentList = responseJson.data
-        repaymentList.reverse()
-        console.log('Success repayment list' + JSON.stringify(responseJson))
-        dispatch({ type: 'SET_LOAN_LIST', payload: { repaymentList } })
-
-      })
-      .catch((error) => {
-        console.log('Error initiating loan list info : ' + error);
-      });
+    const uri = `api/repaymentinfo/list`
+    const apiAccess = getState().apiReducer
+    const responseJson = await apiCall(uri, apiAccess)
+    const repaymentList = await responseJson.data
+    repaymentList && repaymentList.reverse()
+    dispatch({ type: 'SET_LOAN_LIST', payload: { repaymentList } })
 
   }
 }
@@ -121,8 +104,8 @@ export const repaymentListApi = () => {
 export const repaymentDetailApi = (id) => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
+
+    const { token_type, access_token } = getState().apiReducer
     //repaymentinfo/details/?id=24
     fetch(`${apiUrl}api/repaymentinfo/details?id=${id}`, {
       method: 'GET',
@@ -149,9 +132,9 @@ export const repaymentDetailApi = (id) => {
 export const loanBillListApi = (loanNo) => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
-    //https://tuah.niyo.my/api/repaymentinfo/bills/list?loanNo=199916920
+
+    const { token_type, access_token } = getState().apiReducer
+
     fetch(`${apiUrl}api/repaymentinfo/bills/list?loanNo=${loanNo}`, {
       method: 'GET',
       headers: {
@@ -172,14 +155,16 @@ export const loanBillListApi = (loanNo) => {
         console.log('Error initiating loan bill list info : ' + error);
       });
 
+
+
   }
 }
 
 export const billDetailApi = (id) => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
+
+    const { token_type, access_token } = getState().apiReducer
 
     fetch(`${apiUrl}api/repaymentinfo/bills/details?id=${id}`, {
       method: 'GET',
@@ -219,8 +204,8 @@ export const agingListApi = () => {
 export const withdrawDataApi = (id) => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
+
+    const { token_type, access_token } = getState().apiReducer
 
     fetch(`${apiUrl}api/withdrawal/details?id=${id}`, {
       method: 'GET',
@@ -243,56 +228,32 @@ export const withdrawDataApi = (id) => {
   }
 }
 
+
+
 export const withdrawListApi = () => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
+    const uri = `api/withdrawal/list`
+    const apiAccess = getState().apiReducer
 
-    const getHeader =
-    {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token_type + ' ' + access_token
-      }
-    }
-
-    let response = await fetch(`${apiUrl}api/withdrawal/list`, getHeader)
-    let responseJson = await response.json()
-    const withdrawList = responseJson.data
-    withdrawList.reverse()
+    const responseJson = await apiCall(uri, apiAccess)
+    const withdrawList = await responseJson.data
+    withdrawList && withdrawList.reverse()
     dispatch({ type: 'SET_WITHDRAWAL_LIST', payload: { withdrawList } })
-
   }
 }
 
 export const vendorListApi = () => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
+    const uri = `api/setting/vendor/list`
+    const apiAccess = getState().apiReducer
 
-    fetch(`${apiUrl}api/setting/vendor/list`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token_type + ' ' + access_token
-      }
+    const responseJson = await apiCall(uri, apiAccess)
+    const vendorList = await responseJson.data
 
-    }).then((response) => response.json())
-      .then(async (responseJson) => {
-        const vendorList = responseJson.data
-        vendorList.reverse()
-        console.log('Success vendor list' + JSON.stringify(responseJson))
-        dispatch({ type: 'SET_VENDOR_LIST', payload: { vendorList } })
-
-      })
-      .catch((error) => {
-        console.log('Error initiating vendor list info : ' + error);
-      });
+    vendorList && vendorList.reverse()
+    dispatch({ type: 'SET_VENDOR_LIST', payload: { vendorList } })
 
   }
 }
@@ -300,8 +261,8 @@ export const vendorListApi = () => {
 export const vendorDataRetrieveApi = (id) => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
+
+    const { token_type, access_token } = getState().apiReducer
 
     fetch(`${apiUrl}api/setting/vendor/details?id=${id}`, {
       method: 'GET',
@@ -322,13 +283,15 @@ export const vendorDataRetrieveApi = (id) => {
         console.log('Error initiating vendor data info : ' + error);
       });
 
+
+
   }
 }
 
 export const withDrawApi = (values) => {
   return async (dispatch, getState) => {
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
+
+    const { token_type, access_token } = getState().apiReducer
     //const values = getState().loanApplicationReducer
 
     const { amount,
@@ -392,28 +355,14 @@ export const withDrawApi = (values) => {
 export const customerListApi = () => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
 
-    fetch(`${apiUrl}api/setting/customer/list`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token_type + ' ' + access_token
-      }
+    const uri = `api/setting/customer/list`
+    const apiAccess = getState().apiReducer
 
-    }).then((response) => response.json())
-      .then(async (responseJson) => {
-        const customerList = responseJson.data
-        customerList.reverse()
-        console.log('Success customer list' + JSON.stringify(responseJson))
-        dispatch({ type: 'SET_CUSTOMER_LIST', payload: { customerList } })
-
-      })
-      .catch((error) => {
-        console.log('Error initiating customer list info : ' + error);
-      });
+    const responseJson = await apiCall(uri, apiAccess)
+    const customerList = await responseJson.data
+    customerList && customerList.reverse()
+    dispatch({ type: 'SET_CUSTOMER_LIST', payload: { customerList } })
 
   }
 }
@@ -421,8 +370,8 @@ export const customerListApi = () => {
 export const customerDataRetrieveApi = (id) => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
+
+    const { token_type, access_token } = getState().apiReducer
 
     fetch(`${apiUrl}api/setting/customer/details?id=${id}`, {
       method: 'GET',
@@ -450,8 +399,8 @@ export const customerDataRetrieveApi = (id) => {
 export const deleteCustomerApi = (id) => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
+
+    const { token_type, access_token } = getState().apiReducer
 
     fetch(`${apiUrl}api/customer/${id}`, {
       method: 'DELETE',
@@ -478,28 +427,13 @@ export const deleteCustomerApi = (id) => {
 export const itemListApi = () => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
-
-    fetch(`${apiUrl}api/setting/item/list`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token_type + ' ' + access_token
-      }
-
-    }).then((response) => response.json())
-      .then(async (responseJson) => {
-        const itemList = responseJson.data
-        itemList.reverse()
-        console.log('Success item list' + JSON.stringify(responseJson))
-        dispatch({ type: 'SET_ITEM_LIST', payload: { itemList } })
-
-      })
-      .catch((error) => {
-        console.log('Error initiating item list info : ' + error);
-      });
+      const uri = `api/setting/item/list`
+      const apiAccess = getState().apiReducer
+  
+      const responseJson = await apiCall(uri, apiAccess)
+      const itemList = await responseJson.data
+      itemList && itemList.reverse()
+      dispatch({ type: 'SET_ITEM_LIST', payload: { itemList } })
 
   }
 }
@@ -507,8 +441,8 @@ export const itemListApi = () => {
 export const itemDataRetrieveApi = (id) => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
+
+    const { token_type, access_token } = getState().apiReducer
 
     fetch(`${apiUrl}api/setting/item/details?id=${id}`, {
       method: 'GET',
@@ -536,30 +470,16 @@ export const itemDataRetrieveApi = (id) => {
 export const getAllUsersApi = () => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
 
-    fetch(`${apiUrl}api/developer/merchants/account/all`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token_type + ' ' + access_token
-      }
 
-    }).then((response) => response.json())
-      .then(async (responseJson) => {
-        const { data } = responseJson
-        const userList = data
-
-        //withdrawList.reverse()
-        console.log('Success all users list' + JSON.stringify(userList))
-        dispatch({ type: 'SET_RECIPIENT_LIST', payload: { userList } })
-
-      })
-      .catch((error) => {
-        console.log('Error initiating user list info : ' + error);
-      });
+      const uri = `api/developer/merchants/account/all`
+      const apiAccess = getState().apiReducer
+  
+      const responseJson = await apiCall(uri, apiAccess)
+      const userList = await responseJson.data
+      
+      dispatch({ type: 'SET_RECIPIENT_LIST', payload: { userList } })
+      
 
   }
 }
@@ -568,109 +488,36 @@ export const getAllUsersApi = () => {
 export const invoiceListApi = () => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
-
-    fetch(`${apiUrl}api/invoices/list`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token_type + ' ' + access_token
-      }
-
-    }).then((response) => response.json())
-      .then(async (responseJson) => {
-        const invoiceList = responseJson.data
-        invoiceList.reverse()
-        console.log('Success invoice list' + JSON.stringify(responseJson))
-        dispatch({ type: 'SET_INVOICE_LIST', payload: { invoiceList } })
-
-      })
-      .catch((error) => {
-        console.log('Error initiating invoice list info : ' + error);
-      });
-    // const invoiceList = [{ ref: 112009, date: '12/3/2019', type: 'Item', currency: 'IDR' },
-    // { ref: 112000, date: '13/3/2019', type: 'Item', currency: 'MYR' },
-    // { ref: 112001, date: '14/3/2019', type: 'Item', currency: 'MYR' },
-    // { ref: 112022, date: '14/3/2019', type: 'Item', currency: 'INR' },
-    // { ref: 112023, date: '15/3/2019', type: 'Item', currency: 'SGD' }]
-
-    // dispatch({ type: 'SET_INVOICE_LIST', payload: { invoiceList } })
+      const uri = `api/invoices/list`
+      const apiAccess = getState().apiReducer  
+      const responseJson = await apiCall(uri, apiAccess)
+      const invoiceList = await responseJson.data
+      invoiceList&&invoiceList.reverse()
+      dispatch({ type: 'SET_INVOICE_LIST', payload: { invoiceList } })
+    
   }
 }
 
 export const reportListApi = () => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
+    const uri = `api/transactions`
+    const apiAccess = getState().apiReducer
 
-    fetch(`${apiUrl}api/transactions`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token_type + ' ' + access_token
-      }
-
-    }).then((response) => response.json())
-      .then(async (responseJson) => {
-
-        // const data = responseJson.data
-        const { data } = responseJson
-        const reportList = data
-        // reportList.reverse()
-        console.log('Success report list' + JSON.stringify(responseJson))
-        dispatch({ type: 'SET_REPORT_LIST', payload: { reportList } })
-
-      })
-      .catch((error) => {
-        console.log('Error initiating report list info : ' + error);
-      });
-    // const reportList = [{ ref: 112005, date: '12/4/2019', type: 'Item', currency: 'IDR' },
-    // { ref: 112004, date: '24/3/2019', type: 'Loan', currency: 'MYR' },
-    // { ref: 112019, date: '20/5/2019', type: 'Withdrawal', currency: 'MYR' },
-    // { ref: 112509, date: '11/6/2019', type: 'Disbursement', currency: 'INR' },
-    // { ref: 112190, date: '12/7/2019', type: 'Loan', currency: 'SGD' }]
-
-    //dispatch({ type: 'SET_REPORT_LIST', payload: { reportList } })
+    const responseJson = await apiCall(uri, apiAccess)
+    const reportList = await responseJson.data
+    dispatch({ type: 'SET_REPORT_LIST', payload: { reportList } })
   }
 }
 
 export const businessDirectoryListApi = () => {
   return async (dispatch, getState) => {
-
-    //const personalToken = await AsyncStorage.getItem('personalToken');
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
-
-    fetch(`${apiUrl}api/business/list`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token_type + ' ' + access_token
-
-      }
-
-    }).then((response) => response.json())
-      .then(async (responseJson) => {
-        const businessDirectoryList = responseJson.data
-        businessDirectoryList.reverse()
-        console.log('Success' + JSON.stringify(responseJson))
-        dispatch({ type: 'SET_BUSINESS_DIRECTORY_LIST', payload: { businessDirectoryList } })
-
-      })
-      .catch((error) => {
-        console.log('Error initiating business dir info : ' + error);
-      });
-
-    // const businessDirectoryList = [{ name: 'Perusahaan Kecil Ah Kong Sdn. Bhd.', pNumber: 9780918, industry: 'Clothing', address: 'Jalan Bakri, 78099, Segamat, Johor Darul Tazim' },
-    // { name: 'Perniagaan Abdul Wahub', pNumber: 6756781, industry: 'Service', address: '78, 88, Jalan Merlimau Jaya, Melaka' },
-    // { name: 'StarBright Enterprise', pNumber: 956079, industry: 'Service', address: '78, Taman Lipat Kajang Perdana, Melaka' }]
-
-    // dispatch({ type: 'SET_BUSINESS_DIRECTORY_LIST', payload: { businessDirectoryList } })
+    const uri = `api/business/list`
+    const apiAccess = getState().apiReducer
+    const responseJson = await apiCall(uri, apiAccess)
+    const businessDirectoryList = await responseJson.data
+    businessDirectoryList && businessDirectoryList.reverse()
+    dispatch({ type: 'SET_BUSINESS_DIRECTORY_LIST', payload: { businessDirectoryList } })
   }
 }
 
@@ -679,8 +526,8 @@ export const retrieveMerchantInfoApi = () => {
 
     try {
       //const personalToken = await AsyncStorage.getItem('personalToken');
-      const personalToken = await SecureStore.getItemAsync('personalToken')
-      const { token_type, access_token } = JSON.parse(personalToken)
+
+      const { token_type, access_token } = getState().apiReducer
 
       fetch(`${apiUrl}api/setup/merchant`, {
         method: 'GET',
@@ -712,8 +559,8 @@ export const retrieveAccountInfoApi = () => {
   return async (dispatch, getState) => {
     try {
       //const personalToken = await AsyncStorage.getItem('personalToken');
-      const personalToken = await SecureStore.getItemAsync('personalToken')
-      const { token_type, access_token } = JSON.parse(personalToken)
+
+      const { token_type, access_token } = getState().apiReducer
 
       fetch(`${apiUrl}api/account/info`, {
         method: 'GET',
@@ -745,8 +592,8 @@ export const retrievePersonalInfoApi = () => {
   return async (dispatch, getState) => {
     try {
       //const personalToken = await AsyncStorage.getItem('personalToken');
-      const personalToken = await SecureStore.getItemAsync('personalToken')
-      const { token_type, access_token } = JSON.parse(personalToken)
+
+      const { token_type, access_token } = getState().apiReducer
 
       fetch(`${apiUrl}api/personal/info`, {
         method: 'GET',
@@ -780,8 +627,8 @@ export const checkDeclareApi = () => {
   return async (dispatch, getState) => {
 
     //const personalToken = await AsyncStorage.getItem('personalToken');
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
+
+    const { token_type, access_token } = getState().apiReducer
 
     fetch(`${apiUrl}api/setup/business_declaration`, {
       method: 'GET',
@@ -815,8 +662,8 @@ export const checkDocumentApi = () => {
   return async (dispatch, getState) => {
 
     //const personalToken = await AsyncStorage.getItem('personalToken');
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
+
+    const { token_type, access_token } = getState().apiReducer
 
     fetch(`${apiUrl}api/setup/business_document`, {
       method: 'GET',
@@ -848,8 +695,8 @@ export const checkContactApi = () => {
   return async (dispatch, getState) => {
 
     //const personalToken = await AsyncStorage.getItem('personalToken');
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
+
+    const { token_type, access_token } = getState().apiReducer
 
     fetch(`${apiUrl}api/setup/business_contact`, {
       method: 'GET',
@@ -880,8 +727,8 @@ export const checkCDDApi = () => {
   return async (dispatch, getState) => {
 
     //const personalToken = await AsyncStorage.getItem('personalToken');
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
+
+    const { token_type, access_token } = getState().apiReducer
 
     fetch(`${apiUrl}api/setup/cdd_verification`, {
       method: 'GET',
@@ -953,8 +800,8 @@ export const checkCDDApi2 = () => {
   return async (dispatch, getState) => {
 
     //const personalToken = await AsyncStorage.getItem('personalToken');
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
+
+    const { token_type, access_token } = getState().apiReducer
 
     fetch(`${apiUrl}api/setup/cdd_verification`, {
       method: 'GET',
@@ -968,7 +815,7 @@ export const checkCDDApi2 = () => {
     }).then((response) => response.json())
       .then(async (responseJson) => {
         const test = responseJson.data
-        console.log(`cdd result ialah ${JSON.stringify(test)}`)
+        console.log(`cdd result ialah ${JSON.stringify(responseJson)}`)
         const status1 = test.status
         console.log(`status kejayaan : ${status1}`)
 
@@ -988,30 +835,11 @@ export const checkCDDApi2 = () => {
 export const bankListApi = () => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
-
-    const access_credential = 'api'
-
-
-    fetch(`${apiUrl}/api/banks`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token_type + ' ' + access_token
-      },
-
-    }).then((response) => response.json())
-      .then(async (responseJson) => {
-        const bankList = await responseJson.data
-        console.log(`bank list ${JSON.stringify(bankList)}`)
-        dispatch({ type: 'SET_BANK_LIST', payload: { bankList } })
-
-      })
-      .catch((error) => {
-        console.error('Error : ' + error);
-      });
+    const uri = `/api/banks`
+    const apiAccess = getState().apiReducer
+    const responseJson = await apiCall(uri, apiAccess)
+    const bankList = await responseJson.data
+    dispatch({ type: 'SET_BANK_LIST', payload: { bankList } })
 
   }
 }
@@ -1027,8 +855,8 @@ export const addBankApi = (values) => {
     const bank_address = bankAddress
     const bank_country = bankCountry
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
+
+    const { token_type, access_token } = getState().apiReducer
     //const values = getState().invoiceReducer
     const access_credential = 'api'
     console.log(`New add bank api : ${JSON.stringify(values)}`)
@@ -1059,12 +887,9 @@ export const addBankApi = (values) => {
 export const deleteAllBankApi = (values) => {
   return async (dispatch, getState) => {
     console.log(`remove bank masuk api`)
-
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-
     AsyncStorage.removeItem('bankListStored')
 
-    // const { token_type, access_token } = JSON.parse(personalToken)
+    // const { token_type, access_token } = getState().apiReducer
 
 
   }
@@ -1076,8 +901,8 @@ export const deleteBankApi = (id) => {
 
 
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
+
+    const { token_type, access_token } = getState().apiReducer
 
     fetch(`${apiUrl}api/banks/${id}`, {
       method: 'DELETE',
@@ -1139,8 +964,8 @@ export const userInfo = () => {
   return async (dispatch, getState) => {
     //const personalToken = await AsyncStorage.getItem('personalToken');
     try {
-      const personalToken = await SecureStore.getItemAsync('personalToken')
-      const { token_type, access_token } = JSON.parse(personalToken)
+
+      const { token_type, access_token } = getState().apiReducer
 
       fetch(`${apiUrl}api/userInfo`, {
         method: 'GET',
@@ -1175,8 +1000,8 @@ export const notificationApi = () => {
   return async (dispatch, getState) => {
 
     //const personalToken = await AsyncStorage.getItem('personalToken');
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
+
+    const { token_type, access_token } = getState().apiReducer
 
     fetch(`${apiUrl}api/Notification`, {
       method: 'GET',
@@ -1252,8 +1077,8 @@ export const pushNotification = (expoToken) => {
 
 export const submitLoanApplicationApi = () => {
   return async (dispatch, getState) => {
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
+
+    const { token_type, access_token } = getState().apiReducer
     const values = getState().loanApplicationReducer
 
     const { amount,
@@ -1341,8 +1166,8 @@ export const submitLoanApplicationApi = () => {
 
 export const submitInvoiceApi = () => {
   return async (dispatch, getState) => {
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
+
+    const { token_type, access_token } = getState().apiReducer
     const { newInvoice, items } = getState().invoiceReducer
 
     const strNewInvoice = []
@@ -1405,8 +1230,8 @@ export const submitInvoiceApi = () => {
 
 export const vendorDataApi = (values) => {
   return async (dispatch, getState) => {
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
+
+    const { token_type, access_token } = getState().apiReducer
     //const values = getState().invoiceReducer
     const access_credential = 'api'
     console.log(`New add vendor api : ${JSON.stringify(values)}`)
@@ -1436,8 +1261,8 @@ export const vendorDataApi = (values) => {
 export const deleteVendorApi = (id) => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
+
+    const { token_type, access_token } = getState().apiReducer
 
     fetch(`${apiUrl}api/vendor/${id}`, {
       method: 'DELETE',
@@ -1464,8 +1289,8 @@ export const deleteVendorApi = (id) => {
 export const deleteItemApi = (id) => {
   return async (dispatch, getState) => {
 
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
+
+    const { token_type, access_token } = getState().apiReducer
 
     fetch(`${apiUrl}api/item/${id}`, {
       method: 'DELETE',
@@ -1492,8 +1317,8 @@ export const deleteItemApi = (id) => {
 
 export const customerDataApi = (values) => {
   return async (dispatch, getState) => {
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
+
+    const { token_type, access_token } = getState().apiReducer
     //const values = getState().invoiceReducer
     const access_credential = 'api'
     console.log(`New add customer api : ${JSON.stringify(values)}`)
@@ -1522,8 +1347,8 @@ export const customerDataApi = (values) => {
 
 export const itemDataApi = (values) => {
   return async (dispatch, getState) => {
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
+
+    const { token_type, access_token } = getState().apiReducer
     //const values = getState().invoiceReducer
     const access_credential = 'api'
     console.log(`New add item api : ${JSON.stringify(values)}`)
@@ -1551,8 +1376,8 @@ export const itemDataApi = (values) => {
 
 export const submitSupportApi = (values) => {
   return async (dispatch, getState) => {
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
+
+    const { token_type, access_token } = getState().apiReducer
     //const values = getState().supportReducer
     const access_credential = 'api'
     console.log(`New support api : ${JSON.stringify(values)}`)
@@ -1580,8 +1405,8 @@ export const submitSupportApi = (values) => {
 
 export const newExpenseApi = (values) => {
   return async (dispatch, getState) => {
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
+
+    const { token_type, access_token } = getState().apiReducer
     //const values = getState().expenseReducer
     const access_credential = 'api'
     console.log(`New expense api : ${JSON.stringify(values)}`)
@@ -1638,8 +1463,8 @@ export const savePinApi = () => {
 
 export const respondAgreementApi = (values) => {
   return async (dispatch, getState) => {
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
+
+    const { token_type, access_token } = getState().apiReducer
     //const values = getState().invoiceReducer
     const access_credential = 'api'
     console.log(`Respond : ${JSON.stringify(values)}`)
@@ -1668,8 +1493,8 @@ export const respondAgreementApi = (values) => {
 
 export const updateExpoTokenApi = () => {
   return async (dispatch, getState) => {
-    const personalToken = await SecureStore.getItemAsync('personalToken')
-    const { token_type, access_token } = JSON.parse(personalToken)
+
+    const { token_type, access_token } = getState().apiReducer
     const { expo_token } = getState().registrationReducer
     const access_credential = 'api'
     console.log(`update expo token : ${JSON.stringify(expo_token)}`)
