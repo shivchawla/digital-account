@@ -62,6 +62,12 @@ import NotiSettingScreen from '../screens/NotiSettingScreen';
 import ItemDetailScreen from '../screens/ItemDetailScreen';
 import ItemAddSuccessScreen from '../screens/ItemAddSuccessScreen';
 import ItemAddScreen from '../screens/ItemAddScreen';
+import CustomerAddScreen from '../screens/CustomerAddScreen';
+import CustomerDetailScreen from '../screens/CustomerDetailScreen';
+import CustomerAddSuccessScreen from '../screens/CustomerAddSuccessScreen';
+import VendorAddSuccessScreen from '../screens/VendorAddSuccessScreen';
+import VendorApplicationScreen from '../screens/VendorApplicationScreen';
+import VendorDetailScreen from '../screens/VendorDetailScreen';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -242,8 +248,8 @@ const DataSettingStack = () => {
         <Stack.Navigator initialRouteName="DataSetting" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="DataSetting" component={DataSettingScreen} />
             <Stack.Screen name="Item" component={ItemStack} />
-            <Stack.Screen name="Vendor" component={VendorScreen} />
-            <Stack.Screen name="Customer" component={CustomerScreen} />
+            <Stack.Screen name="Vendor" component={VendorStack} />
+            <Stack.Screen name="Customer" component={CustomerStack} />
             <Stack.Screen name="Welcome" component={WelcomeScreen} />
             <Stack.Screen name="ChangeNumber" component={ChangeNumberScreen} />
             <Stack.Screen name="ChangeEmail" component={ChangeEmailScreen} />
