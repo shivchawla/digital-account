@@ -169,8 +169,5 @@ const CompanyInformationScreen = (props) => {
 
 }
 
-CompanyInformationScreen.navigationOptions = {
-    header: null,
-};
 
 export default CompanyInformationScreen

@@ -1,14 +1,14 @@
 import React from 'react';
 import { createDrawerNavigator, createAppContainer } from 'react-navigation';
-import LoanScreen from '../screens/LoanScreen';
-import FilterBar from '../components/FilterBar';
+import InvoiceScreen from '../screens/InvoiceScreen';
+import FilterBarInvoice from '../components/FilterBarInvoice';
 import { Platform } from 'react-native'
 import Layout from '../constants/Layout'
 
-const LoanContent = createDrawerNavigator(
-    
+const InvoicesContent = createDrawerNavigator(
+
     {
-        Loan: LoanScreen,
+        Invoice: InvoiceScreen,
     },
 
     {
@@ -17,18 +17,14 @@ const LoanContent = createDrawerNavigator(
         contentComponent: props => {
             const close = () => { props.navigation.closeDrawer() }
             const nav = (screen) => { props.navigation.navigate(screen) }
-            return (<FilterBar nav={nav} close={close} />)
+            return (<FilterBarInvoice nav={nav} close={close} />)
         }, drawerPosition: 'right'
     },
 );
 
-LoanContent.navigationOptions = {
-    header: null,
-};
 
-const LoanDrawer = createAppContainer(LoanContent)
-LoanDrawer.navigationOptions = {
-    header: null,
-};
 
-export default LoanDrawer;
+const InvoicesDrawer = createAppContainer(InvoicesContent)
+
+
+export default InvoicesDrawer;

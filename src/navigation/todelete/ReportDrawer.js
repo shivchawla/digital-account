@@ -20,13 +20,8 @@ const ReportContent = createDrawerNavigator(
     },
 );
 
-ReportContent.navigationOptions = {
-    header: null,
-};
+
 
 const ReportDrawer = createAppContainer(ReportContent)
-ReportDrawer.navigationOptions = {
-    header: null,
-};
 
 export default ReportDrawer;

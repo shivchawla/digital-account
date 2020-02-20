@@ -88,8 +88,6 @@ const SetPasscodeScreen = (props) => {
     );
 }
 
-SetPasscodeScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default SetPasscodeScreen

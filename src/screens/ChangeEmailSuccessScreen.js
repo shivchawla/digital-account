@@ -40,8 +40,6 @@ const ChangeEmailSuccessScreen = (props) => {
 
 }
 
-ChangeEmailSuccessScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default ChangeEmailSuccessScreen 

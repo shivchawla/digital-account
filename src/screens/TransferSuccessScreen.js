@@ -101,8 +101,6 @@ const TransferSuccessScreen = (props) => {
     )
 }
 
-TransferSuccessScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default TransferSuccessScreen

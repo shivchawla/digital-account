@@ -14,7 +14,7 @@ import Layout from '../constants/Layout';
 import ScanFinger from '../components/ScanFinger'
 import { checkCodeApi } from '../store/actions/common';
 
-import {keyboardBeingDisplay,keyboardBeingClose} from '../components/handleKeyboard'
+import { keyboardBeingDisplay, keyboardBeingClose } from '../components/handleKeyboard'
 
 
 const WIthdrawApplicationScreen = (props) => {
@@ -40,10 +40,10 @@ const WIthdrawApplicationScreen = (props) => {
     const [code, updateCode] = useState("")
     const [authRequestVisible, setAuthRequestVisible] = useState(false)
     const { authEnabled, authType } = useSelector(state => state.authReducer, shallowEqual)
-    
+
     useEffect(() => {
-        const open=()=>{console.log(`dibuka`);setOffSet(false)}
-        const off=()=>{console.log(`ditutup`);setOffSet(true)}
+        const open = () => { console.log(`dibuka`); setOffSet(false) }
+        const off = () => { console.log(`ditutup`); setOffSet(true) }
         console.log("componentDidMount");
         keyboardBeingDisplay(open)
         keyboardBeingClose(off)
@@ -53,7 +53,7 @@ const WIthdrawApplicationScreen = (props) => {
         dispatch(actionCreator.checkAuth())
     }, [])
 
-    const [offSet,setOffSet]=useState(true)
+    const [offSet, setOffSet] = useState(true)
 
     const ios = Platform.OS === "ios" ? true : false
 
@@ -132,7 +132,7 @@ const WIthdrawApplicationScreen = (props) => {
                 }
 
                 return (
-                    <KeyboardAvoidingView behavior={'padding'} enabled style={{ flex: 1, }} keyboardVerticalOffset={offSet?30:0}>
+                    <KeyboardAvoidingView behavior={'padding'} enabled style={{ flex: 1, }} keyboardVerticalOffset={offSet ? 30 : 0}>
                         <Modal transparent={true} animationType={'slide'} visible={authRequestVisible} onRequestClose={() => setAuthRequestVisible(!authRequestVisible)} >
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(1,1,1,0.5)' }}>
                                 <View style={{ flex: 3 }} />
@@ -196,15 +196,19 @@ const WIthdrawApplicationScreen = (props) => {
                                 <View style={[{ flex: 9 }]}>
                                     <ScrollView style={[styles.screenMargin]}>
                                         {ios ? <View style={[styles.formElement, { marginTop: 20 }]}>
-                                            <Text style={[styles.titleBox, { marginBottom: 10 }]}>Bank</Text>
+                                            <View style={{ flexDirection: 'row',alignItems:'flex-end',marginBottom:10 }}>
+                                                <Text style={[styles.titleBox,{marginRight:5}]}>Bank</Text>
+                                                <TouchableWithoutFeedback onPress={() => props.navigation.navigate(`BankList`)} style={{ alignItems: 'flex-end', justifyContent: 'flex-end' }}>
+                                                    <Text style={[styles.small, { color: '#0A6496',textAlignVertical:'bottom' }]}>Manage</Text>
+                                                </TouchableWithoutFeedback></View>
+
                                             {(bankExists && bankList) ?
                                                 <View>
-                                                    <TouchableOpacity onPress={() => setIosPickerVisible(!iosPickerVisible)} style={{ marginTop: 5 }}>
-                                                        <Text style={[styles.small, { color: '#0A6496' }]}>Select Bank</Text>
+                                                    <TouchableOpacity onPress={() => setIosPickerVisible(!iosPickerVisible)} style={{ flexDirection: 'row', alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5, justifyContent: 'space-between', alignItems: 'center' }}>
+                                                        <Text style={[styles.text]}>Select Bank</Text>
+                                                        <Ionicons name="ios-arrow-down" style={{ fontSize: 12, }} />
                                                     </TouchableOpacity>
-                                                    <TouchableWithoutFeedback onPress={() => props.navigation.navigate(`BankList`)} style={{ marginTop: 5 }}>
-                                                        <Text style={[styles.small, { color: '#0A6496' }]}>Manage Bank</Text>
-                                                    </TouchableWithoutFeedback>
+
                                                 </View> : <TouchableWithoutFeedback onPress={() => props.navigation.navigate(`BankList`)}>
                                                     <Text style={[styles.small, { color: '#0A6496' }]}>Click Here to Add Bank</Text>
                                                 </TouchableWithoutFeedback>}
@@ -285,8 +289,5 @@ const WIthdrawApplicationScreen = (props) => {
     );
 }
 
-WIthdrawApplicationScreen.navigationOptions = {
-    header: null,
-};
 
 export default WIthdrawApplicationScreen;

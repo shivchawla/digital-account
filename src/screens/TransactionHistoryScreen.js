@@ -55,8 +55,6 @@ const TransactionHistoryScreen = (props) => {
     );
 }
 
-TransactionHistoryScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default TransactionHistoryScreen

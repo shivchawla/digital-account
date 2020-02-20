@@ -40,8 +40,5 @@ const PayrollSuccessScreen = (props) => {
     )
 }
 
-PayrollSuccessScreen.navigationOptions = {
-    header: null,
-};
 
 export default PayrollSuccessScreen

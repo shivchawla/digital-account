@@ -113,8 +113,6 @@ const RegistrationDeclarationScreen = (props) => {
     );
 }
 
-RegistrationDeclarationScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default RegistrationDeclarationScreen;

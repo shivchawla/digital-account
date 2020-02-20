@@ -86,8 +86,6 @@ const DocumentCameraScreen = (props) => {
     );
 }
 
-DocumentCameraScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default DocumentCameraScreen

@@ -85,8 +85,6 @@ const ItemAddSuccessScreen = (props) => {
     )
 }
 
-ItemAddSuccessScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default ItemAddSuccessScreen

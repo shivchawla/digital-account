@@ -298,9 +298,6 @@ const DashboardScreen = (props) => {
   );
 }
 
-DashboardScreen.navigationOptions = {
-  header: null
-};
 
 
 const Popup = (props) => {

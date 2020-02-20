@@ -40,8 +40,6 @@ const ContactPersonSuccessScreen = (props) => {
 
 }
 
-ContactPersonSuccessScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default ContactPersonSuccessScreen 

@@ -19,13 +19,9 @@ const ItemContent = createDrawerNavigator(
     },
 );
 
-ItemContent.navigationOptions = {
-    header: null,
-};
+
 
 const ItemDrawer = createAppContainer(ItemContent)
-ItemDrawer.navigationOptions = {
-    header: null,
-};
+
 
 export default ItemDrawer;

@@ -78,8 +78,6 @@ const ItemDetailScreen = (props) => {
         </KeyboardAvoidingView>)
 }
 
-ItemDetailScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default ItemDetailScreen;

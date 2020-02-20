@@ -29,8 +29,6 @@ const CompanyInfoIntroScreen = () => {
         </View >
     );
 }
-CompanyInfoIntroScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default CompanyInfoIntroScreen

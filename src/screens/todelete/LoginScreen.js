@@ -112,8 +112,6 @@ const LoginScreen = (props) => {
     )
 }
 
-LoginScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default LoginScreen

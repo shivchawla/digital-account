@@ -46,8 +46,6 @@ const LogOutScreen = (props) => {
     );
 }
 
-LogOutScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default LogOutScreen

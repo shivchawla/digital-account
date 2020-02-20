@@ -24,13 +24,8 @@ const WithdrawalContent = createDrawerNavigator(
     },
 );
 
-WithdrawalContent.navigationOptions = {
-    header: null,
-};
+
 
 const WithdrawalDrawer = createAppContainer(WithdrawalContent)
-WithdrawalDrawer.navigationOptions = {
-    header: null,
-};
 
 export default WithdrawalDrawer;

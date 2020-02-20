@@ -90,8 +90,6 @@ const InvoiceSuccessScreen = (props) => {
     )
 }
 
-InvoiceSuccessScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default InvoiceSuccessScreen

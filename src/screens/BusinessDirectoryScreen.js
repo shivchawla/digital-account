@@ -109,8 +109,6 @@ const BusinessDirectoryScreen = (props) => {
     );
 }
 
-BusinessDirectoryScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default BusinessDirectoryScreen;

@@ -256,8 +256,6 @@ const NewInvoiceItemsScreen = (props) => {
 
 }
 
-NewInvoiceItemsScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default NewInvoiceItemsScreen;

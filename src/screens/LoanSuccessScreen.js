@@ -86,6 +86,5 @@ const LoanSuccessScreen = (props) => {
     )
 }
 
-LoanSuccessScreen.navigationOptions = { header: null, };
 
 export default LoanSuccessScreen

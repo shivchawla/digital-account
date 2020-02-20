@@ -78,8 +78,6 @@ const TransferConfirmScreen = (props) => {
     );
 }
 
-TransferConfirmScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default TransferConfirmScreen

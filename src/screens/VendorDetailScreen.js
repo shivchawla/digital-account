@@ -74,8 +74,5 @@ const VendorDetailScreen = (props) => {
         </KeyboardAvoidingView>)
 }
 
-VendorDetailScreen.navigationOptions = {
-    header: null,
-};
 
 export default VendorDetailScreen;

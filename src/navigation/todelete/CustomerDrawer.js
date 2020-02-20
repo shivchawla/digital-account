@@ -19,13 +19,8 @@ const CustomerContent = createDrawerNavigator(
     },
 );
 
-CustomerContent.navigationOptions = {
-    header: null,
-};
 
 const CustomerDrawer = createAppContainer(CustomerContent)
-CustomerDrawer.navigationOptions = {
-    header: null,
-};
+
 
 export default CustomerDrawer;

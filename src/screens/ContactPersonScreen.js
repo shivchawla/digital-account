@@ -149,8 +149,6 @@ const ContactPersonScreen = (props) => {
 
 }
 
-ContactPersonScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default ContactPersonScreen

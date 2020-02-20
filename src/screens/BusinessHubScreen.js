@@ -42,9 +42,6 @@ const BusinessHubScreen = (props) => {
     );
 }
 
-BusinessHubScreen.navigationOptions = {
-    header: null,
-};
 
 
 

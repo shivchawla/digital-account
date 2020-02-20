@@ -57,9 +57,7 @@ export default function HomeScreen() {
   );
 }
 
-HomeScreen.navigationOptions = {
-  header: null,
-};
+
 
 function DevelopmentModeNotice() {
   if (__DEV__) {

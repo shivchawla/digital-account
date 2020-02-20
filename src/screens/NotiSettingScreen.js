@@ -91,8 +91,6 @@ const NotiSettingScreen = (props) => {
     );
 }
 
-NotiSettingScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default NotiSettingScreen

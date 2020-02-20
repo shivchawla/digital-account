@@ -39,8 +39,6 @@ const CompanyInfoSuccessScreen = (props) => {
     )
 }
 
-CompanyInfoSuccessScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default CompanyInfoSuccessScreen

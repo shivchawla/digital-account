@@ -41,8 +41,6 @@ const RemittanceSuccessScreen = (props) => {
     )
 }
 
-RemittanceSuccessScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default RemittanceSuccessScreen

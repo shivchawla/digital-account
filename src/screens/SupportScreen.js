@@ -225,8 +225,6 @@ const SupportScreen = (props) => {
     );
 }
 
-SupportScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default SupportScreen;

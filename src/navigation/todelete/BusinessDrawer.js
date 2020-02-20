@@ -22,13 +22,9 @@ const BusinessContent = createDrawerNavigator(
     },
 );
 
-BusinessContent.navigationOptions = {
-    header: null,
-};
+
 
 const BusinessDrawer = createAppContainer(BusinessContent)
-BusinessDrawer.navigationOptions = {
-    header: null,
-};
+
 
 export default BusinessDrawer;

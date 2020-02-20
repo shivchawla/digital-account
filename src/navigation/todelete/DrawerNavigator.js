@@ -37,13 +37,9 @@ const DrawerContent = createDrawerNavigator(
     },
 );
 
-DrawerContent.navigationOptions = {
-    header: null,
-};
+
 
 const DrawerNavigator = createAppContainer(DrawerContent)
-DrawerNavigator.navigationOptions = {
-    header: null,
-};
+
 
 export default DrawerNavigator;

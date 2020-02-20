@@ -147,8 +147,6 @@ const LoanApplicationScreen = (props) => {
     );
 }
 
-LoanApplicationScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default LoanApplicationScreen;

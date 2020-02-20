@@ -74,6 +74,6 @@ const SupportSuccessScreen = (props) => {
     )
 }
 
-SupportSuccessScreen.navigationOptions = { header: null, };
+
 
 export default SupportSuccessScreen

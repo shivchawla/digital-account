@@ -40,8 +40,6 @@ const ChangePhoneSuccessScreen = (props) => {
 
 }
 
-ChangePhoneSuccessScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default ChangePhoneSuccessScreen

@@ -147,8 +147,6 @@ const AddBankScreen = (props) => {
     );
 }
 
-AddBankScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default AddBankScreen;

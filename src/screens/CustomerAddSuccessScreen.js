@@ -82,8 +82,6 @@ const CustomerAddSuccessScreen = (props) => {
     )
 }
 
-CustomerAddSuccessScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default CustomerAddSuccessScreen

@@ -86,8 +86,5 @@ const VendorAddSuccessScreen = (props) => {
     )
 }
 
-VendorAddSuccessScreen.navigationOptions = {
-    header: null,
-};
 
 export default VendorAddSuccessScreen

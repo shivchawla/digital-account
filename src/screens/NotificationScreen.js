@@ -56,8 +56,5 @@ const NotificationScreen = (props) => {
     );
 }
 
-NotificationScreen.navigationOptions = {
-    header: null,
-};
 
 export default NotificationScreen

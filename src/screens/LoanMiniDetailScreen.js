@@ -116,8 +116,6 @@ const LoanMiniDetailScreen = (props) => {
         </KeyboardAvoidingView>)
 }
 
-LoanMiniDetailScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default LoanMiniDetailScreen;

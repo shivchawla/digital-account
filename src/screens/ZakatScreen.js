@@ -213,8 +213,6 @@ const ZakatScreen = (props) => {
     );
 }
 
-ZakatScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default ZakatScreen;

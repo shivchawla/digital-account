@@ -86,8 +86,6 @@ const CustomerScreen = (props) => {
     );
 }
 
-CustomerScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default CustomerScreen;

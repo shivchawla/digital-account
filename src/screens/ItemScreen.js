@@ -91,8 +91,6 @@ const ItemScreen = (props) => {
     );
 }
 
-ItemScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default ItemScreen;

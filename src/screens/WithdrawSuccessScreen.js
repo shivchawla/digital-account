@@ -97,8 +97,5 @@ const WithdrawSuccessScreen = (props) => {
     )
 }
 
-WithdrawSuccessScreen.navigationOptions = {
-    header: null,
-};
 
 export default WithdrawSuccessScreen

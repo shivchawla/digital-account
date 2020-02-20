@@ -96,8 +96,6 @@ const AgingReportScreen = (props) => {
     );
 }
 
-AgingReportScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default AgingReportScreen;

@@ -131,8 +131,6 @@ const EditProfileScreen = (props) => {
     );
 }
 
-EditProfileScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default EditProfileScreen;

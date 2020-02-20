@@ -76,8 +76,5 @@ const ChangeEmailScreen = (props) => {
     );
 }
 
-ChangeEmailScreen.navigationOptions = {
-    header: null,
-};
 
 export default ChangeEmailScreen
