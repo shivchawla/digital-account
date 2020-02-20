@@ -103,6 +103,4 @@ const SettingsScreen = (props) => {
     );
 }
 
-
-
 export default SettingsScreen

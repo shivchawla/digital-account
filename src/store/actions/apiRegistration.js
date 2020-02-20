@@ -82,7 +82,13 @@ export const requestPersonalToken = (screen, username, password) => {
         const stringifyJson = JSON.stringify(responseJson)
         SecureStore.setItemAsync('personalToken', stringifyJson);
         dispatch({ type: 'SET_REGISTER', payload: { access_token } });
-        (screen == 'login' && access_token) ? dispatch({ type: 'SET_LOGIN', payload: { proceed: true, indicator: false } }) : dispatch({ type: 'SET_LOGIN', payload: { proceed: false, indicator: false, ...responseJson } })
+        if (screen == 'login' && access_token) {
+          dispatch({ type: 'SET_LOGIN', payload: { proceed: true, indicator: false } })
+          dispatch({ type: 'SET_API_AUTH', payload: {token_type, access_token, token: true } })
+
+        } else {
+          dispatch({ type: 'SET_LOGIN', payload: { proceed: false, indicator: false, ...responseJson } })
+        }
 
       })
       .catch((error) => {

@@ -77,7 +77,6 @@ const DashboardScreen = (props) => {
 
   const { status, status1 } = useSelector(state => state.merchantInfoReducer, shallowEqual)
 
-
   const runCheckStatus2 = async () => {
     await dispatch(actionCreator.setScreen2())
   }
@@ -130,16 +129,16 @@ const DashboardScreen = (props) => {
 
     })
 
-    console.log(`gabungan ke-3 yang mengasyikkan ${JSON.stringify(listBaru3)}`)
+    //console.log(`gabungan ke-3 yang mengasyikkan ${JSON.stringify(listBaru3)}`)
 
     listBaru3.map(lb3 => {
       const { updated_at, balance } = lb3
       listBaru4.push({ updated_at, balance })
     })
-    console.log(`gabungan ke-4 yang mengasyikkan ${JSON.stringify(listBaru4)}`)
+    //console.log(`gabungan ke-4 yang mengasyikkan ${JSON.stringify(listBaru4)}`)
 
     const listBaru6 = _.values(_.groupBy(listBaru4, (dt) => moment(dt.updated_at).dayOfYear()))
-    console.log(`gabungan ke-6 yang mengasyikkan ${JSON.stringify(listBaru6)}`)
+    //console.log(`gabungan ke-6 yang mengasyikkan ${JSON.stringify(listBaru6)}`)
     const listBaru7 = []
     const listBaru8 = []
 
@@ -148,8 +147,8 @@ const DashboardScreen = (props) => {
       //listBaru8.push({ ...l[0] })  ///// kalau nak include duit first masuk awal awal hari tu
       listBaru8.push({ ...l[l.length - 1] })
     })
-    console.log(`gabungan ke-7 yang mengasyikkan ${JSON.stringify(listBaru7)}`)
-    console.log(`gabungan ke-8 yang mengasyikkan ${JSON.stringify(listBaru8)}`)
+    //console.log(`gabungan ke-7 yang mengasyikkan ${JSON.stringify(listBaru7)}`)
+    //console.log(`gabungan ke-8 yang mengasyikkan ${JSON.stringify(listBaru8)}`)
     //listBaru7&&setChartData(listBaru7)
 
     /////////TESTING DATE
@@ -175,16 +174,16 @@ const DashboardScreen = (props) => {
 
 
     const last = listBaru9[listBaru9.length - 1]
-    console.log(`last ialah ${JSON.stringify(last)}`)
+    //console.log(`last ialah ${JSON.stringify(last)}`)
 
     if (last.ada == 'takde') {
 
       const start = listBaru8.find(n => moment(n.updated_at) < moment(last.update)) || listBaru6.find(n => moment(n.updated_at) < moment(last.update))
 
-      console.log(`start ialah : ${JSON.stringify(start)}`)
+      //console.log(`start ialah : ${JSON.stringify(start)}`)
       listBaru9[listBaru9.length - 1].balance = _.isArray(start) ? start[start.length - 1].balance : 0
     }
-    console.log(` gabungan ke-9 yang mengasyikkan ${JSON.stringify(listBaru9)}`);
+    //console.log(` gabungan ke-9 yang mengasyikkan ${JSON.stringify(listBaru9)}`);
     const listBaru10 = []
     listBaru9.reverse()
     listBaru9.map((lb9, i) => {
@@ -199,16 +198,16 @@ const DashboardScreen = (props) => {
       }
     })
 
-    console.log(` gabungan ke-10 yang mengasyikkan ${JSON.stringify(listBaru10)}`);
+    //console.log(` gabungan ke-10 yang mengasyikkan ${JSON.stringify(listBaru10)}`);
     const listBaru11 = []
     //const i = goBackDays
     //ni kalau bahagi 30
     if (chartDay === 30) {
       for (i = goBackDays; i > 0; i--) {
         !((i + 1) % 3 === 0) && listBaru10.splice(i, 1);
-        console.log(JSON.stringify((i + 1) % 3 === 0))
+        //console.log(JSON.stringify((i + 1) % 3 === 0))
       }
-      console.log(` gabungan ke-11 yang mengasyikkan ${JSON.stringify(listBaru10)}`);
+      //console.log(` gabungan ke-11 yang mengasyikkan ${JSON.stringify(listBaru10)}`);
       return listBaru10
     }
 
