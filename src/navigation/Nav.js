@@ -80,6 +80,12 @@ import ItemDetailScreen from '../screens/ItemDetailScreen';
 import ItemAddSuccessScreen from '../screens/ItemAddSuccessScreen';
 import ItemAddScreen from '../screens/ItemAddScreen';
 import RegistrationStack from './RegistrationNav';
+import CustomerAddScreen from '../screens/CustomerAddScreen';
+import CustomerDetailScreen from '../screens/CustomerDetailScreen';
+import CustomerAddSuccessScreen from '../screens/CustomerAddSuccessScreen';
+import VendorAddSuccessScreen from '../screens/VendorAddSuccessScreen';
+import VendorApplicationScreen from '../screens/VendorApplicationScreen';
+import VendorDetailScreen from '../screens/VendorDetailScreen';
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -113,7 +119,7 @@ const Nav = (props) => {
     return (
         <NavigationContainer>
             <Stack.Navigator>
-                 {tokenExists ?
+                {tokenExists ?
                     <Stack.Screen name="Dashboard" component={MainDrawer} options={{ headerShown: false }} /> :
                     <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} />}
                 <Stack.Screen name="Registration" component={RegistrationStack} options={{ headerShown: false }} />
@@ -131,7 +137,7 @@ const MainDrawer = () => {
             const close = () => { props.navigation.closeDrawer() }
             const nav = (screen) => { props.navigation.navigate(screen) }
             return (<SideBar nav={nav} close={close} />)
-        }}> 
+        }}>
             <Drawer.Screen name="Dashboard" component={DashboardStack} />
             <Drawer.Screen name="Account" component={AccountScreen} />
             <Drawer.Screen name="Report" component={ReportDrawer} />
@@ -331,15 +337,14 @@ const DataSettingStack = () => {
         <Stack.Navigator initialRouteName="DataSetting" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="DataSetting" component={DataSettingScreen} />
             <Stack.Screen name="Item" component={ItemStack} />
-            <Stack.Screen name="Vendor" component={VendorScreen} />
-            <Stack.Screen name="Customer" component={CustomerScreen}/>
-            <Stack.Screen name="Welcome" component={WelcomeScreen}/> 
-            <Stack.Screen name="ChangeNumber" component={ChangeNumberScreen}/> 
-            <Stack.Screen name="ChangeEmail" component={ChangeEmailScreen}/> 
-            <Stack.Screen name="ChangePassword" component={ChangePasswordScreen}/> 
-            <Stack.Screen name="EditProfile" component={EditProfileScreen}/> 
-            <Stack.Screen name="NotiScreen" component={NotiSettingScreen}/> 
-            <Stack.Screen name="AuthOption" component={AuthOptionScreen}/> 
+            <Stack.Screen name="Vendor" component={VendorStack} />
+            <Stack.Screen name="Customer" component={CustomerStack} />
+            <Stack.Screen name="ChangeNumber" component={ChangeNumberScreen} />
+            <Stack.Screen name="ChangeEmail" component={ChangeEmailScreen} />
+            <Stack.Screen name="ChangePassword" component={ChangePasswordScreen} />
+            <Stack.Screen name="EditProfile" component={EditProfileScreen} />
+            <Stack.Screen name="NotiScreen" component={NotiSettingScreen} />
+            <Stack.Screen name="AuthOption" component={AuthOptionScreen} />
         </Stack.Navigator>
     )
 }
@@ -347,11 +352,33 @@ const ItemStack = () => {
     return (
         <Stack.Navigator initialRouteName="Item" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Item" component={ItemScreen} />
-            <Stack.Screen name="ItemDetail" component={ItemDetailScreen}/>
-            <Stack.Screen name="ItemAdd" component={ItemAddScreen}/>
-            <Stack.Screen name="ItemAddSuccess" component={ItemAddSuccessScreen}/>
+            <Stack.Screen name="ItemDetail" component={ItemDetailScreen} />
+            <Stack.Screen name="ItemAdd" component={ItemAddScreen} />
+            <Stack.Screen name="ItemAddSuccess" component={ItemAddSuccessScreen} />
         </Stack.Navigator>
     )
 }
+const CustomerStack = () => {
+    return (
+        <Stack.Navigator initialRouteName="Customer" screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Customer" component={CustomerScreen} />
+            <Stack.Screen name="CustomerDetail" component={CustomerDetailScreen} />
+            <Stack.Screen name="CustomerAdd" component={CustomerAddScreen} />
+            <Stack.Screen name="CustomerAddSuccess" component={CustomerAddSuccessScreen} />
+        </Stack.Navigator>
+    )
+}
+const VendorStack = () => {
+    return (
+        <Stack.Navigator initialRouteName="Vendor" screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Vendor" component={VendorScreen} />
+            <Stack.Screen name="VendorDetail" component={VendorDetailScreen} />
+            <Stack.Screen name="VendorApplication" component={VendorApplicationScreen} />
+            <Stack.Screen name="VendorAddSuccess" component={VendorAddSuccessScreen} />
+        </Stack.Navigator>
+    )
+}
+
+
 
 export default Nav;

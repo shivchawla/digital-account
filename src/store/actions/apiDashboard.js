@@ -1512,8 +1512,8 @@ export const customerDataApi = (values) => {
       body: JSON.stringify({ ...values, access_credential }),
     }).then((response) => response.json())
       .then(async (responseJson) => {
-        const { status } = await responseJson
-        await dispatch({ type: 'SET_CUSTOMER_LIST', payload: { status, proceedMain: true } })
+        const { status,code } = await responseJson
+        await dispatch({ type: 'SET_CUSTOMER_LIST', payload: { status,code, proceedMain: true } })
         await console.log(`customer submit api  ${JSON.stringify(responseJson)}`)
       })
       .catch((error) => {
