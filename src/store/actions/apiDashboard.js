@@ -249,25 +249,21 @@ export const withdrawListApi = () => {
     const personalToken = await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
 
-    fetch(`${apiUrl}api/withdrawal/list`, {
+    const getHeader =
+    {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Authorization': token_type + ' ' + access_token
       }
+    }
 
-    }).then((response) => response.json())
-      .then(async (responseJson) => {
-        const withdrawList = responseJson.data
-        withdrawList.reverse()
-        console.log('Success withdraw list' + JSON.stringify(responseJson))
-        dispatch({ type: 'SET_WITHDRAWAL_LIST', payload: { withdrawList } })
-
-      })
-      .catch((error) => {
-        console.log('Error initiating withdraw list info : ' + error);
-      });
+    let response = await fetch(`${apiUrl}api/withdrawal/list`, getHeader)
+    let responseJson = await response.json()
+    const withdrawList = responseJson.data
+    withdrawList.reverse()
+    dispatch({ type: 'SET_WITHDRAWAL_LIST', payload: { withdrawList } })
 
   }
 }
@@ -1022,14 +1018,14 @@ export const bankListApi = () => {
 
 export const addBankApi = (values) => {
   return async (dispatch, getState) => {
- 
+
 
     const { bankAccountNo, bankAccountName, bankAddress, bankCountry, bankLabel } = values
-    const account_no=bankAccountNo
-    const account_holder_name=bankLabel
-    const bank_name=bankAccountName
-    const bank_address=bankAddress
-    const bank_country=bankCountry
+    const account_no = bankAccountNo
+    const account_holder_name = bankLabel
+    const bank_name = bankAccountName
+    const bank_address = bankAddress
+    const bank_country = bankCountry
 
     const personalToken = await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)
@@ -1044,7 +1040,7 @@ export const addBankApi = (values) => {
         'Accept': 'application/json',
         'Authorization': token_type + ' ' + access_token
       },
-      body: JSON.stringify({ account_no,account_holder_name,bank_name,bank_address,bank_country, access_credential }),
+      body: JSON.stringify({ account_no, account_holder_name, bank_name, bank_address, bank_country, access_credential }),
     }).then((response) => response.json())
       .then(async (responseJson) => {
         const { status, code } = await responseJson
@@ -1078,7 +1074,7 @@ export const deleteBankApi = (id) => {
   return async (dispatch, getState) => {
     console.log(`remove bank delete api : ${id}`)
 
-  
+
 
     const personalToken = await SecureStore.getItemAsync('personalToken')
     const { token_type, access_token } = JSON.parse(personalToken)

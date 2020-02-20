@@ -46,11 +46,7 @@ const Nav = (props) => {
                 <Stack.Screen name="Registration" component={RegistrationStack} options={{ headerShown: false }} />
             </Stack.Navigator>
         </NavigationContainer>
-
     )
 }
-
-
-
 
 export default Nav;
