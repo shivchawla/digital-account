@@ -26,10 +26,11 @@ const validationSchema = Yup.object().shape({
 const WelcomeScreen = (props) => {
 
     const proceed = useSelector(state => state.loginScreenReducer.proceed, shallowEqual)
+    const token = useSelector(state => state.apiReducer.token, shallowEqual)
     const all = useSelector(state => state.loginScreenReducer.message, shallowEqual)
     useEffect(() => {
-         proceed && props.navigation.navigate('Dashboard')
-    }, [proceed]);
+        (proceed&&token) && props.navigation.navigate('Dashboard')
+    }, [proceed,token]);
     const dispatch = useDispatch()
     const login = (values) => {
         dispatch(actionCreator.login1(values))
@@ -43,7 +44,7 @@ const WelcomeScreen = (props) => {
     return (
 
         <Formik initialValues={{ email: '', password: '' }} onSubmit={async (values, actions) => {
-            const prev = props.route.params?.test??'NA'
+            const prev = props.route.params?.test ?? 'NA'
             console.log(`jalankan login : ${prev}`)
             const cacing = await login(values)
             console.log(`proceed ialah ${JSON.stringify(proceed)}`);
@@ -77,7 +78,7 @@ const WelcomeScreen = (props) => {
                                     <View style={{ flex: 2, backgroundColor: '#fff', borderTopLeftRadius: 30, borderTopRightRadius: 30, padding: 20 }}>
                                         <View style={[styles.formElement]}>
                                             <View style={{ margin: 10 }} />
-                                            <TextInput autoCapitalize={'none'} autoCorrect={false} onSubmitEditing={() =>passwordInput.focus()} returnKeyType={"next"} value={email} keyboardType={'email-address'} onBlur={FormikProps.handleBlur('email')} onChangeText={FormikProps.handleChange('email')} placeholder={emailTouched && emailError ? '' : 'Email'} style={{ borderBottomWidth: 1, borderColor: '#9ADAF4', padding: 5 }} />
+                                            <TextInput autoCapitalize={'none'} autoCorrect={false} onSubmitEditing={() => passwordInput.focus()} returnKeyType={"next"} value={email} keyboardType={'email-address'} onBlur={FormikProps.handleBlur('email')} onChangeText={FormikProps.handleChange('email')} placeholder={emailTouched && emailError ? '' : 'Email'} style={{ borderBottomWidth: 1, borderColor: '#9ADAF4', padding: 5 }} />
                                             {emailTouched && emailError && <Text style={styles.error}>{emailError}</Text>}
                                         </View>
                                         <View style={[styles.formElement]}>

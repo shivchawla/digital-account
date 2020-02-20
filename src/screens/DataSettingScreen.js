@@ -93,6 +93,4 @@ const DataSettingScreen = (props) => {
     );
 }
 
-
-
 export default DataSettingScreen
