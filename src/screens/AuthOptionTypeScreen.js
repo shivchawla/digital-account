@@ -8,7 +8,7 @@ import * as LocalAuthentication from 'expo-local-authentication';
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 
-const AuthOptionScreen = (props) => {
+const AuthOptionTypeScreen = (props) => {
     const { authEnabled, authType } = useSelector(state => state.authReducer, shallowEqual)
     const dispatch = useDispatch()
     useEffect(() => {
@@ -61,10 +61,11 @@ const AuthOptionScreen = (props) => {
 
     const setAuth = () => {
         if (biometricEnable) {
-            dispatch(actionCreator.savePin({ authType: 'biometric' }))
+            dispatch(actionCreator.savePin({ authType: 'biometric',pin:'NA' }))
 
         } else {
-            dispatch(actionCreator.savePin({ authType: 'passcode' }))
+            dispatch(actionCreator.setAuth({ authType: 'passcode'  }))
+            //dispatch(actionCreator.savePin({ authType: 'passcode' }))
         }
         props.navigation.navigate('AuthOption')
     }
@@ -139,4 +140,4 @@ const AuthOptionScreen = (props) => {
 
 
 
-export default AuthOptionScreen
+export default AuthOptionTypeScreen

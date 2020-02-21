@@ -8,7 +8,11 @@ const apiUrl = 'https://tuah.niyo.my/'
 
 const apiCall = async (uri, apiAccess) => {
 
-  const { token_type, access_token } = apiAccess
+
+
+  const access = apiAccess ? apiAccess : JSON.parse(await SecureStore.getItemAsync('personalToken'))
+
+  const { token_type, access_token } = access
 
   const method = 'GET'
   const Accept = 'application/json'
@@ -88,7 +92,7 @@ export const loanListApi = () => {
 
 export const repaymentListApi = () => {
   return async (dispatch, getState) => {
-    
+
     const responseJson = await apiCall(`api/repaymentinfo/list`, getState().apiReducer)
     const repaymentList = await responseJson.data
     repaymentList && repaymentList.reverse()
@@ -230,7 +234,7 @@ export const withdrawDataApi = (id) => {
 export const withdrawListApi = () => {
   return async (dispatch, getState) => {
 
-   
+
 
     const responseJson = await apiCall(`api/withdrawal/list`, getState().apiReducer)
     const withdrawList = await responseJson.data
@@ -242,7 +246,7 @@ export const withdrawListApi = () => {
 export const vendorListApi = () => {
   return async (dispatch, getState) => {
 
- 
+
     const responseJson = await apiCall(`api/setting/vendor/list`, getState().apiReducer)
     const vendorList = await responseJson.data
     vendorList && vendorList.reverse()
@@ -347,9 +351,6 @@ export const withDrawApi = (values) => {
 
 export const customerListApi = () => {
   return async (dispatch, getState) => {
-
-
-    
     const responseJson = await apiCall(`api/setting/customer/list`, getState().apiReducer)
     const customerList = await responseJson.data
     customerList && customerList.reverse()
@@ -418,7 +419,7 @@ export const deleteCustomerApi = (id) => {
 export const itemListApi = () => {
   return async (dispatch, getState) => {
 
-  
+
     const responseJson = await apiCall(`api/setting/item/list`, getState().apiReducer)
     const itemList = await responseJson.data
     itemList && itemList.reverse()
@@ -472,7 +473,7 @@ export const getAllUsersApi = () => {
 
 export const invoiceListApi = () => {
   return async (dispatch, getState) => {
-  
+
     const responseJson = await apiCall(`api/invoices/list`, getState().apiReducer)
     const invoiceList = await responseJson.data
     invoiceList && invoiceList.reverse()
@@ -493,8 +494,8 @@ export const reportListApi = () => {
 
 export const businessDirectoryListApi = () => {
   return async (dispatch, getState) => {
-   
-    const responseJson = await apiCall(`api/business/list`,  getState().apiReducer)
+
+    const responseJson = await apiCall(`api/business/list`, getState().apiReducer)
     const businessDirectoryList = await responseJson.data
     businessDirectoryList && businessDirectoryList.reverse()
     dispatch({ type: 'SET_BUSINESS_DIRECTORY_LIST', payload: { businessDirectoryList } })
@@ -1412,23 +1413,44 @@ export const newExpenseApi = (values) => {
 
 export const checkAuthApi = () => {
   return async (dispatch, getState) => {
+
     console.log(`lalu kat apidashboard checkauthapi`)
-    const pinStringified = await SecureStore.getItemAsync('twoFa')
-    console.log(`ada pin ${pinStringified}`)
-    if (pinStringified) {
-      console.log(`ada pin ${pinStringified}`)
-      const pin = JSON.parse(pinStringified)
-      dispatch({ type: 'SET_AUTH', payload: { ...pin } })
-    }
+    const responseJson = await apiCall(`api/settings/auth`, getState().apiReducer)
+    const pin = await responseJson.data
+    console.log(`ada pin ${JSON.stringify(responseJson)}`)
+    dispatch({ type: 'SET_AUTH', payload: { ...pin } })
+
   }
 }
 
-export const savePinApi = () => {
+export const savePinApi = (values) => {
   return async (dispatch, getState) => {
+    //pinStringified = getState().authReducer
+    // console.log(JSON.stringify(getState().authReducer))
+    // await SecureStore.setItemAsync('twoFa', pinStringified);
 
-    pinStringified = await JSON.stringify(getState().authReducer)
-    console.log(JSON.stringify(getState().authReducer))
-    await SecureStore.setItemAsync('twoFa', pinStringified);
+    const { token_type, access_token } = getState().apiReducer
+    //const values = getState().expenseReducer
+    const access_credential = 'api'
+
+
+    fetch(`${apiUrl}api/settings/auth`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': token_type + ' ' + access_token
+      },
+      body: JSON.stringify({ ...values, access_credential }),
+    }).then((response) => response.json())
+      .then(async (responseJson) => {
+        const { status, code } = await responseJson
+        await dispatch({ type: 'SET_AUTH', payload: { ...responseJson.data } })
+        await console.log(`set auth api  ${JSON.stringify(responseJson)}`)
+      })
+      .catch((error) => {
+        console.error('Error : ' + error);
+      });
 
   }
 }

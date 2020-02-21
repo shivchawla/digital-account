@@ -62,6 +62,8 @@ import NotiSettingScreen from '../screens/NotiSettingScreen';
 import ItemDetailScreen from '../screens/ItemDetailScreen';
 import ItemAddSuccessScreen from '../screens/ItemAddSuccessScreen';
 import ItemAddScreen from '../screens/ItemAddScreen';
+import AuthOptionTypeScreen from '../screens/AuthOptionTypeScreen';
+import SetPasscodeScreen from '../screens/SetPasscodeScreen';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -250,7 +252,7 @@ const DataSettingStack = () => {
             <Stack.Screen name="ChangePassword" component={ChangePasswordScreen} />
             <Stack.Screen name="EditProfile" component={EditProfileScreen} />
             <Stack.Screen name="NotiScreen" component={NotiSettingScreen} />
-            <Stack.Screen name="AuthOption" component={AuthOptionScreen} />
+            <Stack.Screen name="AuthOption" component={AuthOptionStack} />
         </Stack.Navigator>
     )
 }
@@ -261,6 +263,16 @@ const ItemStack = () => {
             <Stack.Screen name="ItemDetail" component={ItemDetailScreen} />
             <Stack.Screen name="ItemAdd" component={ItemAddScreen} />
             <Stack.Screen name="ItemAddSuccess" component={ItemAddSuccessScreen} />
+        </Stack.Navigator>
+    )
+}
+
+const AuthOptionStack = () => {
+    return (
+        <Stack.Navigator initialRouteName="AuthOption" screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="AuthOption" component={AuthOptionScreen} />
+            <Stack.Screen name="AuthOptionType" component={AuthOptionTypeScreen} />
+            <Stack.Screen name="SetPasscode" component={SetPasscodeScreen} />            
         </Stack.Navigator>
     )
 }

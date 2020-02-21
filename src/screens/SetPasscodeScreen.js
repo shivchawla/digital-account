@@ -3,7 +3,7 @@ import { View, TouchableOpacity, Text, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient'
 import styles from '../styles/styles'
-import OTPInputView from '@twotalltotems/react-native-otp-input'
+//import OTPInputView from '@twotalltotems/react-native-otp-input'
 import Layout from '../constants/Layout'
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'

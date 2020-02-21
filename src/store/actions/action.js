@@ -898,14 +898,14 @@ export const checkAuth = () => {
 export const setAuth = (val) => {
     return async (dispatch, getState) => {
         dispatch({ type: 'SET_AUTH', payload: { ...val } })
-        dispatch(savePinApi())
+        //dispatch(savePinApi())
     }
 }
 
 export const savePin = (val) => {
     return async (dispatch, getState) => {
         await dispatch({ type: 'SET_AUTH', payload: { ...val } })
-        dispatch(savePinApi())
+        dispatch(savePinApi(val))
     }
 }
 

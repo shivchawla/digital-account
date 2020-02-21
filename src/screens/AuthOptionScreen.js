@@ -47,9 +47,7 @@ const AuthOptionTypeScreen = (props) => {
     const [notificationEnable, setNotificationEnable] = useState(authEnabled)
 
     const notificationToggle = () => {
-
     
-
         if (authEnabled) {
             //buka dulu authentication screen
             setAuthRequestVisible(true)
@@ -63,7 +61,7 @@ const AuthOptionTypeScreen = (props) => {
 
     return (
         <View style={{ flex: 1, }}>
-            <Modal transparent={true} animationType={'slide'} visible={authRequestVisible} onRequestClose={() => setAuthRequestVisible(!authRequestVisible)} >
+            {/* <Modal transparent={true} animationType={'slide'} visible={authRequestVisible} onRequestClose={() => setAuthRequestVisible(!authRequestVisible)} >
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(1,1,1,0.5)' }}>
                     <View style={{ flex: 3 }} />
                     <View style={{ flex: 1, backgroundColor: '#fff', justifyContent: 'center', alignItems: 'center' }}>
@@ -82,7 +80,7 @@ const AuthOptionTypeScreen = (props) => {
 
                     </View>
                 </View>
-            </Modal>
+            </Modal> */}
             <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
                     <TouchableOpacity onPress={() => props.navigation.navigate("DataSetting")} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>

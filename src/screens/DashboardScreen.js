@@ -93,6 +93,7 @@ const DashboardScreen = (props) => {
       dispatch(actionCreator.retrieveMerchantInfo())
       dispatch(actionCreator.retrieveAccountInfo())
       dispatch(actionCreator.getReportList())
+      dispatch(actionCreator.checkAuth()) //awal awal lagi tengok
     }
 
   }, [status1])
