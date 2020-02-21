@@ -6,7 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import moment from 'moment'
 import styles from '../styles/styles'
 import LayoutA from '../Layout/LayoutA';
-
+import { CustomButton } from '../components/Custom'
 const InvoiceScreen = (props) => {
     useEffect(() => {
         dispatch(actionCreator.getInvoiceList())
@@ -36,14 +36,16 @@ const InvoiceScreen = (props) => {
 
     return (
 
-        <LayoutA title={'INVOICE'} navigation={props.navigation}>
-            <View style={{ marginTop: 25, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end' }}>
-                <TouchableOpacity onPress={() => props.navigation.navigate('NewInvoice')} style={{ paddingTop: 17, paddingBottom: 17, paddingLeft: 19, paddingRight: 19, backgroundColor: '#34C2DB', borderRadius: 15 }}>
-                    <Text style={[styles.text, { color: '#fff' }]}>New Invoice</Text>
-                </TouchableOpacity>
+        <LayoutA title={'INVOICE'} navigation={props.navigation} nopadding>
+            <View style={{ marginTop: 25, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', paddingLeft: 20, paddingRight: 30 }}>
+                <CustomButton
+                            navigation={() => props.navigation.navigate('NewInvoice')}
+                            label={'New Invoice'}
+                            boxStyle={{ backgroundColor: '#34C2DB' }}
+                        />
             </View>
             <View style={{ marginTop: 20 }}>
-                <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 10 }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 10, paddingLeft: 20, paddingRight: 30 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 10, flex: 1, borderWidth: 1, borderColor: 'lightgrey', padding: 10, borderRadius: 10 }}>
                         <View>
                             <Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
@@ -54,7 +56,7 @@ const InvoiceScreen = (props) => {
                         </TouchableOpacity>
                     </View>
                 </View>
-                {invoiceList && <FlatList data={filterEnabled ? filterInvoicesList : onScreenFilter ? onScreenFilteredList : invoiceList} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
+                {invoiceList && <FlatList contentContainerStyle={{ paddingLeft: 20, paddingRight: 20 }}  data={filterEnabled ? filterInvoicesList : onScreenFilter ? onScreenFilteredList : invoiceList} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
                     <View style={styles.box}>
                         <TouchableWithoutFeedback onPress={() => dispatch(actionCreator.setMarker(index))} style={{ flexDirection: 'row', marginTop: 5 }}>
                             <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
