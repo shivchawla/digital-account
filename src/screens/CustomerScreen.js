@@ -25,7 +25,7 @@ const CustomerScreen = (props) => {
             nopadding
         >
             <View style={[{ flex: 9 }]}>
-                    <View style={{ marginTop: 10, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end',paddingLeft: 20, paddingRight: 30 }}>
+                    <View style={{ marginTop: 10, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end',paddingLeft: 10, paddingRight: 20 }}>
                         <CustomButton
                             navigation={() => props.navigation.navigate('CustomerAdd')}
                             label={'Add Customer'}
@@ -33,7 +33,7 @@ const CustomerScreen = (props) => {
                         />
                     </View>
                     <View style={{ marginTop: 20 }}>
-                        <View style={{ flexDirection: 'row', justifyContent: 'flex-end',paddingLeft: 20, paddingRight: 30 }}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'flex-end',paddingLeft: 10, paddingRight: 20 }}>
                             <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 10, flex: 1, borderWidth: 1, borderColor: 'lightgrey', padding: 10, borderRadius: 10 }}>
                                 <View>
                                     <Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
@@ -45,7 +45,7 @@ const CustomerScreen = (props) => {
                             </View>
                         </View>
                         <ScrollView>
-                            {customerList && <FlatList contentContainerStyle={{ paddingLeft: 20, paddingRight: 20 }} data={filterEnabled ? filteredCustomerList : customerList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
+                            {customerList && <FlatList contentContainerStyle={{ paddingLeft: 10, paddingRight: 10 }} data={filterEnabled ? filteredCustomerList : customerList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
                                 <View style={styles.box}>
                                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
                                         <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
