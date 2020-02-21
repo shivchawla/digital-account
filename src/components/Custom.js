@@ -24,17 +24,16 @@ export const CustomTextInput = (props) => {
 }
 
 export const CustomFormAction = (props) => {
-    const { navigation, isValid, handleSubmit, authEnabled, locked, isSubmitting } = props
+    const { navigation, isValid, handleSubmit, authEnabled, locked, isSubmitting,label,boxStyle } = props
     return (
 
-        <View style={{ flexDirection: 'row', alignSelf: 'stretch' }}>
-            <TouchableOpacity onPress={() => navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1, paddingTop: 20, paddingBottom: 20, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ flexDirection: 'row', alignSelf: 'stretch', }} >
+            <TouchableOpacity onPress={() => navigation.goBack()} style={[{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1, paddingTop: 20, paddingBottom: 20, justifyContent: 'center', alignItems: 'center' },boxStyle]}>
                 <Text style={[styles.butang, { color: '#000000' }]}>Back</Text>
             </TouchableOpacity>
             <TouchableOpacity disabled={!isValid} onPress={handleSubmit} style={{ flex: 1 }}>
                 <LinearGradient colors={isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
-                    {isSubmitting ? <ActivityIndicator color={'#fff'} /> : <Text style={[styles.butang, { color: '#fff' }]}>Submit</Text>}
-                   
+                    {isSubmitting ? <ActivityIndicator color={'#fff'} /> : <Text style={[styles.butang, { color: '#fff' }]}>{label?label:'Submit'}</Text>}
                     {authEnabled ? locked ? <Ionicons name='ios-lock' color={'#fff'} style={{ fontSize: 30, paddingLeft: 20 }} /> : <View /> : <View />}
                 </LinearGradient>
             </TouchableOpacity>
