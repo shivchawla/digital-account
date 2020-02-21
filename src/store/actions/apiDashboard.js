@@ -79,9 +79,7 @@ export const loanApplicationDataApi = (id) => {
 export const loanListApi = () => {
   return async (dispatch, getState) => {
 
-    const uri = `api/loan/list`
-    const apiAccess = getState().apiReducer
-    const responseJson = await apiCall(uri, apiAccess)
+    const responseJson = await apiCall(`api/loan/list`, getState().apiReducer)
     const loanList = await responseJson.data
     loanList && loanList.reverse()
     dispatch({ type: 'SET_LOAN_LIST', payload: { loanList } })
@@ -90,9 +88,8 @@ export const loanListApi = () => {
 
 export const repaymentListApi = () => {
   return async (dispatch, getState) => {
-    const uri = `api/repaymentinfo/list`
-    const apiAccess = getState().apiReducer
-    const responseJson = await apiCall(uri, apiAccess)
+    
+    const responseJson = await apiCall(`api/repaymentinfo/list`, getState().apiReducer)
     const repaymentList = await responseJson.data
     repaymentList && repaymentList.reverse()
     dispatch({ type: 'SET_LOAN_LIST', payload: { repaymentList } })
@@ -233,10 +230,9 @@ export const withdrawDataApi = (id) => {
 export const withdrawListApi = () => {
   return async (dispatch, getState) => {
 
-    const uri = `api/withdrawal/list`
-    const apiAccess = getState().apiReducer
+   
 
-    const responseJson = await apiCall(uri, apiAccess)
+    const responseJson = await apiCall(`api/withdrawal/list`, getState().apiReducer)
     const withdrawList = await responseJson.data
     withdrawList && withdrawList.reverse()
     dispatch({ type: 'SET_WITHDRAWAL_LIST', payload: { withdrawList } })
@@ -246,12 +242,9 @@ export const withdrawListApi = () => {
 export const vendorListApi = () => {
   return async (dispatch, getState) => {
 
-    const uri = `api/setting/vendor/list`
-    const apiAccess = getState().apiReducer
-
-    const responseJson = await apiCall(uri, apiAccess)
+ 
+    const responseJson = await apiCall(`api/setting/vendor/list`, getState().apiReducer)
     const vendorList = await responseJson.data
-
     vendorList && vendorList.reverse()
     dispatch({ type: 'SET_VENDOR_LIST', payload: { vendorList } })
 
@@ -356,10 +349,8 @@ export const customerListApi = () => {
   return async (dispatch, getState) => {
 
 
-    const uri = `api/setting/customer/list`
-    const apiAccess = getState().apiReducer
-
-    const responseJson = await apiCall(uri, apiAccess)
+    
+    const responseJson = await apiCall(`api/setting/customer/list`, getState().apiReducer)
     const customerList = await responseJson.data
     customerList && customerList.reverse()
     dispatch({ type: 'SET_CUSTOMER_LIST', payload: { customerList } })
@@ -427,13 +418,11 @@ export const deleteCustomerApi = (id) => {
 export const itemListApi = () => {
   return async (dispatch, getState) => {
 
-      const uri = `api/setting/item/list`
-      const apiAccess = getState().apiReducer
   
-      const responseJson = await apiCall(uri, apiAccess)
-      const itemList = await responseJson.data
-      itemList && itemList.reverse()
-      dispatch({ type: 'SET_ITEM_LIST', payload: { itemList } })
+    const responseJson = await apiCall(`api/setting/item/list`, getState().apiReducer)
+    const itemList = await responseJson.data
+    itemList && itemList.reverse()
+    dispatch({ type: 'SET_ITEM_LIST', payload: { itemList } })
 
   }
 }
@@ -471,15 +460,11 @@ export const getAllUsersApi = () => {
   return async (dispatch, getState) => {
 
 
+    const responseJson = await apiCall(`api/developer/merchants/account/all`, getState().apiReducer)
+    const userList = await responseJson.data
 
-      const uri = `api/developer/merchants/account/all`
-      const apiAccess = getState().apiReducer
-  
-      const responseJson = await apiCall(uri, apiAccess)
-      const userList = await responseJson.data
-      
-      dispatch({ type: 'SET_RECIPIENT_LIST', payload: { userList } })
-      
+    dispatch({ type: 'SET_RECIPIENT_LIST', payload: { userList } })
+
 
   }
 }
@@ -487,24 +472,20 @@ export const getAllUsersApi = () => {
 
 export const invoiceListApi = () => {
   return async (dispatch, getState) => {
+  
+    const responseJson = await apiCall(`api/invoices/list`, getState().apiReducer)
+    const invoiceList = await responseJson.data
+    invoiceList && invoiceList.reverse()
+    dispatch({ type: 'SET_INVOICE_LIST', payload: { invoiceList } })
 
-      const uri = `api/invoices/list`
-      const apiAccess = getState().apiReducer  
-      const responseJson = await apiCall(uri, apiAccess)
-      const invoiceList = await responseJson.data
-      invoiceList&&invoiceList.reverse()
-      dispatch({ type: 'SET_INVOICE_LIST', payload: { invoiceList } })
-    
   }
 }
 
 export const reportListApi = () => {
   return async (dispatch, getState) => {
 
-    const uri = `api/transactions`
-    const apiAccess = getState().apiReducer
 
-    const responseJson = await apiCall(uri, apiAccess)
+    const responseJson = await apiCall(`api/transactions`, getState().apiReducer)
     const reportList = await responseJson.data
     dispatch({ type: 'SET_REPORT_LIST', payload: { reportList } })
   }
@@ -512,9 +493,8 @@ export const reportListApi = () => {
 
 export const businessDirectoryListApi = () => {
   return async (dispatch, getState) => {
-    const uri = `api/business/list`
-    const apiAccess = getState().apiReducer
-    const responseJson = await apiCall(uri, apiAccess)
+   
+    const responseJson = await apiCall(`api/business/list`,  getState().apiReducer)
     const businessDirectoryList = await responseJson.data
     businessDirectoryList && businessDirectoryList.reverse()
     dispatch({ type: 'SET_BUSINESS_DIRECTORY_LIST', payload: { businessDirectoryList } })
@@ -835,9 +815,7 @@ export const checkCDDApi2 = () => {
 export const bankListApi = () => {
   return async (dispatch, getState) => {
 
-    const uri = `/api/banks`
-    const apiAccess = getState().apiReducer
-    const responseJson = await apiCall(uri, apiAccess)
+    const responseJson = await apiCall(`/api/banks`, getState().apiReducer)
     const bankList = await responseJson.data
     dispatch({ type: 'SET_BANK_LIST', payload: { bankList } })
 
@@ -1451,8 +1429,6 @@ export const savePinApi = () => {
     pinStringified = await JSON.stringify(getState().authReducer)
     console.log(JSON.stringify(getState().authReducer))
     await SecureStore.setItemAsync('twoFa', pinStringified);
-
-
 
   }
 }
