@@ -35,7 +35,7 @@ const Registration = () => {
             <Stack.Screen name="ContactPerson" component={ContactPersonScreen} />
             <Stack.Screen name="ContactPersonSuccess" component={ContactPersonSuccessScreen} />
             <Stack.Screen name="CompanyDocument" component={CompanyDocumentScreen} />
-            <Stack.Screen name="CompanyDocumentSuccess" component={CompanyDocumentSuccessScreen} />
+            <Stack.Screen name="CompanyDocumentSuccess" component={CompanyDocumentSuccessScreen} /> 
             <Stack.Screen name="RegistrationDeclaration" component={RegistrationDeclarationScreen} />
             <Stack.Screen name="AdminApproval" component={AdminApprovalScreen} />
         </Stack.Navigator>

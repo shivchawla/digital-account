@@ -43,7 +43,7 @@ const CompanyContactAddressInformationScreen = (props) => {
     const newAddress = malaysiaData;
     const save = async (values) => {
         await dispatch(actionCreator.companyInfo(values))
-        await props.navigation.goBack()
+        await props.navigation.navigate('CompanyContactInformation')
     }
 
     // const found = newAddress.find(n => n.Postcode === '73400')

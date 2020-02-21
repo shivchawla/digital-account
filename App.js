@@ -100,13 +100,13 @@ const App = (props) => {
   };
 
 
-  // useEffect(() => {
-  //   //checkUpdate()
-  //   //registerForPushNotificationsAsync();
-  //   const _notificationSubscription = Notifications.addListener(_handleNotification);
-  //   checkLogin()
+  useEffect(() => {
+    //checkUpdate()
+    registerForPushNotificationsAsync();
+    const _notificationSubscription = Notifications.addListener(_handleNotification);
+    //checkLogin()
 
-  // }, [])
+  }, [])
 
   if (!isLoadingComplete && !props.skipLoadingScreen) {
     return (

@@ -15,6 +15,43 @@
       },
       "oauth_client": [
         {
+          "client_id": "1021952550439-0q8g9tnpapmncvfg8se354h6fteuecl0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fcgb.da",
+            "certificate_hash": "8ef912f5a74ed0066c6bda3e38eb36fdc1ac385a"
+          }
+        },
+        {
+          "client_id": "1021952550439-430o945o4ao3meff2unm9n08e9otpv5u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuKru7gEMW9hS60Wbbka3102ImHPBpjqw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1021952550439-430o945o4ao3meff2unm9n08e9otpv5u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1021952550439:android:1963efc6d3705fe47f9002",
+        "android_client_info": {
+          "package_name": "com.fcgb.dan"
+        }
+      },
+      "oauth_client": [
+        {
           "client_id": "1021952550439-430o945o4ao3meff2unm9n08e9otpv5u.apps.googleusercontent.com",
           "client_type": 3
         }

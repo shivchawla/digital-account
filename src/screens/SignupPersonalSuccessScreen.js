@@ -110,7 +110,7 @@ const SignupPersonalSuccessScreen = (props) => {
                         </View>
                         <View style={{ flex: 1 }}>
                             <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                                <TouchableOpacity onPress={() => props.navigation.navigate('Dashboard')} style={{ width: Layout.window.width * 0.3, paddingTop: 16, paddingBottom: 16, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, borderColor: 'black', borderWidth: 1 }}>
+                                <TouchableOpacity onPress={() => props.navigation.navigate('Main')} style={{ width: Layout.window.width * 0.3, paddingTop: 16, paddingBottom: 16, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, borderColor: 'black', borderWidth: 1 }}>
                                     <Text style={[styles.textDefault]}>Skip</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity disabled={!emailVerified} onPress={() => clearEmail()} style={{ width: Layout.window.width * 0.3, paddingTop: 16, paddingBottom: 16, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: emailVerified ? '#09A4BF' : 'rgba(9,164,191,0.5)' }}>
