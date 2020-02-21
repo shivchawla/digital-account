@@ -91,7 +91,7 @@ const MainDrawer = () => {
             <Drawer.Screen name="Transfer" component={TransferStack} />
             <Drawer.Screen name="Support" component={SupportScreen} />
             <Drawer.Screen name="BusinessHub" component={BusinessHubScreen} />
-            <Drawer.Screen name="Invoice" component={NewInvoiceStack} />
+            <Drawer.Screen name="Invoice" component={InvoiceStack} />
         </Drawer.Navigator>
     )
 }
@@ -209,7 +209,7 @@ const InvoiceStack = () => {
         <Stack.Navigator initialRouteName="Invoice" screenOptions={{ headerShown: false }}>
 
             <Stack.Screen name="Invoice" component={InvoiceScreen} />
-            <Stack.Screen name="NewInvoice" component={NewInvoiceScreen} />
+            <Stack.Screen name="NewInvoice" component={NewInvoiceStack} />
 
         </Stack.Navigator>
     )
