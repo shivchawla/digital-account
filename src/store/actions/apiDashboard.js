@@ -348,27 +348,17 @@ export const withDrawApi = (values) => {
     }
 
 
-    const access_credential = 'api'
+    //const access_credential = 'api'
     console.log(`New loan api : ${JSON.stringify(values2)}`)
 
+    
+    const responseJson = await apiPostCall(`/api/withdrawal/submit`, values2, getState().apiReducer)
+    const { status, code } = await responseJson
+    await dispatch({ type: 'SET_NEW_WITHDRAWAL', payload: { status, code, proceedMain: true } })
+    await console.log(`withdrawal api  ${JSON.stringify(responseJson)}`)
 
-    fetch(`${apiUrl}/api/withdrawal/submit`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token_type + ' ' + access_token
-      },
-      body: JSON.stringify({ ...values2, access_credential }),
-    }).then((response) => response.json())
-      .then(async (responseJson) => {
-        const { status, code } = await responseJson
-        await dispatch({ type: 'SET_NEW_WITHDRAWAL', payload: { status, code, proceedMain: true } })
-        await console.log(`withdrawal api  ${JSON.stringify(responseJson)}`)
-      })
-      .catch((error) => {
-        console.error('Error : ' + error);
-      });
+
+    
 
   }
 }
@@ -857,31 +847,13 @@ export const addBankApi = (values) => {
     const bank_name = bankAccountName
     const bank_address = bankAddress
     const bank_country = bankCountry
+    const val={ account_no, account_holder_name, bank_name, bank_address, bank_country }
 
 
-    const { token_type, access_token } = getState().apiReducer
-    //const values = getState().invoiceReducer
-    const access_credential = 'api'
-    console.log(`New add bank api : ${JSON.stringify(values)}`)
-
-    fetch(`${apiUrl}/api/banks`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token_type + ' ' + access_token
-      },
-      body: JSON.stringify({ account_no, account_holder_name, bank_name, bank_address, bank_country, access_credential }),
-    }).then((response) => response.json())
-      .then(async (responseJson) => {
-        const { status, code } = await responseJson
-        // await dispatch({ type: 'SET_VENDOR_SUBMIT', payload: { status, code, proceedMain: true } })
-        // await console.log(`vendor submit api  ${JSON.stringify(responseJson)}`)
-      })
-      .catch((error) => {
-        console.error('Error : ' + error);
-      });
-
+    const responseJson = await apiPostCall(`/api/banks`, val, getState().apiReducer)
+    const { status, code } = await responseJson
+    // await dispatch({ type: 'SET_VENDOR_SUBMIT', payload: { status, code, proceedMain: true } })
+    // await console.log(`vendor submit api  ${JSON.stringify(responseJson)}`)
 
 
   }
@@ -1408,7 +1380,6 @@ export const submitSupportApi = (values) => {
 
 export const newExpenseApi = (values) => {
   return async (dispatch, getState) => {
-
 
     const responseJson = await apiPostCall(`/api/expenses/transfer/submit`, values, getState().apiReducer)
     const { status, code } = await responseJson
