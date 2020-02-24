@@ -8,6 +8,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import styles from '../styles/styles'
 import Constants from 'expo-constants';
+import { keyboardBeingDisplay, keyboardBeingClose } from '../components/handleKeyboard'
 
 const apiReady = true
 const validationSchema = Yup.object().shape({
@@ -46,8 +47,16 @@ const SupportScreen = (props) => {
         setIosPickerVisible(!iosPickerVisible)
     }
     //kalau backend takde api
+    const [offSet, setOffSet] = useState(true)
+    useEffect(() => {
+        const open = () => setOffSet(false)
+        const off = () => setOffSet(true)
+
+        keyboardBeingDisplay(open)
+        keyboardBeingClose(off)
+    }, []); // empty-array means don't watch for any updates
     if (!apiReady) {
-        return (<KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }} keyboardVerticalOffset={20}>
+        return (<KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }} keyboardVerticalOffset={offSet ? 30 : 0}>
 
             <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>

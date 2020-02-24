@@ -8,7 +8,9 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import styles from '../styles/styles'
 import Constants from 'expo-constants';
-
+import { CustomFormAction, CustomTextInput } from '../components/Custom'
+import { keyboardBeingDisplay, keyboardBeingClose } from '../components/handleKeyboard'
+import LayoutA from '../Layout/LayoutA';
 const validationSchema = Yup.object().shape({
     invoice_item: Yup
         .string()
@@ -42,6 +44,15 @@ const NewInvoiceItemsScreen = (props) => {
         dispatch({ type: 'SET_INVOICE_APPLICATION', payload: { newInvoice: { ...newInvoice, amount } } })
     };
     const { newInvoice, items } = useSelector(state => state.invoiceReducer, shallowEqual)
+    const [offSet, setOffSet] = useState(true)
+    useEffect(() => {
+        const open = () => setOffSet(false)
+        const off = () => setOffSet(true)
+
+        keyboardBeingDisplay(open)
+        keyboardBeingClose(off)
+    }, []); // empty-array means don't watch for any updates
+
 
     useEffect(() => {
         dispatch(actionCreator.getItemList())
@@ -100,7 +111,7 @@ const NewInvoiceItemsScreen = (props) => {
 
                 return (
 
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }} keyboardVerticalOffset={20}>
+                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }} keyboardVerticalOffset={offSet ? 30 : 0}>
                         <Modal animationType={'slide'} visible={addItemVisible} onRequestClose={() => setItemVisible(!addItemVisible)} transparent={true}>
 
                             <View style={{ flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(1,1,1,0.5)' }}>
@@ -129,26 +140,44 @@ const NewInvoiceItemsScreen = (props) => {
                                             </View>
 
                                         </View> : <View>
-                                                <View style={[styles.formElement]}>
-                                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Invoice Item</Text>
-                                                    <TextInput value={invoice_item} onChangeText={FormikProps.handleChange('invoice_item')} onBlur={FormikProps.handleBlur('invoice_item')} style={[styles.textInput,{ borderWidth: 1, borderColor: invoice_itemTouched && invoice_itemError ? 'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={invoice_itemTouched && invoice_itemError ? '' : ''} placeholderTextColor={invoice_itemTouched && invoice_itemError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
-                                                    {invoice_itemTouched && invoice_itemError && <Text style={styles.error}>{invoice_itemError}</Text>}
-                                                </View>
-                                                <View style={[styles.formElement]}>
-                                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Ref No</Text>
-                                                    <TextInput value={item} onChangeText={FormikProps.handleChange('item')} onBlur={FormikProps.handleBlur('item')} style={[styles.textInput,{ borderWidth: 1, borderColor: itemTouched && itemError ? 'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={itemTouched && itemError ? '' : ''} placeholderTextColor={itemTouched && itemError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
-                                                    {itemTouched && itemError && <Text style={styles.error}>{itemError}</Text>}
-                                                </View>
-                                                <View style={[styles.formElement]}>
-                                                    <Text style={[styles.titleBox, { marginBottom: 10 }]}>Quantity</Text>
-                                                    <TextInput value={quantity} onChangeText={FormikProps.handleChange('quantity')} onBlur={() => changePrice()} style={[styles.textInput,{ borderWidth: 1, borderColor: quantityTouched && quantityError ? 'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={quantityTouched && quantityError ? '' : ''} placeholderTextColor={quantityTouched && quantityError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
-                                                    {quantityTouched && quantityError && <Text style={styles.error}>{quantityError}</Text>}
-                                                </View>
+
+                                                <CustomTextInput
+                                                    label={`Invoice Item`}
+                                                    value={invoice_item}
+                                                    handleChange={FormikProps.handleChange(`invoice_item`)}
+                                                    handleBlur={FormikProps.handleBlur('invoice_item')}
+                                                    touched={invoice_itemTouched}
+                                                    error={invoice_itemError}
+                                                    placeholder={''}
+
+                                                />
+
+                                                <CustomTextInput
+                                                    label={`Ref No`}
+                                                    value={item}
+                                                    handleChange={FormikProps.handleChange(`item`)}
+                                                    handleBlur={FormikProps.handleBlur('item')}
+                                                    touched={itemTouched}
+                                                    error={itemError}
+                                                    placeholder={''}
+
+                                                />
+
+                                                <CustomTextInput
+                                                    label={`Quantity`}
+                                                    value={quantity}
+                                                    handleChange={FormikProps.handleChange(`quantity`)}
+                                                    handleBlur={FormikProps.handleBlur('quantity')}
+                                                    touched={quantityTouched}
+                                                    error={quantityError}
+                                                    placeholder={''}
+
+                                                />
                                                 <View style={[styles.formElement]}>
                                                     <Text style={[styles.titleBox, { marginBottom: 10 }]}>Price</Text>
-                                                    <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent:'center',alignItems:'center' }}>
-                                                        <Text style={{ flex: 1,textAlignVertical:'center' }}>{currencyItem}</Text>
-                                                        <TextInput value={priceItem} onChangeText={FormikProps.handleChange('priceItem')} onBlur={FormikProps.handleBlur('priceItem')} style={[styles.textInput,{ alignSelf: 'stretch', flex: 8, borderWidth: 1, borderColor: priceItemTouched && priceItemError ? 'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={priceItemTouched && priceItemError ? '' : ''} placeholderTextColor={priceItemTouched && priceItemError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
+                                                    <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'center', alignItems: 'center' }}>
+                                                        <Text style={{ flex: 1, textAlignVertical: 'center' }}>{currencyItem}</Text>
+                                                        <TextInput value={priceItem} onChangeText={FormikProps.handleChange('priceItem')} onBlur={FormikProps.handleBlur('priceItem')} style={[styles.textInput, { alignSelf: 'stretch', flex: 8, borderWidth: 1, borderColor: priceItemTouched && priceItemError ? 'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={priceItemTouched && priceItemError ? '' : ''} placeholderTextColor={priceItemTouched && priceItemError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
                                                     </View>
                                                     {priceItemTouched && priceItemError && <Text style={styles.error}>{priceItemError}</Text>}
                                                 </View>
@@ -157,7 +186,7 @@ const NewInvoiceItemsScreen = (props) => {
                                     </View>
                                 </View>
                                 {!iosItemPicker && <View style={{ flexDirection: 'row', alignSelf: 'stretch', backgroundColor: '#fff' }}>
-                                    <TouchableOpacity onPress={() => setItemVisible(!addItemVisible)} style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 10, borderColor: '#D3D3D3', borderWidth: 1, paddingTop: 20, paddingBottom: 20, justifyContent: 'center', alignItems: 'center',backgroundColor:'#fff' }}>
+                                    <TouchableOpacity onPress={() => setItemVisible(!addItemVisible)} style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 10, borderColor: '#D3D3D3', borderWidth: 1, paddingTop: 20, paddingBottom: 20, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff' }}>
                                         <Text style={[styles.butang, { color: '#000000' }]}>Back</Text>
                                     </TouchableOpacity>
                                     <TouchableOpacity onPress={FormikProps.handleSubmit} style={{ flex: 1 }}>
@@ -168,23 +197,12 @@ const NewInvoiceItemsScreen = (props) => {
                                 </View>}
                             </View>
                         </Modal>
-
-                        <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
-                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
-                                <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                                    <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30 }} />
-                                </TouchableOpacity>
-                            </View>
-                            <View style={{ flex: 5, justifyContent: 'center', alignItems: 'center' }}>
-                                <Text style={[styles.title]}>NEW INVOICE</Text>
-                            </View>
-                            <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
-                                <View style={{ backgroundColor: 'rgba(62,194,217,0.5)', borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
-                                    <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
-                                </View>
-                            </TouchableOpacity>
-                        </View>
-                        <View style={{ justifyContent: 'space-between', flex: 9 }}>
+                        < LayoutA
+                            title={'NEW INVOICE'}
+                            screenType='form'
+                            navigation={props.navigation}
+                            nopadding
+                        >
                             <View style={{ flex: 9 }}>
                                 <View style={{ flex: 9 }}>
                                     <ScrollView style={[styles.screenMargin]}>
@@ -247,7 +265,8 @@ const NewInvoiceItemsScreen = (props) => {
                                     </LinearGradient>
                                 </TouchableOpacity>
                             </View>
-                        </View>
+
+                        </ LayoutA>
                     </KeyboardAvoidingView>)
             }}
         </Formik >

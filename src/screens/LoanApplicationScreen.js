@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import { View, TouchableOpacity, Text, Image, ActivityIndicator, TextInput, KeyboardAvoidingView, ScrollView, CheckBox, Platform } from 'react-native';
 import CheckBox2 from 'react-native-check-box'
 import { useDispatch } from 'react-redux'
@@ -8,6 +8,7 @@ import styles from '../styles/styles'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import Layout from '../constants/Layout';
+import { keyboardBeingDisplay, keyboardBeingClose } from '../components/handleKeyboard'
 
 const validationSchema = Yup.object().shape({
 
@@ -28,6 +29,15 @@ const validationSchema = Yup.object().shape({
 const LoanApplicationScreen = (props) => {
     const dispatch = useDispatch()
     const setLoanApplication = (val) => dispatch({ type: 'SET_LOAN_APPLICATION', payload: { ...val } });
+    const [offSet, setOffSet] = useState(true)
+    useEffect(() => {
+        const open = () => setOffSet(false)
+        const off = () => setOffSet(true)
+
+        keyboardBeingDisplay(open)
+        keyboardBeingClose(off)
+    }, []); // empty-array means don't watch for any updates
+
     return (
         <Formik initialValues={{ smeConnected: true }} onSubmit={values => {
             setLoanApplication(values)
@@ -49,7 +59,7 @@ const LoanApplicationScreen = (props) => {
 
                 return (
 
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }} keyboardVerticalOffset={20}>
+                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }} keyboardVerticalOffset={offSet ? 30 : 0}>
                         <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>

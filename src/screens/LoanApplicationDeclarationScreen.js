@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import { View, TouchableOpacity, Text, Image, ActivityIndicator, KeyboardAvoidingView, ScrollView, TextInput } from 'react-native';
 import CheckBox from 'react-native-check-box'
 import { LinearGradient } from 'expo-linear-gradient'
@@ -9,6 +9,7 @@ import * as Yup from 'yup';
 import Layout from '../constants/Layout';
 import * as actionCreator from '../store/actions/action'
 import { useDispatch } from 'react-redux'
+import { keyboardBeingDisplay, keyboardBeingClose } from '../components/handleKeyboard'
 
 const validationSchema = Yup.object().shape({
 });
@@ -16,6 +17,15 @@ const validationSchema = Yup.object().shape({
 const LoanApplicationDeclarationScreen = (props) => {
     const dispatch = useDispatch()
     const setLoanData = (val) => dispatch({ type: 'SET_LOAN_APPLICATION', payload: { ...val } });
+    const [offSet, setOffSet] = useState(true)
+    useEffect(() => {
+        const open = () => setOffSet(false)
+        const off = () => setOffSet(true)
+
+        keyboardBeingDisplay(open)
+        keyboardBeingClose(off)
+    }, []); // empty-array means don't watch for any updates
+
     return (
 
         <Formik onSubmit={async values => {
@@ -69,7 +79,7 @@ const LoanApplicationDeclarationScreen = (props) => {
                 }
 
                 return (
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }} keyboardVerticalOffset={20} >
+                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }} keyboardVerticalOffset={offSet ? 30 : 0} >
                         <View style={[{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>

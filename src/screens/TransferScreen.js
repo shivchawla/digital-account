@@ -40,11 +40,12 @@ const TransferScreen = (props) => {
     const [locked, setLock] = useState(true)
     const [code, updateCode] = useState("")
     const [authRequestVisible, setAuthRequestVisible] = useState(false)
+   
     const [offSet,setOffSet]=useState(true)
     useEffect(() => {
-        const open=()=>{console.log(`dibuka`);setOffSet(false)}
-        const off=()=>{console.log(`ditutup`);setOffSet(true)}
-        console.log("componentDidMount");
+        const open=()=>setOffSet(false)
+        const off=()=>setOffSet(true)
+       
         keyboardBeingDisplay(open)
         keyboardBeingClose(off)
     }, []); // empty-array means don't watch for any updates

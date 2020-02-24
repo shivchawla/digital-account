@@ -3,7 +3,7 @@ import { FileSystem, Notifications } from 'expo'
 import * as SecureStore from 'expo-secure-store'
 import moment from 'moment'
 
-const apiUrl = 'https://tuah.niyo.my/'
+const apiUrl = 'https://uat.niyo.my/'
 
 export const requestToken = () => {
   console.log('baca x ni')

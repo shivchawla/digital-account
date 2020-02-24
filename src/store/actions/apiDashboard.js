@@ -4,7 +4,7 @@ import * as SecureStore from 'expo-secure-store'
 
 import moment from 'moment'
 
-const apiUrl = 'https://tuah.niyo.my/'
+const apiUrl = 'https://uat.niyo.my/'
 
 const apiGetCall = async (uri, apiAccess) => {
 
@@ -1185,14 +1185,14 @@ export const submitInvoiceApi = () => {
       }
     });
 
-    xhr.open("POST", "https://tuah.niyo.my/api/invoice/submit");
+    xhr.open("POST", "https://uat.niyo.my/api/invoice/submit");
     xhr.setRequestHeader("Authorization", token_type + ' ' + access_token);
     xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.setRequestHeader("Cache-Control", "no-cache");
 
-    xhr.setRequestHeader("Host", "tuah.niyo.my");
+    xhr.setRequestHeader("Host", "uat.niyo.my");
     xhr.setRequestHeader("Accept-Encoding", "gzip, deflate");
 
 
@@ -1308,8 +1308,8 @@ export const customerDataApi = (values) => {
       body: JSON.stringify({ ...values, access_credential }),
     }).then((response) => response.json())
       .then(async (responseJson) => {
-        const { status } = await responseJson
-        await dispatch({ type: 'SET_CUSTOMER_LIST', payload: { status, proceedMain: true } })
+        const { status,code } = await responseJson
+        await dispatch({ type: 'SET_CUSTOMER_LIST', payload: { status,code, proceedMain: true } })
         await console.log(`customer submit api  ${JSON.stringify(responseJson)}`)
       })
       .catch((error) => {

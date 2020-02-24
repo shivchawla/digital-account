@@ -30,6 +30,7 @@ import ConnectedPartiesScreen from '../screens/ConnectedPartiesScreen';
 import LoanApplicationDeclarationScreen from '../screens/LoanApplicationDeclarationScreen';
 import WithdrawScreen from '../screens/WithdrawScreen';
 import FilterBarWithdrawal from '../components/FilterBarWithdrawal';
+import FilterBarBusiness from '../components/FilterBarBusiness';
 import NewInvoiceScreen from '../screens/NewInvoiceScreen';
 import NewInvoiceItemsScreen from '../screens/NewInvoiceItemsScreen';
 
@@ -65,6 +66,19 @@ import ItemAddScreen from '../screens/ItemAddScreen';
 import AuthOptionTypeScreen from '../screens/AuthOptionTypeScreen';
 import SetPasscodeScreen from '../screens/SetPasscodeScreen';
 
+import CustomerAddScreen from '../screens/CustomerAddScreen';
+import CustomerDetailScreen from '../screens/CustomerDetailScreen';
+import CustomerAddSuccessScreen from '../screens/CustomerAddSuccessScreen';
+import VendorAddSuccessScreen from '../screens/VendorAddSuccessScreen';
+import VendorApplicationScreen from '../screens/VendorApplicationScreen';
+import VendorDetailScreen from '../screens/VendorDetailScreen';
+import ZakatScreen from '../screens/ZakatScreen';
+import PayrollScreen from '../screens/PayrollScreen';
+import RemittanceScreen from '../screens/RemittanceScreen'; 
+import ZakatSuccessScreen from '../screens/ZakatSuccessScreen';
+import BusinessDirectoryScreen from '../screens/BusinessDirectoryScreen';
+import PayrollSuccessScreen from '../screens/PayrollSuccessScreen';
+import RemittanceSuccessScreen from '../screens/RemittanceSuccessScreen';
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -86,8 +100,8 @@ const MainDrawer = () => {
             <Drawer.Screen name="DataSetting" component={DataSettingStack} />
             <Drawer.Screen name="Transfer" component={TransferStack} />
             <Drawer.Screen name="Support" component={SupportScreen} />
-            <Drawer.Screen name="BusinessHub" component={BusinessHubScreen} />
-            <Drawer.Screen name="Invoice" component={NewInvoiceStack} />
+            <Drawer.Screen name="BusinessHub" component={BusinessHubStack} />
+            <Drawer.Screen name="Invoice" component={InvoiceStack} />
         </Drawer.Navigator>
     )
 }
@@ -205,7 +219,7 @@ const InvoiceStack = () => {
         <Stack.Navigator initialRouteName="Invoice" screenOptions={{ headerShown: false }}>
 
             <Stack.Screen name="Invoice" component={InvoiceScreen} />
-            <Stack.Screen name="NewInvoice" component={NewInvoiceScreen} />
+            <Stack.Screen name="NewInvoice" component={NewInvoiceStack} />
 
         </Stack.Navigator>
     )
@@ -244,8 +258,8 @@ const DataSettingStack = () => {
         <Stack.Navigator initialRouteName="DataSetting" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="DataSetting" component={DataSettingScreen} />
             <Stack.Screen name="Item" component={ItemStack} />
-            <Stack.Screen name="Vendor" component={VendorScreen} />
-            <Stack.Screen name="Customer" component={CustomerScreen} />
+            <Stack.Screen name="Vendor" component={VendorStack} />
+            <Stack.Screen name="Customer" component={CustomerStack} />
             <Stack.Screen name="Welcome" component={WelcomeScreen} />
             <Stack.Screen name="ChangeNumber" component={ChangeNumberScreen} />
             <Stack.Screen name="ChangeEmail" component={ChangeEmailScreen} />
@@ -272,9 +286,74 @@ const AuthOptionStack = () => {
         <Stack.Navigator initialRouteName="AuthOption" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="AuthOption" component={AuthOptionScreen} />
             <Stack.Screen name="AuthOptionType" component={AuthOptionTypeScreen} />
-            <Stack.Screen name="SetPasscode" component={SetPasscodeScreen} />            
+            <Stack.Screen name="SetPasscode" component={SetPasscodeScreen} />  
+            </Stack.Navigator> )}
+
+const CustomerStack = () => {
+    return (
+        <Stack.Navigator initialRouteName="Customer" screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Customer" component={CustomerScreen} />
+            <Stack.Screen name="CustomerDetail" component={CustomerDetailScreen} />
+            <Stack.Screen name="CustomerAdd" component={CustomerAddScreen} />
+            <Stack.Screen name="CustomerAddSuccess" component={CustomerAddSuccessScreen} />
+        </Stack.Navigator>
+    )
+}
+const VendorStack = () => {
+    return (
+        <Stack.Navigator initialRouteName="Vendor" screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Vendor" component={VendorScreen} />
+            <Stack.Screen name="VendorDetail" component={VendorDetailScreen} />
+            <Stack.Screen name="VendorApplication" component={VendorApplicationScreen} />
+            <Stack.Screen name="VendorAddSuccess" component={VendorAddSuccessScreen} />
         </Stack.Navigator>
     )
 }
 
+const BusinessHubStack = () => {
+    return (
+        <Stack.Navigator initialRouteName="BusinessHub" screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="BusinessHub" component={BusinessHubScreen} />
+            <Stack.Screen name="Zakat" component={ZakatStack} />
+            <Stack.Screen name="Payroll" component={PayrollStack} />
+            <Stack.Screen name="Remittance" component={RemittanceStack} />
+            <Stack.Screen name="BusinessDirectory" component={BusinessDrawer } />
+        </Stack.Navigator>
+    )
+}
+const ZakatStack = () => {
+    return (
+        <Stack.Navigator initialRouteName="Zakat" screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Zakat" component={ZakatScreen} />
+            <Stack.Screen name="ZakatSuccess" component={ZakatSuccessScreen} />
+        </Stack.Navigator>
+    )
+}
+const PayrollStack = () => {
+    return (
+        <Stack.Navigator initialRouteName="Payroll" screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Payroll" component={PayrollScreen} />
+            <Stack.Screen name="PayrollSuccess" component={PayrollSuccessScreen} />
+        </Stack.Navigator>
+    )
+}
+const RemittanceStack = () => {
+    return (
+        <Stack.Navigator initialRouteName="Remittance" screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Remittance" component={RemittanceScreen} />
+            <Stack.Screen name="RemittanceSuccess" component={RemittanceSuccessScreen} />
+        </Stack.Navigator>
+    )
+}
+const BusinessDrawer = () => {
+    return (
+        <Drawer.Navigator initialRouteName="BusinessDirectory" drawerPosition={'right'} drawerContent={props => {
+            const close = () => { props.navigation.closeDrawer() }
+            const nav = (screen) => { props.navigation.navigate(screen) }
+            return (<FilterBarBusiness nav={nav} close={close} />)
+        }}>
+            <Drawer.Screen name="BusinessDirectory" component={BusinessDirectoryScreen} />
+        </Drawer.Navigator>
+    )
+}
 export default MainDrawer;
