@@ -4,7 +4,7 @@ import * as SecureStore from 'expo-secure-store'
 
 import moment from 'moment'
 
-const apiUrl = 'https://tuah.niyo.my/'
+const apiUrl = 'https://uat.niyo.my/'
 
 ////////////////////////////////////////////////////////////////////////////
 //////////INI YANG LAMA PUNYA//////////////////////////////////////////////
@@ -1385,14 +1385,14 @@ export const submitInvoiceApi = () => {
       }
     });
 
-    xhr.open("POST", "https://tuah.niyo.my/api/invoice/submit");
+    xhr.open("POST", "https://uat.niyo.my/api/invoice/submit");
     xhr.setRequestHeader("Authorization", token_type + ' ' + access_token);
     xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.setRequestHeader("Cache-Control", "no-cache");
 
-    xhr.setRequestHeader("Host", "tuah.niyo.my");
+    xhr.setRequestHeader("Host", "uat.niyo.my");
     xhr.setRequestHeader("Accept-Encoding", "gzip, deflate");
 
 
