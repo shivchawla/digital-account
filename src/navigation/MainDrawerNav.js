@@ -30,6 +30,7 @@ import ConnectedPartiesScreen from '../screens/ConnectedPartiesScreen';
 import LoanApplicationDeclarationScreen from '../screens/LoanApplicationDeclarationScreen';
 import WithdrawScreen from '../screens/WithdrawScreen';
 import FilterBarWithdrawal from '../components/FilterBarWithdrawal';
+import FilterBarBusiness from '../components/FilterBarBusiness';
 import NewInvoiceScreen from '../screens/NewInvoiceScreen';
 import NewInvoiceItemsScreen from '../screens/NewInvoiceItemsScreen';
 
@@ -68,7 +69,13 @@ import CustomerAddSuccessScreen from '../screens/CustomerAddSuccessScreen';
 import VendorAddSuccessScreen from '../screens/VendorAddSuccessScreen';
 import VendorApplicationScreen from '../screens/VendorApplicationScreen';
 import VendorDetailScreen from '../screens/VendorDetailScreen';
-
+import ZakatScreen from '../screens/ZakatScreen';
+import PayrollScreen from '../screens/PayrollScreen';
+import RemittanceScreen from '../screens/RemittanceScreen'; 
+import ZakatSuccessScreen from '../screens/ZakatSuccessScreen';
+import BusinessDirectoryScreen from '../screens/BusinessDirectoryScreen';
+import PayrollSuccessScreen from '../screens/PayrollSuccessScreen';
+import RemittanceSuccessScreen from '../screens/RemittanceSuccessScreen';
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -90,7 +97,7 @@ const MainDrawer = () => {
             <Drawer.Screen name="DataSetting" component={DataSettingStack} />
             <Drawer.Screen name="Transfer" component={TransferStack} />
             <Drawer.Screen name="Support" component={SupportScreen} />
-            <Drawer.Screen name="BusinessHub" component={BusinessHubScreen} />
+            <Drawer.Screen name="BusinessHub" component={BusinessHubStack} />
             <Drawer.Screen name="Invoice" component={InvoiceStack} />
         </Drawer.Navigator>
     )
@@ -292,4 +299,50 @@ const VendorStack = () => {
     )
 }
 
+const BusinessHubStack = () => {
+    return (
+        <Stack.Navigator initialRouteName="BusinessHub" screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="BusinessHub" component={BusinessHubScreen} />
+            <Stack.Screen name="Zakat" component={ZakatStack} />
+            <Stack.Screen name="Payroll" component={PayrollStack} />
+            <Stack.Screen name="Remittance" component={RemittanceStack} />
+            <Stack.Screen name="BusinessDirectory" component={BusinessDrawer } />
+        </Stack.Navigator>
+    )
+}
+const ZakatStack = () => {
+    return (
+        <Stack.Navigator initialRouteName="Zakat" screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Zakat" component={ZakatScreen} />
+            <Stack.Screen name="ZakatSuccess" component={ZakatSuccessScreen} />
+        </Stack.Navigator>
+    )
+}
+const PayrollStack = () => {
+    return (
+        <Stack.Navigator initialRouteName="Payroll" screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Payroll" component={PayrollScreen} />
+            <Stack.Screen name="PayrollSuccess" component={PayrollSuccessScreen} />
+        </Stack.Navigator>
+    )
+}
+const RemittanceStack = () => {
+    return (
+        <Stack.Navigator initialRouteName="Remittance" screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Remittance" component={RemittanceScreen} />
+            <Stack.Screen name="RemittanceSuccess" component={RemittanceSuccessScreen} />
+        </Stack.Navigator>
+    )
+}
+const BusinessDrawer = () => {
+    return (
+        <Drawer.Navigator initialRouteName="BusinessDirectory" drawerPosition={'right'} drawerContent={props => {
+            const close = () => { props.navigation.closeDrawer() }
+            const nav = (screen) => { props.navigation.navigate(screen) }
+            return (<FilterBarBusiness nav={nav} close={close} />)
+        }}>
+            <Drawer.Screen name="BusinessDirectory" component={BusinessDirectoryScreen} />
+        </Drawer.Navigator>
+    )
+}
 export default MainDrawer;
