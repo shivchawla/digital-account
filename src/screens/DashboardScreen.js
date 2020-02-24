@@ -39,10 +39,7 @@ const DashboardScreen = (props) => {
   const [dashboardDisplay, setDashboardDisplay] = useState(true)
 
   const [five, setFive] = useState(null)
-
   const [chartDay, setChartDay] = useState(7)
-
-
   const { status, status1 } = useSelector(state => state.merchantInfoReducer, shallowEqual)
 
 
@@ -71,6 +68,7 @@ const DashboardScreen = (props) => {
     <View style={{ flex: 1, }}>
       {/* visible={!dashboardDisplay} */}
       <Popup
+        navigation={props.navigation}
         dashboardDisplay={dashboardDisplay}
       />
       <LayoutA
@@ -146,6 +144,10 @@ const Popup = (props) => {
   //const [chartData, setChartData] = useState([])
 
   const { link, business_name, isDeclaration_one, isDocument1, contactId } = useSelector(state => state.merchantInfoReducer, shallowEqual)
+
+  const [tick, setTick] = useState(null)
+
+  //if (link){}
   const logout = async () => {
     await dispatch(actionCreator.logout())
     await props.navigation.navigate('Welcome')
@@ -157,7 +159,7 @@ const Popup = (props) => {
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.7)' }}>
         <View style={{ flexDirection: 'row', alignSelf: 'stretch', paddingLeft: 20, paddingRight: 20 }}>
           <View style={{ height: Layout.window.height / 2, backgroundColor: '#fff', flex: 1, borderRadius: 10, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-            {(business_name && contactId && (isDocument1 != 'http://test') && isDeclaration_one) ?
+            {link === 'AdminApproval' ?
               <View style={{ alignSelf: 'stretch', margin: 5 }}>
                 <Text style={[styles.h3, { flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start', margin: 5 }]}>REGISTRATION INCOMPLETE</Text>
                 <Text style={[styles.text, { margin: 5, }]}>Account Under Review</Text>
@@ -171,23 +173,23 @@ const Popup = (props) => {
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
                   <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Merchant Info</Text>
-                  {business_name && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
+                  {tick&&tick.merchant && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
                   <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Contact Info</Text>
-                  {(contactId && contactId != 13) && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
+                  {tick&&tick.contact && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
                   <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Document Submission</Text>
-                  {(isDocument1 != null) && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
+                  {tick&&tick.doc && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
                   <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Declaration</Text>
-                  {(isDeclaration_one != null) && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
+                  {tick&&tick.declaration && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
                 </View>
               </View>}
             <View style={{ flexDirection: 'row', alignSelf: 'stretch', marginTop: 15 }}>
-              <TouchableOpacity style={{ flex: 1, }} onPress={() => props.navigation.navigate(link, { prevScreen: 'Dashboard' })}>
+              <TouchableOpacity style={{ flex: 1, }} onPress={() => props.navigation.navigate('Registration', { screen: 'Intro', params: { screen: link } })}>
                 <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: '#0A6496' }}>
                   <Text style={[styles.butang, { color: '#fff', paddingTop: 5, paddingBottom: 5 }]}>CONTINUE</Text>
                 </View>

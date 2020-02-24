@@ -4,7 +4,7 @@ import * as SecureStore from 'expo-secure-store'
 
 import moment from 'moment'
 
-const apiUrl = 'https://uat.niyo.my/'
+const apiUrl = 'https://tuah.niyo.my/'
 
 const apiGetCall = async (uri, apiAccess) => {
 
@@ -309,19 +309,19 @@ export const withDrawApi = (values) => {
       bank_name,
       remark,
       account_no,
- 
+
       bank_address,
-      country, 
+      country,
       account_holder_name } = values
 
 
     const bank_account = account_no
     const bank_account_name = account_holder_name
-   
- 
+
+
     const bank_country = country
- 
-    
+
+
     const amount_request = amount
     const amount_fee = 2
     const reason_request = remark
@@ -334,10 +334,10 @@ export const withDrawApi = (values) => {
     */
 
     const values2 = {
-      bank_account:values.account_holder_name,
-      bank_account_name:values.account_holder_name,
-      account_name:values.account_holder_name,
-      account_no,  
+      bank_account: values.account_holder_name,
+      bank_account_name: values.account_holder_name,
+      account_name: values.account_holder_name,
+      account_no,
       bank_name,
       bank_address,
       bank_country,
@@ -351,14 +351,14 @@ export const withDrawApi = (values) => {
     //const access_credential = 'api'
     console.log(`New loan api : ${JSON.stringify(values2)}`)
 
-    
+
     const responseJson = await apiPostCall(`/api/withdrawal/submit`, values2, getState().apiReducer)
     const { status, code } = await responseJson
     await dispatch({ type: 'SET_NEW_WITHDRAWAL', payload: { status, code, proceedMain: true } })
     await console.log(`withdrawal api  ${JSON.stringify(responseJson)}`)
 
 
-    
+
 
   }
 }
@@ -740,47 +740,80 @@ export const checkCDDApi = () => {
         console.log(`cdd result ialah ${JSON.stringify(test)}`)
         const status1 = test.status
         console.log(`status kejayaan : ${status1}`)
-        if (status1 != 'Approved') {
-          const { business_name, isDocument1, isDeclaration_one, status, contactId } = await getState().merchantInfoReducer
-          //const contactId = await getState().merchantInfoReducer.id
-          await console.log('Dekat setScreen action ', business_name, contactId, isDocument1, isDeclaration_one)
-          if (business_name && contactId && (isDocument1 != 'http://test') && isDeclaration_one && (status == 'activated')) {
-            // setLink('Dashboard')
-            // setDashboardDisplay(true)
-            const link = 'Dashboard'
-            dispatch({ type: 'SET_MERCHANT', payload: { link } })
-            console.log('dashboard')
-          } else if (business_name && contactId && (isDocument1 != 'http://test') && isDeclaration_one) {
-            // setLink('Dashboard')
-            // setDashboardDisplay(true)
-            const link = 'AdminApproval'
-            dispatch({ type: 'SET_MERCHANT', payload: { link } })
-            console.log('dashboard')
-          } else if (business_name && contactId && (isDocument1 != null)) {
-            //setLink('RegistrationDeclaration')
-            const link = 'RegistrationDeclaration'
-            dispatch({ type: 'SET_MERCHANT', payload: { link } })
-            console.log('go declaration')
-          } else if (business_name && contactId) {
-            //setLink('CompanyDocument')
-            const link = 'CompanyDocument'
-            dispatch({ type: 'SET_MERCHANT', payload: { link } })
-            console.log('go company document')
-          } else if (business_name) {
-            //setLink('ContactPerson')
-            const link = 'ContactPerson'
-            dispatch({ type: 'SET_MERCHANT', payload: { link } })
-            console.log('go contact person')
-          } else {
-            //setLink('CompanyInformation')
-            const link = 'SignUpPersonalSuccess'
-            dispatch({ type: 'SET_MERCHANT', payload: { link } })
-            console.log('go company info')
-          }
-        } else {
-          const link = 'Dashboard'
-          dispatch({ type: 'SET_MERCHANT', payload: { link, status1 } })
+
+        if (status1 === 'Approved') { }
+        else if (status1 === 'Pending Admin Approval') {
+          console.log('go admin approval')
+          const link = 'AdminApproval'
+          dispatch({ type: 'SET_MERCHANT', payload: { link } })
         }
+        else if (status1 === 'Pending Verification') {
+         
+        }
+        else if (status1 === 'Pending Business Profile') {
+          const link = 'CompanyInformation'
+          dispatch({ type: 'SET_MERCHANT', payload: { link } })
+          console.log('go business profile')
+        }
+        else if (status1 === 'Pending Declarations') {
+          const link = 'RegistrationDeclaration'
+          dispatch({ type: 'SET_MERCHANT', payload: { link } })
+          console.log('go declaration')
+        }
+        else if (status1 === 'Pending Document Upload') {
+          const link = 'CompanyDocument'
+          dispatch({ type: 'SET_MERCHANT', payload: { link } })
+          console.log('go company document')
+        }
+        else if (status1 === 'Pending Business Contact') {
+          //setLink('ContactPerson')
+          const link = 'ContactPerson'
+          dispatch({ type: 'SET_MERCHANT', payload: { link } })
+          console.log('go contact person')
+        }
+
+
+        // if (status1 != 'Approved') {
+        //   const { business_name, isDocument1, isDeclaration_one, status, contactId } = await getState().merchantInfoReducer
+        //   //const contactId = await getState().merchantInfoReducer.id
+        //   await console.log('Dekat setScreen action ', business_name, contactId, isDocument1, isDeclaration_one)
+        //   if (business_name && contactId && (isDocument1 != 'http://test') && isDeclaration_one && (status == 'activated')) {
+        //     // setLink('Dashboard')
+        //     // setDashboardDisplay(true)
+        //     const link = 'Dashboard'
+        //     dispatch({ type: 'SET_MERCHANT', payload: { link } })
+        //     console.log('dashboard')
+        //   } else if (business_name && contactId && (isDocument1 != 'http://test') && isDeclaration_one) {
+        //     // setLink('Dashboard')
+        //     // setDashboardDisplay(true)
+        //     const link = 'AdminApproval'
+        //     dispatch({ type: 'SET_MERCHANT', payload: { link } })
+        //     console.log('dashboard')
+        //   } else if (business_name && contactId && (isDocument1 != null)) {
+        //     //setLink('RegistrationDeclaration')
+        //     const link = 'RegistrationDeclaration'
+        //     dispatch({ type: 'SET_MERCHANT', payload: { link } })
+        //     console.log('go declaration')
+        //   } else if (business_name && contactId) {
+        //     //setLink('CompanyDocument')
+        //     const link = 'CompanyDocument'
+        //     dispatch({ type: 'SET_MERCHANT', payload: { link } })
+        //     console.log('go company document')
+        //   } else if (business_name) {
+        //     //setLink('ContactPerson')
+        //     const link = 'ContactPerson'
+        //     dispatch({ type: 'SET_MERCHANT', payload: { link } })
+        //     console.log('go contact person')
+        //   } else {
+        //     //setLink('CompanyInformation')
+        //     const link = 'SignUpPersonalSuccess'
+        //     dispatch({ type: 'SET_MERCHANT', payload: { link } })
+        //     console.log('go company info')
+        //   }
+        // } else {
+        //   const link = 'Dashboard'
+        //   dispatch({ type: 'SET_MERCHANT', payload: { link, status1 } })
+        // }
 
 
       })
@@ -814,8 +847,36 @@ export const checkCDDApi2 = () => {
         const status1 = test.status
         console.log(`status kejayaan : ${status1}`)
 
-        const link = 'Dashboard'
-        dispatch({ type: 'SET_MERCHANT', payload: { link, status1 } })
+        if (status1 === 'Approved') { }
+        else if (status1 === 'Pending Admin Approval') {
+          console.log('go admin approval')
+          const link = 'AdminApproval'
+          dispatch({ type: 'SET_MERCHANT', payload: { link, status1 } })
+        }
+        else if (status1 === 'Pending Verification') {
+         
+        }
+        else if (status1 === 'Pending Business Profile') {
+          const link = 'CompanyInformation'
+          dispatch({ type: 'SET_MERCHANT', payload: { link, status1 } })
+          console.log('go business profile')
+        }
+        else if (status1 === 'Pending Declarations') {
+          const link = 'RegistrationDeclaration'
+          dispatch({ type: 'SET_MERCHANT', payload: { link, status1 } })
+          console.log('go declaration')
+        }
+        else if (status1 === 'Pending Business Documents') {
+          const link = 'CompanyDocument'
+          dispatch({ type: 'SET_MERCHANT', payload: { link, status1 } })
+          console.log('go company document')
+        }
+        else if (status1 === 'Pending Business Contact') {
+          //setLink('ContactPerson')
+          const link = 'ContactPerson'
+          dispatch({ type: 'SET_MERCHANT', payload: { link, status1 } })
+          console.log('go contact person')
+        }
 
 
 
@@ -847,7 +908,7 @@ export const addBankApi = (values) => {
     const bank_name = bankAccountName
     const bank_address = bankAddress
     const bank_country = bankCountry
-    const val={ account_no, account_holder_name, bank_name, bank_address, bank_country }
+    const val = { account_no, account_holder_name, bank_name, bank_address, bank_country }
 
 
     const responseJson = await apiPostCall(`/api/banks`, val, getState().apiReducer)
@@ -1185,14 +1246,14 @@ export const submitInvoiceApi = () => {
       }
     });
 
-    xhr.open("POST", "https://uat.niyo.my/api/invoice/submit");
+    xhr.open("POST", "https://tuah.niyo.my/api/invoice/submit");
     xhr.setRequestHeader("Authorization", token_type + ' ' + access_token);
     xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.setRequestHeader("Cache-Control", "no-cache");
 
-    xhr.setRequestHeader("Host", "uat.niyo.my");
+    xhr.setRequestHeader("Host", "tuah.niyo.my");
     xhr.setRequestHeader("Accept-Encoding", "gzip, deflate");
 
 
@@ -1308,8 +1369,8 @@ export const customerDataApi = (values) => {
       body: JSON.stringify({ ...values, access_credential }),
     }).then((response) => response.json())
       .then(async (responseJson) => {
-        const { status,code } = await responseJson
-        await dispatch({ type: 'SET_CUSTOMER_LIST', payload: { status,code, proceedMain: true } })
+        const { status, code } = await responseJson
+        await dispatch({ type: 'SET_CUSTOMER_LIST', payload: { status, code, proceedMain: true } })
         await console.log(`customer submit api  ${JSON.stringify(responseJson)}`)
       })
       .catch((error) => {
