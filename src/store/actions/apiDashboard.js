@@ -1118,24 +1118,13 @@ export const submitLoanApplicationApi = () => {
     const access_credential = 'api'
     console.log(`New loan api : ${JSON.stringify(values)}`)
 
-    fetch(`${apiUrl}/api/loan/submit`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token_type + ' ' + access_token
-      },
-      body: JSON.stringify({ ...values2, access_credential }),
-    }).then((response) => response.json())
-      .then(async (responseJson) => {
-        const { status, code } = await responseJson
-        await dispatch({ type: 'SET_LOAN_APPLICATION', payload: { status, code, proceedMain: true } })
-        await console.log(`loan api  ${JSON.stringify(responseJson)}`)
-      })
-      .catch((error) => {
-        console.error('Error : ' + error);
-      });
+    const responseJson = await apiPostCall(`/api/loan/submit`, values2, getState().apiReducer)
+    const { status, code } = await responseJson
+    await dispatch({ type: 'SET_LOAN_APPLICATION', payload: { status, code, proceedMain: true } })
+    await console.log(`loan api  ${JSON.stringify(responseJson)}`)
 
+
+   
   }
 }
 
