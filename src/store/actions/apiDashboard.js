@@ -6,14 +6,11 @@ import moment from 'moment'
 
 const apiUrl = 'https://tuah.niyo.my/'
 
-const apiCall = async (uri, apiAccess) => {
-
-
+const apiGetCall = async (uri, apiAccess) => {
 
   const access = apiAccess ? apiAccess : JSON.parse(await SecureStore.getItemAsync('personalToken'))
 
   const { token_type, access_token } = access
-
   const method = 'GET'
   const Accept = 'application/json'
   const Authorization = token_type + ' ' + access_token
@@ -21,9 +18,25 @@ const apiCall = async (uri, apiAccess) => {
   const headers = { 'Content-Type': 'application/json', Accept, Authorization }
   let response = await fetch(`${apiUrl}${uri}`, { method, headers })
   let responseJson = await response.json()
-
   return responseJson
 
+}
+
+const apiPostCall = async (uri, values, apiAccess) => {
+
+  const body = JSON.stringify({ ...values, access_credential: 'api' })
+
+  const access = apiAccess ? apiAccess : JSON.parse(await SecureStore.getItemAsync('personalToken'))
+
+  const { token_type, access_token } = access
+  const method = 'POST'
+  const Accept = 'application/json'
+  const Authorization = token_type + ' ' + access_token
+
+  const headers = { 'Content-Type': 'application/json', Accept, Authorization }
+  let response = await fetch(`${apiUrl}${uri}`, { method, headers, body })
+  let responseJson = await response.json()
+  return responseJson
 
 }
 
@@ -83,7 +96,7 @@ export const loanApplicationDataApi = (id) => {
 export const loanListApi = () => {
   return async (dispatch, getState) => {
 
-    const responseJson = await apiCall(`api/loan/list`, getState().apiReducer)
+    const responseJson = await apiGetCall(`api/loan/list`, getState().apiReducer)
     const loanList = await responseJson.data
     loanList && loanList.reverse()
     dispatch({ type: 'SET_LOAN_LIST', payload: { loanList } })
@@ -93,7 +106,7 @@ export const loanListApi = () => {
 export const repaymentListApi = () => {
   return async (dispatch, getState) => {
 
-    const responseJson = await apiCall(`api/repaymentinfo/list`, getState().apiReducer)
+    const responseJson = await apiGetCall(`api/repaymentinfo/list`, getState().apiReducer)
     const repaymentList = await responseJson.data
     repaymentList && repaymentList.reverse()
     dispatch({ type: 'SET_LOAN_LIST', payload: { repaymentList } })
@@ -236,7 +249,7 @@ export const withdrawListApi = () => {
 
 
 
-    const responseJson = await apiCall(`api/withdrawal/list`, getState().apiReducer)
+    const responseJson = await apiGetCall(`api/withdrawal/list`, getState().apiReducer)
     const withdrawList = await responseJson.data
     withdrawList && withdrawList.reverse()
     dispatch({ type: 'SET_WITHDRAWAL_LIST', payload: { withdrawList } })
@@ -247,7 +260,7 @@ export const vendorListApi = () => {
   return async (dispatch, getState) => {
 
 
-    const responseJson = await apiCall(`api/setting/vendor/list`, getState().apiReducer)
+    const responseJson = await apiGetCall(`api/setting/vendor/list`, getState().apiReducer)
     const vendorList = await responseJson.data
     vendorList && vendorList.reverse()
     dispatch({ type: 'SET_VENDOR_LIST', payload: { vendorList } })
@@ -290,31 +303,41 @@ export const withDrawApi = (values) => {
 
     const { token_type, access_token } = getState().apiReducer
     //const values = getState().loanApplicationReducer
-
+    console.log(`values yang gempak ialah ${JSON.stringify(values)}`)
     const { amount,
       bankLabel,
+      bank_name,
       remark,
-      bankAccountNo,
-      bankAccountName,
-      bankAddress,
-      bankCountry } = values
+      account_no,
+ 
+      bank_address,
+      country, 
+      account_holder_name } = values
 
 
-    const account_no = bankAccountNo
-    const account_name = bankAccountName
-    const bank_name = bankLabel
-    const bank_address = bankAddress
-    const bank_country = bankCountry
+    const bank_account = account_no
+    const bank_account_name = account_holder_name
+   
+ 
+    const bank_country = country
+ 
+    
     const amount_request = amount
     const amount_fee = 2
     const reason_request = remark
 
+    /*
+    `bank_account_name`, =======
 
-
+`bank_address`, ===========
+`bank_country`, ============
+    */
 
     const values2 = {
-      account_no,
-      account_name,
+      bank_account:values.account_holder_name,
+      bank_account_name:values.account_holder_name,
+      account_name:values.account_holder_name,
+      account_no,  
       bank_name,
       bank_address,
       bank_country,
@@ -327,6 +350,7 @@ export const withDrawApi = (values) => {
 
     const access_credential = 'api'
     console.log(`New loan api : ${JSON.stringify(values2)}`)
+
 
     fetch(`${apiUrl}/api/withdrawal/submit`, {
       method: 'POST',
@@ -351,7 +375,7 @@ export const withDrawApi = (values) => {
 
 export const customerListApi = () => {
   return async (dispatch, getState) => {
-    const responseJson = await apiCall(`api/setting/customer/list`, getState().apiReducer)
+    const responseJson = await apiGetCall(`api/setting/customer/list`, getState().apiReducer)
     const customerList = await responseJson.data
     customerList && customerList.reverse()
     dispatch({ type: 'SET_CUSTOMER_LIST', payload: { customerList } })
@@ -420,7 +444,7 @@ export const itemListApi = () => {
   return async (dispatch, getState) => {
 
 
-    const responseJson = await apiCall(`api/setting/item/list`, getState().apiReducer)
+    const responseJson = await apiGetCall(`api/setting/item/list`, getState().apiReducer)
     const itemList = await responseJson.data
     itemList && itemList.reverse()
     dispatch({ type: 'SET_ITEM_LIST', payload: { itemList } })
@@ -461,7 +485,7 @@ export const getAllUsersApi = () => {
   return async (dispatch, getState) => {
 
 
-    const responseJson = await apiCall(`api/developer/merchants/account/all`, getState().apiReducer)
+    const responseJson = await apiGetCall(`api/developer/merchants/account/all`, getState().apiReducer)
     const userList = await responseJson.data
 
     dispatch({ type: 'SET_RECIPIENT_LIST', payload: { userList } })
@@ -474,7 +498,7 @@ export const getAllUsersApi = () => {
 export const invoiceListApi = () => {
   return async (dispatch, getState) => {
 
-    const responseJson = await apiCall(`api/invoices/list`, getState().apiReducer)
+    const responseJson = await apiGetCall(`api/invoices/list`, getState().apiReducer)
     const invoiceList = await responseJson.data
     invoiceList && invoiceList.reverse()
     dispatch({ type: 'SET_INVOICE_LIST', payload: { invoiceList } })
@@ -486,7 +510,7 @@ export const reportListApi = () => {
   return async (dispatch, getState) => {
 
 
-    const responseJson = await apiCall(`api/transactions`, getState().apiReducer)
+    const responseJson = await apiGetCall(`api/transactions`, getState().apiReducer)
     const reportList = await responseJson.data
     dispatch({ type: 'SET_REPORT_LIST', payload: { reportList } })
   }
@@ -495,7 +519,7 @@ export const reportListApi = () => {
 export const businessDirectoryListApi = () => {
   return async (dispatch, getState) => {
 
-    const responseJson = await apiCall(`api/business/list`, getState().apiReducer)
+    const responseJson = await apiGetCall(`api/business/list`, getState().apiReducer)
     const businessDirectoryList = await responseJson.data
     businessDirectoryList && businessDirectoryList.reverse()
     dispatch({ type: 'SET_BUSINESS_DIRECTORY_LIST', payload: { businessDirectoryList } })
@@ -816,7 +840,7 @@ export const checkCDDApi2 = () => {
 export const bankListApi = () => {
   return async (dispatch, getState) => {
 
-    const responseJson = await apiCall(`/api/banks`, getState().apiReducer)
+    const responseJson = await apiGetCall(`/api/banks`, getState().apiReducer)
     const bankList = await responseJson.data
     dispatch({ type: 'SET_BANK_LIST', payload: { bankList } })
 
@@ -1385,28 +1409,12 @@ export const submitSupportApi = (values) => {
 export const newExpenseApi = (values) => {
   return async (dispatch, getState) => {
 
-    const { token_type, access_token } = getState().apiReducer
-    //const values = getState().expenseReducer
-    const access_credential = 'api'
-    console.log(`New expense api : ${JSON.stringify(values)}`)
 
-    fetch(`${apiUrl}/api/expenses/transfer/submit`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token_type + ' ' + access_token
-      },
-      body: JSON.stringify({ ...values, access_credential }),
-    }).then((response) => response.json())
-      .then(async (responseJson) => {
-        const { status, code } = await responseJson
-        await dispatch({ type: 'SET_NEW_EXPENSE', payload: { status, code, proceedMain: true } })
-        await console.log(`expense api  ${JSON.stringify(responseJson)}`)
-      })
-      .catch((error) => {
-        console.error('Error : ' + error);
-      });
+    const responseJson = await apiPostCall(`/api/expenses/transfer/submit`, values, getState().apiReducer)
+    const { status, code } = await responseJson
+    await dispatch({ type: 'SET_NEW_EXPENSE', payload: { status, code, proceedMain: true } })
+    await console.log(`expense api  ${JSON.stringify(responseJson)}`)
+
   }
 }
 
@@ -1415,7 +1423,7 @@ export const checkAuthApi = () => {
   return async (dispatch, getState) => {
 
     console.log(`lalu kat apidashboard checkauthapi`)
-    const responseJson = await apiCall(`api/settings/auth`, getState().apiReducer)
+    const responseJson = await apiGetCall(`api/settings/auth`, getState().apiReducer)
     const pin = await responseJson.data
     console.log(`ada pin ${JSON.stringify(responseJson)}`)
     dispatch({ type: 'SET_AUTH', payload: { ...pin } })
