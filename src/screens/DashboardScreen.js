@@ -39,11 +39,8 @@ const DashboardScreen = (props) => {
   const [dashboardDisplay, setDashboardDisplay] = useState(true)
 
   const [five, setFive] = useState(null)
-
   const [chartDay, setChartDay] = useState(7)
-
-
-  const { status, status1 } = useSelector(state => state.merchantInfoReducer, shallowEqual)
+  const { status, status1, link } = useSelector(state => state.merchantInfoReducer, shallowEqual)
 
 
   useEffect(() => {
@@ -65,13 +62,15 @@ const DashboardScreen = (props) => {
 
   }, [status1])
 
-
   return (
 
     <View style={{ flex: 1, }}>
       {/* visible={!dashboardDisplay} */}
       <Popup
+        navigation={props.navigation}
         dashboardDisplay={dashboardDisplay}
+        setDashboardDisplay={setDashboardDisplay}
+        link={link}
       />
       <LayoutA
         screenType='dashboard'
@@ -145,7 +144,23 @@ const Popup = (props) => {
   const dispatch = useDispatch()
   //const [chartData, setChartData] = useState([])
 
-  const { link, business_name, isDeclaration_one, isDocument1, contactId } = useSelector(state => state.merchantInfoReducer, shallowEqual)
+  //const { link, business_name, isDeclaration_one, isDocument1, contactId } = useSelector(state => state.merchantInfoReducer, shallowEqual)
+  const { link } = props
+
+  const goTo=()=>{
+    props.setDashboardDisplay(!props.dashboardDisplay)
+    props.navigation.navigate('Registration', { screen: 'Intro', params: { screen: link } })
+  }
+
+  const tick = link === 'RegistrationDeclaration' ?
+    { basic: true, merchant: true, contact: true, doc: true, declaration: false } :
+    link === 'CompanyDocument' ? { basic: true, merchant: true, contact: true, doc: false, declaration: false } :
+      link === 'ContactPerson' ? { basic: true, merchant: true, contact: false, doc: false, declaration: false } :
+        link === 'CompanyInformation' ? { basic: true, merchant: false, contact: false, doc: false, declaration: false } : null
+
+  console.log(`tick ialah ${JSON.stringify(tick)}`)
+
+  //if (link){}
   const logout = async () => {
     await dispatch(actionCreator.logout())
     await props.navigation.navigate('Welcome')
@@ -157,11 +172,10 @@ const Popup = (props) => {
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.7)' }}>
         <View style={{ flexDirection: 'row', alignSelf: 'stretch', paddingLeft: 20, paddingRight: 20 }}>
           <View style={{ height: Layout.window.height / 2, backgroundColor: '#fff', flex: 1, borderRadius: 10, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-            {(business_name && contactId && (isDocument1 != 'http://test') && isDeclaration_one) ?
+            {link === 'AdminApproval' ?
               <View style={{ alignSelf: 'stretch', margin: 5 }}>
                 <Text style={[styles.h3, { flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start', margin: 5 }]}>REGISTRATION INCOMPLETE</Text>
                 <Text style={[styles.text, { margin: 5, }]}>Account Under Review</Text>
-
               </View> : <View style={{ alignSelf: 'stretch', margin: 5 }}>
                 <Text style={[styles.h3, { flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start', margin: 5 }]}>REGISTRATION INCOMPLETE</Text>
                 <Text style={[styles.text, { margin: 5, }]}>Please complete items below for approval</Text>
@@ -171,23 +185,23 @@ const Popup = (props) => {
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
                   <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Merchant Info</Text>
-                  {business_name && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
+                  {tick && tick.merchant && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
                   <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Contact Info</Text>
-                  {(contactId && contactId != 13) && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
+                  {tick && tick.contact && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
                   <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Document Submission</Text>
-                  {(isDocument1 != null) && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
+                  {tick && tick.doc && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
                   <Text style={[styles.small, { textAlignVertical: 'bottom', paddingLeft: 5 }]}>Declaration</Text>
-                  {(isDeclaration_one != null) && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
+                  {tick && tick.declaration && <Ionicons name={'ios-checkmark'} size={20} color={'green'} style={{ paddingLeft: 10 }} />}
                 </View>
               </View>}
             <View style={{ flexDirection: 'row', alignSelf: 'stretch', marginTop: 15 }}>
-              <TouchableOpacity style={{ flex: 1, }} onPress={() => props.navigation.navigate(link, { prevScreen: 'Dashboard' })}>
+              <TouchableOpacity style={{ flex: 1, }} onPress={() => goTo()}>
                 <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: '#0A6496' }}>
                   <Text style={[styles.butang, { color: '#fff', paddingTop: 5, paddingBottom: 5 }]}>CONTINUE</Text>
                 </View>
