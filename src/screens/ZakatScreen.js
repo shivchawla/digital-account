@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { View, TouchableOpacity, Text, Image, ActivityIndicator, KeyboardAvoidingView, TextInput, ScrollView, Picker, Platform,Modal } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
@@ -6,6 +6,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import styles from '../styles/styles'
 import Constants from 'expo-constants';
+import {keyboardBeingDisplay,keyboardBeingClose} from '../components/handleKeyboard'
 const validationSchema = Yup.object().shape({
 
     typeZakat: Yup
@@ -48,6 +49,15 @@ const ZakatScreen = (props) => {
     const [modalContent, setModalContent] = useState(null)
     const ios = Platform.OS === "ios" ? true : false
 
+    const [offSet,setOffSet]=useState(true)
+    useEffect(() => {
+        const open=()=>setOffSet(false)
+        const off=()=>setOffSet(true)
+       
+        keyboardBeingDisplay(open)
+        keyboardBeingClose(off)
+    }, []); // empty-array means don't watch for any updates
+
     const handleIosPicker=(modalContent)=>{
         setModalContent(modalContent)
         setIosPickerVisible(!iosPickerVisible)
@@ -83,7 +93,7 @@ const ZakatScreen = (props) => {
 
                 return (
 
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }} keyboardVerticalOffset={20}>
+                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }} keyboardVerticalOffset={offSet?30:0}>
                         <Modal animationType={'slide'}
                             visible={iosPickerVisible} onRequestClose={() => console.log(`onRequestClose`)}
                         >
@@ -133,8 +143,7 @@ const ZakatScreen = (props) => {
                             </View>
                         </View>
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
-                            <View style={[styles.screenMargin, { flex: 9 }]}>
-                                <ScrollView >
+                                <ScrollView style={{paddingRight:20,paddingLeft:20}} >
                                     <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
                                         <Text style={[styles.titleBox, { marginBottom: 10,fontSize:15 }]}>Type of Zakat</Text>
                                         {ios ?
@@ -206,7 +215,7 @@ const ZakatScreen = (props) => {
                                     </LinearGradient>
                                 </TouchableOpacity>
                             </View>
-                        </View>
+                       
                     </KeyboardAvoidingView>)
             }}
         </Formik >
