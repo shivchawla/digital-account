@@ -755,7 +755,7 @@ export const checkCDDApi = () => {
           dispatch({ type: 'SET_MERCHANT', payload: { link } })
           console.log('go business profile')
         }
-        else if (status1 === 'Pending Declarations') {
+        else if (status1 === 'Pending Business Declaration') {
           const link = 'RegistrationDeclaration'
           dispatch({ type: 'SET_MERCHANT', payload: { link } })
           console.log('go declaration')
@@ -861,7 +861,7 @@ export const checkCDDApi2 = () => {
           dispatch({ type: 'SET_MERCHANT', payload: { link, status1 } })
           console.log('go business profile')
         }
-        else if (status1 === 'Pending Declarations') {
+        else if (status1 === 'Pending Business Declaration') {
           const link = 'RegistrationDeclaration'
           dispatch({ type: 'SET_MERCHANT', payload: { link, status1 } })
           console.log('go declaration')
