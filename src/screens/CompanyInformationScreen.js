@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Image, Text, TouchableOpacity, View, TextInput, KeyboardAvoidingView, ActivityIndicator, DatePickerAndroid, DatePickerIOS, Platform, Modal } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'
 import { Formik } from 'formik';
@@ -9,6 +9,7 @@ import * as actionCreator from '../store/actions/action'
 import Constants from 'expo-constants';
 import { Ionicons } from '@expo/vector-icons';
 import moment from 'moment'
+import {keyboardBeingDisplay,keyboardBeingClose} from '../components/handleKeyboard'
 
 const validationSchema = Yup.object().shape({
 
@@ -40,6 +41,15 @@ const CompanyInformationScreen = (props) => {
         dispatch(actionCreator.companyInfo(values))
         props.navigation.navigate('CompanyContactInformation')
     }
+
+    const [offSet,setOffSet]=useState(true)
+    useEffect(() => {
+        const open=()=>setOffSet(false)
+        const off=()=>setOffSet(true)
+       
+        keyboardBeingDisplay(open)
+        keyboardBeingClose(off)
+    }, []); // empty-array means don't watch for any updates
 
     return (
 
@@ -85,7 +95,7 @@ const CompanyInformationScreen = (props) => {
 
                 return (
 
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }} keyboardVerticalOffset={30} >
+                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }} keyboardVerticalOffset={offSet?30:0} >
                         <Modal
                             animationType="slide"
                             transparent={false}
