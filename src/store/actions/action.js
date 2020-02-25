@@ -393,9 +393,9 @@ export const setScreen = () => {
 }
 
 export const setScreen2 = () => {
-    return (dispatch, getState) => {
-        console.log('Dekat setScreen action')
-        dispatch(checkCDDApi2())
+    return async (dispatch, getState) => {       
+        await dispatch(checkCDDApi2())
+       
     }
 
 }

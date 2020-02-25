@@ -534,19 +534,23 @@ export const checkCDDApi = () => {
 
     }).then((response) => response.json())
       .then(async (responseJson) => {
-        const test = responseJson
+        const test = await responseJson
         console.log(`cdd result ialah ${JSON.stringify(test)}`)
         const status1 = test.status
         console.log(`status kejayaan : ${status1}`)
 
-        if (status1 === 'Approved') { }
+        if (status1 === 'Approved') {
+          console.log('Approved sudah')
+          const link = 'Dashboard'
+          dispatch({ type: 'SET_MERCHANT', payload: { link } })
+        }
         else if (status1 === 'Pending Admin Approval') {
           console.log('go admin approval')
           const link = 'AdminApproval'
           dispatch({ type: 'SET_MERCHANT', payload: { link } })
         }
         else if (status1 === 'Pending Verification') {
-         
+
         }
         else if (status1 === 'Pending Business Profile') {
           const link = 'CompanyInformation'
@@ -571,47 +575,6 @@ export const checkCDDApi = () => {
         }
 
 
-        // if (status1 != 'Approved') {
-        //   const { business_name, isDocument1, isDeclaration_one, status, contactId } = await getState().merchantInfoReducer
-        //   //const contactId = await getState().merchantInfoReducer.id
-        //   await console.log('Dekat setScreen action ', business_name, contactId, isDocument1, isDeclaration_one)
-        //   if (business_name && contactId && (isDocument1 != 'http://test') && isDeclaration_one && (status == 'activated')) {
-        //     // setLink('Dashboard')
-        //     // setDashboardDisplay(true)
-        //     const link = 'Dashboard'
-        //     dispatch({ type: 'SET_MERCHANT', payload: { link } })
-        //     console.log('dashboard')
-        //   } else if (business_name && contactId && (isDocument1 != 'http://test') && isDeclaration_one) {
-        //     // setLink('Dashboard')
-        //     // setDashboardDisplay(true)
-        //     const link = 'AdminApproval'
-        //     dispatch({ type: 'SET_MERCHANT', payload: { link } })
-        //     console.log('dashboard')
-        //   } else if (business_name && contactId && (isDocument1 != null)) {
-        //     //setLink('RegistrationDeclaration')
-        //     const link = 'RegistrationDeclaration'
-        //     dispatch({ type: 'SET_MERCHANT', payload: { link } })
-        //     console.log('go declaration')
-        //   } else if (business_name && contactId) {
-        //     //setLink('CompanyDocument')
-        //     const link = 'CompanyDocument'
-        //     dispatch({ type: 'SET_MERCHANT', payload: { link } })
-        //     console.log('go company document')
-        //   } else if (business_name) {
-        //     //setLink('ContactPerson')
-        //     const link = 'ContactPerson'
-        //     dispatch({ type: 'SET_MERCHANT', payload: { link } })
-        //     console.log('go contact person')
-        //   } else {
-        //     //setLink('CompanyInformation')
-        //     const link = 'SignUpPersonalSuccess'
-        //     dispatch({ type: 'SET_MERCHANT', payload: { link } })
-        //     console.log('go company info')
-        //   }
-        // } else {
-        //   const link = 'Dashboard'
-        //   dispatch({ type: 'SET_MERCHANT', payload: { link, status1 } })
-        // }
 
 
       })
@@ -640,19 +603,22 @@ export const checkCDDApi2 = () => {
 
     }).then((response) => response.json())
       .then(async (responseJson) => {
-        const test = responseJson.data
+        const test = await responseJson.data
         console.log(`cdd result ialah ${JSON.stringify(responseJson)}`)
         const status1 = test.status
         console.log(`status kejayaan : ${status1}`)
 
-        if (status1 === 'Approved') { }
+        if (status1 === 'Approved') { 
+          console.log('approved lagi sudah')
+        const link = 'Dashboard'
+        dispatch({ type: 'SET_MERCHANT', payload: { link,status1 } })}
         else if (status1 === 'Pending Admin Approval') {
           console.log('go admin approval')
           const link = 'AdminApproval'
           dispatch({ type: 'SET_MERCHANT', payload: { link, status1 } })
         }
         else if (status1 === 'Pending Verification') {
-         
+
         }
         else if (status1 === 'Pending Business Profile') {
           const link = 'CompanyInformation'

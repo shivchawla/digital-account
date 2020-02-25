@@ -30,37 +30,34 @@ const DashboardScreen = (props) => {
 
 
   const { balance, currency } = useSelector(state => state.myAccountReducer, shallowEqual)
-  //const contactId =   useSelector(state => state.merchantInfoReducer.id, shallowEqual)
+
   const { reportList } = useSelector(state => state.reportReducer, shallowEqual)
   const all = useSelector(state => state.merchantInfoReducer, shallowEqual)
-  all && console.log(`all ialah : ${JSON.stringify(all)}`)
 
-  //const dashboardDisplay = (link == 'Dashboard') ? true : false
   const [dashboardDisplay, setDashboardDisplay] = useState(true)
 
-  const [five, setFive] = useState(null)
   const [chartDay, setChartDay] = useState(7)
   const { status, status1, link } = useSelector(state => state.merchantInfoReducer, shallowEqual)
+  const [screenStatus, setScreenStatus] = useState(null)
+
 
 
   useEffect(() => {
     dispatch(actionCreator.setScreen2())
-  }, [status1])
 
-  useEffect(() => {
-    console.log(`status1 ialah ${status1}`)
-    if (status1 == 'Approved') {
+    if (status1 === 'Approved') {
       setDashboardDisplay(true)
       dispatch(actionCreator.retrievePersonalInfo())
       dispatch(actionCreator.retrieveMerchantInfo())
       dispatch(actionCreator.retrieveAccountInfo())
       dispatch(actionCreator.getReportList())
       dispatch(actionCreator.checkAuth()) //awal awal lagi tengok
-    } else {
-      setDashboardDisplay(false)
     }
-
+    else { setDashboardDisplay(false) }
   }, [status1])
+
+
+  status1 && console.log(`screen status ialah : ${status1}`)
 
   return (
 
@@ -138,16 +135,13 @@ const DashboardScreen = (props) => {
   );
 }
 
-
-
 const Popup = (props) => {
   const dispatch = useDispatch()
   //const [chartData, setChartData] = useState([])
-
   //const { link, business_name, isDeclaration_one, isDocument1, contactId } = useSelector(state => state.merchantInfoReducer, shallowEqual)
   const { link } = props
 
-  const goTo=()=>{
+  const goTo = () => {
     props.setDashboardDisplay(!props.dashboardDisplay)
     props.navigation.navigate('Registration', { screen: 'Intro', params: { screen: link } })
   }
