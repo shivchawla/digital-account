@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import Constants from 'expo-constants'
 
 const fontSize = 15
 
@@ -15,6 +16,11 @@ const elevationShadowStyle=(elevation)=> {
 
 
 export default StyleSheet.create({
+  container: {
+    paddingTop: Constants.statusBarHeight,
+    flex: 1,
+    backgroundColor: '#fff',
+  },
   text: {
     fontSize:fontSize*1.1,
     fontFamily: 'Montserrat_medium',
