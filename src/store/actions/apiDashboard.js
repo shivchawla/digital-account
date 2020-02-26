@@ -603,46 +603,48 @@ export const checkCDDApi2 = () => {
 
     }).then((response) => response.json())
       .then(async (responseJson) => {
+
         const test = await responseJson.data
-        console.log(`cdd result ialah ${JSON.stringify(responseJson)}`)
-        const status1 = test.status
-        console.log(`status kejayaan : ${status1}`)
+        if (test) {
+          console.log(`cdd result ialah ${JSON.stringify(responseJson)}`)
+          const status1 = test.status
+          console.log(`status kejayaan : ${status1}`)
 
-        if (status1 === 'Approved') { 
-          console.log('approved lagi sudah')
-        const link = 'Dashboard'
-        dispatch({ type: 'SET_MERCHANT', payload: { link,status1 } })}
-        else if (status1 === 'Pending Admin Approval') {
-          console.log('go admin approval')
-          const link = 'AdminApproval'
-          dispatch({ type: 'SET_MERCHANT', payload: { link, status1 } })
-        }
-        else if (status1 === 'Pending Verification') {
+          if (status1 === 'Approved') {
+            console.log('approved lagi sudah')
+            const link = 'Dashboard'
+            dispatch({ type: 'SET_MERCHANT', payload: { link, status1 } })
+          }
+          else if (status1 === 'Pending Admin Approval') {
+            console.log('go admin approval')
+            const link = 'AdminApproval'
+            dispatch({ type: 'SET_MERCHANT', payload: { link, status1 } })
+          }
+          else if (status1 === 'Pending Verification') {
 
+          }
+          else if (status1 === 'Pending Business Profile') {
+            const link = 'CompanyInformation'
+            dispatch({ type: 'SET_MERCHANT', payload: { link, status1 } })
+            console.log('go business profile')
+          }
+          else if (status1 === 'Pending Business Declaration') {
+            const link = 'RegistrationDeclaration'
+            dispatch({ type: 'SET_MERCHANT', payload: { link, status1 } })
+            console.log('go declaration')
+          }
+          else if (status1 === 'Pending Business Documents') {
+            const link = 'CompanyDocument'
+            dispatch({ type: 'SET_MERCHANT', payload: { link, status1 } })
+            console.log('go company document')
+          }
+          else if (status1 === 'Pending Business Contact') {
+            //setLink('ContactPerson')
+            const link = 'ContactPerson'
+            dispatch({ type: 'SET_MERCHANT', payload: { link, status1 } })
+            console.log('go contact person')
+          }
         }
-        else if (status1 === 'Pending Business Profile') {
-          const link = 'CompanyInformation'
-          dispatch({ type: 'SET_MERCHANT', payload: { link, status1 } })
-          console.log('go business profile')
-        }
-        else if (status1 === 'Pending Business Declaration') {
-          const link = 'RegistrationDeclaration'
-          dispatch({ type: 'SET_MERCHANT', payload: { link, status1 } })
-          console.log('go declaration')
-        }
-        else if (status1 === 'Pending Business Documents') {
-          const link = 'CompanyDocument'
-          dispatch({ type: 'SET_MERCHANT', payload: { link, status1 } })
-          console.log('go company document')
-        }
-        else if (status1 === 'Pending Business Contact') {
-          //setLink('ContactPerson')
-          const link = 'ContactPerson'
-          dispatch({ type: 'SET_MERCHANT', payload: { link, status1 } })
-          console.log('go contact person')
-        }
-
-
 
       })
       .catch((error) => {

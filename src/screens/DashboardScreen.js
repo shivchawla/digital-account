@@ -40,8 +40,6 @@ const DashboardScreen = (props) => {
   const { status, status1, link } = useSelector(state => state.merchantInfoReducer, shallowEqual)
   const [screenStatus, setScreenStatus] = useState(null)
 
-
-
   useEffect(() => {
     dispatch(actionCreator.setScreen2())
 
