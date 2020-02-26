@@ -1,10 +1,11 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import { View, TouchableOpacity, Text, Image, KeyboardAvoidingView, ActivityIndicator, TextInput } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles/styles'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import {keyboardBeingDisplay,keyboardBeingClose} from '../components/handleKeyboard'
 
 const validationSchema = Yup.object().shape({
 
@@ -31,6 +32,16 @@ const validationSchema = Yup.object().shape({
 
 const ChangePasswordScreen = (props) => {
 
+    const [offSet,setOffSet]=useState(true)
+    useEffect(() => {
+        const open=()=>setOffSet(false)
+        const off=()=>setOffSet(true)
+       
+        keyboardBeingDisplay(open)
+        keyboardBeingClose(off)
+    }, []); // empty-array means don't watch for any updates
+
+
     return (
         <Formik onSubmit={async values => {
             props.navigation.navigate("PasswordSuccess")
@@ -52,7 +63,7 @@ const ChangePasswordScreen = (props) => {
 
                 return (
 
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }} keyboardVerticalOffset={20}>
+                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }} keyboardVerticalOffset={offSet?30:0}>
                         <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
                                 <TouchableOpacity onPress={() => props.navigation.navigate("DataSetting")} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
@@ -78,7 +89,7 @@ const ChangePasswordScreen = (props) => {
                                 <View style={[styles.formElement]}>
                                     <Text style={[styles.titleBox, { marginBottom: 5, borderColor: newPasswordTouched && newPasswordError ? 'rgba(255,0,0,1)' : '#5a83c2' }]}>New Password</Text>
                                     <TextInput secureTextEntry value={newPassword} onBlur={FormikProps.handleBlur('newPassword')} onChangeText={FormikProps.handleChange('newPassword')} placeholder={newPasswordError && newPasswordTouched ? '' : 'Please insert your new password'} style={[styles.textInput,{ borderWidth: 1, borderColor:newPasswordError && newPasswordTouched ? 'rgba(255,0,0,1)': 'rgba(0,0,0,0.3)', padding: 5 }]} />
-                                    {newPasswordError && newPasswordTouched ?<Text style={styles.error}>{newPasswordError}</Text>:!newPasswordTouched?<Text style={{fontSize:10.5,fontFamily:'Montserrat_medium',color:'lightgrey'}}>Password must be atleast 6 characters long</Text>:<View />}
+                                    {newPasswordError && newPasswordTouched ?<Text style={styles.error}>{newPasswordError}</Text>:!newPasswordTouched?<Text style={{fontSize:10.5,fontFamily:'Montserrat_medium',color:'grey'}}>Note:Password must be atleast 6 characters long</Text>:<View />}
                                 </View>
                                 <View style={[styles.formElement]}>
                                     <Text style={[styles.titleBox, { marginBottom: 5, borderColor: confirmPasswordTouched && confirmPasswordError ? 'rgba(255,0,0,1)' : '#5a83c2' }]}>Confirm Password</Text>

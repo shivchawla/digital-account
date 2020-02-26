@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import { Image, Text, TouchableOpacity, View, TextInput, KeyboardAvoidingView, ActivityIndicator } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'
 import { Formik } from 'formik';
@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 import styles from '../styles/styles'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import * as actionCreator from '../store/actions/action'
+import {keyboardBeingDisplay,keyboardBeingClose} from '../components/handleKeyboard'
 
 const validationSchema = Yup.object().shape({
 
@@ -37,6 +38,15 @@ const CompanyContactInformationScreen = (props) => {
 
     }
 
+    const [offSet,setOffSet]=useState(true)
+    useEffect(() => {
+        const open=()=>setOffSet(false)
+        const off=()=>setOffSet(true)
+       
+        keyboardBeingDisplay(open)
+        keyboardBeingClose(off)
+    }, []); // empty-array means don't watch for any updates
+
     return (
         <Formik
             onSubmit={values => companyInfo(values)}
@@ -49,7 +59,7 @@ const CompanyContactInformationScreen = (props) => {
                 const cddEmailError = FormikProps.errors.cddEmail
                 const cddEmailTouched = FormikProps.touched.cddEmail
                 return (
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }} keyboardVerticalOffset={30}>
+                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }} keyboardVerticalOffset={offSet?30:0}>
                         <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4', marginBottom: 25 }]}>
                             <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center', alignItems: 'flex-start', paddingLeft: 10 }}>
                                 <Text numberOfLines={1} style={[styles.title]} ellipsizeMode='tail'>COMPANY CONTACT</Text>

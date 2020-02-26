@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState,useEffect } from 'react';
 import { View, TouchableOpacity, Text, Image, ActivityIndicator, KeyboardAvoidingView, TextInput, ScrollView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
@@ -7,6 +7,7 @@ import * as Yup from 'yup';
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import styles from '../styles/styles'
+import {keyboardBeingDisplay,keyboardBeingClose} from '../components/handleKeyboard'
 
 const validationSchema = Yup.object().shape({
 
@@ -41,6 +42,15 @@ const EditProfileScreen = (props) => {
         retrieveMerchantInfo()
     }, [])
 
+    const [offSet,setOffSet]=useState(true)
+    useEffect(() => {
+        const open=()=>setOffSet(false)
+        const off=()=>setOffSet(true)
+       
+        keyboardBeingDisplay(open)
+        keyboardBeingClose(off)
+    }, []); // empty-array means don't watch for any updates
+
     const dispatch = useDispatch()
     const retrieveMerchantInfo = () => { dispatch(actionCreator.retrieveMerchantInfo()) }
     const { business_name, business_reg_no, business_address, business_postcode, support_email, contact_no } = useSelector(state => state.merchantInfoReducer, shallowEqual)
@@ -56,7 +66,7 @@ const EditProfileScreen = (props) => {
 
                 return (
 
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }} keyboardVerticalOffset={20}>
+                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }} keyboardVerticalOffset={offSet?30:0} >
                     
                     <View style={{ flex: 1 }}>
                         <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>

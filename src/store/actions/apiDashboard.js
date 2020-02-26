@@ -419,46 +419,32 @@ export const retrievePersonalInfoApi = () => {
 export const checkDeclareApi = () => {
   return async (dispatch, getState) => {
 
-    //const personalToken = await AsyncStorage.getItem('personalToken');
+    const responseJson = await apiGetCall(`api/setup/business_declaration`, getState().apiReducer)
+    const test = responseJson.data
+    const lastTest = test.slice(-1).pop()
+    const isDeclaration_one = lastTest.business_id
+    console.log(`declaration paling last ialah ${isDeclaration_one}`)
+    dispatch({ type: 'SET_MERCHANT', payload: { isDeclaration_one } })
 
-    const { token_type, access_token } = getState().apiReducer
 
-    fetch(`${apiUrl}api/setup/business_declaration`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token_type + ' ' + access_token
-
-      }
-
-    }).then((response) => response.json())
-      .then(async (responseJson) => {
-        const test = responseJson.data
-        const lastTest = test.slice(-1).pop()
-        const isDeclaration_one = lastTest.business_id
-        console.log(`declaration paling last ialah ${isDeclaration_one}`)
-
-        // const {isDeclaration_one} = responseJson.data[0]
-        // console.log('Success business_declaration : ' + JSON.stringify(isDeclaration_one))
-        dispatch({ type: 'SET_MERCHANT', payload: { isDeclaration_one } })
-
-      })
-      .catch((error) => {
-        console.log('Error initiating merchant info : ' + error);
-        dispatch({ type: 'SET_MERCHANT', payload: { isDeclaration_one: null } })
-      });
   }
 }
 
 export const checkDocumentApi = () => {
   return async (dispatch, getState) => {
 
+    const responseJson = await apiGetCall(`api/setup/business_document`, getState().apiReducer)
+    const test = responseJson.data
+    console.log(`nak tengok document ade ke tak? : ${JSON.stringify(responseJson)}`)
+    const lastTest = test.slice(-1).pop()
+    const isDocument1 = lastTest.business_id
+    console.log(`document paling last ialah ${JSON.stringify(isDocument1)}`)
+    dispatch({ type: 'SET_MERCHANT', payload: { isDocument1 } })
+
+
     //const personalToken = await AsyncStorage.getItem('personalToken');
 
-    const { token_type, access_token } = getState().apiReducer
-
-    fetch(`${apiUrl}api/setup/business_document`, {
+   {/* fetch(`${apiUrl}api/setup/business_document`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -480,18 +466,25 @@ export const checkDocumentApi = () => {
       .catch((error) => {
         console.log('Error initiating document info : ' + error);
         dispatch({ type: 'SET_MERCHANT', payload: { isDocument1: null } })
-      });
+      }); */}
   }
 }
 
 export const checkContactApi = () => {
   return async (dispatch, getState) => {
 
+    const responseJson = await apiGetCall(`api/setup/business_contact`, getState().apiReducer)
+    const test = responseJson.data
+    console.log(`inilah contact test : ${JSON.stringify(test)}`)
+    const lastTest = test.slice(-1).pop()
+    const { id } = lastTest
+    console.log(`full_name paling last ialah ${id}`)
+    dispatch({ type: 'SET_MERCHANT', payload: { contactId: id } })
+
     //const personalToken = await AsyncStorage.getItem('personalToken');
 
-    const { token_type, access_token } = getState().apiReducer
 
-    fetch(`${apiUrl}api/setup/business_contact`, {
+  {/* fetch(`${apiUrl}api/setup/business_contact`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -512,7 +505,7 @@ export const checkContactApi = () => {
       })
       .catch((error) => {
         console.log('Error initiating check contact : ' + error);
-      });
+      }); */}
   }
 }
 
@@ -588,11 +581,18 @@ export const checkCDDApi = () => {
 export const checkCDDApi2 = () => {
   return async (dispatch, getState) => {
 
+    const responseJson = await apiGetCall(`api/setup/cdd_verification`, getState().apiReducer)
+    const test = responseJson.data
+    console.log(`cdd result ialah ${JSON.stringify(responseJson)}`)
+    const status1 = test.status
+    console.log(`status kejayaan : ${status1}`)
+    const link = 'Dashboard'
+    dispatch({ type: 'SET_MERCHANT', payload: { link, status1 } })
+
     //const personalToken = await AsyncStorage.getItem('personalToken');
 
-    const { token_type, access_token } = getState().apiReducer
 
-    fetch(`${apiUrl}api/setup/cdd_verification`, {
+  {/*  fetch(`${apiUrl}api/setup/cdd_verification`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -650,7 +650,7 @@ export const checkCDDApi2 = () => {
       .catch((error) => {
         console.log('Error initiating check contact : ' + error);
         dispatch({ type: 'SET_MERCHANT', payload: { status1: 'NA' } })
-      });
+      }); */}
   }
 }
 
@@ -801,9 +801,13 @@ export const userInfo = () => {
 export const notificationApi = () => {
   return async (dispatch, getState) => {
 
-    //const personalToken = await AsyncStorage.getItem('personalToken');
+    const responseJson = await apiGetCall(`api/Notification`, getState().apiReducer)
+    const notificationByDate = [...responseJson.data.promotion, ...responseJson.data.annoucement, ...responseJson.data.advertisement]
+    dispatch({ type: 'SET_NOTIFICATION', payload: { notificationList: notificationByDate } })
 
-    const { token_type, access_token } = getState().apiReducer
+
+    //const personalToken = await AsyncStorage.getItem('personalToken');
+    {/*const { token_type, access_token } = getState().apiReducer
 
     fetch(`${apiUrl}api/Notification`, {
       method: 'GET',
@@ -819,7 +823,7 @@ export const notificationApi = () => {
       })
       .catch((error) => {
         console.log('Error initiating notification : ' + error);
-      });
+      }); */}
   }
 }
 
@@ -1094,28 +1098,13 @@ export const deleteItemApi = (id) => {
 export const customerDataApi = (values) => {
   return async (dispatch, getState) => {
 
-    const { token_type, access_token } = getState().apiReducer
-    //const values = getState().invoiceReducer
-    const access_credential = 'api'
+    const responseJson = await apiPostCall(`/api/setting/customer/submit`, values, getState().apiReducer)
+    const { status, code } = await responseJson
+    await dispatch({ type: 'SET_CUSTOMER_LIST', payload: { status, code, proceedMain: true } })
+    await console.log(`customer submit api  ${JSON.stringify(responseJson)}`)
+
     console.log(`New add customer api : ${JSON.stringify(values)}`)
 
-    fetch(`${apiUrl}/api/setting/customer/submit`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token_type + ' ' + access_token
-      },
-      body: JSON.stringify({ ...values, access_credential }),
-    }).then((response) => response.json())
-      .then(async (responseJson) => {
-        const { status, code } = await responseJson
-        await dispatch({ type: 'SET_CUSTOMER_LIST', payload: { status, code, proceedMain: true } })
-        await console.log(`customer submit api  ${JSON.stringify(responseJson)}`)
-      })
-      .catch((error) => {
-        console.error('Error : ' + error);
-      });
 
   }
 }
@@ -1124,28 +1113,11 @@ export const customerDataApi = (values) => {
 export const itemDataApi = (values) => {
   return async (dispatch, getState) => {
 
-    const { token_type, access_token } = getState().apiReducer
-    //const values = getState().invoiceReducer
-    const access_credential = 'api'
+    const responseJson = await apiPostCall(`/api/setting/item/submit`, values, getState().apiReducer)
+    const { status, code } = await responseJson
+    await dispatch({ type: 'SET_CUSTOMER_LIST', payload: { status, code, proceedMain: true } })
+    await console.log(`customer submit api  ${JSON.stringify(responseJson)}`)
     console.log(`New add item api : ${JSON.stringify(values)}`)
-
-    fetch(`${apiUrl}/api/setting/item/submit`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token_type + ' ' + access_token
-      },
-      body: JSON.stringify({ ...values, access_credential }),
-    }).then((response) => response.json())
-      .then(async (responseJson) => {
-        const { status, code } = await responseJson
-        await dispatch({ type: 'SET_ITEM_LIST', payload: { status, code, proceedMain: true } })
-        await console.log(`item submit api  ${JSON.stringify(responseJson)}`)
-      })
-      .catch((error) => {
-        console.error('Error : ' + error);
-      });
 
   }
 }
@@ -1153,28 +1125,12 @@ export const itemDataApi = (values) => {
 export const submitSupportApi = (values) => {
   return async (dispatch, getState) => {
 
-    const { token_type, access_token } = getState().apiReducer
-    //const values = getState().supportReducer
-    const access_credential = 'api'
+    const responseJson = await apiPostCall(`/api/ticket/submit`, values, getState().apiReducer)
+    const { status, code } = await responseJson
+    await dispatch({ type: 'SET_SUBMIT_SUPPORT', payload: { status, code, proceedMain: true } })
+    await console.log(`support api  ${JSON.stringify(responseJson)}`)
     console.log(`New support api : ${JSON.stringify(values)}`)
 
-    fetch(`${apiUrl}/api/ticket/submit`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token_type + ' ' + access_token
-      },
-      body: JSON.stringify({ ...values, access_credential }),
-    }).then((response) => response.json())
-      .then(async (responseJson) => {
-        const { status, code } = await responseJson
-        await dispatch({ type: 'SET_SUBMIT_SUPPORT', payload: { status, code, proceedMain: true } })
-        await console.log(`support api  ${JSON.stringify(responseJson)}`)
-      })
-      .catch((error) => {
-        console.error('Error : ' + error);
-      });
 
   }
 }
@@ -1205,11 +1161,18 @@ export const checkAuthApi = () => {
 
 export const savePinApi = (values) => {
   return async (dispatch, getState) => {
+
+    const responseJson = await apiPostCall(`api/settings/auth`, values, getState().apiReducer)
+    const { status, code } = await responseJson
+    await dispatch({ type: 'SET_AUTH', payload: { ...responseJson.data } })
+    await console.log(`set auth api  ${JSON.stringify(responseJson)}`)
+
+
     //pinStringified = getState().authReducer
     // console.log(JSON.stringify(getState().authReducer))
     // await SecureStore.setItemAsync('twoFa', pinStringified);
 
-    const { token_type, access_token } = getState().apiReducer
+    {/* const { token_type, access_token } = getState().apiReducer
     //const values = getState().expenseReducer
     const access_credential = 'api'
 
@@ -1230,7 +1193,7 @@ export const savePinApi = (values) => {
       })
       .catch((error) => {
         console.error('Error : ' + error);
-      });
+      }); */}
 
   }
 }
@@ -1242,12 +1205,13 @@ export const savePinApi = (values) => {
 export const respondAgreementApi = (values) => {
   return async (dispatch, getState) => {
 
-    const { token_type, access_token } = getState().apiReducer
-    //const values = getState().invoiceReducer
-    const access_credential = 'api'
+    const responseJson = await apiPostCall(`/api/repaymentinfo/accept`, values, getState().apiReducer)
+    const { status } = await responseJson
+    //await dispatch({ type: 'SET_VENDOR_SUBMIT', payload: { status, proceedMain: true } })
+    await console.log(`respondAgreementApi ${JSON.stringify(responseJson)}`)
     console.log(`Respond : ${JSON.stringify(values)}`)
 
-    fetch(`${apiUrl}/api/repaymentinfo/accept`, {
+    {/* fetch(`${apiUrl}/api/repaymentinfo/accept`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -1263,7 +1227,7 @@ export const respondAgreementApi = (values) => {
       })
       .catch((error) => {
         console.error('Error : ' + error);
-      });
+      }); */}
 
   }
 }

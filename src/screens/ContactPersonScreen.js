@@ -12,6 +12,8 @@ import {
     removeAndroidBackButtonHandler
 } from '../components/androidBackButton';
 import { ScrollView } from 'react-native-gesture-handler';
+import {keyboardBeingDisplay,keyboardBeingClose} from '../components/handleKeyboard'
+
 const validationSchema = Yup.object().shape({
 
     cddContactPersonName: Yup
@@ -72,6 +74,15 @@ const ContactPersonScreen = (props) => {
 
     }
 
+    const [offSet,setOffSet]=useState(true)
+    useEffect(() => {
+        const open=()=>setOffSet(false)
+        const off=()=>setOffSet(true)
+       
+        keyboardBeingDisplay(open)
+        keyboardBeingClose(off)
+    }, []); // empty-array means don't watch for any updates
+
     return (
         <Formik
 
@@ -97,7 +108,7 @@ const ContactPersonScreen = (props) => {
 
                 return (
 
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }} keyboardVerticalOffset={30} >
+                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }} keyboardVerticalOffset={offSet?30:0} >
                         <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4', marginBottom: 25 }]}>
                             <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center', alignItems: 'flex-start', padding: 10 }}>
                                 <Text style={styles.title} >CONTACT</Text>

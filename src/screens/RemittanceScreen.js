@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { View, TouchableOpacity, Text, Image, ActivityIndicator, KeyboardAvoidingView, TextInput, ScrollView, Picker, Modal, Platform } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
@@ -6,7 +6,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import styles from '../styles/styles'
 import Constants from 'expo-constants';
-
+import {keyboardBeingDisplay,keyboardBeingClose} from '../components/handleKeyboard'
 const validationSchema = Yup.object().shape({
 
     senderCurrency: Yup
@@ -57,6 +57,15 @@ const RemittanceScreen = (props) => {
         setIosPickerVisible(!iosPickerVisible)
     }
 
+    const [offSet,setOffSet]=useState(true)
+    useEffect(() => {
+        const open=()=>setOffSet(false)
+        const off=()=>setOffSet(true)
+       
+        keyboardBeingDisplay(open)
+        keyboardBeingClose(off)
+    }, []); // empty-array means don't watch for any updates
+
     return (
 
         <Formik onSubmit={async values => {
@@ -91,7 +100,7 @@ const RemittanceScreen = (props) => {
 
                 return (
 
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }} keyboardVerticalOffset={20} >
+                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }}  keyboardVerticalOffset={offSet?30:0} >
                         <Modal animationType={'slide'}
                             visible={iosPickerVisible} onRequestClose={() => console.log(`onRequestClose`)}
                         >

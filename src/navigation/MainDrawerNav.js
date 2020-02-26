@@ -79,6 +79,7 @@ import ZakatSuccessScreen from '../screens/ZakatSuccessScreen';
 import BusinessDirectoryScreen from '../screens/BusinessDirectoryScreen';
 import PayrollSuccessScreen from '../screens/PayrollSuccessScreen';
 import RemittanceSuccessScreen from '../screens/RemittanceSuccessScreen';
+import SupportSuccessScreen from '../screens/SupportSuccessScreen';
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -99,7 +100,7 @@ const MainDrawer = () => {
             {/* <Drawer.Screen name="Notification" component={NotificationScreen} /> */}
             <Drawer.Screen name="DataSetting" component={DataSettingStack} />
             <Drawer.Screen name="Transfer" component={TransferStack} />
-            <Drawer.Screen name="Support" component={SupportScreen} />
+            <Drawer.Screen name="Support" component={SupportStack} /> 
             <Drawer.Screen name="BusinessHub" component={BusinessHubStack} />
             <Drawer.Screen name="Invoice" component={InvoiceStack} />
         </Drawer.Navigator>
@@ -210,6 +211,15 @@ const TransferStack = () => {
         <Stack.Navigator initialRouteName="Transfer" screenOptions={{ headerShown: false }}>
             <Drawer.Screen name="Transfer" component={TransferScreen} />
             <Stack.Screen name="TransferSuccess" component={TransferSuccessScreen} />
+        </Stack.Navigator>
+    )
+}
+
+const SupportStack = () => {
+    return (
+        <Stack.Navigator initialRouteName="Support" screenOptions={{ headerShown: false }}>
+            <Drawer.Screen name="Support" component={SupportScreen} />
+            <Stack.Screen name="SupportSuccess" component={SupportSuccessScreen} />
         </Stack.Navigator>
     )
 }
