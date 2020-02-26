@@ -2,17 +2,20 @@ import { AppLoading, Notifications } from 'expo';
 import * as Permissions from 'expo-permissions'
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
-import Constants from 'expo-constants'
+
 import * as SecureStore from 'expo-secure-store'
 import React, { useState, useEffect } from 'react';
 import { Platform, StatusBar, StyleSheet, View, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+
+import NetInfo from '@react-native-community/netinfo';
 
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import rootReducer from './src/store/reducers/Reducer';
 
+import styles from './src/styles/styles'
 
 ///// All Below for Navigation
 import { enableScreens } from 'react-native-screens';
@@ -36,6 +39,9 @@ const App = (props) => {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
   const [tokenExists, setTokenExists] = useState(false)
   const [notification, setNotification] = useState({})
+  const [isInternetReachable, setNetInfo] = useState(null)
+  store.getState() && console.log(JSON.stringify(store.getState()))
+
 
   const checkUpdate = async () => {
     try {
@@ -99,14 +105,21 @@ const App = (props) => {
     //store.dispatch({ type: 'SET_NOTIFICATION', payload: { notification } })
   };
 
+  const _handleNetInfo = (netInfo) => {
+    console.log(`netInfo received ${JSON.stringify(netInfo)}`)
+    store.dispatch({ type: 'SET_NET_INFO_STATUS', payload: { ...netInfo } })
+    setNetInfo(netInfo.isInternetReachable)
+  }
 
   useEffect(() => {
     //checkUpdate()
     registerForPushNotificationsAsync();
     const _notificationSubscription = Notifications.addListener(_handleNotification);
+    const netInfoUnsubscribe = NetInfo.addEventListener(_handleNetInfo);
     //checkLogin()
 
   }, [])
+
 
   if (!isLoadingComplete && !props.skipLoadingScreen) {
     return (
@@ -120,6 +133,10 @@ const App = (props) => {
     return (<Provider store={store}>
       <View style={styles.container}>
         <Nav />
+        {!isInternetReachable && <View style={{ justifyContent: 'center', alignItems: 'center', padding: 5, backgroundColor: 'orange' }}>
+          <Text style={styles.small}>Your device is not connected to the Internet</Text>
+        </View>
+        }
       </View>
     </Provider>
     )
@@ -258,12 +275,6 @@ const handleFinishLoading = (setLoadingComplete) => {
   setLoadingComplete(true);
 }
 
-const styles = StyleSheet.create({
-  container: {
-    paddingTop: Constants.statusBarHeight,
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});
+
 
 export default App;
