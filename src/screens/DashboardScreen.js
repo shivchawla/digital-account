@@ -33,6 +33,7 @@ const DashboardScreen = (props) => {
 
   const { reportList } = useSelector(state => state.reportReducer, shallowEqual)
   const all = useSelector(state => state.merchantInfoReducer, shallowEqual)
+  const {isConnected,isInternetReachable,type} = useSelector(state => state.netInfoReducer, shallowEqual)
 
   const [dashboardDisplay, setDashboardDisplay] = useState(true)
 
@@ -82,6 +83,7 @@ const DashboardScreen = (props) => {
             <Text style={[styles.text]}>Withdrawal</Text>
           </TouchableOpacity>
         </View>
+        {/* <View><Text>{isInternetReachable && JSON.stringify(isInternetReachable)}</Text></View> */}
         <View style={{ marginBottom: 15 }} >
           <LinearGradient colors={['#055E7C', '#055E7C']} style={{ paddingTop: 5, paddingBottom: 5, alignItems: 'center', borderRadius: 10, height: Layout.window.height > 570 ? Layout.window.height / 3.3 : Layout.window.height / 2.8 }}>
             <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
