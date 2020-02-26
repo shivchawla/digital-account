@@ -14,7 +14,7 @@ const ProfileScreen = (props) => {
     //const retrieveMerchantInfo = () => { dispatch(actionCreator.retrieveMerchantInfo()) }
     const { business_name, business_reg_no, contact_no, support_email, business_address, business_postcode, status } = useSelector(state => state.merchantInfoReducer, shallowEqual)
     const { balance, currency, account_no, type } = useSelector(state => state.myAccountReducer, shallowEqual)
-    const { first_name, last_name, email } = useSelector(state => state.personalInformationScreenReducer, shallowEqual)
+    const { first_name, last_name, email, name } = useSelector(state => state.personalInformationScreenReducer, shallowEqual)
 
     return (
         <View style={{ flex: 1, }}>
@@ -36,8 +36,8 @@ const ProfileScreen = (props) => {
             <View style={[{ flex: 9 }]}>
                 <ScrollView style={[styles.screenMargin]}>
                     <View style={{ marginTop: 20, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end' }}>
-                        <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ paddingTop: 13, paddingBottom: 13, paddingLeft: 15, paddingRight:15, backgroundColor: '#055E7C', borderRadius: 15 }}>
-                            <Text style={[styles.text, { color: '#fff',fontSize:12 }]}>Edit</Text>
+                        <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ paddingTop: 13, paddingBottom: 13, paddingLeft: 15, paddingRight: 15, backgroundColor: '#055E7C', borderRadius: 15 }}>
+                            <Text style={[styles.text, { color: '#fff', fontSize: 12 }]}>Edit</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'flex-start', marginBottom: 10 }}>
@@ -54,7 +54,7 @@ const ProfileScreen = (props) => {
                                 <Text style={[styles.label]}>Name</Text>
                             </View>
                             <View style={{ flex: 2 }}>
-                                <Text style={[styles.value, { color: '#055E7C' }]}>{first_name} {last_name}</Text>
+                                <Text style={[styles.value, { color: '#055E7C' }]}>{name} {!name && first_name} {!name && last_name}</Text>
                             </View>
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 5 }}>
@@ -94,8 +94,8 @@ const ProfileScreen = (props) => {
                                 <Text style={[styles.label]}>Status</Text>
                             </View>
                             <View style={{ flex: 2, flexDirection: 'row', alignSelf: 'stretch', }}>
-                                {status == 'activated' ?<Text style={[styles.value,{ color: 'limegreen'}]}>Active</Text>  
-                                 :<Text style={[styles.value,{color:'lightgrey'}]}>Inactive</Text>}
+                                {status == 'activated' ? <Text style={[styles.value, { color: 'limegreen' }]}>Active</Text>
+                                    : <Text style={[styles.value, { color: 'lightgrey' }]}>Inactive</Text>}
                             </View>
                         </View>
                     </View>
