@@ -416,100 +416,169 @@ export const retrievePersonalInfoApi = () => {
   }
 }
 
-export const checkDeclareApi = () => {
-  return async (dispatch, getState) => {
+// export const checkDeclareApi = () => {
+//   return async (dispatch, getState) => {
 
-    const responseJson = await apiGetCall(`api/setup/business_declaration`, getState().apiReducer)
-    const test = responseJson.data
-    const lastTest = test.slice(-1).pop()
-    const isDeclaration_one = lastTest.business_id
-    console.log(`declaration paling last ialah ${isDeclaration_one}`)
-    dispatch({ type: 'SET_MERCHANT', payload: { isDeclaration_one } })
-
-
-  }
-}
-
-export const checkDocumentApi = () => {
-  return async (dispatch, getState) => {
-
-    const responseJson = await apiGetCall(`api/setup/business_document`, getState().apiReducer)
-    const test = responseJson.data
-    console.log(`nak tengok document ade ke tak? : ${JSON.stringify(responseJson)}`)
-    const lastTest = test.slice(-1).pop()
-    const isDocument1 = lastTest.business_id
-    console.log(`document paling last ialah ${JSON.stringify(isDocument1)}`)
-    dispatch({ type: 'SET_MERCHANT', payload: { isDocument1 } })
+//     const responseJson = await apiGetCall(`api/setup/business_declaration`, getState().apiReducer)
+//     const test = responseJson.data
+//     const lastTest = test.slice(-1).pop()
+//     const isDeclaration_one = lastTest.business_id
+//     console.log(`declaration paling last ialah ${isDeclaration_one}`)
+//     dispatch({ type: 'SET_MERCHANT', payload: { isDeclaration_one } })
 
 
-    //const personalToken = await AsyncStorage.getItem('personalToken');
+//   }
+// }
 
-   {/* fetch(`${apiUrl}api/setup/business_document`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token_type + ' ' + access_token
+// export const checkDocumentApi = () => {
+//   return async (dispatch, getState) => {
 
-      }
-
-    }).then((response) => response.json())
-      .then(async (responseJson) => {
-        const test = responseJson.data
-        console.log(`nak tengok document ade ke tak? : ${JSON.stringify(responseJson)}`)
-        const lastTest = test.slice(-1).pop()
-        const isDocument1 = lastTest.business_id
-        console.log(`document paling last ialah ${JSON.stringify(isDocument1)}`)
-        dispatch({ type: 'SET_MERCHANT', payload: { isDocument1 } })
-
-      })
-      .catch((error) => {
-        console.log('Error initiating document info : ' + error);
-        dispatch({ type: 'SET_MERCHANT', payload: { isDocument1: null } })
-      }); */}
-  }
-}
-
-export const checkContactApi = () => {
-  return async (dispatch, getState) => {
-
-    const responseJson = await apiGetCall(`api/setup/business_contact`, getState().apiReducer)
-    const test = responseJson.data
-    console.log(`inilah contact test : ${JSON.stringify(test)}`)
-    const lastTest = test.slice(-1).pop()
-    const { id } = lastTest
-    console.log(`full_name paling last ialah ${id}`)
-    dispatch({ type: 'SET_MERCHANT', payload: { contactId: id } })
-
-    //const personalToken = await AsyncStorage.getItem('personalToken');
+//     const responseJson = await apiGetCall(`api/setup/business_document`, getState().apiReducer)
+//     const test = responseJson.data
+//     console.log(`nak tengok document ade ke tak? : ${JSON.stringify(responseJson)}`)
+//     const lastTest = test.slice(-1).pop()
+//     const isDocument1 = lastTest.business_id
+//     console.log(`document paling last ialah ${JSON.stringify(isDocument1)}`)
+//     dispatch({ type: 'SET_MERCHANT', payload: { isDocument1 } })
 
 
-  {/* fetch(`${apiUrl}api/setup/business_contact`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token_type + ' ' + access_token
+//     //const personalToken = await AsyncStorage.getItem('personalToken');
 
-      }
+//    {/* fetch(`${apiUrl}api/setup/business_document`, {
+//       method: 'GET',
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'Accept': 'application/json',
+//         'Authorization': token_type + ' ' + access_token
 
-    }).then((response) => response.json())
-      .then(async (responseJson) => {
-        const test = responseJson.data
-        console.log(`inilah contact test : ${JSON.stringify(test)}`)
-        const lastTest = test.slice(-1).pop()
-        const { id } = lastTest
-        console.log(`full_name paling last ialah ${id}`)
-        dispatch({ type: 'SET_MERCHANT', payload: { contactId: id } })
+//       }
 
-      })
-      .catch((error) => {
-        console.log('Error initiating check contact : ' + error);
-      }); */}
-  }
-}
+//     }).then((response) => response.json())
+//       .then(async (responseJson) => {
+//         const test = responseJson.data
+//         console.log(`nak tengok document ade ke tak? : ${JSON.stringify(responseJson)}`)
+//         const lastTest = test.slice(-1).pop()
+//         const isDocument1 = lastTest.business_id
+//         console.log(`document paling last ialah ${JSON.stringify(isDocument1)}`)
+//         dispatch({ type: 'SET_MERCHANT', payload: { isDocument1 } })
 
-export const checkCDDApi = () => {
+//       })
+//       .catch((error) => {
+//         console.log('Error initiating document info : ' + error);
+//         dispatch({ type: 'SET_MERCHANT', payload: { isDocument1: null } })
+//       }); */}
+//   }
+// }
+
+// export const checkContactApi = () => {
+//   return async (dispatch, getState) => {
+
+//     const responseJson = await apiGetCall(`api/setup/business_contact`, getState().apiReducer)
+//     const test = responseJson.data
+//     console.log(`inilah contact test : ${JSON.stringify(test)}`)
+//     const lastTest = test.slice(-1).pop()
+//     const { id } = lastTest
+//     console.log(`full_name paling last ialah ${id}`)
+//     dispatch({ type: 'SET_MERCHANT', payload: { contactId: id } })
+
+//     //const personalToken = await AsyncStorage.getItem('personalToken');
+
+
+//   {/* fetch(`${apiUrl}api/setup/business_contact`, {
+//       method: 'GET',
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'Accept': 'application/json',
+//         'Authorization': token_type + ' ' + access_token
+
+//       }
+
+//     }).then((response) => response.json())
+//       .then(async (responseJson) => {
+//         const test = responseJson.data
+//         console.log(`inilah contact test : ${JSON.stringify(test)}`)
+//         const lastTest = test.slice(-1).pop()
+//         const { id } = lastTest
+//         console.log(`full_name paling last ialah ${id}`)
+//         dispatch({ type: 'SET_MERCHANT', payload: { contactId: id } })
+
+//       })
+//       .catch((error) => {
+//         console.log('Error initiating check contact : ' + error);
+//       }); */}
+//   }
+// }
+
+// export const checkCDDApi = () => {
+//   return async (dispatch, getState) => {
+
+//     //const personalToken = await AsyncStorage.getItem('personalToken');
+
+//     const { token_type, access_token } = getState().apiReducer
+
+//     fetch(`${apiUrl}api/setup/cdd_verification`, {
+//       method: 'GET',
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'Accept': 'application/json',
+//         'Authorization': token_type + ' ' + access_token
+
+//       }
+
+//     }).then((response) => response.json())
+//       .then(async (responseJson) => {
+//         const test = await responseJson
+//         console.log(`cdd result ialah ${JSON.stringify(test)}`)
+//         const status1 = test.status
+//         console.log(`status kejayaan : ${status1}`)
+
+//         if (status1 === 'Approved') {
+//           console.log('Approved sudah')
+//           const link = 'Dashboard'
+//           dispatch({ type: 'SET_MERCHANT', payload: { link } })
+//         }
+//         else if (status1 === 'Pending Admin Approval') {
+//           console.log('go admin approval')
+//           const link = 'AdminApproval'
+//           dispatch({ type: 'SET_MERCHANT', payload: { link } })
+//         }
+//         else if (status1 === 'Pending Verification') {
+
+//         }
+//         else if (status1 === 'Pending Business Profile') {
+//           const link = 'CompanyInformation'
+//           dispatch({ type: 'SET_MERCHANT', payload: { link } })
+//           console.log('go business profile')
+//         }
+//         else if (status1 === 'Pending Business Declaration') {
+//           const link = 'RegistrationDeclaration'
+//           dispatch({ type: 'SET_MERCHANT', payload: { link } })
+//           console.log('go declaration')
+//         }
+//         else if (status1 === 'Pending Document Upload') {
+//           const link = 'CompanyDocument'
+//           dispatch({ type: 'SET_MERCHANT', payload: { link } })
+//           console.log('go company document')
+//         }
+//         else if (status1 === 'Pending Business Contact') {
+//           //setLink('ContactPerson')
+//           const link = 'ContactPerson'
+//           dispatch({ type: 'SET_MERCHANT', payload: { link } })
+//           console.log('go contact person')
+//         }
+
+
+
+
+//       })
+//       .catch((error) => {
+//         console.log('Error initiating check contact : ' + error);
+//       });
+//   }
+// }
+
+
+export const checkCDDApi2 = () => {
   return async (dispatch, getState) => {
 
     //const personalToken = await AsyncStorage.getItem('personalToken');
@@ -517,82 +586,6 @@ export const checkCDDApi = () => {
     const { token_type, access_token } = getState().apiReducer
 
     fetch(`${apiUrl}api/setup/cdd_verification`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': token_type + ' ' + access_token
-
-      }
-
-    }).then((response) => response.json())
-      .then(async (responseJson) => {
-        const test = await responseJson
-        console.log(`cdd result ialah ${JSON.stringify(test)}`)
-        const status1 = test.status
-        console.log(`status kejayaan : ${status1}`)
-
-        if (status1 === 'Approved') {
-          console.log('Approved sudah')
-          const link = 'Dashboard'
-          dispatch({ type: 'SET_MERCHANT', payload: { link } })
-        }
-        else if (status1 === 'Pending Admin Approval') {
-          console.log('go admin approval')
-          const link = 'AdminApproval'
-          dispatch({ type: 'SET_MERCHANT', payload: { link } })
-        }
-        else if (status1 === 'Pending Verification') {
-
-        }
-        else if (status1 === 'Pending Business Profile') {
-          const link = 'CompanyInformation'
-          dispatch({ type: 'SET_MERCHANT', payload: { link } })
-          console.log('go business profile')
-        }
-        else if (status1 === 'Pending Business Declaration') {
-          const link = 'RegistrationDeclaration'
-          dispatch({ type: 'SET_MERCHANT', payload: { link } })
-          console.log('go declaration')
-        }
-        else if (status1 === 'Pending Document Upload') {
-          const link = 'CompanyDocument'
-          dispatch({ type: 'SET_MERCHANT', payload: { link } })
-          console.log('go company document')
-        }
-        else if (status1 === 'Pending Business Contact') {
-          //setLink('ContactPerson')
-          const link = 'ContactPerson'
-          dispatch({ type: 'SET_MERCHANT', payload: { link } })
-          console.log('go contact person')
-        }
-
-
-
-
-      })
-      .catch((error) => {
-        console.log('Error initiating check contact : ' + error);
-      });
-  }
-}
-
-
-export const checkCDDApi2 = () => {
-  return async (dispatch, getState) => {
-
-    const responseJson = await apiGetCall(`api/setup/cdd_verification`, getState().apiReducer)
-    const test = responseJson.data
-    console.log(`cdd result ialah ${JSON.stringify(responseJson)}`)
-    const status1 = test.status
-    console.log(`status kejayaan : ${status1}`)
-    const link = 'Dashboard'
-    dispatch({ type: 'SET_MERCHANT', payload: { link, status1 } })
-
-    //const personalToken = await AsyncStorage.getItem('personalToken');
-
-
-  {/*  fetch(`${apiUrl}api/setup/cdd_verification`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -650,7 +643,7 @@ export const checkCDDApi2 = () => {
       .catch((error) => {
         console.log('Error initiating check contact : ' + error);
         dispatch({ type: 'SET_MERCHANT', payload: { status1: 'NA' } })
-      }); */}
+      });
   }
 }
 

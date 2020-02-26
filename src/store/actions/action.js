@@ -363,34 +363,34 @@ export const retrievePersonalInfo = () => {
     }
 }
 
-export const checkDeclare = () => {
-    return (dispatch, getState) => {
-        console.log('Dekat check declaration action')
-        dispatch(checkDeclareApi())
-    }
-}
+// export const checkDeclare = () => {
+//     return (dispatch, getState) => {
+//         console.log('Dekat check declaration action')
+//         dispatch(checkDeclareApi())
+//     }
+// }
 
-export const checkDocument = () => {
-    return (dispatch, getState) => {
-        console.log('Dekat checkDocument action')
-        dispatch(checkDocumentApi())
-    }
-}
+// export const checkDocument = () => {
+//     return (dispatch, getState) => {
+//         console.log('Dekat checkDocument action')
+//         dispatch(checkDocumentApi())
+//     }
+// }
 
-export const checkContact = () => {
-    return (dispatch, getState) => {
-        console.log('Dekat checkContact action')
-        dispatch(checkContactApi())
-    }
-}
+// export const checkContact = () => {
+//     return (dispatch, getState) => {
+//         console.log('Dekat checkContact action')
+//         dispatch(checkContactApi())
+//     }
+// }
 
-export const setScreen = () => {
-    return (dispatch, getState) => {
-        console.log('Dekat setScreen action')
-        dispatch(checkCDDApi())
-    }
+// export const setScreen = () => {
+//     return (dispatch, getState) => {
+//         console.log('Dekat setScreen action')
+//         dispatch(checkCDDApi())
+//     }
 
-}
+// }
 
 export const setScreen2 = () => {
     return async (dispatch, getState) => {       
