@@ -10,13 +10,13 @@ import CodePin from 'react-native-pin-code'
 import Layout from '../constants/Layout';
 
 import ScanFinger from '../components/ScanFinger'
-const AuthOptionTypeScreen = (props) => {
+const AuthOptionScreen = (props) => {
 
 
 
     const unlock = () => {
         setLock(false)
-        dispatch(actionCreator.savePin({ authEnabled: false,authType:'NA' }))
+        dispatch(actionCreator.savePin({ authEnabled: false, authType: 'NA' }))
         setAuthRequestVisible(false)
     }
 
@@ -44,13 +44,15 @@ const AuthOptionTypeScreen = (props) => {
     const allAuth = useSelector(state => state.authReducer, shallowEqual)
 
     allAuth && console.log(`all auth ialah ${JSON.stringify(allAuth)}`)
-    authEnabled && console.log(`authEnabled ialah ${JSON.stringify(authEnabled)}`)
+    //authEnabled && console.log(`authEnabled ialah ${JSON.stringify(authEnabled)}`)
 
-    const [notificationEnable, setNotificationEnable] = authEnabled && useState(authEnabled)
+    const [notificationEnable, setNotificationEnable] = useState()
+
+    //authEnabled && setNotificationEnable(authEnabled)
 
     const notificationToggle = () => {
 
-        if (authEnabled==1) {
+        if (authEnabled == 1) {
             //buka dulu authentication screen
             setAuthRequestVisible(true)
             setNotificationEnable(!notificationEnable)
@@ -102,11 +104,11 @@ const AuthOptionTypeScreen = (props) => {
             </View>
             <View style={[styles.screenMargin, { flex: 9 }]}>
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                    <Text>ADA:{authEnabled}</Text>
+                   
                     <View>
                         <View style={{ flexDirection: 'row', marginTop: 30 }}>
                             <Text style={[styles.text], { padding: 5 }}>Enable Authentication</Text>
-                            <Switch style={{ marginLeft: 35, marginRight: 15 }} onValueChange={value => notificationToggle(value)} value={authEnabled ==1} />
+                            <Switch style={{ marginLeft: 35, marginRight: 15 }} onValueChange={value => notificationToggle(value)} value={authEnabled == 1} />
                         </View>
                         {authEnabled ? <View style={{ flexDirection: 'row', marginTop: 30 }}>
                             <Text style={[styles.text], { padding: 5 }}>Authentication Type : {authType}</Text>
@@ -120,4 +122,4 @@ const AuthOptionTypeScreen = (props) => {
 
 
 
-export default AuthOptionTypeScreen
+export default AuthOptionScreen

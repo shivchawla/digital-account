@@ -10,17 +10,19 @@ import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import CodePin from 'react-native-pin-code'
 const SetPasscodeScreen = (props) => {
 
-    const [code, updateCode] = useState("")
+    const [pin, updateCode] = useState('test')
     const dispatch = useDispatch()
 
-    const savePin = async () => {
-        await dispatch(actionCreator.savePin({ pin: code, authType: 'passcode',authEnabled:true }))
+    const savePin = async (code) => {
+        console.log(`pin yang nak save ialah ${code}`)
+        await dispatch(actionCreator.savePin({ pin: pin, authType: 'passcode', authEnabled: true }))
+        dispatch(actionCreator.checkAuth())
         props.navigation.navigate('AuthOption')
     }
     const checkCode = (code) => {
-        console.log(`periksa code`)
-        return updateCode(code)
-        //return code === '1234'
+        console.log(`periksa code : ${code}`)
+        updateCode(code)
+        return true
     }
 
     return (
@@ -42,29 +44,22 @@ const SetPasscodeScreen = (props) => {
             </View>
             <View style={{ justifyContent: 'space-between', flex: 9 }}>
                 <View style={[styles.screenMargin, { flex: 5, alignItems: 'center' }]}>
-                      <View style={[styles.formElement, { justifyContent: 'center', alignItems: 'center' }]}>
-                        {/* <OTPInputView style={{ width: '80%', height: 100 }} pinCount={4} code={code} autoFocusOnLoad codeInputFieldStyle={styles.borderStyleBase} codeInputHighlightStyle={styles.borderStyleHighLighted}
-                            //codeInputFieldStyle={styles.underlineStyleBase}
-                            //codeInputHighlightStyle={styles.underlineStyleHighLighted}
-                            onCodeFilled={code => {
-                                updateCode(code);
-                                console.log(`Code is ${code}, you are good to go!`)
-                            }}
-                            onCodeChanged={code => {
-                                updateCode(code);
-                                console.log(`Code is ${code} wei, you are good to go!`)
-                            }}
-                        /> */}
-                        <View style={{  backgroundColor: '#fff',  alignItems: 'center' }}>
+                    <View style={[styles.formElement, { justifyContent: 'center', alignItems: 'center' }]}>
+                   
+                        <View style={{ backgroundColor: '#fff', alignItems: 'center' }}>
+                          
                             <CodePin
                                 //code="2018" // code.length is used if you not pass number prop
-                                checkPinCode={(code, check) => check(checkCode(code))}
-                                success={() => updateCode()} // If user fill '2018', success is called
+                                checkPinCode={(code, check) =>  check( ()=>{updateCode(code);return true}) }
+                                success={() => { console.log(`success is called :`); updateCode(pin) }} // If user fill '2018', success is called
+                                
+                                
                                 text="Please Enter Passcode Below" // My title
                                 error="Try again" // If user fail (fill '2017' for instance)
                                 autoFocusFirst={true} // disabling auto-focus
                                 keyboardType={'numeric'}
-                                containerStyle={{ width: Layout.window.width, height: Layout.window.height / 4,justifyContent:'flex-start',alignItems:'center' }}
+                                obfuscation={true}
+                                containerStyle={{ width: Layout.window.width, height: Layout.window.height / 4, justifyContent: 'flex-start', alignItems: 'center' }}
                                 textStyle={styles.text}
                             //     containerPinStyle={{ width:40, height: 40, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', marginTop: 20 }
                             // }
@@ -78,7 +73,7 @@ const SetPasscodeScreen = (props) => {
                         </TouchableOpacity>
                     </View> */}
                     <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                        <TouchableOpacity onPress={() => savePin()} style={{ paddingTop: 5, paddingBottom: 5, paddingLeft: 20, paddingRight: 20, backgroundColor: '#055E7C', borderRadius: 15 }}>
+                        <TouchableOpacity onPress={() => savePin(pin)} style={{ paddingTop: 5, paddingBottom: 5, paddingLeft: 20, paddingRight: 20, backgroundColor: '#055E7C', borderRadius: 15 }}>
                             <Text style={[styles.textDefault, { color: 'white' }]}>Submit</Text>
                         </TouchableOpacity>
                     </View>
