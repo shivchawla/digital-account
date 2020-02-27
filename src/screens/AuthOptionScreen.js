@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, TouchableOpacity, Text, Image, Switch, Modal } from 'react-native';
+import { View, TouchableOpacity, Text, Image, Switch, Modal, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles/styles'
 import * as LocalAuthentication from 'expo-local-authentication';
@@ -19,6 +19,26 @@ const AuthOptionScreen = (props) => {
         dispatch(actionCreator.savePin({ authEnabled: false, authType: 'NA' }))
         setAuthRequestVisible(false)
     }
+
+    const scanFingerPrint = async () => {
+        try {
+            let results = await LocalAuthentication.authenticateAsync();
+            if (results.success) {
+                // setAuthenticate(true)
+                // setFailedCount(0)
+                // console.log(`berjaya scan `)
+                // props.unlock()
+                setAuthRequestVisible(true)
+                dispatch(actionCreator.savePin({ authEnabled: false, authType: 'NA' }))
+                setNotificationEnable(!notificationEnable)
+            } else {
+                console.log(`TAK berjaya scan `)
+                setFailedCount(failedCount + 1)
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    };
 
     // const checkCode = (code) => {
     //     console.log(`periksa code`)
@@ -57,8 +77,13 @@ const AuthOptionScreen = (props) => {
 
         if (authEnabled == 1) {
             //buka dulu authentication screen
-            setAuthRequestVisible(true)
-            setNotificationEnable(!notificationEnable)
+            if (Platform.OS === 'android') {
+                setAuthRequestVisible(true)
+                setNotificationEnable(!notificationEnable)
+            } else {
+                scanFingerPrint()
+            }
+
 
         } else {
             setNotificationEnable(!notificationEnable)
@@ -106,7 +131,7 @@ const AuthOptionScreen = (props) => {
 
     return (
         <View style={{ flex: 1, }}>
-            <Modal transparent={true} animationType={'slide'} visible={authRequestVisible} onRequestClose={() => setAuthRequestVisible(!authRequestVisible)} >
+            {Platform.OS === 'android' ? <Modal transparent={true} animationType={'slide'} visible={authRequestVisible} onRequestClose={() => setAuthRequestVisible(!authRequestVisible)} >
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(1,1,1,0.5)' }}>
                     <View style={{ flex: 3 }} />
                     <View style={{ flex: 1, backgroundColor: '#fff', justifyContent: 'center', alignItems: 'center' }}>
@@ -125,7 +150,8 @@ const AuthOptionScreen = (props) => {
 
                     </View>
                 </View>
-            </Modal>
+            </Modal> : <View />}
+
             <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
                     <TouchableOpacity onPress={() => props.navigation.navigate("DataSetting")} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>

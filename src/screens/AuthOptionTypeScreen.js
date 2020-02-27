@@ -11,9 +11,10 @@ import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 const AuthOptionTypeScreen = (props) => {
     const { authEnabled, authType } = useSelector(state => state.authReducer, shallowEqual)
     const dispatch = useDispatch()
+
     useEffect(() => {
         checkDeviceForHardware();
-    });
+    }, []);
 
     const setPasscode = () => {
         dispatch(actionCreator.setAuth({ authType: 'passcode' }))
@@ -61,10 +62,10 @@ const AuthOptionTypeScreen = (props) => {
 
     const setAuth = () => {
         if (biometricEnable) {
-            dispatch(actionCreator.savePin({ authType: 'biometric',pin:'NA' }))
+            dispatch(actionCreator.savePin({ authType: 'biometric', pin: 'NA' }))
 
         } else {
-            dispatch(actionCreator.setAuth({ authType: 'passcode'  }))
+            dispatch(actionCreator.setAuth({ authType: 'passcode' }))
             //dispatch(actionCreator.savePin({ authType: 'passcode' }))
         }
         props.navigation.navigate('AuthOption')
@@ -94,11 +95,11 @@ const AuthOptionTypeScreen = (props) => {
                         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                             <View>
                                 <View style={{ flexDirection: 'row', marginTop: 30 }}>
-                                    <Text style={[styles.text, { color: (!compatible || !enrolled) ? null : 'lightgrey' }]}>Local Authentication</Text>
+                                    <Text style={[styles.text, { color: (!compatible || !enrolled) ? 'lightgrey' : 'black' }]}>Local Authentication</Text>
                                     <Switch style={{ marginLeft: 35, marginRight: 15 }} onValueChange={value => biometricToggle(value)} value={biometricEnable} disabled={(!compatible || !enrolled) ? true : false} />
                                 </View>
                                 {/* {!authType?!enrolled?<Text style={styles.small}>Please enroll your authentication data to enable</Text>:  <Text style={styles.small}>Your device does not support Local Authentication</Text>} */}
-                                {compatible ? enrolled ? <View /> : <Text>Please enrolled</Text> : <Text style={styles.small}>Your device does not support Local Authentication</Text>}
+                                {compatible ? enrolled ? <View /> : <Text>Please enrolled</Text> : <Text style={[styles.small, { color: 'lightgrey' }]}>Your device does not support Local Authentication</Text>}
 
                                 <View>
                                     {biometricEnable && <View>
