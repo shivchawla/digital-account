@@ -20,11 +20,11 @@ const AuthOptionScreen = (props) => {
         setAuthRequestVisible(false)
     }
 
-    const checkCode = (code) => {
-        console.log(`periksa code`)
-        return code === '1234'
-        // return code === pin
-    }
+    // const checkCode = (code) => {
+    //     console.log(`periksa code`)
+    //     return code === '1234'
+    //     // return code === pin
+    // }
 
     const [locked, setLock] = useState(true)
     const [code, updateCode] = useState("")
@@ -41,7 +41,10 @@ const AuthOptionScreen = (props) => {
     // }
 
     const { authEnabled, authType, pin } = useSelector(state => state.authReducer, shallowEqual)
+
     const allAuth = useSelector(state => state.authReducer, shallowEqual)
+
+    const access = useSelector(state => state.apiReducer, shallowEqual)
 
     allAuth && console.log(`all auth ialah ${JSON.stringify(allAuth)}`)
     //authEnabled && console.log(`authEnabled ialah ${JSON.stringify(authEnabled)}`)
@@ -65,6 +68,42 @@ const AuthOptionScreen = (props) => {
         }
     }
 
+    const checkCodeFunction = async (pin) => {
+
+        const body = JSON.stringify({ pin, access_credential: 'api' })
+        const { token_type, access_token } = access
+        const method = 'POST'
+        const Accept = 'application/json'
+        const Authorization = token_type + ' ' + access_token
+        const headers = { 'Content-Type': 'application/json', Accept, Authorization }
+
+        // let response = await fetch(`https://tuah.niyo.my/api/auth/validate_pin`, { method, headers, body })
+        // let responseJson = await response.json()
+        let kucing = await fetch(`https://tuah.niyo.my/api/auth/validate_pin`, { method, headers, body })
+            .then(async response => await response.json())
+            .then(async responseJson => {
+                const { message, status } = await responseJson
+                //await dispatch({ type: 'SET_VENDOR_SUBMIT', payload: { status, code, proceedMain: true } })
+                await console.log(`validate pin api status:${status}, message :${message}`)
+                return responseJson
+
+            });
+        console.log(`'kucing ialah : ${JSON.stringify(kucing)}`)
+        return kucing
+
+    }
+
+    const checkCode = async (pin) => {
+        const responseJson = await checkCodeFunction(pin)
+        const { status } = responseJson
+        console.log(`dah abih run ${status}`)
+        if (status)
+            return 'nice'
+        else
+            return 'notnice'
+
+    }
+
     return (
         <View style={{ flex: 1, }}>
             <Modal transparent={true} animationType={'slide'} visible={authRequestVisible} onRequestClose={() => setAuthRequestVisible(!authRequestVisible)} >
@@ -73,7 +112,7 @@ const AuthOptionScreen = (props) => {
                     <View style={{ flex: 1, backgroundColor: '#fff', justifyContent: 'center', alignItems: 'center' }}>
                         {(authType === 'passcode') ? <CodePin
                             //code="2018" // code.length is used if you not pass number prop
-                            checkPinCode={(code, check) => check(checkCode(code))}
+                            checkPinCode={async (code, check) => { const test = await checkCode(code); check('nice' === test) }}
                             success={() => unlock()} // If user fill '2018', success is called
                             text="Please Enter PIN" // My title
                             error="Try again" // If user fail (fill '2017' for instance)
@@ -104,7 +143,7 @@ const AuthOptionScreen = (props) => {
             </View>
             <View style={[styles.screenMargin, { flex: 9 }]}>
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                   
+
                     <View>
                         <View style={{ flexDirection: 'row', marginTop: 30 }}>
                             <Text style={[styles.text], { padding: 5 }}>Enable Authentication</Text>

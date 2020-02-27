@@ -11,6 +11,7 @@ import CodePin from 'react-native-pin-code'
 const SetPasscodeScreen = (props) => {
 
     const [pin, updateCode] = useState('test')
+    const [codePin, setCodePin] = useState(null)
     const dispatch = useDispatch()
 
     const savePin = async (code) => {
@@ -19,11 +20,12 @@ const SetPasscodeScreen = (props) => {
         dispatch(actionCreator.checkAuth())
         props.navigation.navigate('AuthOption')
     }
-    const checkCode = (code) => {
-        console.log(`periksa code : ${code}`)
+
+    const changeCode = (code) => {
         updateCode(code)
         return true
     }
+
 
     return (
         <View style={{ flex: 1 }}>
@@ -45,15 +47,15 @@ const SetPasscodeScreen = (props) => {
             <View style={{ justifyContent: 'space-between', flex: 9 }}>
                 <View style={[styles.screenMargin, { flex: 5, alignItems: 'center' }]}>
                     <View style={[styles.formElement, { justifyContent: 'center', alignItems: 'center' }]}>
-                   
+
+
                         <View style={{ backgroundColor: '#fff', alignItems: 'center' }}>
-                          
+
                             <CodePin
+                                ref={ref => setCodePin(ref)}
                                 //code="2018" // code.length is used if you not pass number prop
-                                checkPinCode={(code, check) =>  check( ()=>{updateCode(code);return true}) }
-                                success={() => { console.log(`success is called :`); updateCode(pin) }} // If user fill '2018', success is called
-                                
-                                
+                                checkPinCode={(code, check) => check(changeCode(code))}
+                                success={() => { console.log(`success is called :`) }} // If user fill '2018', success is called
                                 text="Please Enter Passcode Below" // My title
                                 error="Try again" // If user fail (fill '2017' for instance)
                                 autoFocusFirst={true} // disabling auto-focus
