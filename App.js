@@ -134,7 +134,7 @@ const App = (props) => {
       <View style={styles.container}>
         <Nav />
         {!isInternetReachable && <View style={{ justifyContent: 'center', alignItems: 'center', padding: 5, backgroundColor: 'orange' }}>
-          <Text style={styles.small}>Your device is not connected to the Internet</Text>
+          <Text style={styles.small}>No internet connection</Text>
         </View>
         }
       </View>

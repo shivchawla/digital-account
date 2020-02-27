@@ -8,7 +8,7 @@ import s3 from '../../do/DigitalOcean'
 import config from '../../do/config'
 
 import { requestToken, requestPersonalToken, urlToBlob, registerApi, companyInfoAPI, contactPersonAPI, submitDocApi, declarationApi, cddApi, resendVerificationApi } from './apiRegistration'
-import { paymentHistoryListApi, retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, agingListApi, reportListApi, businessDirectoryListApi, invoiceApi, newExpenseApi, customerDataApi, itemDataApi, submitLoanApplicationApi, addBankApi, bankListApi, deleteAllBankApi, notificationListApi, loanApplicationDataApi, submitInvoiceApi, submitSupportApi, withDrawApi, withdrawListApi, vendorListApi, withdrawDataApi, vendorDataApi, vendorDataRetrieveApi, customerListApi, customerDataRetrieveApi, itemListApi, itemDataRetrieveApi, retrieveAccountInfoApi, getAllUsersApi, repaymentListApi, repaymentDetailApi, checkCDDApi2, loanBillListApi, billDetailApi, checkAuthApi, savePinApi, respondAgreementApi, retrievePersonalInfoApi, updateExpoTokenApi, deleteCustomerApi,deleteVendorApi,deleteItemApi,deleteBankApi } from './apiDashboard'
+import { paymentHistoryListApi, retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, agingListApi, reportListApi, businessDirectoryListApi, invoiceApi, newExpenseApi, customerDataApi, itemDataApi, submitLoanApplicationApi, addBankApi, bankListApi, deleteAllBankApi, notificationListApi, loanApplicationDataApi, submitInvoiceApi, submitSupportApi, withDrawApi, withdrawListApi, vendorListApi, withdrawDataApi, vendorDataApi, vendorDataRetrieveApi, customerListApi, customerDataRetrieveApi, itemListApi, itemDataRetrieveApi, retrieveAccountInfoApi, getAllUsersApi, repaymentListApi, repaymentDetailApi, checkCDDApi2, loanBillListApi, billDetailApi, checkAuthApi, savePinApi, respondAgreementApi, retrievePersonalInfoApi, updateExpoTokenApi, deleteCustomerApi,deleteVendorApi,deleteItemApi,deleteBankApi ,validatePinApi} from './apiDashboard'
 //import {pusherListen} from './pusher'
 import moment from 'moment'
 
@@ -920,5 +920,13 @@ export const respondAgreement = (answer) => {
     return async (dispatch, getState) => {
         console.log(`kat action respondagreement : ${JSON.stringify(answer)}`)
         dispatch(respondAgreementApi(answer))
+    }
+}
+
+
+export const validatePin = (pin) => {
+    return async (dispatch, getState) => {
+        console.log(`kat action validate pin : ${JSON.stringify(answer)}`)
+        dispatch(validatePinApi(pin))
     }
 }

@@ -1030,6 +1030,20 @@ export const vendorDataApi = (values) => {
   }
 }
 
+export const validatePinApi = (values) => {
+  return async (dispatch, getState) => {
+
+    const responseJson = await apiPostCall(`/api/auth/validate_pin`, values, getState().apiReducer)
+    const { status, code } = await responseJson
+    //await dispatch({ type: 'SET_VENDOR_SUBMIT', payload: { status, code, proceedMain: true } })
+    await console.log(`validate pin api  ${JSON.stringify(responseJson)}`)
+
+   // console.log(`New add vendor api : ${JSON.stringify(values)}`)
+
+
+  }
+}
+
 
 export const deleteVendorApi = (id) => {
   return async (dispatch, getState) => {
