@@ -3,7 +3,7 @@ import { Image, Text, TouchableOpacity, View, Switch, Alert, BackHandler } from 
 import Constants from 'expo-constants'
 import Layout from '../constants/Layout'
 import styles from '../styles/styles'
-
+import { CustomButton } from '../components/Custom'
 // modules
 import {
     handleAndroidBackButton,
@@ -35,7 +35,7 @@ const SignupPersonalSuccessScreen = (props) => {
     };
 
     useEffect(() => {
-        const prevScreen = props.route.params?.prevScreen??'NA'
+        const prevScreen = props.route.params?.prevScreen ?? 'NA'
         prevScreen != 'Dashboard' && dispatch(actionCreator.getPersonalToken())
     }, []);
 
@@ -52,7 +52,7 @@ const SignupPersonalSuccessScreen = (props) => {
 
     const [emailInitial, setEmailInitial] = useState(emailVerified)
 
-    const prevScreen = props.route.params?.prevScreen??'NA'
+    const prevScreen = props.route.params?.prevScreen ?? 'NA'
     console.log(`prevScreen ialah : ${prevScreen}`)
     //prevScreen != 'Dashboard' && getPersonalToken()
 
@@ -74,7 +74,7 @@ const SignupPersonalSuccessScreen = (props) => {
                         <Image source={require('../assets/images/signupsuccess.png')} style={{ flex: 1, height: undefined, width: undefined }} resizeMode={'contain'} />
                     </View>
                     <View style={{ flex: 1, alignItems: 'center' }}>
-                        <Text style={[styles.h3, { margin: 5, fontWeight: 'bold',fontSize:17}]}>Credential Created</Text>
+                        <Text style={[styles.h3, { margin: 5, fontWeight: 'bold', fontSize: 17 }]}>Credential Created</Text>
                         <View style={{ alignSelf: 'stretch', flexDirection: 'column', margin: 5, alignItems: 'center' }}>
                             <Text style={[styles.text, { margin: 5, color: 'darkturquoise' }]}>Congratulation!</Text>
                             <Text style={[styles.text, { margin: 5, marginBottom: 20, textAlign: 'center' }]}>Please proceed to merchant registration or skip to dashboard.</Text>
@@ -111,20 +111,26 @@ const SignupPersonalSuccessScreen = (props) => {
                         </View>
                         <View style={{ flex: 1 }}>
                             <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                                <TouchableOpacity onPress={() => props.navigation.navigate('Main')} style={{ width: Layout.window.width * 0.3, paddingTop: 16, paddingBottom: 16, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, borderColor: 'black', borderWidth: 1 }}>
-                                    <Text style={[styles.textDefault]}>Skip</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity disabled={!emailVerified} onPress={() => clearEmail()} style={{ width: Layout.window.width * 0.3, paddingTop: 16, paddingBottom: 16, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: emailVerified ? '#09A4BF' : 'rgba(9,164,191,0.5)' }}>
-                                    <Text style={[styles.textDefault, { color: 'white' }]}>Merchant</Text>
-                                </TouchableOpacity>
+                                <CustomButton
+                                    navigation={() => props.navigation.navigate('Dashboard')}
+                                    label={'Skip'}
+                                    boxStyle={{ borderColor: 'darkturquoise', backgroundColor: '#ffffff00', margin: 10, borderWidth: 1 }}
+                                    textStyle={{ color: 'black' }}
+                                />
+                                <CustomButton
+                                    navigation={() => clearEmail()}
+                                    label={'Merchant'}
+                                    disabledButton={!emailVerified}
+                                    boxStyle={{ backgroundColor: emailVerified ? '#09A4BF' : 'rgba(9,164,191,0.5)', margin: 10 }}
+                                />
                             </View>
                         </View>
                     </View>
                 </View>}
         </View>
-        
 
-        
+
+
     )
 }
 
