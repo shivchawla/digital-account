@@ -15,7 +15,8 @@ import ScanFinger from '../components/ScanFinger'
 import { checkCodeApi } from '../store/actions/common';
 
 import { keyboardBeingDisplay, keyboardBeingClose } from '../components/handleKeyboard'
-
+import LayoutA from '../Layout/LayoutA';
+import { CustomFormAction, CustomTextInput } from '../components/Custom'
 
 const WIthdrawApplicationScreen = (props) => {
 
@@ -176,113 +177,108 @@ const WIthdrawApplicationScreen = (props) => {
                                 </View>
                             </View>
                         </Modal>
-                        <View style={{ flex: 1 }}>
-                            <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
-                                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
-                                    <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                                        <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 20 }} />
-                                    </TouchableOpacity>
-                                </View>
-                                <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                                    <Text style={[styles.title, { color: '#055E7C' }]}>WITHDRAWAL</Text>
-                                </View>
-                                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
-                                    <View style={{ backgroundColor: 'rgba(62,194,217,0.5)', borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
-                                        <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
-                                    </View>
-                                </View>
-                            </View>
-                            <View style={{ justifyContent: 'space-between', flex: 9 }}>
-                                <View style={[{ flex: 9 }]}>
-                                    <ScrollView style={[styles.screenMargin]}>
-                                        {ios ? <View style={[styles.formElement, { marginTop: 20 }]}>
-                                            <View style={{ flexDirection: 'row',alignItems:'flex-end',marginBottom:10 }}>
-                                                <Text style={[styles.titleBox,{marginRight:5}]}>Bank</Text>
-                                                <TouchableWithoutFeedback onPress={() => props.navigation.navigate(`BankList`)} style={{ alignItems: 'flex-end', justifyContent: 'flex-end' }}>
-                                                    <Text style={[styles.small, { color: '#0A6496',textAlignVertical:'bottom' }]}>Manage</Text>
-                                                </TouchableWithoutFeedback></View>
+                        <LayoutA
+                            title={'WITHDRAWAL'}
+                            screenType='form'
+                            navigation={props.navigation}
+                            nopadding
+                        >
+                            <View style={[{ flex: 9 }]}>
+                                <ScrollView style={[styles.screenMargin]}>
+                                    {ios ? <View style={[styles.formElement, { marginTop: 20 }]}>
+                                        <View style={{ flexDirection: 'row', alignItems: 'flex-end', marginBottom: 10 }}>
+                                            <Text style={[styles.titleBox, { marginRight: 5 }]}>Bank</Text>
+                                            <TouchableWithoutFeedback onPress={() => props.navigation.navigate(`BankList`)} style={{ alignItems: 'flex-end', justifyContent: 'flex-end' }}>
+                                                <Text style={[styles.small, { color: '#0A6496', textAlignVertical: 'bottom' }]}>Manage</Text>
+                                            </TouchableWithoutFeedback></View>
 
+                                        {(bankExists && bankList) ?
+                                            <View>
+                                                <TouchableOpacity onPress={() => setIosPickerVisible(!iosPickerVisible)} style={{ flexDirection: 'row', alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5, justifyContent: 'space-between', alignItems: 'center' }}>
+                                                    <Text style={[styles.text]}>Select Bank</Text>
+                                                    <Ionicons name="ios-arrow-down" style={{ fontSize: 12, }} />
+                                                </TouchableOpacity>
+
+                                            </View> : <TouchableWithoutFeedback onPress={() => props.navigation.navigate(`BankList`)}>
+                                                <Text style={[styles.small, { color: '#0A6496' }]}>Click Here to Add Bank</Text>
+                                            </TouchableWithoutFeedback>}
+                                        {bankLabelTouched && bankLabelError && <Text style={styles.error}>{bankLabelError}</Text>}
+                                    </View> : <View style={[styles.formElement, { marginTop: 20 }]}>
+                                            <Text style={[styles.titleBox, { marginBottom: 10 }]}>Bank</Text>
                                             {(bankExists && bankList) ?
                                                 <View>
-                                                    <TouchableOpacity onPress={() => setIosPickerVisible(!iosPickerVisible)} style={{ flexDirection: 'row', alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5, justifyContent: 'space-between', alignItems: 'center' }}>
-                                                        <Text style={[styles.text]}>Select Bank</Text>
-                                                        <Ionicons name="ios-arrow-down" style={{ fontSize: 12, }} />
-                                                    </TouchableOpacity>
+                                                    <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
+                                                        <Picker style={{ flex: 1, height: 35 }} selectedValue={bankLabel} onValueChange={(itemValue, itemIndex) => {
+                                                            FormikProps.setFieldValue('bankLabel', itemValue);
+                                                            populateBankInfo(itemValue)
 
+                                                        }
+                                                        }>
+                                                            <Picker.Item label={'Please Select'} value={undefined} />
+                                                            {bankList && bankList.map((b, i) => <Picker.Item key={i} label={b.account_holder_name} value={b.account_holder_name} />)}
+                                                        </Picker>
+                                                    </View>
+                                                    <TouchableWithoutFeedback onPress={() => props.navigation.navigate(`BankList`)}>
+                                                        <Text style={[styles.small, { color: '#0A6496', margin: 10 }]}>Manage Bank</Text>
+                                                    </TouchableWithoutFeedback>
                                                 </View> : <TouchableWithoutFeedback onPress={() => props.navigation.navigate(`BankList`)}>
                                                     <Text style={[styles.small, { color: '#0A6496' }]}>Click Here to Add Bank</Text>
                                                 </TouchableWithoutFeedback>}
                                             {bankLabelTouched && bankLabelError && <Text style={styles.error}>{bankLabelError}</Text>}
-                                        </View> : <View style={[styles.formElement, { marginTop: 20 }]}>
-                                                <Text style={[styles.titleBox, { marginBottom: 10 }]}>Bank</Text>
-                                                {(bankExists && bankList) ?
-                                                    <View>
-                                                        <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
-                                                            <Picker style={{ flex: 1, height: 35 }} selectedValue={bankLabel} onValueChange={(itemValue, itemIndex) => {
-                                                                FormikProps.setFieldValue('bankLabel', itemValue);
-                                                                populateBankInfo(itemValue)
-
-                                                            }
-                                                            }>
-                                                                <Picker.Item label={'Please Select'} value={undefined} />
-                                                                {bankList && bankList.map((b, i) => <Picker.Item key={i} label={b.account_holder_name} value={b.account_holder_name} />)}
-                                                            </Picker>
-                                                        </View>
-                                                        <TouchableWithoutFeedback onPress={() => props.navigation.navigate(`BankList`)}>
-                                                            <Text style={[styles.small, { color: '#0A6496', margin: 10 }]}>Manage Bank</Text>
-                                                        </TouchableWithoutFeedback>
-                                                    </View> : <TouchableWithoutFeedback onPress={() => props.navigation.navigate(`BankList`)}>
-                                                        <Text style={[styles.small, { color: '#0A6496' }]}>Click Here to Add Bank</Text>
-                                                    </TouchableWithoutFeedback>}
-                                                {bankLabelTouched && bankLabelError && <Text style={styles.error}>{bankLabelError}</Text>}
-                                            </View>
-                                        }
-                                        {selectedBankDetail && <View>
-                                            <View style={[styles.formElement]}>
-                                                <Text style={[styles.titleBox, { marginBottom: 10 }]}>Bank Name</Text>
-                                                <Text style={[styles.text]}>{selectedBankDetail.bankAccountName}</Text>
-                                            </View>
-                                            <View style={[styles.formElement]}>
-                                                <Text style={[styles.titleBox, { marginBottom: 10 }]}>Account No</Text>
-                                                <Text style={[styles.text]}>{selectedBankDetail.bankAccountNo}</Text>
-                                            </View>
-                                            <View style={[styles.formElement]}>
-                                                <Text style={[styles.titleBox, { marginBottom: 10 }]}>Bank Address</Text>
-                                                <Text style={[styles.text]}>{selectedBankDetail.bankAddress}</Text>
-                                            </View>
-                                            <View style={[styles.formElement]}>
-                                                <Text style={[styles.titleBox, { marginBottom: 10 }]}>Bank Country</Text>
-                                                <Text style={[styles.text]}>{selectedBankDetail.bankCountry}</Text>
-                                            </View>
-                                        </View>}
-                                        {/* {selectedBankDetail && FormikProps.setFieldValue('test', {bankAccountName:selectedBankDetail.bankAccountName,bankAddress:selectedBankDetail.bankAddress,bankCountry:selectedBankDetail.bankCountry})
+                                        </View>
+                                    }
+                                    {selectedBankDetail && <View>
+                                        <View style={[styles.formElement]}>
+                                            <Text style={[styles.titleBox, { marginBottom: 10 }]}>Bank Name</Text>
+                                            <Text style={[styles.text]}>{selectedBankDetail.bankAccountName}</Text>
+                                        </View>
+                                        <View style={[styles.formElement]}>
+                                            <Text style={[styles.titleBox, { marginBottom: 10 }]}>Account No</Text>
+                                            <Text style={[styles.text]}>{selectedBankDetail.bankAccountNo}</Text>
+                                        </View>
+                                        <View style={[styles.formElement]}>
+                                            <Text style={[styles.titleBox, { marginBottom: 10 }]}>Bank Address</Text>
+                                            <Text style={[styles.text]}>{selectedBankDetail.bankAddress}</Text>
+                                        </View>
+                                        <View style={[styles.formElement]}>
+                                            <Text style={[styles.titleBox, { marginBottom: 10 }]}>Bank Country</Text>
+                                            <Text style={[styles.text]}>{selectedBankDetail.bankCountry}</Text>
+                                        </View>
+                                    </View>}
+                                    {/* {selectedBankDetail && FormikProps.setFieldValue('test', {bankAccountName:selectedBankDetail.bankAccountName,bankAddress:selectedBankDetail.bankAddress,bankCountry:selectedBankDetail.bankCountry})
                                      
                                     }  */}
-                                        <View style={[styles.formElement]}>
-                                            <Text style={[styles.titleBox, { marginBottom: 10 }]}>Amount ({currency})</Text>
-                                            <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} onBlur={FormikProps.handleBlur('amount')} style={[styles.textInput, { borderWidth: 1, borderColor: amountTouched && amountError ? 'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={amountTouched && amountError ? '' : 'Eg: 890.00'} placeholderTextColor={amountTouched && amountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
-                                            {amountTouched && amountError && <Text style={styles.error}>{amountError}</Text>}
-                                        </View>
-                                        <View style={[styles.formElement]}>
-                                            <Text style={[styles.titleBox, { marginBottom: 10 }]}>Remark</Text>
-                                            <TextInput value={remark} onChangeText={FormikProps.handleChange('remark')} onBlur={FormikProps.handleBlur('remark')} style={[styles.textInput, { borderWidth: 1, borderColor: remarkTouched && remarkError ? 'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={remarkTouched && remarkError ? '' : 'Eg: For reference'} placeholderTextColor={remarkTouched && remarkError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
-                                            {remarkTouched && remarkError && <Text style={styles.error}>{remarkError}</Text>}
-                                        </View>
-                                    </ScrollView>
-                                </View>
-                                <View style={{ flexDirection: 'row', alignSelf: 'stretch' }}>
-                                    <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1, paddingTop: 20, paddingBottom: 20, justifyContent: 'center', alignItems: 'center' }}>
-                                        <Text style={[styles.butang, { color: '#000000' }]}>Back</Text>
-                                    </TouchableOpacity>
-                                    <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ flex: 1 }}>
-                                        <LinearGradient colors={FormikProps.isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
-                                            <Text style={[styles.butang, { color: '#fff' }]}>Submit</Text>
-                                            {authEnabled ? locked ? <Ionicons name='ios-lock' color={'#fff'} style={{ fontSize: 30, paddingLeft: 20 }} /> : <View /> : <View />}
-                                        </LinearGradient>
-                                    </TouchableOpacity>
-                                </View>
+                                    <CustomTextInput
+                                        label={`Amount(${currency})`}
+                                        value={amount}
+                                        handleChange={FormikProps.handleChange(`amount`)}
+                                        handleBlur={FormikProps.handleBlur('amount')}
+                                        touched={amountTouched}
+                                        error={amountError}
+                                        keyboardType={'decimal-pad'}
+                                        placeholder={'Eg: 890.00'}
+
+                                    />
+                                    <CustomTextInput
+                                        label={`Remark`}
+                                        value={remark}
+                                        handleChange={FormikProps.handleChange(`remark`)}
+                                        handleBlur={FormikProps.handleBlur('remark')}
+                                        touched={remarkTouched}
+                                        error={remarkError}
+                                        placeholder={'Eg: For reference'}
+
+                                    />
+                                </ScrollView>
                             </View>
-                        </View>
+                            <CustomFormAction
+                                navigation={props.navigation}
+                                isValid={FormikProps.isValid}
+                                handleSubmit={FormikProps.handleSubmit}
+                                authEnabled={authEnabled}
+                                locked={locked}
+                            />
+                        </LayoutA>
                     </KeyboardAvoidingView>)
             }}
         </Formik >
