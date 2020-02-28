@@ -4,6 +4,7 @@ import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles/styles'
+import LayoutA from '../Layout/LayoutA';
 
 const BusinessDirectoryScreen = (props) => {
     useEffect(() => {
@@ -35,21 +36,12 @@ const BusinessDirectoryScreen = (props) => {
     return (
 
         <View style={{ flex: 1, }}>
-            <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
-                    <TouchableOpacity onPress={() => props.navigation.navigate("BusinessHub")} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                        <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 20 }} />
-                    </TouchableOpacity>
-                </View>
-                <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={[styles.title]} numberOfLines={1} ellipsizeMode={'tail'}>Business Directory</Text>
-                </View>
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
-                    <View style={{ backgroundColor:'rgba(62,194,217,0.5)',borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
-            <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
-          </View>
-                </View>
-            </View>
+            <LayoutA
+                title={'Business Directory'}
+                screenType='form'
+                navigation={props.navigation}
+                nopadding
+            >
             <View style={{ flex: 9, marginTop: 20 }}>
                 <ScrollView Style={styles.screenMargin}>
                     <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 10,paddingLeft: 20, paddingRight: 30 }}>
@@ -104,6 +96,7 @@ const BusinessDirectoryScreen = (props) => {
                         </View>} />}
                 </ScrollView>
             </View>
+        </LayoutA>
         </View>
 
     );
