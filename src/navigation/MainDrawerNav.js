@@ -99,7 +99,7 @@ const MainDrawer = () => {
             <Drawer.Screen name="Loan" component={LoanStackWithModal} />
             {/* <Drawer.Screen name="Notification" component={NotificationScreen} /> */}
             <Drawer.Screen name="DataSetting" component={DataSettingStack} />
-            <Drawer.Screen name="Transfer" component={TransferStack} />
+            <Drawer.Screen name="TransferStack" component={TransferStack} />
             <Drawer.Screen name="Support" component={SupportStack} /> 
             <Drawer.Screen name="BusinessHub" component={BusinessHubStack} />
             <Drawer.Screen name="Invoice" component={InvoiceStack} />
