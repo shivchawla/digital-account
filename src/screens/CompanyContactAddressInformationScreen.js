@@ -155,28 +155,17 @@ const CompanyContactAddressInformationScreen = (props) => {
                                         placeholder={'Eg: 60901'}
                                         keyboardType={'phone-pad'}
                                     />
-                                    <CustomTextInput
-                                        label={`City`}
-                                        value={comp_city}
-                                        handleChange={FormikProps.handleChange(`comp_city`)}
-                                        handleBlur={FormikProps.handleBlur(`comp_city`)}
-                                        touched={comp_cityTouched}
-                                        error={comp_cityError}
-                                        placeholder={''}
-                                       
-                                        
-                                    />
-                                     <CustomTextInput
-                                        label={`State`}
-                                        value={comp_state}
-                                        handleChange={FormikProps.handleChange(`comp_state`)}
-                                        handleBlur={FormikProps.handleBlur(`comp_state`)}
-                                        touched={comp_stateTouched}
-                                        error={comp_stateError}
-                                        placeholder={''}
-                                        
-                                        
-                                    />
+                                   <View style={[styles.formElement]}>
+                                        <Text style={[styles.titleBox, { marginBottom: 5 }]}>City</Text>
+                                        <TextInput editable={false} value={comp_city} onChangeText={FormikProps.handleChange('comp_city')} onBlur={FormikProps.handleBlur('comp_city')} style={[styles.textInput,{ borderWidth: 1, borderColor: comp_cityTouched && comp_cityError ? 'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={comp_cityTouched && comp_cityError ? '' : ''} placeholderTextColor={comp_cityTouched && comp_cityError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        {comp_cityTouched && comp_cityError && <Text style={styles.error}>{comp_cityError}</Text>}
+                                    </View>
+                                    <View style={[styles.formElement]}>
+                                        <Text style={[styles.titleBox, { marginBottom: 5 }]}>State</Text>
+                                        <TextInput editable={false} value={comp_state} onChangeText={FormikProps.handleChange('comp_state')} onBlur={FormikProps.handleBlur('comp_state')} style={[styles.textInput,{ borderWidth: 1, borderColor: comp_stateTouched && comp_stateError ? 'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={comp_stateTouched && comp_stateError ? '' : ''} placeholderTextColor={comp_stateTouched && comp_stateError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        {comp_stateTouched && comp_stateError && <Text style={styles.error}>{comp_stateError}</Text>}
+                                    </View>
+
                             
                                     {/* <View style={[styles.formElement, { alignSelf: 'stretch' }]}>
                                         <Text style={[styles.titleBox, { marginBottom: 10 }]}>State</Text>
