@@ -31,6 +31,10 @@ import LoanApplicationDeclarationScreen from '../screens/LoanApplicationDeclarat
 import WithdrawScreen from '../screens/WithdrawScreen';
 import FilterBarWithdrawal from '../components/FilterBarWithdrawal';
 import FilterBarBusiness from '../components/FilterBarBusiness';
+import FilterBarItem from '../components/FilterBarItem';
+import FilterBarCustomer from '../components/FilterBarCustomer';
+
+import FilterBarInvoice from '../components/FilterBarInvoice';
 import NewInvoiceScreen from '../screens/NewInvoiceScreen';
 import NewInvoiceItemsScreen from '../screens/NewInvoiceItemsScreen';
 
@@ -80,6 +84,7 @@ import BusinessDirectoryScreen from '../screens/BusinessDirectoryScreen';
 import PayrollSuccessScreen from '../screens/PayrollSuccessScreen';
 import RemittanceSuccessScreen from '../screens/RemittanceSuccessScreen';
 import SupportSuccessScreen from '../screens/SupportSuccessScreen';
+
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -228,7 +233,7 @@ const InvoiceStack = () => {
     return (
         <Stack.Navigator initialRouteName="Invoice" screenOptions={{ headerShown: false }}>
 
-            <Stack.Screen name="Invoice" component={InvoiceScreen} />
+            <Stack.Screen name="Invoice" component={InvoiceDrawer} />
             <Stack.Screen name="NewInvoice" component={NewInvoiceStack} />
 
         </Stack.Navigator>
@@ -240,9 +245,9 @@ const InvoiceDrawer = () => {
         <Drawer.Navigator initialRouteName="Loan" drawerPosition={'right'} drawerContent={props => {
             const close = () => { props.navigation.closeDrawer() }
             const nav = (screen) => { props.navigation.navigate(screen) }
-            return (<FilterBar nav={nav} close={close} />)
+            return (<FilterBarInvoice nav={nav} close={close} />)
         }}>
-            <Drawer.Screen name="Loan" component={LoanScreen} />
+            <Drawer.Screen name="Invoice" component={InvoiceScreen} />
         </Drawer.Navigator>
 
     )
@@ -283,11 +288,23 @@ const DataSettingStack = () => {
 const ItemStack = () => {
     return (
         <Stack.Navigator initialRouteName="Item" screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="Item" component={ItemScreen} />
+            <Stack.Screen name="Item" component={ItemDrawer} />
             <Stack.Screen name="ItemDetail" component={ItemDetailScreen} />
             <Stack.Screen name="ItemAdd" component={ItemAddScreen} />
             <Stack.Screen name="ItemAddSuccess" component={ItemAddSuccessScreen} />
         </Stack.Navigator>
+    )
+}
+
+const ItemDrawer = () => {
+    return (
+        <Drawer.Navigator initialRouteName="Item" drawerPosition={'right'} drawerContent={props => {
+            const close = () => { props.navigation.closeDrawer() }
+            const nav = (screen) => { props.navigation.navigate(screen) }
+            return (<FilterBarItem nav={nav} close={close} />)
+        }}>
+            <Drawer.Screen name="Item" component={ItemScreen} />
+        </Drawer.Navigator>
     )
 }
 
@@ -302,11 +319,23 @@ const AuthOptionStack = () => {
 const CustomerStack = () => {
     return (
         <Stack.Navigator initialRouteName="Customer" screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="Customer" component={CustomerScreen} />
+            <Stack.Screen name="Customer" component={CustomerDrawer} />
             <Stack.Screen name="CustomerDetail" component={CustomerDetailScreen} />
             <Stack.Screen name="CustomerAdd" component={CustomerAddScreen} />
             <Stack.Screen name="CustomerAddSuccess" component={CustomerAddSuccessScreen} />
         </Stack.Navigator>
+    )
+}
+
+const CustomerDrawer = () => {
+    return (
+        <Drawer.Navigator initialRouteName="Customer" drawerPosition={'right'} drawerContent={props => {
+            const close = () => { props.navigation.closeDrawer() }
+            const nav = (screen) => { props.navigation.navigate(screen) }
+            return (<FilterBarCustomer nav={nav} close={close} />)
+        }}>
+            <Drawer.Screen name="Customer" component={CustomerScreen} />
+        </Drawer.Navigator>
     )
 }
 const VendorStack = () => {
