@@ -15,7 +15,9 @@ const LoanSuccessScreen = (props) => {
     const goDashboard = async () => {
         await dispatch(actionCreator.retrieveMerchantInfo())
         await dispatch(actionCreator.retrieveAccountInfo())
-        props.navigation.navigate('Dashboard')
+        dispatch(actionCreator.getLoanList())
+        dispatch(actionCreator.getRepaymentList())
+        props.navigation.navigate('Loan')
     }
   
     return (
@@ -39,7 +41,7 @@ const LoanSuccessScreen = (props) => {
                         <View style = {{flex:1}}>
                         <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                             <TouchableOpacity onPress={() => goDashboard()} style={{ width: Layout.window.width * 0.4, paddingTop: 16, paddingBottom: 16, borderWidth: 1, borderColor: 'darkturquoise', borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10 }}>
-                                <Text style={[styles.textDefault, {fontSize:15} ]}>Dashboard</Text>
+                                <Text style={[styles.textDefault, {fontSize:15} ]}>Loan List</Text>
                             </TouchableOpacity>
                         </View>
                         </View>

@@ -165,6 +165,7 @@ export const withdrawListApi = () => {
 
     const responseJson = await apiGetCall(`api/withdrawal/list`, getState().apiReducer)
     const withdrawList = await responseJson.data
+    console.log(`withd ialah : ${withdrawList}`)
     withdrawList && withdrawList.reverse()
     dispatch({ type: 'SET_WITHDRAWAL_LIST', payload: { withdrawList } })
   }
@@ -340,6 +341,7 @@ export const getAllUsersApi = () => {
 
     const responseJson = await apiGetCall(`api/developer/merchants/account/all`, getState().apiReducer)
     const userList = await responseJson.data
+    console.log(`userlist ialah ${JSON.stringify(userList)}`)
 
     dispatch({ type: 'SET_RECIPIENT_LIST', payload: { userList } })
 
