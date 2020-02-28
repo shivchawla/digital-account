@@ -128,6 +128,7 @@ const SignupPersonalScreen = (props) => {
                                     handleChange={FormikProps.handleChange(`password`)}
                                     handleBlur={FormikProps.handleBlur(`password`)}
                                     touched={passwordTouched}
+                                    secureText={true}
                                     error={passwordError}
                                     placeholder={'******'}
 
@@ -139,6 +140,7 @@ const SignupPersonalScreen = (props) => {
                                     handleChange={FormikProps.handleChange(`password_confirmation`)}
                                     handleBlur={FormikProps.handleBlur(`password_confirmation`)}
                                     touched={password_confirmationTouched}
+                                    secureText={true}
                                     error={password_confirmationError}
                                     placeholder={'******'}
 

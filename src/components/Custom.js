@@ -11,18 +11,18 @@ import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 
 export const CustomTextInput = (props) => {
    
-    const { value, handleChange, handleBlur, touched, error, label, keyboardType, placeholder, handleClick, message } = props
+    const { value, handleChange, handleBlur, touched, error, label, keyboardType, placeholder, handleClick, message,secureText} = props
     return (
         !handleClick ?
             <View style={[styles.formElement, { marginBottom: 10 }]}>
                 <Text style={[styles.titleBox, { marginTop: 10, marginBottom: 10 }]}>{label}</Text>
-                <TextInput keyboardType={keyboardType} value={value} onChangeText={handleChange} onBlur={handleBlur} style={{ borderWidth: 1, borderColor: touched && error ? 'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5, fontSize: 15, fontFamily: 'Montserrat_medium' }} placeholder={touched && error ? '' : placeholder} placeholderTextColor={touched && error ? 'rgba(255,0,0,1)' : 'lightgrey'} />
+                <TextInput secureTextEntry={secureText} keyboardType={keyboardType} value={value} onChangeText={handleChange} onBlur={handleBlur} style={{ borderWidth: 1, borderColor: touched && error ? 'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5, fontSize: 15, fontFamily: 'Montserrat_medium' }} placeholder={touched && error ? '' : placeholder} placeholderTextColor={touched && error ? 'rgba(255,0,0,1)' : 'lightgrey'} />
                 {touched && error && <Text style={styles.error}>{error}</Text>}
                 {message && <Text style={styles.error}>{message.email}</Text>}
             </View> :
             <View style={[styles.formElement, { marginBottom: 10 }]}>
                 <TouchableOpacity onPress={handleClick}>
-                    <Text style={[styles.titleBox, { marginTop: 10, marginBottom: 10 }]}>{label}</Text>
+                    <Text secureTextEntry={secureText} style={[styles.titleBox, { marginTop: 10, marginBottom: 10 }]}>{label}</Text>
                     <TextInput editable={false} value={value} onChangeText={handleChange} onBlur={handleBlur} style={{ borderWidth: 1, borderColor: touched && error ? 'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5, fontSize: 15, fontFamily: 'Montserrat_medium' }} placeholder={touched && error ? '' : placeholder} placeholderTextColor={touched && error ? 'rgba(255,0,0,1)' : 'lightgrey'} />
                 </TouchableOpacity>
                 {touched && error && <Text style={styles.error}>{error}</Text>}
@@ -52,9 +52,9 @@ export const CustomFormAction = (props) => {
 
 
 export const CustomButton = (props) => {
-    const { navigation, label, boxStyle, textStyle } = props
+    const { navigation, label, boxStyle, textStyle,disabledButton } = props
     return (
-        <TouchableOpacity onPress={() => navigation()} style={[{ paddingTop: 16, paddingBottom: 16, paddingLeft: 18, paddingRight: 18, backgroundColor: '#055E7C', borderRadius: 15 }, boxStyle]}>
+        <TouchableOpacity disabled={disabledButton}  onPress={() => navigation()} style={[{ paddingTop: 16, paddingBottom: 16, paddingLeft: 18, paddingRight: 18, backgroundColor: '#055E7C', borderRadius: 15,}, boxStyle]}>
             <Text style={[styles.text, { color: '#fff', fontSize: 15 }, textStyle]}>{label}</Text>
         </TouchableOpacity>
     )
