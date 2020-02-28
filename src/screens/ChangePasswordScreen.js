@@ -75,7 +75,7 @@ const ChangePasswordScreen = (props) => {
                             <View style={[styles.screenMargin, { flex: 3 }]}>
                                 <CustomTextInput
                                     label={`Old Password`}
-                                    value={password}
+                                    value={oldPassword}
                                     handleChange={FormikProps.handleChange(`oldPassword`)}
                                     handleBlur={FormikProps.handleBlur(`oldPassword`)}
                                     touched={oldPasswordTouched}
