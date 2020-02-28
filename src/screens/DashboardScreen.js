@@ -28,12 +28,11 @@ const DashboardScreen = (props) => {
     if (chartDay === 7) { setChartDay(30) } else { setChartDay(7) }
   }
 
-
   const { balance, currency } = useSelector(state => state.myAccountReducer, shallowEqual)
 
   const { reportList } = useSelector(state => state.reportReducer, shallowEqual)
   const all = useSelector(state => state.merchantInfoReducer, shallowEqual)
-  const {isConnected,isInternetReachable,type} = useSelector(state => state.netInfoReducer, shallowEqual)
+  const { isConnected, isInternetReachable, type } = useSelector(state => state.netInfoReducer, shallowEqual)
 
   const [dashboardDisplay, setDashboardDisplay] = useState(true)
 
@@ -57,6 +56,7 @@ const DashboardScreen = (props) => {
 
 
   status1 && console.log(`screen status ialah : ${status1}`)
+  reportList&& console.log(`report list ialah ${JSON.stringify(reportList)}`)
 
   return (
 
@@ -86,7 +86,7 @@ const DashboardScreen = (props) => {
         {/* <View><Text>{isInternetReachable && JSON.stringify(isInternetReachable)}</Text></View> */}
         <View style={{ marginBottom: 15 }} >
           <LinearGradient colors={['#055E7C', '#055E7C']} style={{ paddingTop: 5, paddingBottom: 5, alignItems: 'center', borderRadius: 10, height: Layout.window.height > 570 ? Layout.window.height / 3.3 : Layout.window.height / 2.8 }}>
-            <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
+          {(reportList&&reportList.length>0)?  <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
               <TouchableOpacity onPress={() => changeChartDay()}>
                 <Ionicons name="ios-arrow-back" color={'#fff'} style={{ fontSize: 23, paddingLeft: 30 }} />
               </TouchableOpacity>
@@ -94,11 +94,17 @@ const DashboardScreen = (props) => {
               <TouchableOpacity onPress={() => changeChartDay()}>
                 <Ionicons name="ios-arrow-forward" color={'#fff'} style={{ fontSize: 23, paddingRight: 30 }} />
               </TouchableOpacity>
-            </View>
+            </View>:  <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'center' }}>
+            
+              <Text style={[styles.text, { color: '#fff' }]}>STATISTICS</Text>
+             
+            </View>}
             <View style={{ flex: 1, height: Layout.window.height > 570 ? Layout.window.height / 3.3 : Layout.window.height / 2.8, alignSelf: 'stretch', flexDirection: 'row', justifyContent: 'space-around', borderRadius: 10 }}>
-
-              {reportList && <ChartKit data={getData(reportList, chartDay)} dataPointClicked={dataPointClicked} />}
-
+              {(reportList&&reportList.length>0)? <ChartKit data={getData(reportList, chartDay)} dataPointClicked={dataPointClicked} />:
+              <View style={{justifyContent:'center',alignItems:'center'}}>
+                  <Ionicons name="md-pie" color={'#fff'} style={{ fontSize: 120, padding: 10 }} />
+                  <Text style={[styles.small, { color: '#fff',padding:10,textAlign:'center' }]}>Actual chart will be displayed here once there are activites</Text>
+                  </View>}
             </View>
           </LinearGradient>
         </View>
@@ -111,7 +117,7 @@ const DashboardScreen = (props) => {
             </View>
           </TouchableOpacity>
           <View >
-            {reportList && <FlatList data={reportList.filter(rl => !rl.type.includes('Fee')).slice(0, 5)} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
+            {(reportList&&reportList.length>0)? <FlatList data={reportList.filter(rl => !rl.type.includes('Fee')).slice(0, 5)} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
               <View style={[, { flexDirection: 'row', marginTop: 5, justifyContent: 'space-between', borderBottomWidth: 1, borderColor: 'rgba(62,194,217,0.2)', paddingBottom: 5, }]}>
                 <View style={{ flexDirection: 'row', }}>
                   <Ionicons name={item.credit_debit == 'DEBIT' ? "md-remove-circle-outline" : "md-add-circle-outline"} color={item.credit_debit == 'DEBIT' ? '#A20F0F' : '#7ED321'} style={{ fontSize: 12, paddingRight: 20, paddingTop: 5 }} />
@@ -125,7 +131,18 @@ const DashboardScreen = (props) => {
                   <Text style={[styles.listItem, { color: item.credit_debit == 'DEBIT' ? '#A20F0F' : '#7ED321' }]}>{item.credit_debit == 'DEBIT' ? '-' : '+'} {item.currency ? item.currency : 'MYR'} <NumberFormat value={item.amount.toFixed(2)} displayType={'text'} thousandSeparator={true} prefix={''} renderText={value => <Text>{item.amount.toFixed(2)}</Text>} /></Text>
                 </View>
               </View>
-            } />}
+            } /> :
+              <View style={[, { flexDirection: 'row', marginTop: 5, justifyContent: 'space-between', borderBottomWidth: 1, borderColor: 'rgba(62,194,217,0.2)', paddingBottom: 5, }]}>
+                <View style={{ flexDirection: 'row', flex:1 }}>
+                  <Ionicons name={"md-information-circle-outline"} color={'#055E7C'} style={{ flex:1,fontSize: 25, paddingRight: 20, paddingTop: 5 }} />
+                  <View style={{flex:10}}>
+                    <Text style={[styles.listItem]}>Welcome to Niyo </Text>
+                    <Text style={[styles.listItem]}> No record has been found. You may  start applying for loans etc </Text>
+                 
+                  </View>
+                </View>
+               
+              </View>}
           </View>
         </View>
 
