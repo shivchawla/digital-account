@@ -96,6 +96,7 @@ const App = (props) => {
     const { withdrawalsApproved, withdrawalsDisbursed, loanApproved, loanDisbursed, email } = data
     if (withdrawalsApproved || withdrawalsDisbursed) {
       store.dispatch(actionCreator.getWithdrawList())
+      dispatch(actionCreator.getRepaymentList())
     }
 
     if (loanApproved || loanDisbursed) {
@@ -274,7 +275,5 @@ const handleLoadingError = (error) => {
 const handleFinishLoading = (setLoadingComplete) => {
   setLoadingComplete(true);
 }
-
-
 
 export default App;
