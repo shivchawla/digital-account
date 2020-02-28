@@ -129,6 +129,16 @@ const ContactPersonScreen = (props) => {
                                     placeholder={'Eg: Siti binti Iskandar'}
 
                                 />
+                                 <CustomTextInput
+                                    label={`MyKad Number`}
+                                    value={cddContactPersonIc}
+                                    handleChange={FormikProps.handleChange(`cddContactPersonIc`)}
+                                    handleBlur={FormikProps.handleBlur(`cddContactPersonIc`)}
+                                    touched={cddContactPersonIcTouched}
+                                    error={cddContactPersonIcError}
+                                    placeholder={'Eg: 800310022514'}
+                                    keyboardType={'phone-pad'}
+                                />
                                 <CustomTextInput
                                     label={`Phone Number`}
                                     value={cddContactPersonNumber}
@@ -151,11 +161,12 @@ const ContactPersonScreen = (props) => {
                                 />
                             </ScrollView>
                             <CustomFormAction
-                                navigation={props.navigation}
-                                isValid={FormikProps.isValid}
-                                handleSubmit={FormikProps.handleSubmit}
-                                isSubmitting = {FormikProps.isSubmitting}
-                                label={`Save`}
+                                   navigation={props.navigation}
+                                   isValid={FormikProps.isValid}
+                                   handleSubmit={FormikProps.handleSubmit}
+                                   isSubmitting = {FormikProps.isSubmitting}
+                                   label={`Save`}
+                                
                             />
                         </LayoutA>
                     </KeyboardAvoidingView>)
