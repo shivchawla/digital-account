@@ -10,6 +10,7 @@ import {
     handleAndroidBackButton,
     removeAndroidBackButtonHandler
 } from '../components/androidBackButton';
+import LayoutA from '../Layout/LayoutA';
 const CompanyDocumentScreen = (props) => {
     const exitAlert = () => {
         // Works on both Android and iOS
