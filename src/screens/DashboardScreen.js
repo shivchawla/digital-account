@@ -53,9 +53,31 @@ const DashboardScreen = (props) => {
     else { setDashboardDisplay(false) }
   }, [status1])
 
+  useEffect(() => {
+    dispatch(actionCreator.setScreen2())
+
+  }, [status1])
+
+  useEffect(() => {
+    if (props.route.params?.from) {
+      const from = props.route.params?.from ?? 'NA'
+      console.log(`param ialah something from : ${from}`)
+    }
+  }, [props.route.params?.from]);
+
+  const from = props.route.params?.from ?? 'NA'
+  console.log(`param ialah something from : ${from}`)
+
 
   status1 && console.log(`screen status ialah : ${status1}`)
   reportList && console.log(`report list ialah ${JSON.stringify(reportList)}`)
+
+  dashboardDisplay && console.log(`dashboard display ialah :${dashboardDisplay}`)
+
+  const goTo = () => {
+    //setDashboardDisplay(!props.dashboardDisplay)
+    props.navigation.navigate('Registration', { screen: 'Intro', params: { screen: link } })
+  }
 
   return (
 
@@ -66,6 +88,7 @@ const DashboardScreen = (props) => {
         dashboardDisplay={dashboardDisplay}
         setDashboardDisplay={setDashboardDisplay}
         link={link}
+        goTo={goTo}
       />
       <LayoutA
         screenType='dashboard'
@@ -155,12 +178,9 @@ const Popup = (props) => {
   const dispatch = useDispatch()
   //const [chartData, setChartData] = useState([])
   //const { link, business_name, isDeclaration_one, isDocument1, contactId } = useSelector(state => state.merchantInfoReducer, shallowEqual)
-  const { link } = props
+  const { link, goTo } = props
 
-  const goTo = () => {
-    props.setDashboardDisplay(!props.dashboardDisplay)
-    props.navigation.navigate('Registration', { screen: 'Intro', params: { screen: link } })
-  }
+
 
   const tick = link === 'RegistrationDeclaration' ?
     { basic: true, merchant: true, contact: true, doc: true, declaration: false } :

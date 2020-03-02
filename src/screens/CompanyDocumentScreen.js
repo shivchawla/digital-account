@@ -17,13 +17,12 @@ const CompanyDocumentScreen = (props) => {
             'Skip',
             'Go to Dashboard or Exit App',
             [
-
                 {
                     text: 'Cancel',
                     onPress: () => console.log('Cancel Pressed'),
                     style: 'cancel',
                 },
-                { text: 'Dashboard', onPress: () => { console.log('OK Pressed'); props.navigation.navigate('Dashboard') } },
+                { text: 'Dashboard', onPress: () => { console.log('OK Pressed'); dispatch(actionCreator.setScreen2()); props.navigation.navigate('Dashboard', { from: 'Registration' }) } },
                 { text: 'Exit', onPress: () => { console.log('OK Pressed'); BackHandler.exitApp() } },
             ],
             { cancelable: false },
@@ -37,7 +36,7 @@ const CompanyDocumentScreen = (props) => {
     }, []); // empty-array means don't watch for any updates
     const dispatch = useDispatch()
     const docPicker = useSelector(state => state.companyInformationReducer.docPicker, shallowEqual)
-    const {isDocument1, isDocument2, isDocument3, isDocument1file, isDocument2file, isDocument3file } = useSelector(state => state.companyInformationReducer, shallowEqual)
+    const { isDocument1, isDocument2, isDocument3, isDocument1file, isDocument2file, isDocument3file } = useSelector(state => state.companyInformationReducer, shallowEqual)
 
     const submitDoc2 = () => {
         dispatch(actionCreator.submitDoc2())
@@ -110,9 +109,9 @@ const CompanyDocumentScreen = (props) => {
                 </View>
             </View>
             <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
-                <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1,paddingTop: 20, paddingBottom: 20, justifyContent: 'center', alignItems: 'center'  }}>
-                        <Text style={[styles.butang, { color: 'lightgrey' }]}>Back</Text>
-              
+                <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1, paddingTop: 20, paddingBottom: 20, justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={[styles.butang, { color: 'lightgrey' }]}>Back</Text>
+
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => submitDoc({ isDocument1, isDocument2, isDocument3 })} disabled={!(isDocument1 && isDocument2 && isDocument3)} style={{ flex: 1 }}>
                     <LinearGradient colors={(isDocument1 && isDocument2 && isDocument3) ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
