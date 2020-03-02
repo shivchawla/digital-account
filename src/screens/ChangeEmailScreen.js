@@ -60,6 +60,7 @@ const ChangeEmailScreen = (props) => {
                                 />
                                 <CustomTextInput
                                     label={`Password`}
+                                    secureText={true}
                                     value={password}
                                     handleChange={FormikProps.handleChange(`password`)}
                                     handleBlur={FormikProps.handleBlur(`password`)}

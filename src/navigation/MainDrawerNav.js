@@ -53,6 +53,9 @@ import AddBankScreen from '../screens/AddBankScreen';
 import WithdrawalDetailScreen from '../screens/WithdrawalDetailScreen';
 import InvoiceSuccessScreen from '../screens/InvoiceSuccessScreen';
 import LoanPaymentSuccessScreen from '../screens/LoanPaymentSuccessScreen';
+import ChangePhoneSuccessScreen from '../screens/ChangePhoneSuccessScreen';
+import ChangePasswordSuccessScreen from '../screens/ChangePasswordSuccessScreen';
+import ChangeEmailSuccessScreen from '../screens/ChangeEmailSuccessScreen';
 
 
 import ItemScreen from '../screens/ItemScreen';
@@ -84,6 +87,7 @@ import BusinessDirectoryScreen from '../screens/BusinessDirectoryScreen';
 import PayrollSuccessScreen from '../screens/PayrollSuccessScreen';
 import RemittanceSuccessScreen from '../screens/RemittanceSuccessScreen';
 import SupportSuccessScreen from '../screens/SupportSuccessScreen';
+import TACScreen from '../screens/TACScreen';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -118,6 +122,7 @@ const DashboardStack = () => {
             <Drawer.Screen name="Dashboard" component={DashboardScreen} />
             <Stack.Screen name="Profile" component={ProfileScreen} />
             <Stack.Screen name="Withdraw" component={WithdrawalDrawer} />
+            <Stack.Screen name="EditProfile" component={EditProfileScreen} />
         </Stack.Navigator>
     )
 }
@@ -276,9 +281,9 @@ const DataSettingStack = () => {
             <Stack.Screen name="Vendor" component={VendorStack} />
             <Stack.Screen name="Customer" component={CustomerStack} />
             <Stack.Screen name="Welcome" component={WelcomeScreen} />
-            <Stack.Screen name="ChangeNumber" component={ChangeNumberScreen} />
-            <Stack.Screen name="ChangeEmail" component={ChangeEmailScreen} />
-            <Stack.Screen name="ChangePassword" component={ChangePasswordScreen} />
+            <Stack.Screen name="ChangeNumber" component={ChangeNumberStack} />
+            <Stack.Screen name="ChangeEmail" component={ChangeEmailStack} />
+            <Stack.Screen name="ChangePassword" component={ChangePasswordStack} />
             <Stack.Screen name="EditProfile" component={EditProfileScreen} />
             <Stack.Screen name="NotiScreen" component={NotiSettingScreen} />
             <Stack.Screen name="AuthOption" component={AuthOptionStack} />
@@ -345,6 +350,31 @@ const VendorStack = () => {
             <Stack.Screen name="VendorDetail" component={VendorDetailScreen} />
             <Stack.Screen name="VendorApplication" component={VendorApplicationScreen} />
             <Stack.Screen name="VendorAddSuccess" component={VendorAddSuccessScreen} />
+        </Stack.Navigator>
+    )
+}
+const ChangeNumberStack = () => {
+    return (
+        <Stack.Navigator initialRouteName="ChangeNumber" screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="ChangeNumber" component={ChangeNumberScreen} />
+            <Stack.Screen name="NumberSuccess" component={ChangePhoneSuccessScreen} />
+            <Stack.Screen name="TAC"component={TACScreen} />
+        </Stack.Navigator>
+    )
+}
+const ChangeEmailStack = () => {
+    return (
+        <Stack.Navigator initialRouteName="ChangeEmail" screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="ChangeEmail" component={ChangeEmailScreen} />
+            <Stack.Screen name="EmailSuccess" component={ChangeEmailSuccessScreen} />
+        </Stack.Navigator>
+    )
+}
+const ChangePasswordStack = () => {
+    return (
+        <Stack.Navigator initialRouteName="ChangePassword" screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="ChangePassword" component={ChangePasswordScreen} />
+            <Stack.Screen name="PasswordSuccess" component={ChangePasswordSuccessScreen} />
         </Stack.Navigator>
     )
 }
