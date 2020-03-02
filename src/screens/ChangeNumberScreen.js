@@ -69,6 +69,7 @@ const ChangeNumberScreen = (props) => {
                                 <CustomTextInput
                                     label={`Password`}
                                     value={password}
+                                    secureText={true}
                                     handleChange={FormikProps.handleChange(`password`)}
                                     handleBlur={FormikProps.handleBlur(`password`)}
                                     placeholder={'******'}
