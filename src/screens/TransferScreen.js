@@ -64,7 +64,7 @@ const TransferScreen = (props) => {
         amount: Yup
             .number()
             .min(10)
-            .max(balance)
+            .max(balance>10000 ? 10000:balance)
             .required(),
 
         recipient: Yup
