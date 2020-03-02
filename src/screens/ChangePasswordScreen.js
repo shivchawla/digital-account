@@ -76,6 +76,7 @@ const ChangePasswordScreen = (props) => {
                                 <CustomTextInput
                                     label={`Old Password`}
                                     value={oldPassword}
+                                    secureText={true}
                                     handleChange={FormikProps.handleChange(`oldPassword`)}
                                     handleBlur={FormikProps.handleBlur(`oldPassword`)}
                                     touched={oldPasswordTouched}
@@ -90,6 +91,7 @@ const ChangePasswordScreen = (props) => {
                                 <CustomTextInput
                                     label={`Confirm Password`}
                                     value={confirmPassword}
+                                    secureText={true}
                                     handleChange={FormikProps.handleChange(`confirmPassword`)}
                                     handleBlur={FormikProps.handleBlur(`confirmPassword`)}
                                     touched={confirmPasswordTouched}
