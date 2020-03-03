@@ -108,7 +108,7 @@ const SupportScreen = (props) => {
 
                 return (
 
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }} keyboardVerticalOffset={20}>
+                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }} keyboardVerticalOffset={offSet ? 30 : 0}>
                         <Modal animationType={'slide'}
                             visible={iosPickerVisible} onRequestClose={() => console.log(`onRequestClose`)}
                         >
