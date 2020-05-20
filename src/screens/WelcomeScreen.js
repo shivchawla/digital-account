@@ -32,6 +32,7 @@ const WelcomeScreen = (props) => {
         (proceed&&token) && props.navigation.navigate('Dashboard')
     }, [proceed,token]);
     const dispatch = useDispatch()
+    
     const login = (values) => {
         dispatch(actionCreator.login1(values))
     }

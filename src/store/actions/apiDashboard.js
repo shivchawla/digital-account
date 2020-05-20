@@ -4,7 +4,7 @@ import * as SecureStore from 'expo-secure-store'
 
 import moment from 'moment'
 
-const apiUrl = 'https://tuah.niyo.my/'
+const apiUrl = 'https://sandbox.niyo.my/'
 
 const apiGetCall = async (uri, apiAccess) => {
   console.log(`tengok uri ${uri}`)

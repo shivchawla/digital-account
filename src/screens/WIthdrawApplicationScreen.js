@@ -195,7 +195,7 @@ const WIthdrawApplicationScreen = (props) => {
                                         {(bankExists && bankList) ?
                                             <View>
                                                 <TouchableOpacity onPress={() => setIosPickerVisible(!iosPickerVisible)} style={{ flexDirection: 'row', alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5, justifyContent: 'space-between', alignItems: 'center' }}>
-                                                    <Text style={[styles.text]}>Select Bank</Text>
+                                                    <Text style={[styles.text]}>{bankLabel?bankLabel:`Select Bank` } </Text>
                                                     <Ionicons name="ios-arrow-down" style={{ fontSize: 12, }} />
                                                 </TouchableOpacity>
 
