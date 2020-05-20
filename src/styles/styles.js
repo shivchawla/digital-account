@@ -1,21 +1,60 @@
 import { StyleSheet } from 'react-native'
-import Layout from '../constants/Layout'
-import { Constants } from 'expo'
+import Constants from 'expo-constants'
 
 const fontSize = 15
 
+const elevationShadowStyle=(elevation)=> {
+  return {
+    elevation,
+    shadowColor: 'black',
+    shadowOffset: { width: 0, height: 0.5 * elevation },
+    shadowOpacity: 0.3,
+    shadowRadius: 0.8 * elevation
+  };
+}
+
+
+
 export default StyleSheet.create({
+  container: {
+    paddingTop: Constants.statusBarHeight,
+    flex: 1,
+    backgroundColor: '#fff',
+  },
   text: {
-    fontSize,
-    fontFamily: 'Montserrat_light',
+    fontSize:fontSize*1.1,
+    fontFamily: 'Montserrat_medium',
     color: '#000'
   },
+  listItem: {
+    fontSize:fontSize*0.8,
+    fontFamily: 'Montserrat_medium',
+    color: 'darkgrey'
+  },
+
+  label: {
+    fontSize,
+    fontFamily: 'Montserrat_medium',
+    color: 'grey'
+  },
+  value: {
+    fontSize:fontSize * 1.1,
+    fontFamily: 'Montserrat_medium',
+    color: '#000'
+  },
+
 
   title: {
     fontSize,
     fontFamily: 'Montserrat_medium',
     color: '#055E7C',
     fontSize: fontSize * 1.4
+  },
+  subTitle: {
+    fontSize,
+    fontFamily: 'Montserrat_medium',
+    color: '#055E7C',
+    fontSize: fontSize * 1.2
   },
 
   butang: {
@@ -49,7 +88,7 @@ export default StyleSheet.create({
     fontSize,
     fontFamily: 'Montserrat_medium',
     color: '#000',
-    fontSize: fontSize
+    fontSize: fontSize *1.1
   },
 
   small: {
@@ -60,22 +99,44 @@ export default StyleSheet.create({
   },
 
   titleBox: {
-    fontSize,
+    fontSize: fontSize * 0.87,
     fontFamily: 'Montserrat_medium',
     color: '#000',
-    fontSize: fontSize * 0.87
+    fontSize,
+  },
+  textInput: {
+    fontSize:fontSize*1.1,
+    fontFamily: 'Montserrat_medium',
+    color: '#000'
+  },
+  searchBar:{
+    fontSize:fontSize,
+    fontFamily: 'Montserrat_medium',
+    color: '#000'
   },
 
   error: {
     fontSize,
-    fontFamily: 'Montserrat_thin',
-    color: 'rgba(255,0,0,0.5)',
-    fontSize: fontSize * 0.8
+    fontFamily: 'Montserrat_medium',
+    color: 'rgba(255,0,0,1)',
+    fontSize: fontSize * 0.7
   },
-
+  textDefault:{
+    fontSize,
+    fontFamily:'Montserrat_medium',
+    color:'#000'
+  },
   screenMargin: {
+    paddingTop:10,
+    paddingBottom:30,
     paddingLeft: 20,
-    paddingRight: 20
+    paddingRight: 20,
+  },
+  noPadding:{
+    paddingTop:0,
+    paddingBottom:0,
+    paddingLeft: 0, 
+    paddingRight: 0 
   },
 
   formElement: {
@@ -87,7 +148,7 @@ export default StyleSheet.create({
     paddingRight: 20
   },
 
-  box: {
+  boxOld: {
     // shadowColor: '#000',
     // shadowOffset: { width: 0, height: 3 },
     // shadowOpacity: 0.27,
@@ -110,5 +171,41 @@ export default StyleSheet.create({
     marginLeft: 5,
     marginRight: 5,
     marginTop: 10,
+  },
+  box: {
+    margin: 10,
+    padding: 15,
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: '#ddd',
+  
+  
+  },
+  shadow: {
+    ...elevationShadowStyle(5),
+    backgroundColor: 'white' // It'll look weird without a background color!
+  },
+  borderStyleBase: {
+    width: 45,
+    height: 45
+  },
+
+  borderStyleHighLighted: {
+    borderColor: "#03DAC6",
+  },
+
+  underlineStyleBase: {
+    width: 30,
+    height: 45,
+    borderWidth: 0,
+    borderBottomWidth: 1,
+  },
+
+  underlineStyleHighLighted: {
+    borderColor: "#03DAC6",
+  },
+
+  busHub:{
+    flex: 1, justifyContent: 'center', alignItems: 'center', borderRadius: 10, margin:10,marginTop:5,marginBottom:5,borderWidth:1,padding:20,borderColor: 'lightgrey',
   }
 })

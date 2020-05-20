@@ -2,21 +2,46 @@ import { AppLoading, Notifications } from 'expo';
 import * as Permissions from 'expo-permissions'
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
-import Constants from 'expo-constants'
+
 import * as SecureStore from 'expo-secure-store'
 import React, { useState, useEffect } from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import { Platform, StatusBar, StyleSheet, View, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { LoggedInContainer, AuthenticationContainer } from './src/navigation/AppNavigator';
+
+import NetInfo from '@react-native-community/netinfo';
+
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import rootReducer from './src/store/reducers/Reducer';
+
+import styles from './src/styles/styles'
+
+///// All Below for Navigation
+import { enableScreens } from 'react-native-screens';
+
+
+
+
+enableScreens();
+
+
+
+
+///////End For Navigation
+
+//import * as actionCreator from '../store/actions/action'
+import * as actionCreator from './src/store/actions/action'
+import Nav from './src/navigation/Nav';
+
 const store = createStore(rootReducer, applyMiddleware(thunk))
 const App = (props) => {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
   const [tokenExists, setTokenExists] = useState(false)
   const [notification, setNotification] = useState({})
+  const [isInternetReachable, setNetInfo] = useState(null)
+  store.getState() && console.log(JSON.stringify(store.getState()))
+
 
   const checkUpdate = async () => {
     try {
@@ -39,12 +64,12 @@ const App = (props) => {
         setTokenExists(true)
       }
     } catch (error) {
-      //console.log(`personalToken error ${error}`)
+      console.log(`personalToken yang aneh error ${JSON.stringify(error)}`)
       return 'takde'
     }
   }
 
-  registerForPushNotificationsAsync = async () => {
+  const registerForPushNotificationsAsync = async () => {
     const { status: existingStatus } = await Permissions.getAsync(
       Permissions.NOTIFICATIONS
     );
@@ -57,27 +82,45 @@ const App = (props) => {
       return;
     }
     let token = await Notifications.getExpoPushTokenAsync();
-    console.log(`expo token ialah ${token}`)
+    //console.log(`expo token ialah ${token}`)
     store.dispatch({ type: 'SET_REGISTER', payload: { expo_token: token } })
     console.log(JSON.stringify({
-      token: { value: token, }, user: { username: 'Brent', },
+      token: { value: token, }, user: { username: 'Username', },
     }))
   }
 
-  _handleNotification = (notification) => {
-    //console.log(`notification received ${JSON.stringify(notification)}`)
+  const _handleNotification = (notification) => {
+    console.log(`notification received ${JSON.stringify(notification)}`)
     const { data } = notification
     store.dispatch({ type: 'SET_NOTIFICATION_LIST', payload: { ...data } })
+    const { withdrawalsApproved, withdrawalsDisbursed, loanApproved, loanDisbursed, email } = data
+    if (withdrawalsApproved || withdrawalsDisbursed) {
+      store.dispatch(actionCreator.getWithdrawList())
+      dispatch(actionCreator.getRepaymentList())
+    }
+
+    if (loanApproved || loanDisbursed) {
+      store.dispatch(actionCreator.getLoanList())
+    }
+
     //store.dispatch({ type: 'SET_NOTIFICATION', payload: { notification } })
   };
 
+  const _handleNetInfo = (netInfo) => {
+    console.log(`netInfo received ${JSON.stringify(netInfo)}`)
+    store.dispatch({ type: 'SET_NET_INFO_STATUS', payload: { ...netInfo } })
+    setNetInfo(netInfo.isInternetReachable)
+  }
 
   useEffect(() => {
     //checkUpdate()
     registerForPushNotificationsAsync();
-    _notificationSubscription = Notifications.addListener(_handleNotification);
-    checkLogin()
+    const _notificationSubscription = Notifications.addListener(_handleNotification);
+    const netInfoUnsubscribe = NetInfo.addEventListener(_handleNetInfo);
+    //checkLogin()
+
   }, [])
+
 
   if (!isLoadingComplete && !props.skipLoadingScreen) {
     return (
@@ -90,15 +133,21 @@ const App = (props) => {
   } else {
     return (<Provider store={store}>
       <View style={styles.container}>
-        <StatusBar barStyle="default" />
-
-        {tokenExists ? <LoggedInContainer /> : <AuthenticationContainer />}
-
+        <Nav />
+        {!isInternetReachable && <View style={{ justifyContent: 'center', alignItems: 'center', padding: 5, backgroundColor: 'orange' }}>
+          <Text style={styles.small}>No internet connection</Text>
+        </View>
+        }
       </View>
     </Provider>
     )
   }
+
 }
+
+
+
+
 
 const loadResourcesAsync = async () => {
   await Promise.all([
@@ -157,6 +206,35 @@ const loadResourcesAsync = async () => {
       require('./src/assets/images/phonenoicon.png'),
       require('./src/assets/images/industryicon.png'),
       require('./src/assets/images/addressicon.png'),
+      require('./src/assets/images/historywhiteicon.png'),
+      require('./src/assets/images/notificationicon.png'),
+      require('./src/assets/images/notificationicon.png'),
+      require('./src/assets/images/itemicon.png'),
+      require('./src/assets/images/customericon.png'),
+      require('./src/assets/images/vendoricon.png'),
+      require('./src/assets/images/changeaccount.png'),
+      require('./src/assets/images/businessdirectory.png'),
+      require('./src/assets/images/zakaticon.png'),
+      require('./src/assets/images/payrollicon.png'),
+      require('./src/assets/images/remittanceicon.png'),
+      require('./src/assets/images/withdrawalsuccess.png'),
+      require('./src/assets/images/itemsuccess.png'),
+      require('./src/assets/images/vendorsuccess.png'),
+      require('./src/assets/images/customersuccess.png'),
+      require('./src/assets/images/passwordsuccess.png'),
+      require('./src/assets/images/emailsuccess.png'),
+      require('./src/assets/images/phonesuccess.png'),
+      require('./src/assets/images/withdrawal.png'),
+      require('./src/assets/images/transfer.png'),
+      require('./src/assets/images/disbursement.png'),
+      require('./src/assets/images/fingerprint.png'),
+      require('./src/assets/images/contactfailed.png'),
+      require('./src/assets/images/invoicefailed.png'),
+      require('./src/assets/images/contactfailed.png'),
+      require('./src/assets/images/itemfailed.png'),
+      require('./src/assets/images/supportfailed.png'),
+      require('./src/assets/images/transferfailed.png'),
+      require('./src/assets/images/withdrawalfailed.png'),
 
       require('./src/assets/images/bottomTabs/home.png'),
       require('./src/assets/images/bottomTabs/history.png'),
@@ -165,11 +243,12 @@ const loadResourcesAsync = async () => {
       require('./src/assets/images/bottomTabs/homeBlack.png'),
       require('./src/assets/images/bottomTabs/historyBlack.png'),
       require('./src/assets/images/bottomTabs/notificationBlack.png'),
-      require('./src/assets/images/bottomTabs/setingBlack.png'),
 
-      require('./src/assets/images/screenshots/1.png'),
-      require('./src/assets/images/screenshots/2.png'),
-      require('./src/assets/images/screenshots/3.png'),
+      require('./src/assets/images/screenshots/1.jpeg'),
+      require('./src/assets/images/screenshots/2.jpeg'),
+      require('./src/assets/images/screenshots/3.jpeg'),
+      require('./src/assets/images/screenshots/4.jpeg'),
+      require('./src/assets/images/screenshots/5.jpeg'),
     ]),
     Font.loadAsync({
       // This is the font that we are using for our tab bar
@@ -182,6 +261,7 @@ const loadResourcesAsync = async () => {
       'Montserrat_thin': require('./src/assets/fonts/Montserrat/Montserrat-Thin.ttf'),
       'Montserrat_bold': require('./src/assets/fonts/Montserrat/Montserrat-Bold.ttf'),
       'Roboto_medium': require('./src/assets/fonts/Roboto/Roboto-Regular.ttf'),
+      'Montserrat_italic': require('./src/assets/fonts/Montserrat/Montserrat-Italic.ttf'),
     }),
   ]);
 }
@@ -195,13 +275,5 @@ const handleLoadingError = (error) => {
 const handleFinishLoading = (setLoadingComplete) => {
   setLoadingComplete(true);
 }
-
-const styles = StyleSheet.create({
-  container: {
-    paddingTop: Constants.statusBarHeight,
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});
 
 export default App;

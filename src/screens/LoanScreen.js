@@ -1,58 +1,86 @@
-import React, { useEffect } from 'react';
-import {
-    View,
-    TouchableOpacity,
-    Text,
-    Image,
-    FlatList
-} from 'react-native';
+import React, { useEffect, useState, useCallback } from 'react';
+import { View, TouchableOpacity, Text, Image, FlatList, TextInput, RefreshControl } from 'react-native';
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons';
 import moment from 'moment'
 import styles from '../styles/styles'
+import _ from 'lodash'
+import { CustomButton } from '../components/Custom'
+import LayoutA from '../Layout/LayoutA';
+
+const wait = (timeout) => {
+    return new Promise(resolve => {
+        setTimeout(resolve, timeout);
+    });
+}
+
 
 const LoanScreen = (props) => {
-
     useEffect(() => {
         dispatch(actionCreator.getLoanList())
-    }, [loanList])
+        dispatch(actionCreator.getRepaymentList())
+    }, [loanList, repaymentList])
     const dispatch = useDispatch()
-    const { loanList } = useSelector(state => state.loanReducer, shallowEqual)
+    const { repaymentList, loanList, filteredLoanList, filterEnabled } = useSelector(state => state.loanReducer, shallowEqual)
+    const [onScreenFilter, setOnScreenFilter] = useState(false)
+    const [onScreenFilteredList, setOnScreenFilteredList] = useState([])
+    // const mergedLoanList = (loanList && repaymentList) ? _.merge(loanList, repaymentList) : 'none'
+    // mergedLoanList && console.log(`inilah merged : ${JSON.stringify(mergedLoanList)}`)
+
+    const [refreshing, setRefreshing] = useState(false);
+
+    const onRefresh = useCallback(() => {
+        console.log(`tengah refresh kettew`)
+
+        setRefreshing(true);
+        dispatch(actionCreator.getLoanList())
+        dispatch(actionCreator.getRepaymentList())
+        wait(2000).then(() => setRefreshing(false));
+    }, [refreshing]);
+
+    const searchList = (val) => {
+        console.log(`keyword  ialah : ${val}`)
+        if (val) {
+            setOnScreenFilter(true)
+            const newList = []
+            loanList.map(b => {
+                b.type.includes(val) ? newList.push(b) : b.status.includes(val) ? newList.push(b) : false
+            })
+            console.log(`new list length ialah : ${newList.length}`)
+            setOnScreenFilteredList(newList)
+
+        } else {
+            setOnScreenFilteredList([])
+            setOnScreenFilter(false)
+        }
+
+    }
 
     return (
 
-        <View style={{ flex: 1, }}>
-            <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
-                    <TouchableOpacity onPress={() => props.navigation.navigate('Dashboard')} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                        <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 20 }} />
-                    </TouchableOpacity>
-                </View>
-                <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={[styles.title, { color: '#055E7C' }]}>LOAN APPLICATION</Text>
-                </View>
-                <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
-                    <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
-                </TouchableOpacity>
+        <LayoutA title={'LOAN APPLICATION'} navigation={props.navigation} nopadding>
+            <View style={{ marginTop: 30, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-around', paddingLeft: 20, paddingRight: 20 }}>
+
+                <CustomButton boxStyle={{ backgroundColor: '#34C2DB' }} navigation={() => props.navigation.navigate('LoanApplication')} label={'New Loan'} />
+                <CustomButton navigation={() => props.navigation.navigate('Withdraw')} label={'New Withdrawal'} />
             </View>
-            <View style={[styles.screenMargin, { flex: 9, paddingLeft: 0, paddingRight: 0 }]}>
-                <View style={{ marginTop: 30, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-evenly' }}>
-                    <TouchableOpacity onPress={() => props.navigation.navigate('LoanApplication')} style={{ padding: 5, paddingLeft: 8, paddingRight: 8, backgroundColor: '#34C2DB', borderRadius: 5 }}>
-                        <Text style={[styles.text, { color: '#fff' }]}>New Loan</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => props.navigation.navigate('Withdraw')} style={{ padding: 5, paddingLeft: 8, paddingRight: 8, backgroundColor: '#055E7C', borderRadius: 5 }}>
-                        <Text style={[styles.text, { color: '#fff' }]}>New Withdrawal</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={{ marginTop: 20 }}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 10 }}>
-                        <TouchableOpacity onPress={props.navigation.openDrawer} style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 20 }}>
-                            <Text style={[styles.small, { paddingRight: 5, color: '#055E7C' }]}>Search</Text>
-                            <Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 15, paddingRight: 5 }} />
+            <View style={{ marginTop: 20 }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingLeft: 20, paddingRight: 30 }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 10, flex: 1, borderWidth: 1, borderColor: 'lightgrey', padding: 10, borderRadius: 10 }}>
+                        <View>
+                            <Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
+                        </View>
+                        <TextInput placeholder='Please Enter Keyword' style={[styles.searchBar, { flex: 4 }]} onChangeText={(val) => searchList(val)} />
+                        <TouchableOpacity onPress={props.navigation.openDrawer} >
+                            <Ionicons name="ios-options" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
                         </TouchableOpacity>
                     </View>
-                    {loanList && <FlatList data={loanList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
+                </View>
+                {loanList && <FlatList contentContainerStyle={{ paddingLeft: 20, paddingRight: 20 }}
+                    refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+                    onEndReached={val => console.log(`onEndReached ialah : ${JSON.stringify(val)}`)}
+                    data={filterEnabled ? filteredLoanList : onScreenFilter ? onScreenFilteredList : loanList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
                         <TouchableOpacity onPress={() => props.navigation.navigate('LoanMiniDetail', { id: item.id })} style={styles.box}>
                             <View style={{ flexDirection: 'row', marginTop: 5 }}>
                                 <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
@@ -72,21 +100,27 @@ const LoanScreen = (props) => {
                             </View>
                             <View style={{ flexDirection: 'row', marginTop: 5 }}>
                                 <View style={{ flex: 1 }}>
-                                    <Text style={[styles.text, { color: item.status === 'Submitted' ? '#000000' : item.status === 'Decline' ? '#FF0000' : item.status === 'Approved' ? '#54A400' : '#FA6400' }]}>{item.status}</Text>
+                                    <Text style={[styles.text, { color: item.status === 'New' ? '#000000' : item.status === 'Rejected' ? '#FF0000' : item.status === 'Approved' ? '#54A400' : '#FA6400' }]}>{item.status}</Text>
+                                </View>
+                            </View>
+                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={styles.small}>Amount</Text>
+                                </View>
+                            </View>
+                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={[styles.text]}>{item.total_request}</Text>
                                 </View>
                             </View>
                         </TouchableOpacity>
                     } />}
-                </View>
-            </View >
-        </View >
+            </View>
+        </LayoutA>
 
     );
-
 }
 
-LoanScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default LoanScreen;

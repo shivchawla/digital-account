@@ -1,128 +1,90 @@
-import React from 'react';
-import { View, TouchableOpacity, Text, Image, KeyboardAvoidingView, TextInput, ActivityIndicator } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, TouchableOpacity, Text, Image, FlatList, TextInput, ScrollView } from 'react-native';
 import * as actionCreator from '../store/actions/action'
-import { useDispatch } from 'react-redux'
-import { LinearGradient } from 'expo-linear-gradient'
+import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons';
+import moment from 'moment'
 import styles from '../styles/styles'
-import { Formik } from 'formik';
-import * as Yup from 'yup';
-
-const validationSchema = Yup.object().shape({
-
-    vendorName: Yup
-        .string()
-        .required()
-        .label('Vendor Name'),
-
-    vendorEmail: Yup
-        .string()
-        .email()
-        .required()
-        .label('Vendor Email'),
-
-    currency: Yup
-        .string()
-        .required()
-        .label('Currency'),
-
-    vendorAddress: Yup
-        .string()
-        .required()
-        .label('Vendor Address'),
-
-});
-
+import { CustomButton } from '../components/Custom'
+import LayoutA from '../Layout/LayoutA';
 const VendorScreen = (props) => {
 
+    useEffect(() => {
+        dispatch(actionCreator.getVendorList())
+    }, [vendorList])
     const dispatch = useDispatch()
-    const setVendor = (val) => dispatch({ type: 'SET_VENDOR_DATA', payload: { ...val } });
+    const { vendorList, filteredVendorList, filterEnabled } = useSelector(state => state.vendorReducer, shallowEqual)
 
     return (
 
-        <Formik onSubmit={async values => {
-            props.navigation.navigate("InvoiceSuccess")
-            dispatch(actionCreator.passVendorData())
-            console.log(JSON.stringify(values))
-        }}
 
-            validationSchema={validationSchema}>
+        < LayoutA
+            title={'VENDOR LIST'}
+            screenType='form'
+            navigation={props.navigation}
+            nopadding
+        >
+            <View style={[{ flex: 9 }]}>
+                <View style={{ marginTop: 10, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end', paddingLeft: 20, paddingRight: 30 }}>
+                    <CustomButton
+                        navigation={() => props.navigation.navigate('VendorApplication')}
+                        label={'Add Vendor'}
+                        boxStyle={{ backgroundColor: '#34C2DB' }}
+                    />
+                </View>
 
-            {FormikProps => {
-                const { vendorName, vendorEmail, currency, vendorAddress } = FormikProps.values
-
-                const vendorNameError = FormikProps.errors.vendorName
-                const vendorNameTouched = FormikProps.touched.vendorName
-
-                const vendorEmailError = FormikProps.errors.vendorEmail
-                const vendorEmailTouched = FormikProps.touched.vendorEmail
-
-                const currencyError = FormikProps.errors.currency
-                const currencyTouched = FormikProps.touched.currency
-
-                const vendorAddressError = FormikProps.errors.vendorAddress
-                const vendorAddressTouched = FormikProps.touched.vendorAddress
-
-                return (
-
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, justifyContent: 'center' }}>
-                        <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
-                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
-                                <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                                    <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30 }} />
-                                </TouchableOpacity>
+                <View style={{ marginTop: 20 }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingLeft: 20, paddingRight: 30  }}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 10, flex: 1, borderWidth: 1, borderColor: 'lightgrey', padding: 10, borderRadius: 10 }}>
+                            <View>
+                                <Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
                             </View>
-                            <View style={{ flex: 5, justifyContent: 'center', alignItems: 'center' }}>
-                                <Text style={[styles.title]}>VENDOR DETAILS</Text>
-                            </View>
-                            <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
-                                <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
+                            <TextInput placeholder='Please Enter Keyword' style={[styles.searchBar, { flex: 4 }]} />
+                            <TouchableOpacity onPress={props.navigation.openDrawer} >
+                                <Ionicons name="ios-options" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
                             </TouchableOpacity>
                         </View>
-                        <View style={{ justifyContent: 'space-between', flex: 9 }}>
-                            <View style={[styles.screenMargin, { flex: 9 }]}>
-                                <View style={[styles.formElement]}>
-                                    <Text style={[styles.titleBox, { marginBottom: 5, marginTop: 25 }]}>Vendor Name</Text>
-                                    <TextInput value={vendorName} onChangeText={FormikProps.handleChange('vendorName')} onBlur={FormikProps.handleBlur('vendorName')} style={{ borderWidth: 1, borderColor: vendorNameTouched && vendorNameError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={vendorNameTouched && vendorNameError ? '' : 'Siti binti Ali'} placeholderTextColor={vendorNameTouched && vendorNameError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
-                                    {vendorNameTouched && vendorNameError && <Text style={styles.error}>{vendorNameError}</Text>}
+                    </View>
+                    {vendorList && <FlatList contentContainerStyle={{ paddingLeft: 20, paddingRight: 20 }} data={filterEnabled ? filteredVendorList : vendorList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
+                        // <TouchableOpacity onPress={() => props.navigation.navigate('VendorDetail', { id: item.id })} style={styles.box}>
+                        <View style={styles.box}>
+                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
+                                    <Text style={styles.small}>{moment(item.created_at).format("MMMM Do YYYY, h:mm:ss a")}</Text>
+                                    <Ionicons name="md-arrow-dropright" color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
                                 </View>
-                                <View style={[styles.formElement]}>
-                                    <Text style={[styles.titleBox, { marginBottom: 5 }]}>Vendor E-mail</Text>
-                                    <TextInput value={vendorEmail} onChangeText={FormikProps.handleChange('vendorEmail')} onBlur={FormikProps.handleBlur('vendorEmail')} style={{ borderWidth: 1, borderColor: vendorEmailTouched && vendorEmailError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={vendorEmailTouched && vendorEmailError ? '' : 'example@email.com'} placeholderTextColor={vendorEmailTouched && vendorEmailError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
-                                    {vendorEmailTouched && vendorEmailError && <Text style={styles.error}>{vendorEmailError}</Text>}
+                            </View>
+                            <View><TouchableOpacity onPress={() => dispatch(actionCreator.deleteVendor(item.id))}><Text>Delete</Text></TouchableOpacity></View>
+
+                            <View style={{ flexDirection: 'row', alignContent: 'stretch', marginTop: 20 }}>
+                                <View style={{ flex: 2.7 }}>
+                                    <Text style={styles.small}>Name</Text>
+                                    <Text style={[styles.text]}>{item.name}</Text>
                                 </View>
-                                <View style={[styles.formElement]}>
-                                    <Text style={[styles.titleBox, { marginBottom: 5 }]}>Preferred Currency</Text>
-                                    <TextInput value={currency} onChangeText={FormikProps.handleChange('currency')} onBlur={FormikProps.handleBlur('currency')} style={{ borderWidth: 1, borderColor: currencyTouched && currencyError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={currencyTouched && currencyError ? '' : 'MYR'} placeholderTextColor={currencyTouched && currencyError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
-                                    {currencyTouched && currencyError && <Text style={styles.error}>{currencyError}</Text>}
+                                <View style={{ flex: 3 }}>
+                                    <Text style={styles.small}>Email</Text>
+                                    <Text style={styles.text}>{item.email}</Text>
                                 </View>
-                                <View style={[styles.formElement]}>
-                                    <Text style={[styles.titleBox, { marginBottom: 5 }]}>Vendor Address</Text>
-                                    <TextInput value={vendorAddress} onChangeText={FormikProps.handleChange('vendorAddress')} onBlur={FormikProps.handleBlur('vendorAddress')} style={{ borderWidth: 1, borderColor: vendorAddressTouched && vendorAddressError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={vendorAddressTouched && vendorAddressError ? '' : '32, Jalan Hartamas, Bandar Baru Sendayan, Negeri Sembilan'} placeholderTextColor={vendorAddressTouched && vendorAddressError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
-                                    {vendorAddressTouched && vendorAddressError && <Text style={styles.error}>{vendorAddressError}</Text>}
+                            </View>
+                            <View style={{ flexDirection: 'row', alignContent: 'stretch', marginTop: 20 }}>
+                                <View style={{ flex: 2.7 }}>
+                                    <Text style={styles.small}>Currency</Text>
+                                    <Text style={[styles.text]}>{item.currency}</Text>
+                                </View>
+                                <View style={{ flex: 3 }}>
+                                    <Text style={styles.small}>Address</Text>
+                                    <Text style={styles.text}>{item.address}</Text>
                                 </View>
                             </View>
                         </View>
-                        <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
-                            <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 }}>
-                                <LinearGradient colors={['#FFF', '#FFF']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                                    <Text style={[styles.butang, { color: '#000000' }]}>Back</Text>
-                                </LinearGradient>
-                            </TouchableOpacity>
-                            <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ flex: 1 }}>
-                                <LinearGradient colors={FormikProps.isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                                    {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> : <Text style={[styles.butang, { color: '#fff' }]}>Submit</Text>}
-                                </LinearGradient>
-                            </TouchableOpacity>
-                        </View>
-                    </KeyboardAvoidingView>)
-            }}
-        </Formik >
+                    } />}
+                </View>
+            </View>
+
+        </LayoutA>
+
     );
 }
 
-VendorScreen.navigationOptions = {
-    header: null,
-};
 
-export default VendorScreen
+export default VendorScreen;

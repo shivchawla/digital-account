@@ -7,8 +7,8 @@ Amplify.configure(aws_exports);///
 import s3 from '../../do/DigitalOcean'
 import config from '../../do/config'
 
-import { requestToken, requestPersonalToken, urlToBlob, registerApi, companyInfoAPI, contactPersonAPI, submitDocApi, declarationApi } from './apiRegistration'
-import { retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, agingListApi, reportListApi, businessDirectoryListApi, invoiceApi, newExpenseApi, supportApi, vendorDataApi, customerDataApi, itemDataApi, submitLoanApplicationApi, addBankApi, bankListApi, deleteAllBankApi, notificationListApi, loanApplicationDataApi, submitInvoiceApi, submitSupportApi } from './apiDashboard'
+import { requestToken, requestPersonalToken, urlToBlob, registerApi, companyInfoAPI, contactPersonAPI, submitDocApi, declarationApi, cddApi, resendVerificationApi } from './apiRegistration'
+import { paymentHistoryListApi, retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, agingListApi, reportListApi, businessDirectoryListApi, invoiceApi, newExpenseApi, customerDataApi, itemDataApi, submitLoanApplicationApi, addBankApi, bankListApi, deleteAllBankApi, notificationListApi, loanApplicationDataApi, submitInvoiceApi, submitSupportApi, withDrawApi, withdrawListApi, vendorListApi, withdrawDataApi, vendorDataApi, vendorDataRetrieveApi, customerListApi, customerDataRetrieveApi, itemListApi, itemDataRetrieveApi, retrieveAccountInfoApi, getAllUsersApi, repaymentListApi, repaymentDetailApi, checkCDDApi2, loanBillListApi, billDetailApi, checkAuthApi, savePinApi, respondAgreementApi, retrievePersonalInfoApi, updateExpoTokenApi, deleteCustomerApi,deleteVendorApi,deleteItemApi,deleteBankApi ,validatePinApi} from './apiDashboard'
 //import {pusherListen} from './pusher'
 import moment from 'moment'
 
@@ -22,7 +22,7 @@ export const getToken = () => {
     }
 }
 
-export const register =  (values) => {
+export const register = (values) => {
     return async (dispatch, getState) => {
         const { name, email, password, password_confirmation } = values
         const { token_type, access_token, expo_token } = await getState().registrationReducer
@@ -84,6 +84,17 @@ export const submitDoc1 = (values) => {
         await dispatch(uploadPic(isDocument1, 'mykad'))
         await dispatch(uploadPic(isDocument2, 'company'))
         await dispatch(uploadPic(isDocument3, 'business'))
+        //await dispatch(submitDocApi())
+    }
+}
+
+export const submitDoc2 = () => {
+
+    return async (dispatch, getState) => {
+        //const { isDocument1, isDocument2, isDocument3 } = values
+        // await dispatch(uploadPic(isDocument1, 'mykad'))
+        // await dispatch(uploadPic(isDocument2, 'company'))
+        // await dispatch(uploadPic(isDocument3, 'business'))
         await dispatch(submitDocApi())
     }
 }
@@ -91,24 +102,37 @@ export const submitDoc1 = (values) => {
 export const submitLoanApplication = () => {
     return (dispatch, getState) => {
         dispatch(submitLoanApplicationApi())
+        dispatch(loanListApi())
     }
 }
 
-export const submitNewSupport = () => {
+export const submitNewSupport = (values) => {
     return (dispatch, getState) => {
-        dispatch(submitSupportApi())
+        dispatch(submitSupportApi(values))
     }
 }
 
 export const submitNewInvoice = () => {
     return (dispatch, getState) => {
         dispatch(submitInvoiceApi())
+        dispatch(invoiceListApi())
+
     }
 }
 
-export const submitNewExpense = () => {
+export const submitNewExpense = (values) => {
     return (dispatch, getState) => {
-        dispatch(newExpenseApi())
+        dispatch(newExpenseApi(values))
+        dispatch(retrieveAccountInfoApi())
+        dispatch(reportListApi())
+
+    }
+}
+
+
+export const getAllUsers = () => {
+    return (dispatch, getState) => {
+        dispatch(getAllUsersApi())
     }
 }
 
@@ -118,6 +142,15 @@ export const submitNewExpense = () => {
 //         dispatch(invoiceApi(values))
 //     }
 // }
+
+
+export const withDraw = (values) => {
+    return (dispatch, getState) => {
+        dispatch(withDrawApi(values))
+        dispatch(retrieveAccountInfoApi())
+        dispatch(withdrawListApi())
+    }
+}
 
 export const setMarkers = (index) => {
     return (dispatch, getState) => {
@@ -132,12 +165,36 @@ export const setMarkers = (index) => {
     }
 }
 
+export const setMarkerPaymentHistory = (index) => {
+    return (dispatch, getState) => {
+
+        const { paymentHistoryList } = getState().paymentHistoryReducer
+        console.log(`payment history list ialah : ${JSON.stringify(paymentHistoryList)}`)
+        const newArr = []
+        //paymentHistoryList.map((i, n) => (n === index) ? newArr.push({ ...i, marker: true }) : newArr.push({ ...i, marker: false }))
+        paymentHistoryList.map((i, n) => {
+            if (n === index) {
+                i.marker ? newArr.push({ ...i, marker: false }) : newArr.push({ ...i, marker: true })
+            } else {
+                newArr.push({ ...i, marker: false })
+            }
+        }
+        )
+
+
+
+        console.log(`new notification list ialah : ${JSON.stringify(newArr)}`)
+        dispatch({ type: 'SET_PAYMENT_HISTORY_LIST', payload: { paymentHistoryList: newArr } })
+
+    }
+}
+
 export const setMarkerReportList = (index) => {
     return (dispatch, getState) => {
 
         const { reportList } = getState().reportReducer
         const newArr = []
-        reportList.map((i, n) => (n === index) ? newArr.push({ ...i, marker: true }) : newArr.push({ ...i, marker: false }))
+        reportList.map((i, n) => (i.id === index) ? newArr.push({ ...i, marker: !i.marker }) : newArr.push({ ...i, marker: false }))
         dispatch({ type: 'SET_REPORT_LIST', payload: { reportList: newArr } })
     }
 }
@@ -157,8 +214,36 @@ export const setMarker = (index) => {
 
         const { invoiceList } = getState().invoiceReducer
         const newArr = []
-        invoiceList.map((i, n) => (n === index) ? newArr.push({ ...i, marker: true }) : newArr.push({ ...i, marker: false }))
+        invoiceList.map((i, n) => (n === index) ? newArr.push({ ...i, marker: !i.marker }) : newArr.push({ ...i, marker: false }))
         dispatch({ type: 'SET_INVOICE_LIST', payload: { invoiceList: newArr } })
+    }
+}
+
+export const setMarkerInvoiceItem = (index) => {
+    return (dispatch, getState) => {
+
+        const { items } = getState().invoiceReducer
+        const newArr = []
+        //items.map((i, n) => (n === index) ? newArr.push({ ...i, marker: true }) : newArr.push({ ...i, marker: false }))
+        items.map((i, n) => {
+            if (n === index) {
+                i.marker ? newArr.push({ ...i, marker: false }) : newArr.push({ ...i, marker: true })
+            } else {
+                newArr.push({ ...i, marker: false })
+            }
+        }
+        )
+        dispatch({ type: 'SET_INVOICE_APPLICATION', payload: { items: newArr } })
+    }
+}
+
+export const setMarkerInvoiceReview = (index) => {
+    return (dispatch, getState) => {
+
+        const { items } = getState().invoiceReducer
+        const newArr = []
+        items.map((i, n) => (n === index) ? newArr.push({ ...i, marker: true }) : newArr.push({ ...i, marker: false }))
+        dispatch({ type: 'SET_INVOICE_APPLICATION', payload: { items: newArr } })
     }
 }
 
@@ -182,7 +267,7 @@ export const setMarkerBankList = (index) => {
 export const passSupport = (values) => {
     return (dispatch, getState) => {
         console.log('Dekat support info action')
-        dispatch(supportApi(values))
+        //dispatch(supportApi(values))
     }
 }
 
@@ -193,12 +278,31 @@ export const passVendorData = (values) => {
     }
 }
 
+export const deleteVendor = (id) => {
+    return (dispatch, getState) => {
+        console.log('Dekat vendor info action')
+        dispatch(deleteVendorApi(id))
+        dispatch(vendorListApi(id))
+    }
+}
+
+
 export const passCustomerData = (values) => {
     return (dispatch, getState) => {
         console.log('Dekat customer info action')
         dispatch(customerDataApi(values))
     }
 }
+
+export const deleteCustomer = (id) => {
+    return (dispatch, getState) => {
+        console.log('Dekat customer info action')
+        dispatch(deleteCustomerApi(id))
+        dispatch(customerListApi(id))
+    }
+}
+
+
 
 export const passItemData = (values) => {
     return (dispatch, getState) => {
@@ -207,9 +311,34 @@ export const passItemData = (values) => {
     }
 }
 
-export const declaration = (values) => {
+
+export const getItemList = () => {
     return (dispatch, getState) => {
-        dispatch(declarationApi(values))
+        dispatch(itemListApi())
+
+    }
+}
+
+export const getItemData = (id) => {
+
+    return (dispatch, getState) => {
+        dispatch(itemDataRetrieveApi(id))
+
+    }
+}
+
+export const deleteItem = (id) => {
+    return (dispatch, getState) => {
+        console.log('Dekat item info action')
+        dispatch(deleteItemApi(id))
+        dispatch(itemListApi(id))
+    }
+}
+
+export const declaration = (values) => {
+    return async (dispatch, getState) => {
+        await dispatch(declarationApi(values))
+        await dispatch(cddApi())
     }
 }
 
@@ -220,31 +349,61 @@ export const retrieveMerchantInfo = () => {
     }
 }
 
-export const checkDeclare = () => {
+export const retrieveAccountInfo = () => {
     return (dispatch, getState) => {
-        console.log('Dekat check declaration action')
-        dispatch(checkDeclareApi())
+        console.log('Dekat retrieve merchant info action')
+        dispatch(retrieveAccountInfoApi())
     }
 }
 
-export const checkDocument = () => {
+export const retrievePersonalInfo = () => {
     return (dispatch, getState) => {
-        console.log('Dekat checkDocument action')
-        dispatch(checkDocumentApi())
+        console.log('Dekat retrieve personal info action')
+        dispatch(retrievePersonalInfoApi())
     }
 }
 
-export const checkContact = () => {
-    return (dispatch, getState) => {
-        console.log('Dekat checkContact action')
-        dispatch(checkContactApi())
+// export const checkDeclare = () => {
+//     return (dispatch, getState) => {
+//         console.log('Dekat check declaration action')
+//         dispatch(checkDeclareApi())
+//     }
+// }
+
+// export const checkDocument = () => {
+//     return (dispatch, getState) => {
+//         console.log('Dekat checkDocument action')
+//         dispatch(checkDocumentApi())
+//     }
+// }
+
+// export const checkContact = () => {
+//     return (dispatch, getState) => {
+//         console.log('Dekat checkContact action')
+//         dispatch(checkContactApi())
+//     }
+// }
+
+// export const setScreen = () => {
+//     return (dispatch, getState) => {
+//         console.log('Dekat setScreen action')
+//         dispatch(checkCDDApi())
+//     }
+
+// }
+
+export const setScreen2 = () => {
+    return async (dispatch, getState) => {       
+        await dispatch(checkCDDApi2())
+       
     }
+
 }
 
-export const setScreen = () => {
+export const resendVerification = () => {
     return (dispatch, getState) => {
-        console.log('Dekat checkContact action')
-        dispatch(checkCDDApi())
+        console.log(' resend verification action')
+        dispatch(resendVerificationApi())
     }
 
 }
@@ -256,17 +415,18 @@ export const logout = () => {
         //await AsyncStorage.removeItem('personalToken')
         console.log(`nak delete`)
         await SecureStore.deleteItemAsync('personalToken').then(console.log(`delete berjaya`)).catch(error => console.log(`tak berjaya : ${error}`))
-        await SecureStore.deleteItemAsync('lmsPersonalToken').then(console.log(`delete berjaya`)).catch(error => console.log(`tak berjaya : ${error}`))
+        //await SecureStore.deleteItemAsync('lmsPersonalToken').then(console.log(`delete berjaya`)).catch(error => console.log(`tak berjaya : ${error}`))
 
-        dispatch({ type: 'REGISTRATION_RESET' })
-        dispatch({ type: 'LOGIN_RESET' })
-        dispatch({ type: 'COMPANY_INFO_RESET' })
-        dispatch({ type: 'USER_PROFILE_RESET' })
-        dispatch({ type: 'BIZ_INFO_RESET' })
-        dispatch({ type: 'MERCHANT_RESET' })
+        await dispatch({ type: 'REGISTRATION_RESET' })
+        await dispatch({ type: 'LOGIN_RESET' })
+        await dispatch({ type: 'COMPANY_INFO_RESET' })
+        await dispatch({ type: 'USER_PROFILE_RESET' })
+        await dispatch({ type: 'BIZ_INFO_RESET' })
+        await dispatch({ type: 'MERCHANT_RESET' })
+        await dispatch({ type: 'API_RESET' })
 
         //dispatch({ type: 'ROOT_LOG_OUT' })
-        //dispatch({ type: 'SET_LOGIN', payload: { proceed: false } })
+        await dispatch({ type: 'SET_LOGIN', payload: { proceed: false } })
     }
 }
 
@@ -274,8 +434,8 @@ export const logout = () => {
 export const saveDocPic = (result, doc) => {
     console.log(`result yang mengasyikkan ${JSON.stringify(result)}`)
     const { uri } = result
-    return async (dispatch, getState) => {
-        const blob = await urlToBlob(uri)
+    return (dispatch, getState) => {
+        const blob = urlToBlob(uri)
         const { data } = blob
 
         const fileName = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
@@ -343,24 +503,26 @@ export const uploadPic = (uri, doc) => {
                 request.httpRequest.headers['Content-Length'] = data.size;
                 request.httpRequest.headers['Content-Type'] = data.type;
                 request.httpRequest.headers['x-amz-acl'] = 'public-read';
+
             })
-            .send((err) => {
+            .send((err, data) => {
                 if (err) console.log(err);
                 else {
                     // If there is no error updating the editor with the imageUrl
+                    console.log(`data ialah ${JSON.stringify(data)}`)
                     const imageUrl = `${config.digitalOceanSpaces}/` + fileName
                     console.log(imageUrl);
                     //dispatch({ type: 'SET_USER_PROFILE', payload: { profile_pic: imageUrl } })
 
                     switch (doc) {
                         case 'mykad':
-                            dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument1: imageUrl } });
+                            dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument1file: imageUrl } });
                             break;
                         case 'company':
-                            dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument2: imageUrl } });
+                            dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument2file: imageUrl } });
                             break;
                         case 'business':
-                            dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument3: imageUrl } });
+                            dispatch({ type: 'SET_CONTACT_PERSON', payload: { isDocument3file: imageUrl } });
                             break;
 
                     }
@@ -462,6 +624,14 @@ export const getNotificationList = () => {
     }
 }
 
+export const getPaymentRecordList = () => {
+
+    return (dispatch, getState) => {
+        dispatch(paymentHistoryListApi())
+
+    }
+}
+
 export const getLoanData = (id) => {
 
     return (dispatch, getState) => {
@@ -474,6 +644,91 @@ export const getLoanList = () => {
 
     return (dispatch, getState) => {
         dispatch(loanListApi())
+        dispatch({ type: 'RESET_EMAIL_VERIFIED', payload: { loanApproved: null, loanDisbursed: null, email: null } })
+
+
+    }
+}
+
+export const getRepaymentList = () => {
+
+    return (dispatch, getState) => {
+        dispatch(repaymentListApi())
+
+    }
+}
+
+export const getRepaymentDetail = (values) => {
+
+    return (dispatch, getState) => {
+        dispatch(repaymentDetailApi(values))
+
+    }
+}
+
+
+export const getLoanBillList = (loanNo) => {
+
+    return (dispatch, getState) => {
+        dispatch(loanBillListApi(loanNo))
+
+    }
+}
+
+export const getBillDetail = (id) => {
+
+    return (dispatch, getState) => {
+        dispatch(billDetailApi(id))
+
+    }
+}
+
+export const getWithdrawData = (id) => {
+
+    return (dispatch, getState) => {
+        dispatch(withdrawDataApi(id))
+
+    }
+}
+
+export const getVendorData = (id) => {
+
+    return (dispatch, getState) => {
+        dispatch(vendorDataRetrieveApi(id))
+
+    }
+}
+
+export const getWithdrawList = () => {
+
+    return (dispatch, getState) => {
+        dispatch(withdrawListApi())
+        dispatch({ type: 'RESET_EMAIL_VERIFIED', payload: { withdrawalsDisbursed: null, withdrawalsApproved: null, email: null } })
+
+    }
+}
+
+export const getVendorList = () => {
+
+    return (dispatch, getState) => {
+        dispatch(vendorListApi())
+
+    }
+}
+
+export const getCustomerList = () => {
+
+    return (dispatch, getState) => {
+        dispatch(customerListApi())
+
+    }
+}
+
+
+export const getCustomerData = (id) => {
+
+    return (dispatch, getState) => {
+        dispatch(customerDataRetrieveApi(id))
 
     }
 }
@@ -521,7 +776,6 @@ export const addBank = (values) => {
     }
 }
 
-
 export const deleteAllBank = () => {
     return async (dispatch, getState) => {
         console.log(`delete action`)
@@ -530,14 +784,20 @@ export const deleteAllBank = () => {
     }
 }
 
-
+export const deleteBank = (id) => {
+    return async (dispatch, getState) => {
+        console.log(`delete action`)
+        await dispatch(deleteBankApi(id))
+        await dispatch(bankList())
+    }
+}
 
 export const filterLoanList = (values) => {
     return async (dispatch, getState) => {
         console.log(`filter loan list action`)
         console.log(`filter loan list action : ${JSON.stringify(values)}`)
         //await dispatch(loanListApi())
-        const { loanList } =  getState().loanReducer
+        const { loanList } = getState().loanReducer
         //const newLoanList=_.filter(loanList, _.matches({ 'a': 4, 'c': 6 }));
         const { status, type } = values
         const filterParam = (status && type) ? { status, type } : status ? { status } : type ? { type } : null
@@ -545,6 +805,128 @@ export const filterLoanList = (values) => {
         console.log(`new Loan List : ${JSON.stringify(newLoanList)}`)
         // await dispatch(deleteAllBankApi())
         // await dispatch(bankList())
-        dispatch({ type: 'SET_LOAN_LIST', payload: { loanList: newLoanList } })
+        dispatch({ type: 'SET_LOAN_LIST', payload: { filteredLoanList: newLoanList, filterEnabled: true } })
+    }
+}
+
+export const filterInvoicesList = (values) => {
+    return async (dispatch, getState) => {
+        console.log(`filter invoice list action`)
+        console.log(`filter invoice list action : ${JSON.stringify(values)}`)
+        const { invoiceList } = getState().invoiceReducer
+        const { currency_code, status } = values
+        const filterParam = (currency_code && status) ? { currency_code, status } : currency_code ? { currency_code } : status ? { status } : null
+        const newInvoicesList = _.filter(invoiceList, _.matches(filterParam));
+        console.log(`new invoice List : ${JSON.stringify(newInvoicesList)}`)
+        dispatch({ type: 'SET_INVOICE_LIST', payload: { filterInvoicesList: newInvoicesList, filterEnabled: true } })
+    }
+}
+
+export const filterReportList = (values) => {
+    return async (dispatch, getState) => {
+        console.log(`filter report list action`)
+        console.log(`filter report list action : ${JSON.stringify(values)}`)
+        const { reportList } = getState().reportReducer
+        const { type, credit_debit } = values
+        const filterParam = (type && credit_debit) ? { type, credit_debit } : type ? { type } : credit_debit ? { credit_debit } : null
+        const newReportList = _.filter(reportList, _.matches(filterParam));
+        console.log(`new report List : ${JSON.stringify(newReportList)}`)
+        dispatch({ type: 'SET_REPORT_LIST', payload: { filterReportList: newReportList, filterEnabled: true } })
+    }
+}
+
+export const filterWithdrawalList = (values) => {
+    return async (dispatch, getState) => {
+        console.log(`filter withdrawal list action`)
+        console.log(`filter withdrawal list action : ${JSON.stringify(values)}`)
+        const { withdrawList } = getState().withdrawReducer
+        const { status, type } = values
+        const filterParam = (status && type) ? { status, type } : status ? { status } : type ? { type } : null
+        const newWithdrawalList = _.filter(withdrawList, _.matches(filterParam));
+        console.log(`new withdrawal List : ${JSON.stringify(newWithdrawalList)}`)
+        dispatch({ type: 'SET_WITHDRAWAL_LIST', payload: { filteredWithdrawList: newWithdrawalList, filterEnabled: true } })
+    }
+}
+
+export const filterItemList = (values) => {
+    return async (dispatch, getState) => {
+        console.log(`filter item list action`)
+        console.log(`filter item list action : ${JSON.stringify(values)}`)
+        const { itemList } = getState().itemReducer
+        const { name, brand } = values
+        const filterParam = (name && brand) ? { name, brand } : name ? { name } : brand ? { brand } : null
+        const newItemList = _.filter(itemList, _.matches(filterParam));
+        console.log(`new item List : ${JSON.stringify(newItemList)}`)
+        dispatch({ type: 'SET_ITEM_LIST', payload: { filteredItemList: newItemList, filterEnabled: true } })
+    }
+}
+
+export const filterCustomerList = (values) => {
+    return async (dispatch, getState) => {
+        console.log(`filter customer list action`)
+        console.log(`filter customer list action : ${JSON.stringify(values)}`)
+        const { customerList } = getState().customerReducer
+        const { currency, email } = values
+        const filterParam = (currency && email) ? { currency, email } : currency ? { currency } : email ? { email } : null
+        const newCustomerList = _.filter(customerList, _.matches(filterParam));
+        console.log(`new customer List : ${JSON.stringify(newCustomerList)}`)
+        dispatch({ type: 'SET_CUSTOMER_LIST', payload: { filteredCustomerList: newCustomerList, filterEnabled: true } })
+    }
+}
+
+export const filterBusinessList = (values) => {
+    return async (dispatch, getState) => {
+        console.log(`filter business list action`)
+        console.log(`filter business list action : ${JSON.stringify(values)}`)
+        const { businessDirectoryList } = getState().businessDirectoryReducer
+        const { industry, address } = values
+        const filterParam = (industry && address) ? { industry, address } : industry ? { industry } : address ? { address } : null
+        const newBusinessList = _.filter(businessDirectoryList, _.matches(filterParam));
+        console.log(`new business List : ${JSON.stringify(newBusinessList)}`)
+        dispatch({ type: 'SET_BUSINESS_DIRECTORY_LIST', payload: { filterBusinessList: newBusinessList, filterEnabled: true } })
+    }
+}
+
+
+export const checkAuth = () => {
+    return async (dispatch, getState) => {
+        console.log(`lalu kat action checkauth`)
+        dispatch(checkAuthApi())
+    }
+}
+
+export const setAuth = (val) => {
+    return async (dispatch, getState) => {
+        dispatch({ type: 'SET_AUTH', payload: { ...val } })
+        //dispatch(savePinApi())
+    }
+}
+
+export const savePin = (val) => {
+    return async (dispatch, getState) => {
+        await dispatch({ type: 'SET_AUTH', payload: { ...val } })
+        dispatch(savePinApi(val))
+    }
+}
+
+export const updateExpoToken = () => {
+    return async (dispatch, getState) => {
+
+        dispatch(updateExpoTokenApi())
+    }
+}
+
+export const respondAgreement = (answer) => {
+    return async (dispatch, getState) => {
+        console.log(`kat action respondagreement : ${JSON.stringify(answer)}`)
+        dispatch(respondAgreementApi(answer))
+    }
+}
+
+
+export const validatePin = (pin) => {
+    return async (dispatch, getState) => {
+        console.log(`kat action validate pin : ${JSON.stringify(answer)}`)
+        dispatch(validatePinApi(pin))
     }
 }

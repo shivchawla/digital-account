@@ -7,21 +7,21 @@ import {
     Image,
 } from 'react-native';
 
-import { useSelector,shallowEqual,useDispatch } from 'react-redux'
+import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 import * as actionCreator from '../store/actions/action'
 import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles/styles'
 
 const SettingsScreen = (props) => {
 
-   
+
     const { expo_token } = useSelector(state => state.registrationReducer, shallowEqual)
     const { test_notification } = useSelector(state => state.notificationScreenReducer, shallowEqual)
 
     const dispatch = useDispatch()
-    const logout = () => {
-        dispatch(actionCreator.logout())
-        props.navigation.navigate('Welcome')
+    const logout = async () => {
+        //await dispatch(actionCreator.logout())
+        //await props.navigation.navigate('Logout')
     }
 
     return (
@@ -37,7 +37,9 @@ const SettingsScreen = (props) => {
                     <Text style={[styles.title]}>SETTING</Text>
                 </View>
                 <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
-                    <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
+                    <View style={{ backgroundColor:'rgba(62,194,217,0.5)',borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
+            <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
+          </View>
                 </TouchableOpacity>
             </View>
             <View style={[styles.screenMargin, { flex: 8 }]}>
@@ -84,19 +86,21 @@ const SettingsScreen = (props) => {
                             <Text style={[styles.text, { marginLeft: 25 }]}>Support</Text>
                         </TouchableOpacity>
                     </View>
+                    <View style={{ flexDirection: 'row', marginTop: 20, alignItems: 'center' }}>
+                        <Image source={require('../assets/images/support1.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
+                        <TouchableOpacity onPress={() => props.navigation.navigate('AuthOption')}>
+                            <Text style={[styles.text, { marginLeft: 25 }]}>Authentication</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
             <View style={{ flexDirection: 'column', flex: 1, justifyContent: 'flex-end', alignItems: 'flex-end' }}>
                 <Text style={[styles.small, { color: '#055E7C' }]}>Digital Account v0.2</Text>
                 <Text style={[styles.small, { color: '#055E7C' }]}>{expo_token}</Text>
-                {test_notification&&<Text style={[styles.small, { color: '#055E7C' }]}>{test_notification}</Text>}
+                {test_notification && <Text style={[styles.small, { color: '#055E7C' }]}>{test_notification}</Text>}
             </View>
         </View>
     );
 }
-
-SettingsScreen.navigationOptions = {
-    header: null,
-};
 
 export default SettingsScreen

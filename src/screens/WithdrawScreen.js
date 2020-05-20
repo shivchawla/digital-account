@@ -1,236 +1,110 @@
-import React, { useState, useEffect, useRef } from 'react';
-import {
-    View,
-    TouchableOpacity,
-    TouchableWithoutFeedback,
-    Text,
-    Image,
-    ActivityIndicator,
-    TextInput,
-    KeyboardAvoidingView,
-    ScrollView,
-    Picker,
-    Modal,
-    Platform
-} from 'react-native';
-import Constants from 'expo-constants';
+import React, { useEffect, useState, useCallback } from 'react';
+import { View, TouchableOpacity, Text, Image, FlatList, TextInput, RefreshControl } from 'react-native';
 import * as actionCreator from '../store/actions/action'
-
-
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
-import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
+import moment from 'moment'
 import styles from '../styles/styles'
+import LayoutA from '../Layout/LayoutA';
+import { CustomButton } from '../components/Custom'
 
-import { Formik } from 'formik';
-import * as Yup from 'yup';
 
-const validationSchema = Yup.object().shape({
-    bankLabel: Yup
-        .string()
-        .required()
-        .label('Bank Account No'),
-    bankAccountName: Yup
-        .string()
-        .required()
-        .label('Bank Account Name'),
-    bankAddress: Yup
-        .string()
-        .required()
-        .label('Bank Address'),
-    bankCountry: Yup
-        .string()
-        .required()
-        .label('Bank Country'),
-    amount: Yup
-        .number()
-        .positive()
-        .required()
-        .label('Amount'),
-    remark: Yup
-        .string()
-        .required()
-        .label('Remark'),
+const wait = (timeout) => {
+    return new Promise(resolve => {
+        setTimeout(resolve, timeout);
+    });
+}
 
-});
 
 const WithdrawScreen = (props) => {
 
-    const [bankLabelActive, setbankLabelActive] = useState(false)
-    const [iosPickerVisible, setIosPickerVisible] = useState(false)
+    useEffect(() => {
+        dispatch(actionCreator.getWithdrawList())
+    }, [withdrawList])
+    const dispatch = useDispatch()
+    const { withdrawList, filteredWithdrawList, filterEnabled } = useSelector(state => state.withdrawReducer, shallowEqual)
+    const { currency } = useSelector(state => state.myAccountReducer, shallowEqual)
+    const [onScreenFilter, setOnScreenFilter] = useState(false)
+    const [onScreenFilteredList, setOnScreenFilteredList] = useState([])
 
-    const ios = Platform.OS === "ios" ? true : false
+    const [refreshing, setRefreshing] = useState(false);
 
-    // const dispatch = useDispatch()
+    const onRefresh = useCallback(() => {
+        console.log(`tengah refresh kettew`)
+        setRefreshing(true);
+        dispatch(actionCreator.getWithdrawList())
+        wait(2000).then(() => setRefreshing(false));
+    }, [refreshing]);
 
-    const withDraw = (values) => {
-        // dispatch(actionCreator.withDraw(values))
-        props.navigation.navigate('WithdrawSuccess')
+    const searchList = (val) => {
+        console.log(`keyword  ialah : ${val}`)
+        if (val) {
+            setOnScreenFilter(true)
+            const newList = []
+            withdrawList.map(b => {
+                b.type.includes(val) ? newList.push(b) : b.status.includes(val) ? newList.push(b) : b.amount.toFixed(2).includes(val) ? newList.push(b) : false
+            })
+            console.log(`new list length ialah : ${newList.length}`)
+            setOnScreenFilteredList(newList)
+
+        } else {
+            setOnScreenFilteredList([])
+            setOnScreenFilter(false)
+        }
+
     }
 
-
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(actionCreator.bankList())
-
-    }, [bankList])
-
-    const { bankList } = useSelector(state => state.bankListReducer, shallowEqual)
-    const [selectedBank, setSelectedBank] = useState(null)
-    const bankExists = bankList ? true : false
-
-    const selectedBankDetail = selectedBank ? bankList.find(b => b.bankLabel === selectedBank) : null
-
     return (
-        <Formik
-            onSubmit={values => withDraw(values)}
-            validationSchema={validationSchema}
-        >
-
-            {FormikProps => {
-                const { bankLabel, amount, remark } = FormikProps.values
-                const bankLabelError = FormikProps.errors.bankLabel
-                const bankLabelTouched = FormikProps.touched.bankLabel
-                const amountError = FormikProps.errors.amount
-                const amountTouched = FormikProps.touched.amount
-                const remarkError = FormikProps.errors.remark
-                const remarkTouched = FormikProps.touched.remark
-
-                return (
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }}>
-                        <Modal animationType={'slide'}
-                            visible={iosPickerVisible}
-                            presentationStyle={'pageSheet'}
-                            onRequestClose={() => console.log('modal closed')}
-                        >
-                            <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
-                                <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4', marginBottom: 25 }]}>
-                                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
-                                        <TouchableOpacity onPress={() => setIosPickerVisible(!iosPickerVisible)} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                                            <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 20 }} />
-                                        </TouchableOpacity>
-                                    </View>
-                                    <View style={{ flex: 4, justifyContent: 'center', alignItems: 'center' }}>
-                                        <Text style={[styles.title, { color: '#055E7C' }]}>Select</Text>
-                                    </View>
-                                </View>
-                                <View style={{ flex: 9, justifyContent: 'flex-start' }}>
-                                    <Picker style={{ flex: 1, height: 35 }} selectedValue={bankLabel} onValueChange={(itemValue, itemIndex) => {
-                                        FormikProps.setFieldValue('bankLabel', itemValue);
-                                        setSelectedBank(itemValue)
-                                    }
-                                    }>
-                                        <Picker.Item label={'Please Select'} value={undefined} />
-                                        {bankList && bankList.map((b, i) => <Picker.Item key={i} label={b.bankLabel} value={b.bankLabel} />)}
-                                    </Picker>
+        <LayoutA title={'WITHDRAWAL'} navigation={props.navigation} nopadding>
+            <View style={{ marginTop: 10, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end', paddingLeft: 20, paddingRight: 30 }}>
+                <CustomButton navigation={() => props.navigation.navigate('WithdrawalApplication')} label={'New Withdrawal'} />
+            </View>
+            <View style={{ marginTop: 20}}>
+                <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingLeft: 20, paddingRight: 30  }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 10, flex: 1, borderWidth: 1, borderColor: 'lightgrey', padding: 10, borderRadius: 10 }}>
+                        <View>
+                            <Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
+                        </View>
+                        <TextInput placeholder='Please Enter Keyword' style={[styles.searchBar, { flex: 4 }]} onChangeText={(val) => searchList(val)} />
+                        <TouchableOpacity onPress={props.navigation.openDrawer} >
+                            <Ionicons name="ios-options" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
+                        </TouchableOpacity>
+                    </View>
+                </View>
+                {withdrawList && <FlatList contentContainerStyle={{ paddingLeft: 20, paddingRight: 20 }}
+                    refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+                    onEndReached={val => console.log(`onEndReached ialah : ${JSON.stringify(val)}`)}
+                    data={filterEnabled ? filteredWithdrawList : onScreenFilter ? onScreenFilteredList : withdrawList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
+                        <TouchableOpacity onPress={() => props.navigation.navigate('WithdrawalDetail', { id: item.id })} style={[styles.box]}>
+                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
+                                    <Text style={styles.small}>{moment(item.created_at).format("MMMM Do YYYY, h:mm:ss a")}</Text>
+                                    <Ionicons name="md-arrow-dropright" color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
                                 </View>
                             </View>
-                        </Modal>
-                        <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
-                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
-                                <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
-                                    <Ionicons name="ios-arrow-back" color={'#3EC2D9'} style={{ fontSize: 30, paddingLeft: 20 }} />
-                                </TouchableOpacity>
+                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={styles.text}>{item.type}</Text>
+                                </View>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={[styles.text, { color: item.status === 'New' ? '#34C2DB' : item.status === 'Rejected' ? '#FF0000' : item.status === 'Approved' ? '#54A400' : '#FA6400' }]}>{item.status}</Text>
+                                </View>
                             </View>
-                            <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                                <Text style={[styles.title, { color: '#055E7C' }]}>WITHDRAWAL</Text>
+                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={styles.small}>Amount</Text>
+                                </View>
                             </View>
-                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
-                                <Image source={{ uri: `https://picsum.photos/200/300` }} style={{ width: 30, height: 30, borderRadius: 15 }} />
+                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                <Text style={styles.text}>{currency} {item.amount}</Text>
                             </View>
-                        </View>
-                        <View style={{ justifyContent: 'space-between', flex: 9 }}>
-                            <View style={[{ flex: 9 }]}>
-                                <ScrollView style={[styles.screenMargin]}>
-                                    {ios ? <View style={[styles.formElement, { marginTop: 20 }]}>
-                                        <Text style={[styles.titleBox, { marginBottom: 5 }]}>Bank</Text>
-                                        {(bankExists && bankList) ?
-                                            <View>
-                                                <TouchableOpacity onPress={() => setIosPickerVisible(!iosPickerVisible)} style={{ marginTop: 5 }}>
-                                                    <Text style={[styles.small, { color: '#0A6496' }]}>Select Bank</Text>
-                                                </TouchableOpacity>
-                                                <TouchableWithoutFeedback onPress={() => props.navigation.navigate(`BankList`)} style={{ marginTop: 5 }}>
-                                                    <Text style={[styles.small, { color: '#0A6496' }]}>Manage Bank</Text>
-                                                </TouchableWithoutFeedback>
-                                            </View> : <TouchableWithoutFeedback onPress={() => props.navigation.navigate(`BankList`)}>
-                                                <Text style={[styles.small, { color: '#0A6496' }]}>Click Here to Add Bank</Text>
-                                            </TouchableWithoutFeedback>}
-                                        {bankLabelTouched && bankLabelError && <Text style={styles.error}>{bankLabelError}</Text>}
-                                    </View> : <View style={[styles.formElement, { marginTop: 20 }]}>
-                                            <Text style={[styles.titleBox, { marginBottom: 5 }]}>Bank</Text>
-                                            {(bankExists && bankList) ?
-                                                <View>
-                                                    <View style={{ alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
-                                                        <Picker style={{ flex: 1, height: 35 }} selectedValue={bankLabel} onValueChange={(itemValue, itemIndex) => {
-                                                            FormikProps.setFieldValue('bankLabel', itemValue); setSelectedBank(itemValue)
-                                                        }
-                                                        }>
-                                                            <Picker.Item label={'Please Select'} value={undefined} />
-                                                            {bankList && bankList.map((b, i) => <Picker.Item key={i} label={b.bankLabel} value={b.bankLabel} />)}
-                                                        </Picker>
-                                                    </View>
-                                                    <TouchableWithoutFeedback onPress={() => props.navigation.navigate(`BankList`)}>
-                                                        <Text style={[styles.small, { color: '#0A6496' }]}>Manage Bank</Text>
-                                                    </TouchableWithoutFeedback>
-                                                </View> : <TouchableWithoutFeedback onPress={() => props.navigation.navigate(`BankList`)}>
-                                                    <Text style={[styles.small, { color: '#0A6496' }]}>Click Here to Add Bank</Text>
-                                                </TouchableWithoutFeedback>}
-                                            {bankLabelTouched && bankLabelError && <Text style={styles.error}>{bankLabelError}</Text>}
-                                        </View>
-                                    }
-                                    {selectedBankDetail && <View>
-                                        <View style={[styles.formElement]}>
-                                            <Text style={[styles.titleBox, { marginBottom: 5 }]}>Bank Name</Text>
-                                            <Text style={[styles.text]}>{selectedBankDetail.bankAccountName}</Text>
-                                        </View>
-                                        <View style={[styles.formElement]}>
-                                            <Text style={[styles.titleBox, { marginBottom: 5 }]}>Account No</Text>
-                                            <Text style={[styles.text]}>{selectedBankDetail.bankAccountNo}</Text>
-                                        </View>
-                                        <View style={[styles.formElement]}>
-                                            <Text style={[styles.titleBox, { marginBottom: 5 }]}>Bank Address</Text>
-                                            <Text style={[styles.text]}>{selectedBankDetail.bankAddress}</Text>
-                                        </View>
-                                        <View style={[styles.formElement]}>
-                                            <Text style={[styles.titleBox, { marginBottom: 5 }]}>Bank Country</Text>
-                                            <Text style={[styles.text]}>{selectedBankDetail.bankCountry}</Text>
-                                        </View>
-                                    </View>}
-                                    <View style={[styles.formElement]}>
-                                        <Text style={[styles.titleBox, { marginBottom: 5 }]}>Amount</Text>
-                                        <TextInput value={amount} onChangeText={FormikProps.handleChange('amount')} onBlur={FormikProps.handleBlur('amount')} style={{ borderWidth: 1, borderColor: amountTouched && amountError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={amountTouched && amountError ? '' : 'Eg: RM890.00'} placeholderTextColor={amountTouched && amountError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} keyboardType={'decimal-pad'} />
-                                        {amountTouched && amountError && <Text style={styles.error}>{amountError}</Text>}
-                                    </View>
-                                    <View style={[styles.formElement]}>
-                                        <Text style={[styles.titleBox, { marginBottom: 5 }]}>Remark</Text>
-                                        <TextInput value={remark} onChangeText={FormikProps.handleChange('remark')} onBlur={FormikProps.handleBlur('remark')} style={{ borderWidth: 1, borderColor: remarkTouched && remarkError ? '#d94498' : 'rgba(0,0,0,0.3)', padding: 5 }} placeholder={remarkTouched && remarkError ? '' : 'Eg: For reference'} placeholderTextColor={remarkTouched && remarkError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
-                                        {remarkTouched && remarkError && <Text style={styles.error}>{remarkError}</Text>}
-                                    </View>
-                                </ScrollView>
-                            </View>
-                            <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch' }}>
-                                <TouchableOpacity onPress={() => props.navigation.goBack()} style={{ flex: 1, borderColor: '#D3D3D3', borderWidth: 1 }}>
-                                    <LinearGradient colors={['#FFF', '#FFF']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                                        <Text style={[styles.butang, { color: '#000000' }]}>Back</Text>
-                                    </LinearGradient>
-                                </TouchableOpacity>
-                                <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ flex: 1 }}>
-                                    <LinearGradient colors={FormikProps.isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                                        {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> :
-                                            <Text style={[styles.butang, { color: '#fff' }]}>Submit</Text>}
-                                    </LinearGradient>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                    </KeyboardAvoidingView>)
-            }}
-        </Formik >
+                        </TouchableOpacity>
+                    } />}
+            </View>
+        </LayoutA>
     );
 }
 
-WithdrawScreen.navigationOptions = {
-    header: null,
-};
+
 
 export default WithdrawScreen;

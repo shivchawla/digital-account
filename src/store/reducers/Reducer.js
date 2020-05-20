@@ -1,5 +1,16 @@
 import { combineReducers } from "redux";
 
+const apiReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_API_AUTH':
+            return { ...state, ...action.payload }
+        case 'API_RESET':
+            return state = []
+        default:
+            return state
+    }
+}
+
 const registrationReducer = (state = [], action) => {
     switch (action.type) {
         case 'GET_TOKEN':
@@ -63,6 +74,16 @@ const loginScreenReducer = (state = [], action) => {
             return { ...state, ...action.payload }
         case 'LOGIN_RESET':
             return state = []
+        default:
+            return state
+    }
+}
+
+const netInfoReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_NET_INFO_STATUS':
+            return { ...state, ...action.payload }
+     
         default:
             return state
     }
@@ -187,6 +208,18 @@ const myAccountReducer = (state = [], action) => {
             return state
     }
 }
+
+// const personalReducer = (state = [], action) => {
+//     switch (action.type) {
+//         case 'SET_PERSONAL_INFO':
+//             return { ...state, ...action.payload }
+//         case 'USER_PROFILE_RESET':
+//             return state = []
+//         default:
+//             return state
+//     }
+// }
+
 
 
 const trainingReducer = (state = [], action) => {
@@ -352,6 +385,62 @@ const loanReducer = (state = [], action) => {
     }
 }
 
+const loanBillReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_LOAN_BILL_LIST':
+            return { ...state, ...action.payload }
+
+        default:
+            return state
+    }
+}
+
+const withdrawReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_WITHDRAWAL_LIST':
+            return { ...state, ...action.payload }
+        case 'SET_WITHDRAWAL_DATA':
+            return { ...state, ...action.payload }
+        case 'SET_NEW_WITHDRAWAL':
+            return { ...state, ...action.payload }
+        default:
+            return state
+    }
+}
+
+const vendorReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_VENDOR_LIST':
+            return { ...state, ...action.payload }
+        case 'SET_VENDOR_SUBMIT':
+            return { ...state, ...action.payload }
+        default:
+            return state
+    }
+}
+
+
+const customerReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_CUSTOMER_LIST':
+            return { ...state, ...action.payload }
+
+        default:
+            return state
+    }
+}
+
+const itemReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_ITEM_LIST':
+            return { ...state, ...action.payload }
+
+        default:
+            return state
+    }
+}
+
+
 const agingReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_AGING_LIST':
@@ -366,6 +455,8 @@ const expenseReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_NEW_EXPENSE':
             return { ...state, ...action.payload }
+        // case 'RESET_EXPENSE':
+        //     return { ...state, ...action.payload }
 
         default:
             return state
@@ -388,6 +479,16 @@ const invoiceReducer = (state = [], action) => {
             return { ...state, ...action.payload }
 
         case 'SET_INVOICE_APPLICATION':
+            return { ...state, ...action.payload }
+
+        default:
+            return state
+    }
+}
+
+const paymentHistoryReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_PAYMENT_HISTORY_LIST':
             return { ...state, ...action.payload }
 
         default:
@@ -431,7 +532,8 @@ const notificationScreenReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_NOTIFICATION_LIST':
             return { ...state, ...action.payload }
-
+        case 'RESET_EMAIL_VERIFIED':
+            return { ...state, ...action.payload }
         default:
             return state
     }
@@ -483,11 +585,7 @@ const transferOutScreenReducer = (state = [], action) => {
         case 'SET_RECIPIENT_LIST':
             return { ...state, ...action.payload }
 
-        case 'SET_RECIPIENT':
-            return { ...state, ...action.payload }
 
-        case 'RESET_RECIPIENT':
-            return { memberFilter: true }
 
         default:
             return state
@@ -623,7 +721,16 @@ const listWorkersReducer = (state = [], action) => {
     }
 }
 
-const appReducer = combineReducers({ supportReducer, expenseReducer, businessDirectoryReducer, reportReducer, agingReducer, invoiceReducer, loanReducer, settingReducer, homeReducer, kycReducer, kyc1ScreenReducer, kyc2ScreenReducer, phoneVerificationReducer, termsReducer, pdpaReducer, kycVerifyReducer, passcodeCreationReducer, unlockReducer, dashboardScreenReducer, notificationScreenReducer, depositScreenReducer, personalInformationScreenReducer, transferOutScreenReducer, transferOutScanScreenReducer, scanBillReducer, personalInfoReducer, contactListReducer, requestScreenReducer, fulfillRequestScreenReducer, notificationfulfillRequestScreenReducer, withdrawScreenReducer, analyticScreenReducer, resetPinReducer, themeReducer, editInfoScreenReducer, loginScreenReducer, registrationReducer, companyInformationReducer, newsScreenReducer, eventScreenReducer, promotionScreenReducer, handbookScreenReducer, einfosScreenReducer, loanApplicationReducer, bizInfoReducer, listWorkersReducer, myAccountReducer, bizDirReducer, agencyListReducer, assoDirReducer, pendingDirReducer, trainingReducer, grantApplicationReducer, userAccountReducer, merchantInfoReducer, bankListReducer });
+const authReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_AUTH':
+            return { ...state, ...action.payload }
+        default:
+            return state
+    }
+}
+
+const appReducer = combineReducers({ paymentHistoryReducer, supportReducer, expenseReducer, businessDirectoryReducer, reportReducer, agingReducer, invoiceReducer, loanReducer, settingReducer, homeReducer, kycReducer, kyc1ScreenReducer, kyc2ScreenReducer, phoneVerificationReducer, termsReducer, pdpaReducer, kycVerifyReducer, passcodeCreationReducer, unlockReducer, dashboardScreenReducer, notificationScreenReducer, depositScreenReducer, personalInformationScreenReducer, transferOutScreenReducer, transferOutScanScreenReducer, scanBillReducer, personalInfoReducer, contactListReducer, requestScreenReducer, fulfillRequestScreenReducer, notificationfulfillRequestScreenReducer, withdrawScreenReducer, analyticScreenReducer, resetPinReducer, themeReducer, editInfoScreenReducer, loginScreenReducer, registrationReducer, companyInformationReducer, newsScreenReducer, eventScreenReducer, promotionScreenReducer, handbookScreenReducer, einfosScreenReducer, loanApplicationReducer, bizInfoReducer, listWorkersReducer, myAccountReducer, bizDirReducer, agencyListReducer, assoDirReducer, pendingDirReducer, trainingReducer, grantApplicationReducer, userAccountReducer, merchantInfoReducer, bankListReducer, withdrawReducer, vendorReducer, customerReducer, itemReducer, loanBillReducer, authReducer, apiReducer,netInfoReducer });
 
 const rootReducer = (state, action) => {
     switch (action.type) {

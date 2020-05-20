@@ -3,7 +3,7 @@
     "name": "Digital Account",
     "slug": "mobile",
     "privacy": "public",
-    "sdkVersion": "34.0.0",
+    "sdkVersion": "36.0.0",
     "platforms": [
       "ios",
       "android",
@@ -12,7 +12,7 @@
     "android": {
       "package": "com.fcgb.da",
       "googleServicesFile": "./google-services.json",
-      "versionCode": 5,
+      "versionCode": 6,
       "permissions": [
         "CAMERA",
         "RECORD_AUDIO",
@@ -21,7 +21,8 @@
         "CAMERA_ROLL",
         "WRITE_EXTERNAL_STORAGE",
         "READ_EXTERNAL_STORAGE",
-        "INTERNET"
+        "INTERNET",
+        "USE_FINGERPRINT"
       ]
     },
     
@@ -43,6 +44,15 @@
       "bundleIdentifier": "com.fcgb.da",
       "googleServicesFile": "./google-services.json",
       "supportsTablet": true
+    },
+    "web": {
+      "build": {
+        "babel": {
+          "include": [
+            "react-native-otp-input"
+          ]
+        }
+      }
     }
   }
 }
