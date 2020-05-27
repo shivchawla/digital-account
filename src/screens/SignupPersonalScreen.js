@@ -93,7 +93,6 @@ const SignupPersonalScreen = (props) => {
 
                     return (
 
-                        <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }} keyboardVerticalOffset={offSet?30:0}>
                             <LayoutA
                             title={'REGISTRATION'}
                             screenType='registration'
@@ -154,7 +153,7 @@ const SignupPersonalScreen = (props) => {
                                 label={`Next`}
                             />
                             </LayoutA>
-                        </KeyboardAvoidingView>)
+                    )
                 }
                 }
             </Formik >
