@@ -948,7 +948,7 @@ export const submitLoanApplicationApi = () => {
     const access_credential = 'api'
     console.log(`New loan api : ${JSON.stringify(values)}`)
 
-    const responseJson = await apiPostCall(`/api/loan/submit`, values2, getState().apiReducer)
+    const responseJson = await apiPostCall(`api/loan/submit`, values2, getState().apiReducer)
     const { status, code } = await responseJson
     await dispatch({ type: 'SET_LOAN_APPLICATION', payload: { status, code, proceedMain: true } })
     await console.log(`loan api  ${JSON.stringify(responseJson)}`)
