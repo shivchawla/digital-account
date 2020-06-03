@@ -34,6 +34,8 @@ const apiPostCall = async (uri, values, apiAccess) => {
   const Accept = 'application/json'
   const Authorization = token_type + ' ' + access_token
 
+  console.log(`api uri : ${apiUrl}${uri}`)
+
   const headers = { 'Content-Type': 'application/json', Accept, Authorization }
   let response = await fetch(`${apiUrl}${uri}`, { method, headers, body })
   let responseJson = await response.json()
