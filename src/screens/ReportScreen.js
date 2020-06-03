@@ -45,6 +45,7 @@ const ReportScreen = (props) => {
     }
 
     )
+    console.log(`reportList ialah ${JSON.stringify(reportList)}`)
     console.log(`dengan fee final ialah ${JSON.stringify(transactionAndFeeFinal)}`)
     console.log(`nak tengok ialah ${JSON.stringify(nakTengok)}`)
     // reportList&&reportList.map(rl=>{
@@ -94,7 +95,7 @@ const ReportScreen = (props) => {
                             <TouchableWithoutFeedback onPress={() => dispatch(actionCreator.setMarkerReportList(item.id))} style={{ flexDirection: 'row', marginTop: 5 }}>
                                 <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
 
-                                    <Text style={styles.small}>{moment(item.updated_at).format('DD/MM/YY h:mm:ss')}</Text>
+                                    <Text style={styles.small}>{item.created_at}</Text>
                                     <Ionicons name={item.marker ? "md-arrow-dropdown" : "md-arrow-dropright"} color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
                                 </View>
                             </TouchableWithoutFeedback>
@@ -127,7 +128,7 @@ const ReportScreen = (props) => {
                                         <Text style={[styles.label]}>Date</Text>
                                     </View>
                                     <View style={{ flex: 1 }}>
-                                        <Text style={[styles.value]}>{moment(item.updated_at).format('DD/MM/YY h:mm:ss')}</Text>
+                                        <Text style={[styles.value]}>{item.created_at}</Text>
                                     </View>
                                 </View>
 
