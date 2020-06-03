@@ -93,7 +93,7 @@ const DashboardScreen = (props) => {
       <LayoutA
         screenType='dashboard'
         navigation={props.navigation}
-        title={balance ? <NumberFormat value={balance.toFixed(2)} displayType={'text'} thousandSeparator={true} prefix={''} renderText={value => ` MYR ${value}`} /> : `MYR 0`}>
+        title={balance ? <NumberFormat value={balance} displayType={'text'} thousandSeparator={true} prefix={''} renderText={value => ` MYR ${value}`} /> : `MYR 0`}>
         <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: 20 }}>
           <TouchableOpacity onPress={() => props.navigation.navigate('TransferStack', { screen: 'Transfer' })}>
             <Text style={[styles.text]}>Send Money</Text>
