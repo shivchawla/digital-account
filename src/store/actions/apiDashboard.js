@@ -69,7 +69,7 @@ export const paymentHistoryListApi = () => {
 export const loanApplicationDataApi = (id) => {
   return async (dispatch, getState) => {
 
-    const responseJson = await apiGetCall(`api/loan/details?id=${id}`, getState().apiReducer)
+    const responseJson = await apiGetCall(`api/loan/${id}`, getState().apiReducer)
     const loanData = responseJson.data
     console.log('Success loan data' + JSON.stringify(responseJson))
     dispatch({ type: 'SET_LOAN_DATA', payload: { loanData } })
@@ -102,7 +102,8 @@ export const repaymentListApi = () => {
 export const repaymentDetailApi = (id) => {
   return async (dispatch, getState) => {
 
-    const responseJson = await apiGetCall(`api/repaymentinfo/details?id=${id}`, getState().apiReducer)
+    console.log(`uuid ialah : ${id}`)
+    const responseJson = await apiGetCall(`api/repaymentinfo/${id}`, getState().apiReducer)
     const repaymentDetail = responseJson.data
     console.log('Success withdraw data' + JSON.stringify(responseJson))
     dispatch({ type: 'SET_LOAN_LIST', payload: { repaymentDetail } })
@@ -114,7 +115,7 @@ export const repaymentDetailApi = (id) => {
 export const loanBillListApi = (loanNo) => {
   return async (dispatch, getState) => {
 
-    const responseJson = await apiGetCall(`api/repaymentinfo/bills/list?loanNo=${loanNo}`, getState().apiReducer)
+    const responseJson = await apiGetCall(`api/repaymentinfo/${loanNo}/bills`, getState().apiReducer)
     const loanBillList = responseJson.data
     //loanList.reverse()
     console.log('Loan Bill List' + JSON.stringify(responseJson))
@@ -126,7 +127,7 @@ export const loanBillListApi = (loanNo) => {
 export const billDetailApi = (id) => {
   return async (dispatch, getState) => {
 
-    const responseJson = await apiGetCall(`api/repaymentinfo/bills/details?id=${id}`, getState().apiReducer)
+    const responseJson = await apiGetCall(`api/bills/${id}`, getState().apiReducer)
     const billDetail = responseJson.data
     console.log('Success bill detail' + JSON.stringify(responseJson))
     dispatch({ type: 'SET_LOAN_BILL_LIST', payload: { billDetail } })
@@ -356,6 +357,7 @@ export const invoiceListApi = () => {
     const responseJson = await apiGetCall(`api/invoices/list`, getState().apiReducer)
     const invoiceList = await responseJson.data
     invoiceList && invoiceList.reverse()
+    invoiceList&&console.log(`invoice list${JSON.stringify(invoiceList)}`)
     dispatch({ type: 'SET_INVOICE_LIST', payload: { invoiceList } })
 
   }
@@ -960,58 +962,10 @@ export const submitInvoiceApi = () => {
     const { token_type, access_token } = getState().apiReducer
     const { newInvoice, items } = getState().invoiceReducer
 
-    const strNewInvoice = []
-    //newInvoice.map()
-    for (var p in newInvoice) {
-      if (newInvoice.hasOwnProperty(p)) {
-        strNewInvoice.push(p + "=" + newInvoice[p])
-      }
-      //strNewInvoice.join("&")
-    }
-
-    var strItems = []
-    items.map((c, i) => {
-      strItems += `&invoice_item[${i}]=${c.invoice_item}`
-      strItems += `&item[${i}]=${c.item}`
-      strItems += `&quantity[${i}]=${c.quantity}`
-      strItems += `&currencyItem[${i}]=${c.currencyItem}`
-      strItems += `&priceItem[${i}]=${c.priceItem}`
-    })
-
-    const strTest = "access_credential=api&" + strNewInvoice + "&" + strItems
-    //const strTest = 'dueDate=2020-4-11&invoiceNumber=Ddfg&amount=123&category=3&invoiceType=1&invoiceDate=2020-4-11&entityName=Sy&entityEmail=syahrizan.ali@gmail.com&entityPhone=123456789&entityAddress=Ssd&access_credential=api&entityId=14&currency=MYR&invoice_item[0]=Dd&item[0]=88&quantity[0]=13&currencyItem[0]=MYR&priceItem[0]=12'
-
-    // const strNewInvoiceAndItems = strNewInvoice + strItems + ', "access_credential":"api"}'
-    // const prms=new URLSearchParams(JSON.parse(strTest))
-    // const encodePrms=encodeURIComponent(prms)
-
-    // console.log(`inilah encoded Prms yang mantap : ${encodePrms}`)
-    console.log(`inilah kemantapan sejati : ${strTest.replace(new RegExp("\\[", "g"), '%5B').replace(new RegExp("\\]", "g"), '%5D').replace(new RegExp(",", "g"), '&')}`)
-    var data = strTest.replace(new RegExp("\\[", "g"), '%5B').replace(new RegExp("\\]", "g"), '%5D').replace(new RegExp(",", "g"), '&')
-    var xhr = new XMLHttpRequest();
-    xhr.withCredentials = true;
-
-    xhr.addEventListener("readystatechange", function () {
-      if (this.readyState === 4) {
-        console.log('hafizh power dan hensem', this.responseText);
-        const { status, code } = JSON.parse(this.responseText)
-        dispatch({ type: 'SET_INVOICE_APPLICATION', payload: { status, code, proceedMain: true } })
-
-      }
-    });
-
-    xhr.open("POST", "https://tuah.niyo.my/api/invoice/submit");
-    xhr.setRequestHeader("Authorization", token_type + ' ' + access_token);
-    xhr.setRequestHeader("Accept", "application/json");
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-    xhr.setRequestHeader("Cache-Control", "no-cache");
-
-    xhr.setRequestHeader("Host", "tuah.niyo.my");
-    xhr.setRequestHeader("Accept-Encoding", "gzip, deflate");
-
-
-    xhr.send(data);
+    const responseJson = await apiPostCall(`/api/invoices/submit`, values2, getState().apiReducer)
+    const { status, code } = await responseJson
+    await dispatch({ type: 'SET_LOAN_APPLICATION', payload: { status, code, proceedMain: true } })
+    await console.log(`invoice api  ${JSON.stringify(responseJson)}`)
 
   }
 }

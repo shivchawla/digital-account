@@ -56,16 +56,19 @@ const LoanScreen = (props) => {
         }
 
     }
-
+    loanList&&console.log(JSON.stringify(loanList))
     return (
 
-        <LayoutA title={'LOAN APPLICATION'} navigation={props.navigation} nopadding>
-            <View style={{ marginTop: 30, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-around', paddingLeft: 20, paddingRight: 20 }}>
+        <LayoutA title={'LOAN APPLICATION'} list={true} navigation={props.navigation} nopadding>
 
-                <CustomButton boxStyle={{ backgroundColor: '#34C2DB' }} navigation={() => props.navigation.navigate('LoanApplication')} label={'New Loan'} />
-                <CustomButton navigation={() => props.navigation.navigate('Withdraw')} label={'New Withdrawal'} />
+            <View style={{ flex: 1,justifyContent:'center' }}>
+                <View style={{  flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-around', paddingLeft: 20, paddingRight: 20 }}>
+
+                    <CustomButton boxStyle={{ backgroundColor: '#34C2DB' }} navigation={() => props.navigation.navigate('LoanApplication')} label={'New Loan'} />
+                    <CustomButton navigation={() => props.navigation.navigate('Withdraw')} label={'New Withdrawal'} />
+                </View>
             </View>
-            <View style={{ marginTop: 20 }}>
+            <View style={{ flex: 1,justifyContent:'center' }}>
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingLeft: 20, paddingRight: 30 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 10, flex: 1, borderWidth: 1, borderColor: 'lightgrey', padding: 10, borderRadius: 10 }}>
                         <View>
@@ -77,45 +80,54 @@ const LoanScreen = (props) => {
                         </TouchableOpacity>
                     </View>
                 </View>
-                {loanList && <FlatList contentContainerStyle={{ paddingLeft: 20, paddingRight: 20 }}
-                    refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
-                    onEndReached={val => console.log(`onEndReached ialah : ${JSON.stringify(val)}`)}
-                    data={filterEnabled ? filteredLoanList : onScreenFilter ? onScreenFilteredList : loanList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
-                        <TouchableOpacity onPress={() => props.navigation.navigate('LoanMiniDetail', { id: item.id })} style={styles.box}>
-                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
-                                    <Text style={styles.small}>{moment(item.created_at).format("MMMM Do YYYY, h:mm:ss a")}</Text>
-                                    <Ionicons name="md-arrow-dropright" color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
-                                </View>
-                            </View>
-                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={styles.text}>{item.type}</Text>
-                                </View>
-                            </View>
-                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={styles.small}>Status</Text>
-                                </View>
-                            </View>
-                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={[styles.text, { color: item.status === 'New' ? '#000000' : item.status === 'Rejected' ? '#FF0000' : item.status === 'Approved' ? '#54A400' : '#FA6400' }]}>{item.status}</Text>
-                                </View>
-                            </View>
-                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={styles.small}>Amount</Text>
-                                </View>
-                            </View>
-                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={[styles.text]}>{item.total_request}</Text>
-                                </View>
-                            </View>
-                        </TouchableOpacity>
-                    } />}
             </View>
+            <View style={{ flex: 7}}>
+                <View style={{}}>
+
+                    {loanList && <FlatList contentContainerStyle={{ paddingLeft: 20, paddingRight: 20 }}
+                        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+                        onEndReached={val => console.log(`onEndReached ialah : ${JSON.stringify(val)}`)}
+                        data={filterEnabled ? filteredLoanList : onScreenFilter ? onScreenFilteredList : loanList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
+                            <TouchableOpacity onPress={() => props.navigation.navigate('LoanMiniDetail', { id: item.id })} style={styles.box}>
+                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                    <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
+                                        <Text style={styles.small}>{item.created_at}</Text>
+                                        <Ionicons name="md-arrow-dropright" color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
+                                    </View>
+                                </View>
+                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                    
+                                    <View style={{ flex: 1 }}>
+                                        <Text style={styles.text}>{item.type}</Text>
+                                    </View>
+                                </View>
+                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                    <View style={{ flex: 1 }}>
+                                        <Text style={styles.small}>Status</Text>
+                                    </View>
+                                </View>
+                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                    <View style={{ flex: 1 }}>
+                                        <Text style={[styles.text, { color: item.status === 'New' ? '#000000' : item.status === 'Rejected' ? '#FF0000' : item.status === 'Approved' ? '#54A400' : '#FA6400' }]}>{item.status}</Text>
+                                    </View>
+                                </View>
+                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                    <View style={{ flex: 1 }}>
+                                        <Text style={styles.small}>Amount</Text>
+                                    </View>
+                                </View>
+                                <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                                    <View style={{ flex: 1 }}>
+                                        <Text style={[styles.text]}>{item.total_request}</Text>
+                                    </View>
+                                </View>
+                            </TouchableOpacity>
+                        } />}
+                </View>
+            </View>
+
+
+
         </LayoutA>
 
     );

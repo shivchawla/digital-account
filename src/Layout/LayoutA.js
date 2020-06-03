@@ -16,7 +16,8 @@ const LayoutA = (props) => {
 
         <View style={{ flex: 1, }}>
 
-            {props.screenType === 'registration' ? <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
+            {props.screenType === 'registration' ? 
+            <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'flex-start', paddingLeft: 10 }}>
                     <Text numberOfLines={1} style={[styles.title]} ellipsizeMode='head'>{props.title}</Text>
                 </View>
@@ -40,9 +41,10 @@ const LayoutA = (props) => {
                 </View>}
 
 
-
             <View style={{ justifyContent: 'space-between', flex: 9 }}>
-                {!((props.screenType === 'form')||(props.screenType === 'registration')) ? <View style={[styles.screenMargin, props.nopadding && styles.noPadding, props.row && { flex: 1, flexDirection: 'row' }]}>{props.children}</View> : props.children}
+                {!((props.screenType === 'form')||(props.screenType === 'registration')) ?
+                 <View style={[styles.screenMargin, props.nopadding && styles.noPadding, (props.row||props.list) && { flex: 1}]}>{props.children}</View> 
+                 : props.children}
             </View >
         </View >
 

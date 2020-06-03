@@ -38,6 +38,8 @@ const LoanDetailScreen = (props) => {
                         </View>
                         <View style={{ marginBottom: 10 }}>
                             <Text style={[styles.titleBox, { marginBottom: 5, fontSize: 17, fontFamily: 'Montserrat_medium', }]}>Total Financing (MYR)</Text>
+                           
+                            {/* <Text style={[styles.text, { marginBottom: 5 }]}>{loanData. repayment_info_uuid}</Text> */}
                             <Text style={[styles.text, { marginBottom: 5 }]}>{loanData.total_request}</Text>
                         </View>
                         <View style={{ marginBottom: 10 }}>

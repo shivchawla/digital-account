@@ -21,7 +21,7 @@ const validationSchema = Yup.object().shape({
 const RepaymentInfo = (props) => {
 
     useEffect(() => {
-        const repayItemId = props.route.params?.repayItemId??'NA'
+        const repayItemId = props.route.params?.repayment_info_uuid??'NA'
         dispatch(actionCreator.getRepaymentDetail(repayItemId))
     }, [repaymentDetail])
     const { repaymentDetail } = useSelector(state => state.loanReducer, shallowEqual)
