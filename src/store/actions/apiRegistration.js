@@ -3,7 +3,7 @@ import { FileSystem, Notifications } from 'expo'
 import * as SecureStore from 'expo-secure-store'
 import moment from 'moment'
 
-const apiUrl = 'https://sandbox.niyo.my/'
+const apiUrl = 'https://uat.niyo.my/'
 
 export const requestToken = () => {
   console.log('baca x ni')
@@ -14,7 +14,7 @@ export const requestToken = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ client_id: '1', client_secret: 'kfKkrDAn6qMm16Qy1a887VIhHbJx9iPHYaqsX823', grant_type: 'client_credentials' }),
+      body: JSON.stringify({ client_id: '2', client_secret: '2PzG8fnOTzbgGOVPoApHJq6fwJVa7rCqnR3KQNcM', grant_type: 'client_credentials' }),
 
     }).then((response) => response.json())
       .then(async (responseJson) => {
@@ -47,7 +47,7 @@ export const registerApi = (token_type, access_token, name, email, password, pas
         const { status, message } = await responseJson
         console.log(`responseJson ialah : ${JSON.stringify(responseJson)}`)
         console.log(`message ialah : ${message}`)
-        if (message == "Unauthenticated.") {
+        if (message == "User has been registered.") {
           console.log(`wow authenticated`)
           await dispatch({ type: 'SET_REGISTER', payload: { status, proceed: true, email, password } })
           await console.log(`register  ${JSON.stringify(responseJson)}`)
@@ -59,7 +59,7 @@ export const registerApi = (token_type, access_token, name, email, password, pas
         }
       })
       .catch((error) => {
-        console.error('Error : ' + error);
+        console.error('Error kat sini : ' + error);
       });
   }
 }
@@ -72,7 +72,7 @@ export const requestPersonalToken = (screen, username, password) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ client_id: '2', client_secret: 'uf2Di1kYj7ty29LLe9xAcvNyqo9XkRQv9L85rMh0', grant_type: 'password', username, password }),
+      body: JSON.stringify({ client_id: '2', client_secret: '2PzG8fnOTzbgGOVPoApHJq6fwJVa7rCqnR3KQNcM', grant_type: 'password', username, password }),
 
     }).then((response) => response.json())
       .then((responseJson) => {
@@ -119,7 +119,7 @@ export const companyInfoAPI = () => {
 
     const cddAddress = `${comp_addr}, ${comp_addr2}, ${comp_city}, ${comp_state}`
 
-    fetch(`${apiUrl}api/setup/merchant`, {
+    fetch(`${apiUrl}api/setup/business_info`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

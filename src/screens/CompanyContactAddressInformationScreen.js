@@ -115,7 +115,6 @@ const CompanyContactAddressInformationScreen = (props) => {
 
                 return (
 
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }} keyboardVerticalOffset={offSet ? 30 : 0}>
                         <LayoutA
                             title={'ADDRESS'}
                             screenType='registration'
@@ -211,7 +210,7 @@ const CompanyContactAddressInformationScreen = (props) => {
                                 label={`Save`}
                             />
                         </LayoutA>
-                    </KeyboardAvoidingView>)
+                   )
             }}
         </Formik >
 

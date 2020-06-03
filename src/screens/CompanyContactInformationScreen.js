@@ -60,7 +60,6 @@ const CompanyContactInformationScreen = (props) => {
                 const cddEmailError = FormikProps.errors.cddEmail
                 const cddEmailTouched = FormikProps.touched.cddEmail
                 return (
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }} keyboardVerticalOffset={offSet ? 30 : 0}>
                         <LayoutA
                             title={'COMPANY CONTACT'}
                             screenType='registration'
@@ -114,7 +113,7 @@ const CompanyContactInformationScreen = (props) => {
                                 label={`Next`}
                             />
                         </LayoutA>
-                    </KeyboardAvoidingView>)
+                 )
 
             }}
 

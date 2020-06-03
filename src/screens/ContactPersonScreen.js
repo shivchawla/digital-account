@@ -110,55 +110,66 @@ const ContactPersonScreen = (props) => {
 
                 return (
 
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }} keyboardVerticalOffset={offSet ? 30 : 0} >
-                        <LayoutA
-                            title={'CONTACT'}
-                            screenType='registration'
-                            navigation={props.navigation}
-                            nopadding
-                        >
+                    <LayoutA
+                        title={'CONTACT'}
+                        screenType='registration'
+                        navigation={props.navigation}
+                        nopadding
+                    >
 
-                            <ScrollView style={[styles.screenMargin, { flex: 9 }]}>
-                                <CustomTextInput
-                                    label={`Name`}
-                                    value={cddContactPersonName}
-                                    handleChange={FormikProps.handleChange(`cddContactPersonName`)}
-                                    handleBlur={FormikProps.handleBlur(`cddContactPersonName`)}
-                                    touched={cddContactPersonNameTouched}
-                                    error={cddContactPersonNameError}
-                                    placeholder={'Eg: Siti binti Iskandar'}
+                        <ScrollView style={[styles.screenMargin, { flex: 9 }]}>
+                            <CustomTextInput
+                                label={`Name`}
+                                value={cddContactPersonName}
+                                handleChange={FormikProps.handleChange(`cddContactPersonName`)}
+                                handleBlur={FormikProps.handleBlur(`cddContactPersonName`)}
+                                touched={cddContactPersonNameTouched}
+                                error={cddContactPersonNameError}
+                                placeholder={'Eg: Siti binti Iskandar'}
 
-                                />
-                                <CustomTextInput
-                                    label={`Phone Number`}
-                                    value={cddContactPersonNumber}
-                                    handleChange={FormikProps.handleChange(`cddContactPersonNumber`)}
-                                    handleBlur={FormikProps.handleBlur(`cddContactPersonNumber`)}
-                                    touched={cddContactPersonNumberTouched}
-                                    error={cddContactPersonNumberError}
-                                    placeholder={'Eg: 0189852012'}
-                                    keyboardType={'phone-pad'}
-                                />
-                                 <CustomTextInput
-                                    label={`Position`}
-                                    value={cddContactPersonPosition}
-                                    handleChange={FormikProps.handleChange(`cddContactPersonPosition`)}
-                                    handleBlur={FormikProps.handleBlur(`cddContactPersonPosition`)}
-                                    touched={cddContactPersonPositionTouched}
-                                    error={cddContactPersonPositionError}
-                                    placeholder={'Eg: HR Officer'}
-                                   
-                                />
-                            </ScrollView>
-                            <CustomFormAction
-                                navigation={props.navigation}
-                                isValid={FormikProps.isValid}
-                                handleSubmit={FormikProps.handleSubmit}
-                                isSubmitting = {FormikProps.isSubmitting}
-                                label={`Save`}
                             />
-                        </LayoutA>
-                    </KeyboardAvoidingView>)
+
+                            <CustomTextInput
+                                label={`Mykad`}
+                                value={cddContactPersonIc}
+                                handleChange={FormikProps.handleChange(`cddContactPersonIc`)}
+                                handleBlur={FormikProps.handleBlur(`cddContactPersonIc`)}
+                                touched={cddContactPersonIcTouched}
+                                error={cddContactPersonIcError}
+                                placeholder={'Eg: IC'}
+
+                            />
+
+                            <CustomTextInput
+                                label={`Phone Number`}
+                                value={cddContactPersonNumber}
+                                handleChange={FormikProps.handleChange(`cddContactPersonNumber`)}
+                                handleBlur={FormikProps.handleBlur(`cddContactPersonNumber`)}
+                                touched={cddContactPersonNumberTouched}
+                                error={cddContactPersonNumberError}
+                                placeholder={'Eg: 0189852012'}
+                                keyboardType={'phone-pad'}
+                            />
+                            <CustomTextInput
+                                label={`Position`}
+                                value={cddContactPersonPosition}
+                                handleChange={FormikProps.handleChange(`cddContactPersonPosition`)}
+                                handleBlur={FormikProps.handleBlur(`cddContactPersonPosition`)}
+                                touched={cddContactPersonPositionTouched}
+                                error={cddContactPersonPositionError}
+                                placeholder={'Eg: HR Officer'}
+
+                            />
+                        </ScrollView>
+                        <CustomFormAction
+                            navigation={props.navigation}
+                            isValid={FormikProps.isValid}
+                            handleSubmit={FormikProps.handleSubmit}
+                            isSubmitting={FormikProps.isSubmitting}
+                            label={`Save`}
+                        />
+                    </LayoutA>
+                )
             }}
         </Formik >
 

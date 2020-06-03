@@ -96,8 +96,14 @@ const CompanyInformationScreen = (props) => {
 
                 return (
 
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 2 }} keyboardVerticalOffset={offSet ? 30 : 0} >
-                        <Modal
+                        
+                        <LayoutA
+                            title={'COMPANY INFO'}
+                            screenType='registration'
+                            navigation={props.navigation}
+                            nopadding
+                        >
+                            <Modal
                             animationType="slide"
                             transparent={false}
                             visible={iosDatePickerShow}
@@ -129,12 +135,6 @@ const CompanyInformationScreen = (props) => {
                                 </View>
                             </View>
                         </Modal>
-                        <LayoutA
-                            title={'COMPANY INFO'}
-                            screenType='registration'
-                            navigation={props.navigation}
-                            nopadding
-                        >
                             <View style={[styles.screenMargin, { flex: 9 }]}>
                                 <CustomTextInput
                                     label={`Company Name`}
@@ -176,7 +176,7 @@ const CompanyInformationScreen = (props) => {
                             />
 
                         </LayoutA>
-                    </KeyboardAvoidingView>)
+                    )
             }}
         </Formik >
 

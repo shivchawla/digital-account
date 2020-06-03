@@ -4,7 +4,7 @@ import * as SecureStore from 'expo-secure-store'
 
 import moment from 'moment'
 
-const apiUrl = 'https://sandbox.niyo.my/'
+const apiUrl = 'https://uat.niyo.my/'
 
 const apiGetCall = async (uri, apiAccess) => {
   console.log(`tengok uri ${uri}`)
@@ -384,7 +384,7 @@ export const businessDirectoryListApi = () => {
 export const retrieveMerchantInfoApi = () => {
   return async (dispatch, getState) => {
 
-    const responseJson = await apiGetCall(`api/setup/merchant`, getState().apiReducer)
+    const responseJson = await apiGetCall(`api/merchant/details`, getState().apiReducer)
     const merchantInfo = responseJson.data
     console.log('Success' + JSON.stringify(responseJson))
     dispatch({ type: 'SET_MERCHANT', payload: { ...merchantInfo } })
@@ -397,8 +397,8 @@ export const retrieveAccountInfoApi = () => {
 
     const responseJson = await apiGetCall(`api/account/info`, getState().apiReducer)
     const accountInfo = responseJson.data
-    console.log('account info ialah' + JSON.stringify(accountInfo[0]))
-    dispatch({ type: 'SET_USER_PROFILE', payload: { ...accountInfo[0] } })
+    console.log('account info ialah' + JSON.stringify(accountInfo))
+    dispatch({ type: 'SET_USER_PROFILE', payload: { ...accountInfo } })
 
 
   }
