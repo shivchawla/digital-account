@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, TouchableOpacity, Text, Image, ActivityIndicator, KeyboardAvoidingView, ScrollView, TextInput } from 'react-native';
 import CheckBox from 'react-native-check-box'
 import { LinearGradient } from 'expo-linear-gradient'
@@ -12,6 +12,16 @@ import { useDispatch } from 'react-redux'
 import { keyboardBeingDisplay, keyboardBeingClose } from '../components/handleKeyboard'
 
 const validationSchema = Yup.object().shape({
+    declareName: Yup
+        .string()
+        .required()
+        .min(3)
+        .label('Name'),
+    declarePosition: Yup
+        .string()
+        .required()
+        .min(3)
+        .label('Name'),
 });
 
 const LoanApplicationDeclarationScreen = (props) => {
@@ -79,7 +89,7 @@ const LoanApplicationDeclarationScreen = (props) => {
                 }
 
                 return (
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }} keyboardVerticalOffset={offSet ? 30 : 0} >
+                    <>
                         <View style={[{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
@@ -87,7 +97,7 @@ const LoanApplicationDeclarationScreen = (props) => {
                                 </TouchableOpacity>
                             </View>
                             <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
-                                <Text style={[styles.title]}>LOAN</Text>
+                                <Text style={[styles.title]}>DECLARATION</Text>
                             </View>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
                                 <View style={{ backgroundColor: 'rgba(62,194,217,0.5)', borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
@@ -97,7 +107,7 @@ const LoanApplicationDeclarationScreen = (props) => {
                         </View>
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
                             <View style={{ flex: 9 }}>
-                                <ScrollView style={[styles.screenMargin]}>
+                                <ScrollView style={{ padding: 10 }}>
                                     <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'center', marginBottom: 5, marginTop: 5 }}>
                                         <Text style={[styles.titleBox, { marginBottom: 5, fontSize: 16 }]}>Financing</Text>
                                     </View>
@@ -179,7 +189,7 @@ const LoanApplicationDeclarationScreen = (props) => {
                                 </TouchableOpacity>
                             </View>
                         </View>
-                    </KeyboardAvoidingView>
+                    </>
                 )
             }}
         </Formik >

@@ -81,7 +81,7 @@ const AddBankScreen = (props) => {
                 const bankLabelTouched = FormikProps.touched.bankLabel
 
                 return (
-                    <KeyboardAvoidingView behavior="padding"  enabled style={{ flex: 1, }}>
+                    <>
                         <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
@@ -99,10 +99,10 @@ const AddBankScreen = (props) => {
                         </View>
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
                             <View style={{ flex: 9 }}>
-                                <ScrollView style={[styles.screenMargin]}>
+                                <ScrollView style={{padding:10}}>
                                     <View style={[styles.formElement, { marginTop: 20 }]}>
                                         <Text style={[styles.titleBox, { marginBottom: 10 }]}>Bank Account Number</Text>
-                                        <TextInput value={bankAccountNo} onChangeText={FormikProps.handleChange('bankAccountNo')} onFocus={() => setBankAccountNoActive(!bankAccountNoActive)} onBlur={() => { setBankAccountNoActive(!bankAccountNoActive); FormikProps.handleBlur('bankAccountNo') }} style={[styles.textInput, { borderWidth: bankAccountNoActive ? 2 : 1, borderColor: bankAccountNoTouched && bankAccountNoError ? 'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={bankAccountNoTouched && bankAccountNoError ? '' : 'Eg: 2310134578'} placeholderTextColor={bankAccountNoTouched && bankAccountNoError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
+                                        <TextInput value={bankAccountNo} onChangeText={FormikProps.handleChange('bankAccountNo')}  onBlur={FormikProps.handleBlur('bankAccountNo')} style={[styles.textInput, { borderWidth: 1, borderColor: bankAccountNoTouched && bankAccountNoError ? 'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5 }]} placeholder={bankAccountNoTouched && bankAccountNoError ? '' : 'Eg: 2310134578'} placeholderTextColor={bankAccountNoTouched && bankAccountNoError ? 'rgba(255,0,0,0.3)' : 'lightgrey'} />
                                         {bankAccountNoTouched && bankAccountNoError && <Text style={styles.error}>{bankAccountNoError}</Text>}
                                     </View>
                                     <View style={[styles.formElement]}>
@@ -141,7 +141,7 @@ const AddBankScreen = (props) => {
                                 </TouchableOpacity>
                             </View>
                         </View>
-                    </KeyboardAvoidingView>)
+                    </>)
             }}
         </Formik >
     );

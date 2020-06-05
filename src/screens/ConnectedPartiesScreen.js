@@ -96,7 +96,7 @@ const ConnectedPartiesScreen = (props) => {
 
                 return (
 
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }} keyboardVerticalOffset={offSet ? 30 : 0}>
+<>
                         <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
@@ -104,7 +104,7 @@ const ConnectedPartiesScreen = (props) => {
                                 </TouchableOpacity>
                             </View>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                                <Text style={styles.title}>LOAN</Text>
+                                <Text style={styles.title}>CONNECTED PARTY</Text>
                             </View>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end', marginRight: 10 }}>
                                 <View style={{ backgroundColor:'rgba(62,194,217,0.5)',borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
@@ -114,7 +114,7 @@ const ConnectedPartiesScreen = (props) => {
                         </View>
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
                             <View style={{ flex: 9 }}>
-                                <ScrollView style={[styles.screenMargin]}>
+                                <ScrollView style={{padding:10}}>
                                     <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'center', marginBottom: 5 }}>
                                         <Text style={[styles.titleBox, { marginBottom: 10, marginTop: 10,fontSize:16 }]}>Connected Parties</Text>
                                     </View>
@@ -185,7 +185,7 @@ const ConnectedPartiesScreen = (props) => {
                                 </TouchableOpacity>
                             </View>
                         </View>
-                    </KeyboardAvoidingView>)
+                   </>)
             }}
         </Formik >
     );

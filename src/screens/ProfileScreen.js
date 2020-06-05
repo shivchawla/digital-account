@@ -86,7 +86,7 @@ const ProfileScreen = (props) => {
                                 <Text style={[styles.label]}>Balance</Text>
                             </View>
                             <View style={{ flex: 2 }}>
-                                <Text style={[styles.value, { color: '#055E7C' }]}>{currency} {balance ? balance.toFixed(2) : '0'}</Text>
+                                <Text style={[styles.value, { color: '#055E7C' }]}>{currency} {balance ? balance : '0'}</Text>
                             </View>
                         </View>
                         <View style={{ flexDirection: 'row', marginTop: 10 }}>

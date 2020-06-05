@@ -146,7 +146,7 @@ const DashboardScreen = (props) => {
                   <View>
                     <Text style={[styles.listItem]}>{item.type}  </Text>
                     <Text style={[styles.listItem]}> ({item.transaction_no}) </Text>
-                    <Text style={[styles.listItem]}>{moment(item.updated_at).format('DD/MM/YY h:mm:ss')}</Text>
+                    <Text style={[styles.listItem]}>{item.created_at}</Text>
                   </View>
                 </View>
                 <View style={{}}>

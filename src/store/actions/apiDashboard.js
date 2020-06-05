@@ -153,7 +153,7 @@ export const agingListApi = () => {
 export const withdrawDataApi = (id) => {
   return async (dispatch, getState) => {
     console.log(`detail mantap${id}`)
-    const responseJson = await apiGetCall(`api/withdrawal/details?id=${id}`, getState().apiReducer)
+    const responseJson = await apiGetCall(`api/withdrawal/${id}`, getState().apiReducer)
     const withdrawData = responseJson.data
     console.log('Success withdraw data' + JSON.stringify(responseJson))
     dispatch({ type: 'SET_WITHDRAWAL_DATA', payload: { withdrawData } })
@@ -189,7 +189,7 @@ export const vendorListApi = () => {
 export const vendorDataRetrieveApi = (id) => {
   return async (dispatch, getState) => {
 
-    const responseJson = await apiGetCall(`api/setting/vendor/details?id=${id}`, getState().apiReducer)
+    const responseJson = await apiGetCall(`api/setting/vendor/${id}`, getState().apiReducer)
     const vendorData = responseJson.data
     console.log('Success vendor data' + JSON.stringify(responseJson))
     dispatch({ type: 'SET_VENDOR_LIST', payload: { vendorData } })
@@ -251,7 +251,7 @@ export const withDrawApi = (values) => {
     console.log(`New loan api : ${JSON.stringify(values2)}`)
 
 
-    const responseJson = await apiPostCall(`/api/withdrawal/submit`, values2, getState().apiReducer)
+    const responseJson = await apiPostCall(`api/withdrawal/submit`, values2, getState().apiReducer)
     const { status, code } = await responseJson
     await dispatch({ type: 'SET_NEW_WITHDRAWAL', payload: { status, code, proceedMain: true } })
     await console.log(`withdrawal api  ${JSON.stringify(responseJson)}`)
@@ -275,7 +275,7 @@ export const customerListApi = () => {
 export const customerDataRetrieveApi = (id) => {
   return async (dispatch, getState) => {
 
-    const responseJson = await apiGetCall(`api/setting/customer/details?id=${id}`, getState().apiReducer)
+    const responseJson = await apiGetCall(`api/customer/${id}`, getState().apiReducer)
     const customerData = responseJson.data
     console.log('Success customer data' + JSON.stringify(responseJson))
     dispatch({ type: 'SET_CUSTOMER_LIST', payload: { customerData } })
@@ -328,7 +328,7 @@ export const itemListApi = () => {
 export const itemDataRetrieveApi = (id) => {
   return async (dispatch, getState) => {
 
-    const responseJson = await apiGetCall(`api/setting/item/details?id=${id}`, getState().apiReducer)
+    const responseJson = await apiGetCall(`api/item/${id}`, getState().apiReducer)
     const itemData = responseJson.data
     console.log('Success item data' + JSON.stringify(responseJson))
     dispatch({ type: 'SET_ITEM_LIST', payload: { itemData } })
@@ -342,7 +342,7 @@ export const getAllUsersApi = () => {
   return async (dispatch, getState) => {
 
 
-    const responseJson = await apiGetCall(`api/developer/merchants/account/all`, getState().apiReducer)
+    const responseJson = await apiGetCall(`api/merchants/account/list`, getState().apiReducer)
     const userList = await responseJson.data
     console.log(`userlist ialah ${JSON.stringify(userList)}`)
 
@@ -359,7 +359,7 @@ export const invoiceListApi = () => {
     const responseJson = await apiGetCall(`api/invoices/list`, getState().apiReducer)
     const invoiceList = await responseJson.data
     invoiceList && invoiceList.reverse()
-    invoiceList&&console.log(`invoice list${JSON.stringify(invoiceList)}`)
+    invoiceList && console.log(`invoice list${JSON.stringify(invoiceList)}`)
     dispatch({ type: 'SET_INVOICE_LIST', payload: { invoiceList } })
 
   }
@@ -656,8 +656,9 @@ export const checkCDDApi2 = () => {
 export const bankListApi = () => {
   return async (dispatch, getState) => {
 
-    const responseJson = await apiGetCall(`/api/banks`, getState().apiReducer)
+    const responseJson = await apiGetCall(`api/banks`, getState().apiReducer)
     const bankList = await responseJson.data
+    console.log(`list of banks ${bankList}`)
     dispatch({ type: 'SET_BANK_LIST', payload: { bankList } })
 
   }
@@ -676,7 +677,8 @@ export const addBankApi = (values) => {
     const val = { account_no, account_holder_name, bank_name, bank_address, bank_country }
 
 
-    const responseJson = await apiPostCall(`/api/banks`, val, getState().apiReducer)
+    const responseJson = await apiPostCall(`api/banks`, val, getState().apiReducer)
+    console.log(`add bank ${JSON.stringify(responseJson)}`)
     const { status, code } = await responseJson
     // await dispatch({ type: 'SET_VENDOR_SUBMIT', payload: { status, code, proceedMain: true } })
     // await console.log(`vendor submit api  ${JSON.stringify(responseJson)}`)
@@ -958,26 +960,93 @@ export const submitLoanApplicationApi = () => {
   }
 }
 
-export const submitInvoiceApi = () => {
+export const submitInvoiceApi_ = () => {
   return async (dispatch, getState) => {
 
     const { token_type, access_token } = getState().apiReducer
     const { newInvoice, items } = getState().invoiceReducer
 
-    const responseJson = await apiPostCall(`/api/invoices/submit`, values2, getState().apiReducer)
+
+ 
+    
+    /*new code */
+    const responseJson = await apiPostCall(`api/invoices/submit`, values2, getState().apiReducer)
     const { status, code } = await responseJson
     await dispatch({ type: 'SET_LOAN_APPLICATION', payload: { status, code, proceedMain: true } })
     await console.log(`invoice api  ${JSON.stringify(responseJson)}`)
+    /*end new code */
+  }
+}
+
+export const submitInvoiceApi = () => {
+  return async (dispatch, getState) => {
+    const personalToken = await SecureStore.getItemAsync('personalToken')
+    const { token_type, access_token } = JSON.parse(personalToken)
+    const { newInvoice, items } = getState().invoiceReducer
+
+    const strNewInvoice = []
+    //newInvoice.map()
+    for (var p in newInvoice) {
+      if (newInvoice.hasOwnProperty(p)) {
+        strNewInvoice.push(p + "=" + newInvoice[p])
+      }
+      //strNewInvoice.join("&")
+    }
+
+    var strItems = []
+    items.map((c, i) => {
+      strItems += `&invoice_item[${i}]=${c.invoice_item}`
+      strItems += `&item[${i}]=${c.item}`
+      strItems += `&quantity[${i}]=${c.quantity}`
+      strItems += `&currencyItem[${i}]=${c.currencyItem}`
+      strItems += `&priceItem[${i}]=${c.priceItem}`
+    })
+
+    const strTest = "access_credential=api&" + strNewInvoice + "&" + strItems
+    //const strTest = 'dueDate=2020-4-11&invoiceNumber=Ddfg&amount=123&category=3&invoiceType=1&invoiceDate=2020-4-11&entityName=Sy&entityEmail=syahrizan.ali@gmail.com&entityPhone=123456789&entityAddress=Ssd&access_credential=api&entityId=14&currency=MYR&invoice_item[0]=Dd&item[0]=88&quantity[0]=13&currencyItem[0]=MYR&priceItem[0]=12'
+
+    // const strNewInvoiceAndItems = strNewInvoice + strItems + ', "access_credential":"api"}'
+    // const prms=new URLSearchParams(JSON.parse(strTest))
+    // const encodePrms=encodeURIComponent(prms)
+
+    // console.log(`inilah encoded Prms yang mantap : ${encodePrms}`)
+    console.log(`inilah kemantapan sejati : ${strTest.replace(new RegExp("\\[", "g"), '%5B').replace(new RegExp("\\]", "g"), '%5D').replace(new RegExp(",", "g"), '&')}`)
+    var data = strTest.replace(new RegExp("\\[", "g"), '%5B').replace(new RegExp("\\]", "g"), '%5D').replace(new RegExp(",", "g"), '&')
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+
+    xhr.addEventListener("readystatechange", function () {
+      if (this.readyState === 4) {
+        console.log('hafizh power dan hensem', this.responseText);
+        const { status, code } = JSON.parse(this.responseText)
+        dispatch({ type: 'SET_INVOICE_APPLICATION', payload: { status, code, proceedMain: true } })
+
+      }
+    });
+
+    xhr.open("POST", "https://uat.niyo.my/api/invoices/submit");
+    xhr.setRequestHeader("Authorization", token_type + ' ' + access_token);
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr.setRequestHeader("Cache-Control", "no-cache");
+
+    xhr.setRequestHeader("Host", "uat.niyo.my");
+    xhr.setRequestHeader("Accept-Encoding", "gzip, deflate");
+
+
+    xhr.send(data);
 
   }
 }
 
 
 
+
 export const vendorDataApi = (values) => {
   return async (dispatch, getState) => {
 
-    const responseJson = await apiPostCall(`/api/setting/vendor/submit`, values, getState().apiReducer)
+    const responseJson = await apiPostCall(`api/setting/vendor/submit`, values, getState().apiReducer)
     const { status, code } = await responseJson
     await dispatch({ type: 'SET_VENDOR_SUBMIT', payload: { status, code, proceedMain: true } })
     await console.log(`vendor submit api  ${JSON.stringify(responseJson)}`)
@@ -991,12 +1060,12 @@ export const vendorDataApi = (values) => {
 export const validatePinApi = (values) => {
   return async (dispatch, getState) => {
 
-    const responseJson = await apiPostCall(`/api/auth/validate_pin`, values, getState().apiReducer)
+    const responseJson = await apiPostCall(`api/auth/validate_pin`, values, getState().apiReducer)
     const { status, code } = await responseJson
     //await dispatch({ type: 'SET_VENDOR_SUBMIT', payload: { status, code, proceedMain: true } })
     await console.log(`validate pin api  ${JSON.stringify(responseJson)}`)
 
-   // console.log(`New add vendor api : ${JSON.stringify(values)}`)
+    // console.log(`New add vendor api : ${JSON.stringify(values)}`)
 
 
   }
@@ -1063,7 +1132,7 @@ export const deleteItemApi = (id) => {
 export const customerDataApi = (values) => {
   return async (dispatch, getState) => {
 
-    const responseJson = await apiPostCall(`/api/setting/customer/submit`, values, getState().apiReducer)
+    const responseJson = await apiPostCall(`api/setting/customer/submit`, values, getState().apiReducer)
     const { status, code } = await responseJson
     await dispatch({ type: 'SET_CUSTOMER_LIST', payload: { status, code, proceedMain: true } })
     await console.log(`customer submit api  ${JSON.stringify(responseJson)}`)
@@ -1078,7 +1147,7 @@ export const customerDataApi = (values) => {
 export const itemDataApi = (values) => {
   return async (dispatch, getState) => {
 
-    const responseJson = await apiPostCall(`/api/setting/item/submit`, values, getState().apiReducer)
+    const responseJson = await apiPostCall(`api/setting/item/submit`, values, getState().apiReducer)
     const { status, code } = await responseJson
     await dispatch({ type: 'SET_CUSTOMER_LIST', payload: { status, code, proceedMain: true } })
     await console.log(`customer submit api  ${JSON.stringify(responseJson)}`)
@@ -1090,7 +1159,7 @@ export const itemDataApi = (values) => {
 export const submitSupportApi = (values) => {
   return async (dispatch, getState) => {
 
-    const responseJson = await apiPostCall(`/api/ticket/submit`, values, getState().apiReducer)
+    const responseJson = await apiPostCall(`api/ticket/submit`, values, getState().apiReducer)
     const { status, code } = await responseJson
     await dispatch({ type: 'SET_SUBMIT_SUPPORT', payload: { status, code, proceedMain: true } })
     await console.log(`support api  ${JSON.stringify(responseJson)}`)
@@ -1103,7 +1172,7 @@ export const submitSupportApi = (values) => {
 export const newExpenseApi = (values) => {
   return async (dispatch, getState) => {
 
-    const responseJson = await apiPostCall(`/api/expenses/transfer/submit`, values, getState().apiReducer)
+    const responseJson = await apiPostCall(`api/expenses/transfer/submit`, values, getState().apiReducer)
     const { status, code } = await responseJson
     await dispatch({ type: 'SET_NEW_EXPENSE', payload: { status, code, proceedMain: true } })
     await console.log(`expense api  ${JSON.stringify(responseJson)}`)
@@ -1170,7 +1239,7 @@ export const savePinApi = (values) => {
 export const respondAgreementApi = (values) => {
   return async (dispatch, getState) => {
 
-    const responseJson = await apiPostCall(`/api/repaymentinfo/accept`, values, getState().apiReducer)
+    const responseJson = await apiPostCall(`api/repaymentinfo/accept`, values, getState().apiReducer)
     const { status } = await responseJson
     //await dispatch({ type: 'SET_VENDOR_SUBMIT', payload: { status, proceedMain: true } })
     await console.log(`respondAgreementApi ${JSON.stringify(responseJson)}`)

@@ -89,7 +89,7 @@ const WIthdrawApplicationScreen = (props) => {
 
         amount: Yup
             .number()
-            .min(10)
+            .min(1000)
             .max(balance)
             .required()
             .label('Amount'),
@@ -133,24 +133,24 @@ const WIthdrawApplicationScreen = (props) => {
                 }
 
                 return (
-                    <KeyboardAvoidingView behavior={'padding'} enabled style={{ flex: 1, }} keyboardVerticalOffset={offSet ? 30 : 0}>
-                        <Modal transparent={true} animationType={'slide'} visible={authRequestVisible} onRequestClose={() => setAuthRequestVisible(!authRequestVisible)} >
-                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(1,1,1,0.5)' }}>
-                                <View style={{ flex: 3 }} />
-                                <View style={{ flex: 1, backgroundColor: '#fff', justifyContent: 'center', alignItems: 'center' }}>
-                                    {(authType === 'passcode') ? <CodePin
-                                        //code="2018" // code.length is used if you not pass number prop
-                                        checkPinCode={(code, check) => check(checkCode(code))}
-                                        success={() => unlock()} // If user fill '2018', success is called
-                                        text="Please Enter PIN" // My title
-                                        error="Try again" // If user fail (fill '2017' for instance)
-                                        autoFocusFirst={true} // disabling auto-focus
-                                        keyboardType={'numeric'}
-                                        containerStyle={{ width: Layout.window.width, height: Layout.window.height / 4 }}
-                                    /> : <ScanFinger unlock={unlock} />}
-                                </View>
+                    <>
+                    <Modal transparent={true} animationType={'slide'} visible={authRequestVisible} onRequestClose={() => setAuthRequestVisible(!authRequestVisible)} >
+                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(1,1,1,0.5)' }}>
+                            <View style={{ flex: 3 }} />
+                            <View style={{ flex: 1, backgroundColor: '#fff', justifyContent: 'center', alignItems: 'center' }}>
+                                {(authType === 'passcode') ? <CodePin
+                                    //code="2018" // code.length is used if you not pass number prop
+                                    checkPinCode={(code, check) => check(checkCode(code))}
+                                    success={() => unlock()} // If user fill '2018', success is called
+                                    text="Please Enter PIN" // My title
+                                    error="Try again" // If user fail (fill '2017' for instance)
+                                    autoFocusFirst={true} // disabling auto-focus
+                                    keyboardType={'numeric'}
+                                    containerStyle={{ width: Layout.window.width, height: Layout.window.height / 4 }}
+                                /> : <ScanFinger unlock={unlock} />}
                             </View>
-                        </Modal>
+                        </View>
+                    </Modal>
 
                         <Modal animationType={'slide'} visible={iosPickerVisible} presentationStyle={'pageSheet'} onRequestClose={() => console.log('modal closed')}                      >
                             <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
@@ -184,7 +184,7 @@ const WIthdrawApplicationScreen = (props) => {
                             nopadding
                         >
                             <View style={[{ flex: 9 }]}>
-                                <ScrollView style={[styles.screenMargin]}>
+                                <ScrollView style={{ padding: 10 }}>
                                     {ios ? <View style={[styles.formElement, { marginTop: 20 }]}>
                                         <View style={{ flexDirection: 'row', alignItems: 'flex-end', marginBottom: 10 }}>
                                             <Text style={[styles.titleBox, { marginRight: 5 }]}>Bank</Text>
@@ -195,7 +195,7 @@ const WIthdrawApplicationScreen = (props) => {
                                         {(bankExists && bankList) ?
                                             <View>
                                                 <TouchableOpacity onPress={() => setIosPickerVisible(!iosPickerVisible)} style={{ flexDirection: 'row', alignSelf: 'stretch', borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5, justifyContent: 'space-between', alignItems: 'center' }}>
-                                                    <Text style={[styles.text]}>{bankLabel?bankLabel:`Select Bank` } </Text>
+                                                    <Text style={[styles.text]}>{bankLabel ? bankLabel : `Select Bank`} </Text>
                                                     <Ionicons name="ios-arrow-down" style={{ fontSize: 12, }} />
                                                 </TouchableOpacity>
 
@@ -279,7 +279,7 @@ const WIthdrawApplicationScreen = (props) => {
                                 locked={locked}
                             />
                         </LayoutA>
-                    </KeyboardAvoidingView>)
+                    </>)
             }}
         </Formik >
     );
