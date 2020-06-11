@@ -42,7 +42,7 @@ import LoanBillListScreen from '../screens/LoanBillListScreen';
 import LoanBillDetailScreen from '../screens/LoanBillDetailScreen';
 import LoanSuccessScreen from '../screens/LoanSuccessScreen';
 import TransferSuccessScreen from '../screens/TransferSuccessScreen';
-import WIthdrawApplicationScreen from '../screens/WIthdrawApplicationScreen';
+import WithdrawApplicationScreen from '../screens/WithdrawApplicationScreen';
 import WithdrawSuccessScreen from '../screens/WithdrawSuccessScreen';
 import BankListScreen from '../screens/BankListScreen';
 import AddBankScreen from '../screens/AddBankScreen';
@@ -198,7 +198,7 @@ const WithdrawStack = () => {
             <Stack.Screen name="Withdraw" component={WithdrawScreen} />
             <Stack.Screen name="BankList" component={BankListScreen} />
             <Stack.Screen name="AddBank" component={AddBankScreen} />
-            <Stack.Screen name="WithdrawalApplication" component={WIthdrawApplicationScreen} />
+            <Stack.Screen name="WithdrawalApplication" component={WithdrawApplicationScreen} />
             <Stack.Screen name="WithdrawSuccess" component={WithdrawSuccessScreen} />
 
         </Stack.Navigator>

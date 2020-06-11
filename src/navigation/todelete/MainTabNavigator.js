@@ -60,7 +60,7 @@ import AgingReportScreen from '../screens/AgingReportScreen';
 import ZakatSuccessScreen from '../screens/ZakatSuccessScreen';
 import PayrollSuccessScreen from '../screens/PayrollSuccessScreen';
 import RemittanceSuccessScreen from '../screens/RemittanceSuccessScreen';
-import WIthdrawApplicationScreen from '../screens/WIthdrawApplicationScreen';
+import WithdrawApplicationScreen from '../screens/WithdrawApplicationScreen';
 import WithdrawalDetailScreen from '../screens/WithdrawalDetailScreen';
 import VendorAddSuccessScreen from '../screens/VendorAddSuccessScreen';
 import VendorApplicationScreen from '../screens/VendorApplicationScreen';
@@ -171,7 +171,7 @@ const DashboardStackWithModal = createStackNavigator(
       screen: LoanApplicationScreen,
     },
     WithdrawalApplication: {
-      screen: WIthdrawApplicationScreen,
+      screen: WithdrawApplicationScreen,
     },
     WithdrawalDetail: {
       screen: WithdrawalDetailScreen,

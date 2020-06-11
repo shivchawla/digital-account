@@ -18,7 +18,7 @@ import { keyboardBeingDisplay, keyboardBeingClose } from '../components/handleKe
 import LayoutA from '../Layout/LayoutA';
 import { CustomFormAction, CustomTextInput } from '../components/Custom'
 
-const WIthdrawApplicationScreen = (props) => {
+const WithdrawApplicationScreen = (props) => {
 
     const unlock = () => {
         setLock(false)
@@ -286,4 +286,4 @@ const WIthdrawApplicationScreen = (props) => {
 }
 
 
-export default WIthdrawApplicationScreen;
+export default WithdrawApplicationScreen;
