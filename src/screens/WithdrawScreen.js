@@ -82,21 +82,14 @@ const WithdrawScreen = (props) => {
                                     <Ionicons name="md-arrow-dropright" color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
                                 </View>
                             </View>
+                            
                             <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={styles.text}>{item.type}</Text>
-                                </View>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={[styles.text, { color: item.status === 'New' ? '#34C2DB' : item.status === 'Rejected' ? '#FF0000' : item.status === 'Approved' ? '#54A400' : '#FA6400' }]}>{item.status}</Text>
-                                </View>
+                             
                             </View>
-                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={styles.small}>Amount</Text>
-                                </View>
-                            </View>
-                            <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                            <View style={{ flexDirection: 'row', marginTop: 5,justifyContent:'space-between' }}>
                                 <Text style={styles.text}>{currency} {item.amount}</Text>
+                                <Text style={[styles.text, { color: item.status === 'New' ? '#34C2DB' : item.status === 'Rejected' ? '#FF0000' : item.status === 'Approved' ? '#54A400' : '#FA6400' }]}>{item.status}</Text>
+
                             </View>
                         </TouchableOpacity>
                     } />}

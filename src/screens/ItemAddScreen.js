@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, TouchableOpacity, Text, Image, KeyboardAvoidingView, TextInput, ActivityIndicator, ScrollView } from 'react-native';
 import * as actionCreator from '../store/actions/action'
 import { useDispatch } from 'react-redux'
@@ -7,7 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles/styles'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import {keyboardBeingDisplay,keyboardBeingClose} from '../components/handleKeyboard'
+import { keyboardBeingDisplay, keyboardBeingClose } from '../components/handleKeyboard'
 import { CustomFormAction, CustomTextInput } from '../components/Custom'
 import LayoutA from '../Layout/LayoutA';
 const validationSchema = Yup.object().shape({
@@ -56,11 +56,11 @@ const validationSchema = Yup.object().shape({
 const ItemAddScreen = (props) => {
     const dispatch = useDispatch()
     const setItem = (val) => dispatch({ type: 'SET_ITEM_DATA', payload: { ...val } });
-    const [offSet,setOffSet]=useState(true)
+    const [offSet, setOffSet] = useState(true)
     useEffect(() => {
-        const open=()=>setOffSet(false)
-        const off=()=>setOffSet(true)
-       
+        const open = () => setOffSet(false)
+        const off = () => setOffSet(true)
+
         keyboardBeingDisplay(open)
         keyboardBeingClose(off)
     }, []); // empty-array means don't watch for any updates
@@ -106,7 +106,7 @@ const ItemAddScreen = (props) => {
 
                 return (
 
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, justifyContent: 'center' }} keyboardVerticalOffset={offSet ? 30 : 0} >
+                    <>
                         <LayoutA
                             title={'ITEM DETAILS'}
                             screenType='form'
@@ -192,11 +192,11 @@ const ItemAddScreen = (props) => {
                                 navigation={props.navigation}
                                 isValid={FormikProps.isValid}
                                 handleSubmit={FormikProps.handleSubmit}
-                                isSubmitting = {FormikProps.isSubmitting}
-                                
+                                isSubmitting={FormikProps.isSubmitting}
+
                             />
                         </LayoutA>
-                    </KeyboardAvoidingView>)
+                    </>)
             }}
         </Formik >
     );

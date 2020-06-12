@@ -48,7 +48,7 @@ const ChangeNumberScreen = (props) => {
 
                 return (
 
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }} keyboardVerticalOffset={offSet?30:0}>
+<>
                         <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
                                 <TouchableOpacity onPress={() => props.navigation.navigate("DataSetting")} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
@@ -88,7 +88,7 @@ const ChangeNumberScreen = (props) => {
                                 </LinearGradient>
                             </TouchableOpacity>
                         </View>
-                    </KeyboardAvoidingView>)
+                    </>)
             }}
         </Formik >
     );

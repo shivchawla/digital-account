@@ -101,17 +101,18 @@ const ReportScreen = (props) => {
                             </TouchableWithoutFeedback>
                             <View style={{ flexDirection: 'row', marginTop: 5, borderBottomWidth: item.marker ? 1 : 0, borderBottomColor: 'lightgrey', paddingBottom: 10 }}>
                                 <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                <Text style={[styles.h3]}>{item.type} </Text>
                                     <Ionicons name={item.credit_debit == 'DEBIT' ? "md-remove-circle-outline" : "md-add-circle-outline"} color={item.credit_debit == 'DEBIT' ? '#A20F0F' : '#7ED321'} style={{ fontSize: 15, paddingRight: 20 }} />
-                                    <Text style={[styles.h3]}>{item.type}</Text>
+                                  
 
                                 </View>
                             </View>
                             {!item.marker && <View style={{ flexDirection: 'row', marginTop: 5, }}>
-                                <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                                {/* <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                                     <Text style={[styles.label]}>Total</Text>
-                                </View>
+                                </View> */}
                                 <View style={{ flex: 1 }}>
-                                    <Text style={[styles.value]}>{item.currency}{item.fee + item.amount}</Text>
+                                    <Text style={[styles.value]}>{item.currency||`MYR `}{item.fee + item.amount}</Text>
                                 </View>
                             </View>}
                             {item.marker && <View style={{ flex: 1 }}>
@@ -164,7 +165,7 @@ const ReportScreen = (props) => {
                                         <Text style={[styles.label]}>Total</Text>
                                     </View>
                                     <View style={{ flex: 1 }}>
-                                        <Text style={[styles.value]}>{item.currency}{item.fee + item.amount}</Text>
+                                        <Text style={[styles.value]}>{item.currency||`MYR`}{item.fee + item.amount}</Text>
                                     </View>
                                 </View>
 

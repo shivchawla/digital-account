@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, TouchableOpacity, Text, Image, KeyboardAvoidingView, TextInput, ActivityIndicator, ScrollView } from 'react-native';
 import * as actionCreator from '../store/actions/action'
 import { useDispatch } from 'react-redux'
@@ -7,7 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles/styles'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import {keyboardBeingDisplay,keyboardBeingClose} from '../components/handleKeyboard'
+import { keyboardBeingDisplay, keyboardBeingClose } from '../components/handleKeyboard'
 import { CustomFormAction, CustomTextInput } from '../components/Custom'
 import LayoutA from '../Layout/LayoutA';
 const validationSchema = Yup.object().shape({
@@ -78,7 +78,7 @@ const VendorApplicationScreen = (props) => {
 
                 return (
 
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, justifyContent: 'center' }} keyboardVerticalOffset={offSet ? 30 : 0}>
+                    <>
                         <LayoutA
                             title={'VENDOR DETAILS'}
                             screenType='form'
@@ -128,11 +128,11 @@ const VendorApplicationScreen = (props) => {
                                 navigation={props.navigation}
                                 isValid={FormikProps.isValid}
                                 handleSubmit={FormikProps.handleSubmit}
-                                isSubmitting = {FormikProps.isSubmitting}
-                                
+                                isSubmitting={FormikProps.isSubmitting}
+
                             />
-                            </LayoutA>
-                    </KeyboardAvoidingView>)
+                        </LayoutA>
+                    </>)
             }}
         </Formik >
     );

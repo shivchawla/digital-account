@@ -67,8 +67,7 @@ const WelcomeScreen = (props) => {
                 const passwordTouched = FormikProps.touched.password
 
                 return (
-
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }}>
+                    <KeyboardAvoidingView  enabled style={{ flex: 1, }}>
                         <View style={{ justifyContent: 'space-between', flex: 9, }}>
                             <View style={{ flex: 9 }}>
                                 <View style={{ flex: 1, backgroundColor: '#055E7C' }}>

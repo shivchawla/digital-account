@@ -41,14 +41,11 @@ const WithdrawalDetailScreen = (props) => {
                         {withdrawData && <View style={[styles.box, { marginTop: 20 }]}>
                             <View style={{ marginTop: 5, borderBottomWidth: 1, borderBottomColor: 'lightgrey', paddingBottom: 20 }}>
                                 <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
-                                    <Text style={styles.small}>Customer ID</Text>
+                                    <Text style={styles.small}>{withdrawData.created_at}</Text>
                                     {/* <Text style={styles.boldText}>Niyo Account</Text> */}
                                     <Ionicons name="md-arrow-dropdown" color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
                                 </View>
-                                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between' }}>
-                                    <Text style={styles.text}>{withdrawData.merchant_id}</Text>
-                                    {/* <Text style={styles.text}>{withdrawData.account_no}</Text> */}
-                                </View>
+                            
                             </View>
                             <View style={{ justifyContent: 'space-between', marginTop: 20 }}>
                                 <View style={[styles.formElement]}>

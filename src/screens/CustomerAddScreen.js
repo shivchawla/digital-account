@@ -36,7 +36,7 @@ const CustomerAddScreen = (props) => {
 
     const dispatch = useDispatch()
     const setCustomer = (val) => dispatch({ type: 'SET_CUSTOMER_DATA', payload: { ...val } });
-    const [offSet,setOffSet]=useState(true)
+    const [offSet, setOffSet] = useState(true)
     useEffect(() => {
         const open = () => setOffSet(false)
         const off = () => setOffSet(true)
@@ -71,7 +71,7 @@ const CustomerAddScreen = (props) => {
 
                 return (
 
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, justifyContent: 'center' }} keyboardVerticalOffset={offSet ? 30 : 0} >
+                    <>
                         {/*<View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
                                 <TouchableOpacity onPress={() => props.navigation.goBack()} hitslop={{ top: 20, left: 20, bottom: 20, right: 20 }}>
@@ -92,7 +92,7 @@ const CustomerAddScreen = (props) => {
                             screenType='form'
                             navigation={props.navigation}
                             nopadding
-                           
+
                         >
                             <View style={[styles.screenMargin, { flex: 3, marginRight: 20 }]}>
                                 <CustomTextInput
@@ -130,7 +130,7 @@ const CustomerAddScreen = (props) => {
                                 isSubmitting={FormikProps.isSubmitting}
                             />
                         </LayoutA>
-                    </KeyboardAvoidingView>)
+                    </>)
             }}
         </Formik >
     );

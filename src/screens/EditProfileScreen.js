@@ -66,8 +66,7 @@ const EditProfileScreen = (props) => {
 
                 return (
 
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }} keyboardVerticalOffset={offSet?30:0} >
-                    
+                    <>                    
                     <View style={{ flex: 1 }}>
                         <View style={{ flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }}>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start', marginLeft: 0 }}>
@@ -135,7 +134,7 @@ const EditProfileScreen = (props) => {
                             </View>
                         </View>
                     </View>
-                </KeyboardAvoidingView>)
+                </>)
             }}
         </Formik >
     );

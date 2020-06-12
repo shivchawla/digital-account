@@ -22,7 +22,7 @@ const InvoiceScreen = (props) => {
             setOnScreenFilter(true)
             const newList = []
             invoiceList.map(b => {
-                b.invoice_number.includes(val) ? newList.push(b) : b.customer_name.includes(val) ? newList.push(b) : b.currency_code.includes(val) ? newList.push(b) : b.amount.toFixed(2).includes(val) ? newList.push(b) : b.customer_phone.includes(val) ? newList.push(b) : b.customer_email.includes(val) ? newList.push(b) : false
+                b.invoice_number.includes(val) ? newList.push(b) : b.customer_name.includes(val) ? newList.push(b) : b.currency.includes(val) ? newList.push(b) : b.amount.toFixed(2).includes(val) ? newList.push(b) : b.customer_phone.includes(val) ? newList.push(b) : b.customer_email.includes(val) ? newList.push(b) : false
             })
             console.log(`new list length ialah : ${newList.length}`)
             setOnScreenFilteredList(newList)
@@ -34,15 +34,16 @@ const InvoiceScreen = (props) => {
 
     }
 
+
     return (
 
         <LayoutA title={'INVOICE'} navigation={props.navigation} nopadding>
             <View style={{ marginTop: 25, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', paddingLeft: 20, paddingRight: 30 }}>
                 <CustomButton
-                            navigation={() => props.navigation.navigate('NewInvoice')}
-                            label={'New Invoice'}
-                            boxStyle={{ backgroundColor: '#34C2DB' }}
-                        />
+                    navigation={() => props.navigation.navigate('NewInvoice')}
+                    label={'New Invoice'}
+                    boxStyle={{ backgroundColor: '#34C2DB' }}
+                />
             </View>
             <View style={{ marginTop: 20 }}>
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 10, paddingLeft: 20, paddingRight: 30 }}>
@@ -56,23 +57,29 @@ const InvoiceScreen = (props) => {
                         </TouchableOpacity>
                     </View>
                 </View>
-                {invoiceList && <FlatList contentContainerStyle={{ paddingLeft: 20, paddingRight: 20 }}  data={filterEnabled ? filterInvoicesList : onScreenFilter ? onScreenFilteredList : invoiceList} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
+                {invoiceList && <FlatList contentContainerStyle={{ paddingLeft: 20, paddingRight: 20 }} data={filterEnabled ? filterInvoicesList : onScreenFilter ? onScreenFilteredList : invoiceList} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
                     <View style={styles.box}>
                         <TouchableWithoutFeedback onPress={() => dispatch(actionCreator.setMarker(index))} style={{ flexDirection: 'row', marginTop: 5 }}>
                             <View style={{ flex: 1, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'space-between' }}>
-                                <Text style={styles.small}>{moment(item.invoice_date).format('MMMM Do YYYY')}</Text>
+                                <Text style={styles.small}>{item.invoice_number}</Text>
                                 <Ionicons name={item.marker ? "md-arrow-dropdown" : "md-arrow-dropright"} color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
                             </View>
                         </TouchableWithoutFeedback>
                         <View style={{ flexDirection: 'row', marginTop: 5, borderBottomWidth: item.marker ? 1 : 0, borderBottomColor: 'lightgrey', paddingBottom: 10 }}>
                             <View style={{ flex: 1, paddingBottom: 5 }}>
-                                <Text style={styles.text}>{item.invoice_number}</Text>
+                                <Text style={styles.small}>Issue </Text>
+                                <Text style={styles.text}>{item.invoice_date}</Text>
                             </View>
+                            <View style={{ flex: 1, paddingBottom: 5 }}>
+                                <Text style={styles.small}>Due </Text>
+                                <Text style={styles.text}>{item.due_date}</Text>
+                            </View>
+
                         </View>
                         {!item.marker && <View style={{ flexDirection: 'row', marginTop: 5, }}>
                             <View style={{ flex: 1 }}>
                                 <Text style={styles.small}>Currency</Text>
-                                <Text style={styles.text}>{item.currency_code}</Text>
+                                <Text style={styles.text}>{item.currency}</Text>
                             </View>
                             <View style={{ flex: 1 }}>
                                 <Text style={styles.small}>Amount</Text>
@@ -89,7 +96,7 @@ const InvoiceScreen = (props) => {
                             <View style={{ flexDirection: 'row', marginTop: 20 }}>
                                 <View style={{ flex: 1 }}>
                                     <Text style={styles.small}>Currency</Text>
-                                    <Text style={styles.text}>{item.currency_code}</Text>
+                                    <Text style={styles.text}>{item.currency}</Text>
                                 </View>
                                 <View style={{ flex: 1 }}>
                                     <Text style={styles.small}>Amount</Text>

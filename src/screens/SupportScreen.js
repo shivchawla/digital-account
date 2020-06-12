@@ -56,7 +56,7 @@ const SupportScreen = (props) => {
         keyboardBeingClose(off)
     }, []); // empty-array means don't watch for any updates
     if (!apiReady) {
-        return (<KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }} keyboardVerticalOffset={offSet ? 30 : 0}>
+        return (<>
 
             <View style={[styles.titleMargin, { flex: 1, flexDirection: 'row', borderBottomWidth: 1, borderColor: '#9ADAF4' }]}>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-start' }}>
@@ -79,7 +79,7 @@ const SupportScreen = (props) => {
                 </View>
 
             </View>
-        </KeyboardAvoidingView>)
+        </>)
     }
     //kalau backend ADA api
     return (
@@ -108,7 +108,7 @@ const SupportScreen = (props) => {
 
                 return (
 
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }} keyboardVerticalOffset={20}>
+                    <>
                         <Modal animationType={'slide'}
                             visible={iosPickerVisible} onRequestClose={() => console.log(`onRequestClose`)}
                         >
@@ -228,7 +228,7 @@ const SupportScreen = (props) => {
                                 </TouchableOpacity>
                             </View>
                         </View>
-                    </KeyboardAvoidingView>)
+                    </>)
             }}
         </Formik >
     );
