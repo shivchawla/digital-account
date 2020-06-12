@@ -45,7 +45,6 @@ const BankListScreen = (props) => {
                     </View>
                 </View>
                 <View style={{ marginTop: 20 }}>
-
                     {bankList && <FlatList data={bankList} keyExtractor={(item, index) => index.toString()} renderItem={({ item, index }) =>
                         <View style={styles.box}>
                             <TouchableWithoutFeedback onPress={() => dispatch(actionCreator.setMarkerBankList(index))} style={{ flexDirection: 'row', marginTop: 5 }}>
@@ -54,16 +53,17 @@ const BankListScreen = (props) => {
                                     <Ionicons name={item.marker ? "md-arrow-dropdown" : "md-arrow-dropright"} color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
                                 </View>
                             </TouchableWithoutFeedback>
+                           
+                            <View style={{ flexDirection: 'row', marginTop: 5, borderBottomWidth: item.marker ? 1 : 0, borderBottomColor: 'lightgrey', }}>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={styles.text}>{item.account_no}</Text>
+                                </View>
+                            </View>
                             <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingRight: 10 }}>
-                                <TouchableOpacity onPress={() => dispatch(actionCreator.deleteBank(item.id))} style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 20 }}>
+                                <TouchableOpacity onPress={() => dispatch(actionCreator.deleteBank(item.id))} style={{ flexDirection: 'row', alignItems: 'center',  }}>
                                     <Text style={[styles.small, { paddingRight: 5, color: 'red' }]}>Remove </Text>
                                     <Ionicons name="md-close-circle-outline" color={'red'} style={{ fontSize: 15, paddingRight: 5 }} />
                                 </TouchableOpacity>
-                            </View>
-                            <View style={{ flexDirection: 'row', marginTop: 5, borderBottomWidth: item.marker ? 1 : 0, borderBottomColor: 'lightgrey', }}>
-                                <View style={{ flex: 1 }}>
-                                    <Text style={styles.text}>{item.bankAccountNo}</Text>
-                                </View>
                             </View>
                             {item.marker &&
                                 <View style={{ flex: 1 }}>

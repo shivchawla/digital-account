@@ -10,7 +10,7 @@ import styles from '../styles/styles'
 import moment from 'moment'
 import CodePin from 'react-native-pin-code'
 import Layout from '../constants/Layout';
-import {keyboardBeingDisplay,keyboardBeingClose} from '../components/handleKeyboard'
+import { keyboardBeingDisplay, keyboardBeingClose } from '../components/handleKeyboard'
 import { CustomFormAction, CustomTextInput } from '../components/Custom'
 
 // let Modal;
@@ -40,12 +40,12 @@ const TransferScreen = (props) => {
     const [locked, setLock] = useState(true)
     const [code, updateCode] = useState("")
     const [authRequestVisible, setAuthRequestVisible] = useState(false)
-   
-    const [offSet,setOffSet]=useState(true)
+
+    const [offSet, setOffSet] = useState(true)
     useEffect(() => {
-        const open=()=>setOffSet(false)
-        const off=()=>setOffSet(true)
-       
+        const open = () => setOffSet(false)
+        const off = () => setOffSet(true)
+
         keyboardBeingDisplay(open)
         keyboardBeingClose(off)
     }, []); // empty-array means don't watch for any updates
@@ -109,7 +109,7 @@ const TransferScreen = (props) => {
                 }
 
                 return (
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }}  keyboardVerticalOffset={offSet?30:0} navigation={props.navigation} >
+                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1 }} keyboardVerticalOffset={offSet ? 30 : 0} navigation={props.navigation} >
                         <Popup
                             setUser={setUser}
                             userList={userList}
@@ -250,9 +250,9 @@ const Popup = (props) => {
                     </View>
                 </View>
                 <View style={{ justifyContent: 'space-between', flex: 9 }}>
-                    <View style={[styles.screenMargin]}>
+                    <View>
                         <View style={{ marginTop: 20 }}>
-                            <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 10 }}>
+                            <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingRight: 30, paddingLeft: 20 }}>
                                 <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 10, flex: 1, borderWidth: 1, borderColor: 'lightgrey', padding: 10, borderRadius: 10 }}>
                                     <View>
                                         <Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
@@ -263,7 +263,7 @@ const Popup = (props) => {
                                     </TouchableOpacity>
                                 </View>
                             </View>
-                            {userList && <FlatList data={userList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
+                            {userList && <FlatList style={{paddingLeft:20,paddingRight:20}} data={userList} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
                                 <TouchableOpacity onPress={() => setUser(item.account_number)} style={styles.box}>
                                     <View style={{ flexDirection: 'row', marginTop: 5 }}>
                                         <View style={{ flex: 1 }}>
