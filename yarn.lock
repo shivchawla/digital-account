@@ -7975,6 +7975,11 @@ malaysia-city-postcode@^1.1.0:
   resolved "https://registry.yarnpkg.com/malaysia-city-postcode/-/malaysia-city-postcode-1.1.0.tgz#15188b331ed59dea4609637309280fc152873fae"
   integrity sha512-MLqahr5FQolj0bdmlMxlln27/JZAgR3CH7euqbxmAZUcvGlY32ZN/5v3nv4ytweKCL3XZyz1EQ/Z95wG6ravdg==
 
+malaysia-state-city-postcode@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/malaysia-state-city-postcode/-/malaysia-state-city-postcode-1.0.0.tgz#a9e4de86123c5e2e1772220006aa39ad16262009"
+  integrity sha512-VWzy/3ZrmMKv39PHEh5MguscJWo7mTiG5a84MW3xyVD0NtfpyTvEDl50b1hACR7zbcnJ688B+hPM4KOLUTCpUQ==
+
 mamacro@^0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/mamacro/-/mamacro-0.0.3.tgz#ad2c9576197c9f1abf308d0787865bd975a3f3e4"

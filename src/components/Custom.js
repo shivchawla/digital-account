@@ -11,12 +11,12 @@ import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 
 export const CustomTextInput = (props) => {
    
-    const { value, handleChange, handleBlur, touched, error, label, keyboardType, placeholder, handleClick, message,secureText} = props
+    const { value, handleChange, handleBlur, touched, error, label, keyboardType, placeholder, handleClick, message,secureText,disabled} = props
     return (
         !handleClick ?
             <View style={[styles.formElement, { marginBottom: 10 }]}>
-                <Text style={[styles.titleBox, { marginTop: 10, marginBottom: 10 }]}>{label}</Text>
-                <TextInput secureTextEntry={secureText} keyboardType={keyboardType} value={value} onChangeText={handleChange} onBlur={handleBlur} style={{ borderWidth: 1, borderColor: touched && error ? 'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5, fontSize: 15, fontFamily: 'Montserrat_medium' }} placeholder={touched && error ? '' : placeholder} placeholderTextColor={touched && error ? 'rgba(255,0,0,1)' : 'lightgrey'} />
+                <Text  style={[styles.titleBox, { marginTop: 10, marginBottom: 10 }]}>{label}</Text>
+                <TextInput editable={!disabled} secureTextEntry={secureText} keyboardType={keyboardType} value={value} onChangeText={handleChange} onBlur={handleBlur} style={{ borderWidth: 1, borderColor: touched && error ? 'rgba(255,0,0,1)' : 'rgba(0,0,0,0.3)', padding: 5, fontSize: 15, fontFamily: 'Montserrat_medium' }} placeholder={touched && error ? '' : placeholder} placeholderTextColor={touched && error ? 'rgba(255,0,0,1)' : 'lightgrey'} />
                 {touched && error && <Text style={styles.error}>{error}</Text>}
                 {message && <Text style={styles.error}>{message.email}</Text>}
             </View> :

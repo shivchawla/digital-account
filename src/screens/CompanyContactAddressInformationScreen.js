@@ -91,25 +91,31 @@ const CompanyContactAddressInformationScreen = (props) => {
 
                 const newAddress = malaysiaData;
 
-                const checkPostcode = (cddPostcode, itemIndex) => {
+               
+                const getCoordinate = (poskod) => {
 
-                    if (cddPostcode.length > 4) {
-                        const checkRequirement = newAddress.find(c => c.Postcode === cddPostcode)
-                        if (checkRequirement) {
-                            const { City, State } = checkRequirement
-                            FormikProps.setFieldValue('comp_city', City)
-                            FormikProps.setFieldValue('comp_state', State)
-                            FormikProps.setFieldValue('cddPostcode', cddPostcode)
-                            console.log('Ni jalan yang benar')
+                    if (poskod) {
+                        if (poskod.length === 5) {
+                            const coordinate = malaysiaData.find(x => x.Postcode == poskod)
+
+                            if (coordinate) {
+                                console.log(`result coor : ${JSON.stringify(coordinate)}`)
+                                FormikProps.setFieldValue('cddPostcode', poskod)
+                                FormikProps.setFieldValue(`comp_city`, coordinate.City)
+                                FormikProps.setFieldValue(`comp_state`, coordinate.State)
+                            } else {
+                                console.log(`no result found`)
+                                FormikProps.setFieldValue('cddPostcode', poskod)
+                            }
+
+                        } else {
+                            console.log(`do nothing`)
+                            FormikProps.setFieldValue('cddPostcode', poskod)
                         }
-                        // const { City, State } = newAddress.find(c => c.Postcode === cddPostcode)
+
+                    }else{
+                        FormikProps.setFieldValue('cddPostcode', '')
                     }
-                    else {
-                        console.log('Ni jalan yang salah')
-                    }
-                    // const { City, State } = malaysiaData.find(c => c.Postcode === cddPostcode)
-                    // FormikProps.setFieldValue('comp_city', City)
-                    // FormikProps.setFieldValue('comp_state', State)
 
                 }
 
@@ -144,7 +150,7 @@ const CompanyContactAddressInformationScreen = (props) => {
                                         placeholder={'Eg: Taman Enggang Utama'}
 
                                     />
-                                    <CustomTextInput
+                                    {/* <CustomTextInput
                                         label={`Postcode`}
                                         value={cddPostcode}
                                         handleChange={FormikProps.handleChange(`cddPostcode`)}
@@ -153,19 +159,32 @@ const CompanyContactAddressInformationScreen = (props) => {
                                         error={cddPostcodeError}
                                         placeholder={'Eg: 60901'}
                                         keyboardType={'phone-pad'}
-                                    />
+                                    /> */}
+                                     <CustomTextInput
+                                     
+                                            label={`Postcode`}
+                                            value={cddPostcode}
+                                            handleChange={value => getCoordinate(value)}
+                                            handleBlur={FormikProps.handleBlur(`cddPostcode`)}
+                                            touched={cddPostcodeTouched}
+                                            error={cddPostcodeError}
+                                            placeholder={'Poskod'}
+                                            keyboardType={'decimal-pad'}
+                                        />
+
                                     <CustomTextInput
+                                    disabled={true}
                                         label={`City`}
                                         value={comp_city}
                                         handleChange={FormikProps.handleChange(`comp_city`)}
                                         handleBlur={FormikProps.handleBlur(`comp_city`)}
                                         touched={comp_cityTouched}
                                         error={comp_cityError}
-                                        placeholder={''}
-                                       
+                                        placeholder={''}                                      
                                         
                                     />
                                      <CustomTextInput
+                                      disabled={true}
                                         label={`State`}
                                         value={comp_state}
                                         handleChange={FormikProps.handleChange(`comp_state`)}

@@ -95,6 +95,7 @@ const CompanyInformationScreen = (props) => {
                     showMode('date');
                 };
 
+              
 
                 const { cddCompanyName, cddRegistrationNumber, cddRegisteredDate } = FormikProps.values
 
