@@ -10,7 +10,7 @@ const DataSettingScreen = (props) => {
     const dispatch = useDispatch()
     const logout = async () => {
         await dispatch(actionCreator.logout())
-        await props.navigation.navigate('Welcome')
+        //await props.navigation.navigate('Welcome')
     }
 
     return (

@@ -31,8 +31,9 @@ const AdminApprovalScreen = (props) => {
         // else { setDashboardDisplay(false) }
     }, [status1])
 
-    const logout=()=>{
+    const logout = () => {
         dispatch(actionCreator.logout())
+        props.navigation.reset({ index: 0, routes: [{ name: 'Registration' }], })
         props.navigation.navigate('Welcome')
     }
 

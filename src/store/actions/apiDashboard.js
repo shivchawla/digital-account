@@ -658,7 +658,7 @@ export const bankListApi = () => {
 
     const responseJson = await apiGetCall(`api/banks`, getState().apiReducer)
     const bankList = await responseJson.data
-    console.log(`list of banks ${JSON.stringify(bankList)}`)
+    console.log(`list of banks ${bankList}`)
     dispatch({ type: 'SET_BANK_LIST', payload: { bankList } })
 
   }

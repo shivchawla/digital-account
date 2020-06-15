@@ -226,7 +226,7 @@ export const declarationApi = (values) => {
         await console.log(`declaration api  ${JSON.stringify(responseJson)}`)
       })
       .catch((error) => {
-        console.error('Error : ' + error);
+        console.error('ERROR DECLARATION API : ' + error);
       });
 
   }
@@ -252,10 +252,10 @@ export const cddApi = () => {
       .then(async (responseJson) => {
         const { status } = await responseJson
         //await dispatch({ type: 'SET_COMPANY_INFO', payload: { status, proceedMain: true } })
-        await console.log(`cdd api  ${JSON.stringify(responseJson)}`)
+        await console.log(`cdd api post  ${JSON.stringify(responseJson)}`)
       })
       .catch((error) => {
-        console.error('Error : ' + error);
+        console.error('ERROR KAT CDD API POST PANGGIL LEPAS REGISTRATION DECLARATION : ' + error);
       });
 
   }

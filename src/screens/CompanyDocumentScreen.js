@@ -22,7 +22,9 @@ const CompanyDocumentScreen = (props) => {
                     onPress: () => console.log('Cancel Pressed'),
                     style: 'cancel',
                 },
-                { text: 'Dashboard', onPress: () => { console.log('OK Pressed'); dispatch(actionCreator.setScreen2()); props.navigation.navigate('Dashboard', { from: 'Registration' }) } },
+                { text: 'Dashboard', onPress: () => { console.log('OK Pressed'); 
+                dispatch(actionCreator.setScreen2()); 
+                props.navigation.navigate('Dashboard', { from: 'Registration' }) } },
                 { text: 'Exit', onPress: () => { console.log('OK Pressed'); BackHandler.exitApp() } },
             ],
             { cancelable: false },
