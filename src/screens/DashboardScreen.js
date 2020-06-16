@@ -40,6 +40,28 @@ const DashboardScreen = (props) => {
   const { status, status1, link } = useSelector(state => state.merchantInfoReducer, shallowEqual)
   const [screenStatus, setScreenStatus] = useState(null)
 
+
+  useEffect(() => {
+    const unsubscribe = props.navigation.addListener('focus', () => {
+      console.log(`dashboard is focused`)
+      dispatch(actionCreator.setScreen2())
+      const delayedFunction = () => setTimeout(() => {
+        if (status1 === 'Approved') {
+          setDashboardDisplay(true)
+          dispatch(actionCreator.retrievePersonalInfo())
+          dispatch(actionCreator.retrieveMerchantInfo())
+          dispatch(actionCreator.retrieveAccountInfo())
+          dispatch(actionCreator.getReportList())
+          dispatch(actionCreator.checkAuth()) //awal awal lagi tengok
+        }
+        else { setDashboardDisplay(false) }
+      }, 500)
+      delayedFunction()
+    });
+
+    return unsubscribe;
+  }, [props.navigation]);
+
   useEffect(() => {
     //dispatch(actionCreator.setScreen2())
     if (status1 === 'Approved') {
@@ -54,7 +76,7 @@ const DashboardScreen = (props) => {
   }, [status1])
 
   useEffect(() => {
-    //dispatch(actionCreator.setScreen2())
+    dispatch(actionCreator.setScreen2())
 
   }, [status1])
 
@@ -76,8 +98,10 @@ const DashboardScreen = (props) => {
 
   const goTo = () => {
     setDashboardDisplay(true)
-    props.navigation.navigate('Registration', { screen: 'Intro', params: { screen: link } })
+    props.navigation.navigate('Registration', { screen: 'Intro', params: { screen: link, params: { prevScreen: 'Dashboard' } } })
   }
+
+  link && console.log(`link ialah ${link}`)
 
   return (
 
