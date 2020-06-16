@@ -37,21 +37,22 @@ const WelcomeScreen = (props) => {
         dispatch(actionCreator.login1(values))
     }
     forgotPassword = async () => {
-        let result = await WebBrowser.openBrowserAsync('https://tuah.niyo.my/password/reset');
+        let result = await WebBrowser.openBrowserAsync('https://uat.niyo.my/password/reset');
     };
     const [secure, secureItem] = useState(true)
     const [passwordInput, setPasswordInput] = useState(null)
 
     return (
 
-        <Formik initialValues={{ email: '', password: '' }} onSubmit={async (values, actions) => {
-            const prev = props.route.params?.test ?? 'NA'
-            console.log(`jalankan login : ${prev}`)
-            const cacing = await login(values)
-            console.log(`proceed ialah ${JSON.stringify(proceed)}`);
-            console.log(`wawa wi wah ${JSON.stringify(cacing)}`);
-            actions.setSubmitting(false);
-            actions.resetForm({})
+        <Formik initialValues={{ email: '', password: '' }} onSubmit={(values, actions) => {
+
+            const delayedLogin = () => setTimeout(async () => {
+                await login(values)
+                actions.setSubmitting(false);
+                actions.resetForm({})
+            }, 2000)
+
+            delayedLogin()
 
         }}
             validationSchema={validationSchema}
@@ -59,12 +60,11 @@ const WelcomeScreen = (props) => {
             {FormikProps => {
 
                 const { email, password } = FormikProps.values
-
                 const emailError = FormikProps.errors.email
                 const emailTouched = FormikProps.touched.email
-
                 const passwordError = FormikProps.errors.password
                 const passwordTouched = FormikProps.touched.password
+                //test
 
                 return (
                     <KeyboardAvoidingView enabled style={{ flex: 1, }}>

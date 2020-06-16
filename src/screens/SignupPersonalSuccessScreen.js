@@ -17,16 +17,9 @@ const SignupPersonalSuccessScreen = (props) => {
 
     const exitAlert = () => {
         // Works on both Android and iOS
-        Alert.alert(
-            'Skip',
-            'Go to Dashboard or Exit App',
+        Alert.alert('Skip', 'Go to Dashboard or Exit App',
             [
-
-                {
-                    text: 'Cancel',
-                    onPress: () => console.log('Cancel Pressed'),
-                    style: 'cancel',
-                },
+                { text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel', },
                 { text: 'Dashboard', onPress: () => { console.log('OK Pressed'); props.navigation.navigate('Dashboard') } },
                 { text: 'Exit', onPress: () => { console.log('OK Pressed'); BackHandler.exitApp() } },
             ],
@@ -35,8 +28,10 @@ const SignupPersonalSuccessScreen = (props) => {
     };
 
     useEffect(() => {
-        const prevScreen = props.route.params?.prevScreen ?? 'NA'
-        prevScreen != 'Dashboard' && dispatch(actionCreator.getPersonalToken())
+        const prevScreen = props.route.params?.prevScreen ?? 'NA';
+        console.log(`prevScreen ialah : ${prevScreen}`);
+        dispatch(actionCreator.retrievePersonalInfo());
+        (prevScreen != 'Dashboard') ? dispatch(actionCreator.getPersonalToken()) : dispatch(actionCreator.retrievePersonalInfo())
     }, []);
 
     useEffect(() => {
@@ -49,11 +44,12 @@ const SignupPersonalSuccessScreen = (props) => {
     //const getPersonalToken = () => dispatch(actionCreator.getPersonalToken())
 
     const { emailVerified } = useSelector(state => state.notificationScreenReducer, shallowEqual)
+    const { activated } = useSelector(state => state.personalInformationScreenReducer, shallowEqual)
 
     const [emailInitial, setEmailInitial] = useState(emailVerified)
-
+    const [emailResent, setEmailResent] = useState(false)
     const prevScreen = props.route.params?.prevScreen ?? 'NA'
-    console.log(`prevScreen ialah : ${prevScreen}`)
+    //console.log(`prevScreen ialah : ${prevScreen}`)
     //prevScreen != 'Dashboard' && getPersonalToken()
 
     const clearEmail = () => {
@@ -62,6 +58,11 @@ const SignupPersonalSuccessScreen = (props) => {
         //dispatch(actionCreator.setScreen2())
         props.navigation.navigate('CompanyInformation')
     };
+
+    const resendVerification = () => {
+        setEmailResent(true)
+        dispatch(actionCreator.resendVerification())
+    }
     return (
 
         <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
@@ -103,26 +104,33 @@ const SignupPersonalSuccessScreen = (props) => {
                             <Text style={[styles.h3, { margin: 5, fontWeight: 'bold' }]}>Credential Created</Text>
                             <View style={{ alignSelf: 'stretch', flexDirection: 'column', margin: 5, alignItems: 'center' }}>
                                 <Text style={[styles.text, { margin: 5, color: 'darkturquoise' }]}>Email Verification</Text>
-                                {prevScreen == 'Dashboard' && <TouchableOpacity onPress={() => dispatch(actionCreator.resendVerification())} style={{ width: Layout.window.width * 0.3, paddingTop: 16, paddingBottom: 16, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }}>
-                                    <Text style={[styles.textDefault, { color: 'white' }]}>Resend</Text>
-                                </TouchableOpacity>}
                                 <Text style={[styles.text, { margin: 5, marginBottom: 20, textAlign: 'center' }]}>Please check your email inbox and follow the instruction for verification.</Text>
+
+
                             </View>
                         </View>
                         <View style={{ flex: 1 }}>
                             <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                                <CustomButton
-                                    navigation={() => props.navigation.navigate('Dashboard')}
-                                    label={'Skip'}
-                                    boxStyle={{ borderColor: 'darkturquoise', backgroundColor: '#ffffff00', margin: 10, borderWidth: 1 }}
-                                    textStyle={{ color: 'black' }}
-                                />
-                                <CustomButton
-                                    navigation={() => clearEmail()}
-                                    label={'Merchant'}
-                                    disabledButton={!emailVerified}
-                                    boxStyle={{ backgroundColor: emailVerified ? '#09A4BF' : 'rgba(9,164,191,0.5)', margin: 10 }}
-                                />
+                                {prevScreen == 'Dashboard' && !activated && !emailResent ?
+                                    <CustomButton
+                                        navigation={() => resendVerification()}
+                                        label={'Resend Email'}
+                                        //disabledButton={!emailVerified}
+                                        boxStyle={{ backgroundColor: '#09A4BF', margin: 10 }}
+                                    /> : <>
+                                        <CustomButton
+                                            navigation={() => props.navigation.navigate('Dashboard')}
+                                            label={'Skip'}
+                                            boxStyle={{ borderColor: 'darkturquoise', backgroundColor: '#ffffff00', margin: 10, borderWidth: 1 }}
+                                            textStyle={{ color: 'black' }}
+                                        />
+                                        <CustomButton
+                                            navigation={() => clearEmail()}
+                                            label={'Merchant'}
+                                            //disabledButton={activated==1}
+                                            boxStyle={{ backgroundColor: emailVerified||activated ? '#09A4BF' : 'rgba(9,164,191,0.5)', margin: 10 }}
+                                        /></>}
+
                             </View>
                         </View>
                     </View>
