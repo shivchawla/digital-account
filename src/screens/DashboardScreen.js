@@ -41,7 +41,7 @@ const DashboardScreen = (props) => {
   const [screenStatus, setScreenStatus] = useState(null)
 
   useEffect(() => {
-    dispatch(actionCreator.setScreen2())
+    //dispatch(actionCreator.setScreen2())
     if (status1 === 'Approved') {
       setDashboardDisplay(true)
       dispatch(actionCreator.retrievePersonalInfo())
@@ -54,7 +54,7 @@ const DashboardScreen = (props) => {
   }, [status1])
 
   useEffect(() => {
-    dispatch(actionCreator.setScreen2())
+    //dispatch(actionCreator.setScreen2())
 
   }, [status1])
 
@@ -75,7 +75,7 @@ const DashboardScreen = (props) => {
   dashboardDisplay && console.log(`dashboard display ialah :${dashboardDisplay}`)
 
   const goTo = () => {
-    //setDashboardDisplay(!props.dashboardDisplay)
+    setDashboardDisplay(true)
     props.navigation.navigate('Registration', { screen: 'Intro', params: { screen: link } })
   }
 

@@ -59,7 +59,7 @@ const SignupPersonalSuccessScreen = (props) => {
     const clearEmail = () => {
         dispatch({ type: 'RESET_EMAIL_VERIFIED', payload: { emailVerified: null } })
         console.log(`emailVerified : ${emailVerified}`)
-        dispatch(actionCreator.setScreen2())
+        //dispatch(actionCreator.setScreen2())
         props.navigation.navigate('CompanyInformation')
     };
     return (

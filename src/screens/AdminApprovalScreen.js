@@ -17,6 +17,7 @@ const AdminApprovalScreen = (props) => {
     const dispatch = useDispatch()
     const { status1 } = useSelector(state => state.merchantInfoReducer, shallowEqual)
 
+    
     useEffect(() => {
         dispatch(actionCreator.setScreen2())
 

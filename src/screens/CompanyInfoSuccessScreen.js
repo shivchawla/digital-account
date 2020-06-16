@@ -10,7 +10,7 @@ const CompanyInfoSuccessScreen = (props) => {
     const dispatch = useDispatch()
     const goNext = () => {
 
-        dispatch(actionCreator.setScreen2())
+        //dispatch(actionCreator.setScreen2())
         props.navigation.navigate('ContactPerson')
     };
     return (
