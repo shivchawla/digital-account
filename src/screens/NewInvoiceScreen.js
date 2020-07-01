@@ -10,7 +10,9 @@ import styles from '../styles/styles'
 import Constants from 'expo-constants';
 import moment from 'moment'
 import LayoutA from '../Layout/LayoutA';
-import { CustomTextInput,CustomFormAction } from '../components/Custom'
+import DateTimePicker from '@react-native-community/datetimepicker';
+
+import { CustomTextInput, CustomFormAction } from '../components/Custom'
 import { keyboardBeingDisplay, keyboardBeingClose } from '../components/handleKeyboard'
 const validationSchema = Yup.object().shape({
 
@@ -79,7 +81,7 @@ const NewInvoiceScreen = (props) => {
     const [entityPicker, setEntityPicker] = useState(null)
     const [invoice, setInvoice] = useState(null)
     const invoiceNumber = `INV${moment().format('YYMMDDhhmmssSS')}`
-    const [offSet,setOffSet]=useState(true)
+    const [offSet, setOffSet] = useState(true)
     useEffect(() => {
         const open = () => setOffSet(false)
         const off = () => setOffSet(true)
@@ -204,7 +206,7 @@ const NewInvoiceScreen = (props) => {
 
                 return (
 
-                    <KeyboardAvoidingView behavior="padding" enabled style={{ flex: 1, }}  keyboardVerticalOffset={offSet ? 30 : 0}  >
+                    <View style={{ flex: 1 }}  >
                         <Modal animationType={'slide'}
                             visible={iosPickerVisible} onRequestClose={() => FormikProps.setFieldValue('dueDate', tarikh.toString())}
                         >
@@ -382,7 +384,7 @@ const NewInvoiceScreen = (props) => {
                                 label={`Next`}
                             />
                         </ LayoutA>
-                    </KeyboardAvoidingView>)
+                    </View>)
             }}
         </Formik >
     );
