@@ -19,48 +19,42 @@ import LayoutA from '../Layout/LayoutA';
 //import { FlatList } from 'react-native-gesture-handler';
 
 const DashboardScreen = (props) => {
-  const dispatch = useDispatch()
-  const dataPointClicked = (val) => {
-    console.log(`klik ni ${JSON.stringify(val)}`)
-  }
 
-  const changeChartDay = () => {
-    if (chartDay === 7) { setChartDay(30) } else { setChartDay(7) }
-  }
+  const dispatch = useDispatch()
 
   const { balance, currency } = useSelector(state => state.myAccountReducer, shallowEqual)
 
   const { reportList } = useSelector(state => state.reportReducer, shallowEqual)
-  const all = useSelector(state => state.merchantInfoReducer, shallowEqual)
-  const { isConnected, isInternetReachable, type } = useSelector(state => state.netInfoReducer, shallowEqual)
+  //const all = useSelector(state => state.merchantInfoReducer, shallowEqual)
+  //const { isConnected, isInternetReachable, type } = useSelector(state => state.netInfoReducer, shallowEqual)
 
   const [dashboardDisplay, setDashboardDisplay] = useState(true)
 
   const [chartDay, setChartDay] = useState(7)
   const { status, status1, link } = useSelector(state => state.merchantInfoReducer, shallowEqual)
-  const [screenStatus, setScreenStatus] = useState(null)
+  //const [screenStatus, setScreenStatus] = useState(null)
 
 
-  useEffect(() => {
-    const unsubscribe = props.navigation.addListener('focus', () => {
-      console.log(`dashboard is focused`)
-      dispatch(actionCreator.setScreen2())
-      const delayedFunction = () => setTimeout(() => {
-        if (status1 === 'Approved') {
-          setDashboardDisplay(true)
-          dispatch(actionCreator.retrievePersonalInfo())
-          dispatch(actionCreator.retrieveMerchantInfo())
-          dispatch(actionCreator.retrieveAccountInfo())
-          dispatch(actionCreator.getReportList())
-          dispatch(actionCreator.checkAuth()) //awal awal lagi tengok
-        }
-        else { setDashboardDisplay(false) }
-      }, 500)
-      delayedFunction()
-    });
+  // useEffect(() => {
+  //   const unsubscribe = props.navigation.addListener('focus', () => {
+  //     console.log(`dashboard is focused`)
+  //     dispatch(actionCreator.setScreen2())
+  //     const delayedFunction = () => setTimeout(() => {
+  //       if (status1 === 'Approved') {
+  //         setDashboardDisplay(true)
+  //         dispatch(actionCreator.retrievePersonalInfo())
+  //         dispatch(actionCreator.retrieveMerchantInfo())
+  //         dispatch(actionCreator.retrieveAccountInfo())
+  //         dispatch(actionCreator.getReportList())
+  //         dispatch(actionCreator.checkAuth()) //awal awal lagi tengok
+  //       }
+  //       else { setDashboardDisplay(false) }
+  //     }, 500)
+  //     delayedFunction()
+  //   });
 
-    return unsubscribe;
-  }, [props.navigation]);
+  //   return unsubscribe;
+  // }, [props.navigation]);
 
   useEffect(() => {
     //dispatch(actionCreator.setScreen2())
@@ -80,28 +74,26 @@ const DashboardScreen = (props) => {
 
   }, [status1])
 
-  useEffect(() => {
-    if (props.route.params?.from) {
-      const from = props.route.params?.from ?? 'NA'
-      console.log(`param ialah something from : ${from}`)
-    }
-  }, [props.route.params?.from]);
-
-  const from = props.route.params?.from ?? 'NA'
-  console.log(`param ialah something from : ${from}`)
 
 
-  status1 && console.log(`screen status ialah : ${status1}`)
-  reportList && console.log(`report list ialah ${JSON.stringify(reportList)}`)
+  const dataPointClicked = (val) => {
+    console.log(`klik ni ${JSON.stringify(val)}`)
+  }
 
-  dashboardDisplay && console.log(`dashboard display ialah :${dashboardDisplay}`)
+  const changeChartDay = () => {
+    if (chartDay === 7) { setChartDay(30) } else { setChartDay(7) }
+  }
+
+
+
+
 
   const goTo = () => {
     setDashboardDisplay(true)
     props.navigation.navigate('Registration', { screen: 'Intro', params: { screen: link, params: { prevScreen: 'Dashboard' } } })
   }
 
-  link && console.log(`link ialah ${link}`)
+
 
   return (
 

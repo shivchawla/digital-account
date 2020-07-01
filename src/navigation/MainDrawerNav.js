@@ -74,7 +74,7 @@ import VendorApplicationScreen from '../screens/VendorApplicationScreen';
 import VendorDetailScreen from '../screens/VendorDetailScreen';
 import ZakatScreen from '../screens/ZakatScreen';
 import PayrollScreen from '../screens/PayrollScreen';
-import RemittanceScreen from '../screens/RemittanceScreen'; 
+import RemittanceScreen from '../screens/RemittanceScreen';
 import ZakatSuccessScreen from '../screens/ZakatSuccessScreen';
 import BusinessDirectoryScreen from '../screens/BusinessDirectoryScreen';
 import PayrollSuccessScreen from '../screens/PayrollSuccessScreen';
@@ -87,11 +87,12 @@ const Drawer = createDrawerNavigator();
 
 const MainDrawer = () => {
     return (
-        <Drawer.Navigator initialRouteName="Dashboard" drawerContent={props => {
-            const close = () => { props.navigation.closeDrawer() }
-            const nav = (screen) => { props.navigation.navigate(screen) }
-            return (<SideBar nav={nav} close={close} />)
-        }}>
+        <Drawer.Navigator initialRouteName="Dashboard"
+            drawerContent={props => {
+                const close = () => { props.navigation.closeDrawer() }
+                const nav = (screen) => { props.navigation.navigate(screen) }
+                return (<SideBar nav={nav} close={close} />)
+            }}>
             <Drawer.Screen name="Dashboard" component={DashboardStack} />
             <Drawer.Screen name="Account" component={AccountScreen} />
             <Drawer.Screen name="Report" component={ReportDrawer} />
@@ -100,7 +101,7 @@ const MainDrawer = () => {
             {/* <Drawer.Screen name="Notification" component={NotificationScreen} /> */}
             <Drawer.Screen name="DataSetting" component={DataSettingStack} />
             <Drawer.Screen name="TransferStack" component={TransferStack} />
-            <Drawer.Screen name="Support" component={SupportStack} /> 
+            <Drawer.Screen name="Support" component={SupportStack} />
             <Drawer.Screen name="BusinessHub" component={BusinessHubStack} />
             <Drawer.Screen name="Invoice" component={InvoiceStack} />
         </Drawer.Navigator>
@@ -296,8 +297,9 @@ const AuthOptionStack = () => {
         <Stack.Navigator initialRouteName="AuthOption" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="AuthOption" component={AuthOptionScreen} />
             <Stack.Screen name="AuthOptionType" component={AuthOptionTypeScreen} />
-            <Stack.Screen name="SetPasscode" component={SetPasscodeScreen} />  
-            </Stack.Navigator> )}
+            <Stack.Screen name="SetPasscode" component={SetPasscodeScreen} />
+        </Stack.Navigator>)
+}
 
 const CustomerStack = () => {
     return (
@@ -327,7 +329,7 @@ const BusinessHubStack = () => {
             <Stack.Screen name="Zakat" component={ZakatStack} />
             <Stack.Screen name="Payroll" component={PayrollStack} />
             <Stack.Screen name="Remittance" component={RemittanceStack} />
-            <Stack.Screen name="BusinessDirectory" component={BusinessDrawer } />
+            <Stack.Screen name="BusinessDirectory" component={BusinessDrawer} />
         </Stack.Navigator>
     )
 }
