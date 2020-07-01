@@ -6,16 +6,19 @@ import styles from '../styles/styles'
 import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector,useDispatch } from 'react-redux'
 
+
 const WithdrawSuccessScreen = (props) => {
 
     const { status,code } = useSelector(state => state.withdrawReducer, shallowEqual)
     const dispatch = useDispatch()
     const goDashboard = async () => {
+        resetCode()
         await dispatch(actionCreator.retrieveMerchantInfo())
         await dispatch(actionCreator.retrieveAccountInfo())
         props.navigation.navigate('Dashboard')
     }
     const goWithdraw = async () => {
+        resetCode()
         await dispatch(actionCreator.retrieveMerchantInfo())
         await dispatch(actionCreator.retrieveAccountInfo())
         props.navigation.navigate('WithdrawalApplication')
@@ -44,10 +47,10 @@ const WithdrawSuccessScreen = (props) => {
                     </View>
                     <View style={{ flex: 1 }}>
                         <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                            <TouchableOpacity onPress={() => {resetCode();props.navigation.navigate('Dashboard')}} style={{ width: Layout.window.width * 0.3, paddingTop: 16, paddingBottom:16, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10,  borderColor: 'darkturquoise', borderWidth: 1 }}>
+                            <TouchableOpacity onPress={() => goDashboard()} style={{ width: Layout.window.width * 0.3, paddingTop: 16, paddingBottom:16, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10,  borderColor: 'darkturquoise', borderWidth: 1 }}>
                                 <Text style={[styles.textDefault]}>Dashboard</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => {resetCode();props.navigation.navigate('WithdrawalApplication')}} style={{ width: Layout.window.width * 0.3, paddingTop: 16, paddingBottom: 16, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }}>
+                            <TouchableOpacity onPress={() => goWithdraw()} style={{ width: Layout.window.width * 0.3, paddingTop: 16, paddingBottom: 16, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }}>
                                 <Text style={[styles.textDefault, { color: 'white' }]}>Withdraw</Text>
                             </TouchableOpacity>
                         </View>
@@ -70,10 +73,10 @@ const WithdrawSuccessScreen = (props) => {
                         </View>
                         <View style={{ flex: 1 }}>
                             <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                                <TouchableOpacity onPress={() => {resetCode();props.navigation.navigate('Dashboard')}} style={{ width: Layout.window.width * 0.3, paddingTop: 16, paddingBottom: 16, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10,  borderColor: 'darkturquoise',borderWidth: 1 }}>
+                                <TouchableOpacity onPress={() => goDashboard()} style={{ width: Layout.window.width * 0.3, paddingTop: 16, paddingBottom: 16, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10,  borderColor: 'darkturquoise',borderWidth: 1 }}>
                                     <Text style={[styles.textDefault]}>Dashboard</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={() => {resetCode();props.navigation.navigate('WithdrawalApplication')}} style={{ width: Layout.window.width * 0.3, paddingTop: 16, paddingBottom: 16, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }}>
+                                <TouchableOpacity onPress={() => goWithdraw()} style={{ width: Layout.window.width * 0.3, paddingTop: 16, paddingBottom: 16, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }}>
                                     <Text style={[styles.textDefault, { color: 'white' }]}>Withdraw</Text>
                                 </TouchableOpacity>
                             </View>
