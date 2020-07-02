@@ -3,7 +3,7 @@ import { View, TouchableOpacity, Text, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient'
 import styles from '../styles/styles'
-import OTPInputView from '@twotalltotems/react-native-otp-input'
+//import OTPInputView from '@twotalltotems/react-native-otp-input'
 import Layout from '../constants/Layout'
 
 const TACScreen = (props) => {
@@ -32,7 +32,7 @@ const TACScreen = (props) => {
                 <View style={[styles.screenMargin, { flex: 5 }]}>
                     <Text style={[styles.text, { marginTop: 25, justifyContent: 'center', flexDirection: 'row' }]}>We have sent TAC to your new number.</Text>
                     <View style={[styles.formElement, { justifyContent: 'center',alignItems:'center' }]}>
-                        <OTPInputView style={{ width: '80%', height: 100 }} pinCount={4} code={code} autoFocusOnLoad codeInputFieldStyle={styles.borderStyleBase} codeInputHighlightStyle={styles.borderStyleHighLighted}
+                        {/* <OTPInputView style={{ width: '80%', height: 100 }} pinCount={4} code={code} autoFocusOnLoad codeInputFieldStyle={styles.borderStyleBase} codeInputHighlightStyle={styles.borderStyleHighLighted}
                             //codeInputFieldStyle={styles.underlineStyleBase}
                             //codeInputHighlightStyle={styles.underlineStyleHighLighted}
                             onCodeFilled={code => {
@@ -43,7 +43,7 @@ const TACScreen = (props) => {
                                 updateCode(code);
                                 console.log(`Code is ${code} wei, you are good to go!`)
                             }}
-                        />
+                        /> */}
                     </View>
                     <View style={[styles.formElement, { flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }]}>
                         <Text style={[styles.text]}>Didn't get TAC number?</Text>
@@ -52,7 +52,7 @@ const TACScreen = (props) => {
                         </TouchableOpacity>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                        <TouchableOpacity onPress={() => props.navigation.navigate('NumberSuccess')} style={{ paddingTop: 16, paddingBottom: 16, paddingLeft: 18, paddingRight: 18, backgroundColor: '#055E7C', borderRadius: 15 }}>
+                        <TouchableOpacity onPress={() => props.navigation.navigate('ChangeNumberSuccess')} style={{ paddingTop: 16, paddingBottom: 16, paddingLeft: 18, paddingRight: 18, backgroundColor: '#055E7C', borderRadius: 15 }}>
                             <Text style={[styles.textDefault, { color: 'white' }]}>Submit</Text>
                         </TouchableOpacity>
                     </View>

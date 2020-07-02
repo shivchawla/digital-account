@@ -67,7 +67,7 @@ const DataSettingScreen = (props) => {
                 <View style={{ flexDirection: 'row', marginTop: 20, alignItems: 'center' }}>
                     <Image source={require('../assets/images/changeaccount.png')} style={{ width: 30, height: 30 }} resizeMode={'contain'} />
                     <TouchableOpacity onPress={() => logout()}>
-                        <Text style={[styles.text, { marginLeft: 25, marginBottom: 20 }]}>Change Account</Text>
+                        <Text style={[styles.text, { marginLeft: 25, marginBottom: 20 }]}>Logout or Change Account</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={{ marginTop: 10 }}>

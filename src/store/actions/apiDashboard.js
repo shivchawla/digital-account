@@ -988,7 +988,7 @@ export const itemDataApi = (values) => {
 
     const responseJson = await apiPostCall(`api/setting/item/submit`, values, getState().apiReducer)
     const { status, code } = await responseJson
-    await dispatch({ type: 'SET_CUSTOMER_LIST', payload: { status, code, proceedMain: true } })
+    await dispatch({ type: 'SET_ITEM_LIST', payload: { status, code, proceedMain: true } })
     await console.log(`customer submit api  ${JSON.stringify(responseJson)}`)
     console.log(`New add item api : ${JSON.stringify(values)}`)
 

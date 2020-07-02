@@ -23,11 +23,16 @@ const validationSchema = Yup.object().shape({
         .email()
         .required()
         .label('Vendor Email'),
+    vendorPhone: Yup
+        .string()
+        .required()
+        .label('Vendor Phone'),
 
     currency: Yup
         .string()
         .required()
         .label('Currency'),
+
 
     address: Yup
         .string()
@@ -62,13 +67,16 @@ const VendorApplicationScreen = (props) => {
             validationSchema={validationSchema}>
 
             {FormikProps => {
-                const { vendorName, vendorEmail, currency, address } = FormikProps.values
+                const { vendorName, vendorEmail, vendorPhone, currency, address } = FormikProps.values
 
                 const vendorNameError = FormikProps.errors.vendorName
                 const vendorNameTouched = FormikProps.touched.vendorName
 
                 const vendorEmailError = FormikProps.errors.vendorEmail
                 const vendorEmailTouched = FormikProps.touched.vendorEmail
+
+                const vendorPhoneError = FormikProps.errors.vendorPhone
+                const vendorPhoneTouched = FormikProps.touched.vendorPhone
 
                 const currencyError = FormikProps.errors.currency
                 const currencyTouched = FormikProps.touched.currency
@@ -105,15 +113,18 @@ const VendorApplicationScreen = (props) => {
                                     error={vendorEmailError}
                                     placeholder={'example@email.com'}
                                 />
+
                                 <CustomTextInput
-                                    label={`Preferred Currency`}
-                                    value={currency}
-                                    handleChange={FormikProps.handleChange(`currency`)}
-                                    handleBlur={FormikProps.handleBlur('currency')}
-                                    touched={currencyTouched}
-                                    error={currencyError}
-                                    placeholder={'MYR'}
+                                    keyboardType={'number-pad'}
+                                    label={`Vendor Phone`}
+                                    value={vendorPhone}
+                                    handleChange={FormikProps.handleChange(`vendorPhone`)}
+                                    handleBlur={FormikProps.handleBlur('vendorPhone')}
+                                    touched={vendorPhoneTouched}
+                                    error={vendorPhoneError}
+                                    placeholder={'012-3456789'}
                                 />
+
                                 <CustomTextInput
                                     label={`Vendor Address`}
                                     value={address}
@@ -122,6 +133,16 @@ const VendorApplicationScreen = (props) => {
                                     touched={addressTouched}
                                     error={addressError}
                                     placeholder={'32, Jalan Hartamas, Bandar Baru Sendayan, Negeri Sembilan'}
+                                />
+
+                                <CustomTextInput
+                                    label={`Preferred Currency`}
+                                    value={currency}
+                                    handleChange={FormikProps.handleChange(`currency`)}
+                                    handleBlur={FormikProps.handleBlur('currency')}
+                                    touched={currencyTouched}
+                                    error={currencyError}
+                                    placeholder={'MYR'}
                                 />
                             </ScrollView>
                             <CustomFormAction

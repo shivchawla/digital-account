@@ -30,6 +30,20 @@ const validationSchema = Yup.object().shape({
         .required()
         .label('Currency'),
 
+    customerPhone: Yup
+        .string()
+        .required()
+        .label('Customer Phone'),
+
+
+
+
+    customerAddress: Yup
+        .string()
+        .required()
+        .min(3)
+        .label('Customer Address'),
+
 });
 
 const CustomerAddScreen = (props) => {
@@ -58,13 +72,21 @@ const CustomerAddScreen = (props) => {
             validationSchema={validationSchema}>
 
             {FormikProps => {
-                const { customerName, customerEmail, currency } = FormikProps.values
+                const { customerName, customerEmail, currency, customerPhone, customerAddress } = FormikProps.values
 
                 const customerNameError = FormikProps.errors.customerName
                 const customerNameTouched = FormikProps.touched.customerName
 
                 const customerEmailError = FormikProps.errors.customerEmail
                 const customerEmailTouched = FormikProps.touched.customerEmail
+
+                const customerPhoneError = FormikProps.errors.customerPhone
+                const customerPhoneTouched = FormikProps.touched.customerPhone
+
+
+
+                const customerAddressError = FormikProps.errors.customerAddress
+                const customerAddressTouched = FormikProps.touched.customerAddress
 
                 const currencyError = FormikProps.errors.currency
                 const currencyTouched = FormikProps.touched.currency
@@ -112,6 +134,27 @@ const CustomerAddScreen = (props) => {
                                     touched={customerEmailTouched}
                                     error={customerEmailError}
                                     placeholder={'example@email.com'}
+                                />
+
+                                <CustomTextInput
+                                    keyboardType={'number-pad'}
+                                    label={`Customer Phone`}
+                                    value={customerPhone}
+                                    handleChange={FormikProps.handleChange(`customerPhone`)}
+                                    handleBlur={FormikProps.handleBlur('customerPhone')}
+                                    touched={customerPhoneTouched}
+                                    error={customerPhoneError}
+                                    placeholder={'012-3456789'}
+                                />
+
+                                <CustomTextInput
+                                    label={`Customer Address`}
+                                    value={customerAddress}
+                                    handleChange={FormikProps.handleChange(`customerAddress`)}
+                                    handleBlur={FormikProps.handleBlur('customerAddress')}
+                                    touched={customerAddressTouched}
+                                    error={customerAddressError}
+                                    placeholder={'32, Jalan Hartamas, Bandar Baru Sendayan, Negeri Sembilan'}
                                 />
                                 <CustomTextInput
                                     label={`Preferred Currency`}

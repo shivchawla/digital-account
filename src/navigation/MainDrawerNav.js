@@ -56,7 +56,11 @@ import VendorScreen from '../screens/VendorScreen';
 import CustomerScreen from '../screens/CustomerScreen';
 import ChangeNumberScreen from '../screens/ChangeNumberScreen';
 import ChangeEmailScreen from '../screens/ChangeEmailScreen';
+import ChangeEmailSuccessScreen from '../screens/ChangeEmailSuccessScreen';
+
+
 import ChangePasswordScreen from '../screens/ChangePasswordScreen';
+import ChangePasswordSuccessScreen from '../screens/ChangePasswordSuccessScreen';
 import EditProfileScreen from '../screens/EditProfileScreen';
 import AuthOptionScreen from '../screens/AuthOptionScreen';
 import NotiSettingScreen from '../screens/NotiSettingScreen';
@@ -80,6 +84,11 @@ import BusinessDirectoryScreen from '../screens/BusinessDirectoryScreen';
 import PayrollSuccessScreen from '../screens/PayrollSuccessScreen';
 import RemittanceSuccessScreen from '../screens/RemittanceSuccessScreen';
 import SupportSuccessScreen from '../screens/SupportSuccessScreen';
+
+import ChangeNumberSuccessScreen from '../screens/ChangeNumberSuccessScreen';
+import TACScreen from '../screens/TACScreen';
+
+
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -272,15 +281,45 @@ const DataSettingStack = () => {
             <Stack.Screen name="Vendor" component={VendorStack} />
             <Stack.Screen name="Customer" component={CustomerStack} />
             <Stack.Screen name="Welcome" component={WelcomeScreen} />
-            <Stack.Screen name="ChangeNumber" component={ChangeNumberScreen} />
-            <Stack.Screen name="ChangeEmail" component={ChangeEmailScreen} />
-            <Stack.Screen name="ChangePassword" component={ChangePasswordScreen} />
+            <Stack.Screen name="ChangeNumber" component={ChangeNumberStack} />
+            <Stack.Screen name="ChangeEmail" component={ChangeEmailStack} />
+            <Stack.Screen name="ChangePassword" component={ChangePasswordStack} />
             <Stack.Screen name="EditProfile" component={EditProfileScreen} />
             <Stack.Screen name="NotiScreen" component={NotiSettingScreen} />
             <Stack.Screen name="AuthOption" component={AuthOptionStack} />
         </Stack.Navigator>
     )
 }
+
+const ChangeNumberStack = () => {
+    return (
+        <Stack.Navigator initialRouteName="ChangeNumber" screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="ChangeNumber" component={ChangeNumberScreen} />    
+            <Stack.Screen name="TAC" component={TACScreen} />    
+            <Stack.Screen name="ChangeNumberSuccess" component={ChangeNumberSuccessScreen} />
+        </Stack.Navigator>
+    )
+}
+
+const ChangeEmailStack = () => {
+    return (
+        <Stack.Navigator initialRouteName="ChangeEmail" screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="ChangeEmail" component={ChangeEmailScreen} />        
+            <Stack.Screen name="ChangeEmailSuccess" component={ChangeEmailSuccessScreen} />
+        </Stack.Navigator>
+    )
+}
+
+const ChangePasswordStack = () => {
+    return (
+        <Stack.Navigator initialRouteName="ChangePassword" screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="ChangePassword" component={ChangePasswordScreen} />        
+            <Stack.Screen name="ChangePasswordSuccess" component={ChangePasswordSuccessScreen} />
+        </Stack.Navigator>
+    )
+}
+
+
 const ItemStack = () => {
     return (
         <Stack.Navigator initialRouteName="Item" screenOptions={{ headerShown: false }}>

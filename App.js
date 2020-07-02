@@ -20,7 +20,7 @@ import styles from './src/styles/styles'
 ///// All Below for Navigation
 import { enableScreens } from 'react-native-screens';
 
-
+const web=Platform.OS==='web'
 
 
 enableScreens();
@@ -116,7 +116,7 @@ const App = (props) => {
     //checkUpdate()
     registerForPushNotificationsAsync();
     const _notificationSubscription = Notifications.addListener(_handleNotification);
-    const netInfoUnsubscribe = NetInfo.addEventListener(_handleNetInfo);
+    const netInfoUnsubscribe = !web?NetInfo.addEventListener(_handleNetInfo):null;
     //checkLogin()
 
   }, [])

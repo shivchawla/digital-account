@@ -36,7 +36,7 @@ const WelcomeScreen = (props) => {
     const login = (values) => {
         dispatch(actionCreator.login1(values))
     }
-    forgotPassword = async () => {
+    const forgotPassword = async () => {
         let result = await WebBrowser.openBrowserAsync('https://uat.niyo.my/password/reset');
     };
     const [secure, secureItem] = useState(true)

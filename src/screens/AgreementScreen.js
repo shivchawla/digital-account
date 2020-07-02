@@ -30,11 +30,11 @@ const AgreementScreen = (props) => {
                         <View style={{ justifyContent: 'flex-start', alignItems: 'flex-start' }}>
                             <Text style={[styles.h3, { margin: 5, flexDirection: 'row' }]}>Terms and Conditions</Text>
                         </View>
-                        <Text style={[styles.small, { alignSelf: 'flex-start', textAlign: 'left', margin: 5, }]}>Pursuant to the Personal Data Protection Act 2010 (“PDPA”), Niyo (“Niyo”) is mindful and committed to the protection of your personal information and your privacy.
+                        <Text style={[styles.small, { alignSelf: 'flex-start', textAlign: 'justify', margin: 5, }]}>Pursuant to the Personal Data Protection Act 2010 (“PDPA”), Niyo (“Niyo”) is mindful and committed to the protection of your personal information and your privacy.
         This Personal Data Protection Notice (“Notice”) describes how Niyo and its respective subsidiaries and associate companies ("FCGB") use your Personal Data.
 FCGB is referred to as “we”, “us”, “our” or “ours”. Any person using and accessing this Site, the Content or the Services is referred to as the “User”, “you” or “yours”.</Text>
                         <Text style={[styles.h3, { margin: 5, flexDirection: 'row' }]}>Acknowledgement and Consent</Text>
-                        <Text style={[styles.small, { alignSelf: 'flex-start', textAlign: 'left', margin: 5, }]}>By communicating with us, using our services, or services from us or by virtue of your engagement with us, you acknowledge that you have read and understood this Policy/Notice and agree and consent to the use, processing and transfer of your Personal Data by us as described in this Notice.
+                        <Text style={[styles.small, { alignSelf: 'flex-start', textAlign: 'justify', margin: 5, }]}>By communicating with us, using our services, or services from us or by virtue of your engagement with us, you acknowledge that you have read and understood this Policy/Notice and agree and consent to the use, processing and transfer of your Personal Data by us as described in this Notice.
                         We shall have the right to modify, update or amend the terms of this Notice at any time by placing the updated Notice on the Websites. </Text>
                         <View style={{ flexDirection: 'row', marginTop: 10, justifyContent: 'flex-start', alignItems: 'flex-start' }}>
                             {(Platform.OS == 'ios') ?

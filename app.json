@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "Digital Account",
-    "slug": "mobile",
+    "name": "Digital Account (UAT)",
+    "slug": "digital-account-uat",
+    
     "privacy": "public",
     "platforms": [
       "ios",
@@ -9,7 +10,7 @@
       "web"
     ],
     "android": {
-      "package": "com.fcgb.da",
+      "package": "com.fcgb.da.uat",
       "googleServicesFile": "./google-services.json",
       "versionCode": 6,
       "permissions": [
