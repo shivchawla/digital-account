@@ -16,6 +16,8 @@ const InvoiceScreen = (props) => {
     const [onScreenFilter, setOnScreenFilter] = useState(false)
     const [onScreenFilteredList, setOnScreenFilteredList] = useState([])
 
+    
+
     const searchList = (val) => {
         console.log(`keyword  ialah : ${val}`)
         if (val) {
@@ -51,8 +53,16 @@ const InvoiceScreen = (props) => {
                         <View>
                             <Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
                         </View>
-                        <TextInput placeholder='Please Enter Keyword' style={[styles.searchBar, { flex: 4 }]} onChangeText={(val) => searchList(val)} />
-                        <TouchableOpacity onPress={props.navigation.openDrawer} >
+                        <TextInput placeholder='Please Enter Keyword' 
+                        style={[styles.searchBar, { flex: 4 }]} 
+                        //onChangeText={(val) => searchList(val)}
+                        //disabled function search temporarily since API no longer support it
+
+                         />
+                        <TouchableOpacity 
+                        //onPress={props.navigation.openDrawer} 
+//do nothing first until we know what to filter
+                        >
                             <Ionicons name="ios-options" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
                         </TouchableOpacity>
                     </View>

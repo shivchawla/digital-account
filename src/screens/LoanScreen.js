@@ -45,7 +45,7 @@ const LoanScreen = (props) => {
             setOnScreenFilter(true)
             const newList = []
             loanList.map(b => {
-                b.type.includes(val) ? newList.push(b) : b.status.includes(val) ? newList.push(b) : false
+                b.reason_request.includes(val) ? newList.push(b) : b.status.includes(val) ? newList.push(b) : false
             })
             console.log(`new list length ialah : ${newList.length}`)
             setOnScreenFilteredList(newList)

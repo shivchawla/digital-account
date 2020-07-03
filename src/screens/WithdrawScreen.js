@@ -59,8 +59,8 @@ const WithdrawScreen = (props) => {
             <View style={{ marginTop: 10, flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'flex-end', paddingLeft: 20, paddingRight: 30 }}>
                 <CustomButton navigation={() => props.navigation.navigate('WithdrawalApplication')} label={'New Withdrawal'} />
             </View>
-            <View style={{ marginTop: 20}}>
-                <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingLeft: 20, paddingRight: 30  }}>
+            <View style={{ marginTop: 20 }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'flex-end', paddingLeft: 20, paddingRight: 30 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 10, flex: 1, borderWidth: 1, borderColor: 'lightgrey', padding: 10, borderRadius: 10 }}>
                         <View>
                             <Ionicons name="ios-search" color={'#055E7C'} style={{ fontSize: 27, paddingRight: 5 }} />
@@ -82,11 +82,11 @@ const WithdrawScreen = (props) => {
                                     <Ionicons name="md-arrow-dropright" color={'#34C2DB'} style={{ fontSize: 25, paddingRight: 5 }} />
                                 </View>
                             </View>
-                            
+
                             <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                             
+
                             </View>
-                            <View style={{ flexDirection: 'row', marginTop: 5,justifyContent:'space-between' }}>
+                            <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'space-between' }}>
                                 <Text style={styles.text}>{currency} {item.amount}</Text>
                                 <Text style={[styles.text, { color: item.status === 'New' ? '#34C2DB' : item.status === 'Rejected' ? '#FF0000' : item.status === 'Approved' ? '#54A400' : '#FA6400' }]}>{item.status}</Text>
 

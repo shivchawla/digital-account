@@ -42,7 +42,7 @@ const CompanyInformationScreen = (props) => {
 
     const ios = Platform.OS === "ios" ? true : false
 
-    const [date, setDate] = useState(new Date(1598051730000));
+    const [date, setDate] = useState(new Date());
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
 
@@ -171,7 +171,7 @@ const CompanyInformationScreen = (props) => {
                             />
 
                             <View style={[styles.formElement]}>
-                                <Text style={[styles.titleBox], { fontSize: 15 }}>Registration </Text>
+                                <Text style={[styles.titleBox], { fontSize: 15 }}>Registration Date </Text>
                                 <View style={{ flexDirection: 'row' }}>
                                     <TouchableOpacity onPress={() => showDatepicker()}>
                                         <Image source={require('../assets/images/calendar.png')} style={{ width: 30, height: 30, marginRight: 10 }} resizeMode={'contain'} />
@@ -189,6 +189,7 @@ const CompanyInformationScreen = (props) => {
                                     is24Hour={true}
                                     display="default"
                                     onChange={onChange}
+                                    selectedDate={new Date()}
                                 />
                             )}
 

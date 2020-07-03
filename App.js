@@ -1,11 +1,11 @@
-import { AppLoading, Notifications } from 'expo';
+import { AppLoading } from 'expo';
+import * as Notifications from 'expo-notifications';
 import * as Permissions from 'expo-permissions'
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
-
-import * as SecureStore from 'expo-secure-store'
+import * as Updates from 'expo-updates';
 import React, { useState, useEffect } from 'react';
-import { Platform, StatusBar, StyleSheet, View, Text } from 'react-native';
+import { Platform, View, Text, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import NetInfo from '@react-native-community/netinfo';
@@ -20,17 +20,12 @@ import styles from './src/styles/styles'
 ///// All Below for Navigation
 import { enableScreens } from 'react-native-screens';
 
-const web=Platform.OS==='web'
-
+const web = Platform.OS === 'web'
 
 enableScreens();
 
-
-
-
 ///////End For Navigation
 
-//import * as actionCreator from '../store/actions/action'
 import * as actionCreator from './src/store/actions/action'
 import Nav from './src/navigation/Nav';
 
@@ -40,34 +35,28 @@ const App = (props) => {
   const [tokenExists, setTokenExists] = useState(false)
   const [notification, setNotification] = useState({})
   const [isInternetReachable, setNetInfo] = useState(null)
+  const [updateAvailable, setUpdateAvailable] = useState(false)
   store.getState() && console.log(JSON.stringify(store.getState()))
 
 
   const checkUpdate = async () => {
     try {
-      const update = await Expo.Updates.checkForUpdateAsync();
+      const update = await Updates.checkForUpdateAsync();
       if (update.isAvailable) {
-        await Expo.Updates.fetchUpdateAsync();
-        Expo.Updates.reloadFromCache();
+        await Updates.fetchUpdateAsync();
+        setUpdateAvailable(true)
+
       }
     } catch (e) {
       // handle or log error
     }
   }
 
-  const checkLogin = async () => {
-    try {
-      //const personalToken = await AsyncStorage.getItem('personalToken');
-      const personalToken = await SecureStore.getItemAsync('personalToken')
-      if (personalToken !== null && !personalToken.includes('error')) {
-        //console.log(`personal token ialah : ${personalToken}`)
-        setTokenExists(true)
-      }
-    } catch (error) {
-      console.log(`personalToken yang aneh error ${JSON.stringify(error)}`)
-      return 'takde'
-    }
+  const reloadApp = () => {
+    Updates.reloadAsync();
   }
+
+
 
   const registerForPushNotificationsAsync = async () => {
     const { status: existingStatus } = await Permissions.getAsync(
@@ -113,10 +102,10 @@ const App = (props) => {
   }
 
   useEffect(() => {
-    //checkUpdate()
+    checkUpdate()
     registerForPushNotificationsAsync();
-    const _notificationSubscription = Notifications.addListener(_handleNotification);
-    const netInfoUnsubscribe = !web?NetInfo.addEventListener(_handleNetInfo):null;
+    const _notificationSubscription = Notifications.addNotificationReceivedListener(_handleNotification);
+    const netInfoUnsubscribe = !web ? NetInfo.addEventListener(_handleNetInfo) : null;
     //checkLogin()
 
   }, [])
@@ -134,6 +123,9 @@ const App = (props) => {
     return (<Provider store={store}>
       <View style={styles.container}>
         <Nav />
+        {updateAvailable && <TouchableOpacity onPress={() => reloadApp()} style={{ justifyContent: 'center', alignItems: 'center', padding: 5, backgroundColor: 'orange' }}>
+          <Text style={styles.small}>Click to Use the Latest Version</Text>
+        </TouchableOpacity>}
         {!isInternetReachable && <View style={{ justifyContent: 'center', alignItems: 'center', padding: 5, backgroundColor: 'orange' }}>
           <Text style={styles.small}>No internet connection</Text>
         </View>

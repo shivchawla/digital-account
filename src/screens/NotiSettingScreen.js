@@ -9,6 +9,7 @@ import * as actionCreator from '../store/actions/action'
 const NotiSettingScreen = (props) => {
     const dispatch = useDispatch()
     const { expo_token } = useSelector(state => state.registrationReducer, shallowEqual)
+    const all = useSelector(state => state.registrationReducer, shallowEqual)
 
     const { email, server_expo_token } = useSelector(state => state.personalInformationScreenReducer, shallowEqual)
     const updateExpoToken = () => {
@@ -19,6 +20,10 @@ const NotiSettingScreen = (props) => {
     const [switchValue1, setSwitchValue1] = useState(false)
     const [switchValue2, setSwitchValue2] = useState(false)
     const [switchValue3, setSwitchValue3] = useState(server_expo_token === expo_token)
+
+    server_expo_token && console.log(`server expo token is ${server_expo_token} `)
+    expo_token && console.log(`local expo token is ${expo_token} `)
+    all && console.log(`all is ${JSON.stringify(all)} `)
 
     const toggleSwitch1 = (value) => {
         //onValueChange of the switch this function will be called
@@ -73,11 +78,11 @@ const NotiSettingScreen = (props) => {
                 <View style={{ flexDirection: 'row', marginTop: 30, justifyContent: 'space-between' }}>
                     <View>
                         <Text style={[styles.text, { padding: 5 }]}>App Notification</Text>
-                        <Text style={[styles.small, { padding: 5,fontFamily:'Montserrat_italic'}]}>{server_expo_token === expo_token ? `Receive Notification` : `No Notification`}</Text>
+                        <Text style={[styles.small, { padding: 5, fontFamily: 'Montserrat_italic' }]}>{server_expo_token === expo_token ? `Receive Notification` : `No Notification`}</Text>
                     </View>
 
                     <Switch disabled={server_expo_token === expo_token} style={{ marginLeft: 50, marginRight: 15 }} onValueChange={value => toggleSwitch3(value)} value={switchValue3} />
-                </View> 
+                </View>
                 {/* {expo_token === server_expo_token ? <View>
                     <View>
                         <Text>Cun</Text>

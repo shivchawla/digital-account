@@ -30,7 +30,8 @@ const SignupPersonalSuccessScreen = (props) => {
     useEffect(() => {
         const prevScreen = props.route.params?.prevScreen ?? 'NA';
         console.log(`prevScreen ialah : ${prevScreen}`);
-        dispatch(actionCreator.retrievePersonalInfo());
+        // dispatch(actionCreator.getPersonalToken())
+        // dispatch(actionCreator.retrievePersonalInfo());
         (prevScreen != 'Dashboard') ? dispatch(actionCreator.getPersonalToken()) : dispatch(actionCreator.retrievePersonalInfo())
     }, []);
 
@@ -82,14 +83,29 @@ const SignupPersonalSuccessScreen = (props) => {
                         </View>
                     </View>
                     <View style={{ flex: 1 }}>
-                        <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                        {/* <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                             <TouchableOpacity onPress={() => props.navigation.navigate('Dashboard')} style={{ width: Layout.window.width * 0.3, paddingTop: 16, paddingBottom: 16, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, borderColor: 'black', borderWidth: 1 }}>
                                 <Text style={[styles.textDefault]}>Skip</Text>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => clearEmail()} style={{ width: Layout.window.width * 0.3, paddingTop: 16, paddingBottom: 16, borderRadius: 15, justifyContent: 'center', alignItems: 'center', margin: 10, backgroundColor: '#09A4BF' }}>
                                 <Text style={[styles.textDefault, { color: 'white' }]}>Merchant</Text>
                             </TouchableOpacity>
+                        </View> */}
+                        <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                            <CustomButton
+                                navigation={() => props.navigation.navigate('Dashboard')}
+                                label={'Skip'}
+                                boxStyle={{ borderColor: 'darkturquoise', backgroundColor: '#ffffff00', margin: 10, borderWidth: 1 }}
+                                textStyle={{ color: 'black' }}
+                            />
+                            <CustomButton
+                                navigation={() => clearEmail()}
+                                label={'Merchant'}
+                                disabledButton={!emailVerified}
+                                boxStyle={{ backgroundColor: emailVerified ? '#09A4BF' : 'rgba(9,164,191,0.5)', margin: 10 }}
+                            />
                         </View>
+
                     </View>
                 </View>
             </View> : <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, }}>
@@ -127,8 +143,8 @@ const SignupPersonalSuccessScreen = (props) => {
                                         <CustomButton
                                             navigation={() => clearEmail()}
                                             label={'Merchant'}
-                                            //disabledButton={activated==1}
-                                            boxStyle={{ backgroundColor: emailVerified||activated ? '#09A4BF' : 'rgba(9,164,191,0.5)', margin: 10 }}
+                                            disabledButton={emailVerified ? false : activated ? false : true}
+                                            boxStyle={{ backgroundColor: emailVerified || activated ? '#09A4BF' : 'rgba(9,164,191,0.5)', margin: 10 }}
                                         /></>}
 
                             </View>

@@ -45,6 +45,35 @@
     },
     {
       "client_info": {
+        "mobilesdk_app_id": "1:1021952550439:android:80cd52410c2bd18b7f9002",
+        "android_client_info": {
+          "package_name": "com.fcgb.da.uat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1021952550439-430o945o4ao3meff2unm9n08e9otpv5u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuKru7gEMW9hS60Wbbka3102ImHPBpjqw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1021952550439-430o945o4ao3meff2unm9n08e9otpv5u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:1021952550439:android:1963efc6d3705fe47f9002",
         "android_client_info": {
           "package_name": "com.fcgb.dan"

@@ -8,7 +8,7 @@ import s3 from '../../do/DigitalOcean'
 import config from '../../do/config'
 
 import { requestToken, requestPersonalToken, urlToBlob, registerApi, companyInfoAPI, contactPersonAPI, submitDocApi, declarationApi, cddApi, resendVerificationApi } from './apiRegistration'
-import { paymentHistoryListApi, retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, agingListApi, reportListApi, businessDirectoryListApi, invoiceApi, newExpenseApi, customerDataApi, itemDataApi, submitLoanApplicationApi, addBankApi, bankListApi, deleteAllBankApi, notificationListApi, loanApplicationDataApi, submitInvoiceApi, submitSupportApi, withDrawApi, withdrawListApi, vendorListApi, withdrawDataApi, vendorDataApi, vendorDataRetrieveApi, customerListApi, customerDataRetrieveApi, itemListApi, itemDataRetrieveApi, retrieveAccountInfoApi, getAllUsersApi, repaymentListApi, repaymentDetailApi, checkCDDApi2, loanBillListApi, billDetailApi, checkAuthApi, savePinApi, respondAgreementApi, retrievePersonalInfoApi, updateExpoTokenApi, deleteCustomerApi,deleteVendorApi,deleteItemApi,deleteBankApi ,validatePinApi} from './apiDashboard'
+import { paymentHistoryListApi, retrieveMerchantInfoApi, checkDeclareApi, checkDocumentApi, checkContactApi, checkCDDApi, loanListApi, invoiceListApi, agingListApi, reportListApi, businessDirectoryListApi, invoiceApi, newExpenseApi, customerDataApi, itemDataApi, submitLoanApplicationApi, addBankApi, bankListApi, deleteAllBankApi, notificationListApi, loanApplicationDataApi, submitInvoiceApi, submitSupportApi, withDrawApi, withdrawListApi, vendorListApi, withdrawDataApi, vendorDataApi, vendorDataRetrieveApi, customerListApi, customerDataRetrieveApi, itemListApi, itemDataRetrieveApi, retrieveAccountInfoApi, getAllUsersApi, repaymentListApi, repaymentDetailApi, checkCDDApi2, loanBillListApi, billDetailApi, checkAuthApi, savePinApi, respondAgreementApi, retrievePersonalInfoApi, updateExpoTokenApi, deleteCustomerApi, deleteVendorApi, deleteItemApi, deleteBankApi, validatePinApi } from './apiDashboard'
 //import {pusherListen} from './pusher'
 import moment from 'moment'
 
@@ -48,11 +48,11 @@ export const login1 = (values) => {
 }
 
 export const companyInfo = (values) => {
-    return async (dispatch, getState) => {
+    return (dispatch, getState) => {
         //const { comp_name, comp_regno, comp_regdate, comp_main_biz_act } = getState().companyInformationReducer
         console.log(`companyInfo yang gagah`)
         console.log(JSON.stringify(values))
-        await dispatch({ type: 'SET_COMPANY_INFO', payload: { ...values, } })
+        dispatch({ type: 'SET_COMPANY_INFO', payload: { ...values, } })
     }
 }
 
@@ -365,9 +365,9 @@ export const retrievePersonalInfo = () => {
 
 
 export const setScreen2 = () => {
-    return async (dispatch, getState) => {       
+    return async (dispatch, getState) => {
         await dispatch(checkCDDApi2())
-       
+
     }
 
 }

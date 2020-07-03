@@ -26,9 +26,9 @@ const TransactionHistoryScreen = (props) => {
                     <Text style={[styles.title]}>ACCOUNT: 19927483</Text>
                 </View>
                 <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')} style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
-                    <View style={{ backgroundColor:'rgba(62,194,217,0.5)',borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
-            <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
-          </View>
+                    <View style={{ backgroundColor: 'rgba(62,194,217,0.5)', borderColor: "#3EC2D9", borderWidth: 0, width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center' }}>
+                        <Ionicons name="md-person" color={'#fff'} style={{ fontSize: 25 }} />
+                    </View>
                 </TouchableOpacity>
             </View>
             <View style={{ flex: 9 }}>
@@ -38,16 +38,16 @@ const TransactionHistoryScreen = (props) => {
                             <Text style={[styles.h2, { marginBottom: 10, marginTop: 25 }]}>Transaction History</Text>
                         </View>
                         {reportList && <FlatList data={reportList.filter(rl => !rl.type.includes('Fee'))} keyExtractor={(item, index) => index.toString()} renderItem={({ item }) =>
-            <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'space-between' }}>
-              <View style={{ flexDirection: 'row', }}>
-                <Ionicons name={item.credit_debit == 'DEBIT' ? "md-remove-circle-outline" : "md-add-circle-outline"} color={item.credit_debit == 'DEBIT' ? '#A20F0F' : '#7ED321'} style={{ fontSize: 12, paddingRight: 20 }} />
-                <Text style={[styles.text, { fontSize: 12, color: 'darkgrey' }]}>{item.type} ({moment(item.updated_at).format('D/MM/YY')})</Text>
-              </View>
-              <View style={{}}>
-                <Text style={[styles.text, { color: item.credit_debit == 'DEBIT' ? '#A20F0F' : '#7ED321', fontSize: 12 }]}>{item.credit_debit == 'DEBIT' ? '-' : '+'} {item.currency ? item.currency : 'MYR'} {item.amount}</Text>
-              </View>
-            </View>
-          } />}
+                            <View style={{ flexDirection: 'row', marginTop: 5, justifyContent: 'space-between' }}>
+                                <View style={{ flexDirection: 'row', }}>
+                                    <Ionicons name={item.credit_debit == 'DEBIT' ? "md-remove-circle-outline" : "md-add-circle-outline"} color={item.credit_debit == 'DEBIT' ? '#A20F0F' : '#7ED321'} style={{ fontSize: 12, paddingRight: 20 }} />
+                                    <Text style={[styles.text, { fontSize: 12, color: 'darkgrey' }]}>{item.type} ({moment(item.updated_at).format('D/MM/YY')})</Text>
+                                </View>
+                                <View style={{}}>
+                                    <Text style={[styles.text, { color: item.credit_debit == 'DEBIT' ? '#A20F0F' : '#7ED321', fontSize: 12 }]}>{item.credit_debit == 'DEBIT' ? '-' : '+'} {item.currency ? item.currency : 'MYR'} {item.amount}</Text>
+                                </View>
+                            </View>
+                        } />}
                     </View>
                 </ScrollView>
             </View >
