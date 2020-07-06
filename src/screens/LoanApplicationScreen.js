@@ -41,6 +41,7 @@ const LoanApplicationScreen = (props) => {
     return (
         <Formik initialValues={{ smeConnected: true }} onSubmit={values => {
             setLoanApplication(values)
+            //setSubmitting(false)
             props.navigation.navigate('ConnectedParties')
         }}
             validationSchema={validationSchema}
@@ -75,8 +76,8 @@ const LoanApplicationScreen = (props) => {
                             </View>
                         </View>
                         <View style={{ justifyContent: 'space-between', flex: 9 }}>
-                            <View style={{ flex: 9,  }}>
-                                <ScrollView style={{padding:10}}>
+                            <View style={{ flex: 9, }}>
+                                <ScrollView style={{ padding: 10 }}>
                                     <View style={{ flexDirection: 'row', alignSelf: 'stretch', justifyContent: 'center', marginBottom: 5 }}>
                                         <Text style={[styles.titleBox, { marginBottom: 10, marginTop: 10, fontSize: 16 }]}>Financing</Text>
                                     </View>
@@ -142,7 +143,7 @@ const LoanApplicationScreen = (props) => {
                                 </TouchableOpacity>
                                 <TouchableOpacity disabled={!FormikProps.isValid} onPress={FormikProps.handleSubmit} style={{ flex: 1 }}>
                                     <LinearGradient colors={FormikProps.isValid ? ['#0A6496', '#055E7C'] : ['rgba(10,100,150,0.5)', 'rgba(5,94,124,0.5)']} style={{ flex: 1, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-                                        {FormikProps.isSubmitting ? <ActivityIndicator color={'#fff'} /> : <Text style={[styles.butang, { color: '#fff' }]}>Next</Text>}
+                                    <Text style={[styles.butang, { color: '#fff' }]}>Next</Text>
                                     </LinearGradient>
                                 </TouchableOpacity>
                             </View>
