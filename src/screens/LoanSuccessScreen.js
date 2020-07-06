@@ -1,5 +1,5 @@
-import React from 'react';
-import { Image, Text, TouchableOpacity, View,ActivityIndicator } from 'react-native';
+import React,{useState,useEffect} from 'react';
+import { Image, Text, TouchableOpacity, View,ActivityIndicator,BackHandler,Alert } from 'react-native';
 import Constants from 'expo-constants'
 import Layout from '../constants/Layout'
 import styles from '../styles/styles'
@@ -7,6 +7,8 @@ import * as actionCreator from '../store/actions/action'
 import { shallowEqual, useSelector,useDispatch } from 'react-redux'
 
 const LoanSuccessScreen = (props) => {
+
+
 
 
     const { status,code } = useSelector(state => state.loanApplicationReducer, shallowEqual)
@@ -19,6 +21,26 @@ const LoanSuccessScreen = (props) => {
         dispatch(actionCreator.getRepaymentList())
         props.navigation.navigate('Loan')
     }
+
+    const backAction = () => {
+        Alert.alert("Please click Loan List button", [
+        //   {
+        //     text: "Cancel",
+        //     onPress: () => null,
+        //     style: "cancel"
+        //   },
+          { text: "OK", onPress: () => null }
+        ]);
+        return true;
+      };
+
+      useEffect(() => {
+        BackHandler.addEventListener("hardwareBackPress", backAction);
+    
+        return () => {
+          BackHandler.removeEventListener("hardwareBackPress", backAction);
+        };
+      }, []);
   
     return (
 
