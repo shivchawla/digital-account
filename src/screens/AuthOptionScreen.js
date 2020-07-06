@@ -104,7 +104,7 @@ const AuthOptionScreen = (props) => {
 
         // let response = await fetch(`https://tuah.niyo.my/api/auth/validate_pin`, { method, headers, body })
         // let responseJson = await response.json()
-        let kucing = await fetch(`https://tuah.niyo.my/api/auth/validate_pin`, { method, headers, body })
+        let kucing = await fetch(`https://uat.niyo.my/api/auth/validate_pin`, { method, headers, body })
             .then(async response => await response.json())
             .then(async responseJson => {
                 const { message, status } = await responseJson
