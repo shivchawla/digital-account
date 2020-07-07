@@ -34,8 +34,8 @@ const AdminApprovalScreen = (props) => {
 
     const logout = () => {
         dispatch(actionCreator.logout())
-        props.navigation.reset({ index: 0, routes: [{ name: 'Registration' }], })
-        props.navigation.navigate('Welcome')
+         props.navigation.reset({ index: 0, routes: [{ name: 'Dashboard' }], })
+         props.navigation.navigate('Welcome')
     }
 
     const exitAlert = () => {
@@ -59,6 +59,9 @@ const AdminApprovalScreen = (props) => {
     useEffect(() => {
         console.log("componentDidMount");
         handleAndroidBackButton(exitAlert)
+        return () => {
+            removeAndroidBackButtonHandler()
+          };
     }, []); // empty-array means don't watch for any updates
 
     return (

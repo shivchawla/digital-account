@@ -45,9 +45,17 @@ const Nav = (props) => {
         <NavigationContainer>
             <Stack.Navigator>
                 {token ?
-                    <Stack.Screen name="Dashboard" component={MainDrawer} options={{ headerShown: false }} /> :
-                    <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} />}
-                <Stack.Screen name="Registration" component={RegistrationStack} options={{ headerShown: false }} />
+                    <>
+                        <Stack.Screen name="Dashboard" component={MainDrawer} options={{ headerShown: false }} />
+                        <Stack.Screen name="Registration" component={RegistrationStack} options={{ headerShown: false }} />
+                        <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} />
+                    </> :
+                    <>
+                        <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} />
+                        <Stack.Screen name="Registration" component={RegistrationStack} options={{ headerShown: false }} />
+                    </>
+                }
+                {/* <Stack.Screen name="Registration" component={RegistrationStack} options={{ headerShown: false }} /> */}
             </Stack.Navigator>
         </NavigationContainer>
     )
