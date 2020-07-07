@@ -78,11 +78,13 @@ const App = (props) => {
     }))
   }
 
+
   const _handleNotification = (notification) => {
     console.log(`notification received ${JSON.stringify(notification)}`)
     const { data } = notification
     store.dispatch({ type: 'SET_NOTIFICATION_LIST', payload: { ...data } })
     const { withdrawalsApproved, withdrawalsDisbursed, loanApproved, loanDisbursed, email } = data
+    
     if (withdrawalsApproved || withdrawalsDisbursed) {
       store.dispatch(actionCreator.getWithdrawList())
       dispatch(actionCreator.getRepaymentList())

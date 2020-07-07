@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, TouchableOpacity, Text, Image, ActivityIndicator, KeyboardAvoidingView,Alert, BackHandler } from 'react-native';
+import { View, TouchableOpacity, Text, Image, ActivityIndicator, KeyboardAvoidingView, Alert, BackHandler } from 'react-native';
 import { useDispatch } from 'react-redux'
 import * as actionCreator from '../store/actions/action'
 import CheckBox from 'react-native-check-box'
@@ -43,14 +43,17 @@ const RegistrationDeclarationScreen = (props) => {
     useEffect(() => {
         console.log("componentDidMount");
         handleAndroidBackButton(exitAlert)
-        // return removeAndroidBackButtonHandler()
+        return () => {
+            removeAndroidBackButtonHandler()
+        };
     }, []); // empty-array means don't watch for any updates
     const dispatch = useDispatch()
 
     return (
-        <Formik onSubmit={values => { 
-            dispatch(actionCreator.declaration(values)); 
-            props.navigation.navigate('AdminApproval') }}
+        <Formik onSubmit={values => {
+            dispatch(actionCreator.declaration(values));
+            props.navigation.navigate('AdminApproval')
+        }}
             validationSchema={validationSchema}
             initialValues={{ isDeclaration_one: 0, isDeclaration_two: 0 }}
         >

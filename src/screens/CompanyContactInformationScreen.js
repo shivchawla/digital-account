@@ -60,65 +60,61 @@ const CompanyContactInformationScreen = (props) => {
                 const cddEmailError = FormikProps.errors.cddEmail
                 const cddEmailTouched = FormikProps.touched.cddEmail
 
-
-
-
-
                 return (
-                        <LayoutA
-                            title={'COMPANY CONTACT'}
-                            screenType='registration'
-                            navigation={props.navigation}
-                            nopadding
-                        >
+                    <LayoutA
+                        title={'COMPANY CONTACT'}
+                        screenType='registration'
+                        navigation={props.navigation}
+                        nopadding
+                    >
 
-                            <View style={[styles.screenMargin, { flex: 9 }]}>
-                                <CustomTextInput
-                                    label={`Phone Number`}
-                                    value={cddTelephone}
-                                    handleChange={FormikProps.handleChange(`cddTelephone`)}
-                                    handleBlur={FormikProps.handleBlur(`cddTelephone`)}
-                                    touched={cddTelephoneTouched}
-                                    error={cddTelephoneError}
-                                    placeholder={'Eg: 6076541258'}
-                                    keyboardType={'phone-pad'}
-                                />
-                                  <CustomTextInput
-                                    label={`Email Address`}
-                                    value={cddEmail}
-                                    handleChange={FormikProps.handleChange(`cddEmail`)}
-                                    handleBlur={FormikProps.handleBlur(`cddEmail`)}
-                                    touched={cddEmailTouched}
-                                    error={cddEmailError}
-                                    placeholder={'Eg: abc@email.com'}
-                                
-                                />
-                                <View style={[styles.formElement]}>
-                                    <TouchableOpacity onPress={() => props.navigation.navigate('CompanyContactAddressInformation')}>
-                                        <Text style={[styles.titleBox, { marginBottom: 5 }]}>Address</Text>
-                                        {!comp_state ? <TextInput editable={false} value={comp_addr} style={[styles.textInput, { borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }]} />
-                                            :
-                                            <View style={{ marginRight: 3, padding: 5, borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
-                                                <Text>{comp_addr}</Text>
-                                                {comp_addr2 && <Text>{comp_addr2}</Text>}
-                                                <View style={{ flexDirection: 'row' }}>
-                                                    <Text>{comp_postcode}</Text>
-                                                    <Text>{comp_city}</Text>
-                                                </View>
-                                                <Text>{comp_state}</Text>
-                                            </View>}
-                                    </TouchableOpacity>
-                                </View>
-                            </View>
-                            <CustomFormAction
-                                navigation={props.navigation}
-                                isValid={FormikProps.isValid}
-                                handleSubmit={FormikProps.handleSubmit}
-                                isSubmitting = {FormikProps.isSubmitting}
-                                label={`Next`}
+                        <View style={[styles.screenMargin, { flex: 9 }]}>
+                            <CustomTextInput
+                                label={`Phone Number`}
+                                value={cddTelephone}
+                                handleChange={FormikProps.handleChange(`cddTelephone`)}
+                                handleBlur={FormikProps.handleBlur(`cddTelephone`)}
+                                touched={cddTelephoneTouched}
+                                error={cddTelephoneError}
+                                placeholder={'Eg: 6076541258'}
+                                keyboardType={'phone-pad'}
                             />
-                        </LayoutA>
-                 )
+                            <CustomTextInput
+                                label={`Email Address`}
+                                value={cddEmail}
+                                handleChange={FormikProps.handleChange(`cddEmail`)}
+                                handleBlur={FormikProps.handleBlur(`cddEmail`)}
+                                touched={cddEmailTouched}
+                                error={cddEmailError}
+                                placeholder={'Eg: abc@email.com'}
+
+                            />
+                            <View style={[styles.formElement]}>
+                                <TouchableOpacity onPress={() => props.navigation.navigate('CompanyContactAddressInformation')}>
+                                    <Text style={[styles.titleBox, { marginBottom: 5 }]}>Address</Text>
+                                    {!comp_state ? <TextInput editable={false} value={comp_addr} style={[styles.textInput, { borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)', padding: 5 }]} />
+                                        :
+                                        <View style={{ marginRight: 3, padding: 5, borderWidth: 1, borderColor: 'rgba(0,0,0,0.3)' }}>
+                                            <Text>{comp_addr}</Text>
+                                            {comp_addr2 && <Text>{comp_addr2}</Text>}
+                                            <View style={{ flexDirection: 'row' }}>
+                                                <Text>{comp_postcode}</Text>
+                                                <Text>{comp_city}</Text>
+                                            </View>
+                                            <Text>{comp_state}</Text>
+                                        </View>}
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                        <CustomFormAction
+                            navigation={props.navigation}
+                            isValid={FormikProps.isValid}
+                            handleSubmit={FormikProps.handleSubmit}
+                            isSubmitting={FormikProps.isSubmitting}
+                            label={`Next`}
+                        />
+                    </LayoutA>
+                )
 
             }}
 
@@ -128,10 +124,5 @@ const CompanyContactInformationScreen = (props) => {
 
 }
 
-CompanyContactInformationScreen.navigationOptions =
-
-{
-    header: null,
-};
 
 export default CompanyContactInformationScreen

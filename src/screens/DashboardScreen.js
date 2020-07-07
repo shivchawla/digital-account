@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, Text, Image, Modal, ActivityIndicator, FlatList, ScrollView } from 'react-native';
+import { View, TouchableOpacity, Text, Image, Modal, ActivityIndicator, FlatList, ScrollView, BackHandler, Alert } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons';
 import Layout from '../constants/Layout'
@@ -33,6 +33,20 @@ const DashboardScreen = (props) => {
   const [chartDay, setChartDay] = useState(7)
   const { status, status1, link } = useSelector(state => state.merchantInfoReducer, shallowEqual)
   //const [screenStatus, setScreenStatus] = useState(null)
+
+
+  const backAction = () => {
+    return;
+  };
+
+
+  useEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", backAction);
+
+    return () => {
+      BackHandler.removeEventListener("hardwareBackPress", backAction);
+    };
+  }, []);
 
 
   // useEffect(() => {

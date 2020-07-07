@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Image, Text, TouchableOpacity, View, } from 'react-native';
 import Constants from 'expo-constants'
 import Layout from '../constants/Layout'
 import styles from '../styles/styles'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import * as actionCreator from '../store/actions/action'
+import {
+    handleAndroidBackButton,
+    removeAndroidBackButtonHandler
+} from '../components/androidBackButton';
 import { CustomButton } from '../components/Custom'
 
 const ContactPersonSuccessScreen = (props) => {
@@ -14,6 +18,14 @@ const ContactPersonSuccessScreen = (props) => {
         //dispatch(actionCreator.setScreen2())
         props.navigation.navigate('CompanyDocument')
     };
+
+    useEffect(() => {
+        console.log("componentDidMount");
+        handleAndroidBackButton(() => { return true; })
+        return () => {
+            removeAndroidBackButtonHandler()
+        };
+    }, []); // empty-array means don't watch for any updates
 
     return (
         <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>
@@ -34,7 +46,7 @@ const ContactPersonSuccessScreen = (props) => {
                     </View>
                     <View style={{ flex: 1 }}>
                         <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 30 }}>
-                        <CustomButton
+                            <CustomButton
                                 navigation={() => props.navigation.navigate('Dashboard')}
                                 label={'Skip'}
                                 boxStyle={{ borderColor: 'darkturquoise', backgroundColor: '#ffffff00', margin: 10, borderWidth: 1 }}
@@ -43,7 +55,7 @@ const ContactPersonSuccessScreen = (props) => {
                             <CustomButton
                                 navigation={() => goNext()}
                                 label={'Document'}
-                                boxStyle={{ backgroundColor:'#09A4BF', margin: 10 }}
+                                boxStyle={{ backgroundColor: '#09A4BF', margin: 10 }}
                             />
                         </View>
                     </View>

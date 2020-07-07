@@ -15,17 +15,7 @@ import * as actionCreator from '../store/actions/action'
 
 const SignupPersonalSuccessScreen = (props) => {
 
-    const exitAlert = () => {
-        // Works on both Android and iOS
-        Alert.alert('Skip', 'Go to Dashboard or Exit App',
-            [
-                { text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel', },
-                { text: 'Dashboard', onPress: () => { console.log('OK Pressed'); props.navigation.navigate('Dashboard') } },
-                { text: 'Exit', onPress: () => { console.log('OK Pressed'); BackHandler.exitApp() } },
-            ],
-            { cancelable: false },
-        );
-    };
+
 
     useEffect(() => {
         const prevScreen = props.route.params?.prevScreen ?? 'NA';
@@ -37,8 +27,10 @@ const SignupPersonalSuccessScreen = (props) => {
 
     useEffect(() => {
         console.log("componentDidMount");
-        handleAndroidBackButton(exitAlert)
-        // return removeAndroidBackButtonHandler()
+        handleAndroidBackButton(() => { return true; })
+        return () => {
+            removeAndroidBackButtonHandler()
+        };
     }, []); // empty-array means don't watch for any updates
 
     const dispatch = useDispatch()

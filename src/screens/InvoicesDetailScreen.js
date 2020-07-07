@@ -13,17 +13,11 @@ import {
 } from 'react-native';
 
 import CheckBox from 'react-native-check-box'
-
 import { useDispatch } from 'react-redux'
-
 import { LinearGradient } from 'expo-linear-gradient'
-
 import { Ionicons } from '@expo/vector-icons';
-
 import styles from '../styles/styles'
-
 import { Formik } from 'formik';
-
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
@@ -177,12 +171,6 @@ const InvoicesDetailScreen = (props) => {
     );
 }
 
-InvoicesDetailScreen.navigationOptions =
 
-    {
-
-        header: null,
-
-    };
 
 export default InvoicesDetailScreen;

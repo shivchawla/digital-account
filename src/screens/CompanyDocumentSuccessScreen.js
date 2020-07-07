@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import { Image, Text, TouchableOpacity, View, } from 'react-native';
 import Constants from 'expo-constants'
 import Layout from '../constants/Layout'
@@ -6,6 +6,11 @@ import styles from '../styles/styles'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import * as actionCreator from '../store/actions/action'
 import { CustomButton } from '../components/Custom'
+import {
+    handleAndroidBackButton,
+    removeAndroidBackButtonHandler
+} from '../components/androidBackButton';
+
 const CompanyDocumentSuccessScreen = (props) => {
     const dispatch = useDispatch()
 
@@ -14,6 +19,15 @@ const CompanyDocumentSuccessScreen = (props) => {
         //dispatch(actionCreator.setScreen2())
         props.navigation.navigate('RegistrationDeclaration')
     };
+
+
+    useEffect(() => {
+        console.log("componentDidMount");
+        handleAndroidBackButton(() => { return true; })
+        return () => {
+            removeAndroidBackButtonHandler()
+        };
+    }, []); // empty-array means don't watch for any updates
 
     return (
         <View style={{ flex: 1, paddingTop: Constants.statusBarHeight }}>

@@ -6,6 +6,8 @@ import styles from '../styles/styles'
 import { shallowEqual, useSelector, useDispatch } from 'react-redux'
 import * as actionCreator from '../store/actions/action'
 import { CustomButton } from '../components/Custom'
+
+
 const CompanyInfoSuccessScreen = (props) => {
     const dispatch = useDispatch()
     const goNext = () => {

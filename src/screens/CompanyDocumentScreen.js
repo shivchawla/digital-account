@@ -22,9 +22,13 @@ const CompanyDocumentScreen = (props) => {
                     onPress: () => console.log('Cancel Pressed'),
                     style: 'cancel',
                 },
-                { text: 'Dashboard', onPress: () => { console.log('OK Pressed'); 
-                //dispatch(actionCreator.setScreen2()); 
-                props.navigation.navigate('Dashboard', { from: 'Registration' }) } },
+                {
+                    text: 'Dashboard', onPress: () => {
+                        console.log('OK Pressed');
+                        //dispatch(actionCreator.setScreen2()); 
+                        props.navigation.navigate('Dashboard', { from: 'Registration' })
+                    }
+                },
                 { text: 'Exit', onPress: () => { console.log('OK Pressed'); BackHandler.exitApp() } },
             ],
             { cancelable: false },
@@ -34,7 +38,9 @@ const CompanyDocumentScreen = (props) => {
     useEffect(() => {
         console.log("componentDidMount");
         handleAndroidBackButton(exitAlert)
-        // return removeAndroidBackButtonHandler()
+        return () => {
+            removeAndroidBackButtonHandler()
+        };
     }, []); // empty-array means don't watch for any updates
     const dispatch = useDispatch()
     const docPicker = useSelector(state => state.companyInformationReducer.docPicker, shallowEqual)
