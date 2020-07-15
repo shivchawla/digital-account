@@ -67,7 +67,7 @@ const WelcomeScreen = (props) => {
                 //test
 
                 return (
-                    <KeyboardAvoidingView enabled style={{ flex: 1, }}>
+                    <View style={{ flex: 1, }}>
                         <View style={{ justifyContent: 'space-between', flex: 9, }}>
                             <View style={{ flex: 9 }}>
                                 <View style={{ flex: 1, backgroundColor: '#055E7C' }}>
@@ -112,7 +112,7 @@ const WelcomeScreen = (props) => {
                                 </View>
                             </View>
                         </View>
-                    </KeyboardAvoidingView>)
+                    </View>)
             }}
         </Formik>
     )

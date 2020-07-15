@@ -81,16 +81,25 @@ const App = (props) => {
 
   const _handleNotification = (notification) => {
     console.log(`notification received ${JSON.stringify(notification)}`)
-    const { data } = notification
+    const { request } = notification
+    const { content } = request
+    const { data } = content
+
+    request &&console.log(`request ialah ${JSON.stringify(request)}`)
+    content &&console.log(`content ialah ${JSON.stringify(content)}`)
+    data &&console.log(`data ialah ${JSON.stringify(data)}`)
+
+
+
     store.dispatch({ type: 'SET_NOTIFICATION_LIST', payload: { ...data } })
-    const { withdrawalsApproved, withdrawalsDisbursed, loanApproved, loanDisbursed, email } = data
+    //const { withdrawalsApproved, withdrawalsDisbursed, loanApproved, loanDisbursed, email } = data
     
-    if (withdrawalsApproved || withdrawalsDisbursed) {
+    if (data.withdrawalsApproved || data.withdrawalsDisbursed) {
       store.dispatch(actionCreator.getWithdrawList())
       dispatch(actionCreator.getRepaymentList())
     }
 
-    if (loanApproved || loanDisbursed) {
+    if (data.loanApproved || data.loanDisbursed) {
       store.dispatch(actionCreator.getLoanList())
     }
 
