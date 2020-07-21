@@ -1,19 +1,36 @@
 {
   "expo": {
-    "name": "Digital Account",
-    "slug": "mobile",
+    "name": "Digital Account (UAT)",
+    "slug": "digital-account-uat",
+    
     "privacy": "public",
-    "sdkVersion": "34.0.0",
     "platforms": [
       "ios",
       "android",
       "web"
     ],
+    "android": {
+      "package": "com.fcgb.da.uat",
+      "googleServicesFile": "./google-services.json",
+      "versionCode": 1,
+      "permissions": [
+        "CAMERA",
+        "RECORD_AUDIO",
+        "AUDIO_RECORDING",
+        "NOTIFICATIONS",
+        "CAMERA_ROLL",
+        "WRITE_EXTERNAL_STORAGE",
+        "READ_EXTERNAL_STORAGE",
+        "INTERNET",
+        "USE_FINGERPRINT"
+      ],
+      "useNextNotificationsApi" :true
+    },
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./src/assets/images/icon.png",
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./src/assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -25,6 +42,15 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "web": {
+      "build": {
+        "babel": {
+          "include": [
+            "react-native-otp-input"
+          ]
+        }
+      }
     }
   }
 }
